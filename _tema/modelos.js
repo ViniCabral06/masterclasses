@@ -183,6 +183,7 @@ function makePills(o = {}) {
         if (d < 1.6) { const n = _c.normalize(); u.vel.addScaledVector(n, (1 - d / 1.6) * 34 * dt); u.w.addScaledVector(new THREE.Vector3(n.y, -n.x, n.z), (1 - d / 1.6) * 14 * dt); }
         if (burst && d < 3.5) { u.vel.addScaledVector(_c.normalize(), 9 * (1 - d / 3.5)); u.w.multiplyScalar(4); }
       }
+      if (I && I.sv) { u.vel.y += I.sv * (.7 + Math.abs(u.w.z) * .3) * dt * 3.2; u.vel.x += I.sv * Math.sin(u.w.y * 9) * dt; u.w.x += I.sv * dt * 1.6; }
       u.vel.addScaledVector(u.off, -9 * dt); u.vel.multiplyScalar(Math.exp(-2.6 * dt)); u.off.addScaledVector(u.vel, dt);
       u.w.multiplyScalar(Math.exp(-.6 * dt)); if (u.w.length() < .5) u.w.setLength(.5);
       m.position.copy(p); m.rotation.x += u.w.x * dt; m.rotation.y += u.w.y * dt; m.rotation.z += u.w.z * dt;
@@ -259,6 +260,7 @@ function makeBugs(o = {}) {
     cocci.forEach(c => {
       const u = c.userData;
       if (Pcl) { _c.subVectors(_b.copy(u.home).add(u.off), Pcl); const d = _c.length(); if (d < 1.4) u.vel.addScaledVector(_c.normalize(), (1 - d / 1.4) * (flee > 1.5 ? 90 : 18) * dt); }
+      if (I && I.sv) u.vel.y += I.sv * dt * 6;
       u.vel.addScaledVector(u.off, -26 * dt); u.vel.multiplyScalar(Math.exp(-4 * dt)); u.off.addScaledVector(u.vel, dt);
       c.position.copy(u.home).add(u.off).multiplyScalar(1 + Math.sin(t * 2) * .04);
     });
@@ -293,6 +295,7 @@ function makeCells(o = {}) {
       const u = c.userData; u.u = (u.u + u.sp * dt) % 1;
       const x = (u.u - .5) * SPAN, base = _b.set(x, u.lane + Math.sin(x * .6 + t * .8) * .6, u.z);
       if (P) { _c.subVectors(_a.copy(base).add(u.off), P); const d = _c.length(); if (d < 1.8) u.vel.addScaledVector(_c.normalize(), (1 - d / 1.8) * (burst ? 160 : 24) * dt); }
+      if (I && I.sv) { u.vel.y += I.sv * dt * 3; u.u = (u.u + Math.abs(I.sv) * .012 * dt) % 1; c.rotation.z += I.sv * dt * .8; }
       u.vel.addScaledVector(u.off, -10 * dt); u.vel.multiplyScalar(Math.exp(-3 * dt)); u.off.addScaledVector(u.vel, dt);
       c.position.copy(base).add(u.off);
       c.rotation.x += u.w.x * dt; c.rotation.y += u.w.y * dt * .6;
@@ -410,6 +413,131 @@ function makeHeart(o = {}) {
   return g;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeHeart };
+
+/* ======================= lâmpada de cordinha (troca de tema) ======================= */
+function glowTexture(stops) {
+  const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d');
+  const g = x.createRadialGradient(64, 64, 0, 64, 64, 64); stops.forEach(([o, col]) => g.addColorStop(o, col));
+  x.fillStyle = g; x.fillRect(0, 0, 128, 128); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+function makeLamp(o = {}) {
+  const root = new THREE.Group(), pend = new THREE.Group(); root.add(pend);
+  const L = o.wire || 1.7, acc = new THREE.Color(o.accent || 0xff4d6d);
+  const rubber = new THREE.MeshStandardMaterial({ color: 0x15171a, roughness: .55 });
+  const brass = new THREE.MeshPhysicalMaterial({ color: 0xd8b27a, metalness: 1, roughness: .26, clearcoat: .6, envMapIntensity: 1.3 });
+  const chrome = new THREE.MeshPhysicalMaterial({ color: 0xe9edf2, metalness: 1, roughness: .16, envMapIntensity: 1.5 });
+  // fio
+  const wire = new THREE.Mesh(new THREE.CylinderGeometry(.022, .022, L + 2, 10), rubber); wire.position.y = -(L + 2) / 2 + 2; pend.add(wire);
+  // soquete
+  const sock = new THREE.Group(); sock.position.y = -L; pend.add(sock);
+  const sp = [[.05, .02], [.1, 0], [.14, -.06], [.2, -.14], [.24, -.2], [.25, -.5], [.235, -.56], [.2, -.6]].map(([x, y]) => new THREE.Vector2(x, y));
+  sock.add(new THREE.Mesh(new THREE.LatheGeometry(sp, 40), brass));
+  for (let i = 0; i < 4; i++) { const r = new THREE.Mesh(new THREE.TorusGeometry(.252, .014, 8, 40), brass); r.rotation.x = Math.PI / 2; r.position.y = -.26 - i * .075; sock.add(r); }
+  const nip = new THREE.Mesh(new THREE.CylinderGeometry(.022, .022, .44, 12), chrome); nip.position.set(.46, -.46, 0); nip.rotation.z = Math.PI / 2; sock.add(nip);
+  // bulbo de vidro (perfil de lâmpada A19)
+  const bp = [new THREE.Vector2(.19, 0)];
+  for (let i = 1; i <= 8; i++) { const t = i / 8; bp.push(new THREE.Vector2(.19 + (.36 - .19) * t * t, -.39 * t)); }
+  const R = .56, cy = -.82;
+  for (let i = 1; i <= 28; i++) { const th = (40 + 140 * i / 28) * Math.PI / 180; bp.push(new THREE.Vector2(Math.max(.0001, R * Math.sin(th)), cy + R * Math.cos(th))); }
+  const glass = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: .03, transmission: 1, thickness: .45, ior: 1.5, clearcoat: 1, clearcoatRoughness: .02, envMapIntensity: 1.6, attenuationColor: new THREE.Color(0xfff1dc), attenuationDistance: 2.5 });
+  const bulb = new THREE.Group(); bulb.position.y = -L - .58; pend.add(bulb);
+  bulb.add(new THREE.Mesh(new THREE.LatheGeometry(bp, 56), glass));
+  // haste, suportes e filamento em espiral
+  const stemMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1, thickness: .2, roughness: .05, ior: 1.5 });
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(.04, .08, .42, 16), stemMat); stem.position.y = -.3; bulb.add(stem);
+  const wireMat = new THREE.MeshStandardMaterial({ color: 0x8a8f96, metalness: .9, roughness: .3 });
+  [-1, 1].forEach(sx => { const w = new THREE.Mesh(new THREE.CylinderGeometry(.007, .007, .42, 6), wireMat); w.position.set(sx * .1, -.66, 0); w.rotation.z = sx * -.32; bulb.add(w); });
+  const fp = [];
+  for (let i = 0; i <= 240; i++) { const s = i / 240, a = s * Math.PI * 2 * 16; const bx = -.17 + .34 * s, by = -.86 - .07 * Math.sin(Math.PI * s); fp.push(new THREE.Vector3(bx + Math.cos(a) * .004, by + Math.sin(a) * .022, Math.cos(a) * .022)); }
+  const filMat = new THREE.MeshStandardMaterial({ color: 0x2a1a10, emissive: 0xffc070, emissiveIntensity: 0, roughness: .5 });
+  bulb.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fp), 480, .0075, 6), filMat));
+  const core = new THREE.Mesh(new THREE.SphereGeometry(.4, 32, 20), new THREE.MeshBasicMaterial({ color: 0xffd9a0, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+  core.position.y = cy; bulb.add(core);
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture([[0, 'rgba(255,240,205,1)'], [.22, 'rgba(255,214,150,.6)'], [.55, 'rgba(255,180,100,.16)'], [1, 'rgba(255,170,90,0)']]), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+  halo.position.y = cy; bulb.add(halo);
+  const bulbLight = new THREE.PointLight(0xffd2a0, 0, 8, 1.6); bulbLight.position.y = cy; bulb.add(bulbLight);
+
+  // corrente de bolinhas com puxador de vidro (verlet no espaço do root)
+  const N = 21, SEG = .085, chainLen = SEG * (N - 1);
+  const pts = [], prv = [], _p = V(), _t = V(), _dir = V(), DOWN = new THREE.Vector3(0, -1, 0);
+  const anchorLocal = () => { _p.set(.68, -.46, 0); sock.localToWorld(_p); return root.worldToLocal(_p); };
+  root.updateMatrixWorld(true); anchorLocal();
+  for (let i = 0; i < N; i++) { pts.push(V().set(_p.x, _p.y - i * SEG, 0)); prv.push(pts[i].clone()); }
+  const balls = new THREE.InstancedMesh(new THREE.SphereGeometry(.026, 10, 8), chrome, N); root.add(balls);
+  const bead = new THREE.Group(); root.add(bead);
+  const beadMat = new THREE.MeshPhysicalMaterial({ color: acc, metalness: 0, roughness: .04, transmission: 1, thickness: 1.6, ior: 1.52, clearcoat: 1, attenuationColor: acc, attenuationDistance: .35, envMapIntensity: 1.6 });
+  const beadMesh = new THREE.Mesh(new THREE.CapsuleGeometry(.085, .16, 8, 24), beadMat); beadMesh.position.y = -.17; bead.add(beadMesh);
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(.03, .05, .06, 16), chrome); cap.position.y = -.02; bead.add(cap);
+
+  const st = { th: 0, w: 0, lit: 0, target: 0, flick: -1, slide: 0, slideV: 0, pulled: false, drag: null, auto: -1 };
+  const FL_ON = [[0, 0], [.04, .9], [.08, .05], [.15, .7], [.2, .1], [.3, 1]];
+  const lerpKeys = (K, t) => { for (let i = 1; i < K.length; i++) if (t <= K[i][0]) { const a = K[i - 1], b = K[i]; return a[1] + (b[1] - a[1]) * (t - a[0]) / (b[0] - a[0]); } return K[K.length - 1][1]; };
+  const cLow = new THREE.Color(0xff4a12), cHigh = new THREE.Color(0xffe2b0);
+  const ud = root.userData = {
+    st, chainLen,
+    beadWorld: out => bead.localToWorld(out.set(0, -.17, 0)),
+    bulbWorld: out => core.getWorldPosition(out),
+    setLit(v, instant) { st.target = v; if (instant) st.lit = v; },
+    flickerOn() { st.flick = 0; st.target = 1; },
+    kick(a) { st.w += a; },
+    autoPull() { st.auto = 0; },
+    onPull: null,
+    tick(t, dt, P) {
+      root.updateMatrixWorld(true);
+      let torque = 0;
+      // o ponteiro passando empurra a lâmpada
+      if (P && P.has && !st.drag) {
+        _t.copy(P.world); root.worldToLocal(_t); const bw = root.worldToLocal(core.getWorldPosition(V()));
+        const d = Math.hypot(bw.x - _t.x, bw.y - _t.y); if (d < 1.4) torque += -(P.vx || 0) * 1.1 * (1 - d / 1.4);
+      }
+      const A = anchorLocal().clone();
+      // alvo do puxador: arraste do usuário ou puxão automático
+      let target = null;
+      if (st.auto >= 0) {
+        st.auto += dt; const a = st.auto;
+        if (a > .5) st.auto = -1;
+        else { const k = a < .26 ? Math.sin(a / .26 * Math.PI / 2) : a < .36 ? 1 : 1 - (a - .36) / .14; target = V().set(A.x + .04, A.y - chainLen - .46 * k, 0); if (a >= .36) target = null; }
+      }
+      if (st.drag) { target = root.worldToLocal(_t.copy(st.drag)).clone(); }
+      let want = 0;
+      if (target) { want = THREE.MathUtils.clamp(target.distanceTo(A) - chainLen, 0, .34); torque += THREE.MathUtils.clamp(target.x - A.x, -1.5, 1.5) * 2.2; }
+      if (target) { st.slideV = 0; st.slide += (want - st.slide) * Math.min(1, dt * 30); }
+      else { st.slideV += -st.slide * 900 * dt; st.slideV *= Math.exp(-14 * dt); st.slide += st.slideV * dt; }
+      if (st.slide > .27 && !st.pulled) { st.pulled = true; st.w += .35; ud.onPull && ud.onPull(); }
+      if (st.slide < .08) st.pulled = false;
+      st.w += (-9 * Math.sin(st.th) + torque) * dt; st.w *= Math.exp(-1.1 * dt); st.th = THREE.MathUtils.clamp(st.th + st.w * dt, -.55, .55);
+      pend.rotation.z = st.th; pend.rotation.x = Math.sin(t * .7) * .03;
+      // corrente
+      const a0 = A.clone(); a0.y -= st.slide;
+      const g = -16 * dt * dt;
+      for (let i = 1; i < N; i++) { const p = pts[i], q = prv[i]; const vx = (p.x - q.x) * .985, vy = (p.y - q.y) * .985, vz = (p.z - q.z) * .9; q.copy(p); p.x += vx; p.y += vy + g; p.z += vz; }
+      let pin = null;
+      if (target) { const dd = target.clone().sub(a0); const m = dd.length(); if (m > chainLen) dd.multiplyScalar(chainLen / m); pin = a0.clone().add(dd); }
+      for (let it = 0; it < 16; it++) {
+        pts[0].copy(a0); if (pin) pts[N - 1].copy(pin);
+        for (let i = 0; i < N - 1; i++) {
+          const p = pts[i], q = pts[i + 1]; _t.subVectors(q, p); const d = _t.length() || 1e-5, diff = (d - SEG) / d;
+          const wa = i === 0 ? 0 : .5, wb = i === 0 ? 1 : (pin && i + 1 === N - 1 ? 0 : .5), sw = (wa + wb) || 1;
+          p.addScaledVector(_t, diff * wa / sw); q.addScaledVector(_t, -diff * wb / sw);
+        }
+      }
+      pts[0].copy(a0); if (pin) pts[N - 1].copy(pin);
+      for (let i = 0; i < N; i++) { _m.compose(pts[i], _q.identity(), _s.set(1, 1, 1)); balls.setMatrixAt(i, _m); }
+      balls.instanceMatrix.needsUpdate = true;
+      bead.position.copy(pts[N - 1]); _dir.subVectors(pts[N - 1], pts[N - 2]).normalize(); bead.quaternion.setFromUnitVectors(DOWN, _dir);
+      bead.rotateY(Math.PI / 2);
+      // luz: tremida ao acender, brasa laranja ao apagar
+      if (st.flick >= 0) { st.flick += dt; st.lit = lerpKeys(FL_ON, st.flick); if (st.flick > .3) st.flick = -1; }
+      else st.lit += (st.target - st.lit) * Math.min(1, dt * (st.target > st.lit ? 10 : 2.4));
+      const l = st.lit, hum = 1 + Math.sin(t * 50) * .012 * l;
+      filMat.emissive.copy(cLow).lerp(cHigh, Math.min(1, l * 1.3)); filMat.emissiveIntensity = (l < .015 ? 0 : .8 + l * 7) * hum;
+      core.material.opacity = l * .5 * hum; halo.material.opacity = Math.min(1, l * 1.1) * hum; halo.scale.setScalar(2.6 + l * 1.6);
+      bulbLight.intensity = l * 9;
+    }
+  };
+  return root;
+}
+
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeHeart, makeLamp };
 };
 })();

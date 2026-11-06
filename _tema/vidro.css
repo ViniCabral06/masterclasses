@@ -14,6 +14,9 @@
   --vg-blur:blur(26px) saturate(185%);
   --vg-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.08),0 24px 60px -28px rgba(0,0,0,.7);
   --vg-paper-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(255,255,255,.5),0 30px 70px -30px rgba(0,0,0,.75);
+  --vg-side:rgba(8,12,18,.42); --vg-bar:rgba(8,12,18,.5); --vg-hov:rgba(255,255,255,.07); --vg-rule:rgba(255,255,255,.06);
+  --vg-control:rgba(255,255,255,.2); --vg-faint:rgba(238,244,246,.4); --vg-sidesh:inset -1px 0 0 rgba(255,255,255,.08);
+  --vg-btn:rgba(255,255,255,.09); --vg-btnh:rgba(255,255,255,.15); --vg-bench:rgba(6,10,14,.55); --vg-canvas:.38;
   --vg-display:"Bricolage Grotesque",system-ui,sans-serif;
   --vg-text:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:dark;
@@ -22,6 +25,23 @@
 :root[data-vidro="micro"]{--vg-acc:#9a5bff;--vg-acc-ink:#c7a6ff;--vg-on-acc:#ffffff}
 :root[data-vidro="th4"]{--vg-acc:#38f5a3;--vg-acc-ink:#8dffd0;--vg-on-acc:#032015}
 
+/* tema claro: vidro fosco sobre névoa clara */
+:root[data-vidro][data-theme="light"]{
+  --vg-ground:#e7ecf1; --vg-ink:#0b1015; --vg-ink2:rgba(11,16,21,.8); --vg-muted:rgba(11,16,21,.58);
+  --vg-glass:rgba(255,255,255,.5); --vg-glass2:rgba(255,255,255,.62); --vg-glass3:rgba(255,255,255,.76); --vg-edge:rgba(11,16,21,.09);
+  --vg-paper:rgba(255,255,255,.74);
+  --vg-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 0 1px rgba(255,255,255,.55),0 20px 50px -28px rgba(30,45,70,.38);
+  --vg-paper-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(255,255,255,.7),0 26px 60px -32px rgba(30,45,70,.42);
+  --vg-side:rgba(255,255,255,.46); --vg-bar:rgba(255,255,255,.56); --vg-hov:rgba(11,16,21,.05); --vg-rule:rgba(11,16,21,.07);
+  --vg-control:rgba(11,16,21,.22); --vg-faint:rgba(11,16,21,.4); --vg-sidesh:inset -1px 0 0 rgba(11,16,21,.06);
+  --vg-btn:rgba(255,255,255,.62); --vg-btnh:rgba(255,255,255,.88); --vg-bench:rgba(255,255,255,.55); --vg-canvas:.7;
+  color-scheme:light;
+}
+:root[data-vidro="farmaco"][data-theme="light"]{--vg-acc-ink:#c4173a}
+:root[data-vidro="micro"][data-theme="light"]{--vg-acc-ink:#6a2fd6}
+:root[data-vidro="th4"][data-theme="light"]{--vg-acc-ink:#04875a}
+:root[data-vidro][data-theme="light"] #vidro-bg .au{opacity:.3}
+
 html[data-vidro]{background:var(--vg-ground)!important}
 html[data-vidro] body{background:transparent!important}
 html[data-vidro] ::selection{background:color-mix(in srgb,var(--vg-acc) 45%,transparent);color:#fff}
@@ -29,9 +49,9 @@ html[data-vidro] ::selection{background:color-mix(in srgb,var(--vg-acc) 45%,tran
 /* fundo: aurora + canvas 3D */
 #vidro-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 #vidro-bg canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.4s ease}
-#vidro-bg.on canvas{opacity:.38;transition:opacity .6s ease}
+#vidro-bg.on canvas{opacity:var(--vg-canvas);transition:opacity .6s ease}
 #vidro-bg.on.lendo canvas{opacity:.12}
-@media (max-width:1100px){#vidro-bg.on canvas{opacity:.18}}
+@media (max-width:1100px){#vidro-bg.on canvas{opacity:calc(var(--vg-canvas) * .5)}}
 #vidro-bg .au{position:absolute;border-radius:50%;filter:blur(110px);opacity:.22;will-change:transform}
 #vidro-bg .au.a{width:52vmax;height:52vmax;left:-14vmax;top:-18vmax;background:var(--vg-acc);animation:vg-au1 26s ease-in-out infinite alternate}
 #vidro-bg .au.b{width:44vmax;height:44vmax;right:-16vmax;bottom:-20vmax;background:#4ff3ff;opacity:.22;animation:vg-au2 32s ease-in-out infinite alternate}
@@ -44,17 +64,17 @@ html.vidro-calmo #vidro-bg .au{animation:none}
 /* botão de efeitos */
 #vidro-fx{position:fixed;right:16px;bottom:16px;z-index:95;height:40px;padding:0 14px 0 12px;border-radius:999px;border:0;cursor:pointer;
   display:flex;align-items:center;gap:8px;font:600 13px/1 var(--vg-text);color:var(--vg-ink);
-  background:rgba(255,255,255,.09);-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);box-shadow:var(--vg-shadow);
+  background:var(--vg-btn);-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);box-shadow:var(--vg-shadow);
   transition:transform .4s cubic-bezier(.34,1.56,.64,1),background .3s}
-#vidro-fx:hover{transform:translateY(-2px);background:rgba(255,255,255,.14)}
+#vidro-fx:hover{transform:translateY(-2px);background:var(--vg-btnh)}
 #vidro-fx:active{transform:scale(.95)}
 #vidro-fx i{width:10px;height:10px;border-radius:50%;background:var(--vg-acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--vg-acc) 30%,transparent)}
 html.vidro-calmo #vidro-fx i{background:rgba(255,255,255,.35);box-shadow:none}
 #vidro-home{position:fixed;left:50%;bottom:16px;z-index:95;transform:translateX(-50%) translateY(80px);opacity:0;height:40px;padding:0 16px;border-radius:999px;
   display:flex;align-items:center;gap:8px;font:600 13px/1 var(--vg-text);color:var(--vg-ink);text-decoration:none;
-  background:rgba(255,255,255,.09);-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);box-shadow:var(--vg-shadow);transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .4s}
+  background:var(--vg-btn);-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);box-shadow:var(--vg-shadow);transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .4s}
 html.vidro-ready #vidro-home{transform:translateX(-50%);opacity:1}
-#vidro-home:hover{background:rgba(255,255,255,.15)}
+#vidro-home:hover{background:var(--vg-btnh)}
 @media (max-width:860px){#vidro-home{display:none}}
 
 /* entrada do conteúdo depois do carregamento */
@@ -65,19 +85,19 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
 /* ===================================================== FARMACOLOGIA */
 :root[data-vidro="farmaco"]{
   --ground:var(--vg-ground); --surface:var(--vg-glass); --surface-2:var(--vg-glass2); --raised:var(--vg-glass3);
-  --border:var(--vg-edge); --rule:rgba(255,255,255,.06); --control:rgba(255,255,255,.2);
-  --ink:var(--vg-ink); --ink-2:var(--vg-ink2); --muted:var(--vg-muted); --faint:rgba(238,244,246,.4);
+  --border:var(--vg-edge); --rule:var(--vg-rule); --control:var(--vg-control);
+  --ink:var(--vg-ink); --ink-2:var(--vg-ink2); --muted:var(--vg-muted); --faint:var(--vg-faint);
   --accent:var(--vg-acc); --accent-ink:var(--vg-acc-ink); --accent-soft:color-mix(in srgb,var(--vg-acc) 16%,transparent); --on-ink:#05070a;
   --sb:transparent; --sbline:var(--vg-edge); --acc:var(--vg-acc); --acc-d:var(--vg-acc); --acc-soft:color-mix(in srgb,var(--vg-acc) 16%,transparent);
   --line:var(--vg-edge); --paper:transparent; --soft:var(--vg-glass);
-  --bench:rgba(6,10,14,.55); --bench-2:rgba(255,255,255,.06); --bench-3:rgba(255,255,255,.1); --bench-line:rgba(255,255,255,.1); --bench-acc:var(--vg-acc);
+  --bench:var(--vg-bench); --bench-2:var(--vg-glass); --bench-3:var(--vg-glass2); --bench-line:var(--vg-edge); --bench-acc:var(--vg-acc);
   --sans:var(--vg-text); --serif:var(--vg-display);
 }
 :root[data-vidro="farmaco"] .main{background:transparent!important}
-:root[data-vidro="farmaco"] .sidebar{background:rgba(8,12,18,.42)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:inset -1px 0 0 rgba(255,255,255,.08)}
-:root[data-vidro="farmaco"] .it.active{background:color-mix(in srgb,var(--vg-acc) 20%,rgba(255,255,255,.06))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)}
-:root[data-vidro="farmaco"] .it:hover{background:rgba(255,255,255,.07)}
-:root[data-vidro="farmaco"] .mbar{background:rgba(8,12,18,.5)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
+:root[data-vidro="farmaco"] .sidebar{background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
+:root[data-vidro="farmaco"] .it.active{background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)}
+:root[data-vidro="farmaco"] .it:hover{background:var(--vg-hov)}
+:root[data-vidro="farmaco"] .mbar{background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
 :root[data-vidro="farmaco"] :is(.q,.box,.step,.legend,.score,.bk,.vf,.mr-item,.arena-card,.xpbig,.wg,.done-t,.navfoot button,.chipbtn){
   -webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);box-shadow:var(--vg-shadow)}
 :root[data-vidro="farmaco"] .pane h2,:root[data-vidro="farmaco"] .pane h1{font-family:var(--vg-display);font-weight:800;letter-spacing:-.035em}
@@ -93,9 +113,9 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
   --ui:var(--vg-text); --serif:var(--vg-text);
 }
 :root[data-vidro="micro"] :is(#main,#view){background:transparent!important}
-:root[data-vidro="micro"] #side{background:rgba(8,12,18,.42)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:inset -1px 0 0 rgba(255,255,255,.08)}
-:root[data-vidro="micro"] #top{background:rgba(8,12,18,.5)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
-:root[data-vidro="micro"] .it.on{background:color-mix(in srgb,var(--vg-acc) 20%,rgba(255,255,255,.06))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)!important}
+:root[data-vidro="micro"] #side{background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
+:root[data-vidro="micro"] #top{background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
+:root[data-vidro="micro"] .it.on{background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)!important}
 :root[data-vidro="micro"] :is(.card,.wcard,.rv,#mem .mc){-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);box-shadow:var(--vg-paper-shadow);border-color:transparent!important;border-radius:24px}
 :root[data-vidro="micro"] :is(.q,.panel,.mcard,.somi,.cai,.caistats>div,.caibn){-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);box-shadow:var(--vg-shadow);border-color:transparent!important;border-radius:20px}
 :root[data-vidro="micro"] :is(h1.pt,.card h2,.card h3,#view h2){font-family:var(--vg-display);font-weight:800;letter-spacing:-.035em}
@@ -112,21 +132,20 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
   --shadow:var(--vg-paper-shadow);
   --f-ui:var(--vg-text); --f-head:var(--vg-display); --f-body:var(--vg-text);
 }
-:root[data-vidro="th4"] .sb{background:rgba(8,12,18,.42)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:inset -1px 0 0 rgba(255,255,255,.08)}
-:root[data-vidro="th4"] .top{background:rgba(8,12,18,.45)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
-:root[data-vidro="th4"] .sb-item.on{background:color-mix(in srgb,var(--vg-acc) 18%,rgba(255,255,255,.05))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)}
+:root[data-vidro="th4"] .sb{background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
+:root[data-vidro="th4"] .top{background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
+:root[data-vidro="th4"] .sb-item.on{background:color-mix(in srgb,var(--vg-acc) 18%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)}
 :root[data-vidro="th4"] :is(.sheet,.qcard,.modal){-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);border-radius:26px}
 :root[data-vidro="th4"] :is(.tile,.station,.chip,.lvl){-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);box-shadow:var(--vg-shadow);border-color:transparent!important}
 :root[data-vidro="th4"] :is(h1,h2,h3,.h-page){font-weight:800;letter-spacing:-.035em}
 :root[data-vidro="th4"] .snd-cv{border-radius:12px}
 :root[data-vidro="th4"] .btn{border-radius:999px}
 
-/* troca de tema desativada: o vidro é escuro */
-:root[data-vidro] :is([data-act="theme"],button:has(> .theme-ic),.theme-ic,#themeBtn,#btnTheme,.themebtn,.tbtn-theme){display:none!important}
+
 
 /* ===================================================== monitor cardíaco (TH IV) */
-#vidro-heart{position:fixed;right:16px;bottom:68px;z-index:95;width:236px;border-radius:26px;overflow:hidden;color:var(--vg-ink);font-family:var(--vg-text);
-  background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 45%,rgba(255,255,255,.06));
+#vidro-heart{--vg-ink:#eef4f6;--vg-ink2:rgba(238,244,246,.78);--vg-muted:rgba(238,244,246,.58);position:fixed;right:16px;bottom:68px;z-index:95;width:236px;border-radius:26px;overflow:hidden;color:var(--vg-ink);font-family:var(--vg-text);
+  background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 45%,rgba(255,255,255,.06)),rgba(7,11,16,.55);
   -webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);box-shadow:var(--vg-shadow);
   transform:translateY(20px) scale(.96);opacity:0;transition:transform .7s cubic-bezier(.34,1.56,.64,1),opacity .5s,width .5s cubic-bezier(.2,.8,.2,1)}
 html.vidro-ready #vidro-heart{transform:none;opacity:1}
@@ -147,3 +166,61 @@ html.vidro-ready #vidro-heart{transform:none;opacity:1}
 @media (max-width:860px){#vidro-heart{width:64px}#vidro-heart canvas{height:64px}#vidro-heart .vh-bar,#vidro-heart .vh-min{display:none}#vidro-heart.open{width:min(236px,70vw)}#vidro-heart.open canvas{height:200px}#vidro-heart.open .vh-bar{display:flex}}
 
 @media (prefers-reduced-motion:reduce){#vidro-bg .au{animation:none}html.vidro-ready body > *{animation:none}}
+
+/* ===================================================== vidro grosso colorido: caixas, grifos e popups */
+:root[data-vidro] .box.extra{--tint:#8b84ff} :root[data-vidro] .box.liga{--tint:#4da3ff} :root[data-vidro] .box.corr{--tint:#ff8a4d}
+:root[data-vidro] .box.p82{--tint:#ffc53d} :root[data-vidro] .box.leia{--tint:#2fd6b5} :root[data-vidro] .box.clin{--tint:#ff5c97} :root[data-vidro] .box.prof{--tint:#8fd14f}
+:root[data-vidro="micro"] .prof{--tint:#6fbf4a} :root[data-vidro="micro"] .extra{--tint:#e0a84a} :root[data-vidro="micro"] .warn{--tint:#ff6a55}
+:root[data-vidro="micro"] .pearl{--tint:#6f84ff} :root[data-vidro="micro"] .box2{--tint:#3fcfae}
+:root[data-vidro="th4"] .extra{--tint:#a46be0} :root[data-vidro="th4"] .tipbox{--tint:#ffbf2e} :root[data-vidro="th4"] .tipbox.bet{--tint:#22d3c5} :root[data-vidro="th4"] .tipbox.bad{--tint:#ff5f52}
+:root[data-vidro="farmaco"] .box,:root[data-vidro="micro"] :is(.prof,.extra,.warn,.pearl,.box2),:root[data-vidro="th4"] :is(.extra,.tipbox){
+  --t:var(--tint,var(--vg-acc));
+  position:relative;border:0!important;border-radius:22px!important;
+  background:
+    radial-gradient(130% 90% at 0% 0%,rgba(255,255,255,.2),transparent 44%),
+    radial-gradient(90% 70% at 100% 100%,color-mix(in srgb,var(--t) 26%,transparent),transparent 70%),
+    linear-gradient(160deg,color-mix(in srgb,var(--t) 30%,transparent),color-mix(in srgb,var(--t) 12%,transparent) 55%,color-mix(in srgb,var(--t) 20%,transparent))!important;
+  -webkit-backdrop-filter:blur(20px) saturate(190%);backdrop-filter:blur(20px) saturate(190%);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,.55),
+    inset 0 0 0 1px color-mix(in srgb,var(--t) 50%,rgba(255,255,255,.22)),
+    inset 0 -20px 32px -18px color-mix(in srgb,var(--t) 60%,transparent),
+    inset 0 16px 26px -20px rgba(255,255,255,.5),
+    inset 4px 0 8px -5px rgba(255,255,255,.3),
+    inset -4px 0 8px -5px color-mix(in srgb,var(--t) 50%,transparent),
+    0 24px 46px -26px color-mix(in srgb,var(--t) 75%,#000),
+    0 3px 8px -4px rgba(0,0,0,.28)!important;
+}
+:root[data-vidro][data-theme="light"] .box{color:var(--vg-ink)}
+:root[data-vidro] :is(mark.fq1,mark.f1){--t:#3ddc84} :root[data-vidro] :is(mark.fq2,mark.f2){--t:#ffd23f}
+:root[data-vidro] :is(mark.fq3,mark.f3){--t:#ff9f43} :root[data-vidro] :is(mark.fq4,mark.f4){--t:#ff6b6b}
+:root[data-vidro][data-theme] :is(mark.fq1,mark.fq2,mark.fq3,mark.fq4,mark.f1,mark.f2,mark.f3,mark.f4){
+  background:linear-gradient(180deg,color-mix(in srgb,var(--t) 46%,transparent),color-mix(in srgb,var(--t) 26%,transparent))!important;
+  color:inherit!important;border-radius:7px;padding:1px 4px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 0 0 1px color-mix(in srgb,var(--t) 62%,transparent),inset 0 -3px 5px -2px color-mix(in srgb,var(--t) 75%,transparent)}
+:root[data-vidro][data-theme] :is(mark.fq5,mark.f5){border-radius:7px;padding:1px 4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 0 0 1px rgba(255,255,255,.14)}
+:root[data-vidro] :is(.tip,#tip,.hlbtn){
+  background:linear-gradient(160deg,rgba(28,34,42,.72),rgba(12,16,22,.6))!important;color:#eef4f6!important;border-radius:18px!important;
+  -webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.24),inset 0 0 0 1px rgba(255,255,255,.1),inset 0 -14px 24px -16px color-mix(in srgb,var(--vg-acc) 55%,transparent),0 26px 50px -20px rgba(0,0,0,.6)!important}
+:root[data-vidro] .tip a{background:rgba(255,255,255,.1)!important;color:#eef4f6;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.08)}
+:root[data-vidro] .tip a:hover{background:rgba(255,255,255,.18)!important}
+:root[data-vidro] .tip a.p82{background:color-mix(in srgb,#ffc53d 26%,transparent)!important;color:#ffe08a;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 0 0 1px color-mix(in srgb,#ffc53d 45%,transparent)}
+
+/* ===================================================== lâmpada de cordinha */
+#vidro-lamp{position:fixed;top:0;left:0;width:300px;height:470px;z-index:2147482000;pointer-events:none;view-transition-name:vidro-lamp;
+  transform:translateY(-104%);transition:transform .95s cubic-bezier(.3,1.45,.45,1)}
+#vidro-lamp.on{transform:none}
+#vidro-lamp canvas{width:100%;height:100%;display:block}
+#vidro-flash{position:fixed;left:0;top:0;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:2147482001;opacity:0;view-transition-name:vidro-flash;
+  background:radial-gradient(circle closest-side,rgba(255,244,222,.55),rgba(255,236,200,.12) 34%,rgba(255,236,200,0) 70%,rgba(255,224,170,.5) 93%,rgba(255,214,150,.9) 97.5%,rgba(255,214,150,0) 100%)}
+html.vl-grab,html.vl-grab *{cursor:grab!important}
+html.vl-drag,html.vl-drag *{cursor:grabbing!important;user-select:none!important}
+html:is(.vl-acende,.vl-apaga)::view-transition-old(root),html:is(.vl-acende,.vl-apaga)::view-transition-new(root){animation:none!important;mix-blend-mode:normal!important}
+html.vl-apaga::view-transition-old(root){z-index:2}
+html.vl-apaga::view-transition-new(root){z-index:1}
+html.vl-acende::view-transition-new(root){z-index:2}
+::view-transition-group(vidro-lamp),::view-transition-group(vidro-flash){animation:none!important;z-index:10}
+::view-transition-old(vidro-lamp),::view-transition-old(vidro-flash){display:none}
+::view-transition-new(vidro-lamp),::view-transition-new(vidro-flash){animation:none!important}
+@media (prefers-reduced-motion:reduce){#vidro-lamp{transition:none}}
