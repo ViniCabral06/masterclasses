@@ -24,6 +24,12 @@ const S = (x = 0) => ({ x, v: 0 });
 function localPointer(obj, I) { return I && I.has ? obj.worldToLocal(_d.copy(I.world)).clone() : null; }
 function clicked(state, I) { if (!I) return false; if (state.c == null) { state.c = I.clicks; return false; } if (I.clicks !== state.c) { state.c = I.clicks; return true; } return false; }
 
+function numTex(n) {
+  const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d');
+  x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.font = '800 96px system-ui,-apple-system,"Segoe UI",sans-serif';
+  x.shadowColor = 'rgba(255,255,255,.55)'; x.shadowBlur = 10; x.fillText(String(n), 64, 70); x.shadowBlur = 0; x.fillText(String(n), 64, 70);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
+}
 /* ======================= DNA com peças soltas ======================= */
 function makeHelix(o = {}) {
   const cheap = !!o.cheap;
@@ -112,8 +118,10 @@ function makeRing(o = {}) {
   for (let i = 0; i < 8; i++) {
     const live = i === 3, a = i / 8 * Math.PI * 2;
     const cell = new THREE.Mesh(new THREE.IcosahedronGeometry(live ? .62 : .42, 4), glassMat(live ? 0xbfffff : 0xffffff, cheap, { thickness: live ? 2 : 1 }));
-    const nuc = new THREE.Mesh(new THREE.SphereGeometry(live ? .22 : .12, 24, 16), new THREE.MeshBasicMaterial({ color: live ? COL.th4 : 0x6b7a85 }));
-    cell.add(nuc); cell.userData = { a, live, nuc, home: new THREE.Vector3(Math.cos(a) * 2.4, Math.sin(a) * 2.4, 0), off: V(), vel: V(), sc: S(1) };
+    // número do período dentro da bolha (desenhado depois do vidro para não sumir na refração)
+    const nuc = new THREE.Sprite(new THREE.SpriteMaterial({ map: numTex(i + 1), color: live ? COL.th4 : 0xdde6ec, transparent: true, depthTest: false, depthWrite: false, opacity: .92 })); nuc.renderOrder = 5;
+    const ns = live ? .9 : .62; nuc.scale.setScalar(ns);
+    cell.add(nuc); cell.userData = { a, live, nuc, ns, home: new THREE.Vector3(Math.cos(a) * 2.4, Math.sin(a) * 2.4, 0), off: V(), vel: V(), sc: S(1) };
     cell.position.copy(cell.userData.home); g.add(cell); cells.push(cell);
   }
   g.add(new THREE.Mesh(new THREE.TorusGeometry(2.4, .012, 8, 160), new THREE.MeshBasicMaterial({ color: COL.hub, transparent: true, opacity: .5 })));
@@ -132,8 +140,8 @@ function makeRing(o = {}) {
       u.vel.addScaledVector(u.off, -30 * dt); u.vel.multiplyScalar(Math.exp(-4 * dt)); u.off.addScaledVector(u.vel, dt);
       c.position.copy(u.home).add(u.off);
       c.scale.setScalar(spring(u.sc, 1 + near * .45, 60, 7, dt));
-      u.nuc.scale.setScalar(u.live ? 1 + Math.sin(t * 4) * .12 + near * .4 : 1 + near * .6);
-      u.nuc.material.color.set(u.live ? COL.th4 : (near > .3 ? COL.hub : 0x6b7a85));
+      u.nuc.scale.setScalar(u.ns * (u.live ? 1 + Math.sin(t * 4) * .06 + near * .2 : 1 + near * .3));
+      u.nuc.material.color.set(u.live ? COL.th4 : (near > .3 ? COL.hub : 0xdde6ec));
       c.rotation.y = t + near * 3;
     });
   };
