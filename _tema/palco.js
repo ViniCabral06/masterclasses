@@ -58,7 +58,7 @@ async function createStage(canvas, { cheap = false, bloom = true, fps = 60, dust
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function loop() {
     requestAnimationFrame(loop);
-    if (!W.running || document.hidden) { clock.getDelta(); return; }
+    if (!W.running || document.hidden || (!W.semPausa && document.documentElement.classList.contains('vl-pausa'))) { clock.getDelta(); return; }
     acc += clock.getDelta(); if (acc < minDt * .98) return;
     const dt = Math.min(acc, .05); acc = 0; t += reduce ? dt * .15 : dt;
     // ponteiro no plano que passa pelo centro do mundo

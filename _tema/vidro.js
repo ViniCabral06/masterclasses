@@ -160,7 +160,8 @@ async function lampInit() {
   let S, lamp, THREE;
   try {
     const [{ createStage }, M] = await lib(); THREE = await import('three');
-    S = await createStage(cv, { cheap: false, bloom: false, fps: 60, dust: 0, dpr: 2, fog: 0, alpha: true, exposure: 1.05, listen: false });
+    S = await createStage(cv, { cheap: false, bloom: false, fps: 60, dust: 0, dpr: 1.5, fog: 0, alpha: true, exposure: 1.05, listen: false });
+    S.semPausa = true;
     S.camera.position.set(0, 0, 10.2); S.camera.fov = 38; S.camera.updateProjectionMatrix();
     S.l1.color.set(0xffffff); S.l1.intensity = 26; S.l1.position.set(3, 1, 5);
     lamp = M.makeLamp({ accent: M.COL[K] }); lamp.position.y = 3.62; S.world.add(lamp);
@@ -173,7 +174,7 @@ async function lampInit() {
   let btn = null, shown = false, hideT = 0, dragging = false, busy = false, px = 0, py = 0, lastPx = 0;
   const place = () => { btn = themeBtn(); if (!btn) return; const r = btn.getBoundingClientRect(); const cx = r.left + r.width / 2 - 42; wrap.style.left = Math.max(-40, Math.min(innerWidth - 260, cx - 150)) + 'px'; };
   const show = () => { clearTimeout(hideT); if (shown) return; place(); shown = true; S.running = true; wrap.classList.add('on'); ud.kick((Math.random() < .5 ? -1 : 1) * 1.1); };
-  const hideSoon = (ms = 1400) => { clearTimeout(hideT); hideT = setTimeout(() => { if (dragging || busy) return hideSoon(600); shown = false; wrap.classList.remove('on'); html.classList.remove('vl-grab'); setTimeout(() => { if (!shown) S.running = false; }, 1000); }, ms); };
+  const hideSoon = (ms = 450) => { clearTimeout(hideT); hideT = setTimeout(() => { if (dragging || busy) return hideSoon(300); shown = false; wrap.classList.remove('on'); html.classList.remove('vl-grab'); setTimeout(() => { if (!shown) S.running = false; }, 600); }, ms); };
   const v3 = new THREE.Vector3();
   const toScreen = w => { const r = cv.getBoundingClientRect(); w.project(S.camera); return [r.left + (w.x + 1) / 2 * r.width, r.top + (1 - w.y) / 2 * r.height]; };
   const setNdc = (x, y) => { const r = cv.getBoundingClientRect(); S.I.ndc.set((x - r.left) / r.width * 2 - 1, -((y - r.top) / r.height) * 2 + 1); S.poke(); };
@@ -195,14 +196,14 @@ async function lampInit() {
     if (!shown || busy) return;
     if (beadDist(e.clientX, e.clientY) < 30) { e.preventDefault(); e.stopPropagation(); dragging = true; html.classList.add('vl-drag'); setNdc(e.clientX, e.clientY); ud.st.drag = S.I.world; }
   }, { capture: true });
-  const endDrag = () => { if (!dragging) return; dragging = false; ud.st.drag = null; html.classList.remove('vl-drag'); hideSoon(2200); };
+  const endDrag = () => { if (!dragging) return; dragging = false; ud.st.drag = null; html.classList.remove('vl-drag'); hideSoon(700); };
   addEventListener('pointerup', endDrag, true); addEventListener('pointercancel', endDrag, true);
   // clique no botão (ou toque/teclado): a lâmpada desce e a cordinha é puxada sozinha
   document.addEventListener('click', e => {
     const b = e.target.closest && e.target.closest(THEME_SEL); if (!b || lampMine) return;
     e.preventDefault(); e.stopImmediatePropagation(); btn = b;
     if (reduce) { flip(); return; }
-    const was = shown; show(); setTimeout(() => ud.autoPull(), was ? 0 : 520); hideSoon(3200);
+    const was = shown; show(); setTimeout(() => ud.autoPull(), was ? 0 : 520); hideSoon(1500);
   }, true);
   ud.onPull = () => { clickSound(); flip(); };
 
@@ -216,12 +217,13 @@ async function lampInit() {
   function flip() {
     if (busy) return; busy = true;
     const toLight = !isLight();
+    html.classList.add('vl-pausa');
     S.frame.forEach(f => f(0, 0)); S.renderer.render(S.scene, S.camera);
     const [x, y] = toScreen(ud.bulbWorld(v3));
     const R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 40;
     html.style.setProperty('--vt-x', x + 'px'); html.style.setProperty('--vt-y', y + 'px'); html.style.setProperty('--vt-r', R + 'px');
     const real = !reduce && document.startViewTransition ? document.startViewTransition.bind(document) : null;
-    const done = () => { html.classList.remove('vl-acende', 'vl-apaga'); busy = false; };
+    const done = () => { html.classList.remove('vl-acende', 'vl-apaga', 'vl-pausa'); busy = false; };
     if (!real) { switchTheme(); ud.setLit(toLight ? 1 : 0); done(); return; }
     const run = () => {
       html.classList.add(toLight ? 'vl-acende' : 'vl-apaga');
@@ -231,11 +233,12 @@ async function lampInit() {
         const big = `circle(${R}px at ${x}px ${y}px)`, small = `circle(0px at ${x}px ${y}px)`;
         html.animate({ clipPath: toLight ? [small, big] : [big, small] }, { duration: dur, easing: ease, fill: 'both', pseudoElement: toLight ? '::view-transition-new(root)' : '::view-transition-old(root)' });
         // anel de luz acompanha a borda do círculo
-        const half = R / .975;
-        Object.assign(flash.style, { width: half * 2 + 'px', height: half * 2 + 'px', left: x - half + 'px', top: y - half + 'px' });
+        // camada pequena ampliada (textura leve para a GPU)
+        const k = (R / .975) / 320, S1 = `scale(${k})`;
+        Object.assign(flash.style, { width: '640px', height: '640px', left: x - 320 + 'px', top: y - 320 + 'px' });
         flash.animate(toLight
-          ? [{ transform: 'scale(0)', opacity: 1 }, { opacity: 1, offset: .65 }, { transform: 'scale(1)', opacity: 0 }]
-          : [{ transform: 'scale(1)', opacity: 0 }, { opacity: .9, offset: .25 }, { opacity: 1, offset: .85 }, { transform: 'scale(0)', opacity: 0 }],
+          ? [{ transform: 'scale(0)', opacity: 1 }, { opacity: 1, offset: .65 }, { transform: S1, opacity: 0 }]
+          : [{ transform: S1, opacity: 0 }, { opacity: .9, offset: .25 }, { opacity: 1, offset: .85 }, { transform: 'scale(0)', opacity: 0 }],
           { duration: dur, easing: ease, fill: 'none' });
         if (!toLight) setTimeout(() => ud.setLit(0), dur * .82);
       }).catch(() => { });
