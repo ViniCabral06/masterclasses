@@ -167,16 +167,16 @@ async function lampInit() {
     const [{ createStage }, M] = await lib(); THREE = await import('three');
     S = await createStage(cv, { cheap: false, bloom: false, fps: 60, dust: 0, dpr: fraco ? 1 : 1.5, fog: 0, alpha: true, exposure: 1.05, listen: false });
     S.semPausa = true;
-    S.camera.position.set(0, 0, 10.2); S.camera.fov = 38; S.camera.updateProjectionMatrix();
+    S.camera.position.set(0, 0, 10.2); S.camera.fov = 49.56; S.camera.updateProjectionMatrix();
     S.l1.color.set(0xffffff); S.l1.intensity = 26; S.l1.position.set(3, 1, 5);
-    lamp = M.makeLamp({ accent: M.COL[K] }); lamp.position.y = 3.62; S.world.add(lamp);
+    lamp = M.makeLamp({ accent: M.COL[K] }); lamp.position.y = 2.425; S.world.add(lamp);
     lamp.userData.setLit(isLight() ? 1 : 0, true);
   } catch (e) { console.warn('[vidro] lâmpada indisponível', e); wrap.remove(); flash.remove(); return; }
   const ud = lamp.userData, P = { world: S.I.world, has: false, vx: 0 };
   S.running = false;
 
   // posição: a corrente cai logo abaixo do botão
-  let btn = null, shown = false, hideT = 0, dragging = false, busy = false, px = 0, py = 0, lastPx = 0;
+  let hoverT = 0, btn = null, shown = false, hideT = 0, dragging = false, busy = false, px = 0, py = 0, lastPx = 0;
   const place = () => { btn = themeBtn(); if (!btn) return; const r = btn.getBoundingClientRect(); const cx = r.left + r.width / 2 - 42; wrap.style.left = Math.max(-40, Math.min(innerWidth - 260, cx - 150)) + 'px'; };
   const show = () => { clearTimeout(hideT); if (shown) return; place(); shown = true; S.running = true; wrap.classList.add('on'); ud.kick((Math.random() < .5 ? -1 : 1) * 1.1); };
   const hideSoon = (ms = 450) => { clearTimeout(hideT); hideT = setTimeout(() => { if (dragging || busy) return hideSoon(300); shown = false; wrap.classList.remove('on'); html.classList.remove('vl-grab'); setTimeout(() => { if (!shown) S.running = false; }, 600); }, ms); };
@@ -189,8 +189,11 @@ async function lampInit() {
     px = e.clientX; py = e.clientY;
     const b = btn && btn.isConnected ? btn : themeBtn(); if (!b) return;
     const r = b.getBoundingClientRect(), d = Math.hypot(px - (r.left + r.width / 2), py - (r.top + r.height / 2));
-    const lr = wrap.getBoundingClientRect(), overLamp = shown && px > lr.left && px < lr.right && py < lr.top + 340;
-    if (d < 160 || overLamp || dragging) show(); else if (shown) hideSoon();
+    const lr = wrap.getBoundingClientRect(), overLamp = shown && px > lr.left && px < lr.right && py > lr.top + 160 && py < lr.top + 500;
+    // só aparece com o mouse em cima do botão (um instante parado), não ao passar perto
+    if (overLamp || dragging) show();
+    else if (d < 30) { if (!shown && !hoverT) hoverT = setTimeout(() => { hoverT = 0; show(); }, 160); else if (shown) clearTimeout(hideT); }
+    else { clearTimeout(hoverT); hoverT = 0; if (shown) hideSoon(); }
     if (shown) {
       setNdc(px, py); P.has = true; P.vx = (px - lastPx) * .6;
       html.classList.toggle('vl-grab', !dragging && beadDist(px, py) < 30);

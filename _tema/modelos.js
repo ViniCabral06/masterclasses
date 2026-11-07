@@ -435,7 +435,7 @@ function makeLamp(o = {}) {
   const brass = new THREE.MeshPhysicalMaterial({ color: 0xd8b27a, metalness: 1, roughness: .26, clearcoat: .6, envMapIntensity: 1.3 });
   const chrome = new THREE.MeshPhysicalMaterial({ color: 0xe9edf2, metalness: 1, roughness: .16, envMapIntensity: 1.5 });
   // fio
-  const wire = new THREE.Mesh(new THREE.CylinderGeometry(.022, .022, L + 2, 10), rubber); wire.position.y = -(L + 2) / 2 + 2; pend.add(wire);
+  const wire = new THREE.Mesh(new THREE.CylinderGeometry(.022, .022, L + 7, 10), rubber); wire.position.y = -(L + 7) / 2 + 7; pend.add(wire);
   // soquete
   const sock = new THREE.Group(); sock.position.y = -L; pend.add(sock);
   const sp = [[.05, .02], [.1, 0], [.14, -.06], [.2, -.14], [.24, -.2], [.25, -.5], [.235, -.56], [.2, -.6]].map(([x, y]) => new THREE.Vector2(x, y));
