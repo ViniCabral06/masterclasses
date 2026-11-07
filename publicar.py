@@ -20,7 +20,7 @@ LIMITE_MB = 50
 TEMA = ROOT / "_tema"
 CACHE = ROOT / "_cache_otimizado"   # imagens já convertidas (não precisa versionar)
 DATA_RE = re.compile(r"data:(image/(?:jpeg|png|gif|webp));base64,([A-Za-z0-9+/=]{2000,})")
-IMG_SEM_LAZY = re.compile(r"<img(?![^>]*loading=)")
+IMG_SEM_LAZY = re.compile(r"<img(?![^>]*\bloading=)")
 
 
 def imagem_otimizada(mime, b64):
