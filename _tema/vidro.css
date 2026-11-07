@@ -179,7 +179,8 @@ html.vidro-ready #vidro-heart{transform:none;opacity:1}
   background:
     radial-gradient(130% 90% at 0% 0%,rgba(255,255,255,.2),transparent 44%),
     radial-gradient(90% 70% at 100% 100%,color-mix(in srgb,var(--t) 26%,transparent),transparent 70%),
-    linear-gradient(160deg,color-mix(in srgb,var(--t) 30%,transparent),color-mix(in srgb,var(--t) 12%,transparent) 55%,color-mix(in srgb,var(--t) 20%,transparent))!important;
+    linear-gradient(160deg,color-mix(in srgb,var(--t) 30%,transparent),color-mix(in srgb,var(--t) 12%,transparent) 55%,color-mix(in srgb,var(--t) 20%,transparent)),
+    linear-gradient(var(--vg-under),var(--vg-under))!important;
   -webkit-backdrop-filter:blur(20px) saturate(190%);backdrop-filter:blur(20px) saturate(190%);
   box-shadow:
     inset 0 1.5px 0 rgba(255,255,255,.55),
@@ -224,3 +225,22 @@ html.vl-acende::view-transition-new(root){z-index:2}
 ::view-transition-old(vidro-lamp),::view-transition-old(vidro-flash){display:none}
 ::view-transition-new(vidro-lamp),::view-transition-new(vidro-flash){animation:none!important}
 @media (prefers-reduced-motion:reduce){#vidro-lamp{transition:none}}
+
+/* ===================================================== desempenho
+   desfoque de fundo (backdrop-filter) só nas barras fixas e janelas flutuantes: em dezenas de caixas
+   por cima do fundo animado ele obrigava o navegador a refazer o desfoque de todas a cada quadro.
+   As caixas ganham um vidro mais encorpado no lugar. */
+:root[data-vidro]{--vg-under:rgba(9,13,19,.62)}
+:root[data-vidro][data-theme="light"]{--vg-under:rgba(250,252,254,.6)}
+:root[data-vidro]:not([data-theme="light"]){--vg-glass:rgba(22,28,36,.62);--vg-glass2:rgba(30,37,46,.66);--vg-glass3:rgba(40,48,58,.7)}
+:root[data-vidro="farmaco"] :is(.q,.box,.step,.legend,.score,.bk,.vf,.mr-item,.arena-card,.xpbig,.wg,.done-t,.navfoot button,.chipbtn),
+:root[data-vidro="micro"] :is(.card,.wcard,.rv,#mem .mc,.q,.panel,.mcard,.somi,.cai,.caistats>div,.caibn,.prof,.extra,.warn,.pearl,.box2),
+:root[data-vidro="th4"] :is(.sheet,.qcard,.tile,.station,.chip,.lvl,.extra,.tipbox),
+:root[data-vidro] :is(mark,.hlbtn){-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* barras e botões fixos: desfoque mais curto e sem saturação extra */
+:root[data-vidro]{--vg-blur:blur(14px)}
+/* aparelho modesto: sem desfoque nenhum e sem auroras animadas */
+html.vidro-leve[data-vidro] *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.vidro-leve #vidro-bg .au{animation:none;filter:blur(80px)}
+html.vidro-leve[data-vidro]:not([data-theme="light"]){--vg-side:rgba(10,14,20,.94);--vg-bar:rgba(10,14,20,.94)}
+html.vidro-leve[data-vidro][data-theme="light"]{--vg-side:rgba(244,247,250,.96);--vg-bar:rgba(244,247,250,.96)}

@@ -54,13 +54,27 @@ async function createStage(canvas, { cheap = false, bloom = true, fps = 60, dust
   }
   W.resize = resize; addEventListener('resize', resize); resize();
 
-  const clock = new THREE.Clock(); let t = 0, acc = 0; const minDt = 1 / fps;
+  const clock = new THREE.Clock(); let t = 0, acc = 0, minDt = 1 / fps;
+  // qualidade adaptativa: se o aparelho não acompanha, baixa resolução, tira o bloom e cai para 30 fps
+  let ema = minDt, slowFor = 0, level = 0;
+  const degrade = () => {
+    level++;
+    if (level === 1 && renderer.getPixelRatio() > 1) { renderer.setPixelRatio(1); resize(); }
+    else if (level <= 2 && composer) { composer = null; W.composer = null; level = 2; }
+    else if (minDt < 1 / 31) { minDt = 1 / 30; level = 3; }
+    else { level = 4; W.onSlow && W.onSlow(); }
+    W.onDegrade && W.onDegrade(level);
+  };
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function loop() {
     requestAnimationFrame(loop);
     if (!W.running || document.hidden || (!W.semPausa && document.documentElement.classList.contains('vl-pausa'))) { clock.getDelta(); return; }
     acc += clock.getDelta(); if (acc < minDt * .98) return;
-    const dt = Math.min(acc, .05); acc = 0; t += reduce ? dt * .15 : dt;
+    const raw = acc, dt = Math.min(acc, .05); acc = 0; t += reduce ? dt * .15 : dt;
+    if (t > 2.5 && level < 4 && raw < .5) {
+      ema += (raw - ema) * .08;
+      if (ema > minDt * 1.55 + .004) { if ((slowFor += raw) > 1.6) { slowFor = 0; ema = minDt; degrade(); } } else slowFor = Math.max(0, slowFor - raw * .5);
+    }
     // ponteiro no plano que passa pelo centro do mundo
     if (moved || I.has) {
       plane.constant = -world.position.z; ray.setFromCamera(I.ndc, camera);

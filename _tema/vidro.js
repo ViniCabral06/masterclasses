@@ -19,7 +19,10 @@ document.body.prepend(bg);
 
 const fx = document.createElement('button'); fx.id = 'vidro-fx'; fx.type = 'button';
 const setFxLabel = () => { const calm = html.classList.contains('vidro-calmo'); fx.innerHTML = `<i></i>${calm ? 'Efeitos desligados' : 'Efeitos 3D'}`; fx.title = calm ? 'Ligar o fundo 3D' : 'Desligar o fundo 3D (economiza bateria)'; };
-if (store.get('vidro-calmo', false)) html.classList.add('vidro-calmo');
+// aparelho modesto (celular, poucos núcleos ou pouca memória): começa sem o fundo 3D, a menos que a pessoa tenha ligado
+const fraco = matchMedia('(pointer:coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4;
+if (store.get('vidro-calmo', fraco)) html.classList.add('vidro-calmo');
+if (fraco) html.classList.add('vidro-leve');
 setFxLabel(); document.body.append(fx);
 
 const home = document.createElement('a'); home.id = 'vidro-home'; home.href = HUB; home.innerHTML = '← Todas as masterclasses';
@@ -42,7 +45,9 @@ async function startBg() {
   try {
     const [{ createStage }, M] = await lib();
     const canvas = bg.querySelector('canvas');
-    stage = await createStage(canvas, { cheap: true, bloom: false, fps: 30, dust: small ? 0 : 260, dpr: 1, fog: .03, alpha: true, exposure: 1 });
+    stage = await createStage(canvas, { cheap: true, bloom: false, fps: 30, dust: small ? 0 : 200, dpr: 1, fog: .03, alpha: true, exposure: 1 });
+    // se mesmo no mínimo o aparelho não acompanhar, o fundo 3D desliga sozinho (sem gravar a escolha)
+    stage.onSlow = () => { html.classList.add('vidro-calmo'); stage.running = false; setFxLabel(); };
     const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
     stage.world.add(model);
     // com a luz acesa (tema claro) o vidro dos modelos brilha
@@ -109,7 +114,7 @@ async function heartMonitor() {
   let S = null;
   try {
     const [{ createStage }, M] = await lib();
-    S = await createStage(cv, { cheap: false, bloom: true, fps: 60, dust: 160, dpr: 2, fog: 0, alpha: false, background: 0x070b10, exposure: 1, listen: false });
+    S = await createStage(cv, { cheap: false, bloom: true, fps: 45, dust: 160, dpr: 1.5, fog: 0, alpha: false, background: 0x070b10, exposure: 1, listen: false });
     S.camera.position.set(0, .3, 7.4); S.camera.fov = 34; S.camera.updateProjectionMatrix();
     if (S.bloom) { S.bloom.strength = .7; S.bloom.threshold = .3; }
     const heart = M.makeHeart({ cheap: false, scale: .95 }); S.world.add(heart); heart.position.y = -.25;
@@ -160,7 +165,7 @@ async function lampInit() {
   let S, lamp, THREE;
   try {
     const [{ createStage }, M] = await lib(); THREE = await import('three');
-    S = await createStage(cv, { cheap: false, bloom: false, fps: 60, dust: 0, dpr: 1.5, fog: 0, alpha: true, exposure: 1.05, listen: false });
+    S = await createStage(cv, { cheap: false, bloom: false, fps: 60, dust: 0, dpr: fraco ? 1 : 1.5, fog: 0, alpha: true, exposure: 1.05, listen: false });
     S.semPausa = true;
     S.camera.position.set(0, 0, 10.2); S.camera.fov = 38; S.camera.updateProjectionMatrix();
     S.l1.color.set(0xffffff); S.l1.intensity = 26; S.l1.position.set(3, 1, 5);
