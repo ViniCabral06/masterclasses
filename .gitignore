@@ -1,0 +1,16 @@
+# Só o que é site vai para o GitHub. Os masters e suas pastas de mídia
+# são adicionados pelo publicar.py (lista SUBJECTS do index.html).
+# PDFs, prompts, versões antigas e rascunhos ficam só no PC de cada um.
+*
+!*/
+!.gitignore
+!.nojekyll
+!index.html
+!publicar.py
+!LEIAME.md
+!_tema/**
+_site/
+_cache_otimizado/
+_originais/
+_backup_antes_do_vidro/
+__pycache__/
