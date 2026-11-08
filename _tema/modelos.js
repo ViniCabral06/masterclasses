@@ -4,7 +4,7 @@
 (function () {
 window.VidroModelos = function (THREE) {
 
-const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3, pato: 0xff6fb5 };
+const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3, pato: 0xff6fb5, prev: 0xffb547 };
 const V = () => new THREE.Vector3();
 const _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _s = new THREE.Vector3(1, 1, 1), _up = new THREE.Vector3(0, 1, 0);
 const _a = V(), _b = V(), _c = V(), _d = V();
@@ -394,6 +394,125 @@ function makeTissue(o = {}) {
   return g;
 }
 
+/* ======================= vacina (medicina preventiva) =======================
+   Seringa de vidro com a dose âmbar, frascos e anticorpos (Y) flutuando em volta.
+   Mouse perto: o êmbolo desce e a vacina sai pela agulha em gotas.
+   Clique: aplica a dose de uma vez (jato) e espalha os frascos e anticorpos. */
+function makeVaccine(o = {}) {
+  const cheap = !!o.cheap, g = new THREE.Group(), items = [];
+  const AMB = COL.prev || 0xffb547;
+  const chrome = new THREE.MeshStandardMaterial({ color: 0xe9edf2, metalness: 1, roughness: .2 });
+  const white = new THREE.MeshStandardMaterial({ color: 0xf5f7fa, roughness: .35 });
+  const rubber = new THREE.MeshStandardMaterial({ color: 0x2a2f36, roughness: .6 });
+  const dose = new THREE.MeshPhysicalMaterial({ color: AMB, emissive: AMB, emissiveIntensity: .35, roughness: .15, clearcoat: 1, transparent: true, opacity: .9 });
+
+  /* frascos (vidro + tampa âmbar) e anticorpos em Y, soltos em volta */
+  const vialGeo = new THREE.CylinderGeometry(.2, .2, .55, 28), capGeo = new THREE.CylinderGeometry(.21, .21, .14, 28), fillGeo = new THREE.CylinderGeometry(.17, .17, .32, 24);
+  const vialMat = glassMat(0xffffff, cheap, { thickness: .5 });
+  const abMat = new THREE.MeshStandardMaterial({ color: 0xffe2a8, emissive: AMB, emissiveIntensity: .25, roughness: .3 });
+  const armGeo = new THREE.CapsuleGeometry(.05, .32, 6, 12);
+  function anticorpo() {
+    const y = new THREE.Group();
+    const tronco = new THREE.Mesh(armGeo, abMat); tronco.position.y = -.2; y.add(tronco);
+    [-1, 1].forEach(s => { const b = new THREE.Mesh(armGeo, abMat); b.position.set(s * .14, .13, 0); b.rotation.z = -s * .62; y.add(b); });
+    return y;
+  }
+  for (let i = 0; i < 16; i++) {
+    let m;
+    if (i % 2) { m = anticorpo(); }
+    else {
+      m = new THREE.Group();
+      m.add(new THREE.Mesh(vialGeo, vialMat));
+      const cap = new THREE.Mesh(capGeo, dose); cap.position.y = .34; m.add(cap);
+      const f = new THREE.Mesh(fillGeo, dose); f.position.y = -.1; m.add(f);
+    }
+    const r = 1.7 + Math.random() * 1.6, a = Math.random() * Math.PI * 2, y = (Math.random() - .5) * 4;
+    m.userData = { home: new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r * .8), off: V(), vel: V(), w: new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5).multiplyScalar(1.2), ph: Math.random() * 6 };
+    m.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6); g.add(m); items.push(m);
+  }
+
+  /* seringa: eixo em y, agulha para baixo */
+  const hero = new THREE.Group();
+  const barrel = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, 2.6, 48, 1, true), glassMat(0xffffff, cheap, { side: THREE.DoubleSide, thickness: .4 }));
+  hero.add(barrel);
+  // marcas de graduação no vidro
+  for (let i = 0; i < 9; i++) { const k = new THREE.Mesh(new THREE.BoxGeometry(i % 2 ? .1 : .18, .015, .01), white); k.position.set(-.3, -1 + i * .25, .41); hero.add(k); }
+  const flange = new THREE.Mesh(new THREE.BoxGeometry(1.35, .08, .5), white); flange.position.y = 1.32; hero.add(flange);
+  const fundo = new THREE.Mesh(new THREE.CylinderGeometry(.42, .2, .18, 40), white); fundo.position.y = -1.39; hero.add(fundo);
+  const hub = new THREE.Mesh(new THREE.CylinderGeometry(.09, .14, .26, 24), new THREE.MeshStandardMaterial({ color: AMB, roughness: .4 })); hub.position.y = -1.6; hero.add(hub);
+  const needle = new THREE.Mesh(new THREE.CylinderGeometry(.018, .018, 1.2, 10), chrome); needle.position.y = -2.32; hero.add(needle);
+  const TIP_Y = -2.92;
+  // dose: cilindro com a base fixa no fundo, a altura acompanha o êmbolo
+  const liqGeo = new THREE.CylinderGeometry(.37, .37, 1, 40); liqGeo.translate(0, .5, 0);
+  const liq = new THREE.Mesh(liqGeo, dose); liq.position.y = -1.28; hero.add(liq);
+  // êmbolo: borracha + haste em cruz + apoio do polegar
+  const plunger = new THREE.Group();
+  const stopper = new THREE.Mesh(new THREE.CylinderGeometry(.38, .38, .18, 40), rubber); plunger.add(stopper);
+  const rod = new THREE.Mesh(new THREE.BoxGeometry(.12, 1.9, .12), white); rod.position.y = 1.04; plunger.add(rod);
+  const rod2 = rod.clone(); rod2.rotation.y = Math.PI / 2; plunger.add(rod2);
+  const thumb = new THREE.Mesh(new THREE.CylinderGeometry(.36, .36, .07, 40), white); thumb.position.y = 2.0; plunger.add(thumb);
+  hero.add(plunger);
+  hero.scale.setScalar(.72); hero.rotation.z = .55; g.add(hero);
+
+  /* gotas da vacina saindo pela agulha */
+  const DN = 60, drops = new THREE.InstancedMesh(new THREE.SphereGeometry(.05, 10, 8), dose, DN);
+  drops.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+  const dp = [], dv = [], dl = new Float32Array(DN); for (let i = 0; i < DN; i++) { dp.push(V()); dv.push(V()); }
+  g.add(drops);
+  let nextDrop = 0, acc = 0;
+  const solta = (n, forca) => {
+    hero.updateMatrix();
+    const tip = _a.set(0, TIP_Y, 0).applyMatrix4(hero.matrix), dir = _b.set(0, -1, 0).applyQuaternion(hero.quaternion);
+    for (let k = 0; k < n; k++) {
+      const i = nextDrop = (nextDrop + 1) % DN;
+      dp[i].copy(tip); dv[i].copy(dir).multiplyScalar(forca * (.7 + Math.random() * .6)).add(_c.set((Math.random() - .5) * .6, (Math.random() - .5) * .6, (Math.random() - .5) * .6));
+      dl[i] = 1;
+    }
+  };
+
+  const press = S(), tiltZ = S(.55), tiltX = S(), ck = {};
+  const REST = 1.05, STROKE = 1.9;
+  g.userData.offset = new THREE.Vector3(.3, .2, 0);
+  g.userData.tick = (t, dt, I) => {
+    g.rotation.y = Math.sin(t * .25) * .35;
+    const P = localPointer(g, I), burst = clicked(ck, I);
+    items.forEach(m => {
+      const u = m.userData, p = _b.copy(u.home).add(u.off);
+      p.y += Math.sin(t + u.ph) * .18;
+      if (P) {
+        _c.subVectors(p, P); const d = _c.length();
+        if (d < 1.6) { const n = _c.normalize(); u.vel.addScaledVector(n, (1 - d / 1.6) * 34 * dt); u.w.addScaledVector(new THREE.Vector3(n.y, -n.x, n.z), (1 - d / 1.6) * 14 * dt); }
+        if (burst && d < 3.5) { u.vel.addScaledVector(_c.normalize(), 9 * (1 - d / 3.5)); u.w.multiplyScalar(4); }
+      }
+      if (I && I.sv) { u.vel.y += I.sv * (.7 + Math.abs(u.w.z) * .3) * dt * 3.2; u.vel.x += I.sv * Math.sin(u.w.y * 9) * dt; }
+      u.vel.addScaledVector(u.off, -9 * dt); u.vel.multiplyScalar(Math.exp(-2.6 * dt)); u.off.addScaledVector(u.vel, dt);
+      u.w.multiplyScalar(Math.exp(-.6 * dt)); if (u.w.length() < .5) u.w.setLength(.5);
+      m.position.copy(p); m.rotation.x += u.w.x * dt; m.rotation.y += u.w.y * dt; m.rotation.z += u.w.z * dt;
+    });
+    // êmbolo desce com o mouse perto; o clique aplica a dose de uma vez
+    let near = 0;
+    if (P) { const d = P.distanceTo(hero.position); near = THREE.MathUtils.clamp(1 - (d - .8) / 1.8, 0, 1); }
+    if (burst) { press.v += 9; solta(26, 3.2); }
+    const s = THREE.MathUtils.clamp(spring(press, near * .85, 30, 7, dt), 0, 1);
+    const y = REST - s * STROKE;
+    plunger.position.y = y;
+    liq.scale.y = Math.max(.02, y - .09 - liq.position.y);
+    if (s > .12) { acc += dt * (4 + s * 26); while (acc > 1) { acc -= 1; solta(1, 1.2 + s * 1.6); } }
+    hero.rotation.z = spring(tiltZ, P ? .55 + THREE.MathUtils.clamp(-P.x * .15, -.4, .4) : .55, 20, 4, dt);
+    hero.rotation.x = spring(tiltX, P ? THREE.MathUtils.clamp(P.y * .12, -.4, .4) : 0, 20, 4, dt);
+    hero.position.y = Math.sin(t * 1.1) * .12;
+    for (let i = 0; i < DN; i++) {
+      if (dl[i] > 0) {
+        dl[i] -= dt * .9; dv[i].y -= 4.5 * dt; dv[i].multiplyScalar(Math.exp(-.8 * dt)); dp[i].addScaledVector(dv[i], dt);
+        _m.compose(dp[i], _q.identity(), _s.setScalar(Math.max(.0001, dl[i] * 1.3)));
+      } else _m.compose(dp[i], _q.identity(), _s.setScalar(.0001));
+      drops.setMatrixAt(i, _m);
+    }
+    _s.set(1, 1, 1); drops.instanceMatrix.needsUpdate = true;
+  };
+  return g;
+}
+
 /* ======================= coração anatômico ======================= */
 function bump(x, a, b) { if (x < a || x > b) return 0; return Math.sin((x - a) / (b - a) * Math.PI); }
 function ventricleShape(v) {
@@ -628,6 +747,6 @@ function makeLamp(o = {}) {
   return root;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeHeart, makeLamp };
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHeart, makeLamp };
 };
 })();

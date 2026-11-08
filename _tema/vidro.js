@@ -100,7 +100,7 @@ async function startBg() {
     stage = await createStage(canvas, { cheap: true, bloom: false, fps: 30, dust: small ? 0 : 200, dpr: 1, fog: .03, alpha: true, exposure: 1 });
     // se mesmo no mínimo o aparelho não acompanhar, o fundo 3D desliga sozinho (sem gravar a escolha)
     stage.onSlow = () => { html.classList.add('vidro-calmo'); stage.running = false; setFxLabel(); };
-    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : K === 'pato' ? M.makeTissue({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
+    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : K === 'pato' ? M.makeTissue({ cheap: true }) : K === 'prev' ? M.makeVaccine({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
     stage.world.add(model);
     // com a luz acesa (tema claro) o vidro dos modelos brilha
     const mats = new Set(); model.traverse(o => { if (o.material) [].concat(o.material).forEach(m => m.emissive && mats.add(m)); });

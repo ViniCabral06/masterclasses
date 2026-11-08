@@ -304,3 +304,46 @@ html.vidro-aula[data-vidro="pato"] :is(.prose,.intro) :is(p,ul,ol){max-width:non
   :root[data-vidro="pato"] .sidebar.collapsed .sb-head .t{display:none}
   :root[data-vidro="pato"] .sidebar.collapsed .sb-btns{display:flex;flex-direction:column;align-items:center;gap:6px}
 }
+
+/* ===================================================== grifar com anotação (_tema/notas.js)
+   A caixinha copia a das questões ("Caiu em X somativas"): fundo escuro, cantos de 12px,
+   etiquetas redondas e a mesma animação de entrada. */
+mark.vg-nota{background:#ffd3ea;color:#1b1d1a!important;border-radius:2px;cursor:pointer;box-shadow:inset 0 -2px 0 #f39ac6;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.vg-nota *{color:inherit!important}
+mark.vg-nota.vg-fim::after{content:"💬";font-size:.72em;margin-left:3px;vertical-align:super;line-height:0}
+.vg-n-ui{position:fixed;z-index:2147482000;left:0;top:0;opacity:0;visibility:hidden;transform:scale(.96) translateY(-3px);transform-origin:top left;
+  transition:opacity .16s ease-out,transform .18s cubic-bezier(.2,.8,.2,1),visibility 0s linear .18s;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:13px;line-height:1.5;color:#eef0ec}
+.vg-n-ui.on{opacity:1;visibility:visible;transform:none;transition:opacity .16s ease-out,transform .18s cubic-bezier(.2,.8,.2,1)}
+.vg-n-tip,.vg-n-ed{background:#1d211f;border-radius:12px;padding:12px 14px;max-width:320px;box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.vg-n-ui .h{font-weight:600;margin-bottom:6px;color:#fff}
+.vg-n-tip .txt{margin-bottom:8px;white-space:normal;overflow-wrap:anywhere;color:#eef0ec}
+.vg-n-ui .chips{display:flex;flex-wrap:wrap;gap:6px}
+.vg-n-ui a{display:inline-block;background:#33362f;color:#eef0ec;border-radius:999px;padding:3px 10px;cursor:pointer;text-decoration:none;font-size:12px;transition:background-color .12s ease;user-select:none}
+.vg-n-ui a:hover{background:#44483f}
+/* botões que aparecem ao selecionar */
+.vg-n-barra{display:flex;gap:6px;transform-origin:bottom left}
+.vg-n-barra a{background:#1d211f;color:#ffd3ea;padding:8px 14px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.vg-n-barra a:hover{background:#2b302d}
+/* editor */
+.vg-n-ed{width:min(340px,calc(100vw - 20px));max-width:none}
+.vg-n-ed textarea{display:block;width:100%;box-sizing:border-box;resize:vertical;min-height:84px;margin:2px 0 10px;padding:9px 10px;border-radius:9px;border:1px solid #3a3f3b;background:#121513;color:#eef0ec;font:inherit;font-size:14px;line-height:1.5;outline:none}
+.vg-n-ed textarea:focus{border-color:#f39ac6}
+.vg-n-ed .acoes{display:flex;align-items:center;gap:6px}
+.vg-n-ed .dica{flex:1;font-size:11px;color:#8f968f}
+.vg-n-ed a.pri{background:#f39ac6;color:#2a0d1b;font-weight:600}
+.vg-n-ed a.pri:hover{background:#ffb3d6}
+@media (max-width:600px){.vg-n-ed .dica{display:none}}
+@media (prefers-reduced-motion:reduce){.vg-n-ui{transition:none}}
+
+/* Medicina Preventiva: mesmo cabeçalho da barra lateral que a Patologia
+   (aqui a barra fechada é marcada com body.sb-collapsed) */
+@media (min-width:901px){
+  :root[data-vidro="prev"] body:not(.sb-collapsed) .sb-head{flex-wrap:wrap;row-gap:12px}
+  :root[data-vidro="prev"] body:not(.sb-collapsed) .sb-head .t{flex:1 1 100%}
+  :root[data-vidro="prev"] body:not(.sb-collapsed) .sb-btns{flex:1 1 100%;display:flex;align-items:center;gap:8px;padding-left:38px}
+  :root[data-vidro="prev"] body:not(.sb-collapsed) #sbCollapse{margin-left:auto}
+  :root[data-vidro="prev"] body.sb-collapsed .sb-head{flex-direction:column;align-items:center;padding:14px 0 10px}
+  :root[data-vidro="prev"] body.sb-collapsed .sb-head .t{display:none}
+  :root[data-vidro="prev"] body.sb-collapsed .sb-btns{display:flex;flex-direction:column;align-items:center;gap:6px}
+}

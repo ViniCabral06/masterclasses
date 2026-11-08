@@ -48,7 +48,16 @@ Responda sempre em português (Brasil).
 | `_tema/vidro.js` | Fundo 3D, lâmpada de cordinha do tema e monitor cardíaco (TH IV). |
 | `_tema/modelos.js` | Modelos 3D. |
 | `_tema/palco.js` | Palco 3D, com qualidade adaptativa. |
+| `_tema/notas.js` | "Grifar com anotação": funciona sozinho em qualquer master e aula (o `publicar.py` inclui). Detalhes em "Grifos e anotações". |
 | `publicar.py` | Tema, otimização e publicação. Os blocos entre `<!--vidro:...-->` nos masters são gerados por ele: não edite à mão. |
+
+## Grifos e anotações
+
+- Ao selecionar texto, o `_tema/notas.js` mostra "💬 Grifar com anotação". Se o master já tiver o botão de grifar dele (`#hlbtn`/`.hlbtn`, como Farmacologia e Microbiologia), aparece só "💬 Anotar", ao lado dele; se não tiver, aparecem "🖍 Grifar" e "💬 Grifar com anotação".
+- A anotação abre na mesma caixinha escura das questões ("Caiu em X somativas"), com Editar e Remover.
+- Fica no navegador de cada pessoa (`localStorage`, chave `vidro-notas:<caminho da página>`), ancorada pelo texto do trecho, então não depende da estrutura do master.
+- Master ou aula nova não precisa de nada: o `publicar.py` põe o `notas.js` no bloco do tema, inclusive nas aulas separadas em `aulas/` (também nas que já existiam).
+- O texto do master deve ficar dentro de `<main>` (ou `#main`, `#view`, `.main`); barra lateral, menus e botões ficam de fora de propósito.
 
 ## Cuidados de desempenho
 

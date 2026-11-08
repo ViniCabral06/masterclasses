@@ -68,12 +68,13 @@ def otimizar_html(src, dst):
     print(f"  {src.name}: {antes/1e6:.1f} MB -> HTML {len(texto.encode())/1e6:.1f} MB + imagens {imgs/1e6:.1f} MB (sob demanda)")
 BACKUP = ROOT / "_backup_antes_do_vidro"
 
-CORES = {"farmaco": "#ff4d6d", "micro": "#9a5bff", "th4": "#38f5a3", "pato": "#ff6fb5"}
+CORES = {"farmaco": "#ff4d6d", "micro": "#9a5bff", "th4": "#38f5a3", "pato": "#ff6fb5", "prev": "#ffb547"}
 ICONES = {
     "farmaco": '<rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-35 12 12)"/><path d="M9.2 7.6 14.8 16.4"/>',
     "micro": '<rect x="4" y="9" width="11" height="6" rx="3"/><path d="M15 12c2 0 2-2 4-2M15 12c2 0 2 2 4 2"/><circle cx="18" cy="5" r="1.6"/><circle cx="6" cy="19" r="1.6"/>',
     "th4": '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
     "pato": '<path d="M6 21h12M9 21v-3h6v3M10 18l-2-6 5-7 3 2-4 7M13 5l1.5-2 2 1.4-1.4 2"/><circle cx="14" cy="14" r="2"/>',
+    "prev": '<path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6z"/><path d="M12 9v6M9 12h6"/>',
 }
 COR_PADRAO, ICONE_PADRAO = "#4ff3ff", '<path d="M8 4c0 6 8 6 8 8s-8 2-8 8M16 4c0 6-8 6-8 8s8 2 8 8"/>'
 
@@ -111,7 +112,7 @@ def bloco_cabeca(m, rel):
            "window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();")
     forcar = "<script>document.documentElement.dataset.vidro=%s;%s</script>" % (json.dumps(k), pos)
     return (f"{H_INI}\n{forcar}\n{FONTES}\n<link rel=\"stylesheet\" href=\"{rel}/vidro.css\">\n{IMPORTMAP}\n"
-            f"<script defer src=\"{rel}/modelos.js\"></script><script defer src=\"{rel}/palco.js\"></script><script defer src=\"{rel}/vidro.js\"></script>\n{H_FIM}")
+            f"<script defer src=\"{rel}/modelos.js\"></script><script defer src=\"{rel}/palco.js\"></script><script defer src=\"{rel}/vidro.js\"></script><script defer src=\"{rel}/notas.js\"></script>\n{H_FIM}")
 
 
 def bloco_corpo(m):
@@ -236,7 +237,30 @@ def bloco_aula(m, rel):
     """Tema de vidro dentro das aulas (iframes): fundo transparente para o 3D do master aparecer atrás."""
     k = json.dumps(m["k"])
     return (f"{H_INI}<script>document.documentElement.dataset.vidro={k};document.documentElement.classList.add('vidro-aula','vidro-ready')</script>"
-            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css\">{H_FIM}")
+            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css\"><script defer src=\"{rel}/notas.js\"></script>{H_FIM}")
+
+
+def atualizar_aulas(m):
+    """Aulas já separadas (pasta aulas/ ao lado do master) recebem o bloco de tema atual,
+    para que mudanças no tema (ex.: notas.js) cheguem também nelas, e não só nas aulas novas."""
+    pasta = (ROOT / m["arquivo"]).parent / "aulas"
+    if not pasta.is_dir():
+        return
+    rel = os.path.relpath(TEMA, pasta).replace("\\", "/")
+    novo = bloco_aula(m, rel)
+    padrao = re.compile(re.escape(H_INI) + r".*?" + re.escape(H_FIM), re.S)
+    n = 0
+    for f in sorted(pasta.glob("*.html")):
+        s = f.read_text(encoding="utf-8")
+        if H_INI not in s:
+            continue
+        t = padrao.sub(lambda _: novo, s, count=1)
+        if t != s:
+            with open(f, "w", encoding="utf-8", newline="") as fh:
+                fh.write(t)
+            n += 1
+    if n:
+        print(f"  {pasta.parent.name}/aulas: tema atualizado em {n} aula(s)")
 
 
 def otimizar_fonte(m):
@@ -252,6 +276,7 @@ def otimizar_fonte(m):
         texto = separar_aulas(m, texto)
         with open(src, "w", encoding="utf-8", newline="") as fh:
             fh.write(texto)
+    atualizar_aulas(m)
     tem_dados = DATA_RE.search(texto) is not None
     if not tem_dados and not IMG_SEM_LAZY.search(texto):
         return
