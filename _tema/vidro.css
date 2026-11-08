@@ -347,3 +347,10 @@ mark.vg-nota.vg-fim::after{content:"💬";font-size:.72em;margin-left:3px;vertic
   :root[data-vidro="prev"] body.sb-collapsed .sb-head .t{display:none}
   :root[data-vidro="prev"] body.sb-collapsed .sb-btns{display:flex;flex-direction:column;align-items:center;gap:6px}
 }
+
+/* Microbiologia: a página do segmento (.page > .card) ganha o vidro do tema, então precisa de respiro
+   interno para o texto não encostar na borda; parágrafos e listas usam a coluna toda, alinhados
+   com figuras e tabelas (antes uns paravam em ~790px e outros em ~930px) */
+:root[data-vidro="micro"] .page > .card{padding:30px 36px 36px}
+:root[data-vidro="micro"] #prose :is(p,ul,ol){max-width:none}
+@media (max-width:700px){:root[data-vidro="micro"] .page > .card{padding:18px 16px 22px}}
