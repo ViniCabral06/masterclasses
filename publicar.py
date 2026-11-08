@@ -83,7 +83,7 @@ ICONES = {
     "th4": '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
     "pato": '<path d="M6 21h12M9 21v-3h6v3M10 18l-2-6 5-7 3 2-4 7M13 5l1.5-2 2 1.4-1.4 2"/><circle cx="14" cy="14" r="2"/>',
     "prev": '<path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6z"/><path d="M12 9v6M9 12h6"/>',
-    "huma": '<path d="M12 20s-6.5-4-8.4-8.1C2.2 8.8 4.1 5.5 7.3 5.5c1.9 0 3.5 1 4.7 2.6 1.2-1.6 2.8-2.6 4.7-2.6 3.2 0 5.1 3.3 3.7 6.4C18.5 16 12 20 12 20z"/><path d="M8.5 12h2l1-2 1.5 4 1-2h1.5"/>',
+    "huma": '<path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/>',
 }
 COR_PADRAO, ICONE_PADRAO = "#4ff3ff", '<path d="M8 4c0 6 8 6 8 8s-8 2-8 8M16 4c0 6-8 6-8 8s8 2 8 8"/>'
 
@@ -317,6 +317,19 @@ def git(*args, ok_falha=False):
     return r.stdout.strip()
 
 
+def versionar_hub():
+    """O hub (index.html) também carrega arquivos do tema; põe a versão no endereço deles (?v=...)
+    para o 3D novo aparecer na hora, igual nos masters."""
+    hub = ROOT / "index.html"
+    s = hub.read_text(encoding="utf-8")
+    t = re.sub(r'(["\'])_tema/([\w.-]+\.(?:js|css))(?:\?v=[0-9a-f]+)?\1',
+               lambda m: f"{m.group(1)}_tema/{m.group(2)}?v={ver(m.group(2))}{m.group(1)}" if (TEMA / m.group(2)).exists() else m.group(0), s)
+    if t != s:
+        with open(hub, "w", encoding="utf-8", newline="") as fh:
+            fh.write(t)
+        print("  index.html: versão do tema atualizada")
+
+
 def main():
     args = sys.argv[1:]
     remover, local = "--remover" in args, "--local" in args or "--preparar" in args
@@ -334,6 +347,7 @@ def main():
         print("Pronto (sem publicar)."); return
     for m in ms:
         otimizar_fonte(m)
+    versionar_hub()
     (ROOT / ".nojekyll").touch()
     if local:
         print("Pronto (sem enviar). Para ver: python -m http.server 8765 nesta pasta e abra http://localhost:8765"); return

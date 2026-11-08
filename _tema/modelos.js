@@ -513,6 +513,176 @@ function makeVaccine(o = {}) {
   return g;
 }
 
+/* ======================= aperto de mãos (humanização) =======================
+   Duas mãos direitas se cumprimentam: palmas frente a frente, os dedos de cada uma abraçam o dorso
+   da outra e os polegares cruzam por cima. Dedos são tubos curvos que afinam até a ponta, com volume
+   nas articulações; palma arredondada; punho mais fino que o antebraço; manga com punho dobrado.
+   Uma mão é de vidro azul, a outra de vidro claro. Corações flutuam em volta.
+   Mouse perto: o aperto balança e solta corações. Clique: aperto firme e revoada de corações. */
+function makeHandshake(o = {}) {
+  const cheap = !!o.cheap, g = new THREE.Group(), items = [];
+  const AZUL = COL.huma || 0x5aa9ff, ROSA = 0xff7aa8;
+
+  /* ---------- corações ---------- */
+  const hs = new THREE.Shape();
+  hs.moveTo(0, -.5); hs.bezierCurveTo(-.15, -.35, -.55, -.12, -.55, .18); hs.bezierCurveTo(-.55, .45, -.3, .58, -.12, .5);
+  hs.bezierCurveTo(-.05, .47, 0, .4, 0, .34); hs.bezierCurveTo(0, .4, .05, .47, .12, .5); hs.bezierCurveTo(.3, .58, .55, .45, .55, .18);
+  hs.bezierCurveTo(.55, -.12, .15, -.35, 0, -.5);
+  const heartGeo = new THREE.ExtrudeGeometry(hs, { depth: .22, bevelEnabled: true, bevelThickness: .08, bevelSize: .07, bevelSegments: 4, curveSegments: 18 });
+  heartGeo.center();
+  const fofo = c => new THREE.MeshPhysicalMaterial({ color: c, roughness: .35, clearcoat: cheap ? 0 : .7, clearcoatRoughness: .25, sheen: cheap ? 0 : .6, sheenColor: new THREE.Color(0xffffff), emissive: c, emissiveIntensity: .12 });
+  const hMats = [fofo(ROSA), fofo(0x7fb9ff)];
+  for (let i = 0; i < 14; i++) {
+    const m = new THREE.Mesh(heartGeo, hMats[i % 2]); m.scale.setScalar(.38 + Math.random() * .22);
+    const r = 2.5 + Math.random() * 1.3, a = Math.random() * Math.PI * 2, y = (Math.random() - .5) * 4.2;
+    m.userData = { home: new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r * .8), off: V(), vel: V(), w: new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5).multiplyScalar(1.2), ph: Math.random() * 6 };
+    m.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6); g.add(m); items.push(m);
+  }
+
+  /* ---------- peças orgânicas ---------- */
+  // tubo que segue uma curva e afina de r0 até r1, com leve volume nas articulações
+  function tubo(pts, r0, r1, mat, juntas = 2) {
+    const curva = new THREE.CatmullRomCurve3(pts, false, 'centripetal');
+    const T = 48, R = 16, geo = new THREE.TubeGeometry(curva, T, 1, R, false), pos = geo.attributes.position;
+    const c = V(), v = V();
+    for (let i = 0; i <= T; i++) {
+      const t = i / T; curva.getPointAt(t, c);
+      let r = THREE.MathUtils.lerp(r0, r1, Math.pow(t, .9));
+      r *= 1 + .07 * Math.pow(Math.max(0, Math.sin(t * Math.PI * juntas)), 6);   // nós dos dedos
+      for (let j = 0; j <= R; j++) { const k = i * (R + 1) + j; v.fromBufferAttribute(pos, k).sub(c).multiplyScalar(r).add(c); pos.setXYZ(k, v.x, v.y, v.z); }
+    }
+    geo.computeVertexNormals();
+    const grupo = new THREE.Group(); grupo.add(new THREE.Mesh(geo, mat));
+    const ponta = new THREE.Mesh(new THREE.SphereGeometry(r1, 16, 12), mat); ponta.position.copy(curva.getPointAt(1)); grupo.add(ponta);
+    const base = new THREE.Mesh(new THREE.SphereGeometry(r0, 16, 12), mat); base.position.copy(curva.getPointAt(0)); grupo.add(base);
+    return grupo;
+  }
+  // corpo de revolução ao longo de x (antebraço, punho, manga), com seção levemente achatada
+  function revolucao(perfil, mat, achata = .82) {
+    const geo = new THREE.LatheGeometry(perfil.map(([x, r]) => new THREE.Vector2(r, x)), 40);
+    geo.rotateZ(-Math.PI / 2); geo.scale(1, 1, achata);
+    return new THREE.Mesh(geo, mat);
+  }
+  // palma: esfera deformada em "almofada" (mais grossa perto do punho, afinando nos dedos)
+  function palma(mat) {
+    const geo = new THREE.SphereGeometry(1, 40, 28), p = geo.attributes.position, v = V();
+    for (let i = 0; i < p.count; i++) {
+      v.fromBufferAttribute(p, i);
+      const x = v.x * .46, y = v.y * .4;
+      const grossura = .21 - (v.x + 1) * .03;            // afina em direção aos dedos
+      let z = v.z * grossura;
+      z += -Math.pow(v.x, 2) * .05 * Math.sign(v.z || 1) * (v.z > 0 ? 1 : 0);  // palma levemente côncava
+      p.setXYZ(i, x, y, z);
+    }
+    geo.computeVertexNormals();
+    return new THREE.Mesh(geo, mat);
+  }
+
+  /* uma mão direita que vem da esquerda (-x). Palma voltada para trás (-z), no plano z≈.12;
+     os dedos passam pela frente da outra palma e dão a volta no dorso dela (z<0).
+     A outra mão é esta mesma, girada 180° em y. */
+  function mao(pele, manga, mangaClara) {
+    const h = new THREE.Group();
+    // antebraço afinando no punho
+    h.add(revolucao([[-.5, 0], [-.52, .15], [-.62, .2], [-.8, .215], [-1.1, .25], [-1.45, .29], [-1.7, .3]], pele));
+    // manga + punho dobrado
+    h.add(revolucao([[-1.6, 0], [-1.6, .3], [-1.62, .36], [-2.3, .39], [-2.6, .39], [-2.6, 0]], manga, .9));
+    const dobra = new THREE.Mesh(new THREE.TorusGeometry(.38, .07, 14, 48), mangaClara); dobra.rotation.y = Math.PI / 2; dobra.scale.set(1, 1, .9); dobra.position.x = -1.63; h.add(dobra);
+    // palma (inclinada como numa mão de verdade)
+    const p = palma(pele); p.position.set(-.3, -.02, .13); p.rotation.set(0, .12, -.08); h.add(p);
+    // dedos: saem da ponta da palma, passam pela frente da outra mão e envolvem o dorso dela
+    const dedos = [
+      { y: .255, L: 1, r: .09 },    // indicador
+      { y: .085, L: 1.06, r: .094 }, // médio
+      { y: -.085, L: 1.01, r: .09 }, // anelar
+      { y: -.245, L: .88, r: .078 }, // mínimo
+    ];
+    dedos.forEach(d => {
+      const k = d.L, y = d.y;
+      const pts = [
+        V().set(.06, y, .17),
+        V().set(.28 * k, y + .01, .15),
+        V().set(.45 * k, y, .01),
+        V().set(.45 * k, y - .01, -.2),
+        V().set(.3 * k, y - .02, -.35),
+      ];
+      h.add(tubo(pts, d.r, d.r * .82, pele, 2));
+    });
+    // polegar: sai da base da palma, sobe e deita por cima do dorso da outra mão
+    h.add(tubo([V().set(-.44, .22, .22), V().set(-.26, .4, .25), V().set(-.04, .5, .2), V().set(.14, .5, .1), V().set(.26, .46, .02)], .125, .095, pele, 1.5));
+    return h;
+  }
+  // "porcelana macia": opaca, com verniz leve e brilho aveludado; lê bem a forma das mãos
+  const pele = c => new THREE.MeshPhysicalMaterial({ color: c, roughness: .42, clearcoat: cheap ? 0 : .5, clearcoatRoughness: .35, sheen: cheap ? 0 : .7, sheenColor: new THREE.Color(0xffffff), sheenRoughness: .5, emissive: c, emissiveIntensity: .06 });
+  const peleAzul = pele(0x6fb2ff), peleClara = pele(0xffdccb);
+  const mangaA = new THREE.MeshStandardMaterial({ color: 0x1f3e66, roughness: .62 }), mangaA2 = new THREE.MeshStandardMaterial({ color: 0x2c5a92, roughness: .55 });
+  const mangaB = new THREE.MeshStandardMaterial({ color: 0xe6ebf2, roughness: .55 }), mangaB2 = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: .5 });
+  const aperto = new THREE.Group();
+  const maoA = mao(peleAzul, mangaA, mangaA2), maoB = mao(peleClara, mangaB, mangaB2);
+  maoB.rotation.y = Math.PI; maoB.position.z = .02;
+  aperto.add(maoA, maoB);
+  aperto.scale.setScalar(1.45); aperto.rotation.set(.32, -.35, 0); g.add(aperto);
+  const brilho = new THREE.Mesh(new THREE.SphereGeometry(.6, 24, 16), new THREE.MeshBasicMaterial({ color: ROSA, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+  aperto.add(brilho);
+
+  /* ---------- corações que sobem do aperto ---------- */
+  const CN = 36, sobe = new THREE.InstancedMesh(heartGeo, hMats[0], CN); sobe.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+  const cp = [], cv = [], cl = new Float32Array(CN); for (let i = 0; i < CN; i++) { cp.push(V()); cv.push(V()); }
+  g.add(sobe);
+  let prox = 0, acc = 0;
+  const solta = (n, forca) => {
+    for (let k = 0; k < n; k++) {
+      const i = prox = (prox + 1) % CN;
+      cp[i].set((Math.random() - .5) * .5, .45, (Math.random() - .5) * .4).applyMatrix4(aperto.matrix);
+      cv[i].set((Math.random() - .5) * 1.4 * forca, (1.2 + Math.random()) * forca, (Math.random() - .5) * forca); cl[i] = 1;
+    }
+  };
+
+  const amp = S(.05), ck = {}; let fase = 0, firme = 0;
+  const RX = .32, RY = -.35;
+  g.userData.offset = new THREE.Vector3(.2, .1, 0);
+  g.userData.tick = (t, dt, I) => {
+    g.rotation.y = Math.sin(t * .3) * .3;
+    const P = localPointer(g, I), burst = clicked(ck, I);
+    items.forEach(m => {
+      const u = m.userData, p = _b.copy(u.home).add(u.off);
+      p.y += Math.sin(t + u.ph) * .18;
+      if (P) {
+        _c.subVectors(p, P); const d = _c.length();
+        if (d < 1.6) { const n = _c.normalize(); u.vel.addScaledVector(n, (1 - d / 1.6) * 34 * dt); u.w.addScaledVector(new THREE.Vector3(n.y, -n.x, n.z), (1 - d / 1.6) * 14 * dt); }
+        if (burst && d < 3.5) { u.vel.addScaledVector(_c.normalize(), 9 * (1 - d / 3.5)); u.w.multiplyScalar(4); }
+      }
+      if (I && I.sv) { u.vel.y += I.sv * (.7 + Math.abs(u.w.z) * .3) * dt * 3.2; u.vel.x += I.sv * Math.sin(u.w.y * 9) * dt; }
+      u.vel.addScaledVector(u.off, -9 * dt); u.vel.multiplyScalar(Math.exp(-2.6 * dt)); u.off.addScaledVector(u.vel, dt);
+      u.w.multiplyScalar(Math.exp(-.6 * dt)); if (u.w.length() < .5) u.w.setLength(.5);
+      m.position.copy(p); m.rotation.x += u.w.x * dt; m.rotation.y += u.w.y * dt; m.rotation.z += u.w.z * dt;
+    });
+    // balanço do aperto (sobe e desce como num cumprimento), mais forte com o mouse perto e no clique
+    let near = 0;
+    if (P) { const d = P.length(); near = THREE.MathUtils.clamp(1 - (d - .6) / 1.8, 0, 1); }
+    if (burst) { firme = 1; solta(18, 1.5); }
+    firme = Math.max(0, firme - dt * 1.4);
+    const a = spring(amp, .04 + near * .08 + firme * .18, 20, 6, dt);
+    fase += dt * (2 + near * 3 + firme * 6);
+    aperto.rotation.set(RX, RY, Math.sin(fase) * a);
+    aperto.position.y = Math.sin(fase) * a * .7 + Math.sin(t * 1.1) * .07;
+    brilho.material.opacity = Math.min(.3, near * .15 + firme * .3);
+    brilho.scale.setScalar(1 + firme * .6);
+    aperto.updateMatrix();
+    if (near > .2) { acc += dt * near * 5; while (acc > 1) { acc -= 1; solta(1, .8); } }
+    for (let i = 0; i < CN; i++) {
+      if (cl[i] > 0) {
+        cl[i] -= dt * .55; cv[i].multiplyScalar(Math.exp(-.9 * dt)); cv[i].y += .25 * dt; cp[i].addScaledVector(cv[i], dt);
+        _q.setFromEuler(new THREE.Euler(0, t * 2 + i, Math.sin(t * 3 + i) * .3));
+        _m.compose(cp[i], _q, _s.setScalar(Math.max(.0001, Math.sin(Math.min(1, cl[i]) * Math.PI) * .2)));
+      } else _m.compose(cp[i], _q.identity(), _s.setScalar(.0001));
+      sobe.setMatrixAt(i, _m);
+    }
+    _s.set(1, 1, 1); _q.identity(); sobe.instanceMatrix.needsUpdate = true;
+  };
+  return g;
+}
+
 /* ======================= coração anatômico ======================= */
 function bump(x, a, b) { if (x < a || x > b) return 0; return Math.sin((x - a) / (b - a) * Math.PI); }
 function ventricleShape(v) {
@@ -747,6 +917,6 @@ function makeLamp(o = {}) {
   return root;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHeart, makeLamp };
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHandshake, makeHeart, makeLamp };
 };
 })();
