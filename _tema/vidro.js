@@ -32,10 +32,53 @@ const setFxLabel = () => { const calm = html.classList.contains('vidro-calmo'); 
 const fraco = matchMedia('(pointer:coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4;
 if (store.get('vidro-calmo', fraco)) html.classList.add('vidro-calmo');
 if (fraco) html.classList.add('vidro-leve');
+// PC que já se mostrou lento (medido em medirPC, abaixo) abre direto no modo leve,
+// a menos que a pessoa tenha ligado os efeitos de propósito
+const lento = store.get('vidro-lento', false);
+if (lento) { html.classList.add('vidro-leve', 'vidro-semgpu'); if (store.get('vidro-calmo', null) === null) html.classList.add('vidro-calmo'); }
 setFxLabel(); document.body.append(fx);
 
 const home = document.createElement('a'); home.id = 'vidro-home'; home.href = HUB; home.innerHTML = '← Todas as masterclasses';
 document.body.append(home);
+
+/* botão "início" ao lado do botão de recolher a barra lateral (e do menu no celular).
+   Os masters redesenham a barra às vezes, então ele é recolocado quando some. */
+const HOME_ICO = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h5v-6h4v6h5V9.5"/></svg>';
+// só ids e classes (buscas rápidas, mesmo em masters com dezenas de milhares de elementos)
+const homeAlvos = () => {
+  const l = ['sbCollapse', 'mBurger', 'bcol', 'btnCol'].map(i => document.getElementById(i));
+  l.push(...document.getElementsByClassName('menu-btn'));
+  const top = document.getElementById('top'); if (top) l.push(top.querySelector('[data-act="menu"]'));
+  return l.filter(e => e && !e.classList.contains('vidro-inicio'));
+};
+function homeBtns() {
+  let achou = false;
+  homeAlvos().forEach(alvo => {
+    // a pílula flutuante só some se algum botão da barra estiver de fato na tela (ex.: TH IV tem tela de entrada)
+    if (alvo.getClientRects().length) achou = true;
+    const prev = alvo.previousElementSibling;
+    if (prev && prev.classList.contains('vidro-inicio')) return;
+    const a = document.createElement('a');
+    a.href = HUB; a.className = alvo.className + ' vidro-inicio';
+    a.title = 'Todas as masterclasses'; a.setAttribute('aria-label', 'Voltar para todas as masterclasses');
+    a.innerHTML = HOME_ICO;
+    alvo.before(a);
+    // vizinho sem classe (ex.: menu do celular): copia o visual dele
+    if (!alvo.className) {
+      const cs = getComputedStyle(alvo);
+      ['width', 'height', 'background', 'border', 'borderRadius', 'color', 'boxShadow', 'margin'].forEach(p => { a.style[p] = cs[p]; });
+      a.style.display = cs.display === 'none' ? 'none' : 'inline-grid';
+    }
+  });
+  html.classList.toggle('vidro-home-na-barra', achou);
+}
+if (!html.classList.contains('vidro-aula')) {
+  homeBtns();
+  let homeT = 0;
+  const homeLater = () => { if (!homeT) homeT = setTimeout(() => { homeT = 0; homeBtns(); }, 120); };
+  new MutationObserver(homeLater).observe(document.body, { childList: true, subtree: true });
+  addEventListener('resize', homeLater, { passive: true });
+}
 
 /* ---------- scroll (qualquer elemento que role) ---------- */
 let scrollAcc = 0, sTotal = 0; const lastTop = new WeakMap();
@@ -85,6 +128,8 @@ async function startBg() {
 fx.addEventListener('click', () => {
   const calm = !html.classList.contains('vidro-calmo');
   html.classList.toggle('vidro-calmo', calm); store.set('vidro-calmo', calm); setFxLabel();
+  // ligou os efeitos na mão: volta o visual completo e o PC é medido de novo
+  if (!calm) { store.set('vidro-lento', false); html.classList.remove('vidro-semgpu'); if (!fraco) html.classList.remove('vidro-leve'); setTimeout(medirPC, 3000); }
   if (stage) stage.running = !calm; else if (!calm) startBg();
 });
 
@@ -285,7 +330,29 @@ function clickSound() {
 }
 
 /* ---------- início ---------- */
-const go = () => { startBg(); if (K === 'th4') heartMonitor(); (window.requestIdleCallback || (f => setTimeout(f, 1)))(() => setTimeout(lampInit, 900), { timeout: 2500 }); };
+/* ---------- modo leve automático ----------
+   Mede os quadros por segundo com tudo ligado. Se o PC não passa de ~30 fps (ex.: navegador sem
+   placa de vídeo), desliga 3D, auroras e desfoque e lembra disso nas próximas visitas.
+   PC que aguenta não muda nada. */
+function medirPC() {
+  if (html.classList.contains('vidro-calmo') || document.hidden) return;
+  const f = []; let last = performance.now(), n = 0;
+  (function s(t) {
+    if (document.hidden) return;                       // aba em segundo plano não conta
+    f.push(t - last); last = t;
+    if (++n < 150) return requestAnimationFrame(s);
+    f.sort((a, b) => a - b);
+    const med = f[f.length >> 1];
+    if (med > 34) modoLeve();
+  })(last);
+}
+function modoLeve() {
+  store.set('vidro-lento', true);
+  html.classList.add('vidro-leve', 'vidro-semgpu', 'vidro-calmo');
+  if (stage) stage.running = false;
+  setFxLabel();
+}
+const go = () => { startBg(); if (!lento) setTimeout(medirPC, 4000); if (K === 'th4') heartMonitor(); (window.requestIdleCallback || (f => setTimeout(f, 1)))(() => setTimeout(lampInit, 900), { timeout: 2500 }); };
 if (html.classList.contains('vidro-ready')) go(); else {
   const mo = new MutationObserver(() => { if (html.classList.contains('vidro-ready')) { mo.disconnect(); go(); } });
   mo.observe(html, { attributes: true, attributeFilter: ['class'] });

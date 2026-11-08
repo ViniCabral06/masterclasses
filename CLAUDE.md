@@ -60,4 +60,4 @@ O site é usado em celular e PC fraco.
 
 ## Créditos
 
-Mantenha "Design by Vinícius Cabral · Masterclasses by Vinícius e Matheus" no hub e na tela de carregamento.
+Mantenha "Design by Vinícius Cabral · Masterclass by Matheus Tavares e Vinícius Cabral" no hub e na tela de carregamento.

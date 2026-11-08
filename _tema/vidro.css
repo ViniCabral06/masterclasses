@@ -277,3 +277,13 @@ html.vidro-leve[data-vidro][data-theme="light"]{--vg-side:rgba(244,247,250,.96);
 :root.vidro-aula[data-vidro] body > *{animation:none!important}
 /* cor do grupo da aula (cardio, resp., TGI...) continua orientando, em versão vidro */
 :root.vidro-aula[data-vidro] :is(.hero,.intro){background:transparent!important}
+
+/* botão "início" junto do botão de recolher a barra: mesmo estilo do vizinho, ícone centralizado */
+.vidro-inicio{display:inline-grid!important;place-items:center;text-decoration:none!important;color:inherit;cursor:pointer}
+.vidro-inicio svg{display:block}
+/* com o botão na barra, a pílula flutuante de voltar não é mais necessária */
+html.vidro-home-na-barra #vidro-home{display:none!important}
+
+/* modo leve automático (PC que não passou de ~30 fps): auroras paradas viram um brilho fixo */
+html.vidro-semgpu #vidro-bg .au{display:none}
+html.vidro-semgpu #vidro-bg{background:radial-gradient(60vmax 50vmax at 10% 0%,color-mix(in srgb,var(--vg-acc) 14%,transparent),transparent 70%)}

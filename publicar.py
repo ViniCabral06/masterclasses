@@ -159,7 +159,7 @@ def bloco_corpo(m):
             f"<div class=\"vl-t\">{nome}</div>"
             "<svg class=\"vl-ecg\" viewBox=\"0 0 320 40\" preserveAspectRatio=\"none\"><path d=\"M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320\"/></svg>"
             "<div class=\"vl-s\"><b>Separando os segmentos</b></div></div>"
-            "<div class=\"vl-c\">Design by <b>Vinícius Cabral</b> · Masterclasses by <b>Vinícius e Matheus</b></div></div>\n"
+            "<div class=\"vl-c\">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>\n"
             f"<script>{js}</script>\n{B_FIM}")
 
 
