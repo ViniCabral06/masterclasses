@@ -568,8 +568,8 @@ function makeHandshake(o = {}) {
     const geo = new THREE.SphereGeometry(1, 40, 28), p = geo.attributes.position, v = V();
     for (let i = 0; i < p.count; i++) {
       v.fromBufferAttribute(p, i);
-      const x = v.x * .46, y = v.y * .4;
-      const grossura = .21 - (v.x + 1) * .03;            // afina em direção aos dedos
+      const x = v.x * .5, y = v.y * .52;
+      const grossura = .3 - (v.x + 1) * .04;            // afina em direção aos dedos
       let z = v.z * grossura;
       z += -Math.pow(v.x, 2) * .05 * Math.sign(v.z || 1) * (v.z > 0 ? 1 : 0);  // palma levemente côncava
       p.setXYZ(i, x, y, z);
@@ -578,50 +578,46 @@ function makeHandshake(o = {}) {
     return new THREE.Mesh(geo, mat);
   }
 
-  /* uma mão direita que vem da esquerda (-x). Palma voltada para trás (-z), no plano z≈.12;
-     os dedos passam pela frente da outra palma e dão a volta no dorso dela (z<0).
+  /* uma mão direita que vem da esquerda (-x), no estilo do emoji 3D 🤝: gordinha, macia, sem antebraço.
+     Palma voltada para trás (-z), no plano z≈.15; o dorso estufado fica de frente para a câmera.
+     Os dedos curtos e grossos passam pela frente da outra palma e dão a volta no dorso dela (z<0).
      A outra mão é esta mesma, girada 180° em y. */
-  function mao(pele, manga, mangaClara) {
+  function mao(pele) {
     const h = new THREE.Group();
-    // antebraço afinando no punho
-    h.add(revolucao([[-.5, 0], [-.52, .15], [-.62, .2], [-.8, .215], [-1.1, .25], [-1.45, .29], [-1.7, .3]], pele));
-    // manga + punho dobrado
-    h.add(revolucao([[-1.6, 0], [-1.6, .3], [-1.62, .36], [-2.3, .39], [-2.6, .39], [-2.6, 0]], manga, .9));
-    const dobra = new THREE.Mesh(new THREE.TorusGeometry(.38, .07, 14, 48), mangaClara); dobra.rotation.y = Math.PI / 2; dobra.scale.set(1, 1, .9); dobra.position.x = -1.63; h.add(dobra);
-    // palma (inclinada como numa mão de verdade)
-    const p = palma(pele); p.position.set(-.3, -.02, .13); p.rotation.set(0, .12, -.08); h.add(p);
-    // dedos: saem da ponta da palma, passam pela frente da outra mão e envolvem o dorso dela
+    // punho curto e arredondado (só o começo do pulso, como no emoji)
+    h.add(revolucao([[-.46, 0], [-.48, .2], [-.6, .27], [-.74, .285], [-.86, .26], [-.94, .19], [-.98, .1], [-.99, 0]], pele, .8));
+    // dorso/palma bem estufados
+    const p = palma(pele); p.position.set(-.26, -.01, .15); p.rotation.set(0, .1, -.06); h.add(p);
+    // dedos: curtos e grossos, encostados uns nos outros
     const dedos = [
-      { y: .255, L: 1, r: .09 },    // indicador
-      { y: .085, L: 1.06, r: .094 }, // médio
-      { y: -.085, L: 1.01, r: .09 }, // anelar
-      { y: -.245, L: .88, r: .078 }, // mínimo
+      { y: .27, L: .96, r: .118 },  // indicador
+      { y: .05, L: 1, r: .122 },    // médio
+      { y: -.17, L: .96, r: .116 }, // anelar
+      { y: -.37, L: .84, r: .1 },   // mínimo
     ];
     dedos.forEach(d => {
       const k = d.L, y = d.y;
       const pts = [
-        V().set(.06, y, .17),
-        V().set(.28 * k, y + .01, .15),
-        V().set(.45 * k, y, .01),
-        V().set(.45 * k, y - .01, -.2),
-        V().set(.3 * k, y - .02, -.35),
+        V().set(.02, y, .2),
+        V().set(.26 * k, y, .19),
+        V().set(.46 * k, y - .02, .04),
+        V().set(.48 * k, y - .05, -.18),
+        V().set(.34 * k, y - .07, -.34),
       ];
-      h.add(tubo(pts, d.r, d.r * .82, pele, 2));
+      h.add(tubo(pts, d.r, d.r * .9, pele, 2));
     });
-    // polegar: sai da base da palma, sobe e deita por cima do dorso da outra mão
-    h.add(tubo([V().set(-.44, .22, .22), V().set(-.26, .4, .25), V().set(-.04, .5, .2), V().set(.14, .5, .1), V().set(.26, .46, .02)], .125, .095, pele, 1.5));
+    // polegar gordinho deitado por cima do dorso da outra mão
+    h.add(tubo([V().set(-.5, .26, .24), V().set(-.3, .46, .28), V().set(-.06, .56, .22), V().set(.14, .56, .12), V().set(.26, .5, .04)], .155, .13, pele, 1.4));
     return h;
   }
-  // "porcelana macia": opaca, com verniz leve e brilho aveludado; lê bem a forma das mãos
-  const pele = c => new THREE.MeshPhysicalMaterial({ color: c, roughness: .42, clearcoat: cheap ? 0 : .5, clearcoatRoughness: .35, sheen: cheap ? 0 : .7, sheenColor: new THREE.Color(0xffffff), sheenRoughness: .5, emissive: c, emissiveIntensity: .06 });
-  const peleAzul = pele(0x6fb2ff), peleClara = pele(0xffdccb);
-  const mangaA = new THREE.MeshStandardMaterial({ color: 0x1f3e66, roughness: .62 }), mangaA2 = new THREE.MeshStandardMaterial({ color: 0x2c5a92, roughness: .55 });
-  const mangaB = new THREE.MeshStandardMaterial({ color: 0xe6ebf2, roughness: .55 }), mangaB2 = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: .5 });
+  // pele fosca e aveludada, como o emoji 3D: sem verniz, sombra suave
+  const pele = c => new THREE.MeshPhysicalMaterial({ color: c, roughness: .72, metalness: 0, sheen: cheap ? 0 : 1, sheenColor: new THREE.Color(0xffd6c2), sheenRoughness: .6, emissive: c, emissiveIntensity: .1, envMapIntensity: .55 });
+  const peleA = pele(0xc98f6d), peleB = pele(0xdfa983);
   const aperto = new THREE.Group();
-  const maoA = mao(peleAzul, mangaA, mangaA2), maoB = mao(peleClara, mangaB, mangaB2);
+  const maoA = mao(peleA), maoB = mao(peleB);
   maoB.rotation.y = Math.PI; maoB.position.z = .02;
   aperto.add(maoA, maoB);
-  aperto.scale.setScalar(1.45); aperto.rotation.set(.32, -.35, 0); g.add(aperto);
+  aperto.scale.setScalar(1.85); aperto.rotation.set(.3, -.28, -.42); g.add(aperto);
   const brilho = new THREE.Mesh(new THREE.SphereGeometry(.6, 24, 16), new THREE.MeshBasicMaterial({ color: ROSA, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
   aperto.add(brilho);
 
@@ -639,7 +635,7 @@ function makeHandshake(o = {}) {
   };
 
   const amp = S(.05), ck = {}; let fase = 0, firme = 0;
-  const RX = .32, RY = -.35;
+  const RX = .3, RY = -.28;
   g.userData.offset = new THREE.Vector3(.2, .1, 0);
   g.userData.tick = (t, dt, I) => {
     g.rotation.y = Math.sin(t * .3) * .3;
@@ -664,7 +660,7 @@ function makeHandshake(o = {}) {
     firme = Math.max(0, firme - dt * 1.4);
     const a = spring(amp, .04 + near * .08 + firme * .18, 20, 6, dt);
     fase += dt * (2 + near * 3 + firme * 6);
-    aperto.rotation.set(RX, RY, Math.sin(fase) * a);
+    aperto.rotation.set(RX, RY, -.42 + Math.sin(fase) * a);
     aperto.position.y = Math.sin(fase) * a * .7 + Math.sin(t * 1.1) * .07;
     brilho.material.opacity = Math.min(.3, near * .15 + firme * .3);
     brilho.scale.setScalar(1 + firme * .6);
