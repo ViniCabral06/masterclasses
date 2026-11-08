@@ -76,13 +76,14 @@ def otimizar_html(src, dst):
     print(f"  {src.name}: {antes/1e6:.1f} MB -> HTML {len(texto.encode())/1e6:.1f} MB + imagens {imgs/1e6:.1f} MB (sob demanda)")
 BACKUP = ROOT / "_backup_antes_do_vidro"
 
-CORES = {"farmaco": "#ff4d6d", "micro": "#9a5bff", "th4": "#38f5a3", "pato": "#ff6fb5", "prev": "#ffb547"}
+CORES = {"farmaco": "#ff4d6d", "micro": "#9a5bff", "th4": "#38f5a3", "pato": "#ff6fb5", "prev": "#ffb547", "huma": "#5aa9ff"}
 ICONES = {
     "farmaco": '<rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-35 12 12)"/><path d="M9.2 7.6 14.8 16.4"/>',
     "micro": '<rect x="4" y="9" width="11" height="6" rx="3"/><path d="M15 12c2 0 2-2 4-2M15 12c2 0 2 2 4 2"/><circle cx="18" cy="5" r="1.6"/><circle cx="6" cy="19" r="1.6"/>',
     "th4": '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
     "pato": '<path d="M6 21h12M9 21v-3h6v3M10 18l-2-6 5-7 3 2-4 7M13 5l1.5-2 2 1.4-1.4 2"/><circle cx="14" cy="14" r="2"/>',
     "prev": '<path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6z"/><path d="M12 9v6M9 12h6"/>',
+    "huma": '<path d="M12 20s-6.5-4-8.4-8.1C2.2 8.8 4.1 5.5 7.3 5.5c1.9 0 3.5 1 4.7 2.6 1.2-1.6 2.8-2.6 4.7-2.6 3.2 0 5.1 3.3 3.7 6.4C18.5 16 12 20 12 20z"/><path d="M8.5 12h2l1-2 1.5 4 1-2h1.5"/>',
 }
 COR_PADRAO, ICONE_PADRAO = "#4ff3ff", '<path d="M8 4c0 6 8 6 8 8s-8 2-8 8M16 4c0 6-8 6-8 8s8 2 8 8"/>'
 

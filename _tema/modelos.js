@@ -4,7 +4,7 @@
 (function () {
 window.VidroModelos = function (THREE) {
 
-const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3, pato: 0xff6fb5, prev: 0xffb547 };
+const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3, pato: 0xff6fb5, prev: 0xffb547, huma: 0x5aa9ff };
 const V = () => new THREE.Vector3();
 const _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _s = new THREE.Vector3(1, 1, 1), _up = new THREE.Vector3(0, 1, 0);
 const _a = V(), _b = V(), _c = V(), _d = V();
