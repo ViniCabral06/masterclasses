@@ -18,6 +18,14 @@ ORIGINAIS = ROOT / "_originais"   # cópia dos masters antes de tirar as imagens
 MIDIA = ("_img", "aulas", "audios", "imagens", "img", "midia")
 LIMITE_MB = 50
 TEMA = ROOT / "_tema"
+
+
+def ver(nome):
+    """Versão curta do arquivo do tema (muda quando o conteúdo muda). Vai no endereço (?v=...)
+    para o navegador baixar o arquivo novo na hora, em vez de usar o guardado em cache.
+    Ignora a diferença de quebra de linha (Windows/Linux) para os dois PCs gerarem a mesma versão."""
+    dados = (TEMA / nome).read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha1(dados).hexdigest()[:8]
 CACHE = ROOT / "_cache_otimizado"   # imagens já convertidas (não precisa versionar)
 DATA_RE = re.compile(r"data:(image/(?:jpeg|png|gif|webp));base64,([A-Za-z0-9+/=]{2000,})")
 IMG_SEM_LAZY = re.compile(r"<img(?![^>]*\bloading=)")
@@ -111,8 +119,8 @@ def bloco_cabeca(m, rel):
     pos = ("(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}"
            "window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();")
     forcar = "<script>document.documentElement.dataset.vidro=%s;%s</script>" % (json.dumps(k), pos)
-    return (f"{H_INI}\n{forcar}\n{FONTES}\n<link rel=\"stylesheet\" href=\"{rel}/vidro.css\">\n{IMPORTMAP}\n"
-            f"<script defer src=\"{rel}/modelos.js\"></script><script defer src=\"{rel}/palco.js\"></script><script defer src=\"{rel}/vidro.js\"></script><script defer src=\"{rel}/notas.js\"></script>\n{H_FIM}")
+    return (f"{H_INI}\n{forcar}\n{FONTES}\n<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\">\n{IMPORTMAP}\n"
+            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script>\n{H_FIM}")
 
 
 def bloco_corpo(m):
@@ -237,7 +245,7 @@ def bloco_aula(m, rel):
     """Tema de vidro dentro das aulas (iframes): fundo transparente para o 3D do master aparecer atrás."""
     k = json.dumps(m["k"])
     return (f"{H_INI}<script>document.documentElement.dataset.vidro={k};document.documentElement.classList.add('vidro-aula','vidro-ready')</script>"
-            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css\"><script defer src=\"{rel}/notas.js\"></script>{H_FIM}")
+            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\"><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script>{H_FIM}")
 
 
 def atualizar_aulas(m):

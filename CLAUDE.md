@@ -23,6 +23,7 @@ Responda sempre em português (Brasil).
 - Só publique quando o usuário pedir.
 - **Nunca** use `git push --force`, `git reset --hard` sobre trabalho enviado, nem reescreva o histórico do `main`.
 - **Nunca** faça `git add` manual de PDFs, prompts, rascunhos, `_originais/`, `_site/` ou `_cache_otimizado/`. O `.gitignore` deixa tudo de fora de propósito: o que é site entra pelo script.
+- O script põe uma versão no endereço dos arquivos do tema nos masters (ex.: `vidro.css?v=1a2b3c4d`, tirada do conteúdo). Assim, quem abre o site recebe o tema novo na hora, sem depender de Ctrl+F5. Não edite essas versões à mão.
 - Para ver no PC, sem enviar, rode `python publicar.py --local` e depois `python -m http.server 8765`.
 - Depois de publicar, confira o build com `gh api repos/ViniCabral06/masterclasses/pages/builds/latest` e abra a página alterada.
 
