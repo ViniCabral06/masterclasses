@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tone="resp" data-theme="dark">
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css"><!--/vidro:cabeca-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Masterclass — Neoplasias de Pulmão e Laringe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet"><style>/* ===== Visual "Farmacologia" aplicado às aulas de Patologia ===== */
+:root{
+  --ground:#ffffff; --surface:#f5f6f4; --surface-2:#eceeeb; --raised:#ffffff;
+  --border:#e4e6e2; --rule:#eff0ed; --control:#d6d9d4;
+  --ink:#1f201d; --ink-2:#3a3c37; --muted:#676964; --faint:#9a9c96;
+  --accent:#1b6e66; --accent-ink:#0f4d47; --accent-soft:#e3f0ed;
+  --tone:var(--accent);
+  --ok:#2e7d32; --ok-bg:#e6f4e7; --ok-line:#b9dcbb;
+  --bad:#b42318; --bad-bg:#fdecea; --bad-line:#f2c1bb;
+  --warn:#b26a00; --warn-bg:#f8ecd2; --warn-ink:#7a5200;
+  --on-ink:#fff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121413; --surface:#1a1d1b; --surface-2:#242826; --raised:#1f2320;
+  --border:#2c312e; --rule:#222624; --control:#3d4440;
+  --ink:#e6e9e4; --ink-2:#c3c8c1; --muted:#9aa09a; --faint:#6f766f;
+  --accent:#5fc4ae; --accent-ink:#93e0cd; --accent-soft:#17332d;
+  --ok:#62c27a; --ok-bg:#15281a; --ok-line:#2b5233;
+  --bad:#f07a6c; --bad-bg:#2d1714; --bad-line:#5c2b25;
+  --warn-bg:#33290f; --warn-ink:#f0cf86;
+  --on-ink:#121413;
+}
+/* cada grupo de aulas tem a sua cor, só no que orienta */
+:root[data-tone="cv"]{--tone:#a3263a}
+:root[data-tone="resp"]{--tone:#1f6f8b}
+:root[data-tone="prova"]{--tone:#6b4c8a}
+:root[data-tone="sim"]{--tone:#1b6e66}
+:root[data-tone="gi"]{--tone:#2e7d4f}
+:root[data-tone="acc"]{--tone:#9a5a00}
+:root[data-theme="dark"][data-tone="cv"]{--tone:#ec8a98}
+:root[data-theme="dark"][data-tone="resp"]{--tone:#7cc2dc}
+:root[data-theme="dark"][data-tone="prova"]{--tone:#bca0d8}
+:root[data-theme="dark"][data-tone="sim"]{--tone:#5fc4ae}
+:root[data-theme="dark"][data-tone="gi"]{--tone:#6fbf8e}
+:root[data-theme="dark"][data-tone="acc"]{--tone:#e0b06a}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{background:var(--ground)!important;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:inherit;color:inherit}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- cabeçalho da aula (era "hero") ---------- */
+.hero{background:transparent;color:var(--ink);padding:40px clamp(16px,5vw,72px) 0}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;padding-bottom:28px;border-bottom:1px solid var(--border);
+  margin-bottom:32px}
+.hero h1{order:1;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0;font-weight:400;
+  letter-spacing:-.015em;color:var(--ink);max-width:none;text-wrap:balance}
+.tag{order:2;display:block;align-self:flex-start;background:transparent;color:var(--tone);font-family:var(--sans);font-size:14px;
+  font-weight:500;letter-spacing:0;padding:0;border-radius:0;margin:12px 0 0}
+.hero p{order:3;margin:14px 0 0;color:var(--muted);font-family:var(--sans);font-size:14.5px;line-height:1.6;max-width:68ch}
+.strip{order:4;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:22px;overflow:hidden;border-radius:0}
+.strip img{width:100%;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--border);filter:none;opacity:.92}
+:root[data-theme="dark"] .strip img{filter:brightness(.9)}
+@media (max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}.strip img:nth-child(n+4){display:none}}
+
+/* ---------- layout (a navegação agora vive na barra lateral do app) ---------- */
+.shell{display:block;max-width:none;margin:0;padding:0 clamp(16px,5vw,72px) 96px}
+nav.rail{display:none}
+main{display:block;max-width:920px;margin:0 auto;padding:0;background:transparent;border-radius:0;box-shadow:none}
+.pane{display:block;animation:rise .35s var(--ease-out) both;scroll-margin-top:100vh}
+/* o cabeçalho grande só aparece na capa da aula; nos segmentos o título do próprio segmento assume */
+html[data-hero="off"] header.hero{display:none}
+html[data-hero="off"] .shell{padding-top:40px}
+.pane[hidden]{display:none}
+
+.pane-title{position:relative;font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin:0 0 28px;
+  padding:0 0 22px;font-weight:400;letter-spacing:-.012em;color:var(--ink);border-bottom:1px solid var(--border);text-wrap:balance}
+.pane-title.has-done{padding-right:150px}
+
+/* ---------- leitura ---------- */
+.prose,.intro{max-width:none}
+.prose p,.intro p,.prose li,.intro li{font-size:17px;line-height:1.7;color:var(--ink)}
+.prose p,.intro p{margin:0 0 18px;max-width:70ch}
+.prose ul,.prose ol,.intro ul,.intro ol{padding-left:22px;margin:0 0 20px;max-width:70ch}
+.prose li,.intro li{margin-bottom:8px}
+.prose li::marker,.intro li::marker{color:var(--faint)}
+.prose h2,.intro h2{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:56px 0 16px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+.intro h2:first-child{margin-top:0}
+.prose h3,.intro h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.prose strong,.intro strong,.prose b,.intro b{font-weight:600;color:var(--ink)}
+.prose hr,.intro hr{border:0;border-top:1px solid var(--border);margin:36px 0}
+.prose em,.intro em{color:inherit}
+table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;font-family:var(--sans)}
+th{background:transparent;color:var(--muted);text-align:left;padding:10px 14px 10px 0;font-weight:500;font-size:13.5px;
+  border-bottom:1px solid var(--control);vertical-align:bottom}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;text-align:left;
+  font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+@media (max-width:700px){table{display:block;overflow-x:auto}}
+
+.fig{margin:28px auto;max-width:100%;text-align:center}
+.fig img{display:inline-block;max-width:100%;width:auto;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff;
+  cursor:zoom-in;transition:transform .2s var(--ease-out)}
+:root[data-theme="dark"] .fig img{border-color:var(--border);filter:brightness(.94)}
+.fig figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;
+  max-width:68ch;padding:0;border:0}
+
+/* ---------- painéis (notas) ---------- */
+.note{border-radius:18px;padding:18px 22px;margin:24px 0;font-size:16px;line-height:1.68;border:none;position:relative;
+  background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:16px;line-height:1.68;max-width:none}
+.note p + p{margin-top:10px}
+.note-extra{background:#f2f2f8}.note-extra>p>strong:first-child{color:#4b4790}
+.note-fix{background:#fbf0ea}.note-fix>p>strong:first-child{color:#9a4a1f}
+.note-link{background:#edf3f8}.note-link>p>strong:first-child{color:#2d5f8f}
+:root[data-theme="dark"] .note-extra{background:#1d1d2a}:root[data-theme="dark"] .note-extra>p>strong:first-child{color:#aaa6ea}
+:root[data-theme="dark"] .note-fix{background:#2a1c15}:root[data-theme="dark"] .note-fix>p>strong:first-child{color:#ec9f73}
+:root[data-theme="dark"] .note-link{background:#17212b}:root[data-theme="dark"] .note-link>p>strong:first-child{color:#8dbbe6}
+.note + ol,.note + ul{margin-top:-6px}
+
+/* ---------- grifos de frequência em prova ---------- */
+mark.exam1,mark.exam2,mark.exam3,mark.exam4,mark.exam5,mark.hot{padding:1px 3px;border-radius:4px;cursor:help;color:inherit;font-weight:inherit;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1{background:#d8f3e3}
+mark.exam2{background:#fdf0bf}
+mark.exam3,mark.hot{background:#fcd9a8}
+mark.exam4{background:#f8bfb5}
+mark.exam5{background:#1c2331;color:#ffe3a3}
+mark.exam5 *{color:#ffe3a3}
+:root[data-theme="dark"] mark.exam1,:root[data-theme="dark"] mark.exam2,:root[data-theme="dark"] mark.exam3,
+:root[data-theme="dark"] mark.exam4,:root[data-theme="dark"] mark.hot,
+:root[data-theme="dark"] mark.exam1 *,:root[data-theme="dark"] mark.exam2 *,:root[data-theme="dark"] mark.exam3 *,
+:root[data-theme="dark"] mark.exam4 *,:root[data-theme="dark"] mark.hot *{color:#1b2230!important}
+:root[data-theme="dark"] mark.exam5{box-shadow:inset 0 0 0 1px #4a5568}
+.examcard{margin:24px 0;padding:18px 22px;border:none;background:#f8f3e1;border-radius:18px}
+.examcard h4{margin:0 0 8px;font-size:14px;color:#765800;font-family:var(--sans);letter-spacing:0;font-weight:600}
+.examcard p{font-size:15px!important;max-width:none!important}
+:root[data-theme="dark"] .examcard{background:#26220f}:root[data-theme="dark"] .examcard h4{color:#e3c25c}
+.exam-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin:14px 0}
+.exam-legend span{padding:3px 9px;border-radius:999px;font-weight:500}
+:root[data-theme="dark"] .exam-legend span[style*="#111111"]{box-shadow:inset 0 0 0 1px #4a5568}
+.q-source{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;
+  font-family:var(--sans);text-transform:none}
+.q-source.real{background:var(--ok-bg);color:var(--ok)}
+.q-source.adapted{background:var(--warn-bg);color:var(--warn-ink)}
+.q-source.original{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- quiz ---------- */
+.qzone{margin-top:72px;padding-top:0;border-top:none;max-width:none}
+.qzone-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:0 0 12px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em}
+.lede{font-family:var(--sans);font-size:14.5px;color:var(--muted);max-width:68ch;line-height:1.6;margin:0 0 24px}
+.q{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.q-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.q-head>.q-source{order:2;margin-top:3px}
+.q-num{order:1;flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:999px;background:var(--ink);color:var(--on-ink);
+  font-family:var(--sans);font-weight:500;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;margin:0}
+.q-stem{order:3;flex:1 0 100%;min-width:0}
+.q-stem p{margin:0 0 12px;font-size:16.5px;line-height:1.65;color:var(--ink);max-width:none}
+.q-stem .fig{margin:8px 0 16px}
+.q-stem .fig img{max-height:420px}
+.opts{display:flex;flex-direction:column;gap:0;margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  color:var(--ink);transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.opt:active{transform:scale(.995)}
+.opt-letter{flex:none;width:26px;height:26px;min-width:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.opt-text{flex:1;min-width:0;padding-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.opt.is-correct{border-color:var(--ok-line);background:var(--ok-bg);box-shadow:none}
+.opt.is-correct .opt-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-wrong{border-color:var(--bad-line);background:var(--bad-bg);box-shadow:none}
+.opt.is-wrong .opt-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .opt.is-correct .opt-letter,:root[data-theme="dark"] .opt.is-wrong .opt-letter{color:#0d1110}
+.q.done .opt{cursor:default}
+.q.done .opt:active{transform:none}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--control)}:root[data-theme="dark"] .opt:hover{border-color:#4a524d}}
+.q-actions{display:flex;gap:8px;align-items:center;margin:14px 0 0;flex-wrap:wrap}
+.btn-reveal,.btn-grade,.btn-reset{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;
+  cursor:pointer;background:var(--ink);color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn-reveal:active,.btn-grade:active,.btn-reset:active{transform:scale(.97)}
+.btn-reveal{background:var(--surface-2);color:var(--ink)}
+.btn-reset{background:var(--surface-2);color:var(--ink)}
+.btn-grade{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn-grade{color:#0d1110}
+.btn-reveal[hidden],.btn-grade[hidden],.btn-reset[hidden]{display:none}
+.q-why{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:15px;line-height:1.6}
+.q-why[hidden]{display:none}
+.q-why p{margin:0 0 10px;font-size:15px;line-height:1.6;max-width:none}
+.q-why p:last-child{margin:0}
+.q-why:has(.q-verdict.ok){background:var(--ok-bg)}
+.q-why:has(.q-verdict.no){background:var(--bad-bg)}
+.q-verdict{font-family:var(--sans);font-weight:600}
+.q-verdict.ok{color:var(--ok)}.q-verdict.no{color:var(--bad)}
+.q-why hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+.q-open textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;
+  background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+.q-open textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.scorebar{position:sticky;top:12px;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--surface);
+  border:1px solid var(--border);border-radius:22px;padding:14px 20px;margin:22px 0 16px;font-family:var(--sans);font-size:15px}
+#scoretext{flex:1 1 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.closing{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ---------- ampliar imagem ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(18,20,18,.82);display:none;place-items:center;z-index:900;padding:30px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:12px;background:#fff}
+.lightbox figcaption{color:#e6e9e4;font-family:var(--sans);font-size:14.5px;margin-top:14px;max-width:70ch;text-align:center;line-height:1.5}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-family:var(--sans);
+  font-size:14px;font-weight:500;border-radius:999px;height:38px;padding:0 18px;cursor:pointer}
+
+/* ---------- dica "caiu em prova" ---------- */
+#mc-tooltip{background:#2b302d!important;color:#eef0ec!important;border:none!important;border-radius:12px!important;padding:12px 14px!important;
+  font-family:var(--sans)!important;font-size:13px!important;line-height:1.5!important;box-shadow:0 12px 32px rgba(20,22,20,.28)!important}
+#mc-tooltip div{color:#c3c8c1!important;font-size:12px!important;letter-spacing:0!important;font-weight:600}
+#mc-tooltip .mc-chip{background:#3b413d!important;color:#eef0ec!important;border:none!important;border-radius:999px!important;padding:3px 10px!important;
+  font-size:12px!important}
+#mc-tooltip .mc-chip:hover{background:var(--accent)!important;color:#0d1110!important}
+
+/* ---------- concluir (vem da barra lateral do app) ---------- */
+.done-t{position:absolute;top:6px;right:0;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);height:38px;padding:0 16px 0 12px;border-radius:999px;cursor:pointer;background:var(--surface);border:none;user-select:none;
+  letter-spacing:0;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.done-t:active{transform:scale(.97)}
+.done-t .d{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--control);background:var(--raised);
+  transition:background-color .2s ease,border-color .2s ease}
+.done-t.on{color:var(--ok);background:var(--ok-bg)}
+.done-t.on .d{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px var(--ok-bg)}
+@media (max-width:700px){.done-t{position:static;margin-top:14px}.pane-title.has-done{padding-right:0}}
+
+@media (max-width:900px){
+  .hero{padding:24px 16px 0}
+  .shell{padding:0 16px 72px}
+  .q{padding:18px 16px;border-radius:18px}
+  .note{padding:16px 18px}
+  .prose p,.intro p,.prose li,.intro li{font-size:16.5px}
+  .prose h2,.intro h2{font-size:27px;margin-top:44px}
+  .opts{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  .hero,.scorebar,.q-actions,.strip,.done-t{display:none}
+  body{background:#fff!important;color:#000}
+  .pane[hidden],.q-why[hidden]{display:block!important}
+  .q,.fig{break-inside:avoid}
+}
+
+/* ---------- anterior / próximo ---------- */
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{border:none;background:var(--surface);border-radius:16px;padding:14px 18px;font-family:var(--sans);font-size:14.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);max-width:48%;text-align:left;line-height:1.4;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.navfoot button:last-child{text-align:right;margin-left:auto}
+.navfoot button:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.navfoot button:hover{background:var(--surface-2)}}
+
+/* ---------- botão grande de concluir, no fim do segmento ---------- */
+.cel-fin{display:flex;justify-content:center;margin:34px 0 8px}
+.cel-finish{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+  font:500 16px/1 var(--sans);cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+:root[data-theme="dark"] .cel-finish{color:#0d1110}
+.cel-finish:active{transform:scale(.97)}
+.cel-finish svg{width:20px;height:20px}
+.cel-finish svg circle{fill:none;stroke:currentColor;stroke-width:2;opacity:.55}
+.cel-finish svg path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s var(--ease-out)}
+.cel-finish.on{background:var(--ok-bg);color:var(--ok)}
+:root[data-theme="dark"] .cel-finish.on{color:var(--ok)}
+.cel-finish.on svg path{stroke-dashoffset:0}
+@media (hover:hover) and (pointer:fine){.cel-finish:not(.on):hover{transform:translateY(-1px)}}
+@media (max-width:600px){.cel-finish{width:100%}}
+.cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
+
+.find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+</style><script>(function(){var p=(window.name||"").split("|");document.documentElement.setAttribute("data-theme",p[2]==="light"?"light":"dark")})();</script></head>
+
+<body><header class="hero">
+  <div class="hero-in">
+    <span class="tag">Respiratório · Aula 4</span>
+    <h1>Neoplasias de pulmão e laringe</h1>
+    <p>Patologia Médica I — Faculdade de Ciências Médicas de Minas Gerais. Nove segmentos, 27 questões de verificação e um quiz final de 15. Clique em qualquer imagem para ampliar. Revisão com o conteúdo real já cobrado nas provas práticas (Prática 1 — turmas 79, 80 e 81).</p>
+    <div class="strip"><img loading=lazy decoding=async data-img="cce-histologia-perola-cornea-medio-aumento.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="adenocarcinoma-histologia-estruturas-tubulares-1.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="carcinoma-pequenas-celulas-histologia-celulas-azuis.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="sequencia-metaplasia-displasia-carcinoma-painel.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="laringe-cce-macro-peca-vegetante.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="ihq-ttf1-positivo-nucleos-marrom.jpg" alt="" aria-hidden="true"></div>
+  </div>
+</header>
+<div class="shell">
+  <nav class="rail" aria-label="Segmentos">
+    <p class="rail-head">Segmentos</p>
+    <a class="nav-item" href="#" data-target="capa"><span>Início</span></a><a class="nav-item" href="#" data-target="seg1"><span class="nav-num">1</span><span>Introdução e etiopatogênese</span></a><a class="nav-item" href="#" data-target="seg2"><span class="nav-num">2</span><span>Lesões pré-cancerosas</span></a><a class="nav-item" href="#" data-target="seg3"><span class="nav-num">3</span><span>Topografia, clínica e estadiamento</span></a><a class="nav-item" href="#" data-target="seg4"><span class="nav-num">4</span><span>Carcinoma de células escamosas</span></a><a class="nav-item" href="#" data-target="seg5"><span class="nav-num">5</span><span>Adenocarcinoma</span></a><a class="nav-item" href="#" data-target="seg6"><span class="nav-num">6</span><span>Grandes e pequenas células</span></a><a class="nav-item" href="#" data-target="seg7"><span class="nav-num">7</span><span>Caso clínico e imuno-histoquímica</span></a><a class="nav-item" href="#" data-target="seg8"><span class="nav-num">8</span><span>Neoplasias de laringe</span></a><a class="nav-item" href="#" data-target="seg9"><span class="nav-num">9</span><span>O que mais cai em prova</span></a><a class="nav-item" href="#" data-target="apendice"><span>Questão da aula</span></a><a class="nav-item nav-quiz" href="#" data-target="quiz"><span>Quiz final</span></a>
+  </nav>
+  <main><section class="pane" id="capa">
+<div class="intro"><h2>Neoplasias de Pulmão e Laringe</h2>
+<p><strong>Patologia Médica I — Faculdade de Ciências Médicas de Minas Gerais</strong></p>
+<hr />
+<h3>Como usar este material</h3>
+<ul>
+<li>Nove segmentos: introdução/etiopatogênese, lesões pré-cancerosas (a sequência metaplasia→displasia→carcinoma), topografia/clínica/estadiamento, os quatro tipos histológicos (células escamosas, adenocarcinoma, grandes células, pequenas células), o caso clínico completo com imuno-histoquímica, neoplasias de laringe, e um segmento de revisão — <strong>"O que mais cai em prova"</strong>.</li>
+<li>Cada segmento termina com <strong>3 questões em vinheta clínica</strong> (pelo menos uma baseada em imagem) e <strong>gabarito comentado</strong>. Ao final, <strong>quiz de 15 questões</strong> e a questão de residência (SES-RJ 2022, adaptada) que fechava o material original.</li>
+<li>📌 marca o que não estava no PDF original da aula. Tudo sem essa marca veio da aula original.</li>
+<li>🔗 marca onde um conceito já visto em outra aula é pré-requisito direto.</li>
+<li>Em todas as questões, as cinco alternativas foram escritas com <strong>extensão equilibrada</strong> entre si.</li>
+<li>O Segmento 9 traz o conteúdo real já cobrado nas <strong>provas práticas</strong> (Prática 1 — turmas 79, 80 e 81) sobre este tema, com selo indicando a fonte de cada questão.</li>
+<li><strong>Grifos coloridos</strong> no texto corrido mostram o que já caiu nas provas práticas revisadas e na questão de residência anexada pelo professor. Passe o mouse sobre o trecho grifado para ver a fonte: <div class="exam-legend"><span style="background:#C6F6D5;color:#14532D">já caiu uma vez</span><span style="background:#FFE066;color:#2A1B00">caiu, com variações</span><span style="background:#FFB020;color:#2A1B00">tema mais repetido da aula</span></div></li>
+<li>Todas as questões (segmentos, apêndice e quiz) trazem, acima do enunciado, um selo indicando se são <strong>prova real</strong>, <strong>adaptadas de prova real</strong> ou <strong>questão original da aula</strong>.</li>
+</ul>
+<hr /></div>
+</section><section class="pane" id="seg1" hidden>
+  <h1 class="pane-title">Introdução e etiopatogênese</h1>
+  <div class="prose"><h2>Carcinoma broncopulmonar — visão geral</h2>
+<p>O carcinoma broncopulmonar é o grupo de tumores que se origina do epitélio das vias respiratórias, reunindo quatro tipos histológicos principais que vão dominar esta aula: <strong>carcinoma de células escamosas</strong> (epidermoide/espinocelular), <strong>adenocarcinoma</strong>, <strong>carcinoma de grandes células</strong> e <strong>carcinoma de pequenas células</strong> ("oat cell").</p>
+<ul>
+<li><strong>Benignas × malignas</strong> — as malignas respondem por cerca de <strong>95%</strong> dos casos</li>
+<li><strong>Primárias × metastáticas</strong> — distinção central para o raciocínio diagnóstico</li>
+</ul>
+<h2>Epidemiologia — os números que a prova cobra</h2>
+<p>Um problema de saúde pública de primeira grandeza, com incidência crescente nos últimos 60 anos (mais de 50% desde 1985). No Brasil:</p>
+<ul>
+<li><strong>Incidência:</strong> 18.020 novos casos em homens (3º lugar) e 14.540 em mulheres (4º lugar)</li>
+<li><strong>Mortalidade:</strong> 28.964 mortes em 2021 (15.987 homens — 2º lugar; 12.977 mulheres — 2º lugar) — <strong>1º lugar em mortalidade por neoplasias malignas</strong>, no Brasil e no mundo</li>
+<li><strong>Faixa etária:</strong> predomínio entre 40 e 75 anos, pico entre 55 e 65 anos</li>
+<li><strong>Sobrevida em 5 anos:</strong> apenas 7 a 21%</li>
+</ul>
+<aside class="note note-extra"><p><strong>Por que a mortalidade lidera mesmo sem ser o câncer mais incidente:</strong> o câncer de pulmão costuma ser diagnosticado em fase avançada — boa parte dos tumores centrais só dá sintomas quando já obstrui uma via aérea relevante, e os periféricos, só quando já invadem pleura ou parede torácica. É essa combinação de diagnóstico tardio com biologia agressiva que explica a sobrevida em 5 anos tão baixa.</p></aside>
+<h2>Etiopatogênese — fatores ambientais</h2>
+<ol>
+<li><strong>Tabagismo — o principal fator, disparado.</strong> Cerca de <strong>80% dos cânceres de pulmão ocorrem em fumantes</strong>. Mas apenas cerca de <strong>20% dos fumantes</strong> desenvolvem a doença, dependendo de carga tabágica, tipo de cigarro e forma de inalação.</li>
+<li><strong>Poluição atmosférica</strong> — arsênico, cobre, cádmio, ácido sulfúrico.</li>
+<li><strong>Riscos industriais</strong> — radiação ionizante e substâncias como asbesto, arsênico, cromo, urânio, níquel, cloreto de vinila e gás mostarda.</li>
+<li><strong>Inflamação crônica</strong> — exemplo citado: DPOC.</li>
+</ol>
+<figure class="fig"><img data-img="campanhas-antitabagismo-brasil-fotos.jpg" alt="Campanhas antitabagismo brasileiras, com advertências sobre câncer de pulmão e de laringe" loading="lazy" data-caption="Campanhas antitabagismo brasileiras, com advertências sobre câncer de pulmão e de laringe"><figcaption>Campanhas antitabagismo brasileiras, com advertências sobre câncer de pulmão e de laringe</figcaption></figure>
+<h2>Etiopatogênese — alterações genômicas</h2>
+<p>O professor foi explícito: <em>não é preciso decorar os nomes dos genes, apenas saber que eles existem</em> e a que tipo histológico costumam se associar.</p>
+<ul>
+<li><strong>Oncogenes:</strong> KRAS, EGFR, ALK, ROS1 → associados sobretudo ao <strong>adenocarcinoma</strong> (a proteína PDL-1 também entra nesse contexto). MYC → carcinoma de <strong>pequenas células</strong> (20–30%).</li>
+<li><strong>Gene supressor:</strong> TP53 → pequenas células (90%!), CCE (50–80%) e adenocarcinoma (30–40%).</li>
+<li><strong>História familiar</strong> — risco 2,5 vezes maior.</li>
+</ul>
+<aside class="note note-link"><p>🔗 <strong>Liga com a farmacologia:</strong> os mesmos alvos moleculares — EGFR, ALK, ROS1, PDL-1 — sustentam a terapia-alvo e a imunoterapia modernas do adenocarcinoma, retomadas no Segmento 3 a propósito de prognóstico.</p></aside>
+<h2>Primárias × metastáticas</h2>
+<p>Tumores pulmonares <strong>secundários</strong> (metastáticos) são, na prática, mais comuns do que se imagina — os principais sítios primários são <strong>trato gastrointestinal, mama, próstata, ossos, sarcomas e melanoma</strong>. O pulmão é um "órgão vital filtro" da circulação venosa sistêmica. Significado clínico: <strong>prognóstico extremamente ruim</strong>. Morfologia: <strong>lesões múltiplas, de tamanhos variados, com limites bem definidos</strong> — o clássico padrão em <strong>"pulmões em bala de canhão"</strong>.</p>
+<figure class="fig"><img data-img="metastase-pulmonar-bala-de-canhao-macro.jpg" alt="Metástases pulmonares múltiplas — padrão &quot;em bala de canhão&quot;" loading="lazy" data-caption="Metástases pulmonares múltiplas — padrão &quot;em bala de canhão&quot;"><figcaption>Metástases pulmonares múltiplas — padrão "em bala de canhão"</figcaption></figure><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="C" data-qid="seg1-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Por que apenas cerca de 20% dos tabagistas desenvolvem câncer de pulmão, mesmo sendo o tabagismo o principal fator etiológico?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque o tabagismo, isoladamente, nunca é suficiente para causar câncer de pulmão em qualquer indivíduo</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque apenas cigarros filtrados apresentam risco carcinogênico real para o epitélio respiratório</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque o risco depende também de carga tabágica, tipo de cigarro, forma de inalação e suscetibilidade genética individual</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque a maioria dos fumantes desenvolve apenas DPOC, nunca neoplasias pulmonares associadas</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque o tabagismo é fator de risco exclusivo para carcinoma de pequenas células, não para os demais tipos</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O risco depende não só de fumar, mas da carga tabágica, do tipo de cigarro e da forma de inalação — fatores que variam entre indivíduos, além da suscetibilidade genética (história familiar já eleva o risco em 2,5×). <strong>A</strong> nega a forte associação real entre tabagismo e câncer de pulmão (80% dos casos). <strong>B</strong>, <strong>D</strong> e <strong>E</strong> propõem restrições sem sustentação na aula.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg1-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Qual achado morfológico é característico de metástases pulmonares de um tumor primário extratorácico (ex.: trato GI, mama, próstata)?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Lesão única, de grandes dimensões, com limites mal definidos e infiltração hilar extensa</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Consolidação homogênea de um lobo pulmonar inteiro, idêntica à pneumonia lobar bacteriana</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Lesões múltiplas, de tamanhos variados, com limites bem definidos — o padrão em "bala de canhão"</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Cavitação única de parede espessa, com nível hidroaéreo, idêntica ao abscesso pulmonar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Espessamento pleural difuso e unilateral, sem qualquer nódulo parenquimatoso associado</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o padrão clássico descrito na aula: lesões múltiplas, de tamanhos variados, com limites bem definidos — a metáfora "em bala de canhão". <strong>A</strong>, <strong>B</strong>, <strong>D</strong> e <strong>E</strong> descrevem padrões morfológicos distintos (massa única infiltrativa, consolidação lobar, abscesso, espessamento pleural), incompatíveis com o padrão metastático típico.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg1-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Sobre as alterações genômicas associadas ao câncer de pulmão, qual associação está correta?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">KRAS, EGFR, ALK e ROS1 associam-se sobretudo ao carcinoma de pequenas células, não ao adenocarcinoma</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">PDL-1 é um gene supressor tumoral, mutado exclusivamente no carcinoma de grandes células</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">MYC associa-se predominantemente ao carcinoma de células escamosas bem diferenciado</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Nenhum gene supressor tumoral está implicado na carcinogênese pulmonar de qualquer tipo histológico</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">TP53 é encontrado em praticamente 90% dos carcinomas de pequenas células, sendo o gene supressor mais relevante nesse tipo</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A aula cita TP53 mutado em até 90% dos carcinomas de pequenas células — a alteração genômica mais marcante desse tipo. <strong>A</strong> inverte a associação real (esses oncogenes ligam-se ao adenocarcinoma). <strong>C</strong> atribui MYC ao tipo errado (MYC associa-se a pequenas células). <strong>D</strong> nega TP53, explicitamente citado. <strong>B</strong> confunde PDL-1 (proteína de superfície, não gene supressor) com outra categoria molecular.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg2" hidden>
+  <h1 class="pane-title">Lesões pré-cancerosas</h1>
+  <div class="prose"><p class="lede">⚠️ O professor marcou este ponto como obrigatório: "precisa saber a sequência das imagens". É, disparadamente, o trecho mais visado em prova prática dentro desta aula.</p>
+<p><strong>Lesões pré-cancerosas:</strong> alterações estruturais nas células que aumentam o risco de desenvolvimento da neoplasia.</p>
+<h2>A sequência do carcinoma de células escamosas</h2>
+<p><mark class="exam2" data-refs="prat81:10"><strong>Metaplasia escamosa</strong></mark> (o epitélio respiratório colunar ciliado passa a ser um epitélio estratificado, com perda de cílios e de produção de muco) → <mark class="exam2" data-refs="prat81:10"><strong>displasia</strong></mark> (atipias celulares, mas a membrana basal permanece íntegra) → <strong>carcinoma <em>in situ</em></strong> (atipia celular rompendo a membrana basal em processo) → <strong>carcinoma invasor</strong>.</p>
+<figure class="fig"><img data-img="sequencia-metaplasia-displasia-carcinoma-painel.jpg" alt="Sequência completa: epitélio normal → metaplasia imatura → células achatadas de superfície → núcleos hipercromáticos respeitando a membrana basal → atipia celular respeitando a MB → atipia celular rompendo a lâmina basal" loading="lazy" data-caption="Sequência completa: epitélio normal → metaplasia imatura → células achatadas de superfície → núcleos hipercromáticos respeitando a membrana basal → atipia celular respeitando a MB → atipia celular rompendo a lâmina basal"><figcaption>Sequência completa: epitélio normal → metaplasia imatura → células achatadas de superfície → núcleos hipercromáticos respeitando a membrana basal → atipia celular respeitando a MB → atipia celular rompendo a lâmina basal</figcaption></figure>
+<p>O critério histológico que separa cada etapa, e que a prova prática adora testar por imagem:</p>
+<ul>
+<li><strong>Metaplasia:</strong> epitélio já alterado (estratificado, sem cílios), mas <strong>sem atipia celular relevante</strong></li>
+<li><strong>Displasia / carcinoma <em>in situ</em>:</strong> atipia celular presente, mas a <strong>membrana basal permanece íntegra</strong></li>
+<li><strong>Carcinoma invasor:</strong> rompe a lâmina basal, forma ninhos celulares e atinge o córion</li>
+</ul>
+<aside class="note note-extra"><p><strong>O critério de uma frase para decidir "displasia" ou "carcinoma invasor" numa lâmina de prova:</strong> pergunte sempre "a membrana basal está rompida?". Se não, ainda é lesão pré-invasiva. Se sim, com formação de ninhos celulares invadindo o córion, já é carcinoma invasor.</p></aside>
+<h2>A lesão pré-cancerosa do adenocarcinoma</h2>
+<p><strong>Hiperplasia adenomatosa atípica</strong> — lesão pequena (&lt; 5,0 mm), considerada precursora do adenocarcinoma, seguindo a mesma lógica geral: alteração estrutural que precede e predispõe à neoplasia invasiva.</p><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="A" data-qid="seg2-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Uma lâmina mostra epitélio respiratório com atipia celular evidente, mas a membrana basal está íntegra em toda a extensão avaliada. Qual o diagnóstico morfológico, e o que ainda falta para caracterizar carcinoma invasor?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Displasia (ou carcinoma in situ); falta o rompimento da membrana basal com invasão do córion</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Carcinoma invasor já estabelecido, já que qualquer atipia celular basta para esse diagnóstico</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Metaplasia escamosa simples, achado sem qualquer relação com risco neoplásico futuro</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Hiperplasia adenomatosa atípica, lesão exclusiva da via de carcinogênese do adenocarcinoma</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Necrose caseosa, achado típico de tuberculose, sem relação com neoplasia pulmonar</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Atipia celular com membrana basal íntegra define displasia (ou carcinoma in situ, se atipia de alto grau); falta o rompimento da membrana basal com formação de ninhos celulares invadindo o córion para caracterizar carcinoma invasor. <strong>B</strong> ignora justamente o critério que falta. <strong>C</strong> nega a atipia celular descrita. <strong>D</strong> e <strong>E</strong> atribuem o achado a entidades morfologicamente distintas.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg2-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Qual a lesão precursora reconhecida do adenocarcinoma pulmonar, e qual seu critério de tamanho?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Metaplasia escamosa, sem qualquer critério de tamanho estabelecido na literatura</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Carcinoma in situ epidermoide, com tamanho mínimo de 2 cm para essa classificação</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Displasia de alto grau, exigindo sempre mais de 1 cm de diâmetro para ser reconhecida</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Nódulo de Ghon, lesão precursora comum a todos os tipos histológicos de carcinoma pulmonar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Hiperplasia adenomatosa atípica, definida como lesão menor que 5,0 mm</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A hiperplasia adenomatosa atípica, definida como lesão menor que 5,0 mm, é a lesão precursora reconhecida do adenocarcinoma. <strong>A</strong> atribui a lesão errada (metaplasia é precursora do CCE, não do adenocarcinoma). <strong>B</strong> inventa um critério de tamanho incompatível. <strong>D</strong> confunde com achado de tuberculose. <strong>C</strong> atribui um critério de tamanho não descrito na aula.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg2-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Segundo a sequência de imagens enfatizada pelo professor, qual a ordem correta de progressão da carcinogênese escamosa pulmonar?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Carcinoma invasor → displasia → metaplasia escamosa → epitélio normal, em ordem regressiva</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Metaplasia escamosa → displasia → carcinoma in situ → carcinoma invasor</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Displasia → metaplasia escamosa → carcinoma invasor → carcinoma in situ, nessa ordem específica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Carcinoma in situ → metaplasia escamosa → displasia → carcinoma invasor, alternando estágios</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Não existe sequência morfológica reconhecida entre esses quatro achados histológicos distintos</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a sequência exata destacada pelo professor como obrigatória: metaplasia escamosa → displasia → carcinoma in situ → carcinoma invasor. <strong>A</strong>, <strong>C</strong> e <strong>D</strong> embaralham essa ordem cronológica. <strong>E</strong> nega uma sequência amplamente documentada e enfatizada na aula.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg3" hidden>
+  <h1 class="pane-title">Topografia, clínica e estadiamento</h1>
+  <div class="prose"><h2>Topografia — mais importante que o tipo histológico para prever a clínica</h2>
+<p>Um ponto que o professor destacou: os sintomas são <strong>mais ditados pela localização</strong> do tumor do que pelo tipo histológico em si.</p>
+<figure class="fig"><img data-img="ilustracao-cancer-pulmao-bronquio-central.jpg" alt="Localização central/hilar do carcinoma broncopulmonar, obstruindo o brônquio principal" loading="lazy" data-caption="Localização central/hilar do carcinoma broncopulmonar, obstruindo o brônquio principal"><figcaption>Localização central/hilar do carcinoma broncopulmonar, obstruindo o brônquio principal</figcaption></figure>
+<table><tr><th>Central ou hilar</th><th>Periférico</th></tr>
+<tr><td>Parte mais distal da traqueia, brônquios 1ºs e 2ºs; visível à broncoscopia; descamação celular nas secreções (escarro/LBA); mais associado a <strong>CCE</strong> e <strong>pequenas células</strong></td>
+<td>Brônquios distais, bronquíolos e alvéolos; diagnóstico por imagem; acometimento pleural avaliado por biópsia percutânea; mais associado a <strong>adenocarcinoma</strong> e <strong>grandes células</strong></td></tr></table>
+<h2>Clínica — tumores centrais x periféricos</h2>
+<p><strong>Centrais:</strong> por um tempo assintomáticos; tosse seca persistente (pode tornar-se produtiva); obstrução parcial → hiperinsuflação, infecções de repetição; obstrução total → atelectasia; infiltração do mediastino → fístulas → pneumonia aspirativa.</p>
+<p><strong>Periféricos:</strong> assintomáticos por mais tempo ainda; dor torácica; derrame pleural; pode infiltrar parede torácica e <strong>plexo braquial</strong> (dor irradiada para ombro e braço).</p>
+<figure class="fig"><img data-img="ilustracao-tumor-pancoast-apice-pulmonar.jpg" alt="Tumor de Pancoast — localização no ápice pulmonar, próximo ao plexo braquial e à cadeia simpática cervical" loading="lazy" data-caption="Tumor de Pancoast — localização no ápice pulmonar, próximo ao plexo braquial e à cadeia simpática cervical"><figcaption>Tumor de Pancoast — localização no ápice pulmonar, próximo ao plexo braquial e à cadeia simpática cervical</figcaption></figure>
+<div class="examcard"><h4>📷 Achado clássico de prova — <mark class="exam3" data-refs="prat79:3,res:1">Tumor de Pancoast</mark></h4><p>Tumor do ápice pulmonar que invade o plexo braquial e a cadeia simpática cervical, causando a <strong>síndrome de Horner</strong> (ptose palpebral, miose e anidrose) do lado acometido. É o cenário clínico de neoplasia pulmonar mais cobrado nas provas práticas — veja o Segmento 9, "O que mais cai em prova".</p></div>
+<h2>Sintomas gerais e síndromes paraneoplásicas</h2>
+<p>Debilidade progressiva, fraqueza, anemia, desnutrição (caquexia). As síndromes paraneoplásicas podem ser a <strong>primeira e única manifestação</strong> da doença:</p>
+<table><tr><th>Síndrome</th><th>Mediador</th></tr>
+<tr><td>Cushing</td><td>ACTH</td></tr><tr><td>Hiponatremia</td><td>ADH</td></tr>
+<tr><td>Hipercalcemia</td><td>Paratormônio (PTH-rp)</td></tr><tr><td>Hipocalcemia</td><td>Calcitonina</td></tr>
+<tr><td>Ginecomastia</td><td>Gonadotrofinas</td></tr><tr><td>Síndrome de Trousseau</td><td>Hipercoagulabilidade → tromboses</td></tr></table>
+<h2>Metástases e estadiamento</h2>
+<p><strong>Via linfática</strong> — linfonodos regionais (hilo), depois distantes. <strong>Via hematogênica</strong> — fígado, SNC, suprarrenal, ossos.</p>
+<p><strong>Sistema TNM:</strong> T = tumor, N = linfonodos, M = metástase à distância. O <strong>grau de diferenciação</strong> (G1→G4) também entra no prognóstico. Tratamento: cirurgia, quimioterapia, radioterapia, <strong>terapia-alvo</strong> (EGFR, ALK, ROS1, PDL1...) e <strong>imunoterapia</strong>.</p><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg3-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Paciente com dor progressiva em ombro esquerdo, ptose palpebral, miose e anidrose do mesmo lado. Qual a localização do tumor e qual síndrome está associada?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Tumor central hilar; síndrome de Cushing por secreção ectópica de ACTH</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Tumor no ápice pulmonar (Pancoast), invadindo plexo braquial e cadeia simpática cervical; Síndrome de Horner</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Tumor mediastinal anterior; síndrome de Trousseau por hipercoagulabilidade paraneoplásica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Tumor de base pulmonar; síndrome de Eaton-Lambert por acometimento neuromuscular periférico</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Tumor de lobo médio direito; síndrome carcinoide por secreção de serotonina</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o quadro clássico do Tumor de Pancoast: localização apical, invadindo plexo braquial (dor/parestesia no membro) e cadeia simpática cervical, causando Síndrome de Horner (ptose, miose, anidrose). <strong>A</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> atribuem o quadro a localizações e síndromes paraneoplásicas incompatíveis com a tríade descrita.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg3-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Por que tumores centrais costumam dar sintomas (tosse, obstrução) mais precocemente do que os periféricos?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque comprimem ou obstruem a via aérea principal desde cedo; periféricos só dão sintomas ao atingir pleura ou parede torácica</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque tumores centrais são sempre maiores em volume no momento do diagnóstico inicial</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque tumores periféricos nunca produzem qualquer sintoma até a fase de metástase à distância</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque apenas tumores centrais têm capacidade de invadir estruturas do mediastino adjacente</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque tumores periféricos crescem exclusivamente em direção à cavidade pleural, nunca ao parênquima</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Tumores centrais comprimem/obstruem a via aérea principal desde cedo (tosse, hiperinsuflação, atelectasia); os periféricos só geram sintomas quando atingem pleura, brônquios maiores ou parede torácica — processo mais tardio. <strong>B</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> propõem explicações sem sustentação na fisiopatologia real descrita.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg3-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Paciente com carcinoma pulmonar desenvolve hipercalcemia paraneoplásica. Qual o mediador mais provável dessa síndrome?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Paratormônio (PTH-rp), peptídeo relacionado ao hormônio paratireoidiano, mediador da hipercalcemia</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">ADH, mediador da hiponatremia paraneoplásica associada ao carcinoma de pequenas células</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">ACTH, o mesmo mediador responsável pela síndrome de Cushing paraneoplásica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Calcitonina, hormônio que reduz, e não eleva, a calcemia quando secretado ectopicamente</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Gonadotrofinas, mediadoras da ginecomastia, sem qualquer relação com o metabolismo do cálcio</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A hipercalcemia paraneoplásica é mediada pelo PTH-rp (peptídeo relacionado ao paratormônio), exatamente como listado na tabela da aula. <strong>C</strong>, <strong>B</strong> e <strong>E</strong> atribuem o achado a mediadores de outras síndromes paraneoplásicas (Cushing, hiponatremia, ginecomastia). <strong>D</strong> inverte o efeito da calcitonina, que reduz (e não eleva) a calcemia, sendo o mediador da hipocalcemia paraneoplásica.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg4" hidden>
+  <h1 class="pane-title">Carcinoma de células escamosas</h1>
+  <div class="prose"><p class="lede">Sinonímia: <strong>carcinoma epidermoide</strong> e <strong>carcinoma espinocelular</strong>. Responde por cerca de <strong>36,5%</strong> dos carcinomas broncopulmonares.</p>
+<h2>Perfil geral</h2>
+<ul>
+<li>Mais comum em <strong>homens</strong></li>
+<li>Localização, geralmente, <strong>central</strong> — a fumaça inalada se concentra mais nessa região</li>
+<li>O tipo <strong>mais associado ao tabagismo</strong></li>
+<li><strong>Melhor prognóstico</strong> entre os quatro tipos: crescimento lento, metástases inicialmente para linfonodos regionais, disseminação hematogênica mais tardia</li>
+</ul>
+<h2>Macroscopia</h2>
+<ol>
+<li>Primeiro, <strong>espessamento da mucosa</strong></li>
+<li>Depois, formação de massa neoplásica, com crescimento para a luz/parênquima</li>
+<li>Coloração <strong>brancacenta e endurecida</strong> — um <strong>estroma desmoplásico</strong> (rico em colágeno, reflete a diferenciação escamosa)</li>
+<li>Focos de necrose, hemorragia e <strong>cavitações</strong></li>
+</ol>
+<figure class="fig"><img data-img="cce-macro-massa-brancacenta-1.jpg" alt="CCE — massa brancacenta, endurecida, com áreas de necrose" loading="lazy" data-caption="CCE — massa brancacenta, endurecida, com áreas de necrose"><figcaption>CCE — massa brancacenta, endurecida, com áreas de necrose</figcaption></figure><figure class="fig"><img data-img="cce-macro-cavitacao-necrose-2.jpg" alt="CCE — peça com cavitação e necrose central" loading="lazy" data-caption="CCE — peça com cavitação e necrose central"><figcaption>CCE — peça com cavitação e necrose central</figcaption></figure>
+<h2>Microscopia</h2>
+<p>Proliferação de <strong>células escamosas atípicas</strong>, com graus variáveis de <strong>ceratinização</strong> e formação de <strong>pérolas córneas</strong> — o achado histológico mais icônico do CCE.</p>
+<figure class="fig"><img data-img="cce-histologia-panoramica-baixo-aumento.jpg" alt="CCE — panorâmica em baixo aumento (40×)" loading="lazy" data-caption="CCE — panorâmica em baixo aumento (40×)"><figcaption>CCE — panorâmica em baixo aumento (40×)</figcaption></figure><figure class="fig"><img data-img="cce-histologia-perola-cornea-medio-aumento.jpg" alt="CCE — pérola córnea em médio aumento (100×), bem diferenciado" loading="lazy" data-caption="CCE — pérola córnea em médio aumento (100×), bem diferenciado"><figcaption>CCE — pérola córnea em médio aumento (100×), bem diferenciado</figcaption></figure><figure class="fig"><img data-img="cce-histologia-perola-cornea-alto-aumento.jpg" alt="CCE — pérola córnea em maior aumento (400×)" loading="lazy" data-caption="CCE — pérola córnea em maior aumento (400×)"><figcaption>CCE — pérola córnea em maior aumento (400×)</figcaption></figure><aside class="note note-extra"><p><strong>Reconhecimento rápido de imagem:</strong> lâmina rosada, com estruturas circulares concêntricas e laminadas ("cascas de cebola") de material róseo/eosinofílico = <strong>pérola córnea</strong> = CCE, praticamente sem outra possibilidade diagnóstica razoável.</p></aside><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="A" data-qid="seg4-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Qual o achado histológico mais característico do carcinoma de células escamosas pulmonar, e o que ele representa biologicamente?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pérola córnea — agregado concêntrico e laminado de queratina, refletindo diferenciação escamosa</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Membrana hialina eosinofílica revestindo a parede alveolar — marcador de dano alveolar difuso</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Necrose caseosa central, circundada por células epitelioides — marcador de diferenciação granulomatosa</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Corpos de Psammoma calcificados, concêntricos, associados à diferenciação glandular papilífera</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Células em anel de sinete, com núcleo periférico deslocado por mucina intracitoplasmática</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A pérola córnea — agregado concêntrico e laminado de queratina, formado por células escamosas atípicas em ceratinização — é o achado mais característico do CCE, refletindo sua diferenciação escamosa. <strong>C</strong>, <strong>B</strong>, <strong>D</strong> e <strong>E</strong> descrevem achados histológicos de outras entidades (tuberculose, dano alveolar difuso, carcinoma papilífero de tireoide, adenocarcinoma mucinoso), não do CCE.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg4-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Por que o CCE tende a ser central e fortemente associado ao tabagismo, ao contrário do adenocarcinoma?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque apenas o adenocarcinoma é sensível aos efeitos carcinogênicos diretos da fumaça do cigarro</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque o CCE se origina exclusivamente de pneumócitos tipo II, células restritas à região hilar central</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque o tabagismo não tem qualquer relação real com a localização anatômica do tumor resultante</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque a fumaça inalada se concentra na região central da árvore brônquica, onde ocorre a sequência metaplasia→displasia→carcinoma</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque o CCE surge preferencialmente em não fumantes, ao contrário do que a aula descreve</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A fumaça inalada se concentra mais na região central da árvore brônquica, onde o epitélio sofre a sequência de carcinogênese induzida pelo tabaco (Segmento 2). <strong>B</strong> atribui ao CCE uma origem celular (pneumócitos II) que pertence ao adenocarcinoma. <strong>C</strong> e <strong>E</strong> negam a forte associação entre CCE e tabagismo central, amplamente documentada. <strong>A</strong> nega o efeito carcinogênico do tabaco sobre o CCE, o tipo mais associado a ele.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg4-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Sobre o prognóstico do carcinoma de células escamosas em relação aos outros três tipos histológicos principais, é correto afirmar que:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Tem o pior prognóstico do grupo, com disseminação hematogênica precoce e agressiva</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Tem prognóstico equivalente ao carcinoma de pequenas células, ambos de origem neuroendócrina</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Tem o melhor prognóstico do grupo, com crescimento lento e disseminação hematogênica mais tardia</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Seu prognóstico é sempre pior que o do carcinoma de grandes células, independentemente do estadiamento</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Não há diferença de prognóstico entre os quatro tipos histológicos principais descritos na aula</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O CCE tem o melhor prognóstico entre os quatro tipos: crescimento lento, metástases inicialmente regionais, disseminação hematogênica mais tardia. <strong>A</strong> e <strong>D</strong> invertem essa posição relativa. <strong>B</strong> atribui ao CCE uma origem neuroendócrina que pertence ao carcinoma de pequenas células. <strong>E</strong> nega uma hierarquia de prognóstico explicitamente discutida na aula.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg5" hidden>
+  <h1 class="pane-title">Adenocarcinoma</h1>
+  <div class="prose"><p class="lede">O tipo histológico <strong>mais frequente</strong> entre os carcinomas broncopulmonares — cerca de <strong>43%</strong> dos casos.</p>
+<h2>Perfil geral</h2>
+<ul>
+<li>Neoplasia maligna com <strong>diferenciação glandular</strong> e produção de <strong>mucina</strong></li>
+<li>Mais comum em <strong>mulheres</strong> e em fumantes — mas é, também, <strong>o tipo mais comum entre não fumantes</strong></li>
+<li>Localização, geralmente, <strong>periférica</strong></li>
+<li>Origem a partir das <strong>células claviformes</strong> ou dos <strong>pneumócitos tipo II</strong></li>
+<li><strong>Metástases mais frequentes</strong> em relação ao CCE</li>
+</ul>
+<h2>Macroscopia e microscopia</h2>
+<p>Limites indefinidos, tamanhos variados, superfície de corte homogênea, sólida, de coloração <strong>marfim</strong>, por vezes brilhante (mucina).</p>
+<figure class="fig"><img data-img="adenocarcinoma-macro-peca-esbranquicada.jpg" alt="Adenocarcinoma — peça com massa esbranquiçada de limites indefinidos" loading="lazy" data-caption="Adenocarcinoma — peça com massa esbranquiçada de limites indefinidos"><figcaption>Adenocarcinoma — peça com massa esbranquiçada de limites indefinidos</figcaption></figure><figure class="fig"><img data-img="adenocarcinoma-macro-peca-pulmao-enegrecido.jpg" alt="Adenocarcinoma — peça com pulmão enegrecido (antracose) e lesão central" loading="lazy" data-caption="Adenocarcinoma — peça com pulmão enegrecido (antracose) e lesão central"><figcaption>Adenocarcinoma — peça com pulmão enegrecido (antracose) e lesão central</figcaption></figure>
+<p>Microscopia: proliferação de células com graus variáveis de atipia, formando <strong>estruturas tubulares (glandulares)</strong>.</p>
+<figure class="fig"><img data-img="adenocarcinoma-histologia-estruturas-tubulares-1.jpg" alt="Adenocarcinoma — estruturas tubulares/glandulares" loading="lazy" data-caption="Adenocarcinoma — estruturas tubulares/glandulares"><figcaption>Adenocarcinoma — estruturas tubulares/glandulares</figcaption></figure><figure class="fig"><img data-img="adenocarcinoma-histologia-estruturas-tubulares-2.jpg" alt="Adenocarcinoma — detalhe das glândulas neoplásicas" loading="lazy" data-caption="Adenocarcinoma — detalhe das glândulas neoplásicas"><figcaption>Adenocarcinoma — detalhe das glândulas neoplásicas</figcaption></figure>
+<h2>Subtipo especial: adenocarcinoma de padrão lepídico</h2>
+<p>Chamado de "carcinoma bronquíolo-alveolar" na OMS 2004; passou a "adenocarcinoma de padrão lepídico" nas classificações de 2015/2021 — <em>lepídico</em> vem do grego para "escama", alusão ao crescimento das células ao longo dos septos.</p>
+<ul>
+<li>Origina-se do epitélio de bronquíolos/alvéolos; <strong>cresce ao longo dos septos preexistentes</strong>, sem destruir a arquitetura</li>
+<li>Preferência por <strong>mulheres</strong>; ¼ dos pacientes não são fumantes</li>
+<li>Evolução <strong>mais lenta</strong>; <strong>não tem capacidade metastática</strong> na sua forma clássica</li>
+</ul>
+<p><strong>Duas formas macroscópicas, com prognóstico oposto:</strong> <strong>Localizada</strong> — melhor prognóstico; <strong>Difusa/generalizada</strong> — pior prognóstico, <strong>pode simular pneumonia</strong>.</p>
+<figure class="fig"><img data-img="adenocarcinoma-lepidico-tc-vidro-fosco.jpg" alt="TC de tórax — padrão em vidro fosco, simulando pneumonia, na forma difusa do adenocarcinoma lepídico" loading="lazy" data-caption="TC de tórax — padrão em vidro fosco, simulando pneumonia, na forma difusa do adenocarcinoma lepídico"><figcaption>TC de tórax — padrão em vidro fosco, simulando pneumonia, na forma difusa do adenocarcinoma lepídico</figcaption></figure><figure class="fig"><img data-img="adenocarcinoma-lepidico-macro-peca-difusa.jpg" alt="Adenocarcinoma lepídico — forma difusa, macroscopia" loading="lazy" data-caption="Adenocarcinoma lepídico — forma difusa, macroscopia"><figcaption>Adenocarcinoma lepídico — forma difusa, macroscopia</figcaption></figure><aside class="note note-extra"><p><strong>Por que a forma difusa "simula pneumonia" na TC e na macroscopia:</strong> as células tumorais crescem tapetando os septos alveolares sem destruir a arquitetura, gerando um padrão de consolidação/vidro fosco semelhante ao inflamatório — mas, ao contrário de uma pneumonia infecciosa, não há resposta a antibióticos e a evolução é progressiva.</p></aside><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg5-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Por que o adenocarcinoma é o tipo mais comum entre pacientes NÃO fumantes, ao contrário do CCE e do carcinoma de pequenas células?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque o adenocarcinoma nunca ocorre em fumantes, sendo exclusivo de não fumantes por definição</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque sua carcinogênese depende menos da via metaplásica central induzida pela fumaça, ligando-se mais a mutações genômicas e origem periférica</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque apenas fumantes desenvolvem mutações em TP53, gene associado exclusivamente ao CCE</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque o adenocarcinoma depende de exposição a asbesto, nunca de qualquer fator genético</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque a localização central do adenocarcinoma o torna menos exposto à fumaça inalada</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O adenocarcinoma depende menos da sequência metaplásica induzida pela fumaça na via aérea central, estando mais ligado a mutações genômicas (EGFR, ALK, ROS1) que ocorrem independentemente do tabagismo, e sua origem periférica não depende do mesmo mecanismo. <strong>A</strong> nega que o adenocarcinoma também ocorra em fumantes (é o tipo mais comum nesse grupo também). <strong>C</strong>, <strong>D</strong> e <strong>E</strong> propõem mecanismos e localização incorretos.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg5-1">
+  <header class="q-head"><span class="q-source adapted">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Paciente apresenta opacidade em vidro fosco difusa na TC de tórax, com suspeita inicial de pneumonia, mas sem melhora após antibioticoterapia. Qual diagnóstico diferencial neoplásico deve ser considerado, e por que ele pode mimetizar uma pneumonia?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Carcinoma de células escamosas central, por obstrução completa do brônquio principal</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Tumor de Pancoast, por compressão do ápice pulmonar com colabamento alveolar difuso</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Carcinoma de pequenas células, por infiltração maciça do interstício pulmonar bilateral</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Adenocarcinoma de padrão lepídico, forma difusa, por crescimento ao longo dos septos alveolares preexistentes, sem destruir a arquitetura</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Carcinoma de grandes células, por necrose extensa com cavitação bilateral simétrica</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O adenocarcinoma de padrão lepídico, forma difusa, mimetiza pneumonia porque as células neoplásicas crescem ao longo dos septos alveolares preexistentes, sem destruir a arquitetura, gerando padrão de consolidação/vidro fosco semelhante ao inflamatório. <strong>A</strong>, <strong>C</strong>, <strong>B</strong> e <strong>E</strong> descrevem mecanismos e apresentações incompatíveis com esse padrão radiológico específico.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg5-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Sobre a origem celular do adenocarcinoma pulmonar, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Origina-se exclusivamente de células escamosas metaplásicas da região hilar central</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Não possui origem celular definida, sendo classificado apenas por exclusão</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Origina-se de células neuroendócrinas da submucosa brônquica central</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Origina-se exclusivamente de células mesoteliais da pleura visceral adjacente</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Origina-se a partir de células claviformes ou de pneumócitos tipo II</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A aula descreve a origem do adenocarcinoma a partir das células claviformes (células colunares não ciliadas) ou dos pneumócitos tipo II. <strong>A</strong> atribui uma origem (metaplasia escamosa central) que pertence ao CCE. <strong>C</strong> descreve a origem do carcinoma de pequenas células (neuroendócrina). <strong>D</strong> propõe uma origem mesotelial, sem relação com o adenocarcinoma pulmonar. <strong>B</strong> nega uma origem celular bem definida e descrita na aula.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg6" hidden>
+  <h1 class="pane-title">Grandes e pequenas células</h1>
+  <div class="prose"><h2>Carcinoma de grandes células — cerca de 10%</h2>
+<ul>
+<li>O <strong>menos frequente</strong> dos quatro tipos principais</li>
+<li><strong>Indiferenciado</strong> e de comportamento <strong>agressivo</strong>; prognóstico ruim</li>
+<li>Geralmente <strong>periférico, subpleural</strong></li>
+</ul>
+<figure class="fig"><img data-img="carcinoma-grandes-celulas-macro-peca.jpg" alt="Carcinoma de grandes células — peça periférica, volumosa, com necrose e hemorragia" loading="lazy" data-caption="Carcinoma de grandes células — peça periférica, volumosa, com necrose e hemorragia"><figcaption>Carcinoma de grandes células — peça periférica, volumosa, com necrose e hemorragia</figcaption></figure><figure class="fig"><img data-img="carcinoma-grandes-celulas-histologia-anaplasico.jpg" alt="Carcinoma de grandes células — células anaplásicas, núcleos volumosos, sem diferenciação escamosa ou glandular" loading="lazy" data-caption="Carcinoma de grandes células — células anaplásicas, núcleos volumosos, sem diferenciação escamosa ou glandular"><figcaption>Carcinoma de grandes células — células anaplásicas, núcleos volumosos, sem diferenciação escamosa ou glandular</figcaption></figure>
+<p>Microscopia: células grandes, atípicas, citoplasma abundante, núcleos centrais volumosos — <strong>células anaplásicas</strong>, sem diferenciação escamosa nem glandular reconhecível (essencialmente um diagnóstico de exclusão).</p>
+<hr />
+<h2>Carcinoma de pequenas células — cerca de 15%</h2>
+<p>Sinonímia: <strong>"oat cell" carcinoma</strong> ("em grão de aveia").</p>
+<ul>
+<li>Predomina na <strong>6ª e 7ª décadas</strong>; mais comum em <strong>homens</strong>; <strong>muito associado ao tabagismo</strong></li>
+<li>Localização, preferencialmente, <strong>central</strong></li>
+<li><strong>Indiferenciado</strong>, cresce rapidamente, altamente agressivo — <strong>inclusive metástase para medula óssea</strong></li>
+<li>Origem <strong>neuroendócrina</strong>; síndromes paraneoplásicas ricas (ACTH, GH, ADH, serotonina, calcitonina...)</li>
+<li><strong>Pior prognóstico</strong> entre os quatro tipos</li>
+</ul>
+<figure class="fig"><img data-img="carcinoma-pequenas-celulas-macro-peca-central.jpg" alt="Carcinoma de pequenas células — massa central, brancacenta, infiltrando estruturas hilares (setas)" loading="lazy" data-caption="Carcinoma de pequenas células — massa central, brancacenta, infiltrando estruturas hilares (setas)"><figcaption>Carcinoma de pequenas células — massa central, brancacenta, infiltrando estruturas hilares (setas)</figcaption></figure>
+<p>Microscopia: células <strong>pequenas e uniformes</strong>, citoplasma escasso, núcleos ovoides — a descrição clássica: células <strong>"pequenas, redondas e azuis"</strong>.</p>
+<figure class="fig"><img data-img="carcinoma-pequenas-celulas-histologia-celulas-azuis.jpg" alt="Carcinoma de pequenas células — células pequenas, redondas e azuis, citoplasma escasso" loading="lazy" data-caption="Carcinoma de pequenas células — células pequenas, redondas e azuis, citoplasma escasso"><figcaption>Carcinoma de pequenas células — células pequenas, redondas e azuis, citoplasma escasso</figcaption></figure>
+<h2>Tabela-resumo dos quatro tipos</h2>
+<table><tr><th>Tipo</th><th>Frequência</th><th>Localização</th><th>Prognóstico</th></tr>
+<tr><td>Células escamosas</td><td>36,5%</td><td>Central</td><td>Melhor do grupo</td></tr>
+<tr><td>Adenocarcinoma</td><td>43%</td><td>Periférica</td><td>Mais frequente; mais metástase que CCE</td></tr>
+<tr><td>Grandes células</td><td>10%</td><td>Periférica</td><td>Indiferenciado, agressivo</td></tr>
+<tr><td>Pequenas células</td><td>15%</td><td>Central</td><td>Pior do grupo, neuroendócrino</td></tr></table>
+<aside class="note note-extra"><p><strong>Fixando a ordem de prognóstico, do melhor ao pior:</strong> CCE → Adenocarcinoma → Grandes Células → Pequenas Células. Os dois tipos centrais (CCE e pequenas células) são também os dois mais associados ao tabagismo.</p></aside><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="C" data-qid="seg6-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Por que o carcinoma de pequenas células é classificado como tumor neuroendócrino, e qual a implicação clínica direta disso?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque nunca metastatiza para medula óssea, ao contrário dos demais tipos histológicos descritos</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque produz exclusivamente insulina, causando hipoglicemia paraneoplásica em praticamente todos os casos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque se origina de células neuroendócrinas, explicando sua rica associação com síndromes paraneoplásicas por secreção hormonal ectópica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque tem, disparadamente, o melhor prognóstico entre os quatro tipos histológicos principais</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque é o tipo mais associado à localização periférica subpleural entre os quatro descritos</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O carcinoma de pequenas células origina-se de células neuroendócrinas, explicando sua rica associação com síndromes paraneoplásicas por secreção hormonal ectópica (ACTH, ADH, serotonina, calcitonina) — muitas vezes a primeira manifestação clínica. <strong>B</strong> restringe indevidamente a um único hormônio. <strong>A</strong> nega a metástase para medula óssea, explicitamente citada. <strong>D</strong> e <strong>E</strong> invertem prognóstico e localização reais desse tipo.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg6-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Uma lâmina mostra proliferação de células pequenas, uniformes, citoplasma escasso e núcleos ovoides hipercromáticos — aspecto "pequeno, redondo e azul". Qual o diagnóstico, e a localização mais provável do tumor?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Carcinoma de grandes células; localização periférica subpleural</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Adenocarcinoma de padrão lepídico; localização difusa bilateral</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Metástase pulmonar de tumor extratorácico; padrão em bala de canhão</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Carcinoma de células escamosas; localização central, com formação de pérolas córneas</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Carcinoma de pequenas células ("oat cell"); localização central, com infiltração hilar frequente</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a descrição clássica do carcinoma de pequenas células ("oat cell"): células pequenas, redondas e azuis, tipicamente central, com frequente infiltração das estruturas hilares. <strong>A</strong> e <strong>D</strong> descrevem achados histológicos distintos (células grandes anaplásicas ou pérolas córneas). <strong>B</strong> e <strong>C</strong> descrevem padrões morfológicos macroscópicos, não o achado citológico descrito.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg6-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Sobre o carcinoma de grandes células, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">É o tipo mais frequente entre os quatro principais, respondendo por mais de 40% dos casos</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">É definido por diferenciação glandular evidente, com formação de estruturas tubulares bem organizadas</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">É essencialmente um diagnóstico de exclusão: células anaplásicas, sem diferenciação escamosa ou glandular reconhecível</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Apresenta, disparadamente, o melhor prognóstico entre os quatro tipos histológicos principais</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Origina-se de células neuroendócrinas, com síndromes paraneoplásicas ricas associadas</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O carcinoma de grandes células é essencialmente um diagnóstico de exclusão: células anaplásicas, volumosas, sem diferenciação escamosa (CCE) nem glandular (adenocarcinoma) reconhecível. <strong>A</strong> inverte a frequência real (é o menos frequente, ~10%). <strong>B</strong> atribui-lhe diferenciação glandular, que pertence ao adenocarcinoma. <strong>D</strong> inverte seu prognóstico real (agressivo, ruim). <strong>E</strong> atribui-lhe origem neuroendócrina, que pertence ao carcinoma de pequenas células.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg7" hidden>
+  <h1 class="pane-title">Caso clínico e imuno-histoquímica</h1>
+  <div class="prose"><aside class="note note-extra"><p><strong>Caso clínico:</strong> Paciente de 68 anos, tabagista (20 anos/maço), com queixa de <strong>tosse persistente</strong>, com piora nas últimas semanas e eliminação de muco. Relata ainda <strong>falta de ar progressiva</strong> e <strong>perda de 8 kg em 2 meses</strong>. Não mensurou sua temperatura.<br><br><strong>Exame físico:</strong> FR de 26 irpm, SpO₂ de 92%. Murmúrio vesicular reduzido em hemitórax direito, com ronco associado. Hipertimpanismo à percussão.</p></aside>
+<h2>Conduta inicial</h2>
+<ul>
+<li><strong>RX de tórax</strong> → sugestivo de enfisema</li>
+<li><strong>Hemograma</strong> → leucocitose</li>
+<li><strong>Escarro bacilar</strong> → negativo (afastando tuberculose, principal diferencial de emagrecimento + tosse crônica em tabagista)</li>
+</ul>
+<figure class="fig"><img data-img="caso-clinico-radiografia-torax.jpg" alt="Radiografia de tórax do caso clínico" loading="lazy" data-caption="Radiografia de tórax do caso clínico"><figcaption>Radiografia de tórax do caso clínico</figcaption></figure>
+<p>O paciente permanece internado para investigação. Não apresenta melhora, mesmo após tratamento de suporte para o quadro respiratório — sinal de alarme de que não se trata de um processo puramente inflamatório/infeccioso.</p>
+<h2>Broncoscopia, biópsia e LBA</h2>
+<p>A broncoscopia revela <strong>lesão de aspecto neoplásico, endobrônquica, obstruindo o brônquio</strong> — localização <strong>central</strong>, em pulmão direito.</p>
+<figure class="fig"><img data-img="broncoscopia-lesao-endobronquica-caso-clinico.jpg" alt="Broncoscopia — lesão endobrônquica de aspecto neoplásico" loading="lazy" data-caption="Broncoscopia — lesão endobrônquica de aspecto neoplásico"><figcaption>Broncoscopia — lesão endobrônquica de aspecto neoplásico</figcaption></figure><figure class="fig"><img data-img="lba-citologia-caso-clinico.jpg" alt="LBA — citologia do lavado broncoalveolar" loading="lazy" data-caption="LBA — citologia do lavado broncoalveolar"><figcaption>LBA — citologia do lavado broncoalveolar</figcaption></figure><figure class="fig"><img data-img="biopsia-transbronquica-histologia-caso-clinico.jpg" alt="Biópsia transbrônquica — histologia da lesão" loading="lazy" data-caption="Biópsia transbrônquica — histologia da lesão"><figcaption>Biópsia transbrônquica — histologia da lesão</figcaption></figure>
+<h2>Diagnóstico histológico inicial: carcinoma invasor pouco diferenciado</h2>
+<p>Um resultado "pouco diferenciado" não permite, sozinho, dizer qual dos quatro tipos está em jogo. A conduta, nesse cenário, é a <strong>imuno-histoquímica (IHQ)</strong>.</p>
+<h2>Imuno-histoquímica — o painel que resolve o impasse</h2>
+<table><tr><th>Tipo histológico</th><th>Perfil IHQ</th></tr>
+<tr><td>Carcinoma de células escamosas</td><td><strong>p40 e p63 positivos</strong> // TTF-1 negativo</td></tr>
+<tr><td>Adenocarcinoma</td><td><strong>TTF-1 positivo</strong> // p63 raramente positivo, p40 negativo</td></tr>
+<tr><td>Carcinoma de grandes células</td><td>p40, p63 e TTF-1 <strong>todos negativos</strong></td></tr>
+<tr><td>Carcinoma de pequenas células</td><td>Marcadores <strong>neuroendócrinos</strong> positivos (cromogranina, sinaptofisina)</td></tr></table>
+<figure class="fig"><img data-img="ihq-p40-positivo-nucleos-marrom.jpg" alt="IHQ — p40 positivo (núcleos marrons)" loading="lazy" data-caption="IHQ — p40 positivo (núcleos marrons)"><figcaption>IHQ — p40 positivo (núcleos marrons)</figcaption></figure><figure class="fig"><img data-img="ihq-ttf1-positivo-nucleos-marrom.jpg" alt="IHQ — TTF-1 positivo (núcleos marrons)" loading="lazy" data-caption="IHQ — TTF-1 positivo (núcleos marrons)"><figcaption>IHQ — TTF-1 positivo (núcleos marrons)</figcaption></figure>
+<h2>Desfecho do caso</h2>
+<p>No caso da aula: <strong>p63 e p40 positivos, TTF-1 negativo</strong> → diagnóstico final: <strong>Carcinoma de Células Escamosas</strong>.</p>
+<aside class="note note-extra"><p><strong>A lógica do painel, em uma frase por marcador:</strong> <strong>p40/p63</strong> marcam diferenciação <strong>escamosa</strong>; <strong>TTF-1</strong> marca diferenciação de <strong>epitélio respiratório/glandular</strong> (positivo no adenocarcinoma); ausência de todos define, por exclusão, <strong>grandes células</strong>; marcadores <strong>neuroendócrinos</strong> identificam <strong>pequenas células</strong>.</p></aside><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="D" data-qid="seg7-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Uma biópsia mostra "carcinoma invasor pouco diferenciado", sem morfologia suficiente para definir o tipo histológico. Qual a conduta, e qual o perfil IHQ esperado se o diagnóstico final for adenocarcinoma?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Repetir a biópsia; perfil esperado: p40 e p63 fortemente positivos, TTF-1 negativo</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Broncoscopia com nova biópsia mais profunda; perfil esperado: todos os marcadores negativos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Tomografia por emissão de pósitrons; perfil esperado: marcadores neuroendócrinos positivos</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Imuno-histoquímica; perfil esperado para adenocarcinoma: TTF-1 positivo, p63 raramente positivo e p40 negativo</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Dosagem sérica de antígeno carcinoembrionário isoladamente, sem necessidade de IHQ tecidual</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A conduta correta é a imuno-histoquímica; para adenocarcinoma, o perfil esperado é TTF-1 positivo, com p63 raramente positivo e p40 negativo. <strong>A</strong> atribui o perfil do CCE ao adenocarcinoma. <strong>C</strong> e <strong>B</strong> propõem condutas e perfis sem sustentação no protocolo diagnóstico descrito. <strong>E</strong> não substitui a IHQ tecidual para definição do tipo histológico.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg7-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Por que a negatividade simultânea de p40, p63 e TTF-1 em um painel de IHQ aponta para carcinoma de grandes células?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque apenas o carcinoma de pequenas células apresenta esse padrão de tripla negatividade</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque o carcinoma de grandes células é o único tipo que expressa exclusivamente marcadores neuroendócrinos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque p40, p63 e TTF-1 são sempre positivos em qualquer tipo de carcinoma pulmonar indiferenciado</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque esse perfil indica obrigatoriamente contaminação da amostra, exigindo nova biópsia imediata</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque esse perfil é um diagnóstico por exclusão: ausência de marcadores de diferenciação escamosa e de diferenciação pulmonar/glandular reconhecível</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A ausência de marcadores de diferenciação escamosa (p40/p63) e do marcador de diferenciação pulmonar/glandular (TTF-1), sem nenhuma linhagem reconhecível, define por exclusão o carcinoma de grandes células, indiferenciado por definição. <strong>B</strong> atribui incorretamente marcadores neuroendócrinos a esse tipo. <strong>C</strong> nega o próprio padrão de negatividade descrito. <strong>D</strong> e <strong>A</strong> propõem interpretações sem sustentação no protocolo real.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg7-2">
+  <header class="q-head"><span class="q-source real">Prova real — Prática 1, Turma 79, Questão 3</span><span class="q-num">3</span><div class="q-stem"><p>Paciente com achado de imagem no ápice pulmonar, apresentando dor progressiva no ombro/braço homolateral e Síndrome de Horner. A lâmina de biópsia mostra padrão glandular atípico. Qual o epônimo dessa condição e qual o tipo histológico mais provável?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Tumor de Pancoast; tipo histológico mais provável: Carcinoma de pequenas células, por origem neuroendócrina apical</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Síndrome de Zollinger-Ellison; tipo histológico mais provável: Carcinoma de células escamosas</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Tumor de Pancoast; tipo histológico mais provável: Adenocarcinoma, por infiltração do plexo braquial/cervical</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Complexo de Ghon; tipo histológico mais provável: Carcinoma de grandes células indiferenciado</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Síndrome de Horner isolada; tipo histológico mais provável: Metástase de tumor extratorácico</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É exatamente o quadro e o gabarito da prova prática real: epônimo Tumor de Pancoast, tipo histológico Adenocarcinoma (coerente com a localização apical/periférica e o padrão glandular na lâmina), com infiltração do plexo braquial/cervical como característica associada. <strong>B</strong>, <strong>A</strong>, <strong>D</strong> e <strong>E</strong> atribuem epônimos ou tipos histológicos incompatíveis com o caso real cobrado.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg8" hidden>
+  <h1 class="pane-title">Neoplasias de laringe</h1>
+  <div class="prose"><h2>Anatomia de normalidade — as três regiões</h2>
+<figure class="fig"><img data-img="anatomia-laringe-supraglote-glote-infraglote-esquema.jpg" alt="Anatomia da laringe — supraglote, glote e infraglote" loading="lazy" data-caption="Anatomia da laringe — supraglote, glote e infraglote"><figcaption>Anatomia da laringe — supraglote, glote e infraglote</figcaption></figure>
+<table><tr><th>Região</th><th>Drenagem linfática</th><th>Observação</th></tr>
+<tr><td><strong>Supraglote</strong></td><td><strong>Rica</strong></td><td>Próxima à cavidade oral/orofaringe → carcinógenos <strong>ingeridos</strong></td></tr>
+<tr><td><strong>Glote</strong></td><td><strong>Pobre</strong></td><td>—</td></tr>
+<tr><td><strong>Infraglote</strong></td><td><strong>Rica</strong></td><td>Relacionada às vias aéreas inferiores → carcinógenos <strong>inalados</strong></td></tr></table>
+<figure class="fig"><img data-img="anatomia-laringe-corte-frontal-detalhado.jpg" alt="Corte frontal da laringe — epiglote, prega vestibular (falsa corda vocal), ventrículo, prega vocal (verdadeira corda vocal) e subglote" loading="lazy" data-caption="Corte frontal da laringe — epiglote, prega vestibular (falsa corda vocal), ventrículo, prega vocal (verdadeira corda vocal) e subglote"><figcaption>Corte frontal da laringe — epiglote, prega vestibular (falsa corda vocal), ventrículo, prega vocal (verdadeira corda vocal) e subglote</figcaption></figure>
+<h2>Carcinoma de células escamosas — praticamente sinônimo de "câncer de laringe"</h2>
+<ul>
+<li><mark class="exam1" data-refs="prat79:4"><strong>Neoplasia mais frequente: 95%</strong> dos casos</mark> — mesma histologia do CCE pulmonar</li>
+<li>Predomina em <strong>homens</strong>, 5ª a 6ª décadas</li>
+<li><strong>Fatores de risco:</strong> tabagismo, álcool, exposição ocupacional (asbesto, níquel, madeira), deficiências nutricionais, irradiação prévia, <strong>HPV (16 e 18)</strong></li>
+<li><strong>Formas macroscópicas:</strong> vegetante, ulcerada ou infiltrativa</li>
+</ul>
+<figure class="fig"><img data-img="laringe-pecas-macro-tres-regioes.jpg" alt="Peças macroscópicas de carcinoma de laringe, classificadas por região: supraglótico, infraglótico e glótico" loading="lazy" data-caption="Peças macroscópicas de carcinoma de laringe, classificadas por região: supraglótico, infraglótico e glótico"><figcaption>Peças macroscópicas de carcinoma de laringe, classificadas por região: supraglótico, infraglótico e glótico</figcaption></figure><figure class="fig"><img data-img="laringe-cce-macro-peca-vegetante.jpg" alt="CCE de laringe — forma vegetante" loading="lazy" data-caption="CCE de laringe — forma vegetante"><figcaption>CCE de laringe — forma vegetante</figcaption></figure><figure class="fig"><img data-img="laringoscopia-lesao-corda-vocal.jpg" alt="Laringoscopia — lesão em corda vocal" loading="lazy" data-caption="Laringoscopia — lesão em corda vocal"><figcaption>Laringoscopia — lesão em corda vocal</figcaption></figure>
+<p>Microscopia: células escamosas atípicas, graus variados de ceratinização, formando ninhos, podendo haver <strong>pérolas córneas</strong> — a mesma lógica histológica do CCE pulmonar.</p>
+<figure class="fig"><img data-img="laringe-cce-histologia-perolas.jpg" alt="CCE de laringe — histologia com pérolas córneas" loading="lazy" data-caption="CCE de laringe — histologia com pérolas córneas"><figcaption>CCE de laringe — histologia com pérolas córneas</figcaption></figure>
+<h2>Clínica — depende inteiramente da localização</h2>
+<figure class="fig"><img data-img="tabela-carcinoma-laringe-por-regiao.jpg" alt="Tabela: carcinoma da laringe — sítio, frequência, manifestações clínicas e comportamento biológico" loading="lazy" data-caption="Tabela: carcinoma da laringe — sítio, frequência, manifestações clínicas e comportamento biológico"><figcaption>Tabela: carcinoma da laringe — sítio, frequência, manifestações clínicas e comportamento biológico</figcaption></figure>
+<table><tr><th>Sítio</th><th>Frequência</th><th>Manifestações</th><th>Comportamento</th></tr>
+<tr><td><strong>Glótico</strong></td><td>60–75%</td><td><strong>Rouquidão precoce</strong></td><td><strong>Baixa</strong> frequência de metástases</td></tr>
+<tr><td>Supraglótico</td><td>25–40%</td><td>Disfonia, disfagia, rouquidão (mais tardios)</td><td>Metástases frequentes; raramente invade glote/cartilagens</td></tr>
+<tr><td>Infraglótico</td><td>&lt;5%</td><td>Disfonia, disfagia</td><td>Metástases frequentes; invade estruturas extralaríngeas</td></tr>
+<tr><td>Transglótico</td><td>&lt;5%</td><td>Disfonia, disfagia</td><td>A <strong>maior</strong> frequência de metástases</td></tr></table>
+<aside class="note note-extra"><p><strong>A pegadinha clássica de prova:</strong> o carcinoma <strong>glótico</strong> é o mais frequente (60–75%) exatamente porque a rouquidão aparece <strong>precocemente</strong>, levando o paciente ao médico antes que a lesão cresça — com baixa taxa de metástase (glote pobre em linfáticos). Tumores supra e infraglóticos "escondem-se" atrás de sintomas mais vagos, sendo descobertos mais tarde, com maior taxa de metástase.</p></aside><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg8-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Por que o carcinoma glótico costuma ter melhor prognóstico e menor taxa de metástase do que os carcinomas supraglótico e infraglótico?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque a glote é a região mais vascularizada da laringe, favorecendo resposta imunológica local eficaz</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque a glote é pobre em vasos linfáticos e a rouquidão precoce leva ao diagnóstico logo no início da doença</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque o carcinoma glótico nunca invade estruturas adjacentes, ao contrário dos demais sítios laríngeos</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque apenas o carcinoma glótico responde a tratamento com radioterapia isolada, ao contrário dos outros sítios</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque a glote não possui qualquer inervação sensitiva, retardando a percepção de sintomas pelo paciente</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A glote é pobre em vasos linfáticos (dificultando disseminação linfática precoce) e a rouquidão — sintoma precoce e chamativo de lesão glótica — leva ao diagnóstico logo no início, ao contrário das outras regiões. <strong>A</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> propõem explicações sem sustentação na fisiopatologia e epidemiologia reais descritas na aula.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg8-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Qual a diferença de exposição a carcinógenos entre a supraglote e a infraglote, dada sua relação anatômica com estruturas vizinhas?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">A supraglote expõe-se mais a carcinógenos inalados; a infraglote, a carcinógenos ingeridos, pela proximidade com o esôfago</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Nem supraglote nem infraglote têm qualquer relação com exposição a carcinógenos ambientais ou dietéticos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Ambas as regiões têm exatamente a mesma exposição a carcinógenos, sem qualquer diferenciação anatômica relevante</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A supraglote, próxima à cavidade oral, expõe-se mais a carcinógenos ingeridos; a infraglote, mais ligada às vias aéreas inferiores, a carcinógenos inalados</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">A infraglote é a única região da laringe exposta a qualquer tipo de carcinógeno, seja inalado ou ingerido</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A supraglote, próxima à cavidade oral e orofaringe, está mais exposta a carcinógenos ingeridos; a infraglote, mais relacionada às vias aéreas inferiores, está mais exposta a carcinógenos inalados — exatamente a distinção anatômica descrita na aula. <strong>A</strong> inverte essa relação. <strong>C</strong>, <strong>B</strong> e <strong>E</strong> negam uma diferenciação anatômica explicitamente discutida.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg8-2">
+  <header class="q-head"><span class="q-source real">Prova real — Prática 1, Turma 79, Questão 4</span><span class="q-num">3</span><div class="q-stem"><p>Paciente com massa vegetante em laringe, identificada em peça macroscópica. Qual o tipo histológico mais provável da lesão, qual região está mais provavelmente acometida (dado o padrão de sintomas mais tardios) e qual sintoma a paciente poderia apresentar?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Carcinoma de grandes células; região transglótica; sintoma possível: estridor agudo sem qualquer outro achado</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Adenocarcinoma; região glótica; sintoma possível: rouquidão isolada e precoce, sem outros sintomas associados</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Carcinoma de pequenas células; região infraglótica; sintoma possível: hemoptise maciça isolada</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Carcinoma de células escamosas; região supraglótica; sintoma possível: disfagia, disfonia, rouquidão ou dispneia</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Metástase de tumor extratorácico; região não especificável; sintoma possível: nenhum sintoma laríngeo direto</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o gabarito real da prova prática: tipo histológico Carcinoma de células escamosas (95% dos cânceres de laringe), região Supraglote (coerente com o padrão macroscópico vegetante e sintomas mais tardios), e um entre os sintomas possíveis: disfagia, disfonia, rouquidão ou dispneia. <strong>B</strong>, <strong>C</strong>, <strong>A</strong> e <strong>E</strong> atribuem tipos histológicos, regiões ou sintomas incompatíveis com o caso real cobrado.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg9" hidden>
+  <h1 class="pane-title">O que mais cai em prova</h1>
+  <div class="prose"><p class="lede">Síntese, com base nas provas práticas antigas de Patologia Médica I disponíveis (Prática 1 — turmas 79, 80 e 81) e na questão de residência que o próprio professor anexou ao material desta aula, dos pontos mais cobrados sobre neoplasias de pulmão e laringe. A prova prática é <strong>aberta/dissertativa</strong>: mostra uma peça ou lâmina e pede diagnóstico, características, epônimos.</p>
+
+<div class="examcard"><h4>🔴 Tumor de Pancoast → Adenocarcinoma → infiltração do plexo braquial/cervical</h4><p>O padrão mais repetido: apareceu de duas formas independentes — numa prova prática anterior (Prática 79, Questão 3, imagem de lâmina glandular) <em>e</em> na questão de residência (SES-RJ 2022, adaptada) que o próprio professor anexou ao final do material desta aula (veja o Apêndice). É, disparadamente, o cenário com maior probabilidade de repetição. Lembre-se: dor progressiva em ombro/braço + <strong>Síndrome de Horner</strong> (ptose, miose, anidrose) = Tumor de Pancoast; sendo periférico/apical, o tipo histológico mais provável é o <strong>Adenocarcinoma</strong>, não o CCE.</p></div><div class="examcard"><h4>🟠 Carcinoma de células escamosas de laringe — massa vegetante, região supraglótica</h4><p>Caiu na Prática 79, Questão 4: imagem de peça com massa vegetante em laringe → tipo histológico Carcinoma de células escamosas (95% dos cânceres de laringe) → região Supraglote → sintomas possíveis: disfagia, disfonia, rouquidão, dispneia. Lembre também que, se a questão apontar para a glote, o sintoma esperado é a <strong>rouquidão precoce</strong>, com baixa taxa de metástase — a lógica inversa da supraglote.</p></div><div class="examcard"><h4>🟡 Metaplasia escamosa/displasia — a ponte entre bronquite crônica e neoplasia</h4><p>Caiu na Prática 81, Questão 10, tecnicamente como questão de bronquite crônica (DPOC): pede as alterações microscópicas do brônquio, e a resposta inclui explicitamente <strong>metaplasia escamosa/displasia</strong> — exatamente a lesão pré-cancerosa do Segmento 2 desta aula. É o tipo de "ponte" entre aulas que a prova prática gosta de explorar: o mesmo achado histológico é, ao mesmo tempo, uma alteração da bronquite crônica e o primeiro degrau da sequência para o carcinoma de células escamosas.</p></div><div class="examcard"><h4>⚪ Pérola córnea — o achado histológico mais reconhecível de toda a aula</h4><p>Seja no pulmão (Segmento 4) ou na laringe (Segmento 8), a pérola córnea — estruturas concêntricas e laminadas de material róseo/eosinofílico, "em casca de cebola" — identifica CCE praticamente sem outra possibilidade diagnóstica razoável. É o achado de imagem mais fácil de reconhecer "de longe" em qualquer prova prática sobre este tema.</p></div>
+<h3>Síntese rápida para revisão final</h3>
+<ul>
+<li><strong>Imagem de lâmina glandular + dor de ombro/Horner → Tumor de Pancoast → Adenocarcinoma.</strong> A combinação mais cobrada de toda a aula.</li>
+<li><strong>Massa vegetante/ulcerada em laringe → Carcinoma de células escamosas.</strong> Supraglote = sintomas tardios; Glote = rouquidão precoce.</li>
+<li><strong>Pérola córnea (qualquer sítio) → CCE.</strong></li>
+<li><strong>Metaplasia escamosa/displasia em brônquio → lesão pré-cancerosa</strong>, precursora do CCE.</li>
+<li><strong>IHQ:</strong> p40/p63 → CCE; TTF-1 → Adenocarcinoma; todos negativos → Grandes Células; marcador neuroendócrino → Pequenas Células.</li>
+</ul><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg9-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Qual a combinação de achados de imagem e apresentação clínica mais repetida nas provas práticas sobre neoplasias de pulmão, segundo a revisão desta aula?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Massa central obstrutiva + hemoptise isolada, associada ao carcinoma de pequenas células</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Lâmina glandular + dor de ombro com Síndrome de Horner, associada ao Tumor de Pancoast/Adenocarcinoma</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Cavitação periférica + febre alta, associada ao abscesso pulmonar por embolia séptica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Padrão em vidro fosco difuso + febre vespertina, associado à tuberculose miliar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Nódulos múltiplos bilaterais + hepatoesplenomegalia, associados a metástase pulmonar</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A combinação de imagem de lâmina glandular com o quadro clínico de dor de ombro/braço e Síndrome de Horner, apontando para Tumor de Pancoast/Adenocarcinoma, é a mais repetida — apareceu de forma independente em prova prática anterior e na questão de residência anexada pelo professor. <strong>A</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> descrevem combinações de outras aulas/temas, não a mais repetida especificamente para neoplasias de pulmão e laringe.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg9-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Por que o achado de metaplasia escamosa/displasia em uma questão sobre bronquite crônica também é relevante para o tema de neoplasias pulmonares?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque não há qualquer relação real entre bronquite crônica e neoplasia pulmonar nas provas antigas revisadas</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque a metaplasia escamosa impede definitivamente a progressão para qualquer tipo de neoplasia pulmonar</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque bronquite crônica é, por definição, sinônimo histológico de carcinoma de células escamosas já estabelecido</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque apenas o adenocarcinoma, nunca o CCE, pode se desenvolver a partir de lesões de bronquite crônica</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque a metaplasia escamosa/displasia é, ao mesmo tempo, achado da bronquite crônica e o primeiro degrau da sequência pré-cancerosa do CCE</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A metaplasia escamosa/displasia, achado citado em questão de bronquite crônica, é exatamente o primeiro degrau da sequência pré-cancerosa (metaplasia→displasia→carcinoma in situ→invasor) do CCE discutida no Segmento 2 — uma "ponte" real entre os dois temas. <strong>A</strong> nega essa relação. <strong>C</strong> confunde achado pré-canceroso com carcinoma já estabelecido. <strong>D</strong> inverte a associação real (a sequência é do CCE, não do adenocarcinoma). <strong>B</strong> inverte o significado biológico do achado, que é precursor, não protetor.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg9-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Segundo a revisão de "o que mais cai em prova" desta aula, qual achado histológico é descrito como o mais facilmente reconhecível "à primeira vista" em qualquer lâmina, independentemente de ser de pulmão ou de laringe?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pérola córnea — estrutura concêntrica e laminada de material róseo/eosinofílico</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Membrana hialina eosinofílica revestindo difusamente a parede alveolar</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Necrose caseosa central, circundada por células epitelioides e linfócitos dispostos radialmente</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Células pequenas, redondas e azuis, com citoplasma escasso e núcleos hipercromáticos</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Corpos de Psammoma calcificados, concêntricos, associados a padrão papilífero</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A pérola córnea, achado histológico do CCE reconhecível tanto no pulmão quanto na laringe, é descrita como o mais facilmente identificável "à primeira vista" em qualquer prova prática sobre este tema. <strong>C</strong> descreve achado de tuberculose. <strong>B</strong> descreve achado de dano alveolar difuso. <strong>D</strong> descreve o carcinoma de pequenas células. <strong>E</strong> descreve achado de carcinoma papilífero de tireoide, sem relação com este tema.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="apendice" hidden><div class="prose"><span class="q-source adapted">Adaptada de questão de residência (SES-RJ 2022)</span>
+<p><strong>(SES-RJ 2022 — adaptada)</strong> Mulher de 50 anos, dor progressiva em ombro esquerdo há 3 meses, irradiada para o membro superior homolateral com parestesia, associada a <strong>ptose palpebral, miose e enoftalmia</strong> à esquerda. TC de tórax: nódulo espiculado de 1,4 cm no ápice pulmonar, em íntimo contato com a pleura parietal. Assinale a alternativa correta:</p>
+<p>a) A broncoscopia com biópsia transbrônquica é o procedimento de escolha, sendo o Carcinoma de Células Escamosas a hipótese histológica mais provável.<br>
+b) A broncoscopia apresenta baixo rendimento diagnóstico nesse sítio, sendo o Adenocarcinoma a hipótese histológica mais provável.<br>
+c) A punção aspirativa por agulha guiada por TC é contraindicada pela proximidade pleural, sendo o Carcinoma de Grandes Células a principal hipótese.<br>
+d) A broncoscopia apresenta alta acurácia para lesões subpleurais, sendo o Carcinoma de Pequenas Células a principal hipótese.</p>
+<p><strong>Gabarito: B.</strong> O quadro é a tríade clássica do Tumor de Pancoast (dor no ombro/braço por infiltração do plexo braquial + Síndrome de Horner por infiltração da cadeia simpática cervical). Sendo um tumor de localização periférica/apical, a broncoscopia (que enxerga vias aéreas centrais) tem <strong>baixo rendimento diagnóstico</strong> nesse sítio — o diagnóstico exige biópsia percutânea guiada por imagem. E, por ser periférico, o tipo histológico mais provável é o <mark class="exam3" data-refs="res:1,prat79:3"><strong>Adenocarcinoma</strong></mark>, não o CCE (tipicamente central). <strong>A</strong> erra tanto o procedimento (broncoscopia tem baixo rendimento aqui) quanto o tipo histológico. <strong>C</strong> erra ao considerar a punção guiada por TC contraindicada — é, na verdade, o procedimento de escolha nesse contexto — e erra o tipo histológico. <strong>D</strong> erra os dois pontos, invertendo a acurácia real da broncoscopia e atribuindo o tipo histológico errado.</p>
+<aside class="note note-extra"><p><strong>Dica de prova:</strong> sempre que o enunciado combinar localização apical/periférica com Síndrome de Horner, pense automaticamente em Tumor de Pancoast + Adenocarcinoma + baixo rendimento da broncoscopia + indicação de biópsia percutânea guiada por imagem.</p></aside><hr /></div></section><section class="pane" id="quiz" hidden>
+  <h1 class="pane-title">Quiz final — 15 questões</h1>
+  <p class="lede">Responda todas e corrija de uma vez. As questões integram os nove segmentos e não repetem as de verificação.</p>
+  <div class="scorebar" id="scorebar"><span id="scoretext">0 de 15 respondidas</span>
+    <button class="btn-grade" id="btn-grade" type="button">Corrigir prova</button>
+    <button class="btn-reset" id="btn-reset" type="button" hidden>Refazer</button></div>
+  <div id="quizlist"><article class="q" data-correct="C" data-qid="quiz-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Qual a etapa limitadora entre metaplasia escamosa e carcinoma invasor, segundo a sequência enfatizada pelo professor como obrigatória?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">A perda de cílios do epitélio respiratório, isoladamente, já define carcinoma invasor</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">A presença isolada de qualquer grau de atipia celular, independentemente da membrana basal</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">O rompimento da membrana basal, com formação de ninhos celulares invadindo o córion</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A produção de muco pelo epitélio metaplásico, ausente em qualquer estágio pré-invasivo</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Não existe critério histológico reconhecido para diferenciar as etapas dessa sequência</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O rompimento da membrana basal, com formação de ninhos celulares invadindo o córion, é o critério que separa lesão pré-invasiva (displasia/carcinoma in situ) de carcinoma invasor. <strong>B</strong>, <strong>A</strong>, <strong>D</strong> e <strong>E</strong> propõem critérios incompatíveis com a sequência real destacada na aula.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Qual o tipo histológico de carcinoma broncopulmonar mais frequente, e qual sua localização típica?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Carcinoma de pequenas células; localização geralmente central</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Adenocarcinoma; localização geralmente periférica</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Carcinoma de células escamosas; localização geralmente central</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Carcinoma de grandes células; localização geralmente periférica</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Os quatro tipos têm frequência igual entre si, sem qualquer predomínio</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O adenocarcinoma é o tipo mais frequente (~43%), de localização tipicamente periférica. <strong>A</strong>, <strong>C</strong> e <strong>D</strong> atribuem a maior frequência a tipos menos comuns. <strong>E</strong> nega a distribuição de frequência real e bem documentada entre os quatro tipos.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Qual achado histológico é o mais característico do carcinoma de células escamosas, tanto no pulmão quanto na laringe?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Necrose caseosa central circundada por células epitelioides</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Pérola córnea — estrutura concêntrica e laminada de queratina</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Membrana hialina revestindo a parede alveolar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Células pequenas, redondas e azuis, citoplasma escasso</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Estruturas tubulares glandulares bem organizadas, com produção de mucina</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A pérola córnea é o achado mais característico e reconhecível do CCE, em qualquer um dos dois sítios. <strong>A</strong> pertence à tuberculose. <strong>C</strong> pertence ao dano alveolar difuso. <strong>D</strong> pertence ao carcinoma de pequenas células. <strong>E</strong> pertence ao adenocarcinoma.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-3">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">4</span><div class="q-stem"><p>Por que o adenocarcinoma de padrão lepídico, forma difusa, pode ser confundido radiologicamente com pneumonia?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 4"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque as células neoplásicas crescem ao longo dos septos alveolares preexistentes, sem destruir a arquitetura, simulando consolidação</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque destrói completamente os septos alveolares, gerando cavitações semelhantes a abscessos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque sempre responde inicialmente a antibióticos, sendo indistinguível da pneumonia até a piora tardia</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque é restrito exclusivamente aos lobos superiores, igual à tuberculose pulmonar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque causa febre alta e leucocitose neutrofílica indistinguíveis de infecção bacteriana</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O crescimento tapeando os septos alveolares preexistentes, sem destruir a arquitetura, gera um padrão radiológico de consolidação/vidro fosco semelhante ao inflamatório. <strong>B</strong> inverte o mecanismo (não há destruição septal nesse subtipo). <strong>C</strong>, <strong>D</strong> e <strong>E</strong> atribuem características sem sustentação na fisiopatologia real descrita.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-4">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">5</span><div class="q-stem"><p>Qual receptor/via molecular está mais associado ao adenocarcinoma pulmonar, sustentando as terapias-alvo modernas?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 5"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">MYC, associado principalmente ao carcinoma de pequenas células, não ao adenocarcinoma</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">EGFR, ALK e ROS1, alvos moleculares centrais das terapias-alvo do adenocarcinoma</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">TP53, mutado em praticamente 90% dos casos de carcinoma de pequenas células</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">p40 e p63, marcadores imuno-histoquímicos de diferenciação escamosa</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Nenhum alvo molecular específico foi associado ao adenocarcinoma pulmonar na aula</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>EGFR, ALK e ROS1 são os oncogenes/alvos moleculares centrais associados ao adenocarcinoma, sustentando terapia-alvo. <strong>A</strong> e <strong>C</strong> atribuem alvos ao tipo histológico errado (pequenas células). <strong>D</strong> descreve marcadores de IHQ do CCE, não alvos terapêuticos moleculares. <strong>E</strong> nega associações moleculares explicitamente citadas.</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-5">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">6</span><div class="q-stem"><p>Paciente com carcinoma pulmonar desenvolve hiponatremia paraneoplásica. Qual o mediador mais provável, e qual tipo histológico costuma estar mais associado a síndromes paraneoplásicas variadas?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 6"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">PTH-rp; tipo mais associado: adenocarcinoma periférico</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Calcitonina; tipo mais associado: carcinoma de grandes células</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">ADH; tipo mais associado: carcinoma de pequenas células, de origem neuroendócrina</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">ACTH; tipo mais associado: carcinoma de células escamosas central</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Gonadotrofinas; tipo mais associado: metástase pulmonar de tumor extratorácico</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A hiponatremia paraneoplásica é mediada por ADH; o carcinoma de pequenas células, de origem neuroendócrina, é o tipo mais associado a síndromes paraneoplásicas ricas e variadas. <strong>A</strong>, <strong>B</strong>, <strong>D</strong> e <strong>E</strong> trocam mediador e/ou tipo histológico de forma incompatível com a associação real.</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-6">
+  <header class="q-head"><span class="q-source real">Prova real — Prática 1, Turma 79, Questão 3 (adaptada)</span><span class="q-num">7</span><div class="q-stem"><p>Paciente com dor progressiva em ombro/braço e Síndrome de Horner, com lâmina de biópsia mostrando padrão glandular atípico. Qual o epônimo da condição, o tipo histológico mais provável e uma característica associada?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 7"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Tumor de Pancoast; Carcinoma de grandes células; ausência de qualquer diferenciação reconhecível à IHQ</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Síndrome de Horner isolada; Carcinoma de células escamosas; ausência de infiltração de plexos nervosos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Complexo de Ghon; Carcinoma de pequenas células; disseminação hematogênica precoce para medula óssea</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Tumor de Pancoast; Adenocarcinoma; infiltração do plexo braquial/cervical</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Síndrome paraneoplásica de Trousseau; Adenocarcinoma; estado de hipercoagulabilidade isolado</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o gabarito real da prova prática: Tumor de Pancoast, tipo histológico Adenocarcinoma, com infiltração do plexo braquial/cervical como característica associada — a combinação mais cobrada de toda a aula. <strong>B</strong>, <strong>C</strong>, <strong>A</strong> e <strong>E</strong> atribuem epônimos, tipos histológicos ou características incompatíveis com o caso real.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-7">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">8</span><div class="q-stem"><p>Qual o perfil imuno-histoquímico esperado para confirmar carcinoma de pequenas células em uma biópsia pouco diferenciada?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 8"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Marcadores neuroendócrinos positivos, como cromogranina e sinaptofisina</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">TTF-1 positivo isoladamente, sem qualquer outro marcador do painel</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">p40 e p63 positivos, com TTF-1 negativo no painel</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">p40, p63 e TTF-1 todos negativos no mesmo painel</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Positividade exclusiva para marcador de diferenciação mucinosa</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O carcinoma de pequenas células, de origem neuroendócrina, é confirmado por marcadores neuroendócrinos positivos (cromogranina, sinaptofisina). <strong>C</strong> descreve o perfil do CCE. <strong>B</strong> descreve o perfil do adenocarcinoma isoladamente. <strong>D</strong> descreve o perfil do carcinoma de grandes células (diagnóstico de exclusão). <strong>E</strong> não corresponde ao perfil real desse tipo.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-8">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">9</span><div class="q-stem"><p>Qual a diferença de drenagem linfática entre a glote e a supraglote, e sua implicação prognóstica?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 9"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Glote é rica em linfáticos, com alta taxa de metástase; supraglote é pobre, com baixa taxa de metástase</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">A drenagem linfática da laringe não guarda qualquer relação com o comportamento metastático do tumor</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Ambas as regiões têm exatamente a mesma drenagem linfática e o mesmo comportamento metastático</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Nem glote nem supraglote possuem qualquer drenagem linfática documentada na literatura</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Glote é pobre em linfáticos, com baixa taxa de metástase; supraglote é rica, com metástases mais frequentes</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A glote é pobre em vasos linfáticos, associada a baixa frequência de metástases; a supraglote é rica em linfáticos, com metástases mais frequentes — exatamente a distinção anatômica que explica o melhor prognóstico do carcinoma glótico. <strong>A</strong> inverte essa relação. <strong>C</strong>, <strong>D</strong> e <strong>B</strong> negam uma distinção bem documentada na aula.</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-9">
+  <header class="q-head"><span class="q-source real">Prova real — Prática 1, Turma 79, Questão 4 (adaptada)</span><span class="q-num">10</span><div class="q-stem"><p>Massa vegetante identificada em peça macroscópica de laringe. Qual o tipo histológico mais provável, e qual região, entre as citadas na aula, está associada a sintomas clínicos mais tardios e maior frequência de metástases?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 10"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Carcinoma de grandes células; região infraglótica, classicamente</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Adenocarcinoma; região glótica, classicamente</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Carcinoma de pequenas células; região transglótica, classicamente</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Carcinoma de células escamosas; região supraglótica, classicamente</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Metástase extralaríngea; sem região específica associada, nesse caso</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o gabarito real: Carcinoma de células escamosas (95% dos cânceres de laringe); entre as regiões, a supraglótica é classicamente associada a sintomas mais tardios (disfagia, disfonia, rouquidão, dispneia) e metástases mais frequentes que a glótica. <strong>B</strong>, <strong>C</strong>, <strong>A</strong> e <strong>E</strong> atribuem tipo histológico ou região incompatíveis com o padrão real.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-10">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">11</span><div class="q-stem"><p>Segundo a tabela-resumo dos quatro tipos histológicos, qual a ordem correta de prognóstico, do melhor para o pior?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 11"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Células escamosas → Adenocarcinoma → Grandes células → Pequenas células</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Adenocarcinoma → Pequenas células → Células escamosas → Grandes células</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Pequenas células → Grandes células → Adenocarcinoma → Células escamosas</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Grandes células → Células escamosas → Pequenas células → Adenocarcinoma</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Não há hierarquia de prognóstico reconhecida entre os quatro tipos histológicos</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a ordem exata destacada na aula: células escamosas (melhor) → adenocarcinoma → grandes células → pequenas células (pior). <strong>C</strong>, <strong>B</strong> e <strong>D</strong> embaralham essa hierarquia. <strong>E</strong> nega uma hierarquia de prognóstico explicitamente construída ao longo da aula.</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-11">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">12</span><div class="q-stem"><p>Qual a origem celular proposta para o carcinoma de pequenas células, e qual a implicação dessa origem sobre seu comportamento biológico?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 12"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Células claviformes; comportamento indolente, de crescimento lento e baixo potencial metastático</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Pneumócitos tipo II; comportamento semelhante ao adenocarcinoma, com formação glandular evidente</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Células escamosas metaplásicas; comportamento equivalente ao carcinoma de células escamosas</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Células neuroendócrinas; comportamento agressivo, com síndromes paraneoplásicas ricas e metástase precoce, inclusive para medula óssea</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Células mesoteliais pleurais; comportamento restrito à cavidade pleural, sem disseminação sistêmica</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O carcinoma de pequenas células origina-se de células neuroendócrinas, o que explica seu comportamento altamente agressivo, com síndromes paraneoplásicas ricas e metástase precoce, inclusive para medula óssea. <strong>A</strong>, <strong>B</strong>, <strong>C</strong> e <strong>E</strong> atribuem origem celular e comportamento biológico incompatíveis com esse tipo, disparadamente o de pior prognóstico entre os quatro.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-12">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">13</span><div class="q-stem"><p>Um linfonodo hilar pulmonar recebe metástase de um carcinoma broncopulmonar. Segundo o sistema de estadiamento descrito na aula, qual letra do TNM representa esse achado, e o que as outras duas letras representam?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 13"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">T, representando o acometimento linfonodal; N representa o tumor primário; M representa o grau de diferenciação histológica</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">N, representando o acometimento linfonodal; T representa o tamanho/extensão do tumor primário; M representa metástase hematogênica à distância</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">M, representando o acometimento linfonodal regional; T representa metástase à distância; N representa o tumor primário</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">G, representando o acometimento linfonodal; T e N representam, juntos, apenas o tamanho tumoral</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">O sistema TNM não inclui avaliação de acometimento linfonodal em nenhuma de suas três letras</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>N representa o acometimento linfonodal (incluindo hilar); T representa o tumor primário (tamanho/extensão); M representa metástase hematogênica à distância — exatamente como descrito na aula. <strong>A</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> trocam ou negam o significado real de cada letra do sistema.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-13">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">14</span><div class="q-stem"><p>Por que a broncoscopia tem baixo rendimento diagnóstico em um nódulo pulmonar apical periférico, em íntimo contato com a pleura, como no Tumor de Pancoast?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 14"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque a broncoscopia tem sempre rendimento superior a 95% para qualquer localização tumoral pulmonar</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque a broncoscopia é contraindicada em qualquer paciente com mais de 40 anos de idade</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque apenas lesões inflamatórias, nunca neoplásicas, podem ser biopsiadas por broncoscopia</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque o Tumor de Pancoast nunca produz qualquer massa endobrônquica visível, mesmo centralmente</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque a broncoscopia visualiza principalmente vias aéreas centrais, não alcançando lesões periféricas/apicais subpleurais</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A broncoscopia visualiza e biopsia principalmente vias aéreas centrais; lesões periféricas/apicais, como o Tumor de Pancoast, ficam fora de seu alcance direto, exigindo biópsia percutânea guiada por imagem. <strong>B</strong>, <strong>C</strong>, <strong>D</strong> e <strong>A</strong> propõem restrições e afirmações sem sustentação real no raciocínio diagnóstico descrito.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-14">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">15</span><div class="q-stem"><p>(Nível avançado) Integre topografia, histologia e IHQ: um nódulo pulmonar periférico subpleural, com biópsia mostrando carcinoma pouco diferenciado, é submetido a painel de IHQ que resulta em TTF-1 positivo e p40/p63 negativos. Qual o diagnóstico mais provável, e por que a localização periférica é coerente com esse resultado?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 15"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Adenocarcinoma, cuja localização tipicamente periférica e perfil TTF-1 positivo/p40-p63 negativo são coerentes entre si</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Carcinoma de células escamosas, já que a localização periférica é típica desse tipo histológico</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Carcinoma de pequenas células, tipicamente periférico e TTF-1 positivo por sua origem neuroendócrina</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Carcinoma de grandes células, já que a tripla negatividade de marcadores é compatível com o TTF-1 positivo encontrado</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Metástase de tumor de tireoide, já que TTF-1 é um marcador exclusivo e específico de tecido tireoidiano</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O perfil TTF-1 positivo, com p40/p63 negativos, confirma adenocarcinoma — e sua localização tipicamente periférica é exatamente coerente com o nódulo subpleural descrito, integrando topografia e IHQ de forma consistente. <strong>B</strong> atribui ao CCE uma localização (periférica) que não é sua característica típica (o CCE é tipicamente central). <strong>C</strong> erra a localização típica do carcinoma de pequenas células (central) e seu perfil IHQ real (marcadores neuroendócrinos, não TTF-1 isoladamente como definidor). <strong>D</strong> contradiz a própria definição de carcinoma de grandes células, que exige tripla negatividade, incompatível com o TTF-1 positivo do caso. <strong>E</strong> superestima a especificidade do TTF-1, que também é expresso por adenocarcinomas pulmonares, não sendo exclusivo de tecido tireoidiano.</p></div>
+</article></div>
+  <div class="prose closing"><ol>
+<li><strong>Via biossintética/carcinogênica escamosa: metaplasia → displasia → carcinoma in situ → carcinoma invasor.</strong> Critério-chave: membrana basal rompida ou não.</li>
+<li><strong>Quatro tipos: células escamosas (36,5%, central, melhor prognóstico), adenocarcinoma (43%, periférico, mais frequente), grandes células (10%, periférico, agressivo), pequenas células (15%, central, neuroendócrino, pior prognóstico).</strong></li>
+<li><strong>Tumor de Pancoast: ápice pulmonar → plexo braquial + cadeia simpática cervical → Síndrome de Horner (ptose, miose, anidrose).</strong> Tipo histológico mais provável: Adenocarcinoma. Broncoscopia tem baixo rendimento nesse sítio.</li>
+<li><strong>Pérola córnea = CCE</strong>, em qualquer sítio (pulmão ou laringe).</li>
+<li><strong>IHQ: p40/p63 → CCE; TTF-1 → Adenocarcinoma; todos negativos → Grandes Células; marcador neuroendócrino → Pequenas Células.</strong></li>
+<li><strong>Laringe: CCE = 95% dos casos.</strong> Glótico (60-75%, rouquidão precoce, baixa metástase) x Supraglótico/Infraglótico (sintomas tardios, metástases frequentes).</li>
+<li><strong>O que mais cai em prova (Segmento 9):</strong> Tumor de Pancoast/Adenocarcinoma é o tema mais repetido; CCE de laringe supraglótico é o segundo; metaplasia escamosa/displasia é a "ponte" com bronquite crônica.</li>
+</ol></div>
+</section></main>
+</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="lb-close" type="button">Fechar</button>
+  <figure style="margin:0;display:grid;place-items:center"><img loading=lazy decoding=async src="" alt=""><figcaption></figcaption></figure>
+</div>
+<script type="application/json" id="imgdata">{"adenocarcinoma-histologia-estruturas-tubulares-1.jpg": "../_img/478023b0d2f5707d.webp", "adenocarcinoma-histologia-estruturas-tubulares-2.jpg": "../_img/aa8ed03132e9ac3b.webp", "adenocarcinoma-lepidico-macro-peca-difusa.jpg": "../_img/e8092a8adfd159a8.webp", "adenocarcinoma-lepidico-tc-vidro-fosco.jpg": "../_img/ee71a1146b55afc4.webp", "adenocarcinoma-macro-peca-esbranquicada.jpg": "../_img/5ee46b243c22fb34.webp", "adenocarcinoma-macro-peca-pulmao-enegrecido.jpg": "../_img/a12144fa4e2fa269.webp", "anatomia-laringe-corte-frontal-detalhado.jpg": "../_img/4ec02a82c333a610.webp", "anatomia-laringe-supraglote-glote-infraglote-esquema.jpg": "../_img/a31e7dbb806a14b3.webp", "biopsia-transbronquica-histologia-caso-clinico.jpg": "../_img/e59b0cd0d88e3adc.webp", "broncoscopia-lesao-endobronquica-caso-clinico.jpg": "../_img/9cf7528af3c876b4.webp", "campanhas-antitabagismo-brasil-fotos.jpg": "../_img/14c34df1bba27bd0.webp", "carcinoma-grandes-celulas-histologia-anaplasico.jpg": "../_img/7b03931f3cad7cb4.webp", "carcinoma-grandes-celulas-macro-peca.jpg": "../_img/22de997493b6d6c6.webp", "carcinoma-pequenas-celulas-histologia-celulas-azuis.jpg": "../_img/5b5f9dad434f1b81.webp", "carcinoma-pequenas-celulas-macro-peca-central.jpg": "../_img/28b871fa03f44905.webp", "caso-clinico-radiografia-torax.jpg": "../_img/9e39d070de3dd98d.webp", "cce-histologia-panoramica-baixo-aumento.jpg": "../_img/b8f8c3f9b5aaf8a2.webp", "cce-histologia-perola-cornea-alto-aumento.jpg": "../_img/99a4fe565b55ac0a.webp", "cce-histologia-perola-cornea-medio-aumento.jpg": "../_img/dc0625b2f6704bc7.webp", "cce-macro-cavitacao-necrose-2.jpg": "../_img/dde2623cc5dedcd5.webp", "cce-macro-massa-brancacenta-1.jpg": "../_img/30b54037de71db60.webp", "ihq-p40-positivo-nucleos-marrom.jpg": "../_img/4fd743ae1bd51b7b.webp", "ihq-ttf1-positivo-nucleos-marrom.jpg": "../_img/71b294f0c45f0549.webp", "ilustracao-cancer-pulmao-bronquio-central.jpg": "../_img/a71fc6952e2aa134.webp", "ilustracao-tumor-pancoast-apice-pulmonar.jpg": "../_img/61c6eb89c159501e.webp", "laringe-cce-histologia-perolas.jpg": "../_img/28f53f82d9dc358c.webp", "laringe-cce-macro-peca-vegetante.jpg": "../_img/371dd9e49e4257de.webp", "laringe-pecas-macro-tres-regioes.jpg": "../_img/00a2a006d5811267.webp", "laringoscopia-lesao-corda-vocal.jpg": "../_img/328fd29f779b638d.webp", "lba-citologia-caso-clinico.jpg": "../_img/5e9f00449a08bb40.webp", "metastase-pulmonar-bala-de-canhao-macro.jpg": "../_img/3e5d370c7aebaa2a.webp", "sequencia-metaplasia-displasia-carcinoma-painel.jpg": "../_img/c064bb647a3fc15f.webp", "tabela-carcinoma-laringe-por-regiao.jpg": "../_img/fe9e459bd3d0c7c1.webp"}</script>
+
+<script>
+const IMGS=JSON.parse(document.getElementById('imgdata').textContent);
+document.querySelectorAll('img[data-img]').forEach(i=>{const d=IMGS[i.dataset.img];if(d)i.src=d;});
+const panes=[...document.querySelectorAll('.pane')];
+const navs=[...document.querySelectorAll('.nav-item')];
+function show(id){
+  panes.forEach(p=>p.hidden=(p.id!==id));
+  navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id));
+  window.scrollTo({top:0,behavior:'auto'});
+  try{location.hash=id}catch(e){}
+}
+navs.forEach(n=>n.addEventListener('click',e=>{e.preventDefault();show(n.dataset.target)}));
+
+function markQuestion(q,reveal){
+  const correct=q.dataset.correct;
+  const chosen=q.querySelector('.opt[aria-pressed="true"]');
+  q.classList.add('done');
+  q.querySelectorAll('.opt').forEach(o=>{
+    if(o.dataset.letter===correct)o.classList.add('is-correct');
+    else if(o===chosen)o.classList.add('is-wrong');
+  });
+  const why=q.querySelector('.q-why');
+  const v=why.querySelector('.q-verdict');
+  if(!chosen){v.textContent='Resposta correta: '+correct;v.className='q-verdict';}
+  else if(chosen.dataset.letter===correct){v.textContent='Você acertou.';v.className='q-verdict ok';}
+  else{v.textContent='Você marcou '+chosen.dataset.letter+'. A correta é '+correct+'.';v.className='q-verdict no';}
+  if(reveal)why.hidden=false;
+  return chosen && chosen.dataset.letter===correct;
+}
+
+document.querySelectorAll('.q').forEach(q=>{
+  q.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
+    if(q.classList.contains('done'))return;
+    q.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed','false'));
+    o.setAttribute('aria-pressed','true');
+    updateScore();
+  }));
+  const btn=q.querySelector('.btn-reveal');
+  if(btn)btn.addEventListener('click',()=>{
+    const why=q.querySelector('.q-why');
+    if(q.classList.contains('done')){why.hidden=!why.hidden;btn.textContent=why.hidden?'Ver resposta':'Ocultar resposta';return;}
+    markQuestion(q,true);btn.textContent='Ocultar resposta';
+  });
+});
+
+const quizQs=[...document.querySelectorAll('#quizlist .q')];
+const scoreText=document.getElementById('scoretext');
+const btnGrade=document.getElementById('btn-grade');
+const btnReset=document.getElementById('btn-reset');
+let graded=false;
+function updateScore(){
+  if(graded||!scoreText)return;
+  const n=quizQs.filter(q=>q.querySelector('.opt[aria-pressed="true"]')).length;
+  scoreText.textContent=n+' de '+quizQs.length+' respondidas';
+}
+if(btnGrade)btnGrade.addEventListener('click',()=>{
+  let hits=0;
+  quizQs.forEach(q=>{if(markQuestion(q,true))hits++;});
+  graded=true;
+  const pct=Math.round(hits/quizQs.length*100);
+  scoreText.textContent='Você acertou '+hits+' de '+quizQs.length+' ('+pct+'%)';
+  btnGrade.hidden=true;btnReset.hidden=false;
+  quizQs.forEach(q=>{const b=q.querySelector('.btn-reveal');if(b)b.textContent='Ocultar resposta';});
+});
+if(btnReset)btnReset.addEventListener('click',()=>{
+  quizQs.forEach(q=>{
+    q.classList.remove('done');
+    q.querySelectorAll('.opt').forEach(o=>{o.setAttribute('aria-pressed','false');o.classList.remove('is-correct','is-wrong');});
+    q.querySelector('.q-why').hidden=true;
+    const b=q.querySelector('.btn-reveal');if(b)b.textContent='Ver resposta';
+  });
+  graded=false;btnGrade.hidden=false;btnReset.hidden=true;updateScore();
+});
+
+const lb=document.getElementById('lightbox');
+const lbImg=lb.querySelector('img'),lbCap=lb.querySelector('figcaption');
+document.querySelectorAll('.fig img').forEach(i=>i.addEventListener('click',()=>{
+  lbImg.src=i.src;lbCap.textContent=i.dataset.caption||'';lb.classList.add('open');
+  lb.querySelector('.lb-close').focus();
+}));
+function closeLb(){lb.classList.remove('open');lbImg.src='';}
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('lb-close'))closeLb();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('open'))closeLb();});
+
+const start=location.hash.replace('#','');
+show(panes.some(p=>p.id===start)?start:'capa');
+</script>
+<script>
+(function(){
+  var LECTURE_KEY = "aula8";
+  var progress = {};
+  var chkByTarget = {};
+
+  function navKeyOf(item){
+    return item.dataset.target || item.dataset.view || null;
+  }
+  function initChecks(){
+    // duas arquiteturas convivem neste projeto: a maioria usa <a class="nav-item" data-target="segN">;
+    // a Aula 2 (Cardiopatia Isquêmica) usa <button class="navbtn" data-view="segN"> gerado por JS.
+    var navItems = document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]');
+    navItems.forEach(function(item){
+      var key = navKeyOf(item);
+      if(!key || key === 'capa' || key === 'home') return;
+      if(item.querySelector('.mc-chk')) return;
+      var chk = document.createElement('input');
+      chk.type = 'checkbox';
+      chk.className = 'mc-chk';
+      // Neutro de propósito: marcar uma seção é apenas progresso, não "concluído" — a cor
+      // verde fica reservada só para o badge da aula inteira na sidebar do shell (100%).
+      chk.style.marginRight = '6px';
+      chk.style.accentColor = '#8A97A8';
+      chk.style.filter = 'grayscale(1) opacity(.85)';
+      chk.addEventListener('click', function(ev){ ev.stopPropagation(); });
+      chk.addEventListener('change', function(){
+        progress[key] = chk.checked;
+        window.parent.postMessage({type:'setProgress', lecture:LECTURE_KEY, target:key, done:chk.checked}, '*');
+      });
+      item.prepend(chk);
+      chkByTarget[key] = chk;
+    });
+  }
+
+  function refLabel(parcial, q){
+    if(parcial === 'res') return 'Questão de residência (SES-RJ, adaptada)';
+    if(String(parcial).indexOf('prat') === 0){
+      var turma = parcial.replace('prat','');
+      return 'Prática 1 — Turma ' + turma + ', Questão ' + q;
+    }
+    if(q === '?') return 'Parcial ' + parcial + ' (tema geral)';
+    if(String(q).indexOf('aberta') === 0) return 'Parcial ' + parcial + ' — Discursiva ' + q.replace('aberta','');
+    return 'Parcial ' + parcial + ' — Questão ' + q;
+  }
+
+  var tooltipEl = null;
+  function ensureTooltip(){
+    if(tooltipEl) return tooltipEl;
+    tooltipEl = document.createElement('div');
+    tooltipEl.id = 'mc-tooltip';
+    tooltipEl.style.cssText = 'position:fixed;z-index:99999;background:#0B1E38;color:#EAF1FA;border:1px solid #2A4468;'+
+      'border-radius:8px;padding:10px 12px;font-family:"IBM Plex Sans",sans-serif;font-size:13px;max-width:280px;'+
+      'box-shadow:0 10px 30px rgba(0,0,0,.4);display:none;line-height:1.4';
+    document.body.appendChild(tooltipEl);
+    tooltipEl.addEventListener('mouseenter', function(){ clearTimeout(tooltipEl._hideTimer); });
+    tooltipEl.addEventListener('mouseleave', function(){ hideTooltip(); });
+    return tooltipEl;
+  }
+  function hideTooltip(){
+    if(!tooltipEl) return;
+    tooltipEl._hideTimer = setTimeout(function(){ tooltipEl.style.display='none'; }, 150);
+  }
+  function showTooltip(markEl){
+    var tt = ensureTooltip();
+    clearTimeout(tt._hideTimer);
+    var refs = (markEl.dataset.refs||'').split(',').map(function(s){return s.trim();}).filter(Boolean);
+    if(!refs.length) return;
+    var html = '<div style="font-size:11px;color:#8FAACB;margin-bottom:6px;letter-spacing:.02em">Caiu em prova</div>';
+    refs.forEach(function(r){
+      var parts = r.split(':'); var parcial=parts[0]; var q=parts[1];
+      var label = refLabel(parcial, q);
+      var isPraticaOrRes = (parcial === 'res' || String(parcial).indexOf('prat') === 0);
+      var clickable = q && q !== '?' && !isPraticaOrRes;
+      html += '<span class="mc-chip" data-parcial="'+parcial+'" data-q="'+(q||'')+'" style="display:inline-block;margin:2px 4px 2px 0;'+
+        'padding:4px 9px;border-radius:12px;background:#16355F;color:#EAF1FA;font-size:12px;'+
+        (clickable? 'cursor:pointer' : 'cursor:default;opacity:.6') + ';border:1px solid #2A4468">'+label+'</span>';
+    });
+    tt.innerHTML = html;
+    tt.querySelectorAll('.mc-chip').forEach(function(chip){
+      if(chip.style.cursor !== 'pointer') return;
+      chip.addEventListener('mouseenter', function(){ chip.style.background='#C8476B'; chip.style.borderColor='#C8476B'; });
+      chip.addEventListener('mouseleave', function(){ chip.style.background='#16355F'; chip.style.borderColor='#2A4468'; });
+      chip.addEventListener('click', function(){
+        window.parent.postMessage({type:'jumpToSimulado', parcial:chip.dataset.parcial, q:chip.dataset.q}, '*');
+      });
+    });
+    var rect = markEl.getBoundingClientRect();
+    var left = Math.min(rect.left, window.innerWidth-300);
+    var top = rect.bottom + 6;
+    tt.style.left = left+'px';
+    tt.style.top = top+'px';
+    tt.style.display = 'block';
+  }
+
+  function initTooltips(){
+    document.querySelectorAll('mark[data-refs]').forEach(function(m){
+      if(m.dataset.ttBound) return;
+      m.dataset.ttBound = '1';
+      m.style.cursor = 'help';
+      m.addEventListener('mouseenter', function(){ showTooltip(m); });
+      m.addEventListener('mouseleave', hideTooltip);
+    });
+  }
+
+  window.addEventListener('message', function(ev){
+    if(!ev.data) return;
+    if(ev.data.type === 'progressState' && ev.data.lecture === LECTURE_KEY){
+      progress = ev.data.state || {};
+      Object.keys(chkByTarget).forEach(function(id){ chkByTarget[id].checked = !!progress[id]; });
+    }
+  });
+
+  function boot(){
+    initChecks();
+    initTooltips();
+    window.parent.postMessage({type:'requestProgress', lecture:LECTURE_KEY}, '*');
+  }
+  if(document.readyState === 'complete' || document.readyState === 'interactive') boot();
+  else document.addEventListener('DOMContentLoaded', boot);
+  // fallback: alguns masterclass renderizam nav/conteúdo via JS próprio, possivelmente após
+  // este script rodar — reaplica init algumas vezes nos primeiros segundos.
+  [300,800,1500,3000].forEach(function(ms){ setTimeout(boot, ms); });
+  // e também sempre que o usuário navega (conteúdo de segmentos que só é montado no DOM
+  // quando o painel/segmento é aberto pela primeira vez, como na Aula 2)
+  document.addEventListener('click', function(ev){
+    if(ev.target.closest && (ev.target.closest('.nav-item') || ev.target.closest('.navbtn'))){
+      setTimeout(boot, 80);
+      setTimeout(boot, 300);
+    }
+  }, true);
+})();
+</script>
+
+<script>(function(){
+  // Ponte entre a aula (iframe) e a barra lateral do app. Não mexe no conteúdo nem na lógica de quiz.
+  var P = window.parent;
+  if (!P || P === window) return;
+  var root = document.documentElement;
+  root.classList.add('embedded');
+  var parts = (window.name || '').split('|');
+  var LEC = parts[1] || '';
+  var progress = {};
+
+  function setTheme(t){ root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); }
+  setTheme(parts[2] || 'dark');
+
+  function navEls(){ return Array.prototype.slice.call(document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]')); }
+  function keyOf(e){ return e.getAttribute('data-target') || e.getAttribute('data-view'); }
+  function labelOf(e){
+    var n = e.querySelector('.navlabel, .nav-num + span');
+    return (n ? n.textContent : e.textContent).replace(/\s+/g,' ').trim();
+  }
+  function activeKey(){
+    var a = navEls().filter(function(e){ return e.classList.contains('active'); })[0];
+    return a ? keyOf(a) : null;
+  }
+
+  // ----- botão "Concluir" no título de cada segmento -----
+  function paintDone(btn, key){
+    var on = !!progress[key];
+    if (btn.classList.contains('on') !== on) btn.classList.toggle('on', on);   // só mexe no DOM se mudou (evita laço do observer)
+    var lbl = btn.querySelector('.lbl'), txt = on ? 'Concluído' : 'Concluir';
+    if (lbl.textContent !== txt) lbl.textContent = txt;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var fin = document.querySelector('.cel-finish[data-key="' + key + '"]');
+    if (fin) paintFin(fin, on, key);
+  }
+
+  // ----- botão grande no fim do segmento -----
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+  function isSeg(key){ return /^(seg\d+|s\d+|parcial\d+)$/.test(key); }
+  function paintFin(b, on, key){
+    if (b.classList.contains('on') !== on) b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var txt = on ? (isSeg(key) ? 'Segmento concluído' : 'Estudado') + ' · tocar para desfazer'
+                 : (isSeg(key) ? 'Concluir segmento' : 'Marcar como estudado');
+    var s = b.lastChild; if (s.textContent !== txt) s.textContent = txt;
+  }
+  function ensureFin(scope, key){
+    if (!scope || !key || key === 'capa' || key === 'home') return;
+    var foot = scope.querySelector('.navfoot, .segnav');
+    if (!foot) return;
+    var box = scope.querySelector('.cel-fin');
+    if (box && box.getAttribute('data-key') === key && box.nextElementSibling === foot) return;
+    if (box) box.remove();
+    box = document.createElement('div'); box.className = 'cel-fin'; box.setAttribute('data-key', key);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cel-finish'; b.setAttribute('data-key', key);
+    b.innerHTML = CHECK + '<span></span>';
+    b.addEventListener('click', function(){
+      var top = document.querySelector('.done-t[data-key="' + key + '"]');
+      if (top) top.click();
+    });
+    box.appendChild(b);
+    foot.parentNode.insertBefore(box, foot);
+    paintFin(b, !!progress[key], key);
+  }
+  function attachDone(title, key){
+    if (!title || !key || key === 'capa' || key === 'home') return;
+    var old = title.querySelector('.done-t');
+    if (old && old.getAttribute('data-key') === key) { paintDone(old, key); return; }
+    if (old) old.remove();
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'done-t'; b.setAttribute('data-key', key);
+    b.innerHTML = '<span class="d"></span><span class="lbl">Concluir</span>';
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      progress[key] = !progress[key];
+      paintDone(b, key);
+      P.postMessage({type:'setProgress', lecture:LEC, target:key, done:!!progress[key]}, '*');
+    });
+    if (!title.classList.contains('has-done')) title.classList.add('has-done');
+    title.appendChild(b);
+    paintDone(b, key);
+  }
+  function decorate(){
+    // aulas estáticas: um .pane por segmento
+    document.querySelectorAll('.pane').forEach(function(p){
+      if (p.hidden) return;
+      attachDone(p.querySelector('.pane-title'), p.id);
+      ensureFin(p, p.id);
+    });
+    // aula 2: conteúdo montado por JS
+    var t = document.querySelector('h2.seg-title');
+    if (t) { attachDone(t, activeKey()); ensureFin(document.getElementById('content'), activeKey()); }
+  }
+
+  // ----- rodapé anterior/próximo (substitui a barra de navegação escondida) -----
+  function addNavFoot(){
+    var items = navEls();
+    if (!items.length || document.querySelector('.segnav')) return;
+    items.forEach(function(it, i){
+      var id = keyOf(it);
+      var pane = document.getElementById(id);
+      if (!pane || !pane.classList.contains('pane') || pane.querySelector('.navfoot')) return;
+      var prev = items[i-1], next = items[i+1];
+      var f = document.createElement('div'); f.className = 'navfoot';
+      function mk(target, txt, isNext){
+        var b = document.createElement('button'); b.type = 'button';
+        b.textContent = isNext ? txt + ' →' : '← ' + txt;
+        b.addEventListener('click', function(){ target.click(); });
+        return b;
+      }
+      if (prev) f.appendChild(mk(prev, labelOf(prev), false));
+      if (next) f.appendChild(mk(next, labelOf(next), true));
+      pane.appendChild(f);
+    });
+  }
+
+  // piscar o termo achado pela busca
+  function flashTerm(rootEl, term){
+    if (!rootEl || !term) return;
+    var low = term.toLowerCase(), w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentElement; if (!p || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue;
+      var k = n.data.toLowerCase().indexOf(low);
+      if (k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var q = sp.parentNode; if (!q) return; while (sp.firstChild) q.insertBefore(sp.firstChild, sp); q.removeChild(sp); q.normalize(); }, 2600);
+      return;
+    }
+  }
+
+  var last = null;
+  function reportActive(){
+    var k = activeKey();
+    if (k !== last) { last = k; P.postMessage({type:'segActive', lecture:LEC, key:k}, '*'); }
+    var off = (k && k !== 'capa' && k !== 'home' && !document.querySelector('.hero .tabs')) ? 'off' : 'on';
+    if (root.getAttribute('data-hero') !== off) root.setAttribute('data-hero', off);
+    decorate();
+  }
+  var mo = new MutationObserver(function(){ clearTimeout(mo._t); mo._t = setTimeout(reportActive, 30); });
+  mo.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class','hidden']});
+  var content = document.getElementById('content');
+  if (content) mo.observe(content, {childList:true});
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data;
+    if (!d || !d.type) return;
+    if (d.type === 'setTheme') setTheme(d.theme);
+    else if (d.type === 'goto') {
+      var el = navEls().filter(function(e){ return keyOf(e) === d.key; })[0];
+      if (el) el.click();
+    }
+    else if (d.type === 'gotoPane') {
+      if (document.getElementById('hl-pop')) return;   // aulas com marca-texto rosa tratam sozinhas
+      var pe = navEls().filter(function(e){ return keyOf(e) === d.pane; })[0];
+      if (pe) pe.click();
+      setTimeout(function(){ flashTerm(document.getElementById(d.pane) || document.getElementById('content') || document.body, d.term); }, 140);
+    }
+    else if (d.type === 'progressState' && d.lecture === LEC) {
+      progress = d.state || {};
+      document.querySelectorAll('.done-t').forEach(function(b){ paintDone(b, b.getAttribute('data-key')); });
+    }
+  });
+
+  function boot(){
+    addNavFoot();
+    reportActive();
+    P.postMessage({type:'bridgeReady', lecture:LEC}, '*');
+    P.postMessage({type:'requestProgress', lecture:LEC}, '*');
+  }
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', function(){ setTimeout(boot, 0); });
+})();
+</script>
+</body>
+</html>

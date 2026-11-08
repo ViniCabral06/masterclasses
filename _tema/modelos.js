@@ -4,7 +4,7 @@
 (function () {
 window.VidroModelos = function (THREE) {
 
-const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3 };
+const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3, pato: 0xff6fb5 };
 const V = () => new THREE.Vector3();
 const _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _s = new THREE.Vector3(1, 1, 1), _up = new THREE.Vector3(0, 1, 0);
 const _a = V(), _b = V(), _c = V(), _d = V();
@@ -312,6 +312,88 @@ function makeCells(o = {}) {
   return g;
 }
 
+/* ======================= tecido em H&E (patologia) =======================
+   Um epitélio de vidro: citoplasma em eosina, núcleos em hematoxilina.
+   Mouse perto: as células incham (degeneração hidrópica) e o núcleo encolhe (picnose).
+   Clique: a célula mais próxima entra em apoptose, solta corpos apoptóticos e depois se regenera.
+   Neutrófilos passeiam pelo tecido e seguem o mouse (quimiotaxia). */
+function makeTissue(o = {}) {
+  const cheap = !!o.cheap, g = new THREE.Group();
+  const cellGeo = new THREE.IcosahedronGeometry(.4, cheap ? 2 : 3);
+  const nucGeo = new THREE.IcosahedronGeometry(.15, 2), bodyGeo = new THREE.IcosahedronGeometry(.07, 1);
+  const cyto = glassMat(0xff8cc6, cheap, { thickness: .9, attenuationColor: new THREE.Color(0xff4fa3), attenuationDistance: 1.2 });
+  const hema = () => new THREE.MeshStandardMaterial({ color: 0x5b3fd6, roughness: .35, metalness: .1, emissive: 0x2a1a7a, emissiveIntensity: .25 });
+  const cells = [], bodies = [], neut = [];
+  const COLS = 8, ROWS = 6, DX = .86, DY = .76;
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+    const home = new THREE.Vector3((c - (COLS - 1) / 2) * DX + (r % 2) * DX / 2, (r - (ROWS - 1) / 2) * DY, 0);
+    home.z = -.08 * (home.x * home.x + home.y * home.y);                       // folha levemente curva
+    const cell = new THREE.Mesh(cellGeo, cyto), nuc = new THREE.Mesh(nucGeo, hema());
+    cell.scale.set(1, 1, .62); cell.add(nuc);
+    cell.userData = { home, ph: Math.random() * 6.28, sw: S(0), sc: S(1), apo: -1, nuc, off: V(), vel: V() };
+    cell.position.copy(home); g.add(cell); cells.push(cell);
+  }
+  const bodyMat = hema();
+  for (let i = 0; i < 18; i++) { const b = new THREE.Mesh(bodyGeo, bodyMat); b.visible = false; b.userData = { v: V(), life: 0 }; g.add(b); bodies.push(b); }
+  // neutrófilos: esfera de vidro clara com núcleo em 3 lobos
+  const neuMat = glassMat(0xeef2ff, cheap, { thickness: .6 }), lobeGeo = new THREE.IcosahedronGeometry(.07, 1);
+  for (let i = 0; i < 4; i++) {
+    const n = new THREE.Mesh(new THREE.IcosahedronGeometry(.24, 2), neuMat), lm = hema();
+    [[-.08, .03], [0, -.05], [.08, .03]].forEach(([x, y]) => { const l = new THREE.Mesh(lobeGeo, lm); l.position.set(x, y, 0); n.add(l); });
+    n.userData = { p: new THREE.Vector3((Math.random() - .5) * 6, (Math.random() - .5) * 4, .55), v: V(), w: Math.random() * 6.28 };
+    n.position.copy(n.userData.p); g.add(n); neut.push(n);
+  }
+  g.rotation.x = -.35; g.userData.offset = new THREE.Vector3(.4, 0, 0);
+  const ck = {}, spin = S();
+  const apoptose = c => {
+    const u = c.userData; if (u.apo >= 0) return; u.apo = 0;
+    let k = 0; for (const b of bodies) { if (b.userData.life > 0) continue; b.visible = true; b.userData.life = 1;
+      b.position.copy(c.position); b.userData.v.set((Math.random() - .5) * 1.6, (Math.random() - .5) * 1.6, .6 + Math.random() * .8);
+      b.scale.setScalar(.7 + Math.random() * .8); if (++k >= 5) break; }
+  };
+  g.userData.tick = (t, dt, I) => {
+    const P = localPointer(g, I), burst = clicked(ck, I);
+    g.rotation.z = Math.sin(t * .07) * .12 + spring(spin, I && I.has ? THREE.MathUtils.clamp(I.vx * .03, -.4, .4) : 0, 6, 3, dt);
+    const sv = (I && I.sv) || 0;
+    let near = null, nd = 1.4;
+    cells.forEach(c => {
+      const u = c.userData;
+      let d = 9; if (P) { d = _c.subVectors(c.position, P).setZ(0).length(); if (d < nd) { nd = d; near = c; } }
+      const swell = P ? Math.max(0, 1 - d / 1.7) : 0;
+      const sw = spring(u.sw, swell, 30, 7, dt);
+      let s = 1 + sw * .3;
+      if (u.apo >= 0) {                                                        // apoptose: encolhe, some, volta crescendo
+        u.apo += dt; const a = u.apo;
+        s = a < .9 ? 1 - .7 * (a / .9) : a < 1.6 ? .3 * (1 - (a - .9) / .7) : a < 3 ? 0.001 : Math.min(1, (a - 3) / 1.2);
+        if (a > 4.4) { u.apo = -1; u.sc.x = s; }
+      }
+      const sc = spring(u.sc, s, 70, 9, dt);
+      c.scale.set(sc, sc, sc * .62);
+      u.nuc.scale.setScalar(1 - sw * .35);                                      // picnose
+      u.nuc.material.emissiveIntensity = .25 + sw * .5;
+      // onda do tecido (respira) e vento do scroll
+      u.vel.y += sv * dt * 1.4; u.vel.addScaledVector(u.off, -14 * dt); u.vel.multiplyScalar(Math.exp(-4 * dt)); u.off.addScaledVector(u.vel, dt);
+      c.position.copy(u.home).add(u.off);
+      c.position.z += Math.sin(t * 1.1 + u.home.x * .9 + u.home.y * .6) * (.07 + Math.min(.25, Math.abs(sv) * .02));
+      c.rotation.y = Math.sin(t * .5 + u.ph) * .25;
+    });
+    if (burst && near) apoptose(near);
+    bodies.forEach(b => { const u = b.userData; if (u.life <= 0) return; u.life -= dt * .45; b.position.addScaledVector(u.v, dt); u.v.multiplyScalar(Math.exp(-1.6 * dt));
+      b.scale.multiplyScalar(u.life < .3 ? Math.exp(-4 * dt) : 1); if (u.life <= 0) b.visible = false; });
+    neut.forEach((n, i) => {                                                    // quimiotaxia: vão até o mouse; sem mouse, passeiam
+      const u = n.userData;
+      if (P) _a.copy(P).setZ(.55); else _a.set(Math.sin(t * .13 + i * 1.7) * 3, Math.cos(t * .11 + i * 2.3) * 2, .55);
+      _b.subVectors(_a, u.p); const d = _b.length();
+      if (d > .35) u.v.addScaledVector(_b.normalize(), (P ? 2.4 : 1) * dt);
+      neut.forEach(m => { if (m !== n) { _c.subVectors(u.p, m.userData.p); const dd = _c.length(); if (dd < .5) u.v.addScaledVector(_c.normalize(), (.5 - dd) * 6 * dt); } });
+      u.v.multiplyScalar(Math.exp(-2.2 * dt)); u.p.addScaledVector(u.v, dt); u.p.y += sv * dt * .2;
+      n.position.copy(u.p); n.rotation.z += dt * .8;
+      const wob = 1 + Math.sin(t * 5 + u.w) * .06; n.scale.set(wob, 2 - wob, 1);  // forma ameboide
+    });
+  };
+  return g;
+}
+
 /* ======================= coração anatômico ======================= */
 function bump(x, a, b) { if (x < a || x > b) return 0; return Math.sin((x - a) / (b - a) * Math.PI); }
 function ventricleShape(v) {
@@ -546,6 +628,6 @@ function makeLamp(o = {}) {
   return root;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeHeart, makeLamp };
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeHeart, makeLamp };
 };
 })();

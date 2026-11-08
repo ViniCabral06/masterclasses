@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tone="resp" data-theme="dark">
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css"><!--/vidro:cabeca-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Masterclass — Doenças Infecciosas do Pulmão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet"><style>/* ===== Visual "Farmacologia" aplicado às aulas de Patologia ===== */
+:root{
+  --ground:#ffffff; --surface:#f5f6f4; --surface-2:#eceeeb; --raised:#ffffff;
+  --border:#e4e6e2; --rule:#eff0ed; --control:#d6d9d4;
+  --ink:#1f201d; --ink-2:#3a3c37; --muted:#676964; --faint:#9a9c96;
+  --accent:#1b6e66; --accent-ink:#0f4d47; --accent-soft:#e3f0ed;
+  --tone:var(--accent);
+  --ok:#2e7d32; --ok-bg:#e6f4e7; --ok-line:#b9dcbb;
+  --bad:#b42318; --bad-bg:#fdecea; --bad-line:#f2c1bb;
+  --warn:#b26a00; --warn-bg:#f8ecd2; --warn-ink:#7a5200;
+  --on-ink:#fff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121413; --surface:#1a1d1b; --surface-2:#242826; --raised:#1f2320;
+  --border:#2c312e; --rule:#222624; --control:#3d4440;
+  --ink:#e6e9e4; --ink-2:#c3c8c1; --muted:#9aa09a; --faint:#6f766f;
+  --accent:#5fc4ae; --accent-ink:#93e0cd; --accent-soft:#17332d;
+  --ok:#62c27a; --ok-bg:#15281a; --ok-line:#2b5233;
+  --bad:#f07a6c; --bad-bg:#2d1714; --bad-line:#5c2b25;
+  --warn-bg:#33290f; --warn-ink:#f0cf86;
+  --on-ink:#121413;
+}
+/* cada grupo de aulas tem a sua cor, só no que orienta */
+:root[data-tone="cv"]{--tone:#a3263a}
+:root[data-tone="resp"]{--tone:#1f6f8b}
+:root[data-tone="prova"]{--tone:#6b4c8a}
+:root[data-tone="sim"]{--tone:#1b6e66}
+:root[data-tone="gi"]{--tone:#2e7d4f}
+:root[data-tone="acc"]{--tone:#9a5a00}
+:root[data-theme="dark"][data-tone="cv"]{--tone:#ec8a98}
+:root[data-theme="dark"][data-tone="resp"]{--tone:#7cc2dc}
+:root[data-theme="dark"][data-tone="prova"]{--tone:#bca0d8}
+:root[data-theme="dark"][data-tone="sim"]{--tone:#5fc4ae}
+:root[data-theme="dark"][data-tone="gi"]{--tone:#6fbf8e}
+:root[data-theme="dark"][data-tone="acc"]{--tone:#e0b06a}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{background:var(--ground)!important;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:inherit;color:inherit}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- cabeçalho da aula (era "hero") ---------- */
+.hero{background:transparent;color:var(--ink);padding:40px clamp(16px,5vw,72px) 0}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;padding-bottom:28px;border-bottom:1px solid var(--border);
+  margin-bottom:32px}
+.hero h1{order:1;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0;font-weight:400;
+  letter-spacing:-.015em;color:var(--ink);max-width:none;text-wrap:balance}
+.tag{order:2;display:block;align-self:flex-start;background:transparent;color:var(--tone);font-family:var(--sans);font-size:14px;
+  font-weight:500;letter-spacing:0;padding:0;border-radius:0;margin:12px 0 0}
+.hero p{order:3;margin:14px 0 0;color:var(--muted);font-family:var(--sans);font-size:14.5px;line-height:1.6;max-width:68ch}
+.strip{order:4;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:22px;overflow:hidden;border-radius:0}
+.strip img{width:100%;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--border);filter:none;opacity:.92}
+:root[data-theme="dark"] .strip img{filter:brightness(.9)}
+@media (max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}.strip img:nth-child(n+4){display:none}}
+
+/* ---------- layout (a navegação agora vive na barra lateral do app) ---------- */
+.shell{display:block;max-width:none;margin:0;padding:0 clamp(16px,5vw,72px) 96px}
+nav.rail{display:none}
+main{display:block;max-width:920px;margin:0 auto;padding:0;background:transparent;border-radius:0;box-shadow:none}
+.pane{display:block;animation:rise .35s var(--ease-out) both;scroll-margin-top:100vh}
+/* o cabeçalho grande só aparece na capa da aula; nos segmentos o título do próprio segmento assume */
+html[data-hero="off"] header.hero{display:none}
+html[data-hero="off"] .shell{padding-top:40px}
+.pane[hidden]{display:none}
+
+.pane-title{position:relative;font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin:0 0 28px;
+  padding:0 0 22px;font-weight:400;letter-spacing:-.012em;color:var(--ink);border-bottom:1px solid var(--border);text-wrap:balance}
+.pane-title.has-done{padding-right:150px}
+
+/* ---------- leitura ---------- */
+.prose,.intro{max-width:none}
+.prose p,.intro p,.prose li,.intro li{font-size:17px;line-height:1.7;color:var(--ink)}
+.prose p,.intro p{margin:0 0 18px;max-width:70ch}
+.prose ul,.prose ol,.intro ul,.intro ol{padding-left:22px;margin:0 0 20px;max-width:70ch}
+.prose li,.intro li{margin-bottom:8px}
+.prose li::marker,.intro li::marker{color:var(--faint)}
+.prose h2,.intro h2{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:56px 0 16px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+.intro h2:first-child{margin-top:0}
+.prose h3,.intro h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.prose strong,.intro strong,.prose b,.intro b{font-weight:600;color:var(--ink)}
+.prose hr,.intro hr{border:0;border-top:1px solid var(--border);margin:36px 0}
+.prose em,.intro em{color:inherit}
+table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;font-family:var(--sans)}
+th{background:transparent;color:var(--muted);text-align:left;padding:10px 14px 10px 0;font-weight:500;font-size:13.5px;
+  border-bottom:1px solid var(--control);vertical-align:bottom}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;text-align:left;
+  font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+@media (max-width:700px){table{display:block;overflow-x:auto}}
+
+.fig{margin:28px auto;max-width:100%;text-align:center}
+.fig img{display:inline-block;max-width:100%;width:auto;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff;
+  cursor:zoom-in;transition:transform .2s var(--ease-out)}
+:root[data-theme="dark"] .fig img{border-color:var(--border);filter:brightness(.94)}
+.fig figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;
+  max-width:68ch;padding:0;border:0}
+
+/* ---------- painéis (notas) ---------- */
+.note{border-radius:18px;padding:18px 22px;margin:24px 0;font-size:16px;line-height:1.68;border:none;position:relative;
+  background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:16px;line-height:1.68;max-width:none}
+.note p + p{margin-top:10px}
+.note-extra{background:#f2f2f8}.note-extra>p>strong:first-child{color:#4b4790}
+.note-fix{background:#fbf0ea}.note-fix>p>strong:first-child{color:#9a4a1f}
+.note-link{background:#edf3f8}.note-link>p>strong:first-child{color:#2d5f8f}
+:root[data-theme="dark"] .note-extra{background:#1d1d2a}:root[data-theme="dark"] .note-extra>p>strong:first-child{color:#aaa6ea}
+:root[data-theme="dark"] .note-fix{background:#2a1c15}:root[data-theme="dark"] .note-fix>p>strong:first-child{color:#ec9f73}
+:root[data-theme="dark"] .note-link{background:#17212b}:root[data-theme="dark"] .note-link>p>strong:first-child{color:#8dbbe6}
+.note + ol,.note + ul{margin-top:-6px}
+
+/* ---------- grifos de frequência em prova ---------- */
+mark.exam1,mark.exam2,mark.exam3,mark.exam4,mark.exam5,mark.hot{padding:1px 3px;border-radius:4px;cursor:help;color:inherit;font-weight:inherit;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1{background:#d8f3e3}
+mark.exam2{background:#fdf0bf}
+mark.exam3,mark.hot{background:#fcd9a8}
+mark.exam4{background:#f8bfb5}
+mark.exam5{background:#1c2331;color:#ffe3a3}
+mark.exam5 *{color:#ffe3a3}
+:root[data-theme="dark"] mark.exam1,:root[data-theme="dark"] mark.exam2,:root[data-theme="dark"] mark.exam3,
+:root[data-theme="dark"] mark.exam4,:root[data-theme="dark"] mark.hot,
+:root[data-theme="dark"] mark.exam1 *,:root[data-theme="dark"] mark.exam2 *,:root[data-theme="dark"] mark.exam3 *,
+:root[data-theme="dark"] mark.exam4 *,:root[data-theme="dark"] mark.hot *{color:#1b2230!important}
+:root[data-theme="dark"] mark.exam5{box-shadow:inset 0 0 0 1px #4a5568}
+.examcard{margin:24px 0;padding:18px 22px;border:none;background:#f8f3e1;border-radius:18px}
+.examcard h4{margin:0 0 8px;font-size:14px;color:#765800;font-family:var(--sans);letter-spacing:0;font-weight:600}
+.examcard p{font-size:15px!important;max-width:none!important}
+:root[data-theme="dark"] .examcard{background:#26220f}:root[data-theme="dark"] .examcard h4{color:#e3c25c}
+.exam-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin:14px 0}
+.exam-legend span{padding:3px 9px;border-radius:999px;font-weight:500}
+:root[data-theme="dark"] .exam-legend span[style*="#111111"]{box-shadow:inset 0 0 0 1px #4a5568}
+.q-source{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;
+  font-family:var(--sans);text-transform:none}
+.q-source.real{background:var(--ok-bg);color:var(--ok)}
+.q-source.adapted{background:var(--warn-bg);color:var(--warn-ink)}
+.q-source.original{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- quiz ---------- */
+.qzone{margin-top:72px;padding-top:0;border-top:none;max-width:none}
+.qzone-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:0 0 12px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em}
+.lede{font-family:var(--sans);font-size:14.5px;color:var(--muted);max-width:68ch;line-height:1.6;margin:0 0 24px}
+.q{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.q-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.q-head>.q-source{order:2;margin-top:3px}
+.q-num{order:1;flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:999px;background:var(--ink);color:var(--on-ink);
+  font-family:var(--sans);font-weight:500;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;margin:0}
+.q-stem{order:3;flex:1 0 100%;min-width:0}
+.q-stem p{margin:0 0 12px;font-size:16.5px;line-height:1.65;color:var(--ink);max-width:none}
+.q-stem .fig{margin:8px 0 16px}
+.q-stem .fig img{max-height:420px}
+.opts{display:flex;flex-direction:column;gap:0;margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  color:var(--ink);transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.opt:active{transform:scale(.995)}
+.opt-letter{flex:none;width:26px;height:26px;min-width:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.opt-text{flex:1;min-width:0;padding-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.opt.is-correct{border-color:var(--ok-line);background:var(--ok-bg);box-shadow:none}
+.opt.is-correct .opt-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-wrong{border-color:var(--bad-line);background:var(--bad-bg);box-shadow:none}
+.opt.is-wrong .opt-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .opt.is-correct .opt-letter,:root[data-theme="dark"] .opt.is-wrong .opt-letter{color:#0d1110}
+.q.done .opt{cursor:default}
+.q.done .opt:active{transform:none}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--control)}:root[data-theme="dark"] .opt:hover{border-color:#4a524d}}
+.q-actions{display:flex;gap:8px;align-items:center;margin:14px 0 0;flex-wrap:wrap}
+.btn-reveal,.btn-grade,.btn-reset{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;
+  cursor:pointer;background:var(--ink);color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn-reveal:active,.btn-grade:active,.btn-reset:active{transform:scale(.97)}
+.btn-reveal{background:var(--surface-2);color:var(--ink)}
+.btn-reset{background:var(--surface-2);color:var(--ink)}
+.btn-grade{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn-grade{color:#0d1110}
+.btn-reveal[hidden],.btn-grade[hidden],.btn-reset[hidden]{display:none}
+.q-why{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:15px;line-height:1.6}
+.q-why[hidden]{display:none}
+.q-why p{margin:0 0 10px;font-size:15px;line-height:1.6;max-width:none}
+.q-why p:last-child{margin:0}
+.q-why:has(.q-verdict.ok){background:var(--ok-bg)}
+.q-why:has(.q-verdict.no){background:var(--bad-bg)}
+.q-verdict{font-family:var(--sans);font-weight:600}
+.q-verdict.ok{color:var(--ok)}.q-verdict.no{color:var(--bad)}
+.q-why hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+.q-open textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;
+  background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+.q-open textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.scorebar{position:sticky;top:12px;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--surface);
+  border:1px solid var(--border);border-radius:22px;padding:14px 20px;margin:22px 0 16px;font-family:var(--sans);font-size:15px}
+#scoretext{flex:1 1 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.closing{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ---------- ampliar imagem ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(18,20,18,.82);display:none;place-items:center;z-index:900;padding:30px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:12px;background:#fff}
+.lightbox figcaption{color:#e6e9e4;font-family:var(--sans);font-size:14.5px;margin-top:14px;max-width:70ch;text-align:center;line-height:1.5}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-family:var(--sans);
+  font-size:14px;font-weight:500;border-radius:999px;height:38px;padding:0 18px;cursor:pointer}
+
+/* ---------- dica "caiu em prova" ---------- */
+#mc-tooltip{background:#2b302d!important;color:#eef0ec!important;border:none!important;border-radius:12px!important;padding:12px 14px!important;
+  font-family:var(--sans)!important;font-size:13px!important;line-height:1.5!important;box-shadow:0 12px 32px rgba(20,22,20,.28)!important}
+#mc-tooltip div{color:#c3c8c1!important;font-size:12px!important;letter-spacing:0!important;font-weight:600}
+#mc-tooltip .mc-chip{background:#3b413d!important;color:#eef0ec!important;border:none!important;border-radius:999px!important;padding:3px 10px!important;
+  font-size:12px!important}
+#mc-tooltip .mc-chip:hover{background:var(--accent)!important;color:#0d1110!important}
+
+/* ---------- concluir (vem da barra lateral do app) ---------- */
+.done-t{position:absolute;top:6px;right:0;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);height:38px;padding:0 16px 0 12px;border-radius:999px;cursor:pointer;background:var(--surface);border:none;user-select:none;
+  letter-spacing:0;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.done-t:active{transform:scale(.97)}
+.done-t .d{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--control);background:var(--raised);
+  transition:background-color .2s ease,border-color .2s ease}
+.done-t.on{color:var(--ok);background:var(--ok-bg)}
+.done-t.on .d{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px var(--ok-bg)}
+@media (max-width:700px){.done-t{position:static;margin-top:14px}.pane-title.has-done{padding-right:0}}
+
+@media (max-width:900px){
+  .hero{padding:24px 16px 0}
+  .shell{padding:0 16px 72px}
+  .q{padding:18px 16px;border-radius:18px}
+  .note{padding:16px 18px}
+  .prose p,.intro p,.prose li,.intro li{font-size:16.5px}
+  .prose h2,.intro h2{font-size:27px;margin-top:44px}
+  .opts{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  .hero,.scorebar,.q-actions,.strip,.done-t{display:none}
+  body{background:#fff!important;color:#000}
+  .pane[hidden],.q-why[hidden]{display:block!important}
+  .q,.fig{break-inside:avoid}
+}
+
+/* ---------- anterior / próximo ---------- */
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{border:none;background:var(--surface);border-radius:16px;padding:14px 18px;font-family:var(--sans);font-size:14.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);max-width:48%;text-align:left;line-height:1.4;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.navfoot button:last-child{text-align:right;margin-left:auto}
+.navfoot button:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.navfoot button:hover{background:var(--surface-2)}}
+
+/* ---------- botão grande de concluir, no fim do segmento ---------- */
+.cel-fin{display:flex;justify-content:center;margin:34px 0 8px}
+.cel-finish{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+  font:500 16px/1 var(--sans);cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+:root[data-theme="dark"] .cel-finish{color:#0d1110}
+.cel-finish:active{transform:scale(.97)}
+.cel-finish svg{width:20px;height:20px}
+.cel-finish svg circle{fill:none;stroke:currentColor;stroke-width:2;opacity:.55}
+.cel-finish svg path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s var(--ease-out)}
+.cel-finish.on{background:var(--ok-bg);color:var(--ok)}
+:root[data-theme="dark"] .cel-finish.on{color:var(--ok)}
+.cel-finish.on svg path{stroke-dashoffset:0}
+@media (hover:hover) and (pointer:fine){.cel-finish:not(.on):hover{transform:translateY(-1px)}}
+@media (max-width:600px){.cel-finish{width:100%}}
+.cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
+
+.find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+</style><script>(function(){var p=(window.name||"").split("|");document.documentElement.setAttribute("data-theme",p[2]==="light"?"light":"dark")})();</script></head>
+<body><header class="hero">
+  <div class="hero-in">
+    <span class="tag">Respiratório · Aula 3</span>
+    <h1>Doenças infecciosas do pulmão</h1>
+    <p>Patologia Médica I — Faculdade de Ciências Médicas de Minas Gerais. Sete segmentos, 21 questões de verificação e um quiz final de 15. Clique em qualquer imagem para ampliar. Revisão com grifos por recorrência em 5 provas antigas (Parciais 78–82).</p>
+    <div class="strip"><img loading=lazy decoding=async data-img="peca-hepatizacao-vermelha-e-cinzenta-macro.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="broncopneumonia-macro-focos-alveolos-normais.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="abscesso-pulmonar-macro-cavidades.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="granuloma-histologia-reacao-produtiva.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="complexo-primario-lesao-em-halteres-esquema.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="tuberculose-miliar-radiografia.jpg" alt="" aria-hidden="true"></div>
+  </div>
+</header>
+<div class="shell">
+  <nav class="rail" aria-label="Segmentos">
+    <p class="rail-head">Segmentos</p>
+    <a class="nav-item" href="#" data-target="capa">Início</a><a class="nav-item" href="#" data-target="seg1"><span class="nav-num">1</span><span>Introdução</span></a><a class="nav-item" href="#" data-target="seg2"><span class="nav-num">2</span><span>Pneumonia lobar</span></a><a class="nav-item" href="#" data-target="seg3"><span class="nav-num">3</span><span>Broncopneumonia</span></a><a class="nav-item" href="#" data-target="seg4"><span class="nav-num">4</span><span>Complicações da pneumonia bacteriana</span></a><a class="nav-item" href="#" data-target="seg5"><span class="nav-num">5</span><span>Pneumonia viral (pneumonia intersticial)</span></a><a class="nav-item" href="#" data-target="seg6"><span class="nav-num">6</span><span>Tuberculose</span></a><a class="nav-item" href="#" data-target="seg7"><span class="nav-num">7</span><span>O que mais cai em prova</span></a><a class="nav-item" href="#" data-target="apendice">Questão da aula</a><a class="nav-item nav-quiz" href="#" data-target="quiz">Quiz final</a>
+  </nav>
+  <main><section class="pane" id="capa">
+  <div class="intro"><h2>Doenças Infecciosas do Pulmão</h2>
+<p><strong>Patologia Médica I — Faculdade de Ciências Médicas de Minas Gerais</strong></p>
+<hr />
+<h3>Como usar este material</h3>
+<ul>
+<li>Sete segmentos: introdução e classificação (com o caso clínico do menino de 7 anos), pneumonia lobar, broncopneumonia, complicações da pneumonia bacteriana, pneumonia viral/intersticial, tuberculose e um novo segmento de revisão — <strong>"O que mais cai em prova"</strong>.</li>
+<li>Cada segmento termina com <strong>3 questões em vinheta clínica</strong> (pelo menos uma baseada em imagem) e <strong>gabarito comentado</strong>. Ao final, <strong>quiz de 15 questões</strong> e a questão de residência (SMR VR 2024, adaptada) que fechava o slide.</li>
+<li>📌 <strong>EXTRA</strong> marca o que não estava no PDF. Tudo sem essa marca veio da aula original.</li>
+<li>🔗 <strong>LIGA COM OUTRAS AULAS</strong> marca onde um conceito já visto em respiratório ou cardiovascular é pré-requisito direto.</li>
+<li>Em todas as questões, as cinco alternativas foram escritas com <strong>extensão equilibrada</strong> entre si, para que o tamanho do texto nunca seja pista da resposta certa.</li>
+<li><strong>Grifos coloridos</strong> no texto corrido mostram o quanto cada fato já foi cobrado nas cinco provas antigas de Patologia Médica I (Parciais 78–82): <div class="exam-legend"><span style="background:#C6F6D5;color:#14532D">já caiu uma vez</span><span style="background:#FFE066;color:#2A1B00">cai ocasionalmente</span><span style="background:#FFB020;color:#2A1B00">cai bastante</span><span style="background:#FF5A5A;color:#3D0000">cai sempre</span><span style="background:#111111;color:#FFFFFF">certeza absoluta</span></div></li>
+<li>Todas as questões (segmentos, apêndice e quiz) trazem, acima do enunciado, um selo indicando se são <strong>prova real</strong>, <strong>adaptadas de prova real</strong> ou <strong>questão original da aula</strong>.</li>
+</ul>
+<hr /></div>
+</section><section class="pane" id="seg1" hidden>
+  <h1 class="pane-title">Introdução: colonização, infecção e classificação</h1>
+  <div class="prose"><h2>Colonização não é infecção</h2>
+<p><strong>As vias aéreas inferiores são estéreis?</strong> <strong>Não.</strong></p>
+<p><strong>Colonização:</strong> presença de micro-organismos <strong>sem resposta inflamatória</strong> e <strong>sem dano</strong> tecidual associado.</p>
+<p><strong>Infecção:</strong> ocorre por um <strong>desequilíbrio entre o ataque do agente e a defesa do organismo</strong> — ou seja, a mesma bactéria que coloniza inofensivamente a via aérea de uma pessoa pode causar doença franca em outra, dependendo de qual lado dessa balança prevalece.</p>
+<h2>Mecanismos de defesa pulmonar</h2>
+<ul>
+<li><strong>Tosse</strong></li>
+<li><strong>Aparelho mucociliar</strong></li>
+<li><strong>Broncoconstrição</strong></li>
+<li><strong>Substâncias citoprotetoras:</strong> lisozima, fibronectina, lactoferrina, entre outras</li>
+<li><strong>Resposta imunitária inata e adaptativa</strong> — com ação <strong>bactericida e bacteriostática</strong></li>
+</ul>
+<p><strong>A equação da doença:</strong> <strong>alta patogenicidade do agente</strong> + <strong>mecanismos de defesa insuficientes</strong> = <strong>infecção pulmonar</strong>. É o resultado de uma disputa entre <strong>invasão e sobrevivência do patógeno</strong> de um lado, e <strong>eliminação do patógeno</strong> do outro.</p>
+<h2>O caso clínico que abre a aula</h2>
+<p><strong>Apresentação:</strong> menino, <strong>7 anos</strong>, trazido ao PA pelos pais com <strong>tosse produtiva, falta de ar, prostração e febre alta (39,1°C) há 2 dias</strong>.</p>
+<p><strong>Exame físico:</strong> <strong>FR: 38 irpm</strong>; <strong>redução dos murmúrios vesiculares em base pulmonar esquerda</strong>, com <strong>crepitações</strong>, além de <strong>macicez à percussão</strong>.</p>
+<p><strong>Conduta:</strong> <strong>radiografia de tórax</strong> e <strong>hemograma</strong> — resultado: <strong>leucograma 19.530, com desvio à esquerda</strong>.</p>
+<p><strong>Diagnóstico: pneumonia bacteriana</strong>, agente provável: <mark class="exam1" data-refs="78:?,79:19"><em>Streptococcus pneumoniae</em></mark>.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que a macicez à percussão e a redução do murmúrio, juntas, já apontam para consolidação (e não para derrame ou pneumotórax):</strong> a macicez isolada poderia sugerir tanto <strong>consolidação</strong> (alvéolos preenchidos por exsudato) quanto <strong>derrame pleural</strong> (líquido no espaço pleural) — ambos "abafam" o som à percussão em comparação com o timpanismo do pulmão aerado. O que diferencia os dois é a ausculta: na consolidação, o murmúrio vesicular tende a ser <strong>substituído por sopro tubário e crepitações</strong>, porque o som se transmite melhor através de tecido sólido; no derrame volumoso, o murmúrio tende a estar <strong>abolido</strong>, sem crepitações associadas, porque o líquido isola o parênquima do estetoscópio. O quadro do menino — macicez <strong>com</strong> crepitações — aponta para consolidação pulmonar, não para derrame.</p></aside>
+<h2>Definição de pneumonia</h2>
+<p><strong>Processo inflamatório e infeccioso agudo do parênquima pulmonar</strong> (vias aéreas distais: <strong>bronquíolos respiratórios e alvéolos</strong>), <strong>com expressão clínica</strong>.</p>
+<p><strong>Condição necessária:</strong> o agente patogênico deve atingir as vias respiratórias inferiores em <strong>número e virulência suficientes</strong> para superar as defesas do organismo — a mesma lógica da equação "patogenicidade x defesa" vista acima, agora aplicada especificamente ao pulmão.</p>
+<h2>Vias de infecção</h2>
+<ul>
+<li><strong>Microaspiração</strong> — de secreções da <strong>orofaringe</strong>; agentes típicos: <strong><em>Streptococcus pneumoniae, Haemophilus influenzae</em></strong></li>
+<li><strong>Aspiração</strong> — comum em doentes com <strong>disfunção da deglutição</strong>; agentes típicos: <strong>anaeróbios e bacilos gram-negativos</strong></li>
+<li><mark class="exam4" data-refs="78:5,79:aberta3,80:1,81:18,78:6">Disseminação hematogênica</mark> — a partir de <strong>bacteremia por endocardite, infecção por cateter IV</strong>, entre outras fontes (uma vegetação de endocardite tricúspide/pulmonar pode <mark class="exam4" data-refs="78:5,79:aberta3,80:1,81:18,78:6">embolizar para o pulmão e causar abscesso pulmonar por embolia séptica</mark>)</li>
+<li><mark class="exam2" data-refs="78:14">Aerossóis</mark> — agentes típicos: <strong><em>Mycobacterium tuberculosis, Legionella</em> spp., vírus respiratórios e fungos</strong></li>
+</ul>
+<aside class="note note-link"><p>🔗 <strong>LIGA COM CARDIOVASCULAR:</strong> a via de <strong>disseminação hematogênica</strong>, citada a partir de endocardite, reconecta diretamente com a <strong>Aula de Valvopatias</strong>: uma vegetação de endocardite infecciosa do lado <strong>direito</strong> do coração (tricúspide ou pulmonar — mais rara, mas típica de usuários de drogas injetáveis) embolizaria diretamente para os pulmões, causando êmbolos sépticos e focos de pneumonia hematogênica — um mecanismo bem diferente da infecção que desce pela via aérea.</p></aside>
+<h2>Classificação — três eixos independentes</h2>
+<p><strong>1) Por origem/local de aquisição:</strong>
+- <strong>Pneumonia adquirida na comunidade (PAC)</strong> — inflamação aguda do parênquima, de origem infecciosa, adquirida em ambientes comuns
+- <strong>Pneumonia hospitalar ou nosocomial (associada a serviços de saúde)</strong> — surge <strong>≥ 48 horas após a internação</strong> e <strong>até 10 dias após a alta</strong>; inclui a <strong>pneumonia adquirida no hospital</strong>, a <strong>associada à ventilação mecânica</strong> e a <strong>associada a cuidados de saúde</strong></p>
+<p><strong>2) Por etiologia:</strong> infecciosa — <strong>viral, bacteriana, fúngica, parasitária</strong>.</p>
+<p><strong>3) Por distribuição das lesões no território pulmonar:</strong>
+- <strong>Pneumonia lobar</strong>
+- <strong>Broncopneumonia</strong> (ou pneumonia lobular)
+- <strong>Pneumonia intersticial</strong></p>
+<p><strong>Voltando ao caso clínico:</strong> classificado, pela origem, como <strong>pneumonia comunitária</strong>; e, pela morfologia, como <strong>pneumonia comunitária lobar</strong>.</p>
+<h2>Pneumonia adquirida na comunidade — etiologia</h2>
+<p><strong>Principais agentes:</strong> <strong><em>Streptococcus pneumoniae</em> (20–50% das PAC)</strong>, <strong><em>Haemophilus influenzae</em></strong>, <strong><em>Mycoplasma pneumoniae</em></strong>, <em>Chlamydia</em> (<em>C. psittaci</em>, <em>C. trachomatis</em>), <strong><em>Moraxella catarrhalis</em></strong>, <strong><em>Legionella pneumophila</em></strong>, <strong><em>Staphylococcus aureus</em></strong>, <strong><em>Pseudomonas aeruginosa</em></strong>, <strong><em>Coxiella burnetii</em></strong>, <strong><em>Mycobacterium tuberculosis</em></strong>, e <strong>vírus</strong> (VSR, metapneumovírus, rinovírus, influenza A e B, parainfluenza, adenovírus 3/4/7, enterovírus).</p>
+<p><strong>Observação importante:</strong> o <strong>agente etiológico não é identificado em 40 a 60%</strong> dos doentes — um lembrete de que, na prática clínica, o tratamento empírico inicial é a regra, não a exceção.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — "pneumonia atípica": um conceito em desuso, mas que ainda cai em prova por seu valor histórico e prático.</strong> O termo reunia um grupo de agentes de <strong>crescimento intracelular</strong>, com <strong>dificuldade de diagnóstico por métodos de rotina</strong> e <strong>resistência aos β-lactâmicos</strong> — <em>Mycoplasma pneumoniae</em>, <em>Chlamydia psittaci</em>, <em>Chlamydia pneumoniae</em>, <em>Coxiella burnetii</em>, gênero <em>Legionella</em>, <em>Bordetella pertussis</em>, <em>Pneumocystis jirovecii</em>, <em>Toxoplasma gondii</em> e vírus —, respondendo por <strong>15 a 30% das PAC</strong>. O motivo do desuso é que a distinção clínica entre "típica" e "atípica" se mostrou pouco confiável na prática (sintomas se sobrepõem), mas o <strong>traço farmacológico prático permanece válido</strong>: agentes intracelulares não respondem a β-lactâmicos (que agem na parede celular bacteriana), exigindo macrolídeos, tetraciclinas ou quinolonas respiratórias.</p></aside>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="D" data-qid="seg1-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Segundo a definição apresentada na aula, o que diferencia colonização de infecção das vias aéreas inferiores?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Colonização é sempre causada por vírus; infecção é sempre causada por bactérias, sendo essa a distinção central entre os dois termos</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Colonização ocorre apenas em vias aéreas superiores; infecção ocorre exclusivamente em vias aéreas inferiores, sem sobreposição possível</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Colonização e infecção são termos sinônimos, usados de forma intercambiável na prática clínica pulmonar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Colonização é presença de micro-organismos sem resposta inflamatória ou dano; infecção decorre de desequilíbrio entre ataque do agente e defesa do hospedeiro</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Colonização exige tratamento antibiótico imediato; infecção pode ser observada sem qualquer intervenção terapêutica</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a definição literal da aula: colonização é presença microbiana sem resposta inflamatória nem dano tecidual; infecção surge do desequilíbrio entre a agressão do agente e a defesa do hospedeiro. <strong>A</strong> propõe um critério etiológico (vírus x bactéria) que não é o critério usado pela aula. <strong>B</strong> restringe indevidamente os dois conceitos a compartimentos anatômicos diferentes. <strong>C</strong> nega uma distinção central e explicitamente construída na aula. <strong>E</strong> inventa critérios terapêuticos que não fazem parte da definição apresentada.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg1-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Menino de 7 anos com tosse produtiva, febre alta e prostração há 2 dias. Ao exame, macicez à percussão associada a crepitações em base pulmonar esquerda. Esse padrão semiológico é mais compatível com:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Consolidação pulmonar, já que a macicez com crepitações reflete transmissão sonora facilitada por tecido preenchido por exsudato</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Derrame pleural volumoso, pela associação clássica entre macicez e crepitações localizadas</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Pneumotórax hipertensivo, pela combinação de macicez e redução do murmúrio vesicular</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Broncoespasmo isolado, sem qualquer alteração estrutural do parênquima pulmonar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Padrão respiratório normal para a faixa etária, sem significado patológico associado</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Macicez à percussão associada a crepitações aponta para <strong>consolidação</strong>: o preenchimento alveolar por exsudato facilita a transmissão do som, gerando esse padrão semiológico combinado. <strong>B</strong> e <strong>C</strong> atribuem o achado a condições cujo padrão auscultatório costuma ser distinto (murmúrio abolido sem crepitações no derrame volumoso; hipertimpanismo, não macicez, no pneumotórax). <strong>D</strong> ignora achados estruturais evidentes ao exame. <strong>E</strong> nega achados semiológicos claramente anormais descritos no enunciado.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg1-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><figure class="fig"><img data-img="pneumonia-conceito-alveolos-normais-vs-pneumonia.jpg" alt="Esquema comparando alvéolos normais e alvéolos com pneumonia" loading="lazy" data-caption="Esquema comparando alvéolos normais e alvéolos com pneumonia"><figcaption>Esquema comparando alvéolos normais e alvéolos com pneumonia</figcaption></figure>
+<p>Segundo a definição apresentada na aula, a pneumonia é um processo inflamatório e infeccioso agudo que acomete especificamente qual território das vias respiratórias?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Vias aéreas superiores, incluindo faringe, laringe e traqueia extratorácica</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Exclusivamente a pleura visceral e parietal, sem envolvimento do parênquima pulmonar</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Exclusivamente os grandes brônquios cartilaginosos, poupando bronquíolos e alvéolos</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">O mediastino e seus linfonodos, sem repercussão direta sobre o tecido pulmonar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Vias aéreas distais — bronquíolos respiratórios e alvéolos — configurando acometimento do parênquima</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A definição da aula é explícita: pneumonia acomete as <strong>vias aéreas distais</strong> — bronquíolos respiratórios e alvéolos —, configurando doença do parênquima pulmonar. <strong>A</strong>, <strong>B</strong>, <strong>C</strong> e <strong>D</strong> deslocam o território acometido para estruturas anatômicas que não correspondem à definição apresentada.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg2" hidden>
+  <h1 class="pane-title">Pneumonia lobar</h1>
+  <div class="prose"><h2>Fisiopatologia geral das pneumonias bacterianas</h2>
+<p><strong>A invasão bacteriana do parênquima pulmonar leva a uma solidificação exsudativa (consolidação) do parênquima</strong> — o <strong>exsudato inflamatório nos alvéolos</strong> substitui o ar, causando: <strong>condensação pulmonar</strong>, <strong>aumento do peso pulmonar</strong> e <strong>alterações nas trocas gasosas</strong>.</p>
+<h2>Epidemiologia</h2>
+<ul>
+<li><strong>Incidência anual: 1,5 a 14 casos por 1.000 pessoas</strong> (dados de diferentes países)</li>
+<li><strong>2 a 2,5 milhões de mortes anuais</strong> (OMS)</li>
+<li><strong>Mais de 600 mil internações anuais no Brasil</strong> (Ministério da Saúde)</li>
+<li><strong>A maioria das pneumonias é tratada em regime ambulatorial</strong></li>
+</ul>
+<h2>Fatores de risco</h2>
+<ul>
+<li><strong>Idade:</strong> principalmente <strong>crianças (&lt; 5 anos)</strong> e <strong>idosos (&gt; 65 anos)</strong> — sistema imunológico <strong>imuno-imaturo</strong> ou <strong>imunossenescente</strong>, respectivamente</li>
+<li><strong>Estilo de vida:</strong> tabagismo, etilismo, má nutrição</li>
+<li><strong>Fatores ambientais e ocupacionais:</strong> exposição a poluentes e substâncias irritantes</li>
+<li><strong>Doenças crônicas ou debilitantes:</strong> DPOC, neoplasias, diabetes mellitus, ICC</li>
+<li><strong>Imunossupressão:</strong> AIDS, transplantados, entre outros</li>
+</ul>
+<aside class="note note-link"><p>🔗 <strong>LIGA COM A AULA 2:</strong> a <strong>DPOC</strong> aparece aqui como fator de risco para pneumonia — e a Aula 2 já explicava por quê: a hipersecreção de muco da bronquite crônica e o comprometimento estrutural do enfisema prejudicam a depuração mucociliar, um dos mecanismos de defesa pulmonar listados no Segmento 1. É um círculo que se retroalimenta — a doença estrutural favorece a infecção, e a infecção, por sua vez, é uma das causas de exacerbação da própria DPOC.</p></aside>
+<h2>As três formas morfológicas</h2>
+<ul>
+<li><strong>Pneumonia lobar</strong> — processo inflamatório <strong>uniforme</strong> nos lobos pulmonares, conferindo ao parênquima <strong>aspecto homogêneo</strong>. <mark class="exam2" data-refs="78:?">Não há destruição da parede alveolar.</mark> Exemplo clássico: <mark class="exam1" data-refs="78:?">pneumococo</mark>.</li>
+<li><strong>Broncopneumonia (pneumonia lobular)</strong> — <strong>focos inflamatórios múltiplos</strong>, acometendo os <strong>lóbulos</strong>; disseminação <strong>aérea</strong>; <mark class="exam2" data-refs="78:?">há destruição das paredes alveolares</mark>; tipicamente em <strong>crianças, idosos e debilitados</strong>.</li>
+<li><strong>Pneumonia intersticial</strong> — reação inflamatória no <strong>interstício</strong> (septos alveolares); pode ser <strong>localizada, difusa ou bilateral</strong>; exemplos: <strong>vírus, Legionella e Mycoplasma</strong> — sendo que, de forma geral, <mark class="exam1" data-refs="79:?">vírus = pneumonia intersticial</mark>.</li>
+</ul>
+<figure class="fig"><img data-img="esquema-pneumonia-lobar-acometimento.jpg" alt="Esquema comparativo entre a distribuição de lesões na pneumonia lobar e na broncopneumonia" loading="lazy" data-caption="Esquema comparativo entre a distribuição de lesões na pneumonia lobar e na broncopneumonia"><figcaption>Esquema comparativo entre a distribuição de lesões na pneumonia lobar e na broncopneumonia</figcaption></figure>
+<p>Neste esquema, observe a diferença de padrão: na <strong>pneumonia lobar</strong>, a área comprometida (em vermelho) ocupa um <strong>lobo inteiro</strong> de forma contígua e homogênea; já no esquema equivalente da broncopneumonia (próxima figura), o comprometimento aparece como <strong>múltiplos focos dispersos</strong>, cada um centrado em um lóbulo, espalhados por ambos os pulmões.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — a distinção fisiopatológica que explica por que só a broncopneumonia destrói o septo:</strong> na pneumonia lobar, a disseminação da infecção ocorre por <strong>contiguidade</strong>, através dos <strong>poros de Kohn</strong> (pequenas comunicações entre alvéolos adjacentes) — o exsudato passa de alvéolo a alvéolo sem que a arquitetura seja destruída, e por isso, quando resolve, o pulmão tende a <strong>restituição completa (<em>restitutio ad integrum</em>)</strong>. Na broncopneumonia, a disseminação é centrada nos <strong>bronquíolos</strong>, com o processo inflamatório destruindo a parede alveolar ao seu redor — daí a cicatrização, quando ocorre, deixar sequela fibrótica focal.</p></aside>
+<h2>Pneumonia lobar — morfologia em quatro fases</h2>
+<p>A evolução clássica descrita pela aula:</p>
+<ol>
+<li><strong>Fase inicial ou de congestão</strong> — <strong>hiperemia, edema, poucos neutrófilos, numerosas bactérias</strong>. Descrita como lembrando o aspecto do <strong>fígado</strong>.</li>
+<li><mark class="exam1" data-refs="78:?">Hepatização vermelha</mark> — <strong>hiperemia</strong>, com <strong>intensa exsudação de hemácias, fibrina, leucócitos e bactérias</strong>.</li>
+<li><mark class="exam1" data-refs="78:?">Hepatização cinzenta</mark> — <strong>redução da hiperemia e das bactérias</strong>; <strong>aumento de células inflamatórias e de fibrina</strong>; aspecto <strong>mais pardo-claro, pálido</strong>.</li>
+<li><strong>Resolução</strong> — <strong>diminuição progressiva do exsudato inflamatório</strong> e <strong>penetração progressiva de ar nos alvéolos</strong>.</li>
+</ol>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que "hepatização", e o que muda de uma fase para a outra em uma frase:</strong> o termo existe porque, no auge da consolidação, o parênquima pulmonar perde sua leveza esponjosa característica e passa a ter <strong>consistência firme e homogênea, à semelhança do fígado</strong>, tanto ao corte quanto à palpação. A transição de <strong>vermelha</strong> para <strong>cinzenta</strong> é, essencialmente, uma transição temporal: a fase vermelha é dominada por <strong>hemácias</strong> extravasadas (daí a cor); a fase cinzenta já eliminou boa parte das hemácias e das bactérias, e é dominada por <strong>fibrina e leucócitos</strong>, conferindo o aspecto mais pálido.</p></aside>
+<figure class="fig"><img data-img="peca-hepatizacao-vermelha-e-cinzenta-macro.jpg" alt="Peça com hepatização vermelha e cinzenta lado a lado" loading="lazy" data-caption="Peça com hepatização vermelha e cinzenta lado a lado"><figcaption>Peça com hepatização vermelha e cinzenta lado a lado</figcaption></figure>
+<p>Nesta peça, compare os dois lados: de um lado, o parênquima <strong>escuro, avermelhado e congesto</strong> — a <strong>hepatização vermelha</strong>; do outro, área de tonalidade <strong>mais clara, pardo-acinzentada</strong> — a <strong>hepatização cinzenta</strong>. Ambas mostram a mesma consistência firme, homogênea, característica da consolidação lobar.</p>
+<figure class="fig"><img data-img="peca-pneumonia-lobar-superficie-corte.jpg" alt="Peça de pneumonia lobar em corte" loading="lazy" data-caption="Peça de pneumonia lobar em corte"><figcaption>Peça de pneumonia lobar em corte</figcaption></figure>
+<p>Nesta segunda peça, observe a superfície de corte: o parênquima está <strong>uniformemente consolidado</strong>, sem a alternância de áreas normais e anormais que caracteriza a broncopneumonia — é essa homogeneidade que dá nome à forma "lobar".</p>
+<figure class="fig"><img data-img="pneumonia-lobar-histologia-panoramica.jpg" alt="Histologia panorâmica de pneumonia lobar, com preservação dos septos" loading="lazy" data-caption="Histologia panorâmica de pneumonia lobar, com preservação dos septos"><figcaption>Histologia panorâmica de pneumonia lobar, com preservação dos septos</figcaption></figure>
+<p>Na histologia panorâmica, observe que os <strong>alvéolos estão preenchidos por exsudato inflamatório denso</strong>, mas a <strong>arquitetura septal permanece preservada</strong> — os septos alveolares, embora comprimidos pelo exsudato, não estão destruídos, exatamente como descrito na morfologia: "não há destruição da parede alveolar" na pneumonia lobar.</p>
+<h3>Os dois exercícios da aula</h3>
+<p><strong>Exercício 1:</strong> peça de pneumonia lobar em determinada fase. <strong>Classificação:</strong> <strong>hepatização vermelha</strong>. <strong>Correspondente microscópico esperado:</strong> <strong>leucócitos e bactérias</strong>.</p>
+<p><strong>Exercício 2:</strong> outra peça, em fase e padrão diferentes. <strong>Classificação:</strong> <strong>hepatização cinzenta</strong>, com <strong>deposição de fibrina</strong>. <strong>Agente etiológico mais esperado:</strong> <strong><em>Pneumococcus</em></strong> (<em>S. pneumoniae</em>).</p>
+<figure class="fig"><img data-img="exercicio-hepatizacao-vermelha-macro.jpg" alt="Exercício — hepatização vermelha, macroscopia" loading="lazy" data-caption="Exercício — hepatização vermelha, macroscopia"><figcaption>Exercício — hepatização vermelha, macroscopia</figcaption></figure>
+<figure class="fig"><img data-img="exercicio-hepatizacao-cinzenta-macro-1.jpg" alt="Exercício — hepatização cinzenta, macroscopia 1" loading="lazy" data-caption="Exercício — hepatização cinzenta, macroscopia 1"><figcaption>Exercício — hepatização cinzenta, macroscopia 1</figcaption></figure>
+<p>Compare as duas peças de exercício: na primeira (hepatização <strong>vermelha</strong>), a coloração é francamente <strong>avermelhada e congesta</strong>; na segunda (hepatização <strong>cinzenta</strong>), a coloração é <strong>mais pálida, pardo-acinzentada</strong> — a comparação direta que a aula pede para treinar a datação morfológica da pneumonia lobar pela cor macroscópica.</p>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="E" data-qid="seg2-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Paciente com pneumonia lobar em fase avançada tem peça de necropsia com parênquima de coloração pardo-clara e pálida, consistência firme, homogênea. A fase morfológica correspondente e seu achado histológico predominante são:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Hepatização vermelha, com predomínio de hemácias extravasadas e poucas células inflamatórias</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Fase de congestão inicial, com hiperemia intensa e numerosas bactérias viáveis presentes</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Fase de resolução, com reaeração completa e ausência total de exsudato inflamatório residual</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Broncopneumonia em fase de confluência, com destruição extensa dos septos alveolares</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Hepatização cinzenta, com redução da hiperemia e das bactérias, e aumento de fibrina e células inflamatórias</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Coloração pardo-clara e pálida, com consistência firme e homogênea, é a descrição exata da <strong>hepatização cinzenta</strong> — fase em que a hiperemia e as bactérias diminuem, enquanto fibrina e células inflamatórias aumentam. <strong>A</strong> descreve a fase anterior (hepatização vermelha), de coloração mais escura e avermelhada. <strong>B</strong> corresponde à fase inicial, ainda hiperêmica e rica em bactérias viáveis. <strong>C</strong> exigiria reaeração e desaparecimento do exsudato, incompatível com a consistência firme descrita. <strong>D</strong> atribui o achado ao padrão morfológico errado (broncopneumonia, com destruição septal).</p></div>
+</article><article class="q" data-correct="B" data-qid="seg2-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Sobre a diferença morfológica fundamental entre pneumonia lobar e broncopneumonia, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Ambas destroem extensamente a parede alveolar, diferindo apenas na velocidade de progressão da doença entre os dois padrões</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">A pneumonia lobar acomete lobo inteiro de forma homogênea, sem destruir a parede alveolar; a broncopneumonia forma focos multilobulares com destruição septal</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">A pneumonia lobar acomete múltiplos focos dispersos; a broncopneumonia acomete sempre um lobo inteiro de forma contígua e homogênea</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A broncopneumonia nunca compromete crianças ou idosos, sendo restrita a adultos jovens previamente hígidos</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Não existe diferença morfológica relevante entre as duas formas, apenas variação na nomenclatura histórica utilizada</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a distinção central do segmento: pneumonia lobar é homogênea, contígua a um lobo inteiro, sem destruição da parede alveolar; broncopneumonia forma focos multilobulares, com destruição septal, disseminando-se por via aérea a partir dos bronquíolos. <strong>A</strong> nega a preservação septal característica da forma lobar. <strong>C</strong> inverte completamente as duas descrições. <strong>D</strong> contraria o próprio perfil epidemiológico da broncopneumonia, tipicamente mais grave em crianças, idosos e debilitados. <strong>E</strong> nega uma distinção morfológica central e amplamente discutida na aula.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg2-2">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 79, Questão 20</span><span class="q-num">3</span><div class="q-stem"><p>Paciente de 25 anos, portador de paralisia cerebral, é trazido ao hospital por familiares por apresentar desconforto respiratório há cerca de duas semanas. Ao exame físico, há tiragem nos espaços intercostais direitos. À ausculta, percebe-se abolição do murmúrio vesicular no hemitórax direito, onde também não se identifica frêmito tóraco-vocal. À percussão do hemitórax direito, obtém-se som submaciço. Qual diagnóstico justifica melhor esses achados do exame físico?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Tuberculose pulmonar, pela apresentação clínica arrastada típica da doença</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Pneumotórax, pela combinação de macicez e abolição do murmúrio vesicular</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Pneumonia lobar, pela consolidação homogênea de um lobo pulmonar inteiro</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Aspiração de corpo estranho, com obstrução brônquica completa e colabamento distal do pulmão</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Broncopneumonia multifocal, sem relação com obstrução mecânica da via aérea</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Em paciente com <strong>paralisia cerebral</strong> (risco aumentado de disfunção de deglutição/aspiração), a combinação de <strong>ausência de frêmito tóraco-vocal + abolição do murmúrio + som submaciço</strong> aponta para <strong>colabamento pulmonar por obstrução brônquica completa (aspiração de corpo estranho)</strong>, e não para consolidação infecciosa (que tipicamente preserva ou aumenta o frêmito, pela transmissão facilitada do som através de tecido sólido). <strong>B</strong> exigiria hipertimpanismo, não macicez. <strong>C</strong> e <strong>E</strong> são consolidações infecciosas, com frêmito tipicamente presente/aumentado. <strong>A</strong> não explica tão bem a instalação aguda-subaguda localizada, sem outros sinais sistêmicos de TB descritos.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg3" hidden>
+  <h1 class="pane-title">Broncopneumonia</h1>
+  <div class="prose"><h2>Morfologia</h2>
+<ul>
+<li><strong>Comprometimento focal ou multifocal</strong> dos pulmões</li>
+<li>Nos <strong>casos mais graves</strong>: <strong>confluência dos focos</strong>, com comprometimento mais extenso — configurando a chamada <strong>pneumonia pseudolobar</strong> (múltiplos focos que se fundem, mimetizando macroscopicamente a extensão de uma pneumonia lobar, mas mantendo a natureza destrutiva e multifocal de origem)</li>
+<li><strong>Hiperemia, edema, exsudato purulento</strong> na luz dos alvéolos e bronquíolos, <strong>com destruição da parede (septo) alveolar</strong></li>
+</ul>
+<figure class="fig"><img data-img="broncopneumonia-macro-focos-alveolos-normais.jpg" alt="Broncopneumonia — macroscopia com focos e alvéolos normais identificados" loading="lazy" data-caption="Broncopneumonia — macroscopia com focos e alvéolos normais identificados"><figcaption>Broncopneumonia — macroscopia com focos e alvéolos normais identificados</figcaption></figure>
+<p>Nesta peça, muito didática, as setas apontam simultaneamente os <strong>alvéolos normais</strong> (parênquima de coloração e textura habituais) e os <strong>focos broncopneumônicos</strong> (áreas nodulares, mais firmes e de coloração alterada, centradas nos lóbulos) — a alternância entre tecido normal e tecido doente, lado a lado, é a marca registrada da distribuição multifocal da broncopneumonia, em contraste direto com a homogeneidade da pneumonia lobar.</p>
+<figure class="fig"><img data-img="broncopneumonia-macro-1.jpg" alt="Broncopneumonia — peça macroscópica adicional 1" loading="lazy" data-caption="Broncopneumonia — peça macroscópica adicional 1"><figcaption>Broncopneumonia — peça macroscópica adicional 1</figcaption></figure>
+<figure class="fig"><img data-img="broncopneumonia-macro-2.jpg" alt="Broncopneumonia — peça macroscópica adicional 2" loading="lazy" data-caption="Broncopneumonia — peça macroscópica adicional 2"><figcaption>Broncopneumonia — peça macroscópica adicional 2</figcaption></figure>
+<p>Nestas duas peças, observe novamente o padrão <strong>salpicado</strong>: múltiplos focos de consolidação, de tamanhos variados, distribuídos de forma desigual pelo parênquima — bem diferente da consolidação uniforme e contígua vista no Segmento 2.</p>
+<figure class="fig"><img data-img="broncopneumonia-septos-necroticos-histologia.jpg" alt="Broncopneumonia — histologia com destruição dos septos alveolares" loading="lazy" data-caption="Broncopneumonia — histologia com destruição dos septos alveolares"><figcaption>Broncopneumonia — histologia com destruição dos septos alveolares</figcaption></figure>
+<p>Nesta lâmina, a anotação original identifica dois achados simultâneos: <mark class="exam2" data-refs="78:?">septos interalveolares necróticos</mark> (a seta amarela aponta a área onde a arquitetura septal já não é mais reconhecível, substituída por debris necróticos) e <strong>exsudato fibrino-purulento</strong> preenchendo os espaços aéreos ao redor (setas verdes). É exatamente esse achado — a <strong>destruição do septo</strong> — que falta na pneumonia lobar e que define, histologicamente, a broncopneumonia.</p>
+<figure class="fig"><img data-img="broncopneumonia-histologia-1.jpg" alt="Broncopneumonia — histologia panorâmica adicional" loading="lazy" data-caption="Broncopneumonia — histologia panorâmica adicional"><figcaption>Broncopneumonia — histologia panorâmica adicional</figcaption></figure>
+<p>Nesta segunda lâmina, compare regiões diferentes do mesmo campo: áreas com arquitetura alveolar ainda reconhecível, entremeadas a áreas onde os espaços alveolares se fundem por destruição septal — o correlato microscópico direto da confluência de focos que, macroscopicamente, gera a pneumonia pseudolobar nos casos mais graves.</p>
+<h2>Clínica — comum às pneumonias bacterianas</h2>
+<p><strong>Sintomas gerais:</strong> <mark class="exam1" data-refs="79:19">febre alta, fraqueza, inapetência, calafrios</mark>, <strong>tosse produtiva com escarro purulento</strong>.</p>
+<p><strong>Pleurite fibrinosa:</strong> quando o processo inflamatório atinge a pleura, surge <strong>dor ventilatório-dependente</strong>, que pode levar a <strong>taquicardia antálgica</strong> (aumento da frequência respiratória e cardíaca como mecanismo compensatório para minimizar a dor à inspiração profunda).</p>
+<figure class="fig"><img data-img="pleurite-fibrinosa-1.jpg" alt="Pleurite fibrinosa — peça 1" loading="lazy" data-caption="Pleurite fibrinosa — peça 1"><figcaption>Pleurite fibrinosa — peça 1</figcaption></figure>
+<figure class="fig"><img data-img="pleurite-fibrinosa-2.jpg" alt="Pleurite fibrinosa — peça 2" loading="lazy" data-caption="Pleurite fibrinosa — peça 2"><figcaption>Pleurite fibrinosa — peça 2</figcaption></figure>
+<p>Nas duas peças, a seta aponta um <strong>material fibrinoso, esbranquiçado e de aspecto irregular</strong>, recobrindo a superfície pleural — o exsudato inflamatório que causa a dor pleurítica característica, e que, se persistir, pode evoluir para aderências fibrosas entre os folhetos pleurais.</p>
+<p><strong>Radiografia de tórax:</strong> imagem de <strong>hipotransparência (condensação)</strong> — <strong>lobo radiopaco inteiro</strong>, na forma <strong>lobar</strong>; ou <strong>opacidades focais</strong>, na <strong>broncopneumonia</strong>.</p>
+<p><strong>Diagnóstico:</strong> <strong>anamnese + exame físico + exame de imagem</strong>.</p>
+<h2>Diagnóstico clínico — o exame físico sistematizado</h2>
+<ul>
+<li><strong>Inspeção:</strong> <strong>taquipneia</strong>, eventualmente <strong>tiragem</strong>; <strong>cianose</strong></li>
+<li><strong>Percussão:</strong> sinais de <strong>macicez</strong></li>
+<li><strong>Ausculta:</strong> <strong>crepitações, sibilos, roncos</strong></li>
+</ul>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="A" data-qid="seg3-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Paciente idoso, debilitado, desenvolve pneumonia bacteriana grave com múltiplos focos de consolidação que, na evolução, se tornam confluentes, mimetizando macroscopicamente uma consolidação lobar extensa. Essa apresentação é denominada:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pneumonia pseudolobar, por confluência de múltiplos focos broncopneumônicos originalmente distintos</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Pneumonia lobar clássica, por consolidação homogênea de um lobo pulmonar inteiro</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Pneumonia intersticial difusa, por acometimento primário do septo alveolar sem consolidação</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Abscesso pulmonar único, por necrose liquefativa central com formação de neocavidade</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Pneumonia atípica, por infecção primária por agente de crescimento intracelular</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a definição exata de <strong>pneumonia pseudolobar</strong>: confluência de múltiplos focos broncopneumônicos, que passam a mimetizar macroscopicamente a extensão de uma pneumonia lobar, mas mantendo a origem multifocal e destrutiva. <strong>B</strong> descreve a entidade original, homogênea desde o início, não uma confluência secundária de focos. <strong>C</strong>, <strong>D</strong> e <strong>E</strong> descrevem entidades morfologicamente distintas, sem relação com o mecanismo de confluência descrito.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg3-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><figure class="fig"><img data-img="broncopneumonia-septos-necroticos-histologia.jpg" alt="Histologia com septos necróticos e exsudato fibrino-purulento" loading="lazy" data-caption="Histologia com septos necróticos e exsudato fibrino-purulento"><figcaption>Histologia com septos necróticos e exsudato fibrino-purulento</figcaption></figure>
+<p>O achado histológico apontado pela seta amarela na imagem acima, de septos interalveolares necróticos, é característico de qual entidade, e o que o diferencia morfologicamente da pneumonia lobar?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pneumonia lobar, já que ambas as entidades destroem igualmente a parede alveolar em qualquer fase evolutiva</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Broncopneumonia, cuja destruição da parede alveolar contrasta com a preservação septal típica da pneumonia lobar</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Pneumonia intersticial viral, cujo achado predominante é sempre a necrose extensa do septo alveolar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Tuberculose primária, pela presença de necrose tecidual associada a processo inflamatório</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Abscesso pulmonar, pela formação de neocavidade central com nível hidroaéreo</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A necrose do septo interalveolar é achado característico da <strong>broncopneumonia</strong>, e é exatamente esse achado que a distingue da pneumonia lobar, onde a arquitetura septal permanece preservada mesmo com os alvéolos preenchidos por exsudato. <strong>A</strong> nega essa distinção central, citada explicitamente na aula ("não há destruição da parede alveolar" na forma lobar). <strong>C</strong>, <strong>D</strong> e <strong>E</strong> atribuem o achado a entidades com substrato morfológico distinto.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg3-2">
+  <header class="q-head"><span class="q-source adapted">Adaptada da Parcial 78, Questão Aberta 2</span><span class="q-num">3</span><div class="q-stem"><p>Homem de 65 anos, previamente hígido, procura atendimento com febre alta, tosse produtiva, dor torácica súbita e dispneia há dois dias. Ao exame físico, taquipneia, crepitações difusas à ausculta e cianose de extremidades. A radiografia de tórax revela opacidades bilaterais difusas, predominando em áreas periféricas. Exames laboratoriais mostram leucocitose com desvio à esquerda e PCR elevada. Qual o diagnóstico mais provável, considerando a clínica e o padrão de distribuição das lesões, e qual achado histológico é esperado?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pneumonia lobar, com preservação completa dos septos alveolares em toda a extensão acometida</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Broncopneumonia, com destruição de septos alveolares e exsudato neutrofílico multifocal</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Pneumonia intersticial viral, com infiltrado mononuclear predominando no septo alveolar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Tuberculose miliar, com múltiplos granulomas caseosos disseminados por via hematogênica</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Dano alveolar difuso primário, sem relação com processo infeccioso do parênquima</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O padrão de <strong>opacidades bilaterais multifocais</strong> (não um lobo único e homogêneo) associado a <strong>leucocitose neutrofílica</strong> e evolução aguda em paciente sem comorbidade prévia é o quadro clássico de <strong>broncopneumonia</strong>, cujo achado histológico é a <strong>destruição da parede alveolar</strong> pelo exsudato fibrino-purulento multifocal. <strong>A</strong> exigiria consolidação homogênea de um lobo inteiro, incompatível com opacidades multifocais bilaterais. <strong>C</strong> e <strong>D</strong> têm evolução mais arrastada, não aguda em 2 dias. <strong>E</strong> nega a origem infecciosa claramente sugerida pelo quadro.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg4" hidden>
+  <h1 class="pane-title">Complicações da pneumonia bacteriana</h1>
+  <div class="prose"><p>A aula organiza as complicações em três grupos: as relacionadas à <strong>função pulmonar</strong>, as relacionadas à <strong>evolução local da pneumonia em si</strong>, e as <strong>secundárias à bacteremia</strong>.</p>
+<h2>Complicações relacionadas à função pulmonar</h2>
+<ul>
+<li><strong>Broncoespasmo</strong> — a infecção causa <strong>hiperreatividade brônquica secundária</strong></li>
+<li><strong>Insuficiência respiratória</strong> — a <strong>ocupação dos alvéolos pelo exsudato inflamatório</strong> causa <strong>alteração da relação ventilação-perfusão (V/Q)</strong>, resultando em <strong>hipoxemia</strong></li>
+<li><strong>Atelectasia</strong> — a <strong>ocupação dos alvéolos pelo exsudato</strong> leva a <strong>retenção de secreções e obstrução brônquica</strong>, culminando em colapso</li>
+</ul>
+<aside class="note note-link"><p>🔗 <strong>LIGA COM A AULA 1 DE RESPIRATÓRIO:</strong> esta é exatamente a <strong>atelectasia por absorção/obstrução</strong> discutida na Aula 1 (Distúrbios Circulatórios Pulmonares) — aqui, o agente obstrutivo é a própria secreção retida por causa da pneumonia, em vez de um tumor ou corpo estranho, mas o mecanismo final (obstrução completa → reabsorção do ar aprisionado → colabamento) é idêntico.</p></aside>
+<h2>Complicações da evolução da pneumonia em si</h2>
+<ul>
+<li><strong>Derrame pleural</strong> — consequência do <strong>processo inflamatório pleural</strong>; <strong>resolução geralmente espontânea</strong>; <strong>bastante comum (≈ 40% dos doentes internados)</strong></li>
+<li><mark class="exam2" data-refs="78:5">Empiema</mark> — <strong>acúmulo de pus no espaço pleural</strong> (um espaço <strong>já existente</strong> anatomicamente)</li>
+<li><mark class="exam5" data-refs="78:5,79:aberta3,80:1,81:18,78:6">Abscesso pulmonar</mark> — <strong>acúmulo de pus</strong> em uma <strong>neocavidade</strong> (um espaço que <strong>não existia antes</strong>, formado pela própria destruição tecidual)</li>
+</ul>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — a distinção empiema x abscesso é puramente topográfica, e é a pegadinha mais comum deste tópico:</strong> o critério que separa as duas entidades não é o tipo de pus nem o agente causador — é <strong>onde</strong> o pus se acumula. No <strong>empiema</strong>, o pus ocupa o <strong>espaço pleural</strong>, uma cavidade virtual que já existe normalmente entre os folhetos visceral e parietal. No <strong>abscesso</strong>, o pus ocupa uma <strong>neocavidade</strong>, formada dentro do próprio parênquima pulmonar pela destruição do tecido — um espaço que não existia antes da doença.</p></aside>
+<h2>Abscesso pulmonar — em detalhe</h2>
+<p><strong>Definição:</strong> <strong>coleção de pus na intimidade do órgão</strong>, resultante de <strong>agressão e destruição/necrose tecidual</strong>, com <strong>formação de neocavidade</strong>.</p>
+<p><strong>Agentes:</strong> <strong>anaeróbios da microbiota oral</strong>; e os próprios <strong>agentes causadores de pneumonias</strong> — quando o abscesso decorre de <mark class="exam5" data-refs="78:5,79:aberta3,80:1,81:18,78:6">embolia séptica a partir de endocardite infecciosa (valva tricúspide, usuários de drogas injetáveis)</mark>, o agente mais esperado é o <mark class="exam5" data-refs="78:6,79:aberta3,78:5,80:1,81:18">Staphylococcus aureus</mark>.</p>
+<p><strong>Macroscopia:</strong> <strong>tamanho e forma variáveis</strong>; <strong>único ou múltiplos</strong>; <strong>nível hidroaéreo</strong>.</p>
+<figure class="fig"><img data-img="abscesso-pulmonar-radiografia-nivel-hidroaereo.jpg" alt="Radiografia de abscesso pulmonar com nível hidroaéreo" loading="lazy" data-caption="Radiografia de abscesso pulmonar com nível hidroaéreo"><figcaption>Radiografia de abscesso pulmonar com nível hidroaéreo</figcaption></figure>
+<p>Na radiografia, observe a cavidade de paredes espessadas, contendo uma <strong>linha horizontal nítida</strong> que separa uma porção inferior mais densa (líquido/pus) de uma porção superior mais radiotransparente (ar) — o clássico <strong>nível hidroaéreo</strong>, formado porque o gás produzido pela infecção (ou aprisionado durante a comunicação com a via aérea) se acumula acima do líquido purulento mais denso, e a imagem muda de configuração conforme a posição do paciente.</p>
+<figure class="fig"><img data-img="abscesso-pulmonar-macro-cavidades.jpg" alt="Abscesso pulmonar — macroscopia com cavidades" loading="lazy" data-caption="Abscesso pulmonar — macroscopia com cavidades"><figcaption>Abscesso pulmonar — macroscopia com cavidades</figcaption></figure>
+<p>Nesta peça de corte, observe as <strong>cavidades irregulares</strong> escavadas dentro do parênquima, de bordas necróticas e conteúdo removido (esvaziado durante o processamento da peça) — o correlato macroscópico direto do nível hidroaéreo visto na radiografia.</p>
+<p><strong>Microscopia:</strong> <strong>exsudato fibrino-purulento</strong>.</p>
+<figure class="fig"><img data-img="abscesso-pulmonar-histologia.jpg" alt="Abscesso pulmonar — histologia" loading="lazy" data-caption="Abscesso pulmonar — histologia"><figcaption>Abscesso pulmonar — histologia</figcaption></figure>
+<p>Na lâmina, o campo é dominado por um infiltrado denso de células inflamatórias agudas (neutrófilos) misturado a debris necróticos e material fibrinoso — a contrapartida microscópica da destruição tecidual que forma a neocavidade vista na macroscopia.</p>
+<h2>Complicações secundárias à bacteremia</h2>
+<p>Quando bactérias entram na circulação a partir do foco pulmonar:</p>
+<ul>
+<li><strong>Lesão de outros órgãos → SIRS (síndrome da resposta inflamatória sistêmica) → choque séptico</strong></li>
+<li><mark class="exam1" data-refs="78:?">CIVD (coagulação intravascular disseminada)</mark> — ativação exagerada da coagulação nos vasos, podendo causar <strong>trombos</strong>; mecanismo: a <strong>bactéria dentro do vaso pode levar à lesão endotelial</strong></li>
+</ul>
+<aside class="note note-link"><p>🔗 <strong>LIGA COM CARDIOVASCULAR:</strong> a lesão endotelial disparando ativação exagerada da coagulação reproduz, num contexto sistêmico e agudo, o <strong>primeiro vértice da tríade de Virchow</strong> discutida na Aula 1 de Respiratório — ali, a lesão endotelial era um dos três fatores predispondo à trombose venosa localizada (TVP/TEP); aqui, a mesma lesão endotelial, generalizada pela bacteremia, desencadeia coagulação disseminada em múltiplos leitos vasculares ao mesmo tempo.</p></aside>
+<h2>Evolução</h2>
+<p>Depende da <strong>virulência do agente etiológico</strong>, do <strong>hospedeiro</strong> e da <strong>extensão da pneumonia</strong>.</p>
+<ul>
+<li><strong>Tratamento eficaz</strong> → <strong>cura</strong>, com <strong>eliminação do micro-organismo, reabsorção do material e reaeração pulmonar</strong></li>
+<li><strong>Ou resolução incompleta</strong> → <strong>proliferação de tecido conjuntivo</strong>, formando <strong>cicatrizes</strong></li>
+<li><strong>Evolução fatal</strong> — causa importante de morte em pacientes com <strong>doenças crônicas debilitantes</strong></li>
+</ul>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="D" data-qid="seg4-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Paciente com pneumonia bacteriana evolui, dias depois, com radiografia mostrando cavidade pulmonar de paredes espessadas contendo nível hidroaéreo, dentro do próprio parênquima pulmonar. Esse achado corresponde a:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Empiema, por acúmulo de pus dentro do espaço pleural já existente anteriormente</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Derrame pleural simples, por transudato acumulado no espaço pleural adjacente ao pulmão</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Pneumonia lobar em fase de resolução, sem qualquer formação cavitária associada ao quadro</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Abscesso pulmonar, por acúmulo de pus em neocavidade formada pela destruição do parênquima</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Broncopneumonia não complicada, sem qualquer componente necrótico ou cavitário presente</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Cavidade com nível hidroaéreo dentro do próprio parênquima, formada pela destruição tecidual, é a definição de <strong>abscesso pulmonar</strong> — uma neocavidade, e não o espaço pleural preexistente do empiema. <strong>A</strong> e <strong>B</strong> deslocam o achado para o espaço pleural, compartimento anatômico diferente do descrito. <strong>C</strong> e <strong>E</strong> negam um achado cavitário claramente descrito no enunciado.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg4-1">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 78, Questão 5</span><span class="q-num">2</span><div class="q-stem"><p>Paciente de 68 anos, com nefropatia diabética em diálise, sem cardiopatia prévia, apresenta quadro febril com sinais de insuficiência cardíaca. O ecocardiograma mostra vegetação em valva tricúspide, sem outras alterações valvares. Internado, mantém febre persistente e deteriora clinicamente, falecendo após 5 dias. À necropsia, observa-se cavitação pulmonar com coleção purulenta em pulmão direito, além de destruição dos folhetos da valva tricúspide. A alteração pulmonar observada e o provável motivo do seu surgimento são, respectivamente:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Empiema pleural e embolia séptica a partir da vegetação tricúspide</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Empiema pleural, secundário à disseminação por contiguidade de uma broncopneumonia</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Abscesso pulmonar e embolia séptica a partir de fragmentos da vegetação tricúspide</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Abscesso pulmonar, secundário à disseminação por via aérea a partir de broncopneumonia</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Consolidação lobar homogênea, sem relação com o quadro cardíaco de base</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A cavitação pulmonar com coleção purulenta <strong>dentro do parênquima</strong> (neocavidade) define <strong>abscesso pulmonar</strong>, e não empiema (que ocuparia o espaço pleural). O mecanismo, em paciente com <strong>endocardite de valva tricúspide</strong>, é a <strong>embolia séptica</strong>: fragmentos da vegetação se desprendem, migram pela circulação venosa e alojam-se em ramos da artéria pulmonar, levando à necrose/infecção local. <strong>A</strong> e <strong>B</strong> deslocam o achado para o espaço pleural, incompatível com "cavitação... em pulmão". <strong>D</strong> atribui o mecanismo à via aérea, não à disseminação hematogênica a partir do coração direito. <strong>E</strong> ignora achados cavitários evidentes.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg4-2">
+  <header class="q-head"><span class="q-source adapted">Adaptada da Parcial 79, Questão Aberta 3</span><span class="q-num">3</span><div class="q-stem"><p>Homem de 38 anos, morador de rua, usuário de drogas injetáveis, inicia quadro de mal-estar, prostração e febre há quatro dias, sem doenças prévias conhecidas. Ao exame físico: FC 112 bpm, FR 20 irpm, turgência jugular e discreta hepatomegalia, sem edema de membros inferiores. Ausculta cardíaca revela sopro sistólico em foco tricúspide. O ecocardiograma mostra lesão de 10 mm na face atrial da valva tricúspide, sem valvopatia prévia. Radiografia pulmonar sugere abscesso. Qual o agente etiológico mais esperado, e por qual mecanismo o paciente evoluiu com abscesso pulmonar?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Streptococcus viridans, por disseminação linfática a partir de foco odontogênico</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Staphylococcus aureus, por embolia séptica a partir da vegetação tricúspide desprendida</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Streptococcus pneumoniae, por broncoaspiração de secreção orofaríngea colonizada</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Pseudomonas aeruginosa, por disseminação direta a partir de cateter venoso central</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Mycobacterium tuberculosis, por reativação de foco latente em usuário imunossuprimido</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Em <strong>usuário de drogas injetáveis</strong> com endocardite de valva <strong>tricúspide</strong> (padrão típico desse grupo de risco), o agente mais esperado é o <strong>Staphylococcus aureus</strong>. O abscesso pulmonar resulta de <strong>embolia séptica</strong>: parte da vegetação se desprende da tricúspide, obstrui um ramo da artéria pulmonar e leva à necrose/infecção local do parênquima. <strong>A</strong> e <strong>C</strong> são agentes mais associados a endocardite de valvas esquerdas prévias ou a pneumonia adquirida na comunidade, não a esse perfil de risco. <strong>D</strong> e <strong>E</strong> não se encaixam no mecanismo embólico descrito a partir da vegetação valvar.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg5" hidden>
+  <h1 class="pane-title">Pneumonia viral (pneumonia intersticial)</h1>
+  <div class="prose"><h2>Características gerais</h2>
+<p><strong>Alterações inflamatórias pulmonares envolvendo o interstício</strong> (septos alveolares).</p>
+<ul>
+<li><strong>Manifestações clínicas mais brandas</strong> (em comparação com a pneumonia bacteriana)</li>
+<li><strong>Não há consolidação pulmonar</strong></li>
+<li><strong>Pode não apresentar alterações ao raio-X</strong></li>
+<li><strong>Padrão arrastado</strong>, podendo cursar com <strong>insuficiência respiratória</strong> — evolução ao longo de <strong>semanas</strong></li>
+</ul>
+<p><strong>Distribuição:</strong> <strong>localizada ou difusa</strong>, <strong>uni ou bilateral</strong>.</p>
+<p><strong>Achado histológico central:</strong> <mark class="exam1" data-refs="79:21">infiltrado inflamatório mononuclear</mark> — <strong>linfócitos, macrófagos, plasmócitos</strong> (em contraste direto com o infiltrado <strong>neutrofílico</strong> predominante da pneumonia bacteriana, visto nos Segmentos 2 e 3). Somam-se <strong>congestão e edema</strong>.</p>
+<p><strong>Etiologia viral:</strong> <strong>VSR (vírus sincicial respiratório), influenza, adenovírus, vírus herpes, CMV, vírus do sarampo</strong>; e, mais recentemente, <strong>SARS-CoV-2 → COVID-19</strong>.</p>
+<h2>Mecanismo de lesão</h2>
+<p><mark class="exam2" data-refs="81:5">Agressão celular com lesão da membrana alvéolo-capilar</mark> → <strong>aumento da permeabilidade vascular</strong> e <mark class="exam2" data-refs="81:5">formação de membrana hialina</mark>.</p>
+<aside class="note note-link"><p>🔗 <strong>LIGA COM A AULA 1 DE RESPIRATÓRIO:</strong> este é exatamente o mecanismo do <strong>dano alveolar difuso (DAD)</strong> estudado na Aula 1 — ali, a agressão à barreira alvéolo-capilar podia ter causas pulmonares (pneumonia, aspiração) ou extrapulmonares (sepse, pancreatite); aqui, a aula nomeia especificamente a <strong>infecção viral</strong> como um dos agentes agressores diretos dessa mesma barreira, formando o mesmo tipo de membrana hialina eosinofílica já estudada. O caso da Aula 1 (paciente com COVID-19 evoluindo para SARA) é, na prática, uma pneumonia intersticial viral levada ao seu desfecho morfológico mais grave.</p></aside>
+<figure class="fig"><img data-img="pneumonia-viral-exsudato-fibrinoso-intraalveolar.jpg" alt="Pneumonia viral — exsudato fibrinoso intra-alveolar" loading="lazy" data-caption="Pneumonia viral — exsudato fibrinoso intra-alveolar"><figcaption>Pneumonia viral — exsudato fibrinoso intra-alveolar</figcaption></figure>
+<p>Nesta lâmina, as setas apontam um material <strong>eosinofílico</strong>, revestindo a parede interna dos espaços alveolares — o <strong>exsudato fibrinoso intra-alveolar</strong>, estágio inicial da formação da membrana hialina descrita no mecanismo acima, exatamente a mesma lesão vista na fase aguda do DAD.</p>
+<figure class="fig"><img data-img="pneumonia-viral-fibrina-celulas-inflamatorias.jpg" alt="Pneumonia viral — grumos de fibrina e células inflamatórias" loading="lazy" data-caption="Pneumonia viral — grumos de fibrina e células inflamatórias"><figcaption>Pneumonia viral — grumos de fibrina e células inflamatórias</figcaption></figure>
+<p>Aqui, o mesmo tipo de achado é detalhado em maior aumento: <strong>grumos de fibrina</strong> entremeados a <strong>células inflamatórias</strong>, aderidos à parede alveolar — o substrato morfológico da lesão progressiva da barreira alvéolo-capilar pela agressão viral direta.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que a pneumonia viral não consolida como a bacteriana, mesmo lesando gravemente o pulmão:</strong> a diferença está em <strong>onde</strong> o processo inflamatório se concentra. Na pneumonia bacteriana, o exsudato <strong>preenche a luz alveolar</strong> de forma maciça (é isso que gera a consolidação radiológica e a macicez à percussão). Na pneumonia viral, o processo é primariamente <strong>intersticial</strong> — o infiltrado mononuclear espessa os <strong>septos</strong>, e apenas nos casos mais graves (quando evolui para DAD) é que material eosinofílico passa a revestir também a luz alveolar, como membrana hialina. É por isso que a radiografia pode ser normal ou mostrar apenas infiltrado intersticial sutil, mesmo com sintomas respiratórios significativos.</p></aside>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg5-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Paciente com quadro respiratório de instalação arrastada, ao longo de duas semanas, com sintomas relativamente brandos e radiografia de tórax inicialmente normal, evolui posteriormente com infiltrado intersticial bilateral. O padrão morfológico e o tipo de infiltrado inflamatório esperado são:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pneumonia lobar, com infiltrado neutrofílico denso preenchendo maciçamente a luz alveolar</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Pneumonia intersticial, com infiltrado mononuclear — linfócitos, macrófagos e plasmócitos — no septo alveolar</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Broncopneumonia, com destruição séptica da parede alveolar e infiltrado purulento multifocal</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Abscesso pulmonar, com necrose liquefativa central e formação de neocavidade parenquimatosa</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Empiema pleural, com acúmulo purulento no espaço pleural já existente previamente</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Instalação arrastada, sintomas brandos, radiografia inicialmente normal e infiltrado intersticial bilateral correspondem ao padrão da <strong>pneumonia intersticial</strong>, com infiltrado inflamatório <strong>mononuclear</strong> (linfócitos, macrófagos, plasmócitos) no septo alveolar — perfil típico de etiologia viral. <strong>A</strong> e <strong>C</strong> exigiriam consolidação e infiltrado neutrofílico denso, incompatíveis com o quadro arrastado e brando descrito. <strong>D</strong> e <strong>E</strong> são complicações locais da pneumonia bacteriana, sem relação com o padrão intersticial e mononuclear do enunciado.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg5-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Sobre o mecanismo de lesão na pneumonia viral, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O mecanismo central é a obstrução mecânica brônquica por secreção espessa, sem qualquer lesão da barreira alvéolo-capilar</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">A lesão ocorre exclusivamente por ação direta de toxinas bacterianas coinfectantes, sem participação viral primária</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">O vírus causa exclusivamente broncoconstrição reflexa, sem qualquer repercussão sobre o parênquima pulmonar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A membrana hialina formada na pneumonia viral tem composição estrutural distinta da observada no dano alveolar difuso</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">A agressão celular direta lesa a membrana alvéolo-capilar, aumentando a permeabilidade vascular e formando membrana hialina</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o mecanismo central descrito na aula: agressão celular direta lesando a barreira alvéolo-capilar, aumentando a permeabilidade e formando membrana hialina. <strong>A</strong>, <strong>B</strong> e <strong>C</strong> propõem mecanismos alternativos (obstrutivo, bacteriano secundário, puramente reflexo) que não correspondem ao mecanismo de agressão direta descrito. <strong>D</strong> nega a equivalência morfológica entre a membrana hialina da pneumonia viral grave e a do dano alveolar difuso, que é exatamente o mesmo tipo de lesão.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg5-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><figure class="fig"><img data-img="pneumonia-viral-exsudato-fibrinoso-intraalveolar.jpg" alt="Histologia com exsudato fibrinoso revestindo a parede alveolar" loading="lazy" data-caption="Histologia com exsudato fibrinoso revestindo a parede alveolar"><figcaption>Histologia com exsudato fibrinoso revestindo a parede alveolar</figcaption></figure>
+<p>O achado apontado pelas setas na imagem acima representa um estágio inicial de qual processo, também discutido em outra aula do curso?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Formação de placa ateromatosa, processo típico da parede de artérias de médio e grande calibre</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Formação de granuloma caseoso, achado característico e específico da tuberculose pulmonar</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Formação de trombo mural, processo tipicamente observado no interior de câmaras cardíacas dilatadas</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Formação de membrana hialina, estágio inicial do dano alveolar difuso por agressão à barreira alvéolo-capilar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Formação de nódulo de Aschoff, achado patognomônico e específico da febre reumática</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O material eosinofílico revestindo a parede alveolar representa o estágio inicial da <strong>membrana hialina</strong>, parte do espectro do dano alveolar difuso — o mesmo processo estudado na Aula 1 de Respiratório a propósito da SARA. <strong>A</strong>, <strong>B</strong>, <strong>C</strong> e <strong>E</strong> atribuem o achado a lesões morfologicamente distintas, estudadas em outros contextos (aterosclerose, tuberculose, trombose cardíaca e febre reumática, respectivamente), sem relação com o achado alveolar mostrado.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg6" hidden>
+  <h1 class="pane-title">Tuberculose</h1>
+  <div class="prose"><h2>Epidemiologia</h2>
+<ul>
+<li><strong>Alta morbidade e mortalidade</strong></li>
+<li><strong>10 a 11 milhões de novos casos por ano</strong> (OMS)</li>
+<li><strong>1 a 1,4 milhões de mortes por ano</strong> (OMS)</li>
+<li><strong>30 países respondem por 86% dos casos no mundo</strong> — o <strong>Brasil está nessa lista</strong></li>
+<li>Associação com <strong>pobreza, saneamento básico precário, desnutrição, alcoolismo, doenças debilitantes crônicas e imunossupressão</strong></li>
+<li><strong>Brasil: permanece como centro endêmico</strong></li>
+<li><strong>Países industrializados:</strong> praticamente erradicada por volta de <strong>1950</strong>, mas <strong>retornou</strong> — a anotação da aula resume o porquê em três palavras: <strong>"a AIDS reinventou a doença"</strong></li>
+</ul>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que a epidemia de HIV/AIDS teve esse efeito tão específico sobre a tuberculose:</strong> a defesa do hospedeiro contra o <em>M. tuberculosis</em> depende criticamente de uma resposta <strong>Th1</strong> mediada por linfócitos <strong>CD4+</strong>, que ativam macrófagos via IFN-γ (você verá esse mecanismo em detalhe adiante). A infecção pelo HIV depleta exatamente essa população de linfócitos CD4+ — retirando a peça central da defesa imunológica contra a micobactéria. O resultado é duplo: pessoas com infecção latente reativam a doença (tuberculose secundária) em taxas muito mais altas, e novos contatos evoluem com maior frequência para doença ativa já na primoinfecção (formas primárias progressivas). É por isso que a coinfecção TB-HIV é considerada, até hoje, uma das combinações mais devastadoras da saúde pública global.</p></aside>
+<h2>Agente e transmissão</h2>
+<p><strong>Agente:</strong> <strong><em>Mycobacterium tuberculosis</em></strong> — o <strong>bacilo de Koch (BK)</strong>.</p>
+<aside class="note note-fix"><p>⚠️ <strong>CORREÇÃO:</strong> a anotação do slide também cita "bacilo de Calmette-Guérin (BCG)" como sinônimo — mas isso é um equívoco a corrigir na sua revisão. <strong>BCG</strong> é o nome da <strong>vacina</strong> (<em>Bacillus Calmette-Guérin</em>), preparada a partir de uma cepa <strong>atenuada</strong> de <em>Mycobacterium bovis</em>, e não um sinônimo do próprio agente causador da doença. O agente etiológico da tuberculose é exclusivamente o <em>M. tuberculosis</em> (bacilo de Koch); BCG é a ferramenta profilática desenvolvida a partir de um micro-organismo relacionado, porém distinto.</p></aside>
+<p><strong>Transmissão:</strong> <strong>pessoa a pessoa, por aerossóis</strong> — de um <strong>caso ativo</strong> para um <strong>hospedeiro suscetível</strong>.</p>
+<p><strong>Mecanismo de lesão:</strong> <strong>reação de hipersensibilidade a antígenos do bacilo</strong> — <strong>linfócitos Th1 estimulam macrófagos a matar as bactérias</strong>, e é esse próprio processo imunológico que causa <strong>lesão tecidual</strong>. Ou seja: boa parte do dano da tuberculose não é causado diretamente pelo bacilo, mas pela <strong>resposta imune do hospedeiro</strong> contra ele.</p>
+<h2>Reações do hospedeiro</h2>
+<ul>
+<li><strong>Resposta imunitária inata (inespecífica)</strong></li>
+<li><strong>Reação imunitária adaptativa (específica) → granulomatosa</strong></li>
+<li>Os bacilos <strong>"escapam" dos mecanismos de fagocitose</strong> convencionais</li>
+<li><strong>BAAR</strong> (bacilo álcool-ácido resistente), de <strong>crescimento lento</strong>, <strong>aeróbio estrito</strong> — por isso tem preferência por localizações com <strong>altos teores de oxigênio</strong>: os <strong>ápices pulmonares</strong></li>
+</ul>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que o bacilo "escapa" da fagocitose, e por que isso importa:</strong> a parede celular micobacteriana, rica em ácidos micólicos (a mesma característica que confere a propriedade álcool-ácido resistente, usada no diagnóstico pela coloração de Ziehl-Neelsen), impede a fusão eficiente entre o fagossomo (onde o macrófago engolfa o bacilo) e o lisossomo (que conteria as enzimas digestivas). O bacilo sobrevive e se multiplica <strong>dentro</strong> do próprio macrófago que deveria destruí-lo — um parasitismo intracelular que só é controlado quando o macrófago é <strong>ativado</strong> por citocinas de linfócitos T (a "reação produtiva" que você verá adiante).</p></aside>
+<h2>Dois tipos fisiopatológicos</h2>
+<ul>
+<li><mark class="exam3" data-refs="78:13">Tuberculose primária</mark> — hospedeiro <strong>não imune</strong> (ainda não sensibilizado)</li>
+<li><mark class="exam3" data-refs="78:13">Tuberculose secundária</mark> — hospedeiro <strong>imune</strong> (já sensibilizado previamente); <mark class="exam3" data-refs="78:13">os sintomas costumam ser mais evidentes na forma secundária do que na primária</mark></li>
+</ul>
+<h2>Tuberculose primária — as quatro reações</h2>
+<p><strong>Definição:</strong> primeira infecção com o BK. <strong>Mais comum em crianças</strong> (primeiro contato). <strong>Na maioria dos indivíduos, é assintomática, com evolução "benigna", evoluindo para cura.</strong></p>
+<p><strong>1 — Reação exsudativa</strong>
+- <strong>Inalação dos bacilos</strong>, que chegam aos <strong>alvéolos</strong>
+- Resposta inicial: <strong>macrófagos alveolares e neutrófilos</strong>
+- <strong>Nas 3 primeiras semanas:</strong> resposta inflamatória pulmonar <strong>inespecífica</strong>
+- <strong>Alveolite aguda:</strong> necrose de alvéolos; exsudato de <strong>fibrina e neutrófilos</strong>; <strong>bacilos viáveis</strong>
+- <strong>Proliferação dos bacilos</strong>, que, nesta fase, ainda não encontram oposição imunológica específica eficaz</p>
+<p><strong>2 — Reação produtiva</strong>
+- <strong>Segunda linha de defesa</strong>
+- Os macrófagos que fagocitaram os bacilos (sem conseguir destruí-los) são <strong>modulados por linfócitos T (Th1)</strong>
+- As citocinas liberadas, especialmente o <strong>IFN-γ</strong>, <strong>ativam os macrófagos</strong>, que se transformam em <strong>células epitelioides</strong> e, por fusão, em <strong>células gigantes multinucleadas</strong>
+- O resultado é a formação dos <strong>granulomas da tuberculose</strong></p>
+<p><strong>3 — Reação produtivo-caseosa</strong>
+- <strong>Macrófagos, células epitelioides e linfócitos T causam a morte dos bacilos</strong> dentro do granuloma
+- Forma-se a <mark class="exam3" data-refs="78:4,79:21">necrose caseosa no centro do granuloma</mark> — o preço tecidual dessa vitória imunológica local</p>
+<p><strong>4 — Reação de cicatrização</strong>
+- <strong>Morte dos bacilos</strong>
+- <strong>Macrófagos secretam fator de crescimento de fibroblastos</strong>, promovendo <strong>reparação</strong> — <strong>cicatrização e calcificação</strong> da lesão</p>
+<figure class="fig"><img data-img="granuloma-histologia-reacao-produtiva.jpg" alt="Granuloma — histologia da reação produtiva" loading="lazy" data-caption="Granuloma — histologia da reação produtiva"><figcaption>Granuloma — histologia da reação produtiva</figcaption></figure>
+<p>Nesta lâmina, observe a estrutura arredondada, bem delimitada, composta por células de citoplasma abundante e róseo (<strong>células epitelioides</strong> — macrófagos ativados e transformados) circundadas por um halo de linfócitos — a arquitetura clássica do <strong>granuloma tuberculoso</strong> na fase produtiva, ainda sem necrose central extensa.</p>
+<figure class="fig"><img data-img="necrose-caseosa-histologia.jpg" alt="Necrose caseosa — histologia" loading="lazy" data-caption="Necrose caseosa — histologia"><figcaption>Necrose caseosa — histologia</figcaption></figure>
+<p>Aqui, o campo mostra material <strong>amorfo, eosinofílico, granular</strong>, sem estrutura celular reconhecível — a <strong>necrose caseosa</strong>, que ocupa o centro do granuloma na fase produtivo-caseosa. O nome "caseosa" (do latim <em>caseus</em>, queijo) vem justamente do aspecto macroscópico esbranquiçado e friável desse material, que lembra queijo cottage ao corte da peça.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que a necrose caseosa é morfologicamente única, e vale comparar com o que vocês já viram nas aulas de cardiovascular:</strong> ao contrário da necrose de <strong>coagulação</strong> do infarto do miocárdico ou pulmonar (que preserva o contorno das células mortas por dias, como discutido nas aulas anteriores), a necrose caseosa <strong>não preserva nenhum contorno celular reconhecível</strong> — é um material amorfo e granular do início ao fim. Isso reflete a natureza mista de sua origem: não é apenas isquemia (como no infarto), mas uma combinação de morte celular direta pelos produtos bacterianos e destruição enzimática pela própria resposta imune do hospedeiro tentando conter a infecção.</p></aside>
+<h2>Complexo primário da tuberculose (complexo de Ghon)</h2>
+<p><strong>Composição:</strong>
+- <strong>Resposta inflamatória inicial</strong> no parênquima pulmonar → conjunto de granulomas → <mark class="exam2" data-refs="78:13">Nódulo de Ghon</mark>
+- <strong>Disseminação bacilar por linfáticos e linfonodos hilares</strong> → <strong>linfadenite granulomatosa</strong></p>
+<p>O conjunto — nódulo pulmonar periférico + linfonodo hilar acometido, ligados pelo trajeto linfático — recebe também o nome de <strong>lesão em halteres</strong>, pela sua configuração visual característica.</p>
+<figure class="fig"><img data-img="complexo-primario-lesao-em-halteres-esquema.jpg" alt="Esquema do complexo primário / lesão em halteres" loading="lazy" data-caption="Esquema do complexo primário / lesão em halteres"><figcaption>Esquema do complexo primário / lesão em halteres</figcaption></figure>
+<p>No esquema, identifique os três elementos: o <strong>nódulo de Ghon</strong>, na periferia do parênquima pulmonar (geralmente subpleural); o <strong>linfonodo hilar/satélite</strong>, aumentado por linfadenite granulomatosa; e o <strong>trajeto linfático</strong> que os conecta — a "haste" que liga as duas "cabeças" do halter, dando nome à configuração.</p>
+<figure class="fig"><img data-img="complexo-primario-tbc-macro.jpg" alt="Peça macroscópica do complexo primário da tuberculose" loading="lazy" data-caption="Peça macroscópica do complexo primário da tuberculose"><figcaption>Peça macroscópica do complexo primário da tuberculose</figcaption></figure>
+<p>Nesta peça, observe o pequeno foco de consolidação/necrose no parênquima periférico — o correlato macroscópico do nódulo de Ghon dentro do complexo primário.</p>
+<h2>Evolução do complexo primário</h2>
+<ul>
+<li><strong>Cura:</strong> a <strong>maioria dos casos</strong></li>
+<li><strong>Latência:</strong> em algumas pessoas, <strong>alguns bacilos podem permanecer latentes</strong>, sem lesão ativa, mas <strong>viáveis</strong> — o substrato da futura tuberculose <strong>secundária</strong> (reativação)</li>
+<li><strong>Tuberculose doença (&lt; 5% dos casos):</strong> não há cura da infecção; os bacilos persistem no tecido e podem se disseminar, seja para os próprios pulmões (<strong>TBC primária progressiva</strong>), seja para outros órgãos — configurando <strong>pneumonia caseosa</strong> ou <mark class="exam3" data-refs="78:12,78:14">tuberculose miliar</mark> — <mark class="exam2" data-refs="78:14">a forma miliar não é exclusiva da tuberculose secundária: pode ocorrer também na primária progressiva</mark></li>
+</ul>
+<figure class="fig"><img data-img="fluxograma-tuberculose-primaria.jpg" alt="Fluxograma da tuberculose primária" loading="lazy" data-caption="Fluxograma da tuberculose primária"><figcaption>Fluxograma da tuberculose primária</figcaption></figure>
+<p>Este fluxograma resume toda a evolução possível após o <strong>primeiro contato com o BK</strong>: formação do <strong>complexo de Ghon</strong> → <strong>resolução (cura)</strong>, na maioria dos casos; ou <strong>tuberculose primária progressiva</strong>, que pode seguir por <strong>disseminação sanguínea</strong> (levando a forma <strong>miliar</strong> ou a <strong>órgãos isolados</strong>) ou por <strong>disseminação linfática</strong>; ou ainda <strong>latência</strong>, um estado intermediário sem doença ativa, mas com bacilos viáveis retidos.</p>
+<h2>Tuberculose secundária</h2>
+<ul>
+<li><strong>Mais comum em adultos</strong></li>
+<li><strong>Indivíduo previamente sensibilizado</strong></li>
+<li><strong>Reativação</strong> (nos <strong>ápices pulmonares</strong> — mesma preferência topográfica explicada pelo tropismo por alto teor de oxigênio) de uma <strong>forma latente</strong>, <strong>OU reinfecção</strong> por novo contato</li>
+</ul>
+<p><strong>Formas macroscópicas principais:</strong>
+- <strong>TBC cavernosa:</strong> <strong>necrose extensa</strong>, com <strong>material necrótico que liquefaz</strong> — formando cavidades verdadeiras (diferente da necrose caseosa "sólida" e granular da forma primária)
+- <mark class="exam3" data-refs="78:12,78:14">TBC miliar:</mark> os <strong>bacilos penetram nos vasos sanguíneos</strong>, implantando o agente <strong>no pulmão ou em outros órgãos</strong> — <mark class="exam3" data-refs="78:12,78:14">disseminação hematogênica</mark>, gerando múltiplos focos puntiformes espalhados, semelhantes visualmente a grãos de <strong>milho</strong> ("miliar", do latim <em>milium</em>) — <mark class="exam3" data-refs="78:12">a hepatoesplenomegalia associada reflete comprometimento disseminado do sistema linfático/reticuloendotelial</mark></p>
+<figure class="fig"><img data-img="tuberculose-cavernosa-macro.jpg" alt="Tuberculose cavernosa — peça macroscópica" loading="lazy" data-caption="Tuberculose cavernosa — peça macroscópica"><figcaption>Tuberculose cavernosa — peça macroscópica</figcaption></figure>
+<p>Nesta peça, observe as <strong>cavidades</strong> de paredes irregulares e espessadas, escavadas no parênquima pulmonar — o resultado da liquefação do material necrótico na forma cavernosa da tuberculose secundária, tipicamente localizada nos ápices.</p>
+<figure class="fig"><img data-img="tuberculose-miliar-radiografia.jpg" alt="Tuberculose miliar — radiografia de tórax" loading="lazy" data-caption="Tuberculose miliar — radiografia de tórax"><figcaption>Tuberculose miliar — radiografia de tórax</figcaption></figure>
+<p>Na radiografia, as pontas de seta apontam <strong>múltiplas pequenas opacidades nodulares</strong>, distribuídas de forma difusa e relativamente uniforme por ambos os campos pulmonares — o padrão "miliar" clássico, refletindo a disseminação hematogênica de bacilos que se implantam simultaneamente em inúmeros focos.</p>
+<figure class="fig"><img data-img="tuberculose-miliar-macro.jpg" alt="Tuberculose miliar — peça macroscópica" loading="lazy" data-caption="Tuberculose miliar — peça macroscópica"><figcaption>Tuberculose miliar — peça macroscópica</figcaption></figure>
+<p>Nesta peça de corte, o mesmo padrão aparece macroscopicamente: <strong>múltiplos pequenos nódulos esbranquiçados</strong>, de tamanho relativamente uniforme, espalhados por todo o parênquima — cada um correspondendo a um foco de implantação hematogênica independente.</p>
+<figure class="fig"><img data-img="fluxograma-tuberculose-secundaria.jpg" alt="Fluxograma da tuberculose secundária" loading="lazy" data-caption="Fluxograma da tuberculose secundária"><figcaption>Fluxograma da tuberculose secundária</figcaption></figure>
+<p>Este segundo fluxograma parte da <strong>reativação</strong> (em hospedeiro já sensibilizado) e mostra os dois destinos possíveis: <strong>resolução (cura)</strong>; ou <strong>lesões pulmonares</strong>, que podem evoluir com <strong>inflamação</strong> (levando a <strong>destruição</strong>, com formação de <strong>cavernas</strong>) ou <strong>disseminação</strong> (sanguínea, levando a forma <strong>miliar</strong> ou a <strong>órgãos isolados</strong>; ou linfática).</p>
+<h2>Disseminação da tuberculose — para além do pulmão</h2>
+<ul>
+<li><strong>Pleura</strong> (por contiguidade): <strong>pleurite tuberculosa</strong> — derrame pleural, aderência de folhetos, restrição respiratória</li>
+<li><strong>Laringite tuberculosa</strong> (pela via aérea)</li>
+<li><strong>TBC intestinal</strong> (por deglutição) — o bacilo, sendo <strong>ácido-resistente</strong>, sobrevive ao ambiente ácido gástrico</li>
+<li><strong>Diversos órgãos, por via sanguínea:</strong> <strong>rins</strong>, <strong>ossos</strong> (a forma vertebral clássica é o <mark class="exam2" data-refs="78:13">Mal de Pott</mark>), <strong>sistema nervoso</strong>, <strong>órgãos genitais</strong>, entre outros</li>
+</ul>
+<h2>Clínica</h2>
+<p><strong>Variada</strong>, de acordo com os órgãos comprometidos. <strong>Imagens radiológicas variadas</strong> (consolidação; cavitação).</p>
+<p><strong>Forma pulmonar progressiva:</strong> quadro infeccioso <strong>arrastado</strong>; <strong>mal-estar, anorexia, perda de peso</strong>, <strong>febre vespertina diária</strong>, <strong>sudorese noturna</strong>, <strong>tosse com expectoração</strong>, <strong>falta de ar</strong>, <strong>hemoptise</strong>, <strong>dor pleurítica</strong>.</p>
+<p><strong>Diagnóstico da TBC pulmonar:</strong> <strong>anamnese, exame físico, exame de imagem, baciloscopia de escarro</strong>.</p>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="D" data-qid="seg6-0">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 78, Questão 12</span><span class="q-num">1</span><div class="q-stem"><p>Mulher de 48 anos, previamente hígida, procura atendimento por febre persistente, sudorese noturna intensa e perda de peso não intencional nos últimos 2 meses, além de tosse seca, dispneia leve e dor torácica. Ao exame físico, apresenta linfadenopatia cervical e hepatoesplenomegalia. Laboratório revela anemia e marcadores inflamatórios elevados. A radiografia de tórax mostra múltiplos pequenos nódulos dispersos bilateralmente, e exames confirmam etiologia bacteriana. O que a presença de hepatoesplenomegalia sugere em relação ao quadro?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Insuficiência cardíaca congestiva associada ao quadro infeccioso</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Infecção estreptocócica sistêmica, sem relação com a etiologia bacilar do quadro</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Lesões granulomatosas restritas exclusivamente ao fígado, sem envolvimento sistêmico</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Comprometimento disseminado do sistema linfático, compatível com tuberculose miliar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Reação de hipersensibilidade cutânea, sem relação com o parênquima hepatoesplênico</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O padrão radiológico miliar (múltiplos pequenos nódulos bilaterais) associado a <strong>hepatoesplenomegalia</strong> reflete <strong>disseminação hematogênica</strong> do bacilo, com <strong>comprometimento disseminado do sistema linfático/reticuloendotelial</strong> — a assinatura da <strong>tuberculose miliar</strong>. <strong>A</strong> não explica o padrão nodular pulmonar nem os sintomas constitucionais (febre, sudorese, emagrecimento). <strong>B</strong> contraria a etiologia bacilar já confirmada. <strong>C</strong> restringe indevidamente o achado a um único órgão, quando a apresentação é sistêmica. <strong>E</strong> não corresponde ao mecanismo fisiopatológico do caso.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg6-1">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 78, Questão 13</span><span class="q-num">2</span><div class="q-stem"><p>Mesma paciente do caso anterior (mulher de 48 anos, febre persistente, sudorese noturna, emagrecimento, padrão radiológico miliar, etiologia bacteriana confirmada). Com relação à fisiopatologia da doença, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O agente infeccioso é um bacilo de crescimento rápido, com alta capacidade anaeróbia</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">O desenvolvimento de sintomas ocorre mais comumente nas formas secundárias do que nas formas primárias da doença</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Quando o microrganismo chega aos pulmões, estimula resposta mediada por neutrófilos, que leva à formação do nódulo de Ghon</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">O acometimento de outros órgãos além do pulmão, quando ocorre, inclui o mal de Pott, caracterizado por lesão renal</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A maioria das <strong>primoinfecções</strong> é assintomática e autolimitada (formação do complexo de Ghon e cura); é na <strong>forma secundária</strong> (reativação em hospedeiro já sensibilizado, ou reinfecção) que os sintomas costumam se manifestar com mais frequência e intensidade — daí a coinfecção HIV, que reativa focos latentes, ser tão relevante. <strong>A</strong> erra a cinética do bacilo, que é de <strong>crescimento lento</strong> e <strong>aeróbio estrito</strong>, não anaeróbio. <strong>C</strong> troca o mecanismo: a reação produtiva que forma o granuloma/nódulo de Ghon é mediada por <strong>macrófagos ativados por linfócitos Th1</strong>, não por neutrófilos. <strong>D</strong> erra a localização do mal de Pott, que é <strong>vertebral</strong> (ósseo), não renal.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg6-2">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 79, Questão 21</span><span class="q-num">3</span><div class="q-stem"><p>Mulher de 35 anos, natural do interior de Minas Gerais, procura atendimento com tosse persistente há três meses, febre baixa vespertina, sudorese noturna e emagrecimento de 8 kg no período. Relata início insidioso com mal-estar e fadiga, e hemoptise ocasional nos últimos dias. Ao exame físico: temperatura 37,8°C, FR 24 irpm, sibilos difusos à ausculta. A radiografia de tórax mostra opacidades mal definidas no lobo superior direito, compatíveis com processo infeccioso. Do ponto de vista microscópico, qual a descrição mais provável de ser encontrada na doença pulmonar desta paciente?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Processo inflamatório granulomatoso associado à necrose caseosa</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Transudato no interior dos alvéolos, contendo numerosos macrófagos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Exsudato fibrinopurulento no interior dos alvéolos, com septos preservados</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Processo inflamatório predominantemente mononuclear no interstício e no interior dos alvéolos</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Quadro arrastado (semanas a meses), com <strong>febre vespertina, sudorese noturna, emagrecimento e hemoptise</strong>, acometendo preferencialmente o <strong>lobo superior</strong>, é o perfil clássico da <strong>tuberculose pós-primária</strong>. O achado microscópico esperado é o <strong>granuloma com necrose caseosa central</strong> — reação produtivo-caseosa mediada por macrófagos ativados/células epitelioides e gigantes. <strong>B</strong> e <strong>C</strong> descrevem achados de pneumonia lobar (fase inicial/hepatização), não de tuberculose. <strong>D</strong> descreve o padrão da pneumonia viral/intersticial, sem o componente granulomatoso-caseoso típico da TB.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg7" hidden>
+  <h1 class="pane-title">O que mais cai em prova</h1>
+  <div class="prose"><p class="lede">Síntese, com base nas cinco provas antigas de Patologia Médica I (Parciais 78 a 82), dos pontos desta aula mais cobrados em avaliação. Pesos maiores refletem recorrência em mais provas e ênfase na prova mais recente (Parcial 82).</p>
+
+<div class="examcard"><h4>🔴 Abscesso pulmonar por embolia séptica (endocardite tricúspide, <em>S. aureus</em>)</h4><p>Tema mais repetido nas provas antigas para este assunto: vinheta de endocardite infecciosa de valva <mark class="exam5" data-refs="78:5,78:6,79:aberta3,80:1,81:18">tricúspide</mark> (usuário de droga injetável, ou paciente com cateter/dispositivo) evoluindo com <mark class="exam5" data-refs="78:5,79:aberta3,80:1,81:18,78:6">abscesso pulmonar</mark>. Mecanismo: fragmento da vegetação se desprende, embolia para ramo de artéria pulmonar, causa necrose/infecção local. Agente mais esperado: <mark class="exam5" data-refs="78:6,79:aberta3,78:5,80:1,81:18">Staphylococcus aureus</mark>. Não confundir com <strong>empiema</strong> (pus no espaço pleural, já existente) — o abscesso é uma <strong>neocavidade</strong> dentro do parênquima.</p></div>
+
+<div class="examcard"><h4>🟠 Tuberculose: primária x secundária, disseminação miliar e necrose caseosa</h4><p>A tuberculose é o segundo tema mais recorrente: espere vinhetas de <mark class="exam3" data-refs="79:21,78:12">febre vespertina, sudorese noturna, emagrecimento e hemoptise</mark> evoluindo ora para complexo primário (criança, lesão em halteres, nódulo de Ghon + linfonodo hilar), ora para forma <mark class="exam3" data-refs="78:13">secundária/pós-primária</mark> (adulto, reativação, cavitação apical ou disseminação miliar hematogênica). Achado microscópico-chave: <mark class="exam3" data-refs="79:21">granuloma com necrose caseosa central</mark>, mediado por macrófagos ativados por linfócitos Th1/IFN-γ. Hepatoesplenomegalia + padrão nodular difuso na radiografia = pensar em <mark class="exam3" data-refs="78:12,78:14">TB miliar</mark> por disseminação hematogênica — e lembre-se: a forma miliar <strong>não é exclusiva</strong> da tuberculose secundária.</p></div>
+
+<div class="examcard"><h4>🟡 Diferencial de consolidação/obstrução por semiologia</h4><p>Provas cobram a leitura fina do exame físico: <mark class="exam1" data-refs="79:20">macicez + crepitações + frêmito presente</mark> aponta consolidação (pneumonia); <mark class="exam1" data-refs="79:20">macicez + abolição do murmúrio + ausência de frêmito</mark>, em paciente de risco para aspiração, aponta obstrução brônquica completa (corpo estranho) com colabamento distal — não pneumonia.</p></div>
+
+<div class="examcard"><h4>🟡 Pneumonia comunitária grave em paciente jovem hígido</h4><p>Vinhetas de PAC grave (choque, confusão, hipoxemia) em pacientes jovens sem comorbidades testam se o aluno reconhece a <mark class="exam1" data-refs="79:19">gravidade clínica</mark> (exigindo internação) e não deixa a ausência de comorbidades levar a subestimar o quadro.</p></div>
+</div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg7-0">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 78, Questão 14</span><span class="q-num">1</span><div class="q-stem"><p>Mesma paciente com padrão radiológico miliar e etiologia bacteriana confirmada (tuberculose disseminada). Sobre a doença apresentada, analise as assertivas:</p><p>I. A principal forma de transmissão se dá por fômites.<br>II. A dor torácica se justifica pelos múltiplos nódulos parenquimatosos dispersos bilateralmente.<br>III. A forma miliar da doença é encontrada exclusivamente em sua apresentação secundária.</p><p>É correto o que se afirma em:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Todas as assertivas estão corretas</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Nenhuma das assertivas está correta</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Apenas uma das assertivas está correta</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Apenas duas das assertivas estão corretas</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p><strong>Nenhuma</strong> assertiva está correta. <strong>I</strong> erra a via de transmissão: a tuberculose se transmite principalmente por <strong>aerossóis</strong> (via aérea, pessoa a pessoa), não por fômites. <strong>II</strong> não é a explicação mais adequada — a dor torácica na TB costuma relacionar-se ao acometimento <strong>pleural</strong> (pleurite tuberculosa), não diretamente aos múltiplos nódulos parenquimatosos dispersos. <strong>III</strong> erra ao restringir a forma miliar à apresentação secundária: ela também pode ocorrer na <strong>tuberculose primária progressiva</strong>, quando a disseminação hematogênica ocorre já no primeiro contato com o bacilo.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg7-1">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 79, Questão 19</span><span class="q-num">2</span><div class="q-stem"><p>Paciente de 22 anos, pardo, solteiro, estudante, previamente hígido, comparece ao hospital com febre vespertina diária há 5 dias, associada a calafrios, tosse com expectoração amarelada e adinamia. Nunca fumou ou ingeriu bebida alcoólica; nega contato com bacilíferos e perda de peso. Ao exame: confuso, PA 85x45 mmHg, pulso 120 bpm, FR 30 irpm, SatO₂ 88%. Ausculta respiratória com crepitações inspiratórias em ambas as regiões infraescapulares. Radiografia mostra infiltrado difuso em lobos inferiores. Assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Trata-se de pneumonia adquirida na comunidade em paciente imunocompetente</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">O mais provável é que o agente infeccioso tenha chegado ao pulmão pela via hematogênica</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">O paciente deve ficar isolado dos familiares em casa pelo risco de contágio da doença de base</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">O tratamento deve ser realizado em casa, com orientação de procurar o hospital em 48 horas</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Quadro agudo (5 dias), febril, com tosse produtiva e infiltrado pulmonar, em paciente jovem sem comorbidades e sem exposição referida a bacilíferos, configura <strong>pneumonia adquirida na comunidade em paciente imunocompetente</strong> — e o quadro é grave (hipotensão, confusão, taquipneia, hipoxemia), exigindo internação, não tratamento domiciliar. <strong>B</strong> não é a via mais provável: a microaspiração de secreção orofaríngea é a via mais comum de PAC. <strong>C</strong> e <strong>D</strong> contrariam a gravidade do quadro (choque/sepse), que exige internação imediata, não isolamento domiciliar nem conduta expectante.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg7-2">
+  <header class="q-head"><span class="q-source adapted">Questão no estilo das provas antigas (autoral)</span><span class="q-num">3</span><div class="q-stem"><p>Homem de 29 anos, natural de área endêmica, é diagnosticado com tuberculose pulmonar. A tomografia mostra cavidade de paredes espessadas no ápice do pulmão direito, com material necrótico liquefeito em seu interior; não há linfonodomegalia hilar associada. Ele relata BCG na infância e nega contato recente conhecido com bacilíferos. Sobre o quadro, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Trata-se de tuberculose primária, pela ausência de linfonodomegalia hilar associada ao complexo de Ghon</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Trata-se de tuberculose secundária (pós-primária), compatível com reativação de foco latente em hospedeiro já sensibilizado</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">A localização apical se deve à maior vascularização linfática dos ápices pulmonares</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A liquefação do material necrótico é acaseosa, pois a necrose caseosa nunca liquefaz</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">A vacina BCG confere imunidade esterilizante, tornando impossível a reativação de bacilos latentes</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Cavidade apical com necrose <strong>liquefeita</strong> (não a necrose caseosa "sólida" e granular típica da forma primária), sem o padrão de complexo primário (nódulo + linfonodo hilar em halteres), é o quadro clássico da <strong>tuberculose cavernosa</strong>, forma da <strong>tuberculose secundária</strong> por reativação em hospedeiro já sensibilizado. <strong>A</strong> inverte a lógica: ausência de linfonodomegalia hilar afasta o complexo primário, não o confirma. <strong>C</strong> erra o mecanismo — o tropismo apical decorre da <strong>maior tensão de oxigênio</strong> (bacilo aeróbio estrito), não de vascularização linfática. <strong>D</strong> é falso: a necrose caseosa pode evoluir com liquefação nas cavernas da forma secundária. <strong>E</strong> superestima a proteção da BCG, que reduz formas graves mas não impede reativação de bacilos latentes.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="apendice" hidden><div class="prose"><span class="q-source adapted">Adaptada de questão de residência (SMR VR 2024)</span><p><strong>(SMR VR 2024 — adaptada)</strong> Assinale a alternativa verdadeira sobre tuberculose (TB):</p>
+<p>a) A TB é classificada em pulmonar, extrapulmonar ou ambas, dependendo de vários fatores ligados a diferentes populações e a cepas bacterianas. A TB extrapulmonar ocorre em 90% dos pacientes.
+b) Na tuberculose primária, a reação produtiva é mediada predominantemente por linfócitos Th2, que estimulam a ativação de macrófagos e a formação de granulomas com necrose caseosa.
+c) A TB pulmonar primária ocorre pouco depois da infecção inicial pelo bacilo da TB. Ela pode ser assintomática ou pode estar presente com febre e, ocasionalmente, dor torácica pleurítica.
+d) Doença pulmonar pós-primária (tipo adulto) localiza-se, geralmente, nos segmentos inferiores dos lobos inferiores, onde a tensão de oxigênio média consideravelmente mais baixa favorece o crescimento das micobactérias.
+e) O nódulo de Ghon, com ou sem reação pleural, espessamento e linfadenopatia regional subjacentes são componentes do chamado complexo pneumonia caseosa.</p>
+<p><strong>Gabarito: C.</strong> É a descrição correta e direta da tuberculose primária: ocorre logo após o primeiro contato com o bacilo, e sua apresentação clínica é variável — pode ser <strong>assintomática</strong> (a maioria dos casos, como a aula enfatiza) ou cursar com <strong>febre</strong> e, ocasionalmente, <strong>dor torácica pleurítica</strong>, quando há acometimento da pleura adjacente. <strong>A</strong> inverte um dado epidemiológico real: a TB extrapulmonar é a <strong>minoria</strong> dos casos, não 90% — a forma <strong>pulmonar</strong> é disparadamente a mais comum. <strong>B</strong> troca o subtipo de linfócito T responsável pela reação produtiva: é o <strong>Th1</strong> (via IFN-γ), não o Th2, quem ativa os macrófagos na formação do granuloma tuberculoso — Th2 está associado a respostas contra parasitas e a processos alérgicos, não à defesa granulomatosa antimicobacteriana. <strong>D</strong> inverte a lógica fisiopatológica da localização apical da tuberculose secundária: a reativação ocorre nos <strong>ápices</strong>, justamente porque ali a tensão de oxigênio é <strong>mais alta</strong> (não mais baixa), favorecendo o bacilo aeróbio estrito — não nos segmentos inferiores. <strong>E</strong> troca o nome do complexo: o nódulo de Ghon com linfadenopatia regional compõe o <strong>complexo primário (ou complexo de Ghon)</strong>, não um "complexo pneumonia caseosa" — termo que não corresponde à nomenclatura correta discutida na aula.</p>
+<aside class="note note-extra"><p>📌 <strong>Dica de prova:</strong> quando uma alternativa te dá um mecanismo fisiológico ("tensão de oxigênio mais baixa favorece...") como justificativa para uma localização anatômica, sempre confira se a lógica bate com o que você já sabe do tropismo do agente — aqui, bastava lembrar que o BK é <strong>aeróbio estrito</strong>, o que só pode significar preferência por <strong>mais</strong> oxigênio, nunca por menos.</p></aside>
+<hr /></div></section><section class="pane" id="quiz" hidden>
+  <h1 class="pane-title">Quiz final — 15 questões</h1>
+  <p class="lede">Responda todas e corrija de uma vez. As questões integram os sete segmentos e não repetem as de verificação.</p>
+  <div class="scorebar" id="scorebar"><span id="scoretext">0 de 15 respondidas</span>
+    <button class="btn-grade" id="btn-grade" type="button">Corrigir prova</button>
+    <button class="btn-reset" id="btn-reset" type="button" hidden>Refazer</button></div>
+  <div id="quizlist"><article class="q" data-correct="C" data-qid="quiz-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Segundo a aula, qual a diferença entre colonização e infecção das vias aéreas inferiores?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Colonização sempre exige tratamento antibiótico; infecção pode ser acompanhada clinicamente sem qualquer intervenção terapêutica</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Colonização ocorre apenas em pacientes imunossuprimidos; infecção ocorre apenas em pacientes imunocompetentes e saudáveis</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Colonização é presença microbiana sem resposta inflamatória; infecção decorre de desequilíbrio entre ataque do agente e defesa do hospedeiro</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Colonização e infecção são sinônimos completos, sem qualquer distinção conceitual relevante entre os dois termos</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Colonização é exclusiva de vírus respiratórios; infecção é exclusiva de bactérias, fungos e micobactérias</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Reproduz a definição central da aula: colonização é presença microbiana sem resposta inflamatória; infecção decorre do desequilíbrio entre ataque do agente e defesa do hospedeiro. <strong>A</strong>, <strong>B</strong>, <strong>D</strong> e <strong>E</strong> propõem critérios (terapêutico, imunológico, de sinonímia ou etiológico) que não correspondem à distinção conceitual apresentada.</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Menino de 7 anos com febre alta, tosse produtiva e macicez com crepitações em base esquerda, leucocitose com desvio à esquerda. A classificação por local de aquisição e o agente etiológico mais provável são:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pneumonia nosocomial; <em>Pseudomonas aeruginosa</em>, agente típico de ambiente hospitalar</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Pneumonia associada à ventilação mecânica; <em>Staphylococcus aureus</em> meticilino-resistente</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Pneumonia comunitária; <em>Streptococcus pneumoniae</em>, agente mais frequente nesse contexto clínico</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Pneumonia por aspiração; anaeróbios da microbiota oral, típicos de disfunção da deglutição</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Pneumonia intersticial viral; vírus sincicial respiratório, agente típico da faixa etária</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o próprio caso clínico da aula: febre, tosse produtiva, consolidação localizada e leucocitose com desvio à esquerda em criança apontam para <strong>pneumonia comunitária</strong> por <strong><em>S. pneumoniae</em></strong>, o agente mais frequente nesse contexto. <strong>A</strong> e <strong>B</strong> exigiriam contexto hospitalar/ventilatório, ausente no caso. <strong>D</strong> exigiria disfunção de deglutição, não relatada. <strong>E</strong> não explicaria a consolidação franca com macicez e leucocitose neutrofílica tão elevada, mais compatível com etiologia bacteriana.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Qual das vias de infecção pulmonar abaixo está corretamente associada ao seu agente etiológico típico?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Disseminação hematogênica, associada exclusivamente a fungos oportunistas em pacientes imunocompetentes</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Microaspiração de secreções da orofaringe, associada a <em>Streptococcus pneumoniae</em> e <em>Haemophilus influenzae</em></span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Aerossóis, associados exclusivamente a bactérias anaeróbias da microbiota oral do próprio paciente</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Aspiração por disfunção da deglutição, associada exclusivamente a vírus respiratórios sazonais</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Nenhuma via de infecção pulmonar foi associada a agentes etiológicos específicos na aula</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a associação correta e explícita da aula: microaspiração de secreções orofaríngeas com <em>S. pneumoniae</em> e <em>H. influenzae</em>. <strong>A</strong>, <strong>C</strong> e <strong>D</strong> restringem indevidamente vias de infecção a um único tipo de agente, quando a aula descreve associações mais amplas para cada via. <strong>E</strong> nega associações etiológicas claramente listadas na aula.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-3">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">4</span><div class="q-stem"><p>Sobre a distribuição morfológica das pneumonias bacterianas, qual associação está correta?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 4"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pneumonia lobar tem distribuição multifocal, com destruição extensa da parede alveolar em cada foco</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Broncopneumonia tem distribuição homogênea de um lobo inteiro, preservando integralmente os septos alveolares</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Pneumonia intersticial consolida maciçamente o parênquima, preenchendo por completo a luz alveolar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Não existe diferença morfológica relevante entre pneumonia lobar e broncopneumonia</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Pneumonia lobar tem distribuição homogênea de um lobo inteiro, sem destruição da parede alveolar</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a definição morfológica central: pneumonia lobar é homogênea, ocupando um lobo inteiro, sem destruição da parede alveolar. <strong>A</strong> inverte a distribuição e o achado destrutivo, que pertencem à broncopneumonia. <strong>B</strong> também inverte a descrição. <strong>C</strong> atribui à pneumonia intersticial um achado (consolidação maciça) que não a caracteriza. <strong>D</strong> nega uma distinção central e amplamente trabalhada na aula.</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-4">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">5</span><div class="q-stem"><figure class="fig"><img data-img="peca-hepatizacao-vermelha-e-cinzenta-macro.jpg" alt="Peça macroscópica de pulmão com áreas de coloração distintas" loading="lazy" data-caption="Peça macroscópica de pulmão com áreas de coloração distintas"><figcaption>Peça macroscópica de pulmão com áreas de coloração distintas</figcaption></figure>
+<p>Na evolução da pneumonia lobar, qual a sequência correta das quatro fases morfológicas, da mais precoce para a mais tardia?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 5"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Hepatização cinzenta, congestão, hepatização vermelha, resolução</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Resolução, hepatização vermelha, congestão, hepatização cinzenta</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Congestão, hepatização vermelha, hepatização cinzenta, resolução</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Hepatização vermelha, resolução, congestão, hepatização cinzenta</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Congestão, resolução, hepatização cinzenta, hepatização vermelha</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a sequência exata apresentada na aula: congestão → hepatização vermelha → hepatização cinzenta → resolução. <strong>A</strong>, <strong>B</strong>, <strong>D</strong> e <strong>E</strong> embaralham essa ordem cronológica de formas incompatíveis com a evolução descrita.</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-5">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">6</span><div class="q-stem"><p>Qual o principal achado histológico que diferencia a broncopneumonia da pneumonia lobar?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 6"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">A presença de infiltrado neutrofílico, exclusiva da broncopneumonia e ausente na pneumonia lobar</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">A presença de bactérias identificáveis, exclusiva da broncopneumonia entre as duas entidades</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">A formação de exsudato inflamatório, restrita exclusivamente à broncopneumonia entre as duas formas</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A destruição da parede alveolar (septo), presente na broncopneumonia e ausente na pneumonia lobar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Não existe achado histológico que diferencie de forma confiável as duas entidades entre si</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A destruição da parede alveolar (septo) é o achado que diferencia a broncopneumonia (presente) da pneumonia lobar (ausente), conforme explicitamente descrito na aula. <strong>A</strong>, <strong>B</strong> e <strong>C</strong> atribuem à broncopneumonia achados (neutrófilos, bactérias, exsudato) que também ocorrem na pneumonia lobar, não sendo, portanto, diferenciais. <strong>E</strong> nega uma distinção histológica central e bem estabelecida.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-6">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">7</span><div class="q-stem"><p>Paciente hospitalizado por pneumonia bacteriana desenvolve, após alguns dias, acúmulo purulento restrito ao espaço pleural preexistente, sem formação de cavidade no parênquima pulmonar. Essa complicação é denominada:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 7"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Abscesso pulmonar, por formação de neocavidade dentro do próprio parênquima pulmonar afetado</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Empiema, por acúmulo de pus em um espaço anatômico que já existia previamente à infecção</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Broncopneumonia pseudolobar, por confluência extensa de múltiplos focos infecciosos distintos</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Tuberculose cavernosa, por liquefação de material necrótico caseoso em cavidade preexistente</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Pneumonia intersticial complicada, por acúmulo purulento primariamente localizado no septo alveolar</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Pus restrito ao espaço pleural preexistente, sem neocavidade parenquimatosa, define <strong>empiema</strong>. <strong>A</strong> exigiria formação de neocavidade dentro do parênquima, ausente no caso descrito. <strong>C</strong>, <strong>D</strong> e <strong>E</strong> descrevem entidades com localização e morfologia distintas da complicação relatada.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-7">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">8</span><div class="q-stem"><p>Sobre o mecanismo da coagulação intravascular disseminada como complicação da pneumonia bacteriana, é correto afirmar que:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 8"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">É causada exclusivamente por deficiência congênita de fatores de coagulação, sem relação com o processo infeccioso</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Decorre de lesão endotelial causada por bactérias circulantes, ativando exageradamente a coagulação em múltiplos vasos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Ocorre apenas em pacientes previamente anticoagulados, nunca em pacientes sem uso prévio de anticoagulantes</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">É uma complicação exclusiva da broncopneumonia, nunca observada em pacientes com pneumonia lobar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Não guarda qualquer relação com bacteremia, sendo processo puramente local e restrito ao parênquima pulmonar</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o mecanismo exato descrito na aula: bactérias circulantes lesam o endotélio, desencadeando ativação exagerada da coagulação em múltiplos vasos — a CIVD. <strong>A</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> propõem mecanismos e restrições (genéticos, de uso prévio de anticoagulante, de forma morfológica específica, ou de ausência de relação com bacteremia) que contrariam o mecanismo sistêmico descrito.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-8">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">9</span><div class="q-stem"><p>Qual o achado histológico predominante esperado na pneumonia intersticial (viral), em contraste com a pneumonia bacteriana?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 9"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Infiltrado mononuclear — linfócitos, macrófagos e plasmócitos — localizado predominantemente no septo alveolar</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Infiltrado neutrofílico denso, preenchendo maciçamente a luz alveolar em praticamente todos os casos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Necrose caseosa central, circundada por células epitelioides e linfócitos dispostos radialmente</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Exsudato purulento maciço, associado à destruição extensa e completa da parede alveolar adjacente</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Ausência completa de qualquer infiltrado inflamatório identificável em exame histológico de rotina</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O infiltrado <strong>mononuclear</strong> — linfócitos, macrófagos e plasmócitos —, concentrado no septo alveolar, é o achado característico da pneumonia intersticial viral, em contraste com o infiltrado neutrofílico e a consolidação alveolar da pneumonia bacteriana. <strong>B</strong> e <strong>D</strong> descrevem o padrão bacteriano, não o viral. <strong>C</strong> descreve achado da tuberculose. <strong>E</strong> nega um infiltrado inflamatório bem caracterizado na aula.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-9">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">10</span><div class="q-stem"><p>Por que a tuberculose tem preferência por acometer os ápices pulmonares, tanto na reativação secundária quanto, com frequência, já na primoinfecção?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 10"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Porque o bacilo é aeróbio estrito, e os ápices pulmonares têm maior tensão de oxigênio que as bases</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Porque os ápices recebem maior suprimento sanguíneo, facilitando a disseminação hematogênica do bacilo</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Porque os ápices têm temperatura corporal mais elevada, favorecendo especificamente o metabolismo bacilar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Porque os ápices são anatomicamente mais próximos da via aérea de entrada, facilitando a implantação inicial</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Porque os ápices têm maior densidade de macrófagos alveolares residentes, disponíveis para fagocitose</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O <em>M. tuberculosis</em> é <strong>aeróbio estrito</strong>, e os ápices pulmonares têm maior tensão de oxigênio que as bases — daí a preferência topográfica, tanto na reativação secundária quanto, com frequência, já na infecção primária. <strong>B</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> propõem mecanismos (vascular, térmico, anatômico de entrada, ou de densidade de macrófagos) não descritos como explicação para esse tropismo na aula.</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-10">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">11</span><div class="q-stem"><figure class="fig"><img data-img="granuloma-histologia-reacao-produtiva.jpg" alt="Granuloma tuberculoso em histologia" loading="lazy" data-caption="Granuloma tuberculoso em histologia"><figcaption>Granuloma tuberculoso em histologia</figcaption></figure>
+<p>A formação do granuloma mostrado na imagem depende da ativação de macrófagos por qual citocina, liberada por qual subtipo de linfócito T?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 11"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">IL-4, liberada por linfócitos Th2, ativando macrófagos para a formação de granulomas eosinofílicos</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">IL-17, liberada por linfócitos Th17, promovendo recrutamento neutrofílico predominante ao granuloma</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">IL-10, liberada por linfócitos T reguladores, suprimindo ativamente a formação do granuloma tuberculoso</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">IFN-γ, liberado por linfócitos Th1, ativando macrófagos que se tornam células epitelioides e gigantes</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">TNF-α, liberado exclusivamente por linfócitos B, sem qualquer participação de linfócitos T CD4+</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a via celular exata: linfócitos <strong>Th1</strong> liberam <strong>IFN-γ</strong>, ativando macrófagos, que se transformam em células epitelioides e, por fusão, em células gigantes multinucleadas, formando o granuloma. <strong>A</strong>, <strong>B</strong>, <strong>C</strong> e <strong>E</strong> atribuem a citocina e o subtipo celular a vias imunológicas associadas a outros contextos (resposta a parasitas, resposta neutrofílica, supressão regulatória, ou resposta humoral), incompatíveis com a formação do granuloma tuberculoso.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-11">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">12</span><div class="q-stem"><p>Qual a diferença entre tuberculose cavernosa e tuberculose miliar, ambas formas da doença secundária?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 12"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Cavernosa decorre de disseminação hematogênica difusa; miliar decorre de liquefação localizada de necrose caseosa extensa</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Ambas decorrem exclusivamente de disseminação linfática, diferindo apenas na velocidade de progressão da doença</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Cavernosa é exclusiva da tuberculose primária; miliar é exclusiva da tuberculose secundária, por definição</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Não há diferença morfológica real entre as duas formas, sendo apenas nomenclaturas alternativas equivalentes</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Cavernosa decorre de liquefação de necrose extensa localizada; miliar decorre de disseminação hematogênica com múltiplos focos puntiformes</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>TBC cavernosa decorre de liquefação de necrose extensa e localizada (tipicamente apical); TBC miliar decorre de disseminação hematogênica, com implantação em múltiplos focos puntiformes simultâneos. <strong>A</strong> inverte as duas descrições. <strong>B</strong> atribui a ambas um mecanismo (disseminação linfática) que não é o principal descrito para nenhuma das duas. <strong>C</strong> propõe uma restrição (cavernosa exclusiva da primária) que contraria a aula, que as descreve como formas da tuberculose <strong>secundária</strong>. <strong>D</strong> nega uma distinção morfológica real e explicitamente trabalhada.</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-12">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">13</span><div class="q-stem"><p>Homem de 45 anos, com tuberculose pulmonar não tratada, desenvolve dor lombar progressiva e exame de imagem mostra destruição de corpos vertebrais. Essa manifestação extrapulmonar é classicamente denominada:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 13"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Síndrome de Pott, por disseminação hematogênica do bacilo para corpos vertebrais, com destruição óssea progressiva</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Complexo de Ghon vertebral, por disseminação linfática direta do parênquima pulmonar para a coluna vertebral</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Mal de Pott, por disseminação hematogênica do bacilo para corpos vertebrais, com destruição óssea progressiva</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Lesão em halteres óssea, por disseminação por contiguidade direta entre pulmão e coluna vertebral adjacente</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Granuloma de Aschoff vertebral, por reação cruzada imunomediada entre antígenos bacilares e proteínas ósseas</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a denominação clássica e correta: <strong>Mal de Pott</strong>, por disseminação hematogênica do bacilo para corpos vertebrais, com destruição óssea progressiva. <strong>A</strong> troca o nome pela grafia incorreta ("síndrome" em vez de "mal"). <strong>B</strong>, <strong>D</strong> e <strong>E</strong> atribuem a manifestação a mecanismos e nomenclaturas de outras lesões (complexo de Ghon, lesão em halteres, nódulo de Aschoff), sem relação com o acometimento vertebral tuberculoso.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-13">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">14</span><div class="q-stem"><p>Sobre a pneumonia viral (intersticial) e sua relação com o dano alveolar difuso, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 14"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">A pneumonia viral nunca evolui para dano alveolar difuso, sendo entidades morfologicamente incompatíveis entre si</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">O dano alveolar difuso é exclusivo de causas bacterianas, nunca ocorrendo em infecções virais do parênquima pulmonar</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">A membrana hialina da pneumonia viral tem composição bioquímica distinta da observada em outras causas de DAD</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Apenas o SARS-CoV-2, entre todos os vírus respiratórios, é capaz de causar dano à barreira alvéolo-capilar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">A agressão viral à barreira alvéolo-capilar pode formar membrana hialina, mesmo achado morfológico do DAD de outras causas</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A agressão viral pode lesar a barreira alvéolo-capilar e formar membrana hialina — o mesmo achado morfológico do dano alveolar difuso de qualquer outra causa, pulmonar ou extrapulmonar. <strong>A</strong> e <strong>B</strong> negam uma relação explicitamente discutida na aula. <strong>C</strong> propõe uma diferença bioquímica não sustentada, já que a membrana hialina reflete o mesmo processo de extravasamento de proteínas plasmáticas, independentemente do agente causador inicial. <strong>D</strong> restringe indevidamente esse potencial a um único vírus, quando vários agentes virais foram listados como causadores de pneumonia intersticial.</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-14">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">15</span><div class="q-stem"><p>(Nível avançado) Reconstrua a cadeia fisiopatológica completa da tuberculose primária, desde a inalação do bacilo até a formação da necrose caseosa dentro do granuloma.</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 15"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Inalação → fagocitose eficiente imediata pelos macrófagos → morte bacilar instantânea → ausência completa de resposta inflamatória tecidual</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Inalação → resposta humoral imediata por linfócitos B → produção de anticorpos neutralizantes → eliminação bacilar sem qualquer formação granulomatosa</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Inalação → alveolite aguda com proliferação bacilar → macrófagos ativados por Th1/IFN-γ → células epitelioides e gigantes → morte bacilar com necrose caseosa</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Inalação → disseminação hematogênica imediata para múltiplos órgãos → formação simultânea de granulomas em todo o corpo → necrose caseosa generalizada</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Inalação → broncoconstrição reflexa imediata → expulsão mecânica completa dos bacilos → ausência de infecção estabelecida no parênquima</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a cadeia completa e correta: inalação → alveolite aguda inespecífica com proliferação bacilar (reação exsudativa) → ativação de macrófagos por linfócitos Th1 via IFN-γ (reação produtiva) → formação de células epitelioides e gigantes multinucleadas → morte dos bacilos com necrose caseosa central (reação produtivo-caseosa). <strong>A</strong> nega toda a resposta inflamatória e imunológica descrita na aula. <strong>B</strong> atribui a defesa central a uma via (humoral) que não protagoniza a resposta granulomatosa. <strong>D</strong> acelera indevidamente a disseminação sistêmica, que ocorre apenas em uma minoria dos casos (tuberculose doença, &lt;5%). <strong>E</strong> nega o estabelecimento da infecção pulmonar, contrariando toda a fisiopatologia descrita.</p>
+<hr /></div>
+</article></div>
+  <div class="prose closing"><ol>
+<li><strong>Colonização = sem resposta inflamatória. Infecção = desequilíbrio ataque x defesa.</strong> Pneumonia acomete vias aéreas distais (bronquíolos respiratórios e alvéolos).</li>
+<li><strong>Classificação em três eixos independentes:</strong> origem (comunitária x hospitalar/nosocomial ≥48h), etiologia (viral, bacteriana, fúngica, parasitária) e distribuição (lobar, broncopneumonia, intersticial).</li>
+<li><strong>Pneumonia lobar: consolidação homogênea de um lobo, SEM destruição do septo.</strong> Quatro fases: congestão → hepatização vermelha → hepatização cinzenta → resolução.</li>
+<li><strong>Broncopneumonia: focos multilobulares, COM destruição do septo.</strong> Confluência extensa = pneumonia pseudolobar. Típica de crianças, idosos e debilitados.</li>
+<li><strong>Empiema = pus no espaço pleural (já existe). Abscesso = pus em neocavidade (não existia antes).</strong> Distinção puramente topográfica.</li>
+<li><strong>Complicações sistêmicas: SIRS/choque séptico e CIVD</strong>, por lesão endotelial pela bactéria circulante.</li>
+<li><strong>Pneumonia intersticial (viral): infiltrado mononuclear no septo, sem consolidação.</strong> Pode evoluir para dano alveolar difuso (mesma membrana hialina do DAD de qualquer causa).</li>
+<li><strong>Tuberculose: reação de hipersensibilidade — o próprio sistema imune causa boa parte do dano.</strong> Bacilo aeróbio estrito → tropismo por ápices (mais O₂).</li>
+<li><strong>Primária: exsudativa → produtiva (Th1/IFN-γ, macrófago→epitelioide→célula gigante) → produtivo-caseosa (necrose caseosa) → cicatrização.</strong> Complexo de Ghon = nódulo + linfonodo hilar (lesão em halteres).</li>
+<li><strong>Secundária (reativação, adulto, hospedeiro sensibilizado): cavernosa (liquefação localizada) x miliar (disseminação hematogênica multifocal).</strong> Disseminação extrapulmonar: pleura, laringe, intestino, rim, osso (Mal de Pott), SNC, genitais.</li>
+<li><strong>O que mais cai em prova (Segmento 7):</strong> abscesso pulmonar por embolia séptica de endocardite tricúspide (<em>S. aureus</em>) é o tema mais repetido; tuberculose (primária x secundária, miliar, caseificação) é o segundo mais cobrado; atenção também à leitura semiológica fina (frêmito presente x ausente) e ao reconhecimento de PAC grave em jovem hígido.</li>
+</ol></div>
+</section></main>
+</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="lb-close" type="button">Fechar</button>
+  <figure style="margin:0;display:grid;place-items:center"><img loading=lazy decoding=async src="" alt=""><figcaption></figcaption></figure>
+</div>
+<script type="application/json" id="imgdata">{"pneumonia-conceito-alveolos-normais-vs-pneumonia.jpg": "../_img/8bb0751658ab6b0a.webp", "peca-hepatizacao-vermelha-e-cinzenta-macro.jpg": "../_img/ce68716ad657812d.webp", "esquema-pneumonia-lobar-acometimento.jpg": "../_img/1f741b449bc2e65d.webp", "peca-pneumonia-lobar-superficie-corte.jpg": "../_img/41105ae138faecd1.webp", "pneumonia-lobar-histologia-panoramica.jpg": "../_img/b0a48845db2d96d3.webp", "exercicio-hepatizacao-vermelha-macro.jpg": "../_img/1cba444f992e8057.webp", "exercicio-hepatizacao-cinzenta-macro-1.jpg": "../_img/e83ca4bbeeca0e96.webp", "broncopneumonia-septos-necroticos-histologia.jpg": "../_img/cf805e0758909690.webp", "broncopneumonia-macro-focos-alveolos-normais.jpg": "../_img/cd7e418cd03c5097.webp", "broncopneumonia-macro-1.jpg": "../_img/7428576faf6508a7.webp", "broncopneumonia-macro-2.jpg": "../_img/7520d13935a8e705.webp", "broncopneumonia-histologia-1.jpg": "../_img/e0bf0827438efd41.webp", "pleurite-fibrinosa-1.jpg": "../_img/6a2281995dbabe0c.webp", "pleurite-fibrinosa-2.jpg": "../_img/320ec827ff809aa6.webp", "abscesso-pulmonar-radiografia-nivel-hidroaereo.jpg": "../_img/3c0b36e37edba1bd.webp", "abscesso-pulmonar-macro-cavidades.jpg": "../_img/a6c65b59b7cf4e9a.webp", "abscesso-pulmonar-histologia.jpg": "../_img/c2603669a079fa94.webp", "pneumonia-viral-exsudato-fibrinoso-intraalveolar.jpg": "../_img/aeacfed5dc8a110c.webp", "pneumonia-viral-fibrina-celulas-inflamatorias.jpg": "../_img/a435889bc5044383.webp", "tuberculose-miliar-radiografia.jpg": "../_img/a0a218dc7fb41a7c.webp", "granuloma-histologia-reacao-produtiva.jpg": "../_img/26d202f73b29296f.webp", "necrose-caseosa-histologia.jpg": "../_img/c6c798c9b1a371b4.webp", "complexo-primario-lesao-em-halteres-esquema.jpg": "../_img/cab5e93d8f683ebd.webp", "complexo-primario-tbc-macro.jpg": "../_img/e6c39f0edf12d72a.webp", "fluxograma-tuberculose-primaria.jpg": "../_img/aaa48a1789926aa8.webp", "tuberculose-cavernosa-macro.jpg": "../_img/bc82f7970f1e9480.webp", "tuberculose-miliar-macro.jpg": "../_img/7889836c15ebcae1.webp", "fluxograma-tuberculose-secundaria.jpg": "../_img/ecc63a96235e98bb.webp"}</script>
+<script>
+const IMGS=JSON.parse(document.getElementById('imgdata').textContent);
+document.querySelectorAll('img[data-img]').forEach(i=>{const d=IMGS[i.dataset.img];if(d)i.src=d;});
+const panes=[...document.querySelectorAll('.pane')];
+const navs=[...document.querySelectorAll('.nav-item')];
+function show(id){
+  panes.forEach(p=>p.hidden=(p.id!==id));
+  navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id));
+  window.scrollTo({top:0,behavior:'auto'});
+  try{location.hash=id}catch(e){}
+}
+navs.forEach(n=>n.addEventListener('click',e=>{e.preventDefault();show(n.dataset.target)}));
+
+function markQuestion(q,reveal){
+  const correct=q.dataset.correct;
+  const chosen=q.querySelector('.opt[aria-pressed="true"]');
+  q.classList.add('done');
+  q.querySelectorAll('.opt').forEach(o=>{
+    if(o.dataset.letter===correct)o.classList.add('is-correct');
+    else if(o===chosen)o.classList.add('is-wrong');
+  });
+  const why=q.querySelector('.q-why');
+  const v=why.querySelector('.q-verdict');
+  if(!chosen){v.textContent='Resposta correta: '+correct;v.className='q-verdict';}
+  else if(chosen.dataset.letter===correct){v.textContent='Você acertou.';v.className='q-verdict ok';}
+  else{v.textContent='Você marcou '+chosen.dataset.letter+'. A correta é '+correct+'.';v.className='q-verdict no';}
+  if(reveal)why.hidden=false;
+  return chosen && chosen.dataset.letter===correct;
+}
+
+document.querySelectorAll('.q').forEach(q=>{
+  q.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
+    if(q.classList.contains('done'))return;
+    q.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed','false'));
+    o.setAttribute('aria-pressed','true');
+    updateScore();
+  }));
+  const btn=q.querySelector('.btn-reveal');
+  if(btn)btn.addEventListener('click',()=>{
+    const why=q.querySelector('.q-why');
+    if(q.classList.contains('done')){why.hidden=!why.hidden;btn.textContent=why.hidden?'Ver resposta':'Ocultar resposta';return;}
+    markQuestion(q,true);btn.textContent='Ocultar resposta';
+  });
+});
+
+const quizQs=[...document.querySelectorAll('#quizlist .q')];
+const scoreText=document.getElementById('scoretext');
+const btnGrade=document.getElementById('btn-grade');
+const btnReset=document.getElementById('btn-reset');
+let graded=false;
+function updateScore(){
+  if(graded||!scoreText)return;
+  const n=quizQs.filter(q=>q.querySelector('.opt[aria-pressed="true"]')).length;
+  scoreText.textContent=n+' de '+quizQs.length+' respondidas';
+}
+if(btnGrade)btnGrade.addEventListener('click',()=>{
+  let hits=0;
+  quizQs.forEach(q=>{if(markQuestion(q,true))hits++;});
+  graded=true;
+  const pct=Math.round(hits/quizQs.length*100);
+  scoreText.textContent='Você acertou '+hits+' de '+quizQs.length+' ('+pct+'%)';
+  btnGrade.hidden=true;btnReset.hidden=false;
+  quizQs.forEach(q=>{const b=q.querySelector('.btn-reveal');if(b)b.textContent='Ocultar resposta';});
+});
+if(btnReset)btnReset.addEventListener('click',()=>{
+  quizQs.forEach(q=>{
+    q.classList.remove('done');
+    q.querySelectorAll('.opt').forEach(o=>{o.setAttribute('aria-pressed','false');o.classList.remove('is-correct','is-wrong');});
+    q.querySelector('.q-why').hidden=true;
+    const b=q.querySelector('.btn-reveal');if(b)b.textContent='Ver resposta';
+  });
+  graded=false;btnGrade.hidden=false;btnReset.hidden=true;updateScore();
+});
+
+const lb=document.getElementById('lightbox');
+const lbImg=lb.querySelector('img'),lbCap=lb.querySelector('figcaption');
+document.querySelectorAll('.fig img').forEach(i=>i.addEventListener('click',()=>{
+  lbImg.src=i.src;lbCap.textContent=i.dataset.caption||'';lb.classList.add('open');
+  lb.querySelector('.lb-close').focus();
+}));
+function closeLb(){lb.classList.remove('open');lbImg.src='';}
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('lb-close'))closeLb();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('open'))closeLb();});
+
+const start=location.hash.replace('#','');
+show(panes.some(p=>p.id===start)?start:'capa');
+</script>
+<script>
+(function(){
+  var LECTURE_KEY = "aula7";
+  var progress = {};
+  var chkByTarget = {};
+
+  function navKeyOf(item){
+    return item.dataset.target || item.dataset.view || null;
+  }
+  function initChecks(){
+    // duas arquiteturas convivem neste projeto: a maioria usa <a class="nav-item" data-target="segN">;
+    // a Aula 2 (Cardiopatia Isquêmica) usa <button class="navbtn" data-view="segN"> gerado por JS.
+    var navItems = document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]');
+    navItems.forEach(function(item){
+      var key = navKeyOf(item);
+      if(!key || key === 'capa' || key === 'home') return;
+      if(item.querySelector('.mc-chk')) return;
+      var chk = document.createElement('input');
+      chk.type = 'checkbox';
+      chk.className = 'mc-chk';
+      // Neutro de propósito: marcar uma seção é apenas progresso, não "concluído" — a cor
+      // verde fica reservada só para o badge da aula inteira na sidebar do shell (100%).
+      chk.style.marginRight = '6px';
+      chk.style.accentColor = '#8A97A8';
+      chk.style.filter = 'grayscale(1) opacity(.85)';
+      chk.addEventListener('click', function(ev){ ev.stopPropagation(); });
+      chk.addEventListener('change', function(){
+        progress[key] = chk.checked;
+        window.parent.postMessage({type:'setProgress', lecture:LECTURE_KEY, target:key, done:chk.checked}, '*');
+      });
+      item.prepend(chk);
+      chkByTarget[key] = chk;
+    });
+  }
+
+  function refLabel(parcial, q){
+    if(q === '?') return 'Parcial ' + parcial + ' (tema geral)';
+    if(String(q).indexOf('aberta') === 0) return 'Parcial ' + parcial + ' — Discursiva ' + q.replace('aberta','');
+    return 'Parcial ' + parcial + ' — Questão ' + q;
+  }
+
+  var tooltipEl = null;
+  function ensureTooltip(){
+    if(tooltipEl) return tooltipEl;
+    tooltipEl = document.createElement('div');
+    tooltipEl.id = 'mc-tooltip';
+    tooltipEl.style.cssText = 'position:fixed;z-index:99999;background:#0B1E38;color:#EAF1FA;border:1px solid #2A4468;'+
+      'border-radius:8px;padding:10px 12px;font-family:"IBM Plex Sans",sans-serif;font-size:13px;max-width:280px;'+
+      'box-shadow:0 10px 30px rgba(0,0,0,.4);display:none;line-height:1.4';
+    document.body.appendChild(tooltipEl);
+    tooltipEl.addEventListener('mouseenter', function(){ clearTimeout(tooltipEl._hideTimer); });
+    tooltipEl.addEventListener('mouseleave', function(){ hideTooltip(); });
+    return tooltipEl;
+  }
+  function hideTooltip(){
+    if(!tooltipEl) return;
+    tooltipEl._hideTimer = setTimeout(function(){ tooltipEl.style.display='none'; }, 150);
+  }
+  function showTooltip(markEl){
+    var tt = ensureTooltip();
+    clearTimeout(tt._hideTimer);
+    var refs = (markEl.dataset.refs||'').split(',').map(function(s){return s.trim();}).filter(Boolean);
+    if(!refs.length) return;
+    var html = '<div style="font-size:11px;color:#8FAACB;margin-bottom:6px;letter-spacing:.02em">Caiu em prova — clique para ir direto à questão</div>';
+    refs.forEach(function(r){
+      var parts = r.split(':'); var parcial=parts[0]; var q=parts[1];
+      var label = refLabel(parcial, q);
+      var clickable = q && q !== '?';
+      html += '<span class="mc-chip" data-parcial="'+parcial+'" data-q="'+(q||'')+'" style="display:inline-block;margin:2px 4px 2px 0;'+
+        'padding:4px 9px;border-radius:12px;background:#16355F;color:#EAF1FA;font-size:12px;'+
+        (clickable? 'cursor:pointer' : 'cursor:default;opacity:.6') + ';border:1px solid #2A4468">'+label+'</span>';
+    });
+    tt.innerHTML = html;
+    tt.querySelectorAll('.mc-chip').forEach(function(chip){
+      if(chip.style.cursor !== 'pointer') return;
+      chip.addEventListener('mouseenter', function(){ chip.style.background='#C8476B'; chip.style.borderColor='#C8476B'; });
+      chip.addEventListener('mouseleave', function(){ chip.style.background='#16355F'; chip.style.borderColor='#2A4468'; });
+      chip.addEventListener('click', function(){
+        window.parent.postMessage({type:'jumpToSimulado', parcial:chip.dataset.parcial, q:chip.dataset.q}, '*');
+      });
+    });
+    var rect = markEl.getBoundingClientRect();
+    var left = Math.min(rect.left, window.innerWidth-300);
+    var top = rect.bottom + 6;
+    tt.style.left = left+'px';
+    tt.style.top = top+'px';
+    tt.style.display = 'block';
+  }
+
+  function initTooltips(){
+    document.querySelectorAll('mark[data-refs]').forEach(function(m){
+      if(m.dataset.ttBound) return;
+      m.dataset.ttBound = '1';
+      m.style.cursor = 'help';
+      m.addEventListener('mouseenter', function(){ showTooltip(m); });
+      m.addEventListener('mouseleave', hideTooltip);
+    });
+  }
+
+  window.addEventListener('message', function(ev){
+    if(!ev.data) return;
+    if(ev.data.type === 'progressState' && ev.data.lecture === LECTURE_KEY){
+      progress = ev.data.state || {};
+      Object.keys(chkByTarget).forEach(function(id){ chkByTarget[id].checked = !!progress[id]; });
+    }
+  });
+
+  function boot(){
+    initChecks();
+    initTooltips();
+    window.parent.postMessage({type:'requestProgress', lecture:LECTURE_KEY}, '*');
+  }
+  if(document.readyState === 'complete' || document.readyState === 'interactive') boot();
+  else document.addEventListener('DOMContentLoaded', boot);
+  // fallback: alguns masterclass renderizam nav/conteúdo via JS próprio, possivelmente após
+  // este script rodar — reaplica init algumas vezes nos primeiros segundos.
+  [300,800,1500,3000].forEach(function(ms){ setTimeout(boot, ms); });
+  // e também sempre que o usuário navega (conteúdo de segmentos que só é montado no DOM
+  // quando o painel/segmento é aberto pela primeira vez, como na Aula 2)
+  document.addEventListener('click', function(ev){
+    if(ev.target.closest && (ev.target.closest('.nav-item') || ev.target.closest('.navbtn'))){
+      setTimeout(boot, 80);
+      setTimeout(boot, 300);
+    }
+  }, true);
+})();
+</script>
+
+<script>(function(){
+  // Ponte entre a aula (iframe) e a barra lateral do app. Não mexe no conteúdo nem na lógica de quiz.
+  var P = window.parent;
+  if (!P || P === window) return;
+  var root = document.documentElement;
+  root.classList.add('embedded');
+  var parts = (window.name || '').split('|');
+  var LEC = parts[1] || '';
+  var progress = {};
+
+  function setTheme(t){ root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); }
+  setTheme(parts[2] || 'dark');
+
+  function navEls(){ return Array.prototype.slice.call(document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]')); }
+  function keyOf(e){ return e.getAttribute('data-target') || e.getAttribute('data-view'); }
+  function labelOf(e){
+    var n = e.querySelector('.navlabel, .nav-num + span');
+    return (n ? n.textContent : e.textContent).replace(/\s+/g,' ').trim();
+  }
+  function activeKey(){
+    var a = navEls().filter(function(e){ return e.classList.contains('active'); })[0];
+    return a ? keyOf(a) : null;
+  }
+
+  // ----- botão "Concluir" no título de cada segmento -----
+  function paintDone(btn, key){
+    var on = !!progress[key];
+    if (btn.classList.contains('on') !== on) btn.classList.toggle('on', on);   // só mexe no DOM se mudou (evita laço do observer)
+    var lbl = btn.querySelector('.lbl'), txt = on ? 'Concluído' : 'Concluir';
+    if (lbl.textContent !== txt) lbl.textContent = txt;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var fin = document.querySelector('.cel-finish[data-key="' + key + '"]');
+    if (fin) paintFin(fin, on, key);
+  }
+
+  // ----- botão grande no fim do segmento -----
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+  function isSeg(key){ return /^(seg\d+|s\d+|parcial\d+)$/.test(key); }
+  function paintFin(b, on, key){
+    if (b.classList.contains('on') !== on) b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var txt = on ? (isSeg(key) ? 'Segmento concluído' : 'Estudado') + ' · tocar para desfazer'
+                 : (isSeg(key) ? 'Concluir segmento' : 'Marcar como estudado');
+    var s = b.lastChild; if (s.textContent !== txt) s.textContent = txt;
+  }
+  function ensureFin(scope, key){
+    if (!scope || !key || key === 'capa' || key === 'home') return;
+    var foot = scope.querySelector('.navfoot, .segnav');
+    if (!foot) return;
+    var box = scope.querySelector('.cel-fin');
+    if (box && box.getAttribute('data-key') === key && box.nextElementSibling === foot) return;
+    if (box) box.remove();
+    box = document.createElement('div'); box.className = 'cel-fin'; box.setAttribute('data-key', key);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cel-finish'; b.setAttribute('data-key', key);
+    b.innerHTML = CHECK + '<span></span>';
+    b.addEventListener('click', function(){
+      var top = document.querySelector('.done-t[data-key="' + key + '"]');
+      if (top) top.click();
+    });
+    box.appendChild(b);
+    foot.parentNode.insertBefore(box, foot);
+    paintFin(b, !!progress[key], key);
+  }
+  function attachDone(title, key){
+    if (!title || !key || key === 'capa' || key === 'home') return;
+    var old = title.querySelector('.done-t');
+    if (old && old.getAttribute('data-key') === key) { paintDone(old, key); return; }
+    if (old) old.remove();
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'done-t'; b.setAttribute('data-key', key);
+    b.innerHTML = '<span class="d"></span><span class="lbl">Concluir</span>';
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      progress[key] = !progress[key];
+      paintDone(b, key);
+      P.postMessage({type:'setProgress', lecture:LEC, target:key, done:!!progress[key]}, '*');
+    });
+    if (!title.classList.contains('has-done')) title.classList.add('has-done');
+    title.appendChild(b);
+    paintDone(b, key);
+  }
+  function decorate(){
+    // aulas estáticas: um .pane por segmento
+    document.querySelectorAll('.pane').forEach(function(p){
+      if (p.hidden) return;
+      attachDone(p.querySelector('.pane-title'), p.id);
+      ensureFin(p, p.id);
+    });
+    // aula 2: conteúdo montado por JS
+    var t = document.querySelector('h2.seg-title');
+    if (t) { attachDone(t, activeKey()); ensureFin(document.getElementById('content'), activeKey()); }
+  }
+
+  // ----- rodapé anterior/próximo (substitui a barra de navegação escondida) -----
+  function addNavFoot(){
+    var items = navEls();
+    if (!items.length || document.querySelector('.segnav')) return;
+    items.forEach(function(it, i){
+      var id = keyOf(it);
+      var pane = document.getElementById(id);
+      if (!pane || !pane.classList.contains('pane') || pane.querySelector('.navfoot')) return;
+      var prev = items[i-1], next = items[i+1];
+      var f = document.createElement('div'); f.className = 'navfoot';
+      function mk(target, txt, isNext){
+        var b = document.createElement('button'); b.type = 'button';
+        b.textContent = isNext ? txt + ' →' : '← ' + txt;
+        b.addEventListener('click', function(){ target.click(); });
+        return b;
+      }
+      if (prev) f.appendChild(mk(prev, labelOf(prev), false));
+      if (next) f.appendChild(mk(next, labelOf(next), true));
+      pane.appendChild(f);
+    });
+  }
+
+  // piscar o termo achado pela busca
+  function flashTerm(rootEl, term){
+    if (!rootEl || !term) return;
+    var low = term.toLowerCase(), w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentElement; if (!p || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue;
+      var k = n.data.toLowerCase().indexOf(low);
+      if (k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var q = sp.parentNode; if (!q) return; while (sp.firstChild) q.insertBefore(sp.firstChild, sp); q.removeChild(sp); q.normalize(); }, 2600);
+      return;
+    }
+  }
+
+  var last = null;
+  function reportActive(){
+    var k = activeKey();
+    if (k !== last) { last = k; P.postMessage({type:'segActive', lecture:LEC, key:k}, '*'); }
+    var off = (k && k !== 'capa' && k !== 'home' && !document.querySelector('.hero .tabs')) ? 'off' : 'on';
+    if (root.getAttribute('data-hero') !== off) root.setAttribute('data-hero', off);
+    decorate();
+  }
+  var mo = new MutationObserver(function(){ clearTimeout(mo._t); mo._t = setTimeout(reportActive, 30); });
+  mo.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class','hidden']});
+  var content = document.getElementById('content');
+  if (content) mo.observe(content, {childList:true});
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data;
+    if (!d || !d.type) return;
+    if (d.type === 'setTheme') setTheme(d.theme);
+    else if (d.type === 'goto') {
+      var el = navEls().filter(function(e){ return keyOf(e) === d.key; })[0];
+      if (el) el.click();
+    }
+    else if (d.type === 'gotoPane') {
+      if (document.getElementById('hl-pop')) return;   // aulas com marca-texto rosa tratam sozinhas
+      var pe = navEls().filter(function(e){ return keyOf(e) === d.pane; })[0];
+      if (pe) pe.click();
+      setTimeout(function(){ flashTerm(document.getElementById(d.pane) || document.getElementById('content') || document.body, d.term); }, 140);
+    }
+    else if (d.type === 'progressState' && d.lecture === LEC) {
+      progress = d.state || {};
+      document.querySelectorAll('.done-t').forEach(function(b){ paintDone(b, b.getAttribute('data-key')); });
+    }
+  });
+
+  function boot(){
+    addNavFoot();
+    reportActive();
+    P.postMessage({type:'bridgeReady', lecture:LEC}, '*');
+    P.postMessage({type:'requestProgress', lecture:LEC}, '*');
+  }
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', function(){ setTimeout(boot, 0); });
+})();
+</script>
+</body>
+</html>

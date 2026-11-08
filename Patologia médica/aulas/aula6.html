@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tone="resp" data-theme="dark">
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css"><!--/vidro:cabeca-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Masterclass — Doenças Pulmonares Obstrutivas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet"><style>/* ===== Visual "Farmacologia" aplicado às aulas de Patologia ===== */
+:root{
+  --ground:#ffffff; --surface:#f5f6f4; --surface-2:#eceeeb; --raised:#ffffff;
+  --border:#e4e6e2; --rule:#eff0ed; --control:#d6d9d4;
+  --ink:#1f201d; --ink-2:#3a3c37; --muted:#676964; --faint:#9a9c96;
+  --accent:#1b6e66; --accent-ink:#0f4d47; --accent-soft:#e3f0ed;
+  --tone:var(--accent);
+  --ok:#2e7d32; --ok-bg:#e6f4e7; --ok-line:#b9dcbb;
+  --bad:#b42318; --bad-bg:#fdecea; --bad-line:#f2c1bb;
+  --warn:#b26a00; --warn-bg:#f8ecd2; --warn-ink:#7a5200;
+  --on-ink:#fff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121413; --surface:#1a1d1b; --surface-2:#242826; --raised:#1f2320;
+  --border:#2c312e; --rule:#222624; --control:#3d4440;
+  --ink:#e6e9e4; --ink-2:#c3c8c1; --muted:#9aa09a; --faint:#6f766f;
+  --accent:#5fc4ae; --accent-ink:#93e0cd; --accent-soft:#17332d;
+  --ok:#62c27a; --ok-bg:#15281a; --ok-line:#2b5233;
+  --bad:#f07a6c; --bad-bg:#2d1714; --bad-line:#5c2b25;
+  --warn-bg:#33290f; --warn-ink:#f0cf86;
+  --on-ink:#121413;
+}
+/* cada grupo de aulas tem a sua cor, só no que orienta */
+:root[data-tone="cv"]{--tone:#a3263a}
+:root[data-tone="resp"]{--tone:#1f6f8b}
+:root[data-tone="prova"]{--tone:#6b4c8a}
+:root[data-tone="sim"]{--tone:#1b6e66}
+:root[data-tone="gi"]{--tone:#2e7d4f}
+:root[data-tone="acc"]{--tone:#9a5a00}
+:root[data-theme="dark"][data-tone="cv"]{--tone:#ec8a98}
+:root[data-theme="dark"][data-tone="resp"]{--tone:#7cc2dc}
+:root[data-theme="dark"][data-tone="prova"]{--tone:#bca0d8}
+:root[data-theme="dark"][data-tone="sim"]{--tone:#5fc4ae}
+:root[data-theme="dark"][data-tone="gi"]{--tone:#6fbf8e}
+:root[data-theme="dark"][data-tone="acc"]{--tone:#e0b06a}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{background:var(--ground)!important;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:inherit;color:inherit}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- cabeçalho da aula (era "hero") ---------- */
+.hero{background:transparent;color:var(--ink);padding:40px clamp(16px,5vw,72px) 0}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;padding-bottom:28px;border-bottom:1px solid var(--border);
+  margin-bottom:32px}
+.hero h1{order:1;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0;font-weight:400;
+  letter-spacing:-.015em;color:var(--ink);max-width:none;text-wrap:balance}
+.tag{order:2;display:block;align-self:flex-start;background:transparent;color:var(--tone);font-family:var(--sans);font-size:14px;
+  font-weight:500;letter-spacing:0;padding:0;border-radius:0;margin:12px 0 0}
+.hero p{order:3;margin:14px 0 0;color:var(--muted);font-family:var(--sans);font-size:14.5px;line-height:1.6;max-width:68ch}
+.strip{order:4;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:22px;overflow:hidden;border-radius:0}
+.strip img{width:100%;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--border);filter:none;opacity:.92}
+:root[data-theme="dark"] .strip img{filter:brightness(.9)}
+@media (max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}.strip img:nth-child(n+4){display:none}}
+
+/* ---------- layout (a navegação agora vive na barra lateral do app) ---------- */
+.shell{display:block;max-width:none;margin:0;padding:0 clamp(16px,5vw,72px) 96px}
+nav.rail{display:none}
+main{display:block;max-width:920px;margin:0 auto;padding:0;background:transparent;border-radius:0;box-shadow:none}
+.pane{display:block;animation:rise .35s var(--ease-out) both;scroll-margin-top:100vh}
+/* o cabeçalho grande só aparece na capa da aula; nos segmentos o título do próprio segmento assume */
+html[data-hero="off"] header.hero{display:none}
+html[data-hero="off"] .shell{padding-top:40px}
+.pane[hidden]{display:none}
+
+.pane-title{position:relative;font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin:0 0 28px;
+  padding:0 0 22px;font-weight:400;letter-spacing:-.012em;color:var(--ink);border-bottom:1px solid var(--border);text-wrap:balance}
+.pane-title.has-done{padding-right:150px}
+
+/* ---------- leitura ---------- */
+.prose,.intro{max-width:none}
+.prose p,.intro p,.prose li,.intro li{font-size:17px;line-height:1.7;color:var(--ink)}
+.prose p,.intro p{margin:0 0 18px;max-width:70ch}
+.prose ul,.prose ol,.intro ul,.intro ol{padding-left:22px;margin:0 0 20px;max-width:70ch}
+.prose li,.intro li{margin-bottom:8px}
+.prose li::marker,.intro li::marker{color:var(--faint)}
+.prose h2,.intro h2{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:56px 0 16px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+.intro h2:first-child{margin-top:0}
+.prose h3,.intro h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.prose strong,.intro strong,.prose b,.intro b{font-weight:600;color:var(--ink)}
+.prose hr,.intro hr{border:0;border-top:1px solid var(--border);margin:36px 0}
+.prose em,.intro em{color:inherit}
+table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;font-family:var(--sans)}
+th{background:transparent;color:var(--muted);text-align:left;padding:10px 14px 10px 0;font-weight:500;font-size:13.5px;
+  border-bottom:1px solid var(--control);vertical-align:bottom}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;text-align:left;
+  font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+@media (max-width:700px){table{display:block;overflow-x:auto}}
+
+.fig{margin:28px auto;max-width:100%;text-align:center}
+.fig img{display:inline-block;max-width:100%;width:auto;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff;
+  cursor:zoom-in;transition:transform .2s var(--ease-out)}
+:root[data-theme="dark"] .fig img{border-color:var(--border);filter:brightness(.94)}
+.fig figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;
+  max-width:68ch;padding:0;border:0}
+
+/* ---------- painéis (notas) ---------- */
+.note{border-radius:18px;padding:18px 22px;margin:24px 0;font-size:16px;line-height:1.68;border:none;position:relative;
+  background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:16px;line-height:1.68;max-width:none}
+.note p + p{margin-top:10px}
+.note-extra{background:#f2f2f8}.note-extra>p>strong:first-child{color:#4b4790}
+.note-fix{background:#fbf0ea}.note-fix>p>strong:first-child{color:#9a4a1f}
+.note-link{background:#edf3f8}.note-link>p>strong:first-child{color:#2d5f8f}
+:root[data-theme="dark"] .note-extra{background:#1d1d2a}:root[data-theme="dark"] .note-extra>p>strong:first-child{color:#aaa6ea}
+:root[data-theme="dark"] .note-fix{background:#2a1c15}:root[data-theme="dark"] .note-fix>p>strong:first-child{color:#ec9f73}
+:root[data-theme="dark"] .note-link{background:#17212b}:root[data-theme="dark"] .note-link>p>strong:first-child{color:#8dbbe6}
+.note + ol,.note + ul{margin-top:-6px}
+
+/* ---------- grifos de frequência em prova ---------- */
+mark.exam1,mark.exam2,mark.exam3,mark.exam4,mark.exam5,mark.hot{padding:1px 3px;border-radius:4px;cursor:help;color:inherit;font-weight:inherit;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1{background:#d8f3e3}
+mark.exam2{background:#fdf0bf}
+mark.exam3,mark.hot{background:#fcd9a8}
+mark.exam4{background:#f8bfb5}
+mark.exam5{background:#1c2331;color:#ffe3a3}
+mark.exam5 *{color:#ffe3a3}
+:root[data-theme="dark"] mark.exam1,:root[data-theme="dark"] mark.exam2,:root[data-theme="dark"] mark.exam3,
+:root[data-theme="dark"] mark.exam4,:root[data-theme="dark"] mark.hot,
+:root[data-theme="dark"] mark.exam1 *,:root[data-theme="dark"] mark.exam2 *,:root[data-theme="dark"] mark.exam3 *,
+:root[data-theme="dark"] mark.exam4 *,:root[data-theme="dark"] mark.hot *{color:#1b2230!important}
+:root[data-theme="dark"] mark.exam5{box-shadow:inset 0 0 0 1px #4a5568}
+.examcard{margin:24px 0;padding:18px 22px;border:none;background:#f8f3e1;border-radius:18px}
+.examcard h4{margin:0 0 8px;font-size:14px;color:#765800;font-family:var(--sans);letter-spacing:0;font-weight:600}
+.examcard p{font-size:15px!important;max-width:none!important}
+:root[data-theme="dark"] .examcard{background:#26220f}:root[data-theme="dark"] .examcard h4{color:#e3c25c}
+.exam-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin:14px 0}
+.exam-legend span{padding:3px 9px;border-radius:999px;font-weight:500}
+:root[data-theme="dark"] .exam-legend span[style*="#111111"]{box-shadow:inset 0 0 0 1px #4a5568}
+.q-source{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;
+  font-family:var(--sans);text-transform:none}
+.q-source.real{background:var(--ok-bg);color:var(--ok)}
+.q-source.adapted{background:var(--warn-bg);color:var(--warn-ink)}
+.q-source.original{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- quiz ---------- */
+.qzone{margin-top:72px;padding-top:0;border-top:none;max-width:none}
+.qzone-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:0 0 12px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em}
+.lede{font-family:var(--sans);font-size:14.5px;color:var(--muted);max-width:68ch;line-height:1.6;margin:0 0 24px}
+.q{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.q-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.q-head>.q-source{order:2;margin-top:3px}
+.q-num{order:1;flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:999px;background:var(--ink);color:var(--on-ink);
+  font-family:var(--sans);font-weight:500;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;margin:0}
+.q-stem{order:3;flex:1 0 100%;min-width:0}
+.q-stem p{margin:0 0 12px;font-size:16.5px;line-height:1.65;color:var(--ink);max-width:none}
+.q-stem .fig{margin:8px 0 16px}
+.q-stem .fig img{max-height:420px}
+.opts{display:flex;flex-direction:column;gap:0;margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  color:var(--ink);transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.opt:active{transform:scale(.995)}
+.opt-letter{flex:none;width:26px;height:26px;min-width:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.opt-text{flex:1;min-width:0;padding-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.opt.is-correct{border-color:var(--ok-line);background:var(--ok-bg);box-shadow:none}
+.opt.is-correct .opt-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-wrong{border-color:var(--bad-line);background:var(--bad-bg);box-shadow:none}
+.opt.is-wrong .opt-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .opt.is-correct .opt-letter,:root[data-theme="dark"] .opt.is-wrong .opt-letter{color:#0d1110}
+.q.done .opt{cursor:default}
+.q.done .opt:active{transform:none}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--control)}:root[data-theme="dark"] .opt:hover{border-color:#4a524d}}
+.q-actions{display:flex;gap:8px;align-items:center;margin:14px 0 0;flex-wrap:wrap}
+.btn-reveal,.btn-grade,.btn-reset{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;
+  cursor:pointer;background:var(--ink);color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn-reveal:active,.btn-grade:active,.btn-reset:active{transform:scale(.97)}
+.btn-reveal{background:var(--surface-2);color:var(--ink)}
+.btn-reset{background:var(--surface-2);color:var(--ink)}
+.btn-grade{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn-grade{color:#0d1110}
+.btn-reveal[hidden],.btn-grade[hidden],.btn-reset[hidden]{display:none}
+.q-why{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:15px;line-height:1.6}
+.q-why[hidden]{display:none}
+.q-why p{margin:0 0 10px;font-size:15px;line-height:1.6;max-width:none}
+.q-why p:last-child{margin:0}
+.q-why:has(.q-verdict.ok){background:var(--ok-bg)}
+.q-why:has(.q-verdict.no){background:var(--bad-bg)}
+.q-verdict{font-family:var(--sans);font-weight:600}
+.q-verdict.ok{color:var(--ok)}.q-verdict.no{color:var(--bad)}
+.q-why hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+.q-open textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;
+  background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+.q-open textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.scorebar{position:sticky;top:12px;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--surface);
+  border:1px solid var(--border);border-radius:22px;padding:14px 20px;margin:22px 0 16px;font-family:var(--sans);font-size:15px}
+#scoretext{flex:1 1 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.closing{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ---------- ampliar imagem ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(18,20,18,.82);display:none;place-items:center;z-index:900;padding:30px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:12px;background:#fff}
+.lightbox figcaption{color:#e6e9e4;font-family:var(--sans);font-size:14.5px;margin-top:14px;max-width:70ch;text-align:center;line-height:1.5}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-family:var(--sans);
+  font-size:14px;font-weight:500;border-radius:999px;height:38px;padding:0 18px;cursor:pointer}
+
+/* ---------- dica "caiu em prova" ---------- */
+#mc-tooltip{background:#2b302d!important;color:#eef0ec!important;border:none!important;border-radius:12px!important;padding:12px 14px!important;
+  font-family:var(--sans)!important;font-size:13px!important;line-height:1.5!important;box-shadow:0 12px 32px rgba(20,22,20,.28)!important}
+#mc-tooltip div{color:#c3c8c1!important;font-size:12px!important;letter-spacing:0!important;font-weight:600}
+#mc-tooltip .mc-chip{background:#3b413d!important;color:#eef0ec!important;border:none!important;border-radius:999px!important;padding:3px 10px!important;
+  font-size:12px!important}
+#mc-tooltip .mc-chip:hover{background:var(--accent)!important;color:#0d1110!important}
+
+/* ---------- concluir (vem da barra lateral do app) ---------- */
+.done-t{position:absolute;top:6px;right:0;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);height:38px;padding:0 16px 0 12px;border-radius:999px;cursor:pointer;background:var(--surface);border:none;user-select:none;
+  letter-spacing:0;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.done-t:active{transform:scale(.97)}
+.done-t .d{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--control);background:var(--raised);
+  transition:background-color .2s ease,border-color .2s ease}
+.done-t.on{color:var(--ok);background:var(--ok-bg)}
+.done-t.on .d{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px var(--ok-bg)}
+@media (max-width:700px){.done-t{position:static;margin-top:14px}.pane-title.has-done{padding-right:0}}
+
+@media (max-width:900px){
+  .hero{padding:24px 16px 0}
+  .shell{padding:0 16px 72px}
+  .q{padding:18px 16px;border-radius:18px}
+  .note{padding:16px 18px}
+  .prose p,.intro p,.prose li,.intro li{font-size:16.5px}
+  .prose h2,.intro h2{font-size:27px;margin-top:44px}
+  .opts{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  .hero,.scorebar,.q-actions,.strip,.done-t{display:none}
+  body{background:#fff!important;color:#000}
+  .pane[hidden],.q-why[hidden]{display:block!important}
+  .q,.fig{break-inside:avoid}
+}
+
+/* ---------- anterior / próximo ---------- */
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{border:none;background:var(--surface);border-radius:16px;padding:14px 18px;font-family:var(--sans);font-size:14.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);max-width:48%;text-align:left;line-height:1.4;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.navfoot button:last-child{text-align:right;margin-left:auto}
+.navfoot button:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.navfoot button:hover{background:var(--surface-2)}}
+
+/* ---------- botão grande de concluir, no fim do segmento ---------- */
+.cel-fin{display:flex;justify-content:center;margin:34px 0 8px}
+.cel-finish{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+  font:500 16px/1 var(--sans);cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+:root[data-theme="dark"] .cel-finish{color:#0d1110}
+.cel-finish:active{transform:scale(.97)}
+.cel-finish svg{width:20px;height:20px}
+.cel-finish svg circle{fill:none;stroke:currentColor;stroke-width:2;opacity:.55}
+.cel-finish svg path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s var(--ease-out)}
+.cel-finish.on{background:var(--ok-bg);color:var(--ok)}
+:root[data-theme="dark"] .cel-finish.on{color:var(--ok)}
+.cel-finish.on svg path{stroke-dashoffset:0}
+@media (hover:hover) and (pointer:fine){.cel-finish:not(.on):hover{transform:translateY(-1px)}}
+@media (max-width:600px){.cel-finish{width:100%}}
+.cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
+
+.find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+</style><script>(function(){var p=(window.name||"").split("|");document.documentElement.setAttribute("data-theme",p[2]==="light"?"light":"dark")})();</script></head>
+<body><header class="hero">
+  <div class="hero-in">
+    <span class="tag">Respiratório · Aula 2</span>
+    <h1>Doenças pulmonares obstrutivas</h1>
+    <p>Patologia Médica I — Faculdade de Ciências Médicas de Minas Gerais. Sete segmentos, 21 questões de verificação e um quiz final de 15. Clique em qualquer imagem para ampliar.</p>
+    <div class="strip"><img loading=lazy decoding=async data-img="pulmao-enfisematoso-macro-2-bolhas.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="histologia-normal-vs-enfisema-destruicao-septos.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="torax-em-tonel.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="bronquiectasia-macro-corte-favo-de-mel.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="membranas-hialinas-detalhe-luz-alveolar.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="raiox-doenca-pulmonar-obstrutiva.jpg" alt="" aria-hidden="true"></div>
+  </div>
+</header>
+<div class="shell">
+  <nav class="rail" aria-label="Segmentos">
+    <p class="rail-head">Segmentos</p>
+    <a class="nav-item" href="#" data-target="capa">Início</a><a class="nav-item" href="#" data-target="seg1"><span class="nav-num">1</span><span>Obstrutiva x restritiva, e o mapa da aula</span></a><a class="nav-item" href="#" data-target="seg2"><span class="nav-num">2</span><span>Enfisema pulmonar</span></a><a class="nav-item" href="#" data-target="seg3"><span class="nav-num">3</span><span>Bronquite crônica</span></a><a class="nav-item" href="#" data-target="seg4"><span class="nav-num">4</span><span>DPOC comparada, e o caso clínico completo da aula</span></a><a class="nav-item" href="#" data-target="seg5"><span class="nav-num">5</span><span>Bronquiectasia</span></a><a class="nav-item" href="#" data-target="seg6"><span class="nav-num">6</span><span>Atelectasia</span></a><a class="nav-item" href="#" data-target="seg7"><span class="nav-num">7</span><span>O que mais cai em prova</span></a><a class="nav-item" href="#" data-target="apendice">Questão da aula</a><a class="nav-item nav-quiz" href="#" data-target="quiz">Quiz final</a>
+  </nav>
+  <main><section class="pane" id="capa">
+  <div class="intro"><h2>Doenças Pulmonares Obstrutivas</h2>
+<p><strong>Patologia Médica I — Faculdade de Ciências Médicas de Minas Gerais</strong></p>
+<hr />
+<h3>Como usar este material</h3>
+<ul>
+<li>Sete segmentos: noções gerais, enfisema, bronquite crônica, DPOC comparado (com o caso clínico completo da aula), bronquiectasia, atelectasia e um novo segmento de revisão focado em prova.</li>
+<li>Cada segmento termina com <strong>questões em vinheta clínica</strong> (pelo menos uma baseada em imagem) e <strong>gabarito comentado</strong> — ao todo <strong>21 questões de verificação</strong>. Ao final, <strong>quiz de 15 questões</strong> e a questão de residência (SANAR) que fechava o slide.</li>
+<li>🎯 <strong>Foco em prova:</strong> toda a prosa foi revisada contra as 5 provas antigas de Patologia Médica I (Parciais 78–82). Trechos grifados indicam a recorrência do fato em provas anteriores, do menos ao mais cobrado:</li>
+<li><div class="exam-legend"><span style="background:#C6F6D5;color:#14532D">já caiu 1x</span><span style="background:#FFE066;color:#2A1B00">cai ocasionalmente</span><span style="background:#FFB020;color:#2A1B00">cai bastante</span><span style="background:#FF5A5A;color:#3D0000">cai sempre</span><span style="background:#111111;color:#FFFFFF">certeza absoluta</span></div></li>
+<li>Acima de cada questão, um selo indica a origem: <span class="q-source real" style="display:inline">Prova real</span> (questão idêntica a uma prova antiga), <span class="q-source adapted" style="display:inline">Adaptada</span> (mesmo tema/gabarito, reformatada) ou <span class="q-source original" style="display:inline">Questão da aula</span> (original, sem base literal em prova).</li>
+<li>📌 <strong>EXTRA</strong> marca o que não estava no PDF. Tudo sem essa marca veio da aula original.</li>
+<li>🔗 <strong>LIGA COM ANATOMIA/AULAS ANTERIORES</strong> marca onde um conceito de outra aula é pré-requisito direto.</li>
+</ul>
+<hr /></div>
+</section><section class="pane" id="seg1" hidden>
+  <h1 class="pane-title">Obstrutiva x restritiva, e o mapa da aula</h1>
+  <div class="prose"><h3>A dicotomia inicial</h3>
+<ul>
+<li><strong>Doença obstrutiva (das vias aéreas):</strong> aumento da <strong>resistência ao fluxo de ar</strong>, por obstrução completa ou parcial, em <strong>qualquer nível</strong> da via respiratória.</li>
+<li><strong>Doença restritiva:</strong> <strong>expansão reduzida do parênquima</strong>, com <strong>diminuição da capacidade pulmonar total (CPT)</strong>.</li>
+<li><strong>Existem distúrbios mistos.</strong></li>
+</ul>
+<p>A forma mais direta de diferenciar as duas na prova é pela <strong>espirometria</strong>: na obstrutiva, o ar entra mas não sai direito — o VEF1 cai desproporcionalmente à CVF, e a <mark class="exam4" data-refs="81:10">relação VEF1/CVF fica reduzida</mark>. Na restritiva, o pulmão simplesmente não se expande — CVF e CPT caem, mas a relação VEF1/CVF se mantém <strong>normal ou até aumentada</strong>.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que essa relação é o critério:</strong> obstrução dificulta a <strong>saída</strong> do ar (o VEF1 sofre mais que a CVF); restrição reduz <strong>tudo igualmente</strong> (CVF e VEF1 caem juntos, preservando a proporção). É o dado que resolve praticamente qualquer questão de espirometria em prova de patologia ou clínica médica.</p></aside>
+<p><strong>Principais doenças obstrutivas:</strong> enfisema, bronquite crônica, asma e bronquiectasias.</p>
+<p><strong>Principais doenças restritivas</strong>, agrupadas em dois blocos:
+- <strong>Distúrbios da parede torácica com pulmões normais</strong> — doenças pleurais (fibrose), obesidade, cifoescoliose, doenças neuromusculares.
+- <strong>Doenças intersticiais infiltrativas</strong> — fibrose pulmonar, entre outras.</p>
+<p>Esta aula cobre as <strong>obstrutivas</strong>. A atelectasia entra ao final porque, apesar de não ser classicamente obstrutiva nem restritiva, compartilha o eixo comum de colapso/expansão do parênquima e é tradicionalmente ensinada na sequência.</p>
+<h3>Panorama epidemiológico da DPOC</h3>
+<ul>
+<li>Uma das <strong>causas mais comuns de doença crônica</strong>, com <strong>prevalência crescente</strong></li>
+<li><strong>3 a 3,5 milhões de óbitos por ano</strong> (OMS)</li>
+<li><strong>Preveníveis e passíveis de controle</strong></li>
+<li>Fatores de risco: <strong>tabagismo, poluição, alérgenos variados, agentes ocupacionais, estados pós-infecciosos, fatores genéticos</strong></li>
+</ul>
+<p><mark class="exam4" data-refs="78:aberta1,80:6,80:?">DPOC é o guarda-chuva clínico que reúne enfisema pulmonar e bronquite crônica</mark> — a anotação do slide é direta: são <strong>"alterações de bronquite e enfisema superpostos"</strong>. Asma e bronquiectasia são doenças obstrutivas à parte, com fisiopatologia distinta, e por convenção <mark class="exam3" data-refs="81:10">não entram</mark> na sigla DPOC.</p>
+<p><strong>O grande vilão é o tabaco</strong> — mas a própria aula já antecipa a nuance que costuma ser cobrada em prova:
+- <strong>Nem todo mundo que tem DPOC foi exposto ao tabaco</strong> (cerca de <mark class="exam3" data-refs="82:?">80%</mark> foi)
+- <strong>Nem todo tabagista desenvolve DPOC</strong> (apenas <mark class="exam3" data-refs="82:?">35 a 50%</mark> desenvolve)</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA:</strong> essa dupla ressalva é o argumento central para a existência de <strong>fatores de suscetibilidade individual</strong> — genéticos (o mais bem estabelecido é a deficiência de alfa-1-antitripsina, que você verá no Segmento 2), imunológicos e ambientais somados ao tabaco (poluição doméstica por combustão de biomassa, relevante sobretudo em mulheres não tabagistas em países em desenvolvimento — uma causa crescente de DPOC "sem cigarro").</p></aside>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="D" data-qid="seg1-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Um paciente realiza espirometria que mostra VEF1 reduzido, CVF discretamente reduzida e relação VEF1/CVF abaixo do previsto. Esse padrão é compatível com:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Doença pulmonar restritiva, como ocorre na fibrose pulmonar idiopática avançada</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Padrão de função pulmonar dentro dos limites da normalidade esperada para a idade</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Doença da parede torácica, com parênquima pulmonar estruturalmente normal</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Doença pulmonar obstrutiva, pela redução desproporcional do VEF1 em relação à CVF</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Impossível classificar esse padrão sem realizar prova broncodilatadora associada</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O padrão espirométrico obstrutivo é justamente esse: o VEF1 cai mais que a CVF, derrubando a relação VEF1/CVF. <strong>A</strong> e <strong>C</strong> produziriam CVF e CPT reduzidas com relação VEF1/CVF preservada ou aumentada. <strong>B</strong> está descartada pela relação reduzida. <strong>E</strong> é um exagero — o padrão obstrutivo já é identificável na espirometria basal; o broncodilatador serve para avaliar <strong>reversibilidade</strong>, não para classificar o distúrbio.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg1-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Sobre a relação entre tabagismo e DPOC, assinale a alternativa correta, conforme os dados apresentados na aula:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Cerca de 80% dos DPOC foram tabagistas, mas só 35-50% dos tabagistas desenvolvem DPOC</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Aproximadamente metade dos tabagistas ativos desenvolve DPOC clinicamente significativa ao longo da vida</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">O risco de DPOC é semelhante entre tabagistas e não tabagistas, dependendo sobretudo da carga genética</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">O tabagismo passivo domiciliar tem impacto maior que o tabagismo ativo no desenvolvimento de DPOC</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">A poluição ocupacional por poeiras minerais é o principal fator de risco para DPOC, superando o tabagismo</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Reproduz exatamente os dois números do slide — 80% dos DPOC vêm do tabaco, mas só 35–50% dos tabagistas adoecem — o que sustenta a existência de suscetibilidade individual (genética, imunológica). <strong>B</strong> e <strong>C</strong> transformam uma associação forte em relação obrigatória, o que os próprios números da aula desmentem. <strong>D</strong> inverte o peso relativo dos dois fatores — é o tabagismo ativo, e não o passivo, o "grande vilão" destacado na aula. <strong>E</strong> supervaloriza a exposição ocupacional, que a aula cita como fator de risco adicional, mas não como o principal.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg1-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Qual das doenças abaixo NÃO integra classicamente a sigla DPOC, apesar de ser uma doença obstrutiva das vias aéreas?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Enfisema pulmonar, doença classicamente incluída na sigla DPOC segundo a aula</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Bronquite crônica, doença classicamente incluída na sigla DPOC segundo a aula</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Tanto o enfisema quanto a bronquite crônica integram classicamente a sigla DPOC</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Bronquiectasia, doença obstrutiva também considerada parte central da sigla DPOC</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Asma, doença obstrutiva que não integra classicamente a sigla DPOC</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>DPOC reúne classicamente <strong>enfisema e bronquite crônica</strong>; asma e bronquiectasia são obstrutivas, mas tratadas como entidades à parte. <strong>C</strong> e <strong>A/B</strong> isoladas erram porque tanto enfisema quanto bronquite <strong>fazem</strong> parte da DPOC. <strong>D</strong> erra pelo motivo oposto de <strong>E</strong>: a bronquiectasia é obstrutiva, mas, assim como a asma, é tratada como entidade à parte na sigla clássica DPOC.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg2" hidden>
+  <h1 class="pane-title">Enfisema pulmonar</h1>
+  <div class="prose"><h2>Conceito e a unidade anatômica que você precisa fixar</h2>
+<p><strong>Enfisema:</strong> aumento <strong>anormal e permanente dos espaços aéreos distais</strong> (os ácinos pulmonares), por <strong>destruição de suas paredes</strong> (septos). Há também <strong>fibrose sutil</strong>, não evidente macroscopicamente, mas <strong>funcionalmente importante</strong>, de pequenas vias aéreas.</p>
+<p>Duas definições que a prova cobra por definição literal:</p>
+<ul>
+<li><strong>Ácino</strong> = <mark class="exam2" data-refs="79:?">conjunto de ductos alveolares e alvéolos ligados a um bronquíolo respiratório</mark>.</li>
+<li><strong>Lóbulo</strong> = conjunto de <strong>3 a 5 ácinos</strong>.</li>
+</ul>
+<figure class="fig"><img data-img="acino-esquema-alveolos-normais-vs-enfisema.jpg" alt="Ácino pulmonar normal e alvéolos com enfisema" loading="lazy" data-caption="Ácino pulmonar normal e alvéolos com enfisema"><figcaption>Ácino pulmonar normal e alvéolos com enfisema</figcaption></figure>
+<p>No esquema, siga o trajeto do ar: <strong>bronquíolo terminal → bronquíolos respiratórios → ductos alveolares → alvéolos</strong>, que juntos formam o ácino. Nos dois quadros de detalhe, compare os <strong>alvéolos normais</strong> (pequenos, numerosos, septos finos e íntegros) com os <strong>alvéolos com enfisema</strong> (espaços muito maiores, poucos septos remanescentes, contorno irregular) — a imagem mostra, lado a lado, exatamente a definição do enfisema: destruição de septo e aumento permanente do espaço aéreo.</p>
+<figure class="fig"><img data-img="lobulo-pulmonar-esquema.jpg" alt="Lóbulo pulmonar — esquema" loading="lazy" data-caption="Lóbulo pulmonar — esquema"><figcaption>Lóbulo pulmonar — esquema</figcaption></figure>
+<p>Aqui a unidade é uma escala acima: o <strong>lóbulo pulmonar</strong>, delimitado pelo septo (a linha alaranjada), reunindo vários ácinos em torno do mesmo bronquíolo terminal. Essa é a estrutura que dá nome aos tipos de enfisema — <strong>centrolobular</strong> e <strong>panlobular</strong> — porque é dentro dela que a distribuição da destruição varia.</p>
+<h2>Os quatro tipos anatômicos</h2>
+<ol>
+<li><strong>Centroacinar (ou centrolobular)</strong></li>
+<li><strong>Panacinar (ou panlobular)</strong></li>
+<li><strong>Parasseptal (ou acinar distal)</strong></li>
+<li><strong>Irregular</strong></li>
+</ol>
+<p>Pontos-chave da aula sobre a classificação: <strong>os dois primeiros cursam com obstrução significativa do fluxo de ar</strong>; <strong>o mais comum é o centroacinar (95%)</strong>; e — detalhe importante para quem só decora imagem de lâmina — <strong>a definição é feita por exame de imagem ou por macroscopia, e não por microscopia</strong>.</p>
+<figure class="fig"><img data-img="enfisema-centrolobular-vs-panlobular-esquema.jpg" alt="Enfisema centrolobular e panlobular — esquema comparativo" loading="lazy" data-caption="Enfisema centrolobular e panlobular — esquema comparativo"><figcaption>Enfisema centrolobular e panlobular — esquema comparativo</figcaption></figure>
+<p>Compare os dois desenhos. No <strong>enfisema centrolobular</strong> (acima), a dilatação concentra-se nos <strong>bronquíolos respiratórios</strong>, próximos ao bronquíolo terminal — a porção mais <strong>proximal</strong> do ácino — enquanto os ductos alveolares e alvéolos mais distais permanecem relativamente poupados. No <strong>enfisema panlobular</strong> (abaixo), a dilatação é <strong>uniforme</strong>, da porção proximal à distal, acometendo bronquíolos respiratórios, ductos alveolares e alvéolos por igual.</p>
+<h3>1 — Centroacinar (centrolobular)</h3>
+<ul>
+<li><strong>Bronquíolos respiratórios e ductos alveolares proximais são afetados, poupando as regiões mais distais</strong></li>
+<li>Por isso, <strong>em um mesmo ácino e lóbulo, coexistem áreas alteradas e preservadas</strong></li>
+<li><strong>Ocorre comumente em tabagistas crônicos</strong> e, por isso, <strong>associa-se a antracose</strong></li>
+<li><strong>Mais evidente em lobos superiores</strong></li>
+</ul>
+<h3>2 — Pan-acinar (panlobular)</h3>
+<ul>
+<li><strong>Ácinos uniformemente dilatados</strong>, do bronquíolo respiratório ao alvéolo terminal</li>
+<li><strong>Mais comum em lobos inferiores</strong></li>
+<li><mark class="exam4" data-refs="79:4,82:12,82:?">Associado à deficiência de alfa-1-antitripsina</mark></li>
+</ul>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — a distribuição topográfica é o atalho mais rápido em prova de imagem:</strong> centroacinar = <strong>ápices</strong>; panacinar = <strong>bases</strong>. Combine isso com o perfil do paciente (tabagista comum vs. deficiência genética) e você resolve praticamente qualquer questão de imagem sobre o tema sem precisar da lâmina.</p></aside>
+<h3>3 — Parasseptal (acinar distal)</h3>
+<aside class="note note-extra"><p>📌 <strong>EXTRA (não coberto no corpo do PDF, mas citado na classificação):</strong> acomete a porção <strong>distal</strong> do ácino, junto aos septos, à pleura e às bordas dos lóbulos, poupando a porção proximal. É o tipo classicamente associado ao <strong>pneumotórax espontâneo de pacientes jovens, magros e altos</strong>, por ruptura de bolhas subpleurais — mecanismo que a própria aula cita adiante, na seção de complicações.</p></aside>
+<h3>4 — Irregular</h3>
+<aside class="note note-extra"><p>📌 <strong>EXTRA:</strong> distribuição <strong>aleatória</strong> em relação à estrutura do ácino, quase sempre associado a <strong>cicatrizes</strong> (tuberculose antiga, por exemplo). É o tipo mais comum em necropsia, mas o menos relevante clinicamente, por ser geralmente assintomático.</p></aside>
+<h2>Adendo: deficiência de alfa-1-antitripsina</h2>
+<ul>
+<li>Distúrbio genético por diferentes mutações no <strong>gene SERPINA1</strong></li>
+<li>A <strong>alfa-1-antitripsina</strong> é produzida principalmente no <strong>fígado</strong> e atua como <strong>antiprotease</strong> — sua função principal é <mark class="exam4" data-refs="79:4,82:12,82:?">inativar a elastase neutrofílica</mark>, impedindo dano tecidual</li>
+<li>A redução dos níveis séricos determina <strong>doença hepática e pulmonar</strong></li>
+<li>No pulmão: <mark class="exam4" data-refs="79:4,82:12,82:?">enfisema de aparecimento precoce</mark>, habitualmente com <mark class="exam3" data-refs="79:4">predomínio basal (panacinar)</mark></li>
+<li><strong>Pode surgir mesmo sem tabagismo</strong>; se a pessoa fuma, o enfisema tende a surgir <strong>10 a 20 anos mais cedo</strong> que em não fumantes</li>
+</ul>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que também dá doença hepática:</strong> a mutação mais comum (alelo Z) produz uma proteína malformada que <strong>não é secretada</strong> corretamente pelo hepatócito — ela se acumula dentro da própria célula, formando <strong>inclusões PAS-positivas, diastase-resistentes</strong>, e essa retenção intracelular é o que lesa o fígado (hepatite neonatal, cirrose). Ou seja: no <strong>pulmão</strong> a doença é por <strong>falta</strong> da proteína circulante (menos antiprotease, mais destruição); no <strong>fígado</strong> é por <strong>acúmulo</strong> da proteína mal-dobrada dentro da célula. É um mecanismo duplo elegante e frequentemente cobrado.</p></aside>
+<h2>Epidemiologia da DPOC (dado inserido nesta seção do PDF)</h2>
+<ul>
+<li><strong>3ª causa de morte no Brasil</strong></li>
+<li>Número elevado de internações hospitalares</li>
+<li>Em <strong>necropsias, a incidência chega a até 50%</strong></li>
+<li><strong>Associação clara entre tabagismo e enfisema</strong></li>
+</ul>
+<h2>Etiopatogênese — o desequilíbrio protease/antiprotease</h2>
+<figure class="fig"><img data-img="patogenese-desequilibrio-protease-antiprotease.jpg" alt="Patogênese do enfisema: desequilíbrio protease/antiprotease" loading="lazy" data-caption="Patogênese do enfisema: desequilíbrio protease/antiprotease"><figcaption>Patogênese do enfisema: desequilíbrio protease/antiprotease</figcaption></figure>
+<p>Siga o esquema da esquerda para a direita. O <strong>tabaco</strong> ativa duas vias que convergem no mesmo desfecho:</p>
+<ul>
+<li><strong>Atividade inflamatória</strong> — a <strong>nicotina</strong> é quimiotática para neutrófilos; os <strong>macrófagos</strong> liberam fator quimiotático para neutrófilos; neutrófilos e macrófagos liberam <strong>elastases</strong>.</li>
+<li><strong>Ação lesiva de agentes oxidantes</strong> — os <strong>radicais livres de oxigênio</strong> (das "espécies reativas de oxigênio", indicadas no esquema) agridem diretamente colágeno e elastina, e <strong>reduzem a eficiência da alfa-1-antitripsina</strong> — no esquema, a legenda chama isso de "inativação (funcional) das antiproteases".</li>
+</ul>
+<p><strong>Mecanismo central:</strong> <mark class="exam5" data-refs="79:4,82:12,82:?">desequilíbrio no sistema protease/antiprotease</mark>, levando à <mark class="exam4" data-refs="82:11">destruição dos septos alveolares</mark> por enzimas proteolíticas.</p>
+<p><strong>Fontes de proteases na via aérea inferior:</strong>
+- <strong>Neutrófilos</strong> → <strong>serino-elastase</strong> — aumentados em tabagistas
+- <strong>Macrófagos alveolares</strong> → <strong>metalo-elastase</strong> — concentrados na <strong>região centroacinar</strong> (e é exatamente por isso que o padrão centroacinar é o que mais se associa ao tabagismo)</p>
+<p><strong>Antiproteases</strong> presentes no fluido que reveste o epitélio respiratório: <strong>alfa-1-antitripsina, alfa-1-macroglobulina e antileucoprotease</strong>.</p>
+<p>🔗 <strong>LIGA COM CARDIOVASCULAR:</strong> repare no paralelo estrutural com a aterosclerose — ali também há um desequilíbrio entre um agressor enzimático (metaloproteinases dos macrófagos, degradando o colágeno da capa fibrosa) e um sistema de manutenção da matriz (síntese de colágeno pela CML). Aqui o agressor é a elastase e o "colágeno" é o septo alveolar; lá o agressor era a MMP e o alvo era a capa da placa. É o mesmo tipo de lógica fisiopatológica — proteólise não contraposta — aplicada a dois tecidos diferentes.</p>
+<h2>Morfologia</h2>
+<p><strong>Macroscopia:</strong>
+- <strong>Pulmões volumosos e pálidos</strong>
+- <strong>Bolhas</strong> — fusão de alvéolos, especialmente <strong>nas margens e no ápice</strong>
+- <strong>Perda da consistência esponjosa e elástica normal</strong></p>
+<figure class="fig"><img data-img="pulmao-enfisematoso-macro-1.jpg" alt="Pulmão enfisematoso — macroscopia 1" loading="lazy" data-caption="Pulmão enfisematoso — macroscopia 1"><figcaption>Pulmão enfisematoso — macroscopia 1</figcaption></figure>
+<figure class="fig"><img data-img="pulmao-enfisematoso-macro-2-bolhas.jpg" alt="Pulmão enfisematoso — bolhas" loading="lazy" data-caption="Pulmão enfisematoso — bolhas"><figcaption>Pulmão enfisematoso — bolhas</figcaption></figure>
+<p>Nas duas peças, observe a superfície de corte: em vez do parênquima homogêneo e fino em favo normal, há <strong>espaços aéreos grosseiramente aumentados, de paredes finas e irregulares</strong>, muitos confluindo em <mark class="exam2" data-refs="79:5">bolhas</mark> — espaços aéreos &gt; 1 cm que substituem áreas inteiras de parênquima. As setas na primeira imagem marcam limites entre áreas mais e menos acometidas.</p>
+<figure class="fig"><img data-img="pulmao-enfisematoso-macro-3-bolhas-subpleurais.jpg" alt="Pulmão enfisematoso — bolhas subpleurais na margem" loading="lazy" data-caption="Pulmão enfisematoso — bolhas subpleurais na margem"><figcaption>Pulmão enfisematoso — bolhas subpleurais na margem</figcaption></figure>
+<p>Aqui as bolhas se concentram próximas à <strong>superfície pleural e às margens</strong> do pulmão — exatamente a distribuição citada na morfologia macroscópica, e o substrato anatômico do <mark class="exam2" data-refs="79:5">pneumotórax espontâneo</mark> por ruptura dessas bolhas subpleurais.</p>
+<p><strong>Microscopia:</strong>
+- <mark class="exam4" data-refs="82:11">Destruição de bronquíolos respiratórios e alvéolos</mark> — <mark class="exam4" data-refs="81:11">dilatação permanente de alvéolos e ductos alveolares</mark>, <strong>perda do componente elástico</strong>, <strong>redução do leito capilar</strong> (pela destruição dos septos) e <strong>redução da superfície respiratória</strong>
+- <strong>Obstrução bronquiolar</strong> — por <strong>perda da ancoragem nos septos</strong>, os bronquíolos ficam <strong>deformados e tortuosos</strong></p>
+<figure class="fig"><img data-img="histologia-normal-vs-enfisema-destruicao-septos.jpg" alt="Histologia comparativa: pulmão normal x enfisema" loading="lazy" data-caption="Histologia comparativa: pulmão normal x enfisema"><figcaption>Histologia comparativa: pulmão normal x enfisema</figcaption></figure>
+<p>À esquerda, o parênquima <strong>normal</strong>: alvéolos pequenos, numerosos, septos finos e regulares, formando uma malha densa. À direita, o <strong>enfisema</strong>: os espaços aéreos estão muito maiores e mais espaçados, com septos rotos e poucos remanescentes flutuando dentro dos espaços dilatados — a imagem inversa e complementar do esquema do Segmento 2 anterior.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — a "perda de ancoragem" é o elo mecânico entre destruição e obstrução:</strong> em condições normais, os septos alveolares se inserem na parede dos bronquíolos e os mantêm abertos por tração radial durante a expiração (o mesmo princípio de uma barraca de camping presa por cordas). Ao destruir os septos, o enfisema retira essa tração, e o bronquíolo — que não tem cartilagem própria de sustentação — <strong>colaba durante a expiração forçada</strong>. É por isso que o enfisematoso expira com dificuldade mesmo sem ter, a rigor, "bronquite": o colapso é estrutural, não inflamatório.</p></aside>
+<h2>Fisiopatologia e clínica</h2>
+<p><strong>Dificuldade / insuficiência respiratória</strong>, por três mecanismos combinados:</p>
+<ol>
+<li><strong>Dificuldade no fluxo aéreo</strong>, por: (a) obstrução bronquiolar; (b) destruição elástica, que dificulta a <strong>expiração</strong></li>
+<li><strong>Aumento progressivo do ar residual</strong>, com consequente <strong>redução do ar inspirado</strong></li>
+<li><strong>Perda da superfície de troca respiratória</strong></li>
+</ol>
+<p><strong>Hipertensão pulmonar</strong>, por três mecanismos:
+- <strong>Perda do leito vascular</strong> por destruição dos septos
+- <strong>Compressão de capilares remanescentes</strong> pelo aumento do ar residual
+- <mark class="exam4" data-refs="81:10">Vasoconstrição das arteríolas pulmonares</mark> em resposta à hipoxemia/hipercapnia — anotado como o mecanismo <strong>principal</strong></p>
+<p>Isso evolui para <mark class="exam5" data-refs="78:aberta1,80:6,80:?">cor pulmonale crônico</mark> (você verá a peça no Segmento 4).</p>
+<p><strong>Manifestações clínicas principais:</strong> dispneia, tosse, chiado, <strong>expiração forçada e prolongada</strong>, <strong>tórax em tonel</strong>, <strong>emagrecimento</strong>.</p>
+<p><strong>Complicações:</strong>
+- Maior risco de <strong>infecções pulmonares (pneumonias)</strong>
+- <mark class="exam2" data-refs="79:5">Pneumotórax</mark>, por <strong>ruptura de bolhas subpleurais</strong>
+- <strong>Insuficiência respiratória grave</strong></p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que o vasoconstritor hipóxico é "principal" e não incidental:</strong> em qualquer outro órgão, a vasoconstrição em resposta à hipóxia seria disfuncional; no <strong>pulmão</strong>, ela é fisiológica e serve para desviar sangue de áreas mal ventiladas para áreas bem ventiladas (otimizando a relação V/Q). O problema no enfisema é que a hipoxemia se torna <strong>difusa</strong> — o reflexo, generalizado, eleva a resistência vascular pulmonar como um todo, e a vasoconstrição adaptativa vira a própria causa da hipertensão pulmonar.</p></aside>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="E" data-qid="seg2-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Homem de 68 anos, tabagista de 60 maços-ano, apresenta enfisema com predomínio em lobos superiores, poupando parcialmente as porções mais distais dos ácinos dentro do mesmo lóbulo. O tipo de enfisema e o mecanismo fisiopatológico predominante são:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Panacinar, tipicamente associado à deficiência hereditária de alfa-1-antitripsina</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Parasseptal, tipicamente associado a pneumotórax espontâneo em jovens magros</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Irregular, tipicamente associado a cicatriz de tuberculose pulmonar antiga</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Panacinar, com dilatação uniforme de todo o ácino, da porção proximal à distal</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Centroacinar, por destruição de bronquíolos respiratórios proximais, associada a antracose</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Tabagista pesado, predomínio em <strong>lobos superiores</strong>, com coexistência de áreas alteradas e preservadas no mesmo ácino/lóbulo — é a descrição literal do enfisema <strong>centroacinar</strong>, associado a <strong>antracose</strong>. <strong>A</strong> e <strong>D</strong> descrevem o panacinar, de predomínio basal e associado a deficiência de alfa-1-antitripsina — perfil e distribuição incompatíveis com o caso. <strong>B</strong> e <strong>C</strong> não se sustentam pela distribuição e pelo perfil descritos.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg2-1">
+  <header class="q-head"><span class="q-source adapted">Adaptada da Parcial 79, Questão 4 e Parcial 81, Questão 7</span><span class="q-num">2</span><div class="q-stem"><p>Mulher de 34 anos, não tabagista, desenvolve dispneia progressiva e é diagnosticada com enfisema de predomínio em <strong>bases pulmonares</strong>, com dilatação uniforme de todo o ácino. Investigação adicional revela também doença hepática crônica. O diagnóstico mais provável e o mecanismo pulmonar são:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Enfisema centroacinar, secundário a exposição crônica a tabagismo passivo domiciliar</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Deficiência de alfa-1-antitripsina, com enfisema panacinar por falta de inibição da elastase</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Bronquiectasia congênita, por defeito estrutural primário da parede brônquica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Fibrose cística, por mutação do gene CFTR, com espessamento do muco brônquico</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Enfisema irregular, tipicamente associado a cicatrizes pulmonares prévias</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Mulher jovem, <strong>não tabagista</strong>, enfisema <strong>panacinar de predomínio basal</strong> <strong>com doença hepática associada</strong> é o retrato clássico da <strong>deficiência de alfa-1-antitripsina</strong>: menos antiprotease circulante (produzida no fígado) permite que a elastase neutrofílica destrua o septo sem oposição, e a proteína mal-dobrada retida no hepatócito lesa o fígado. <strong>A</strong> não explicaria a doença hepática nem o padrão panacinar. <strong>C</strong> e <strong>D</strong> são doenças obstrutivas de mecanismo distinto, sem relação com o padrão descrito. <strong>E</strong> não explica a idade jovem nem a doença hepática.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg2-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><figure class="fig"><img data-img="patogenese-desequilibrio-protease-antiprotease.jpg" alt="Esquema da patogênese do enfisema" loading="lazy" data-caption="Esquema da patogênese do enfisema"><figcaption>Esquema da patogênese do enfisema</figcaption></figure>
+<p>Segundo o esquema acima, qual o mecanismo central pelo qual o tabagismo provoca destruição do septo alveolar?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Broncoconstrição reflexa mediada por acetilcolina liberada pelo nervo vago</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Deposição de partículas de alcatrão diretamente nas fibras elásticas, com fibrose reparativa subsequente</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Recrutamento de neutrófilos e macrófagos, com inativação funcional das antiproteases teciduais</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Hipertrofia primária das glândulas submucosas brônquicas, com obstrução mecânica progressiva da via aérea</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Metaplasia escamosa do epitélio bronquiolar, com fibrose peribronquiolar cicatricial subsequente</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a síntese do esquema: nicotina recruta neutrófilos, macrófagos liberam quimiotáticos e elastases, e os radicais livres de oxigênio danificam diretamente as fibras <strong>e</strong> inativam funcionalmente as antiproteases — desequilibrando o sistema protease/antiprotease a favor da destruição. <strong>A</strong>, <strong>D</strong> e <strong>E</strong> descrevem mecanismos de outras entidades (broncoconstrição da asma; hipertrofia glandular e metaplasia da bronquite crônica). <strong>B</strong> troca o mecanismo central: o dano às fibras elásticas no enfisema é <strong>enzimático</strong> (protease/antiprotease), não uma deposição física direta de partículas inaladas.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg3" hidden>
+  <h1 class="pane-title">Bronquite crônica</h1>
+  <div class="prose"><h2>Definição — decore literalmente, porque é clínica e cobrada ao pé da letra</h2>
+<p><mark class="exam3" data-refs="82:10">Tosse persistente com produção excessiva de muco</mark>, presente <strong>na maioria dos dias</strong> de um período de <mark class="exam3" data-refs="82:10">3 meses</mark>, por <mark class="exam3" data-refs="82:10">pelo menos 2 anos consecutivos</mark>. A tosse e a expectoração são <strong>mais intensas pela manhã</strong>. Pode ocorrer também em <strong>não tabagistas</strong> que vivem em ambientes com <strong>grande poluição ambiental</strong>.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA:</strong> essa é a definição <strong>clínica</strong> clássica, que a própria aula frisa — bronquite crônica é diagnosticada pela história, não por biópsia. Vale destacar o "3 meses / 2 anos consecutivos": mudar qualquer um desses dois números na alternativa é o truque mais comum de prova sobre este tópico.</p></aside>
+<h2>Patogênese</h2>
+<ul>
+<li><strong>Irritação crônica</strong> por substâncias inaladas (tabaco, produtos de combustão, poluentes ambientais), causando <strong>inflamação das vias aéreas e do parênquima pulmonar</strong></li>
+<li><strong>Exacerbações causadas por infecções agudas</strong>, bacterianas ou virais</li>
+<li><mark class="exam4" data-refs="79:6">Hipertrofia das glândulas submucosas</mark> e <mark class="exam4" data-refs="82:12">hiperplasia de células caliciformes</mark>, em resposta às agressões</li>
+</ul>
+<p>O time inflamatório, célula por célula, conforme a aula:</p>
+<ul>
+<li><strong>Linfócitos T, especialmente CD8+</strong>, nas vias aéreas → lesão do parênquima e recrutamento de neutrófilos</li>
+<li><strong>Macrófagos</strong>, nas vias aéreas e no parênquima, especialmente em áreas de destruição da parede alveolar → liberam <strong>TNF-α, IL-8 e LTB-4</strong> → quimiotaxia de neutrófilos</li>
+<li><strong>Neutrófilos</strong> — liberam <strong>TNF, IL-8, E-selectina e ICAM-1</strong>; e <strong>IL-10</strong> (anti-inflamatória) — o conjunto cria um ambiente que <strong>propicia acúmulo de neutrófilos</strong> e <strong>hipersecreção brônquica</strong></li>
+<li><strong>Células epiteliais</strong> — fonte de mediadores inflamatórios (eicosanoides, citocinas, moléculas de adesão)</li>
+</ul>
+<p><strong>A obstrução resulta de três fatores:</strong>
+1. <strong>Aumento da produção de muco</strong>
+2. <strong>Inflamação peribrônquica</strong>
+3. <strong>Espessamento fibroso peribrônquico</strong> (tardio)</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — o contraste didático com o enfisema, ponto por ponto:</strong> no enfisema, a obstrução é <strong>estrutural</strong> — colapso bronquiolar por perda de tração septal (Segmento 2). Na bronquite crônica, a obstrução é primariamente <strong>funcional/inflamatória</strong> — muco em excesso, edema e espessamento da parede brônquica, com fibrose entrando tardiamente. Essa diferença mecânica é o motivo pelo qual, na prática clínica, a bronquite crônica costuma responder melhor a broncodilatador que o enfisema puro (embora na DPOC real os dois componentes quase sempre coexistam, como o próprio slide já havia avisado).</p></aside>
+<h2>Clínica</h2>
+<p><strong>Tosse persistente</strong>, <strong>hipersecreção de muco</strong> (pelos mediadores inflamatórios), <strong>dispneia</strong>, <strong>hipercapnia, hipoxemia, cianose</strong>, <strong>hipertensão pulmonar → cor pulmonale</strong>, e <strong>infecções</strong> — favorecidas pela alteração das células de revestimento e da ação ciliar, que dificulta a eliminação do muco.</p>
+<h2>Morfologia</h2>
+<p><strong>Macroscopia:</strong>
+- <strong>Espessamento da parede da árvore brônquica</strong>
+- <strong>Secreção mucosa abundante, frequentemente purulenta</strong></p>
+<figure class="fig"><img data-img="bronquio-espessado-bronquite-cronica-macro.jpg" alt="Brônquio espessado na bronquite crônica — peça macroscópica" loading="lazy" data-caption="Brônquio espessado na bronquite crônica — peça macroscópica"><figcaption>Brônquio espessado na bronquite crônica — peça macroscópica</figcaption></figure>
+<p>Na peça, a pinça segura e afasta o brônquio, cuja parede aparece nitidamente <strong>espessada e esbranquiçada</strong> em relação ao parênquima circunjacente — compare com a fina e regular parede de um brônquio saudável. O asterisco marca o campo de interesse indicado no slide original.</p>
+<p><strong>Microscopia:</strong>
+- <mark class="exam4" data-refs="79:6">Hipertrofia das glândulas submucosas</mark>
+- <strong>Aumento do número de células caliciformes</strong> e de secreção
+- <strong>Inflamação crônica e fibrose</strong> das paredes brônquicas
+- <mark class="exam3" data-refs="79:6">Metaplasia escamosa → displasia → carcinoma</mark> (nos casos mais graves)</p>
+<figure class="fig"><img data-img="histologia-hiperplasia-caliciforme-muco.jpg" alt="Histologia: hiperplasia de células caliciformes e obstrução por muco" loading="lazy" data-caption="Histologia: hiperplasia de células caliciformes e obstrução por muco"><figcaption>Histologia: hiperplasia de células caliciformes e obstrução por muco</figcaption></figure>
+<p>A imagem está anotada em inglês no material original, mas o achado é universal: <strong>cartilagem</strong> de sustentação da parede brônquica, <strong>glândulas aumentadas</strong> ("increase in glands"), revestimento com <strong>aumento de células caliciformes danificado</strong> ("damaged lining with increased goblet cells") e a luz <strong>obstruída por muco e debris</strong>, com focos de <strong>células inflamatórias</strong>. É a morfologia da definição clínica: mais muco, parede mais espessa, luz mais estreita.</p>
+<figure class="fig"><img data-img="histologia-bronquite-cronica-inflamacao-cronica.jpg" alt="Histologia: inflamação crônica da parede brônquica" loading="lazy" data-caption="Histologia: inflamação crônica da parede brônquica"><figcaption>Histologia: inflamação crônica da parede brônquica</figcaption></figure>
+<p>Aqui o destaque é o <strong>infiltrado inflamatório crônico</strong> distribuído na submucosa, entre feixes de tecido conjuntivo — o substrato histológico direto da irritação repetida pelo agente inalado.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — o índice de Reid:</strong> é a medida histológica clássica (e ainda cobrada) da hipertrofia glandular: relação entre a <strong>espessura da camada de glândulas submucosas</strong> e a <strong>espessura total da parede brônquica</strong>, do epitélio à cartilagem. Normal: <mark class="exam3" data-refs="79:6">até 0,4</mark>. Na bronquite crônica, tipicamente <mark class="exam3" data-refs="79:6">&gt; 0,5–0,7</mark>. Não é preciso saber calcular — mas saber que esse índice <strong>existe e mede hipertrofia glandular</strong> já resolve a alternativa que tenta atribuir o diagnóstico a outro parâmetro.</p></aside>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — a sequência "metaplasia → displasia → carcinoma":</strong> é a mesma lógica de qualquer epitélio cronicamente agredido (colo uterino, esôfago de Barrett): o epitélio colunar ciliado original se adapta ao insulto trocando-se por epitélio <strong>escamoso</strong> (mais resistente, porém sem cílios nem função mucociliar) — a metaplasia. Sob agressão continuada, o epitélio metaplásico pode acumular atipias (displasia) e, eventualmente, originar carcinoma <strong>epidermoide</strong>, o tipo histológico de câncer de pulmão mais fortemente ligado ao tabagismo e à bronquite crônica de longa data.</p></aside>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="A" data-qid="seg3-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Homem de 55 anos refere tosse produtiva praticamente diária, pior pela manhã, há cerca de 3 anos, sem período de remissão superior a algumas semanas. Para caracterizar bronquite crônica pela definição clínica clássica, quais critérios de tempo devem estar preenchidos?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Tosse produtiva na maioria dos dias por 3 meses, em pelo menos 2 anos consecutivos</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Tosse produtiva na maioria dos dias por 6 meses, em pelo menos 1 ano isolado</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Tosse produtiva diária por 4 meses consecutivos, sem necessidade de recorrência anual</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Tosse produtiva recorrente associada a sibilância expiratória, independentemente da duração</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Tosse produtiva por 3 meses em qualquer período da vida, não necessariamente consecutivo</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a definição clínica clássica e literal da aula: tosse produtiva na maioria dos dias, por <strong>3 meses</strong>, em <strong>pelo menos 2 anos consecutivos</strong>. <strong>B</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> alteram um ou mais desses parâmetros — exatamente o tipo de distrator mais comum sobre este tema.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg3-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Na bronquite crônica, a obstrução ao fluxo aéreo resulta principalmente de três mecanismos. Assinale a alternativa que os reúne corretamente:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Broncoespasmo reversível mediado por IgE, com resolução completa após uso de broncodilatador</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Aumento de muco, inflamação peribrônquica e espessamento fibroso peribrônquico tardio</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Colapso bronquiolar dinâmico por perda da tração elástica septal do parênquima</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Deficiência primária de surfactante alveolar, com colapso progressivo de unidades alveolares</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Compressão extrínseca da via aérea por linfonodos hilares aumentados de volume</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Reproduz os três mecanismos do slide: mais muco, inflamação peribrônquica e, tardiamente, fibrose peribrônquica. <strong>C</strong> descreve o mecanismo obstrutivo do <strong>enfisema</strong>, não da bronquite. <strong>A</strong> descreve o mecanismo da <strong>asma</strong>, não da bronquite crônica — a obstrução asmática é predominantemente reversível ao broncodilatador, enquanto a da bronquite é fixa e progressiva. <strong>D</strong> e <strong>E</strong> são mecanismos de outras entidades (doença da membrana hialina e bronquiectasia obstrutiva, respectivamente).</p></div>
+</article><article class="q" data-correct="A" data-qid="seg3-2">
+  <header class="q-head"><span class="q-source adapted">Adaptada da Parcial 79, Questão 6 e Parcial 82, Questão 10</span><span class="q-num">3</span><div class="q-stem"><figure class="fig"><img data-img="histologia-hiperplasia-caliciforme-muco.jpg" alt="Histologia da parede brônquica com achados de hiperplasia glandular e caliciforme" loading="lazy" data-caption="Histologia da parede brônquica com achados de hiperplasia glandular e caliciforme"><figcaption>Histologia da parede brônquica com achados de hiperplasia glandular e caliciforme</figcaption></figure>
+<p>O achado histológico ilustrado acima — aumento das glândulas submucosas, aumento de células caliciformes e luz obstruída por muco — é característico de qual entidade, e qual medida histológica quantifica a hipertrofia glandular?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Bronquite crônica; quantificada pelo índice de Reid, que mede a espessura da camada glandular submucosa</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Enfisema pulmonar; quantificado pelo índice de Reid, aplicado à extensão da destruição alveolar</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Bronquiectasia; quantificada pelo escore de Bhalla, obtido por tomografia de alta resolução</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Asma brônquica; quantificada pela contagem de eosinófilos no lavado broncoalveolar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Atelectasia; quantificada pelo índice de colabamento, estimado por radiografia de tórax</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Hipertrofia de glândulas submucosas + hiperplasia de células caliciformes + obstrução mucosa da luz é a morfologia definidora da <strong>bronquite crônica</strong>, e o <strong>índice de Reid</strong> é a medida clássica dessa hipertrofia glandular. <strong>B</strong> é a entidade errada — o enfisema se define por destruição de septo, não por hipertrofia glandular. <strong>C</strong>, <strong>D</strong> e <strong>E</strong> trocam tanto a entidade quanto a ferramenta de medida.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg4" hidden>
+  <h1 class="pane-title">DPOC comparada, e o caso clínico completo da aula</h1>
+  <div class="prose"><h2>A tabela que resume tudo</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Bronquite predominante</th>
+<th>Enfisema predominante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Idade (anos)</strong></td>
+<td>40–45</td>
+<td>50–75</td>
+</tr>
+<tr>
+<td><strong>Dispneia</strong></td>
+<td>Leve; tardia</td>
+<td>Severa; inicial</td>
+</tr>
+<tr>
+<td><strong>Tosse</strong></td>
+<td>Inicial; escarro abundante</td>
+<td>Tardia; escarro escasso</td>
+</tr>
+<tr>
+<td><strong>Infecções</strong></td>
+<td>Comuns</td>
+<td>Ocasionais</td>
+</tr>
+<tr>
+<td><strong>Insuficiência respiratória</strong></td>
+<td>Repetida</td>
+<td>Terminal</td>
+</tr>
+<tr>
+<td><mark class="exam3" data-refs="78:aberta1">Cor pulmonale</mark></td>
+<td>Comum</td>
+<td>Terminal</td>
+</tr>
+<tr>
+<td><strong>Recuo elástico</strong></td>
+<td>Normal</td>
+<td>Baixo</td>
+</tr>
+<tr>
+<td><strong>Raio-X</strong></td>
+<td>Cardiomegalia</td>
+<td>Hiperinsuflação</td>
+</tr>
+</tbody>
+</table>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — a intuição por trás da tabela, para não precisar decorar cada linha isoladamente:</strong> no polo <strong>"bronquite predominante"</strong>, o problema é a via aérea inflamada e cheia de secreção — o paciente é mais jovem, tosse e infecta cedo, retém CO₂ e hipoxemia cedo (daí cor pulmonale e insuficiência respiratória <strong>repetidas</strong>), mas o parênquima em si está relativamente preservado (recuo elástico normal). No polo <strong>"enfisema predominante"</strong>, o problema é a destruição do parênquima — o paciente é mais velho, a dispneia é o sintoma dominante e precoce, mas a troca gasosa e a mecânica falham tarde e de forma terminal, porque o organismo se adapta bem por muito tempo às custas de hiperinsuflação. Essa distinção deu origem aos apelidos clássicos ainda usados informalmente: o "<strong>blue bloater</strong>" (bronquítico, cianótico, edemaciado, cor pulmonale precoce) e o "<strong>pink puffer</strong>" (enfisematoso, magro, dispneico, "soprador rosado" que mantém a saturação às custas de esforço respiratório intenso).</p></aside>
+<h2>O caso clínico completo</h2>
+<p><strong>Apresentação:</strong> homem de 62 anos, corretor de bolsa de valores, <strong>tabagista crônico (3 maços/dia há 30 anos)</strong>. Procura atendimento por <strong>"falta de ar" e emagrecimento</strong>. Relata <strong>tosse frequente</strong> e <strong>múltiplas internações anteriores por "pneumonia"</strong> (a última há cerca de um mês). Refere <strong>piora lenta e progressiva</strong> da dificuldade respiratória nos últimos anos.</p>
+<p>Resumo do quadro: tabagista → dispneia progressiva → tosse constante → "pneumonias" recorrentes → emagrecimento.</p>
+<p><strong>Exame físico:</strong> emagrecido, debilitado; mucosas hipocoradas; <strong>febre (38,5 °C)</strong>; <strong>cianótico</strong>; <strong>tórax em tonel</strong>; <strong>taquipneia, com expiração prolongada</strong>. Ausculta: <strong>murmúrio vesicular diminuído difusamente</strong> (principalmente nos ápices) e <strong>crepitações basais</strong>. Percussão: <strong>hipertimpanismo difuso</strong>.</p>
+<figure class="fig"><img data-img="torax-em-tonel.jpg" alt="Tórax em tonel" loading="lazy" data-caption="Tórax em tonel"><figcaption>Tórax em tonel</figcaption></figure>
+<p>A imagem mostra exatamente o achado semiológico do caso: o diâmetro <strong>anteroposterior</strong> do tórax aumentado, aproximando-se do diâmetro transverso — a consequência visível da hiperinsuflação pulmonar crônica descrita no Segmento 2 (aumento do ar residual, retenção progressiva de ar).</p>
+<p><strong>Exames complementares:</strong></p>
+<p><em>Rx de tórax</em> — <strong>hipertransparência difusa</strong>; <strong>costelas horizontalizadas</strong>; <strong>cúpulas diafragmáticas baixas e retificadas</strong>; <strong>área cardíaca aumentada (câmaras direitas)</strong>; <strong>focos de condensação nas bases</strong>.</p>
+<figure class="fig"><img data-img="raiox-doenca-pulmonar-obstrutiva.jpg" alt="Radiografia de tórax do caso clínico" loading="lazy" data-caption="Radiografia de tórax do caso clínico"><figcaption>Radiografia de tórax do caso clínico</figcaption></figure>
+<p>Percorra o mesmo raciocínio do relatório na própria imagem: campos pulmonares mais <strong>radiotransparentes</strong> (mais pretos) que o normal, pela perda de parênquima e pelo excesso de ar retido; o diafragma <strong>achatado</strong>, empurrado para baixo pela hiperinsuflação; e a silhueta cardíaca aumentada às custas de câmaras <strong>direitas</strong> — o retrato radiológico do cor pulmonale. Os focos de condensação nas bases são a pneumonia sobreposta.</p>
+<p><em>Hemograma</em> — <strong>leucocitose (22.000)</strong>.
+<em>Citologia de escarro (3x)</em> — <strong>padrão inflamatório</strong>.
+<em>Espirometria</em> — <strong>VEF1 reduzido</strong>; <strong>aumento do ar residual</strong>.</p>
+<p><strong>Evolução:</strong> internação com <strong>piora progressiva</strong> — aumento das secreções, <strong>febre persistente</strong>, piora da insuficiência respiratória. <strong>Evoluiu com torpor, coma e óbito no 3º dia</strong> de cuidados.</p>
+<h3>Hipóteses diagnósticas</h3>
+<ul>
+<li><strong>Enfisema pulmonar (DPOC)</strong></li>
+<li><strong>Exacerbação da DPOC / complicação — pneumonia</strong></li>
+<li><strong>Cor pulmonale</strong></li>
+</ul>
+<h3>Mecanismos de morte</h3>
+<p>A cadeia proposta pela aula tem dois braços convergindo no óbito:</p>
+<ul>
+<li><mark class="exam4" data-refs="78:aberta1,80:6,80:?">Enfisema pulmonar → cor pulmonale → insuficiência respiratória + insuficiência cardíaca (choque cardiogênico)</mark></li>
+<li><strong>Pneumonia → sepse (choque séptico)</strong></li>
+</ul>
+<p>🔗 <strong>LIGA COM CARDIOVASCULAR:</strong> o "cor pulmonale" deste caso é a contrapartida <strong>direita</strong> da cardiopatia hipertensiva estudada na Aula 1 — mesma lógica de hipertrofia adaptativa seguida de descompensação, mas aqui a sobrecarga de pressão vem da <strong>circulação pulmonar</strong> (pela destruição do leito vascular e vasoconstrição hipóxica), e o ventrículo que hipertrofia e depois dilata é o <strong>direito</strong>, não o esquerdo.</p>
+<h3>Laudo da necropsia</h3>
+<ul>
+<li><strong>Enfisema pulmonar, bilateral, predominantemente centrolobular nos lobos superiores e panlobular nas margens pulmonares.</strong> Presença de bolhas nos ápices pulmonares.</li>
+<li><strong>Hipertensão pulmonar discreta/moderada</strong></li>
+<li><strong>Cor pulmonale crônico. Hipertrofia com dilatação do VD; dilatação discreta do cone da artéria pulmonar</strong> (peso do coração = <strong>430 g</strong>)</li>
+<li><strong>Broncopneumonia em grandes focos</strong>, especialmente em regiões posteriores e no lobo inferior direito</li>
+<li><strong>Encefalopatia hipóxico-isquêmica. Edema cerebral moderado</strong></li>
+<li><strong>Caquexia</strong></li>
+</ul>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — decodificando o laudo linha a linha:</strong>
+- O padrão <strong>misto</strong> (centrolobular nos ápices + achados de margem) é exatamente o que se espera em tabagista pesado de longa data — não é um erro de laudo, é a sobreposição normal de diferentes graus de destruição em diferentes territórios.
+- <strong>430 g</strong> de coração está <strong>acima do normal</strong> (300–360 g em homens, como você já sabe da Aula 1 de cardiovascular), mas a hipertrofia aqui é do <strong>VD</strong>, ao contrário da hipertrofia concêntrica de VE da cardiopatia hipertensiva.
+- <strong>Caquexia</strong> no DPOC avançado não é apenas "comer pouco por estar mal": o trabalho respiratório cronicamente aumentado (para vencer a hiperinsuflação e a obstrução) eleva o gasto energético basal a ponto de superar a ingesta, mesmo com apetite preservado — é um consumo mecânico, não apenas nutricional.
+- <strong>Encefalopatia hipóxico-isquêmica</strong> fecha o caso: hipoxemia crônica agravada pela pneumonia aguda, culminando em falência respiratória, hipóxia cerebral, torpor, coma e óbito.</p></aside>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="D" data-qid="seg4-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Comparando dois pacientes com DPOC, um com fenótipo de bronquite predominante e outro de enfisema predominante, qual associação está correta segundo a tabela clássica?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O enfisema predominante tem cor pulmonale e insuficiência respiratória precoces; o bronquite, só em fase terminal</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Ambos os fenótipos apresentam recuo elástico pulmonar igualmente reduzido, sem diferença relevante</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">A radiografia de tórax é indistinguível entre os dois fenótipos clássicos de DPOC</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Bronquite predominante é mais jovem, com cor pulmonale precoce; enfisema é mais velho, com insuficiência tardia</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">O enfisema predominante cursa tipicamente com escarro purulento abundante desde o início do quadro</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a leitura correta da tabela: bronquite predominante — mais jovem (40–45 anos), infecções comuns, cor pulmonale <strong>comum</strong> (precoce/repetido), tosse inicial com escarro abundante; enfisema predominante — mais velho (50–75 anos), dispneia severa e <strong>inicial</strong>, mas insuficiência respiratória e cor pulmonale apenas <strong>terminais</strong>, escarro <strong>escasso</strong> e tardio. <strong>A</strong> inverte exatamente os dois perfis. <strong>B</strong> ignora que o recuo elástico é normal no bronquítico e baixo no enfisematoso. <strong>C</strong> contraria a tabela (cardiomegalia vs. hiperinsuflação são achados radiológicos distintos e característicos). <strong>E</strong> troca o padrão de escarro dos dois fenótipos.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg4-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>No caso clínico da aula, a radiografia de tórax mostrou hipertransparência difusa, costelas horizontalizadas, cúpulas diafragmáticas retificadas e área cardíaca aumentada às custas de câmaras direitas. Esses achados, em conjunto, refletem:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Fibrose pulmonar restritiva, com retração acentuada do volume pulmonar total</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Hiperinsuflação por enfisema associada a cor pulmonale, com dilatação de câmaras direitas</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Derrame pleural volumoso e bilateral, sem sinais de hiperinsuflação pulmonar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Cardiopatia hipertensiva, com hipertrofia concêntrica isolada do ventrículo esquerdo</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Pneumotórax hipertensivo bilateral, com desvio contralateral do mediastino</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Hipertransparência, retificação diafragmática e horizontalização de costelas são o retrato radiológico clássico da <strong>hiperinsuflação</strong> por enfisema; a cardiomegalia às custas de câmaras <strong>direitas</strong> é o <strong>cor pulmonale</strong>. <strong>A</strong> produziria campos mais <strong>densos</strong>, não hipertransparentes, e retração (não retificação) do diafragma. <strong>C</strong> e <strong>E</strong> têm apresentação radiológica distinta (opacificação/deslocamento mediastinal). <strong>D</strong> aumentaria câmaras <strong>esquerdas</strong>, não direitas.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg4-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Sobre o mecanismo de morte proposto para o caso clínico da aula, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O óbito decorreu exclusivamente de insuficiência respiratória, sem qualquer participação infecciosa</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">A causa do óbito foi exclusivamente cardiogênica, por infarto agudo do miocárdio isolado</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">A caquexia foi a causa primária do óbito, sem relação com o quadro pulmonar de base</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Não houve qualquer participação do sistema nervoso central no desfecho final do paciente</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Cor pulmonale e broncopneumonia convergiram para choque séptico e encefalopatia hipóxico-isquêmica</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Os dois braços descritos no material — enfisema/cor pulmonale levando a IR+IC, e pneumonia levando a sepse — convergem para o óbito, com a encefalopatia hipóxico-isquêmica como via final comum. <strong>A</strong> e <strong>B</strong> isolam apenas um dos dois mecanismos, ignorando a leucocitose, a febre e o achado de broncopneumonia na necropsia. <strong>C</strong> inverte causa e consequência: a caquexia é achado associado à doença crônica grave, não a causa do óbito. <strong>D</strong> contraria explicitamente o laudo de necropsia, que descreve encefalopatia hipóxico-isquêmica e edema cerebral.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg5" hidden>
+  <h1 class="pane-title">Bronquiectasia</h1>
+  <div class="prose"><h2>Conceito e classificação</h2>
+<p><mark class="exam4" data-refs="81:aberta3">Dilatação anormal e permanente de brônquios e bronquíolos.</mark> Causas: <strong>infecções, enfraquecimento da parede brônquica ou defeitos em sua formação</strong>. Na maioria dos casos: <mark class="exam3" data-refs="82:aberta2">resulta de infecção e obstrução dos brônquios</mark> por fatores diversos.</p>
+<h3>1 — Bronquiectasia obstrutiva</h3>
+<p><strong>Mecanismo:</strong> obstrução de um segmento da árvore brônquica → <strong>retenção de secreções</strong> no segmento distal → favorece <strong>infecções de repetição</strong> → <strong>enfraquecimento da parede</strong> → <strong>dilatação</strong>.</p>
+<p><strong>Causas:</strong> tumores endobrônquicos de crescimento lento; aspiração de corpo estranho; linfonodos hilares aumentados.</p>
+<h3>2 — Bronquiectasia não obstrutiva</h3>
+<p><strong>Etiopatogênese menos conhecida.</strong> Dois exemplos dados pela aula:</p>
+<ul>
+<li><mark class="exam3" data-refs="79:aberta1">Fibrose cística e discinesia ciliar</mark> → infecções pulmonares recorrentes → enfraquecimento da parede → dilatação</li>
+<li><strong>Bronquiectasia por tração</strong> → tracionamento e dilatação da parede por <strong>cicatriz no parênquima pulmonar</strong> adjacente</li>
+</ul>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que fibrose cística e discinesia ciliar entram no mesmo grupo:</strong> ambas comprometem o <strong>clearance mucociliar</strong> — a fibrose cística por muco espesso e desidratado (mutação do CFTR), a discinesia ciliar primária por cílios estruturalmente defeituosos (mutações em proteínas do axonema, como na síndrome de Kartagener, que soma bronquiectasia, sinusite crônica e situs inversus). Sem clearance eficiente, secreções se acumulam, infectam repetidamente e o ciclo "infecção → inflamação → destruição da parede → dilatação → mais retenção de secreção → mais infecção" se autoperpetua — é o mesmo círculo vicioso da via obstrutiva, só que disparado por um defeito de limpeza em vez de por um bloqueio mecânico.</p></aside>
+<p>🔗 <strong>LIGA COM CARDIOVASCULAR:</strong> note a semelhança estrutural com a fisiopatologia do aneurisma de aorta na Aula 1 — ali, inflamação crônica levava à destruição de colágeno e elastina da média, enfraquecendo a parede até ela ceder e dilatar. Aqui, a inflamação repetida (por obstrução ou por infecção recorrente) destrói o colágeno, a cartilagem e o músculo da parede brônquica até ela também ceder e dilatar. Órgãos diferentes, mesmo roteiro: inflamação crônica → destruição de matriz de sustentação → dilatação permanente da estrutura tubular.</p>
+<h2>Clínica</h2>
+<p><strong>Febre; expectoração abundante, mucosa ou purulenta, principalmente pela manhã.</strong> Em <strong>lesão extensa: dispneia, insuficiência respiratória</strong>.</p>
+<h2>Morfologia</h2>
+<p><strong>Macroscopia:</strong>
+- <mark class="exam3" data-refs="81:aberta3">Dilatação de brônquios e bronquíolos</mark>, de até <strong>4 vezes o diâmetro normal</strong>
+- <strong>Fibrose irregular da parede</strong>, que <strong>ocupa o espaço do parênquima</strong>
+- Os <strong>brônquios periféricos</strong>, próximos à pleura, ficam visíveis — normalmente eles distam <strong>2 a 3 cm</strong> da pleura, e sua visualização próxima à superfície já denuncia a dilatação
+- <strong>Acúmulo de muco na luz</strong></p>
+<figure class="fig"><img data-img="broncos-dilatados-macro-bronquiectasia.jpg" alt="Brônquios dilatados — bronquiectasia macroscópica" loading="lazy" data-caption="Brônquios dilatados — bronquiectasia macroscópica"><figcaption>Brônquios dilatados — bronquiectasia macroscópica</figcaption></figure>
+<p>Na peça, os brônquios aparecem como estruturas <strong>tubulares muito alargadas</strong>, de paredes espessadas e irregulares, com conteúdo escuro (secreção/sangue) na luz — a seta vermelha aponta um dos segmentos mais dilatados.</p>
+<figure class="fig"><img data-img="bronquiectasia-macro-corte-favo-de-mel.jpg" alt="Corte pulmonar em favo de mel — bronquiectasia" loading="lazy" data-caption="Corte pulmonar em favo de mel — bronquiectasia"><figcaption>Corte pulmonar em favo de mel — bronquiectasia</figcaption></figure>
+<p>Aqui o corte transversal do parênquima mostra múltiplos espaços <strong>arredondados a ovalados, de paredes espessas</strong>, distribuídos por todo o campo — o aspecto clássico descrito como <mark class="exam3" data-refs="81:aberta3">"faveolar" ou "em favo de mel"</mark>, resultado de brônquios dilatados cortados transversalmente lado a lado, com o parênquima normal entre eles substituído por fibrose.</p>
+<figure class="fig"><img data-img="histologia-pulmonar-normal-comparacao.jpg" alt="Comparação: parênquima pulmonar normal" loading="lazy" data-caption="Comparação: parênquima pulmonar normal"><figcaption>Comparação: parênquima pulmonar normal</figcaption></figure>
+<p>Esta lâmina de parênquima <strong>normal</strong> serve de contraponto direto: alvéolos pequenos e regulares, sem os grandes espaços dilatados e sem o espessamento parietal das duas imagens anteriores. Use-a mentalmente como a "linha de base" contra a qual comparar tanto o enfisema (Segmento 2) quanto a bronquiectasia.</p>
+<figure class="fig"><img data-img="bronquiectasia-peca-r6-macro.jpg" alt="Bronquiectasia — peça de estudo R6" loading="lazy" data-caption="Bronquiectasia — peça de estudo R6"><figcaption>Bronquiectasia — peça de estudo R6</figcaption></figure>
+<p>Esta é a peça do exercício prático da aula (identificada como <strong>R6</strong> no roteiro): observe novamente a dilatação acentuada e irregular dos brônquios, com paredes espessadas por fibrose, contrastando com áreas de parênquima mais preservado ao redor.</p>
+<p><strong>Microscopia</strong> (peças do roteiro prático):</p>
+<figure class="fig"><img data-img="bronquiectasia-histologia-panoramica.jpg" alt="Bronquiectasia — histologia panorâmica" loading="lazy" data-caption="Bronquiectasia — histologia panorâmica"><figcaption>Bronquiectasia — histologia panorâmica</figcaption></figure>
+<p>Na visão panorâmica, o achado central é a luz <strong>muito dilatada</strong> de um brônquio, com parede espessada e desorganizada por fibrose e infiltrado inflamatório crônico — a contrapartida microscópica exata da dilatação vista na macroscopia.</p>
+<figure class="fig"><img data-img="bronquiectasia-histologia-exercicio.jpg" alt="Bronquiectasia — histologia do exercício" loading="lazy" data-caption="Bronquiectasia — histologia do exercício"><figcaption>Bronquiectasia — histologia do exercício</figcaption></figure>
+<p>Esta é a lâmina proposta como exercício ("qual a alteração vista na lâmina?"): mais uma vez, parede brônquica espessada, com denso infiltrado inflamatório crônico ocupando a submucosa — o substrato histológico da infecção repetida e do enfraquecimento parietal que levam à dilatação.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — a bronquiectasia entra na lista de causas de escarro em três camadas (mucoide, purulento, espumoso) e de baqueteamento digital / osteoartropatia hipertrófica</strong>, achados clássicos de supuração pulmonar crônica — o mesmo baqueteamento que você já viu na Aula 1 de cardiovascular associado a hipoxemia crônica (DPOC, cardiopatia cianótica). É um achado semiológico que se repete em qualquer doença de hipóxia crônica ou supuração de longa duração, não exclusivo de nenhuma delas isoladamente.</p></aside>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="A" data-qid="seg5-0">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 78, Questão 10</span><span class="q-num">1</span><div class="q-stem"><p>Uma paciente de 28 anos, com diagnóstico prévio de fibrose cística, apresenta-se com frequência ao hospital com recorrentes episódios de infecções respiratórias. Os exames revelam extensas alterações na arquitetura pulmonar, com <mark class="exam3" data-refs="78:10">alargamento e espessamento das paredes brônquicas</mark>. Ela tem histórico de tosse crônica, expectoração de muco espesso e dispneia progressiva. Em relação à alteração da arquitetura pulmonar descrita, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pode ser localizada ou difusa, inclusive bilateral</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Os brônquios crescem em direção ao hilo pulmonar, distanciando-se da pleura</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Clinicamente, os pacientes apresentam febre, tosse e expectoração abundante, sobretudo pela noite</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Em geral, não causa insuficiência respiratória, pois a dilatação brônquica auxilia a ventilação pulmonar</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">É sempre uma alteração restrita a um único segmento pulmonar, nunca bilateral</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p><strong>Questão literal da Parcial 78 (Questão 10), aqui reaproveitada com o mesmo enunciado e gabarito.</strong> A bronquiectasia pode ser <mark class="exam3" data-refs="78:10">localizada (obstrutiva) ou difusa/bilateral (não obstrutiva)</mark>, dependendo do mecanismo — exatamente o contraste ensinado no Segmento 5. <strong>B</strong> inverte a anatomia: na bronquiectasia os brônquios periféricos se aproximam da pleura, não se afastam dela. <strong>C</strong> erra o turno: a expectoração é tipicamente mais abundante <strong>pela manhã</strong>, não à noite. <strong>D</strong> e <strong>E</strong> contrariam a clínica (a dilatação brônquica prejudica a ventilação e favorece insuficiência respiratória em casos extensos) e a possibilidade de acometimento bilateral.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg5-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Criança com aspiração de corpo estranho não identificada evolui, semanas depois, com pneumonias de repetição no mesmo segmento pulmonar e posterior dilatação brônquica localizada. O mecanismo fisiopatológico correto é:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Bronquiectasia não obstrutiva, por defeito primário do clearance mucociliar ciliar</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Bronquiectasia por tração, secundária a fibrose cicatricial do parênquima adjacente</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Enfisema centroacinar, secundário à exposição crônica a tabagismo passivo domiciliar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Doença da membrana hialina, típica de recém-nascidos prematuros, não de crianças maiores</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Bronquiectasia obstrutiva: o corpo estranho retém secreção, favorecendo infecção e dilatação</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o exemplo canônico de bronquiectasia <strong>obstrutiva</strong>: corpo estranho obstrui → retenção de secreção → infecção de repetição no mesmo segmento → enfraquecimento da parede → dilatação localizada. <strong>A</strong> e <strong>B</strong> são formas não obstrutivas, sem relação com corpo estranho. <strong>C</strong> e <strong>D</strong> são entidades sem relação com o quadro descrito.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg5-2">
+  <header class="q-head"><span class="q-source adapted">Adaptada da Parcial 82, Questão Aberta 2</span><span class="q-num">3</span><div class="q-stem"><figure class="fig"><img data-img="bronquiectasia-macro-corte-favo-de-mel.jpg" alt="Corte pulmonar com múltiplos espaços dilatados em favo de mel" loading="lazy" data-caption="Corte pulmonar com múltiplos espaços dilatados em favo de mel"><figcaption>Corte pulmonar com múltiplos espaços dilatados em favo de mel</figcaption></figure>
+<p>O padrão macroscópico acima, com múltiplos espaços arredondados de paredes espessas substituindo o parênquima normal, é característico de:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Enfisema panacinar, com dilatação uniforme e destruição difusa dos ácinos pulmonares</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Atelectasia por compressão, com colabamento do parênquima previamente aerado</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Doença da membrana hialina, achado exclusivamente microscópico, não macroscópico</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Bronquiectasia, com dilatação brônquica permanente em padrão de favo de mel</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Pulmão normal, variante anatômica sem qualquer significado patológico associado</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a descrição literal do aspecto <strong>"em favo de mel"</strong> da bronquiectasia — múltiplos brônquios dilatados de paredes espessadas substituindo o parênquima. <strong>A</strong> teria espaços de paredes <strong>finas</strong> e distribuição acinar, não brônquica. <strong>B</strong> mostraria retração, não espaços dilatados. <strong>C</strong> teria achados histológicos de membranas hialinas, não macroscópicos como este. <strong>E</strong> está descartada pela presença clara de lesão estrutural extensa.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg6" hidden>
+  <h1 class="pane-title">Atelectasia</h1>
+  <div class="prose"><h2>Conceito</h2>
+<p>Também conhecida como <strong>"colapso pulmonar"</strong>. Pode decorrer de <strong>expansão incompleta</strong> do pulmão ou de <strong>colabamento de pulmão previamente inflado</strong>. <strong>Reduz a oxigenação</strong> e <strong>predispõe a dispneia e a infecções pulmonares</strong>. <strong>Geralmente é reversível</strong>, com a <strong>eliminação da causa</strong>.</p>
+<aside class="note note-fix"><p>⚠️ Vale posicionar a atelectasia corretamente dentro do eixo obstrutiva/restritiva do Segmento 1: ela não é, a rigor, uma "doença obstrutiva das vias aéreas" como o enfisema — é um <strong>colapso de parênquima já formado</strong>, mecanicamente mais próxima do espectro restritivo (reduz o volume pulmonar aerado), embora uma de suas quatro causas seja, ela mesma, obstrutiva. A aula a apresenta na sequência das obstrutivas por tradição didática e porque a atelectasia por obstrução compartilha mecanismo com a bronquiectasia obstrutiva do segmento anterior.</p></aside>
+<h2>As quatro classificações</h2>
+<h3>1 — Atelectasia por compressão</h3>
+<p><mark class="exam2" data-refs="81:1">Compressão externa</mark> do parênquima pulmonar previamente inflado. Causas: <strong>derrames pleurais</strong> — hemotórax, piotórax, pneumotórax.</p>
+<h3>2 — Atelectasia por absorção/obstrução</h3>
+<p><mark class="exam3" data-refs="81:1">Obstrução brônquica completa.</mark> Causas: <strong>tumor, corpo estranho, secreções espessas.</strong></p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que "absorção":</strong> distal a uma obstrução completa, o ar aprisionado nos alvéolos é progressivamente <strong>absorvido</strong> pela circulação capilar (sobretudo o O₂, mais rapidamente que o N₂), sem que entre ar novo para repor — o segmento colaba por essa reabsorção, não por compressão externa. É esse detalhe que justifica o nome alternativo do subtipo e o distingue mecanicamente do tipo 1.</p></aside>
+<h3>3 — Atelectasia por contração</h3>
+<p><strong>Lesões fibróticas</strong> pulmonares, locais ou difusas, que <strong>impedem a expansão</strong> do órgão.</p>
+<h3>4 — Atelectasia por deficiência de surfactante</h3>
+<p>Clássica em <strong>recém-nascidos</strong> — a <strong>doença da membrana hialina</strong>. Mecanismo: <strong>colabamento de alvéolos por aumento da tensão superficial.</strong></p>
+<p><strong>Observação da aula:</strong> em <strong>adultos</strong>, o quadro equivalente é a <strong>síndrome do desconforto respiratório agudo (SARA/SDRA)</strong>, com mecanismo <strong>diferente</strong> — <strong>agressão à barreira alvéolo-capilar (BAC)</strong> por agentes diversos (físicos, químicos, biológicos), e não deficiência primária de surfactante. Apesar do mecanismo de origem distinto, a <strong>morfologia é igual</strong> nos dois casos.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que a tensão superficial colaba o alvéolo sem surfactante:</strong> pela lei de Laplace, a pressão necessária para manter um alvéolo aberto é diretamente proporcional à tensão superficial e inversamente proporcional ao raio — alvéolos <strong>menores</strong> precisam de mais pressão para não colabar. O surfactante reduz a tensão superficial de forma proporcionalmente maior nos alvéolos menores, equalizando as pressões entre alvéolos de tamanhos diferentes e impedindo que os pequenos esvaziem dentro dos grandes. Sem surfactante, os alvéolos pequenos colabam a cada expiração — exatamente o mecanismo citado no material.</p></aside>
+<h2>Doença da membrana hialina (síndrome da angústia respiratória do recém-nascido)</h2>
+<ul>
+<li><strong>Surfactante</strong> começa a ser produzido por volta da <strong>20ª semana</strong>, atingindo <strong>níveis fisiológicos por volta da 34ª semana</strong></li>
+<li><strong>Aumenta a produção:</strong> corticoide</li>
+<li><strong>Diminui a produção:</strong> insulina</li>
+<li><strong>Fatores de risco:</strong> <mark class="exam3" data-refs="78:9">prematuridade</mark>; <mark class="exam3" data-refs="78:?">diabetes materno</mark>; <mark class="exam3" data-refs="78:?">cesariana</mark></li>
+</ul>
+<p><strong>Patogênese:</strong> os alvéolos <strong>colabam a cada expiração</strong> → alteração da relação <strong>ventilação/perfusão</strong> → <strong>hipóxia</strong> → <strong>lesão celular</strong> → formação de <strong>membranas hialinas</strong>.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que corticoide sobe e insulina desce a produção de surfactante, e por que isso importa na prática:</strong> o corticoide acelera a maturação dos pneumócitos tipo II (produtores de surfactante) — é a base da <strong>corticoterapia antenatal</strong> oferecida a gestantes em risco de parto prematuro, entre 24 e 34 semanas, para reduzir a incidência e a gravidade da doença da membrana hialina no recém-nascido. Já a hiperinsulinemia fetal — típica do filho de mãe diabética mal controlada, por hiperglicemia materna cruzando a placenta e estimulando o pâncreas fetal — <strong>retarda</strong> essa maturação; por isso o filho de mãe diabética tem risco aumentado de doença da membrana hialina mesmo nascendo a termo ou próximo do termo. E a <strong>cesariana eletiva sem trabalho de parto</strong> entra como fator de risco porque o próprio trabalho de parto (o estresse fisiológico do parto vaginal) estimula a liberação de catecolaminas e cortisol fetal, que ajudam a maturar o pulmão — um mecanismo a menos quando o parto é cirúrgico e eletivo.</p></aside>
+<h2>Morfologia (comum às causas de deficiência de surfactante)</h2>
+<figure class="fig"><img data-img="atelectasia-peca-macro-vermelha.jpg" alt="Peça macroscópica — atelectasia" loading="lazy" data-caption="Peça macroscópica — atelectasia"><figcaption>Peça macroscópica — atelectasia</figcaption></figure>
+<p>Na peça, o parênquima colabado assume uma coloração <strong>vermelho-escura, uniforme e sem a crepitação/aeração</strong> do parênquima normalmente insuflado — a superfície de corte é lisa e sem os pequenos orifícios de ar visíveis num pulmão normalmente aerado. É o retrato macroscópico direto do "colapso": menos ar, mais sangue relativamente concentrado por unidade de volume.</p>
+<figure class="fig"><img data-img="membranas-hialinas-bronquiolo-atelectasia-histologia.jpg" alt="Histologia — brônquiolo, alvéolo com membranas hialinas e área de atelectasia" loading="lazy" data-caption="Histologia — brônquiolo, alvéolo com membranas hialinas e área de atelectasia"><figcaption>Histologia — brônquiolo, alvéolo com membranas hialinas e área de atelectasia</figcaption></figure>
+<p>Nesta lâmina panorâmica, três achados estão anotados lado a lado: o <strong>bronquíolo</strong>, um <strong>alvéolo com membranas hialinas</strong> e uma <strong>área de atelectasia</strong> — o que permite comparar, no mesmo campo, o parênquima colabado com os alvéolos revestidos pelo material eosinofílico característico.</p>
+<figure class="fig"><img data-img="membranas-hialinas-detalhe-luz-alveolar.jpg" alt="Detalhe das membranas hialinas na luz alveolar" loading="lazy" data-caption="Detalhe das membranas hialinas na luz alveolar"><figcaption>Detalhe das membranas hialinas na luz alveolar</figcaption></figure>
+<p>Em maior aumento, as <strong>membranas hialinas</strong> aparecem como um material <strong>eosinofílico, denso, homogêneo</strong>, revestindo a parede interna dos ductos alveolares e espaços aéreos terminais, deixando a <strong>luz alveolar</strong> livre no centro — não é um preenchimento completo do espaço, é um <strong>revestimento</strong> da parede, o que é justamente o que dá nome à lesão (membrana, não rolha).</p>
+<figure class="fig"><img data-img="membranas-hialinas-grande-aumento.jpg" alt="Membranas hialinas em grande aumento" loading="lazy" data-caption="Membranas hialinas em grande aumento"><figcaption>Membranas hialinas em grande aumento</figcaption></figure>
+<p>No maior aumento, confirme a textura: material acelular, fibrilar-homogêneo, fortemente eosinofílico, aderido à parede alveolar — composto por debris celulares necróticos misturados a proteínas plasmáticas extravasadas (inclusive fibrina), que escaparam por uma barreira alvéolo-capilar já lesada pela hipóxia.</p>
+<aside class="note note-extra"><p>📌 <strong>EXTRA — por que a membrana hialina é, ela mesma, mais um agressor:</strong> uma vez formada, a membrana espessa a barreira de troca gasosa e piora ainda mais a hipoxemia, alimentando o mesmo ciclo que a gerou (colapso → hipóxia → lesão → membrana → mais hipóxia). É outro exemplo do padrão que se repete nesta aula inteira — uma lesão que, ao se formar, perpetua o próprio mecanismo que a causou.</p></aside>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="A" data-qid="seg6-0">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 81, Questão 1</span><span class="q-num">1</span><div class="q-stem"><p>Criança de 3 anos, previamente saudável, apresenta início súbito de <mark class="exam3" data-refs="81:1">tosse intensa e dispneia após brincar com sementes</mark>. A radiografia de tórax evidencia <mark class="exam3" data-refs="81:1">redução volumétrica no pulmão direito, com desvio do mediastino para o mesmo lado</mark>. O caso acima descreve uma atelectasia por:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Absorção</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Contração</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Compressão</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Deficiência de surfactante</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Fibrose difusa do parênquima adjacente</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p><strong>Questão literal da Parcial 81 (Questão 1).</strong> Aspiração de corpo estranho (sementes) obstrui completamente o brônquio → o ar aprisionado distalmente é progressivamente <mark class="exam3" data-refs="81:1">absorvido</mark> pela circulação capilar, sem entrada de ar novo → colapso do segmento, com <strong>desvio do mediastino para o lado colabado</strong> (o lado que perde volume "puxa" o mediastino, ao contrário do pneumotórax hipertensivo, que empurra o mediastino para o lado contralateral). <strong>C</strong> (compressão) seria por líquido/ar no espaço pleural, não por obstrução brônquica intrínseca. <strong>B</strong> e <strong>E</strong> exigiriam fibrose cicatricial estabelecida, incompatível com um quadro agudo em criança. <strong>D</strong> é mecanismo neonatal, sem relação com aspiração de corpo estranho.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg6-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Recém-nascido pré-termo de 30 semanas, filho de mãe diabética não controlada, nascido por cesariana eletiva, evolui nas primeiras horas de vida com taquipneia, gemência e hipoxemia progressiva. Qual a fisiopatologia mais provável e por que os três fatores de risco citados se somam?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Deficiência de surfactante: prematuridade, hiperinsulinemia fetal e ausência de trabalho de parto somam-se como fatores de risco</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Aspiração de mecônio, com obstrução das pequenas vias aéreas e pneumonite química associada</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Bronquiectasia congênita, por discinesia ciliar primária de instalação já neonatal</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Pneumotórax espontâneo, por ruptura de bolha subpleural em recém-nascido a termo</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Cardiopatia congênita cianótica, com hipofluxo pulmonar mimetizando desconforto respiratório neonatal</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Os três elementos do caso reproduzem exatamente os fatores de risco da doença da membrana hialina discutidos no material: prematuridade (produção de surfactante ainda insuficiente), diabetes materna (hiperinsulinemia fetal retardando a maturação pulmonar) e cesariana eletiva (ausência do estímulo hormonal do trabalho de parto). <strong>B</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> são diagnósticos diferenciais de desconforto respiratório neonatal, mas nenhum se encaixa na combinação específica de fatores de risco apresentada.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg6-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><figure class="fig"><img data-img="membranas-hialinas-detalhe-luz-alveolar.jpg" alt="Detalhe histológico das membranas hialinas na luz alveolar" loading="lazy" data-caption="Detalhe histológico das membranas hialinas na luz alveolar"><figcaption>Detalhe histológico das membranas hialinas na luz alveolar</figcaption></figure>
+<p>O material eosinofílico, denso e homogêneo que reveste a parede interna dos espaços aéreos na imagem acima corresponde a:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Trombo de fibrina intravascular, localizado dentro da luz de um vaso sanguíneo</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Muco espesso, característico da obstrução brônquica típica da fibrose cística</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Membranas hialinas, formadas por debris necróticos e proteínas extravasadas da barreira alvéolo-capilar</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Depósito amiloide alveolar, achado específico de outra entidade sistêmica distinta</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Granuloma caseoso central, achado característico e específico da tuberculose pulmonar</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a definição morfológica da membrana hialina — material eosinofílico homogêneo, de debris necróticos e proteínas plasmáticas extravasadas, revestindo a parede alveolar após lesão da barreira alvéolo-capilar. <strong>A</strong> teria organização em rede de fibrina dentro de um vaso, não revestindo espaço aéreo. <strong>B</strong> teria aspecto mucoide, não eosinofílico-homogêneo em parede. <strong>D</strong> teria afinidade especial por corantes como vermelho-congo, com birrefringência característica. <strong>E</strong> teria centro necrótico circundado por histiócitos epitelioides e células gigantes, achado morfológico completamente distinto.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="seg7" hidden>
+  <h1 class="pane-title">O que mais cai em prova</h1>
+  <div class="prose"><h2>Revisão cruzada com as 5 provas antigas (Parciais 78 a 82)</h2>
+<p>Este segmento não traz conteúdo novo — é a <strong>curadoria dos pontos de doenças pulmonares obstrutivas mais cobrados</strong> nas cinco provas antigas de Patologia Médica I, com peso extra para a <strong>Parcial 82</strong> (a mais recente, e a que mais trouxe questões diretas de DPOC/enfisema/bronquite/bronquiectasia). Use a legenda de cores do início do material: quanto mais escuro/vermelho, mais vezes o fato apareceu.</p>
+
+<div class="examcard"><h4>🔴 Certeza absoluta / cai sempre</h4>
+<ul>
+<li><mark class="exam5" data-refs="79:4,82:12,82:?">Mecanismo do enfisema = desequilíbrio protease/antiprotease</mark> (elastase neutrofílica sem oposição eficaz da alfa-1-antitripsina). Cobrado nas Parciais 79 (Q4), 81 (Q7) e reaparece na lógica de toda questão sobre enfisema.</li>
+<li><mark class="exam5" data-refs="78:aberta1,80:6,80:?">Cor pulmonale crônico = hipertrofia/dilatação de ventrículo direito</mark>, secundário a doença pulmonar crônica (DPOC, bronquiectasia, fibrose). Aparece nas Parciais 78 (Aberta 1), 79 (Aberta 2), 80 (Aberta 2), 81 (Q10), 82 (Q6, Q19) — é praticamente garantido em toda prova.</li>
+</ul></div>
+
+<div class="examcard"><h4>🟠 Cai bastante</h4>
+<ul>
+<li><mark class="exam4" data-refs="82:12">Bronquite crônica: hipertrofia de glândulas submucosas, aumento de células caliciformes, possível metaplasia escamosa, índice de Reid aumentado</mark> — Parciais 79 (Q6) e 82 (Q10, Q12).</li>
+<li><mark class="exam4" data-refs="82:aberta2">Bronquiectasia: dilatação permanente por ciclo infecção-obstrução ou defeito de clearance mucociliar (discinesia ciliar, fibrose cística)</mark> — Parciais 78 (Q10, Q11), 79 (Aberta 1), 81 (Aberta 3), 82 (Aberta 2).</li>
+<li><mark class="exam4" data-refs="82:11">Enfisema: dilatação permanente dos espaços aéreos por destruição dos septos alveolares, com fibrose mínima associada</mark> (contraste com a fibrose evidente de outras doenças pulmonares) — Parciais 81 (Q11) e 82 (Q11).</li>
+</ul></div>
+
+<div class="examcard"><h4>🟡 Cai ocasionalmente</h4>
+<ul>
+<li><mark class="exam2" data-refs="81:1">Atelectasia por absorção após obstrução completa (ex.: aspiração de corpo estranho em criança), com desvio do mediastino para o lado colabado</mark> — Parcial 81 (Q1).</li>
+<li><mark class="exam2" data-refs="79:5">Complicação do enfisema por bolhas subpleurais: pneumotórax espontâneo</mark> — Parcial 79 (Q5).</li>
+<li><mark class="exam2" data-refs="81:10">DPOC como causa de hipertensão pulmonar por vasoconstrição hipóxica das arteríolas pulmonares</mark> — Parcial 81 (Q10).</li>
+</ul></div>
+
+<div class="examcard"><h4>🟢 Já caiu pelo menos uma vez</h4>
+<ul>
+<li><mark class="exam1" data-refs="81:10">DPOC classificada morfologicamente em 4 tipos (centroacinar, panacinar, parasseptal, irregular), com o centroacinar sendo o mais comum</mark> — citado como distrator na Parcial 81 (Q10).</li>
+<li><mark class="exam1" data-refs="82:10,82:11">Diferenciação clínica entre bronquite predominante ("blue bloater") e enfisema predominante ("pink puffer")</mark> — tema recorrente em casos clínicos mistos de DPOC nas provas (Parcial 82, Q10/Q12).</li>
+</ul></div>
+
+<aside class="note note-extra"><p>📌 <strong>Dica de prova sobre o formato:</strong> nas cinco provas antigas, quase toda questão de obstrutivas pulmonares vem em <strong>vinheta clínica</strong> (idade, tabagismo, achados de exame físico e exame de imagem), seguida de um comando do tipo "assinale a alternativa correta" ou "julgue as afirmativas (I, II, III...)". Treinar a leitura rápida da vinheta para identificar centroacinar x panacinar, ou bronquite x enfisema, resolve a maioria dessas questões sem precisar memorizar números soltos.</p></aside>
+
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg7-0">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 82, Questão 10</span><span class="q-num">1</span><div class="q-stem"><p>Carlos, um homem de 65 anos, ex-fumante, apresenta sintomas de <mark class="exam3" data-refs="82:10">tosse crônica e produção de muco por mais de três meses durante os últimos dois anos</mark>. Ao exame físico, nota-se cianose e estertores respiratórios. Qual das alternativas a seguir é mais compatível com o diagnóstico do caso?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Aumento do volume residual e hipoinsuflação pulmonar</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Inflamação crônica das vias aéreas com hipersecreção de muco</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Quebras irregulares nas paredes alveolares sem fibrose significativa</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Presença de broncoespasmo agudo em resposta ao exercício</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p><strong>Questão literal da Parcial 82 (Questão 10).</strong> O quadro é a definição clínica clássica de <mark class="exam3" data-refs="82:10">bronquite crônica</mark> (tosse produtiva &gt; 3 meses, em ≥ 2 anos), e a base morfológica é a <strong>inflamação crônica das vias aéreas com hipersecreção de muco</strong> (Segmento 3). <strong>C</strong> descreve o <strong>enfisema</strong> (destruição de septo sem fibrose significativa), diagnóstico diferencial clássico. <strong>D</strong> descreve asma. <strong>A</strong> inverte o achado esperado (hiperinsuflação, não hipoinsuflação).</p></div>
+</article><article class="q" data-correct="B" data-qid="seg7-1">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 82, Questão 11</span><span class="q-num">2</span><div class="q-stem"><p>Ana, uma mulher de 72 anos, com histórico de <mark class="exam3" data-refs="82:11">tabagismo intenso</mark>, apresenta dispneia progressiva há meses. Exames de função pulmonar mostram um <mark class="exam4" data-refs="82:11">padrão obstrutivo</mark>, e a tomografia computadorizada revela <mark class="exam4" data-refs="82:11">hiperinsuflação dos pulmões e destruição das paredes alveolares</mark>. Com base nas informações clínicas, qual é a alteração patológica mais característica do quadro da paciente?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Espessamento das paredes brônquicas e aumento da secreção mucosa</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Aumento de espaço aéreo distal devido à destruição das paredes/septos alveolares</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Presença de secreções purulentas nas vias aéreas</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Fibrose intersticial difusa com comprometimento da ventilação</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p><strong>Questão literal da Parcial 82 (Questão 11).</strong> É a definição morfológica do <mark class="exam4" data-refs="82:11">enfisema</mark>: aumento permanente do espaço aéreo distal ao bronquíolo terminal, por destruição das paredes/septos alveolares (Segmento 2). <strong>A</strong> e <strong>C</strong> descrevem bronquite crônica/bronquiectasia. <strong>D</strong> descreve uma doença restritiva, incompatível com o padrão obstrutivo do enunciado.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg7-2">
+  <header class="q-head"><span class="q-source real">Prova real — Parcial 82, Questão 12</span><span class="q-num">3</span><div class="q-stem"><p>Na avaliação de um paciente com Doença Pulmonar Obstrutiva Crônica (DPOC), a análise histopatológica revela características marcantes. Assinale a alternativa correta que as descreve em pacientes com <strong>bronquite crônica</strong> e <strong>enfisema</strong>.</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">No enfisema, observa-se infiltração de neutrófilos e formação de pólipos brônquicos</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Na bronquite crônica, há aumento do número de células caliciformes e possível metaplasia escamosa</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">O enfisema é caracterizado por fibrose intersticial acentuada e inflamação crônica intensa</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Na bronquite crônica, ocorre destruição alveolar sem aumento da secreção de muco</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p><strong>Questão literal da Parcial 82 (Questão 12).</strong> Na <mark class="exam4" data-refs="82:12">bronquite crônica</mark>, o achado histológico marcante é o <mark class="exam4" data-refs="82:12">aumento de células caliciformes, com possível metaplasia escamosa</mark> (Segmento 3) — não a destruição alveolar (que é do enfisema). <strong>C</strong> inverte a morfologia clássica: o enfisema tem <strong>fibrose mínima</strong>, não acentuada. <strong>A</strong> descreve achados sem relação com o enfisema clássico. <strong>D</strong> nega justamente a hipersecreção de muco que define a bronquite crônica.</p>
+<hr /></div>
+</article>
+  </div>
+</section><section class="pane" id="apendice" hidden><div class="prose"><p><span class="q-source original">Questão da aula</span></p><p><strong>(SANAR)</strong> Com relação à função pulmonar na doença pulmonar obstrutiva crônica (DPOC), podemos afirmar que:</p>
+<p>a) O volume residual (VR) frequentemente está aumentado mesmo nos casos leves de DPOC.
+b) A capacidade residual funcional está rotineiramente diminuída na DPOC moderada a grave.
+c) A capacidade pulmonar total (CPT) está comumente diminuída na DPOC grave, devido à retração elástica aumentada.
+d) A capacidade de difusão do dióxido de carbono (DLCO) está aumentada no enfisema.</p>
+<p><strong>Gabarito: A.</strong> O <strong>volume residual aumentado</strong> é um dos achados mais precoces da DPOC — já presente em casos leves, antes mesmo de grandes alterações do VEF1 — porque a perda de recuo elástico e o colapso bronquiolar dinâmico na expiração (Segmento 2) fazem o paciente <strong>aprisionar ar</strong> desde as fases iniciais da doença. <strong>B</strong> está invertida: a capacidade residual funcional está tipicamente <strong>aumentada</strong> na DPOC moderada a grave, pela hiperinsuflação. <strong>C</strong> também está invertida: a CPT tende a estar <strong>aumentada</strong>, não diminuída, e a <strong>retração elástica está reduzida</strong> (não aumentada) no enfisema — é exatamente a perda de recuo elástico que permite a hiperinsuflação. <strong>D</strong> inverte o exame: o que se mede e se altera no enfisema é a <strong>DLCO</strong> (capacidade de difusão do monóxido de carbono, não do dióxido de carbono), e ela está tipicamente <strong>reduzida</strong>, porque a destruição de septos alveolares reduz a área de superfície disponível para troca gasosa — é um dos achados funcionais mais específicos para diferenciar enfisema de bronquite crônica pura, na qual a DLCO costuma estar preservada.</p>
+<aside class="note note-extra"><p>📌 <strong>Dica de prova:</strong> sempre que uma alternativa envolver "DLCO do dióxido de carbono", desconfie — o exame padronizado mede a difusão de <strong>monóxido de carbono (CO)</strong>, porque ele se liga à hemoglobina com afinidade extremamente alta, tornando a difusão pulmonar (e não a capacidade de transporte sanguíneo) o fator limitante da medida.</p></aside>
+<hr /></div></section><section class="pane" id="quiz" hidden>
+  <h1 class="pane-title">Quiz final — 15 questões</h1>
+  <p class="lede">Responda todas e corrija de uma vez. As questões integram os nove segmentos e não repetem as de verificação.</p>
+  <div class="scorebar" id="scorebar"><span id="scoretext">0 de 15 respondidas</span>
+    <button class="btn-grade" id="btn-grade" type="button">Corrigir prova</button>
+    <button class="btn-reset" id="btn-reset" type="button" hidden>Refazer</button></div>
+  <div id="quizlist"><article class="q" data-correct="C" data-qid="quiz-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Homem de 66 anos, tabagista de 50 maços-ano, com dispneia progressiva predominantemente aos esforços, magro, tórax hiperinsuflado, sem grande produção de escarro. A espirometria mostra VEF1/CVF reduzida e DLCO reduzida. O fenótipo predominante e o mecanismo de base são:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Bronquite crônica predominante, por hipertrofia das glândulas submucosas brônquicas</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Asma, por broncoespasmo reversível após exposição a alérgeno inalatório específico</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Enfisema predominante, por destruição de septos e perda de superfície de troca gasosa</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Bronquiectasia, por dilatação brônquica permanente de etiologia infecciosa crônica</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Fibrose pulmonar restritiva, com padrão espirométrico de VEF1/CVF preservada</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Dispneia predominante e precoce, paciente magro, hiperinsuflado, escarro escasso, com <strong>DLCO reduzida</strong> — perfil de <strong>enfisema predominante</strong> ("pink puffer"), cujo mecanismo é a destruição de septos e a consequente perda de superfície de troca. <strong>A</strong> teria tosse e escarro precoces e abundantes, com DLCO tipicamente preservada. <strong>B</strong> exigiria reversibilidade ao broncodilatador. <strong>D</strong> exigiria dilatação brônquica e infecções de repetição como achado central. <strong>E</strong> produziria padrão restritivo, com VEF1/CVF preservada ou aumentada.</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><figure class="fig"><img data-img="acino-esquema-alveolos-normais-vs-enfisema.jpg" alt="Esquema do ácino pulmonar com alvéolos normais e enfisematosos" loading="lazy" data-caption="Esquema do ácino pulmonar com alvéolos normais e enfisematosos"><figcaption>Esquema do ácino pulmonar com alvéolos normais e enfisematosos</figcaption></figure>
+<p>Considerando a estrutura representada no esquema, a definição de ácino pulmonar corresponde a:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Conjunto de 3 a 5 lóbulos pulmonares, todos ligados a um único bronquíolo terminal</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Conjunto de brônquios segmentares que compõem um lobo pulmonar inteiro</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Conjunto de ductos alveolares e alvéolos, ligados a um bronquíolo respiratório</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Unidade formada pelos bronquíolos terminais e sua rede de ramificações até a pleura visceral</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Conjunto de vários ácinos pulmonares, delimitado externamente pela pleura visceral</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a definição literal do slide: ácino = ductos alveolares e alvéolos ligados a um bronquíolo respiratório. <strong>A</strong> descreve (incorretamente) o lóbulo, que é o conjunto de 3–5 <strong>ácinos</strong>, não de lóbulos. <strong>B</strong>, <strong>D</strong> e <strong>E</strong> não correspondem à definição anatômica apresentada.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Mulher de 30 anos, não tabagista, com enfisema de instalação precoce e predomínio basal, associado a hepatopatia. O exame confirmatório mais indicado e o mecanismo pulmonar da doença são:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Teste do suor; achado compatível com o diagnóstico de fibrose cística clássica</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Dosagem sérica de alfa-1-antitripsina; a deficiência libera a elastase neutrofílica sem oposição</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Biópsia brônquica; achado compatível com o diagnóstico de bronquite crônica atípica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Prova broncodilatadora; achado compatível com o diagnóstico de asma de início tardio</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">TC de tórax com padrão em vidro fosco; achado compatível com pneumonia intersticial</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Mulher jovem, não tabagista, enfisema precoce de predomínio basal com hepatopatia associada é o quadro-modelo da <strong>deficiência de alfa-1-antitripsina</strong>; o exame confirmatório é a <strong>dosagem sérica</strong> da proteína, e o mecanismo é a falta de inibição da elastase neutrofílica. <strong>A</strong>, <strong>C</strong>, <strong>D</strong> e <strong>E</strong> propõem diagnósticos e exames que não se encaixam no perfil clínico nem no mecanismo descrito no material.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-3">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">4</span><div class="q-stem"><p>Sobre a distribuição topográfica dos dois principais tipos de enfisema, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 4"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O centroacinar predomina em bases pulmonares; o panacinar predomina em ápices pulmonares</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Ambos os tipos predominam igualmente nos lobos médios, com distribuição simétrica entre os dois pulmões</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">O enfisema centroacinar é o tipo classicamente associado à deficiência de alfa-1-antitripsina</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">O panacinar é o tipo mais comum de enfisema, correspondendo a 95% dos casos descritos</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Centroacinar predomina em ápices, ligado a tabagismo; panacinar predomina em bases, ligado a deficiência genética</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Centroacinar → ápices, tabagismo; panacinar → bases, deficiência de alfa-1-antitripsina. <strong>A</strong> inverte as duas distribuições. <strong>B</strong> nega a distribuição topográfica citada explicitamente na aula. <strong>C</strong> troca a associação clássica: é o <strong>panacinar</strong>, não o centroacinar, que se associa classicamente à deficiência de alfa-1-antitripsina — o centroacinar liga-se ao tabagismo. <strong>D</strong> atribui ao panacinar a frequência (95%) que pertence ao <strong>centroacinar</strong>.</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-4">
+  <header class="q-head"><span class="q-source adapted">Adaptada da Parcial 81, Questão 10</span><span class="q-num">5</span><div class="q-stem"><p>Qual mediador é apontado na aula como o principal mecanismo de hipertensão pulmonar no enfisema?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 5"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Liberação sistêmica de tromboxano A2 pelas plaquetas</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Ativação do sistema renina-angiotensina-aldosterona pulmonar</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Vasoconstrição das arteríolas pulmonares em resposta à hipoxemia/hipercapnia</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Embolia pulmonar de repetição por estase venosa</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Vasodilatação compensatória por óxido nítrico endotelial</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A aula aponta explicitamente a vasoconstrição hipóxica/hipercápnica como o mecanismo <strong>principal</strong> de hipertensão pulmonar no enfisema, somando-se à perda de leito vascular e à compressão de capilares. <strong>A</strong> descreve um mecanismo da cardiopatia isquêmica (Aula anterior de cardiovascular), sem relação direta com este contexto. <strong>B</strong>, <strong>D</strong> e <strong>E</strong> não constam do mecanismo apresentado e, no caso de <strong>E</strong>, contraria a direção do fenômeno (é vasoconstrição, não vasodilatação).</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-5">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">6</span><div class="q-stem"><figure class="fig"><img data-img="bronquio-espessado-bronquite-cronica-macro.jpg" alt="Peça macroscópica de brônquio espessado" loading="lazy" data-caption="Peça macroscópica de brônquio espessado"><figcaption>Peça macroscópica de brônquio espessado</figcaption></figure>
+<p>A peça acima, com espessamento evidente da parede da árvore brônquica, é compatível macroscopicamente com:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 6"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Enfisema pulmonar, com dilatação permanente e destruição dos espaços aéreos distais</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Atelectasia por compressão, com colabamento do parênquima pulmonar previamente aerado</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Doença da membrana hialina, achado tipicamente microscópico do recém-nascido prematuro</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Bronquite crônica, com espessamento da parede brônquica por hipertrofia glandular</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Pulmão normal, sem qualquer achado morfológico patológico identificável na peça</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Espessamento da parede brônquica é achado macroscópico característico da <strong>bronquite crônica</strong>. <strong>A</strong> teria como achado dominante espaços aéreos dilatados no parênquima, não espessamento de parede brônquica. <strong>B</strong>, <strong>C</strong> e <strong>E</strong> não correspondem ao achado descrito.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-6">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">7</span><div class="q-stem"><p>Sobre a definição clínica de bronquite crônica, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 7"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Tosse produtiva por apenas 1 mês, em qualquer ano isolado da vida do paciente</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Tosse produtiva na maioria dos dias, por 3 meses, em pelo menos 2 anos consecutivos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Qualquer episódio isolado de tosse associado a uma infecção viral respiratória aguda</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Tosse seca e crônica, sem qualquer produção de muco associada ao quadro</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Dispneia progressiva, sem que haja necessariamente tosse associada ao quadro clínico</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Reafirma a definição-âncora da aula: tosse produtiva maioria dos dias, 3 meses, ao menos 2 anos consecutivos. As demais alternativas alteram os critérios de tempo ou de natureza da tosse.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-7">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">8</span><div class="q-stem"><p>Sobre a patogênese celular da bronquite crônica, assinale a associação correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 8"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Eosinófilos são as células centrais, com liberação de proteína básica principal ativada</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Linfócitos T CD8+, macrófagos e neutrófilos formam o eixo inflamatório principal da doença</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Mastócitos degranulam histamina, causando broncoespasmo imediato como mecanismo central</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A doença é primariamente mediada por IgE específica dirigida contra alérgenos inalados</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Neutrófilos são as células centrais, com liberação predominante de histamina e leucotrieno B4</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o eixo celular descrito na patogênese: linfócitos T CD8+, macrófagos liberando TNF-α/IL-8/LTB-4, e neutrófilos liberando TNF/IL-8/E-selectina/ICAM-1, culminando em hipersecreção. <strong>A</strong>, <strong>C</strong> e <strong>D</strong> descrevem mecanismos característicos de <strong>asma</strong> (eosinófilos, mastócitos/histamina, IgE), entidade distinta. <strong>E</strong> troca o eixo celular: os neutrófilos participam, mas o mediador central da bronquite crônica é o <strong>LTB-4</strong> (com TNF-α/IL-8), não a histamina, que é típica da resposta mastocitária da asma.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-8">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">9</span><div class="q-stem"><p>Homem de 60 anos com tumor endobrônquico de crescimento lento obstruindo um brônquio segmentar há meses, evolui com infecções de repetição no segmento distal e posterior dilatação brônquica localizada com paredes espessadas. O diagnóstico e a classificação são:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 9"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Bronquiectasia obstrutiva, causada pela obstrução tumoral crônica do segmento brônquico</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Enfisema centroacinar, secundário à exposição tabágica crônica de longa duração</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Bronquiectasia não obstrutiva, por discinesia ciliar primária de origem genética</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Atelectasia por deficiência de surfactante, achado típico do período neonatal</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Bronquite crônica isolada, sem qualquer dilatação brônquica estrutural associada</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Tumor obstruindo cronicamente um segmento, com infecção de repetição e posterior dilatação localizada, é o modelo textual de <strong>bronquiectasia obstrutiva</strong>. <strong>B</strong>, <strong>D</strong> e <strong>E</strong> são entidades sem relação com obstrução tumoral crônica localizada. <strong>C</strong> é a forma não obstrutiva, incompatível com a presença do tumor.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-9">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">10</span><div class="q-stem"><figure class="fig"><img data-img="bronquiectasia-macro-corte-favo-de-mel.jpg" alt="Corte macroscópico em padrão de favo de mel" loading="lazy" data-caption="Corte macroscópico em padrão de favo de mel"><figcaption>Corte macroscópico em padrão de favo de mel</figcaption></figure>
+<p>O padrão morfológico acima, com múltiplos espaços dilatados de paredes espessas substituindo o parênquima pulmonar normal, e a causa mais comum globalmente dessa entidade são, respectivamente:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 10"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Bronquiectasia; causada pela combinação de infecção e obstrução crônica dos brônquios</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Enfisema; causado principalmente pela exposição crônica ao tabagismo prolongado</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Atelectasia; causada principalmente por derrame pleural volumoso associado</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Fibrose pulmonar idiopática; causada principalmente por exposição ocupacional a poeiras</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Pulmão normal; a pergunta sobre causa não se aplica a esse achado morfológico</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O padrão "em favo de mel" com múltiplos espaços dilatados de parede espessa é <strong>bronquiectasia</strong>, cuja causa mais comum, segundo a aula, é a combinação de <strong>infecção e obstrução</strong> dos brônquios. <strong>B</strong> e <strong>D</strong> têm morfologia e etiologia distintas. <strong>C</strong> produziria colabamento, não dilatação. <strong>E</strong> ignora achados morfológicos evidentes.</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-10">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">11</span><div class="q-stem"><p>Paciente com pneumotórax hipertensivo à direita apresenta colabamento total do pulmão ipsilateral. O tipo de atelectasia e seu mecanismo são:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 11"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Atelectasia por absorção, secundária a obstrução brônquica intrínseca completa do segmento</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Atelectasia por contração, secundária a fibrose cicatricial do parênquima pulmonar adjacente</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Atelectasia por relaxamento, secundária ao equilíbrio de pressões entre a cavidade pleural e o parênquima</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Atelectasia por compressão, pelo ar pleural comprimindo o parênquima previamente inflado</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Bronquiectasia por tração, secundária a cicatriz fibrótica do parênquima circundante</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Pneumotórax comprime o parênquima previamente aerado — é atelectasia <strong>por compressão</strong>, junto com hemotórax e piotórax, exatamente como listado no material. <strong>A</strong> exigiria obstrução intrabrônquica, ausente aqui. <strong>B</strong>, <strong>C</strong> e <strong>E</strong> descrevem mecanismos sem relação com acúmulo de ar no espaço pleural.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-11">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">12</span><div class="q-stem"><figure class="fig"><img data-img="raiox-doenca-pulmonar-obstrutiva.jpg" alt="Radiografia de tórax de paciente com DPOC" loading="lazy" data-caption="Radiografia de tórax de paciente com DPOC"><figcaption>Radiografia de tórax de paciente com DPOC</figcaption></figure>
+<p>Os achados radiológicos de hipertransparência difusa, retificação diafragmática, horizontalização de arcos costais e aumento de câmaras cardíacas direitas, em conjunto, indicam:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 12"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Fibrose pulmonar, com retração acentuada dos volumes pulmonares em ambos os campos</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Derrame pleural volumoso e bilateral, com opacificação basal e apagamento dos seios costofrênicos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Cardiomegalia por hipertrofia concêntrica de ventrículo esquerdo, secundária a hipertensão sistêmica crônica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Padrão radiológico de fibrose pulmonar, com volumes reduzidos e trama reticular difusa</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Hiperinsuflação por doença obstrutiva, com sinais radiológicos de cor pulmonale associado</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É o conjunto radiológico do caso clínico da aula: hiperinsuflação (hipertransparência, retificação diafragmática, horizontalização de costelas) somada a sinais de <strong>cor pulmonale</strong> (câmaras direitas aumentadas). <strong>A</strong> produziria campos mais densos e volumes reduzidos, não hiperinsuflados. <strong>B</strong> e <strong>D</strong> não correspondem aos achados descritos. <strong>C</strong> aumentaria câmaras esquerdas, não direitas.</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-12">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">13</span><div class="q-stem"><p>Sobre a diferença fisiopatológica entre a doença da membrana hialina do recém-nascido e a SDRA do adulto, assinale a alternativa correta:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 13"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Ambas têm o mesmo mecanismo inicial de deficiência de surfactante, mas morfologia final distinta</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">A SDRA do adulto tem como mecanismo inicial a deficiência primária de surfactante, idêntico ao da DMH neonatal</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">DMH: deficiência de surfactante por imaturidade; SDRA: agressão à barreira; morfologia final semelhante</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A doença da membrana hialina cursa com colabamento alveolar apenas em casos extremos e tardios</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Apenas a DMH neonatal forma membranas hialinas à histologia; a SDRA do adulto não apresenta esse achado</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a distinção central do segmento: mecanismo inicial diferente (deficiência primária de surfactante por imaturidade vs. agressão direta à barreira alvéolo-capilar), mas <strong>morfologia final semelhante</strong> (formação de membranas hialinas). <strong>A</strong> erra ao unificar o mecanismo inicial — na SDRA a deficiência de surfactante é secundária à lesão da barreira, não primária. <strong>B</strong> inverte a lógica: é justamente o mecanismo <strong>inicial</strong> que difere entre as duas, não a morfologia final. <strong>D</strong> minimiza o colabamento alveolar, que é achado central e precoce, não tardio, na doença da membrana hialina. <strong>E</strong> nega o achado histológico definidor de ambas as entidades.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-13">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">14</span><div class="q-stem"><p>Filho de mãe diabética mal controlada, nascido por cesariana eletiva a termo, apresenta desconforto respiratório progressivo nas primeiras horas de vida. Sobre os fatores de risco envolvidos, é correto afirmar:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 14"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O diabetes materno acelera a maturação pulmonar fetal, reduzindo o risco da doença</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">A cesariana eletiva reduz o risco da doença por evitar o estresse mecânico do parto vaginal sobre o pulmão fetal</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">A insulina fetal estimula diretamente a síntese de surfactante pelos pneumócitos tipo II</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A prematuridade é o único fator de risco relevante para a doença da membrana hialina</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Hiperinsulinemia fetal e ausência de trabalho de parto retardam a maturação, aumentando o risco</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Reproduz os dois mecanismos discutidos: hiperinsulinemia fetal retardando a maturação do surfactante, e ausência do estímulo hormonal do trabalho de parto na cesariana eletiva — ambos aumentam o risco mesmo em recém-nascido a termo, como no caso descrito. <strong>A</strong> e <strong>C</strong> invertem o efeito real da insulina sobre a maturação pulmonar. <strong>B</strong> superestima o efeito protetor da cesariana, que na verdade é fator de risco quando eletiva e sem trabalho de parto. <strong>D</strong> ignora os outros dois fatores de risco citados explicitamente na aula (diabetes materno e via de parto).</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-14">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">15</span><div class="q-stem"><p>(Nível avançado) Um paciente com DPOC avançada apresenta, na mesma necropsia, enfisema centrolobular de ápices com bolhas subpleurais, hipertrofia e dilatação de ventrículo direito, e broncopneumonia em bases. Reconstrua a cadeia fisiopatológica completa que liga esses três achados.</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 15"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O enfisema e o cor pulmonale compartilham a mesma causa genética, enquanto a broncopneumonia é um achado incidental não relacionado</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">O tabagismo lesa diretamente o miocárdio, causando cor pulmonale independentemente do enfisema ou da broncopneumonia</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Protease/antiprotease → enfisema/bolhas → hipertensão pulmonar/cor pulmonale → defesa alterada → broncopneumonia</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A broncopneumonia é a causa direta do enfisema, por destruição do parênquima pela infecção</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">O cor pulmonale é causado diretamente pela broncopneumonia, sem relação com o enfisema</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a cadeia fisiopatológica integrada do caso clínico da aula: desequilíbrio protease/antiprotease → destruição de septos/enfisema/bolhas → perda de leito vascular e vasoconstrição hipóxica → hipertensão pulmonar → cor pulmonale (hipertrofia/dilatação de VD) → e, em paralelo, o comprometimento da defesa mucociliar e da arquitetura pulmonar favorecendo infecções de repetição, incluindo a broncopneumonia terminal. <strong>A</strong>, <strong>D</strong> e <strong>E</strong> fragmentam ou invertem essa cadeia causal. <strong>B</strong> ignora todo o mecanismo intermediário (protease/antiprotease, destruição septal, hipoxemia) que liga o tabagismo à complicação infecciosa.</p>
+<hr /></div>
+</article></div>
+  <div class="prose closing"><ol>
+<li><strong>Obstrutiva reduz VEF1/CVF; restritiva reduz CPT com relação preservada.</strong> Distúrbios mistos existem.</li>
+<li><strong>DPOC = enfisema + bronquite crônica sobrepostos.</strong> Asma e bronquiectasia são obstrutivas, mas fora da sigla.</li>
+<li><strong>Nem todo DPOC é tabagista (80% é) e nem todo tabagista tem DPOC (35–50% desenvolve)</strong> — suscetibilidade individual importa.</li>
+<li><strong>Enfisema = destruição de septo, aumento permanente do espaço aéreo.</strong> Centroacinar (95%, ápices, tabaco) x panacinar (bases, deficiência de alfa-1-antitripsina).</li>
+<li><strong>Mecanismo do enfisema: desequilíbrio protease/antiprotease.</strong> Elastase de neutrófilos e macrófagos sem oposição eficaz da alfa-1-antitripsina, inativada pelos radicais livres do tabaco.</li>
+<li><strong>Bronquite crônica: definição clínica — tosse produtiva na maioria dos dias, 3 meses, 2 anos consecutivos.</strong> Mecanismo inflamatório (linfócitos T CD8+, macrófagos, neutrófilos), com hipertrofia glandular e hiperplasia caliciforme.</li>
+<li><strong>Bronquite predominante (jovem, infecção precoce, cor pulmonale comum) x enfisema predominante (mais velho, dispneia inicial e severa, insuficiência terminal)</strong> — memorize pela lógica, não só pela tabela.</li>
+<li><strong>Bronquiectasia: dilatação permanente por infecção + obstrução (ou por defeito de clearance mucociliar).</strong> Padrão "em favo de mel".</li>
+<li><strong>Atelectasia tem quatro tipos: compressão, absorção/obstrução, contração e deficiência de surfactante.</strong> A doença da membrana hialina do RN e a SDRA do adulto têm mecanismo inicial diferente, mas morfologia final igual.</li>
+<li><strong>O caso clínico integra tudo:</strong> tabagismo → enfisema → cor pulmonale + broncopneumonia → sepse e insuficiência respiratória → encefalopatia hipóxico-isquêmica → óbito. É o mesmo tipo de raciocínio em cadeia que vocês já treinaram na cardiopatia isquêmica.</li>
+</ol></div>
+</section></main>
+</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="lb-close" type="button">Fechar</button>
+  <figure style="margin:0;display:grid;place-items:center"><img loading=lazy decoding=async src="" alt=""><figcaption></figcaption></figure>
+</div>
+<script type="application/json" id="imgdata">{"patogenese-desequilibrio-protease-antiprotease.jpg": "../_img/8dd4a5045e70ed10.webp", "acino-esquema-alveolos-normais-vs-enfisema.jpg": "../_img/eb0c684db6b27fdd.webp", "lobulo-pulmonar-esquema.jpg": "../_img/8418b7f442fecf85.webp", "enfisema-centrolobular-vs-panlobular-esquema.jpg": "../_img/fa15c1e0a59c0353.webp", "pulmao-enfisematoso-macro-1.jpg": "../_img/5d1f2511d50c9afd.webp", "pulmao-enfisematoso-macro-2-bolhas.jpg": "../_img/bc96992ebad45a76.webp", "pulmao-enfisematoso-macro-3-bolhas-subpleurais.jpg": "../_img/48a66da479838d69.webp", "histologia-normal-vs-enfisema-destruicao-septos.jpg": "../_img/a06a95c2d85b0c4a.webp", "histologia-hiperplasia-caliciforme-muco.jpg": "../_img/48ea5234e5e6cfa1.webp", "bronquio-espessado-bronquite-cronica-macro.jpg": "../_img/2e0ae2a9c6bc4c81.webp", "histologia-bronquite-cronica-inflamacao-cronica.jpg": "../_img/bc1276c7e9b01a24.webp", "torax-em-tonel.jpg": "../_img/22aadd8e59b61863.webp", "raiox-doenca-pulmonar-obstrutiva.jpg": "../_img/74a82576effc70b5.webp", "bronquiectasia-macro-corte-favo-de-mel.jpg": "../_img/f4a5e3d60754e11c.webp", "broncos-dilatados-macro-bronquiectasia.jpg": "../_img/04feb10824b5518b.webp", "histologia-pulmonar-normal-comparacao.jpg": "../_img/983db8602b3a2d14.webp", "bronquiectasia-peca-r6-macro.jpg": "../_img/326a2cfb5e39bf00.webp", "bronquiectasia-histologia-panoramica.jpg": "../_img/c71c0d9a3448a73d.webp", "bronquiectasia-histologia-exercicio.jpg": "../_img/551d614c155208aa.webp", "membranas-hialinas-detalhe-luz-alveolar.jpg": "../_img/a53566ff94476627.webp", "atelectasia-peca-macro-vermelha.jpg": "../_img/103b1a4909f697c2.webp", "membranas-hialinas-bronquiolo-atelectasia-histologia.jpg": "../_img/ff174d29eb2ebe4a.webp", "membranas-hialinas-grande-aumento.jpg": "../_img/e43625837a5ed11b.webp"}</script>
+<script>
+const IMGS=JSON.parse(document.getElementById('imgdata').textContent);
+document.querySelectorAll('img[data-img]').forEach(i=>{const d=IMGS[i.dataset.img];if(d)i.src=d;});
+const panes=[...document.querySelectorAll('.pane')];
+const navs=[...document.querySelectorAll('.nav-item')];
+function show(id){
+  panes.forEach(p=>p.hidden=(p.id!==id));
+  navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id));
+  window.scrollTo({top:0,behavior:'auto'});
+  try{location.hash=id}catch(e){}
+}
+navs.forEach(n=>n.addEventListener('click',e=>{e.preventDefault();show(n.dataset.target)}));
+
+function markQuestion(q,reveal){
+  const correct=q.dataset.correct;
+  const chosen=q.querySelector('.opt[aria-pressed="true"]');
+  q.classList.add('done');
+  q.querySelectorAll('.opt').forEach(o=>{
+    if(o.dataset.letter===correct)o.classList.add('is-correct');
+    else if(o===chosen)o.classList.add('is-wrong');
+  });
+  const why=q.querySelector('.q-why');
+  const v=why.querySelector('.q-verdict');
+  if(!chosen){v.textContent='Resposta correta: '+correct;v.className='q-verdict';}
+  else if(chosen.dataset.letter===correct){v.textContent='Você acertou.';v.className='q-verdict ok';}
+  else{v.textContent='Você marcou '+chosen.dataset.letter+'. A correta é '+correct+'.';v.className='q-verdict no';}
+  if(reveal)why.hidden=false;
+  return chosen && chosen.dataset.letter===correct;
+}
+
+document.querySelectorAll('.q').forEach(q=>{
+  q.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
+    if(q.classList.contains('done'))return;
+    q.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed','false'));
+    o.setAttribute('aria-pressed','true');
+    updateScore();
+  }));
+  const btn=q.querySelector('.btn-reveal');
+  if(btn)btn.addEventListener('click',()=>{
+    const why=q.querySelector('.q-why');
+    if(q.classList.contains('done')){why.hidden=!why.hidden;btn.textContent=why.hidden?'Ver resposta':'Ocultar resposta';return;}
+    markQuestion(q,true);btn.textContent='Ocultar resposta';
+  });
+});
+
+const quizQs=[...document.querySelectorAll('#quizlist .q')];
+const scoreText=document.getElementById('scoretext');
+const btnGrade=document.getElementById('btn-grade');
+const btnReset=document.getElementById('btn-reset');
+let graded=false;
+function updateScore(){
+  if(graded||!scoreText)return;
+  const n=quizQs.filter(q=>q.querySelector('.opt[aria-pressed="true"]')).length;
+  scoreText.textContent=n+' de '+quizQs.length+' respondidas';
+}
+if(btnGrade)btnGrade.addEventListener('click',()=>{
+  let hits=0;
+  quizQs.forEach(q=>{if(markQuestion(q,true))hits++;});
+  graded=true;
+  const pct=Math.round(hits/quizQs.length*100);
+  scoreText.textContent='Você acertou '+hits+' de '+quizQs.length+' ('+pct+'%)';
+  btnGrade.hidden=true;btnReset.hidden=false;
+  quizQs.forEach(q=>{const b=q.querySelector('.btn-reveal');if(b)b.textContent='Ocultar resposta';});
+});
+if(btnReset)btnReset.addEventListener('click',()=>{
+  quizQs.forEach(q=>{
+    q.classList.remove('done');
+    q.querySelectorAll('.opt').forEach(o=>{o.setAttribute('aria-pressed','false');o.classList.remove('is-correct','is-wrong');});
+    q.querySelector('.q-why').hidden=true;
+    const b=q.querySelector('.btn-reveal');if(b)b.textContent='Ver resposta';
+  });
+  graded=false;btnGrade.hidden=false;btnReset.hidden=true;updateScore();
+});
+
+const lb=document.getElementById('lightbox');
+const lbImg=lb.querySelector('img'),lbCap=lb.querySelector('figcaption');
+document.querySelectorAll('.fig img').forEach(i=>i.addEventListener('click',()=>{
+  lbImg.src=i.src;lbCap.textContent=i.dataset.caption||'';lb.classList.add('open');
+  lb.querySelector('.lb-close').focus();
+}));
+function closeLb(){lb.classList.remove('open');lbImg.src='';}
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('lb-close'))closeLb();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('open'))closeLb();});
+
+const start=location.hash.replace('#','');
+show(panes.some(p=>p.id===start)?start:'capa');
+</script>
+<script>
+(function(){
+  var LECTURE_KEY = "aula6";
+  var progress = {};
+  var chkByTarget = {};
+
+  function navKeyOf(item){
+    return item.dataset.target || item.dataset.view || null;
+  }
+  function initChecks(){
+    // duas arquiteturas convivem neste projeto: a maioria usa <a class="nav-item" data-target="segN">;
+    // a Aula 2 (Cardiopatia Isquêmica) usa <button class="navbtn" data-view="segN"> gerado por JS.
+    var navItems = document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]');
+    navItems.forEach(function(item){
+      var key = navKeyOf(item);
+      if(!key || key === 'capa' || key === 'home') return;
+      if(item.querySelector('.mc-chk')) return;
+      var chk = document.createElement('input');
+      chk.type = 'checkbox';
+      chk.className = 'mc-chk';
+      // Neutro de propósito: marcar uma seção é apenas progresso, não "concluído" — a cor
+      // verde fica reservada só para o badge da aula inteira na sidebar do shell (100%).
+      chk.style.marginRight = '6px';
+      chk.style.accentColor = '#8A97A8';
+      chk.style.filter = 'grayscale(1) opacity(.85)';
+      chk.addEventListener('click', function(ev){ ev.stopPropagation(); });
+      chk.addEventListener('change', function(){
+        progress[key] = chk.checked;
+        window.parent.postMessage({type:'setProgress', lecture:LECTURE_KEY, target:key, done:chk.checked}, '*');
+      });
+      item.prepend(chk);
+      chkByTarget[key] = chk;
+    });
+  }
+
+  function refLabel(parcial, q){
+    if(q === '?') return 'Parcial ' + parcial + ' (tema geral)';
+    if(String(q).indexOf('aberta') === 0) return 'Parcial ' + parcial + ' — Discursiva ' + q.replace('aberta','');
+    return 'Parcial ' + parcial + ' — Questão ' + q;
+  }
+
+  var tooltipEl = null;
+  function ensureTooltip(){
+    if(tooltipEl) return tooltipEl;
+    tooltipEl = document.createElement('div');
+    tooltipEl.id = 'mc-tooltip';
+    tooltipEl.style.cssText = 'position:fixed;z-index:99999;background:#0B1E38;color:#EAF1FA;border:1px solid #2A4468;'+
+      'border-radius:8px;padding:10px 12px;font-family:"IBM Plex Sans",sans-serif;font-size:13px;max-width:280px;'+
+      'box-shadow:0 10px 30px rgba(0,0,0,.4);display:none;line-height:1.4';
+    document.body.appendChild(tooltipEl);
+    tooltipEl.addEventListener('mouseenter', function(){ clearTimeout(tooltipEl._hideTimer); });
+    tooltipEl.addEventListener('mouseleave', function(){ hideTooltip(); });
+    return tooltipEl;
+  }
+  function hideTooltip(){
+    if(!tooltipEl) return;
+    tooltipEl._hideTimer = setTimeout(function(){ tooltipEl.style.display='none'; }, 150);
+  }
+  function showTooltip(markEl){
+    var tt = ensureTooltip();
+    clearTimeout(tt._hideTimer);
+    var refs = (markEl.dataset.refs||'').split(',').map(function(s){return s.trim();}).filter(Boolean);
+    if(!refs.length) return;
+    var html = '<div style="font-size:11px;color:#8FAACB;margin-bottom:6px;letter-spacing:.02em">Caiu em prova — clique para ir direto à questão</div>';
+    refs.forEach(function(r){
+      var parts = r.split(':'); var parcial=parts[0]; var q=parts[1];
+      var label = refLabel(parcial, q);
+      var clickable = q && q !== '?';
+      html += '<span class="mc-chip" data-parcial="'+parcial+'" data-q="'+(q||'')+'" style="display:inline-block;margin:2px 4px 2px 0;'+
+        'padding:4px 9px;border-radius:12px;background:#16355F;color:#EAF1FA;font-size:12px;'+
+        (clickable? 'cursor:pointer' : 'cursor:default;opacity:.6') + ';border:1px solid #2A4468">'+label+'</span>';
+    });
+    tt.innerHTML = html;
+    tt.querySelectorAll('.mc-chip').forEach(function(chip){
+      if(chip.style.cursor !== 'pointer') return;
+      chip.addEventListener('mouseenter', function(){ chip.style.background='#C8476B'; chip.style.borderColor='#C8476B'; });
+      chip.addEventListener('mouseleave', function(){ chip.style.background='#16355F'; chip.style.borderColor='#2A4468'; });
+      chip.addEventListener('click', function(){
+        window.parent.postMessage({type:'jumpToSimulado', parcial:chip.dataset.parcial, q:chip.dataset.q}, '*');
+      });
+    });
+    var rect = markEl.getBoundingClientRect();
+    var left = Math.min(rect.left, window.innerWidth-300);
+    var top = rect.bottom + 6;
+    tt.style.left = left+'px';
+    tt.style.top = top+'px';
+    tt.style.display = 'block';
+  }
+
+  function initTooltips(){
+    document.querySelectorAll('mark[data-refs]').forEach(function(m){
+      if(m.dataset.ttBound) return;
+      m.dataset.ttBound = '1';
+      m.style.cursor = 'help';
+      m.addEventListener('mouseenter', function(){ showTooltip(m); });
+      m.addEventListener('mouseleave', hideTooltip);
+    });
+  }
+
+  window.addEventListener('message', function(ev){
+    if(!ev.data) return;
+    if(ev.data.type === 'progressState' && ev.data.lecture === LECTURE_KEY){
+      progress = ev.data.state || {};
+      Object.keys(chkByTarget).forEach(function(id){ chkByTarget[id].checked = !!progress[id]; });
+    }
+  });
+
+  function boot(){
+    initChecks();
+    initTooltips();
+    window.parent.postMessage({type:'requestProgress', lecture:LECTURE_KEY}, '*');
+  }
+  if(document.readyState === 'complete' || document.readyState === 'interactive') boot();
+  else document.addEventListener('DOMContentLoaded', boot);
+  // fallback: alguns masterclass renderizam nav/conteúdo via JS próprio, possivelmente após
+  // este script rodar — reaplica init algumas vezes nos primeiros segundos.
+  [300,800,1500,3000].forEach(function(ms){ setTimeout(boot, ms); });
+  // e também sempre que o usuário navega (conteúdo de segmentos que só é montado no DOM
+  // quando o painel/segmento é aberto pela primeira vez, como na Aula 2)
+  document.addEventListener('click', function(ev){
+    if(ev.target.closest && (ev.target.closest('.nav-item') || ev.target.closest('.navbtn'))){
+      setTimeout(boot, 80);
+      setTimeout(boot, 300);
+    }
+  }, true);
+})();
+</script>
+
+<script>(function(){
+  // Ponte entre a aula (iframe) e a barra lateral do app. Não mexe no conteúdo nem na lógica de quiz.
+  var P = window.parent;
+  if (!P || P === window) return;
+  var root = document.documentElement;
+  root.classList.add('embedded');
+  var parts = (window.name || '').split('|');
+  var LEC = parts[1] || '';
+  var progress = {};
+
+  function setTheme(t){ root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); }
+  setTheme(parts[2] || 'dark');
+
+  function navEls(){ return Array.prototype.slice.call(document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]')); }
+  function keyOf(e){ return e.getAttribute('data-target') || e.getAttribute('data-view'); }
+  function labelOf(e){
+    var n = e.querySelector('.navlabel, .nav-num + span');
+    return (n ? n.textContent : e.textContent).replace(/\s+/g,' ').trim();
+  }
+  function activeKey(){
+    var a = navEls().filter(function(e){ return e.classList.contains('active'); })[0];
+    return a ? keyOf(a) : null;
+  }
+
+  // ----- botão "Concluir" no título de cada segmento -----
+  function paintDone(btn, key){
+    var on = !!progress[key];
+    if (btn.classList.contains('on') !== on) btn.classList.toggle('on', on);   // só mexe no DOM se mudou (evita laço do observer)
+    var lbl = btn.querySelector('.lbl'), txt = on ? 'Concluído' : 'Concluir';
+    if (lbl.textContent !== txt) lbl.textContent = txt;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var fin = document.querySelector('.cel-finish[data-key="' + key + '"]');
+    if (fin) paintFin(fin, on, key);
+  }
+
+  // ----- botão grande no fim do segmento -----
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+  function isSeg(key){ return /^(seg\d+|s\d+|parcial\d+)$/.test(key); }
+  function paintFin(b, on, key){
+    if (b.classList.contains('on') !== on) b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var txt = on ? (isSeg(key) ? 'Segmento concluído' : 'Estudado') + ' · tocar para desfazer'
+                 : (isSeg(key) ? 'Concluir segmento' : 'Marcar como estudado');
+    var s = b.lastChild; if (s.textContent !== txt) s.textContent = txt;
+  }
+  function ensureFin(scope, key){
+    if (!scope || !key || key === 'capa' || key === 'home') return;
+    var foot = scope.querySelector('.navfoot, .segnav');
+    if (!foot) return;
+    var box = scope.querySelector('.cel-fin');
+    if (box && box.getAttribute('data-key') === key && box.nextElementSibling === foot) return;
+    if (box) box.remove();
+    box = document.createElement('div'); box.className = 'cel-fin'; box.setAttribute('data-key', key);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cel-finish'; b.setAttribute('data-key', key);
+    b.innerHTML = CHECK + '<span></span>';
+    b.addEventListener('click', function(){
+      var top = document.querySelector('.done-t[data-key="' + key + '"]');
+      if (top) top.click();
+    });
+    box.appendChild(b);
+    foot.parentNode.insertBefore(box, foot);
+    paintFin(b, !!progress[key], key);
+  }
+  function attachDone(title, key){
+    if (!title || !key || key === 'capa' || key === 'home') return;
+    var old = title.querySelector('.done-t');
+    if (old && old.getAttribute('data-key') === key) { paintDone(old, key); return; }
+    if (old) old.remove();
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'done-t'; b.setAttribute('data-key', key);
+    b.innerHTML = '<span class="d"></span><span class="lbl">Concluir</span>';
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      progress[key] = !progress[key];
+      paintDone(b, key);
+      P.postMessage({type:'setProgress', lecture:LEC, target:key, done:!!progress[key]}, '*');
+    });
+    if (!title.classList.contains('has-done')) title.classList.add('has-done');
+    title.appendChild(b);
+    paintDone(b, key);
+  }
+  function decorate(){
+    // aulas estáticas: um .pane por segmento
+    document.querySelectorAll('.pane').forEach(function(p){
+      if (p.hidden) return;
+      attachDone(p.querySelector('.pane-title'), p.id);
+      ensureFin(p, p.id);
+    });
+    // aula 2: conteúdo montado por JS
+    var t = document.querySelector('h2.seg-title');
+    if (t) { attachDone(t, activeKey()); ensureFin(document.getElementById('content'), activeKey()); }
+  }
+
+  // ----- rodapé anterior/próximo (substitui a barra de navegação escondida) -----
+  function addNavFoot(){
+    var items = navEls();
+    if (!items.length || document.querySelector('.segnav')) return;
+    items.forEach(function(it, i){
+      var id = keyOf(it);
+      var pane = document.getElementById(id);
+      if (!pane || !pane.classList.contains('pane') || pane.querySelector('.navfoot')) return;
+      var prev = items[i-1], next = items[i+1];
+      var f = document.createElement('div'); f.className = 'navfoot';
+      function mk(target, txt, isNext){
+        var b = document.createElement('button'); b.type = 'button';
+        b.textContent = isNext ? txt + ' →' : '← ' + txt;
+        b.addEventListener('click', function(){ target.click(); });
+        return b;
+      }
+      if (prev) f.appendChild(mk(prev, labelOf(prev), false));
+      if (next) f.appendChild(mk(next, labelOf(next), true));
+      pane.appendChild(f);
+    });
+  }
+
+  // piscar o termo achado pela busca
+  function flashTerm(rootEl, term){
+    if (!rootEl || !term) return;
+    var low = term.toLowerCase(), w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentElement; if (!p || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue;
+      var k = n.data.toLowerCase().indexOf(low);
+      if (k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var q = sp.parentNode; if (!q) return; while (sp.firstChild) q.insertBefore(sp.firstChild, sp); q.removeChild(sp); q.normalize(); }, 2600);
+      return;
+    }
+  }
+
+  var last = null;
+  function reportActive(){
+    var k = activeKey();
+    if (k !== last) { last = k; P.postMessage({type:'segActive', lecture:LEC, key:k}, '*'); }
+    var off = (k && k !== 'capa' && k !== 'home' && !document.querySelector('.hero .tabs')) ? 'off' : 'on';
+    if (root.getAttribute('data-hero') !== off) root.setAttribute('data-hero', off);
+    decorate();
+  }
+  var mo = new MutationObserver(function(){ clearTimeout(mo._t); mo._t = setTimeout(reportActive, 30); });
+  mo.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class','hidden']});
+  var content = document.getElementById('content');
+  if (content) mo.observe(content, {childList:true});
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data;
+    if (!d || !d.type) return;
+    if (d.type === 'setTheme') setTheme(d.theme);
+    else if (d.type === 'goto') {
+      var el = navEls().filter(function(e){ return keyOf(e) === d.key; })[0];
+      if (el) el.click();
+    }
+    else if (d.type === 'gotoPane') {
+      if (document.getElementById('hl-pop')) return;   // aulas com marca-texto rosa tratam sozinhas
+      var pe = navEls().filter(function(e){ return keyOf(e) === d.pane; })[0];
+      if (pe) pe.click();
+      setTimeout(function(){ flashTerm(document.getElementById(d.pane) || document.getElementById('content') || document.body, d.term); }, 140);
+    }
+    else if (d.type === 'progressState' && d.lecture === LEC) {
+      progress = d.state || {};
+      document.querySelectorAll('.done-t').forEach(function(b){ paintDone(b, b.getAttribute('data-key')); });
+    }
+  });
+
+  function boot(){
+    addNavFoot();
+    reportActive();
+    P.postMessage({type:'bridgeReady', lecture:LEC}, '*');
+    P.postMessage({type:'requestProgress', lecture:LEC}, '*');
+  }
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', function(){ setTimeout(boot, 0); });
+})();
+</script>
+</body>
+</html>

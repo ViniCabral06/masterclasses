@@ -21,9 +21,10 @@
   --vg-text:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:dark;
 }
-:root[data-vidro="farmaco"]{--vg-acc:#ff4d6d;--vg-acc-ink:#ff9aac;--vg-on-acc:#1a0207}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]){--vg-acc:#ff4d6d;--vg-acc-ink:#ff9aac;--vg-on-acc:#1a0207}
 :root[data-vidro="micro"]{--vg-acc:#9a5bff;--vg-acc-ink:#c7a6ff;--vg-on-acc:#ffffff}
 :root[data-vidro="th4"]{--vg-acc:#38f5a3;--vg-acc-ink:#8dffd0;--vg-on-acc:#032015}
+:root[data-vidro="pato"]{--vg-acc:#ff6fb5;--vg-acc-ink:#ffb3d9;--vg-on-acc:#2a0617}
 
 /* tema claro: vidro fosco sobre névoa clara */
 :root[data-vidro][data-theme="light"]{
@@ -37,9 +38,10 @@
   --vg-btn:rgba(255,255,255,.62); --vg-btnh:rgba(255,255,255,.88); --vg-bench:rgba(255,255,255,.55); --vg-canvas:.7;
   color-scheme:light;
 }
-:root[data-vidro="farmaco"][data-theme="light"]{--vg-acc-ink:#c4173a}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"])[data-theme="light"]{--vg-acc-ink:#c4173a}
 :root[data-vidro="micro"][data-theme="light"]{--vg-acc-ink:#6a2fd6}
 :root[data-vidro="th4"][data-theme="light"]{--vg-acc-ink:#04875a}
+:root[data-vidro="pato"][data-theme="light"]{--vg-acc-ink:#c2186f}
 :root[data-vidro][data-theme="light"] #vidro-bg .au{opacity:.3}
 
 html[data-vidro]{background:var(--vg-ground)!important}
@@ -83,7 +85,7 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
 @keyframes vg-in{from{opacity:0}}
 
 /* ===================================================== FARMACOLOGIA */
-:root[data-vidro="farmaco"]{
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]){
   --ground:var(--vg-ground); --surface:var(--vg-glass); --surface-2:var(--vg-glass2); --raised:var(--vg-glass3);
   --border:var(--vg-edge); --rule:var(--vg-rule); --control:var(--vg-control);
   --ink:var(--vg-ink); --ink-2:var(--vg-ink2); --muted:var(--vg-muted); --faint:var(--vg-faint);
@@ -93,16 +95,16 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
   --bench:var(--vg-bench); --bench-2:var(--vg-glass); --bench-3:var(--vg-glass2); --bench-line:var(--vg-edge); --bench-acc:var(--vg-acc);
   --sans:var(--vg-text); --serif:var(--vg-display);
 }
-:root[data-vidro="farmaco"] .main{background:transparent!important}
-:root[data-vidro="farmaco"] .sidebar{background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
-:root[data-vidro="farmaco"] .it.active{background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)}
-:root[data-vidro="farmaco"] .it:hover{background:var(--vg-hov)}
-:root[data-vidro="farmaco"] .mbar{background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
-:root[data-vidro="farmaco"] :is(.q,.box,.step,.legend,.score,.bk,.vf,.mr-item,.arena-card,.xpbig,.wg,.done-t,.navfoot button,.chipbtn){
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .main{background:transparent!important}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .sidebar{background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .it.active{background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .it:hover{background:var(--vg-hov)}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .mbar{background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) :is(.q,.box,.step,.legend,.score,.bk,.vf,.mr-item,.arena-card,.xpbig,.wg,.done-t,.navfoot button,.chipbtn){
   -webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);box-shadow:var(--vg-shadow)}
-:root[data-vidro="farmaco"] .pane h2,:root[data-vidro="farmaco"] .pane h1{font-family:var(--vg-display);font-weight:800;letter-spacing:-.035em}
-:root[data-vidro="farmaco"] .btn.acc{color:var(--vg-on-acc)!important}
-:root[data-vidro="farmaco"] figure img,:root[data-vidro="farmaco"] .chart,:root[data-vidro="farmaco"] .hs-wrap{border-radius:14px}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .pane h2,:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .pane h1{font-family:var(--vg-display);font-weight:800;letter-spacing:-.035em}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .btn.acc{color:var(--vg-on-acc)!important}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) figure img,:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .chart,:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .hs-wrap{border-radius:14px}
 
 /* ===================================================== MICROBIOLOGIA */
 :root[data-vidro="micro"]{
@@ -173,7 +175,7 @@ html.vidro-ready #vidro-heart{transform:none;opacity:1}
 :root[data-vidro="micro"] .prof{--tint:#6fbf4a} :root[data-vidro="micro"] .extra{--tint:#e0a84a} :root[data-vidro="micro"] .warn{--tint:#ff6a55}
 :root[data-vidro="micro"] .pearl{--tint:#6f84ff} :root[data-vidro="micro"] .box2{--tint:#3fcfae}
 :root[data-vidro="th4"] .extra{--tint:#a46be0} :root[data-vidro="th4"] .tipbox{--tint:#ffbf2e} :root[data-vidro="th4"] .tipbox.bet{--tint:#22d3c5} :root[data-vidro="th4"] .tipbox.bad{--tint:#ff5f52}
-:root[data-vidro="farmaco"] .box,:root[data-vidro="micro"] :is(.prof,.extra,.warn,.pearl,.box2),:root[data-vidro="th4"] :is(.extra,.tipbox){
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .box,:root[data-vidro="micro"] :is(.prof,.extra,.warn,.pearl,.box2),:root[data-vidro="th4"] :is(.extra,.tipbox){
   --t:var(--tint,var(--vg-acc));
   position:relative;border:0!important;border-radius:22px!important;
   background:
@@ -233,7 +235,7 @@ html.vl-acende::view-transition-new(root){z-index:2}
 :root[data-vidro]{--vg-under:rgba(9,13,19,.62)}
 :root[data-vidro][data-theme="light"]{--vg-under:rgba(250,252,254,.6)}
 :root[data-vidro]:not([data-theme="light"]){--vg-glass:rgba(22,28,36,.62);--vg-glass2:rgba(30,37,46,.66);--vg-glass3:rgba(40,48,58,.7)}
-:root[data-vidro="farmaco"] :is(.q,.box,.step,.legend,.score,.bk,.vf,.mr-item,.arena-card,.xpbig,.wg,.done-t,.navfoot button,.chipbtn),
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) :is(.q,.box,.step,.legend,.score,.bk,.vf,.mr-item,.arena-card,.xpbig,.wg,.done-t,.navfoot button,.chipbtn),
 :root[data-vidro="micro"] :is(.card,.wcard,.rv,#mem .mc,.q,.panel,.mcard,.somi,.cai,.caistats>div,.caibn,.prof,.extra,.warn,.pearl,.box2),
 :root[data-vidro="th4"] :is(.sheet,.qcard,.tile,.station,.chip,.lvl,.extra,.tipbox),
 :root[data-vidro] :is(mark,.hlbtn){-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
@@ -262,6 +264,16 @@ html.vidro-leve[data-vidro][data-theme="light"]{--vg-side:rgba(244,247,250,.96);
   :root[data-vidro] :is(pre,table){overflow-x:auto}
   :root[data-vidro] body{overflow-x:clip}
   /* caixas de vidro grosso: menos arredondadas e mais justas */
-  :root[data-vidro="farmaco"] .box,:root[data-vidro="micro"] :is(.prof,.extra,.warn,.pearl,.box2),:root[data-vidro="th4"] :is(.extra,.tipbox){border-radius:18px!important}
+  :root:is([data-vidro="farmaco"],[data-vidro="pato"]) .box,:root[data-vidro="micro"] :is(.prof,.extra,.warn,.pearl,.box2),:root[data-vidro="th4"] :is(.extra,.tipbox){border-radius:18px!important}
 }
 @media (pointer:coarse){#vidro-fx:hover,#vidro-home:hover{transform:none}}
+
+/* ===================================================== Patologia: aulas em iframes */
+/* o conteúdo de cada aula é uma página própria; o fundo dela fica transparente para o 3D aparecer atrás */
+:root[data-vidro="pato"] #content,:root[data-vidro="pato"] #content iframe{background:transparent!important}
+:root[data-vidro="pato"] #loading{color:var(--vg-muted)}
+:root.vidro-aula[data-vidro]{--ground:transparent;--paper:transparent}
+:root.vidro-aula[data-vidro],:root.vidro-aula[data-vidro] body{background:transparent!important}
+:root.vidro-aula[data-vidro] body > *{animation:none!important}
+/* cor do grupo da aula (cardio, resp., TGI...) continua orientando, em versão vidro */
+:root.vidro-aula[data-vidro] :is(.hero,.intro){background:transparent!important}

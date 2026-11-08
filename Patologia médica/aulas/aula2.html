@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tone="cv" data-theme="dark">
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css"><!--/vidro:cabeca-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardiopatia Isquêmica — Masterclass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet"><style>/* ===== Visual "Farmacologia" aplicado às aulas de Patologia ===== */
+:root{
+  --ground:#ffffff; --surface:#f5f6f4; --surface-2:#eceeeb; --raised:#ffffff;
+  --border:#e4e6e2; --rule:#eff0ed; --control:#d6d9d4;
+  --ink:#1f201d; --ink-2:#3a3c37; --muted:#676964; --faint:#9a9c96;
+  --accent:#1b6e66; --accent-ink:#0f4d47; --accent-soft:#e3f0ed;
+  --tone:var(--accent);
+  --ok:#2e7d32; --ok-bg:#e6f4e7; --ok-line:#b9dcbb;
+  --bad:#b42318; --bad-bg:#fdecea; --bad-line:#f2c1bb;
+  --warn:#b26a00; --warn-bg:#f8ecd2; --warn-ink:#7a5200;
+  --on-ink:#fff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121413; --surface:#1a1d1b; --surface-2:#242826; --raised:#1f2320;
+  --border:#2c312e; --rule:#222624; --control:#3d4440;
+  --ink:#e6e9e4; --ink-2:#c3c8c1; --muted:#9aa09a; --faint:#6f766f;
+  --accent:#5fc4ae; --accent-ink:#93e0cd; --accent-soft:#17332d;
+  --ok:#62c27a; --ok-bg:#15281a; --ok-line:#2b5233;
+  --bad:#f07a6c; --bad-bg:#2d1714; --bad-line:#5c2b25;
+  --warn-bg:#33290f; --warn-ink:#f0cf86;
+  --on-ink:#121413;
+}
+/* cada grupo de aulas tem a sua cor, só no que orienta */
+:root[data-tone="cv"]{--tone:#a3263a}
+:root[data-tone="resp"]{--tone:#1f6f8b}
+:root[data-tone="prova"]{--tone:#6b4c8a}
+:root[data-tone="sim"]{--tone:#1b6e66}
+:root[data-tone="gi"]{--tone:#2e7d4f}
+:root[data-tone="acc"]{--tone:#9a5a00}
+:root[data-theme="dark"][data-tone="cv"]{--tone:#ec8a98}
+:root[data-theme="dark"][data-tone="resp"]{--tone:#7cc2dc}
+:root[data-theme="dark"][data-tone="prova"]{--tone:#bca0d8}
+:root[data-theme="dark"][data-tone="sim"]{--tone:#5fc4ae}
+:root[data-theme="dark"][data-tone="gi"]{--tone:#6fbf8e}
+:root[data-theme="dark"][data-tone="acc"]{--tone:#e0b06a}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{background:var(--ground)!important;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:inherit;color:inherit}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- cabeçalho da aula (era "hero") ---------- */
+.hero{background:transparent;color:var(--ink);padding:40px clamp(16px,5vw,72px) 0}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;padding-bottom:28px;border-bottom:1px solid var(--border);
+  margin-bottom:32px}
+.hero h1{order:1;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0;font-weight:400;
+  letter-spacing:-.015em;color:var(--ink);max-width:none;text-wrap:balance}
+.tag{order:2;display:block;align-self:flex-start;background:transparent;color:var(--tone);font-family:var(--sans);font-size:14px;
+  font-weight:500;letter-spacing:0;padding:0;border-radius:0;margin:12px 0 0}
+.hero p{order:3;margin:14px 0 0;color:var(--muted);font-family:var(--sans);font-size:14.5px;line-height:1.6;max-width:68ch}
+.strip{order:4;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:22px;overflow:hidden;border-radius:0}
+.strip img{width:100%;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--border);filter:none;opacity:.92}
+:root[data-theme="dark"] .strip img{filter:brightness(.9)}
+@media (max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}.strip img:nth-child(n+4){display:none}}
+
+/* ---------- layout (a navegação agora vive na barra lateral do app) ---------- */
+.shell{display:block;max-width:none;margin:0;padding:0 clamp(16px,5vw,72px) 96px}
+nav.rail{display:none}
+main{display:block;max-width:920px;margin:0 auto;padding:0;background:transparent;border-radius:0;box-shadow:none}
+.pane{display:block;animation:rise .35s var(--ease-out) both;scroll-margin-top:100vh}
+/* o cabeçalho grande só aparece na capa da aula; nos segmentos o título do próprio segmento assume */
+html[data-hero="off"] header.hero{display:none}
+html[data-hero="off"] .shell{padding-top:40px}
+.pane[hidden]{display:none}
+
+.pane-title{position:relative;font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin:0 0 28px;
+  padding:0 0 22px;font-weight:400;letter-spacing:-.012em;color:var(--ink);border-bottom:1px solid var(--border);text-wrap:balance}
+.pane-title.has-done{padding-right:150px}
+
+/* ---------- leitura ---------- */
+.prose,.intro{max-width:none}
+.prose p,.intro p,.prose li,.intro li{font-size:17px;line-height:1.7;color:var(--ink)}
+.prose p,.intro p{margin:0 0 18px;max-width:70ch}
+.prose ul,.prose ol,.intro ul,.intro ol{padding-left:22px;margin:0 0 20px;max-width:70ch}
+.prose li,.intro li{margin-bottom:8px}
+.prose li::marker,.intro li::marker{color:var(--faint)}
+.prose h2,.intro h2{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:56px 0 16px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+.intro h2:first-child{margin-top:0}
+.prose h3,.intro h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.prose strong,.intro strong,.prose b,.intro b{font-weight:600;color:var(--ink)}
+.prose hr,.intro hr{border:0;border-top:1px solid var(--border);margin:36px 0}
+.prose em,.intro em{color:inherit}
+table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;font-family:var(--sans)}
+th{background:transparent;color:var(--muted);text-align:left;padding:10px 14px 10px 0;font-weight:500;font-size:13.5px;
+  border-bottom:1px solid var(--control);vertical-align:bottom}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;text-align:left;
+  font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+@media (max-width:700px){table{display:block;overflow-x:auto}}
+
+.fig{margin:28px auto;max-width:100%;text-align:center}
+.fig img{display:inline-block;max-width:100%;width:auto;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff;
+  cursor:zoom-in;transition:transform .2s var(--ease-out)}
+:root[data-theme="dark"] .fig img{border-color:var(--border);filter:brightness(.94)}
+.fig figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;
+  max-width:68ch;padding:0;border:0}
+
+/* ---------- painéis (notas) ---------- */
+.note{border-radius:18px;padding:18px 22px;margin:24px 0;font-size:16px;line-height:1.68;border:none;position:relative;
+  background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:16px;line-height:1.68;max-width:none}
+.note p + p{margin-top:10px}
+.note-extra{background:#f2f2f8}.note-extra>p>strong:first-child{color:#4b4790}
+.note-fix{background:#fbf0ea}.note-fix>p>strong:first-child{color:#9a4a1f}
+.note-link{background:#edf3f8}.note-link>p>strong:first-child{color:#2d5f8f}
+:root[data-theme="dark"] .note-extra{background:#1d1d2a}:root[data-theme="dark"] .note-extra>p>strong:first-child{color:#aaa6ea}
+:root[data-theme="dark"] .note-fix{background:#2a1c15}:root[data-theme="dark"] .note-fix>p>strong:first-child{color:#ec9f73}
+:root[data-theme="dark"] .note-link{background:#17212b}:root[data-theme="dark"] .note-link>p>strong:first-child{color:#8dbbe6}
+.note + ol,.note + ul{margin-top:-6px}
+
+/* ---------- grifos de frequência em prova ---------- */
+mark.exam1,mark.exam2,mark.exam3,mark.exam4,mark.exam5,mark.hot{padding:1px 3px;border-radius:4px;cursor:help;color:inherit;font-weight:inherit;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1{background:#d8f3e3}
+mark.exam2{background:#fdf0bf}
+mark.exam3,mark.hot{background:#fcd9a8}
+mark.exam4{background:#f8bfb5}
+mark.exam5{background:#1c2331;color:#ffe3a3}
+mark.exam5 *{color:#ffe3a3}
+:root[data-theme="dark"] mark.exam1,:root[data-theme="dark"] mark.exam2,:root[data-theme="dark"] mark.exam3,
+:root[data-theme="dark"] mark.exam4,:root[data-theme="dark"] mark.hot,
+:root[data-theme="dark"] mark.exam1 *,:root[data-theme="dark"] mark.exam2 *,:root[data-theme="dark"] mark.exam3 *,
+:root[data-theme="dark"] mark.exam4 *,:root[data-theme="dark"] mark.hot *{color:#1b2230!important}
+:root[data-theme="dark"] mark.exam5{box-shadow:inset 0 0 0 1px #4a5568}
+.examcard{margin:24px 0;padding:18px 22px;border:none;background:#f8f3e1;border-radius:18px}
+.examcard h4{margin:0 0 8px;font-size:14px;color:#765800;font-family:var(--sans);letter-spacing:0;font-weight:600}
+.examcard p{font-size:15px!important;max-width:none!important}
+:root[data-theme="dark"] .examcard{background:#26220f}:root[data-theme="dark"] .examcard h4{color:#e3c25c}
+.exam-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin:14px 0}
+.exam-legend span{padding:3px 9px;border-radius:999px;font-weight:500}
+:root[data-theme="dark"] .exam-legend span[style*="#111111"]{box-shadow:inset 0 0 0 1px #4a5568}
+.q-source{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;
+  font-family:var(--sans);text-transform:none}
+.q-source.real{background:var(--ok-bg);color:var(--ok)}
+.q-source.adapted{background:var(--warn-bg);color:var(--warn-ink)}
+.q-source.original{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- quiz ---------- */
+.qzone{margin-top:72px;padding-top:0;border-top:none;max-width:none}
+.qzone-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:0 0 12px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em}
+.lede{font-family:var(--sans);font-size:14.5px;color:var(--muted);max-width:68ch;line-height:1.6;margin:0 0 24px}
+.q{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.q-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.q-head>.q-source{order:2;margin-top:3px}
+.q-num{order:1;flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:999px;background:var(--ink);color:var(--on-ink);
+  font-family:var(--sans);font-weight:500;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;margin:0}
+.q-stem{order:3;flex:1 0 100%;min-width:0}
+.q-stem p{margin:0 0 12px;font-size:16.5px;line-height:1.65;color:var(--ink);max-width:none}
+.q-stem .fig{margin:8px 0 16px}
+.q-stem .fig img{max-height:420px}
+.opts{display:flex;flex-direction:column;gap:0;margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  color:var(--ink);transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.opt:active{transform:scale(.995)}
+.opt-letter{flex:none;width:26px;height:26px;min-width:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.opt-text{flex:1;min-width:0;padding-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.opt.is-correct{border-color:var(--ok-line);background:var(--ok-bg);box-shadow:none}
+.opt.is-correct .opt-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-wrong{border-color:var(--bad-line);background:var(--bad-bg);box-shadow:none}
+.opt.is-wrong .opt-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .opt.is-correct .opt-letter,:root[data-theme="dark"] .opt.is-wrong .opt-letter{color:#0d1110}
+.q.done .opt{cursor:default}
+.q.done .opt:active{transform:none}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--control)}:root[data-theme="dark"] .opt:hover{border-color:#4a524d}}
+.q-actions{display:flex;gap:8px;align-items:center;margin:14px 0 0;flex-wrap:wrap}
+.btn-reveal,.btn-grade,.btn-reset{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;
+  cursor:pointer;background:var(--ink);color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn-reveal:active,.btn-grade:active,.btn-reset:active{transform:scale(.97)}
+.btn-reveal{background:var(--surface-2);color:var(--ink)}
+.btn-reset{background:var(--surface-2);color:var(--ink)}
+.btn-grade{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn-grade{color:#0d1110}
+.btn-reveal[hidden],.btn-grade[hidden],.btn-reset[hidden]{display:none}
+.q-why{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:15px;line-height:1.6}
+.q-why[hidden]{display:none}
+.q-why p{margin:0 0 10px;font-size:15px;line-height:1.6;max-width:none}
+.q-why p:last-child{margin:0}
+.q-why:has(.q-verdict.ok){background:var(--ok-bg)}
+.q-why:has(.q-verdict.no){background:var(--bad-bg)}
+.q-verdict{font-family:var(--sans);font-weight:600}
+.q-verdict.ok{color:var(--ok)}.q-verdict.no{color:var(--bad)}
+.q-why hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+.q-open textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;
+  background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+.q-open textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.scorebar{position:sticky;top:12px;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--surface);
+  border:1px solid var(--border);border-radius:22px;padding:14px 20px;margin:22px 0 16px;font-family:var(--sans);font-size:15px}
+#scoretext{flex:1 1 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.closing{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ---------- ampliar imagem ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(18,20,18,.82);display:none;place-items:center;z-index:900;padding:30px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:12px;background:#fff}
+.lightbox figcaption{color:#e6e9e4;font-family:var(--sans);font-size:14.5px;margin-top:14px;max-width:70ch;text-align:center;line-height:1.5}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-family:var(--sans);
+  font-size:14px;font-weight:500;border-radius:999px;height:38px;padding:0 18px;cursor:pointer}
+
+/* ---------- dica "caiu em prova" ---------- */
+#mc-tooltip{background:#2b302d!important;color:#eef0ec!important;border:none!important;border-radius:12px!important;padding:12px 14px!important;
+  font-family:var(--sans)!important;font-size:13px!important;line-height:1.5!important;box-shadow:0 12px 32px rgba(20,22,20,.28)!important}
+#mc-tooltip div{color:#c3c8c1!important;font-size:12px!important;letter-spacing:0!important;font-weight:600}
+#mc-tooltip .mc-chip{background:#3b413d!important;color:#eef0ec!important;border:none!important;border-radius:999px!important;padding:3px 10px!important;
+  font-size:12px!important}
+#mc-tooltip .mc-chip:hover{background:var(--accent)!important;color:#0d1110!important}
+
+/* ---------- concluir (vem da barra lateral do app) ---------- */
+.done-t{position:absolute;top:6px;right:0;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);height:38px;padding:0 16px 0 12px;border-radius:999px;cursor:pointer;background:var(--surface);border:none;user-select:none;
+  letter-spacing:0;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.done-t:active{transform:scale(.97)}
+.done-t .d{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--control);background:var(--raised);
+  transition:background-color .2s ease,border-color .2s ease}
+.done-t.on{color:var(--ok);background:var(--ok-bg)}
+.done-t.on .d{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px var(--ok-bg)}
+@media (max-width:700px){.done-t{position:static;margin-top:14px}.pane-title.has-done{padding-right:0}}
+
+@media (max-width:900px){
+  .hero{padding:24px 16px 0}
+  .shell{padding:0 16px 72px}
+  .q{padding:18px 16px;border-radius:18px}
+  .note{padding:16px 18px}
+  .prose p,.intro p,.prose li,.intro li{font-size:16.5px}
+  .prose h2,.intro h2{font-size:27px;margin-top:44px}
+  .opts{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  .hero,.scorebar,.q-actions,.strip,.done-t{display:none}
+  body{background:#fff!important;color:#000}
+  .pane[hidden],.q-why[hidden]{display:block!important}
+  .q,.fig{break-inside:avoid}
+}
+
+/* ---------- anterior / próximo ---------- */
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{border:none;background:var(--surface);border-radius:16px;padding:14px 18px;font-family:var(--sans);font-size:14.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);max-width:48%;text-align:left;line-height:1.4;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.navfoot button:last-child{text-align:right;margin-left:auto}
+.navfoot button:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.navfoot button:hover{background:var(--surface-2)}}
+
+/* ---------- botão grande de concluir, no fim do segmento ---------- */
+.cel-fin{display:flex;justify-content:center;margin:34px 0 8px}
+.cel-finish{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+  font:500 16px/1 var(--sans);cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+:root[data-theme="dark"] .cel-finish{color:#0d1110}
+.cel-finish:active{transform:scale(.97)}
+.cel-finish svg{width:20px;height:20px}
+.cel-finish svg circle{fill:none;stroke:currentColor;stroke-width:2;opacity:.55}
+.cel-finish svg path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s var(--ease-out)}
+.cel-finish.on{background:var(--ok-bg);color:var(--ok)}
+:root[data-theme="dark"] .cel-finish.on{color:var(--ok)}
+.cel-finish.on svg path{stroke-dashoffset:0}
+@media (hover:hover) and (pointer:fine){.cel-finish:not(.on):hover{transform:translateY(-1px)}}
+@media (max-width:600px){.cel-finish{width:100%}}
+.cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
+
+.find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+
+/* ===== Aula 2 (Cardiopatia Isquêmica): markup gerado por JS ===== */
+.app{display:block;min-height:0;padding:0 clamp(16px,5vw,72px)}
+#sidebar,.sidebar,.sidebar-toggle,.topbar{display:none!important}
+main#main{display:block;max-width:920px;margin:0 auto;padding:40px 0 96px;background:transparent}
+#content{position:relative;animation:rise .35s var(--ease-out) both}
+.hero{padding:0}
+.hero .eyebrow,.seg-eyebrow{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--tone);margin:0 0 10px;letter-spacing:0}
+.hero h1{font-size:clamp(34px,4.4vw,52px);margin:0 0 18px;max-width:none}
+.hero p.lede{font-size:20px;line-height:1.6;color:var(--ink);max-width:62ch;margin:0 0 28px}
+h2.seg-title{position:relative;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0 0 32px;padding:0 0 28px;
+  font-weight:400;letter-spacing:-.015em;color:var(--ink);max-width:none;border-bottom:1px solid var(--border);text-wrap:balance}
+h2.seg-title.has-done{padding-right:150px}
+.content-body p{margin:0 0 18px;font-size:17px;line-height:1.7;color:var(--ink);max-width:70ch}
+.content-body h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.content-body ul,.content-body ol{margin:0 0 20px;padding-left:22px;max-width:70ch}
+.content-body li{margin-bottom:8px;font-size:17px;line-height:1.7}
+.content-body li::marker{color:var(--faint)}
+.content-body strong{color:var(--ink);font-weight:600}
+.tbl{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;background:transparent;box-shadow:none;border-radius:0}
+.tbl th,.tbl td{text-align:left;padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl th{background:transparent;color:var(--muted);font-family:var(--sans);font-weight:500;font-size:13.5px;border-bottom:1px solid var(--control);padding-top:10px;padding-bottom:10px}
+.tbl tr:last-child td{border-bottom:none}
+figure.fig-wrap{margin:28px auto;text-align:center}
+figure.fig-wrap img.fig{display:inline-block;width:auto;max-width:100%;max-height:560px;height:auto;margin:0;border-radius:12px;border:1px solid var(--border);
+  box-shadow:none;background:#fff}
+:root[data-theme="dark"] figure.fig-wrap img.fig{filter:brightness(.94)}
+figure.fig-wrap figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;max-width:68ch;
+  padding:0;border:0}
+
+.qsection{margin-top:72px}
+.qsection-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;font-weight:400;letter-spacing:-.01em;color:var(--ink);
+  display:block;margin:0 0 20px}
+.qsection-title::before{display:none}
+.qcard{background:var(--surface);border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;box-shadow:none}
+.qcard>.q-source{margin:0 8px 12px 0;vertical-align:middle}
+.qcard .qmeta{display:inline-block;font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--muted);background:var(--surface-2);
+  padding:3px 10px;border-radius:999px;margin:0 0 12px;vertical-align:middle}
+.qcard .qvignette{font-size:16.5px;line-height:1.65;margin:0 0 16px;color:var(--ink);max-width:none}
+.qcard img.qimg{display:block;max-width:100%;max-height:420px;width:auto;margin:8px 0 16px;border-radius:12px;border:1px solid var(--border);background:#fff}
+.qoptions{display:flex;flex-direction:column;gap:0}
+.qoption{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;color:var(--ink);
+  transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.qoption:active:not([disabled]){transform:scale(.995)}
+.qoption .optletter{flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;display:flex;
+  align-items:center;justify-content:center;color:var(--muted);transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.qoption>span:last-child{flex:1;min-width:0;padding-top:2px}
+.qoption[disabled]{cursor:default;color:var(--ink);opacity:1}
+.qoption.selected-correct,.qoption.reveal-correct{border-color:var(--ok-line);background:var(--ok-bg);color:var(--ink)}
+.qoption.selected-correct .optletter,.qoption.reveal-correct .optletter{background:var(--ok);border-color:var(--ok);color:#fff}
+.qoption.selected-incorrect{border-color:var(--bad-line);background:var(--bad-bg);color:var(--ink)}
+.qoption.selected-incorrect .optletter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .qoption.selected-correct .optletter,:root[data-theme="dark"] .qoption.reveal-correct .optletter,
+:root[data-theme="dark"] .qoption.selected-incorrect .optletter{color:#0d1110}
+@media (hover:hover) and (pointer:fine){.qoption:hover:not([disabled]){border-color:var(--control)}}
+.qfeedback{display:none;margin-top:14px;padding:14px 16px;border-radius:14px;font-family:var(--sans);font-size:15px;line-height:1.6;border:none}
+.qfeedback.show{display:block}
+.qfeedback.ok{background:var(--ok-bg);color:var(--ink)}
+.qfeedback.bad{background:var(--bad-bg);color:var(--ink)}
+.qfeedback .fb-title{font-weight:600;margin-bottom:4px}
+.qfeedback.ok .fb-title{color:var(--ok)}
+.qfeedback.bad .fb-title{color:var(--bad)}
+.qfeedback .fb-explain{margin-top:8px;color:var(--ink-2)}
+.qfeedback .fb-explain div{margin-bottom:6px}
+
+.segnav{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border);flex-wrap:wrap}
+.pillbtn{border:none;border-radius:999px;height:42px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;cursor:pointer;background:var(--ink);
+  color:var(--on-ink);display:inline-flex;align-items:center;gap:8px;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.pillbtn.ghost{background:var(--surface);color:var(--ink);border:none}
+.pillbtn:active{transform:scale(.97)}
+.pillbtn:hover{opacity:1}
+
+.herometa{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:28px 0 32px}
+.herometa .stat{background:var(--surface);border-radius:16px;padding:14px 18px}
+.herometa .stat b{display:block;font-family:var(--serif);font-weight:400;font-size:34px;line-height:1.1;color:var(--accent)}
+.herometa .stat span{font-size:13px;color:var(--muted)}
+.segindex{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media (max-width:700px){.segindex{grid-template-columns:1fr}}
+.segcard{display:flex;gap:14px;align-items:flex-start;text-align:left;border:none;background:var(--surface);border-radius:16px;padding:16px 18px;cursor:pointer;
+  font-family:var(--sans);box-shadow:none;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.segcard:active{transform:scale(.98)}
+.segcard:hover{border:none;background:var(--surface-2)}
+.segcard .num{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.1;color:var(--tone);flex:0 0 30px}
+.segcard .txt b{display:block;font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;line-height:1.35}
+.segcard .txt span{font-size:12.5px;color:var(--muted)}
+.quiz-progress{font-family:var(--sans);font-size:13.5px;color:var(--muted);margin-bottom:22px;font-variant-numeric:tabular-nums}
+.scorebox{background:var(--surface);border:none;border-radius:22px;padding:26px 28px;text-align:left;box-shadow:none;max-width:none;margin:20px 0}
+.scorebox .big{font-family:var(--sans);font-size:44px;font-weight:400;color:var(--accent);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.scorebox .big span{color:var(--muted)!important}
+.scorebox .of{font-size:15px;color:var(--muted);margin-top:8px}
+.scorebox .msg{font-size:15.5px;margin-top:12px;color:var(--ink)}
+.footer-note{margin-top:64px;padding-top:20px;border-top:1px solid var(--border);font-family:var(--sans);font-size:13px;color:var(--muted);line-height:1.6}
+@media (max-width:900px){main#main{padding:24px 0 72px}h2.seg-title.has-done{padding-right:0}}
+</style><script>(function(){var p=(window.name||"").split("|");document.documentElement.setAttribute("data-theme",p[2]==="light"?"light":"dark")})();</script></head>
+<body><div class="app">
+  <nav class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="eyebrow">Patologia Médica I &middot; CMMG</span>
+      <h1>Cardiopatia Isquêmica</h1>
+      <span class="sub">Masterclass interativa</span>
+    </div>
+
+    <button class="sidebar-toggle" id="sidebarToggle" type="button">
+      <span>Navegar pela aula</span><span id="toggleIcon">▾</span>
+    </button>
+
+    <ul class="navlist" id="navlist"></ul>
+  </nav>
+
+  <main id="main">
+    <div class="topbar">
+      <div>
+        <div class="progress-label" id="progressLabel">Introdução</div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+    </div>
+    <div id="content"></div>
+  </main>
+</div>
+
+<script id="app-data" type="application/json">{"segments": [{"id": "s1", "num": 1, "title": "Isquemia miocárdica: o desequilíbrio entre oferta e demanda", "images": [], "content": "\n<p>Tudo em cardiopatia isquêmica começa de um jeito simples: o miocárdio precisa de oxigênio continuamente para manter a contração, e ele recebe esse oxigênio quase exclusivamente pelas artérias coronárias &mdash; não existe reserva de O2 armazenada no músculo cardíaco como existe glicogênio no fígado. Isquemia miocárdica é, por definição, qualquer situação em que a oferta de sangue oxigenado cai abaixo da demanda metabólica do músculo.</p>\n<p>Repare que isso é uma equação de dois lados: dá para ficar isquêmico tanto por reduzir a oferta (uma placa entupindo a coronária) quanto por aumentar a demanda muito além do que a oferta consegue acompanhar (um coração hipertrofiado que precisa de mais O2 por grama de tecido do que a rede capilar disponível consegue entregar).</p>\n\n<p>Em cerca de 90% dos casos, a causa da isquemia é a <strong><mark class=\"exam4\" data-refs=\"82:9,81:3\">obstrução do fluxo coronariano por aterosclerose</mark></strong> &mdash; é isso que chamamos de Doença Arterial Coronariana (DAC). É importante gravar que essa obstrução se desenvolve de forma lenta e progressiva, ao longo de décadas, e que os sintomas só aparecem quando a obstrução já é bastante significativa: <strong><mark class=\"exam2\" data-refs=\"82:?\">acima de 75%</mark></strong> para desencadear sintomas durante atividade física, e <strong><mark class=\"exam2\" data-refs=\"82:?\">acima de 90%</mark></strong> para causar sintomas em repouso.</p>\n\n<p>📌 <strong>EXTRA:</strong> essa diferença entre 75% e 90% cai muito em prova e faz todo sentido fisiológico se você pensar em termos de reserva de fluxo coronariano. Em repouso, a demanda de O2 é baixa, então mesmo uma luz bem reduzida ainda consegue, por enquanto, entregar o suficiente — só falha quando a obstrução é quase total (90%).</p>\n<p>Já durante o esforço a demanda dispara, e uma artéria com \"apenas\" 75% de obstrução já não consegue vasodilatar o suficiente para atender a essa demanda extra, gerando angina desencadeada por esforço. É exatamente por isso que a angina estável é, por definição, uma angina de esforço.</p>\n\n<h3>Epidemiologia</h3>\n<p>A cardiopatia isquêmica é a principal causa de morte em vários países, incluindo o Brasil, respondendo por cerca de <strong>7 milhões de mortes por ano</strong> no mundo. O perfil clássico é o de adultos do sexo masculino de meia idade, com pico de incidência por volta dos <strong>70 anos</strong>.</p>\n<p>Os fatores de risco se dividem em não modificáveis (predisposição genética) e modificáveis — tabagismo, ansiedade, estresse crônico, dieta e sedentarismo, além da chamada <strong>Síndrome Metabólica</strong> (dislipidemia + HAS + diabetes mellitus + obesidade, um combo que multiplica o risco cardiovascular). Vale destacar que houve um declínio real na incidência da doença nas últimas décadas, atribuído a ações preventivas e a melhorias no diagnóstico e no tratamento.</p>\n\n<h3>Patogênese: o desequilíbrio oferta x demanda em detalhe</h3>\n<p>Do lado da oferta (o que reduz o fluxo coronariano): aterosclerose, formação de trombo sobre a placa, vasoespasmo e ruptura da placa — vamos destrinchar cada um desses mecanismos no próximo segmento, porque eles se encadeiam entre si.</p>\n<p>Do lado da demanda (o que aumenta a necessidade de O2 do miocárdio): hipertrofia cardíaca e qualquer situação que aumente a frequência cardíaca. Aqui vale diferenciar sobrecarga aguda (atividade física, estresse emocional — eleva a demanda momentaneamente) de sobrecarga crônica (que leva à hipertrofia miocárdica como resposta adaptativa, mas que paga um preço: mais massa muscular pedindo mais O2, sem crescimento proporcional da rede de capilares que a irriga).</p>\n\n<p>A gravidade final da isquemia em cada paciente é multifatorial, dependendo de quatro variáveis que se combinam:</p>\n<ol>\n<li><strong>Velocidade de progressão, extensão e duração</strong> da obstrução coronariana — uma obstrução que se instala em segundos (trombo agudo) é muito mais perigosa que uma que se desenvolve ao longo de anos, mesmo que o grau final de obstrução seja parecido;</li>\n<li><strong>Estado do miocárdio</strong> — hipertrophy e sobrecarga funcional prévia deixam o músculo mais vulnerável;</li>\n<li><strong>Existência de circulação colateral</strong> — vasos colaterais surgem por neoangiogênese, geralmente em resposta a uma isquemia crônica de baixo grau, e por isso são mais comuns em idosos e em obstruções que evoluem lentamente (precisam de tempo para se formar). Uma boa circulação colateral pode \"salvar\" um território que, de outra forma, sofreria infarto extenso;</li>\n<li><strong>Condições circulatórias sistêmicas</strong> — pressão arterial e capacidade de transporte de O2 no sangue (por exemplo, um paciente anêmico tem menos capacidade de carrear O2 por volume de sangue, o que agrava qualquer grau de obstrução coronariana já existente).</li>\n</ol>\n", "questions": [{"vignette": "Homem, 68 anos, hipertenso de longa data, com hipertrofia ventricular esquerda documentada ao ecocardiograma, refere dor torácica típica desencadeada por esforços leves (subir um lance de escadas). O cateterismo mostra obstrução de 65% da artéria descendente anterior — um grau que, isoladamente, costuma ser assintomático mesmo aos esforços. Qual é a explicação mais provável para esse paciente ser sintomático com uma obstrução considerada moderada?", "options": ["A hipertrofia miocárdica aumenta a demanda de O2 do músculo sem crescimento proporcional da rede capilar, reduzindo a reserva de perfusão coronariana disponível", "Obstruções de 65% da luz arterial já ultrapassam o limiar angiográfico de significância hemodinâmica (70%), o que por si só explicaria os sintomas mesmo em esforços leves", "A hipertrofia ventricular esquerda reduz a demanda metabólica do miocárdio, o que deveria proteger o paciente e não o contrário", "A hipertrofia ventricular esquerda impede a formação de circulação colateral eficaz, o que explicaria a discordância entre o grau de obstrução angiográfica e a gravidade clínica do paciente", "A obstrução de 65% já ultrapassa o valor angiográfico usado para firmar diretamente o diagnóstico de infarto agudo, dispensando confirmação por troponina ou alterações eletrocardiográficas"], "correct": 0, "explanation": ["Correta: a massa muscular hipertrofiada consome mais O2 por batimento, mas a angiogênese capilar não acompanha esse crescimento na mesma proporção — isso reduz a reserva de fluxo coronariano e faz com que graus de obstrução que seriam toleráveis em um coração normal já causem isquemia sintomática em um coração hipertrofiado.", "Errada: o enunciado da aula fixa os limiares em >75% (esforço) e >90% (repouso), não 70% — 65% isoladamente não seria esperado gerar sintomas em um coração sem outros fatores agravantes.", "Errada: é o oposto — a hipertrofia aumenta a demanda metabólica, não reduz.", "Errada: hipertrofia não impede colateralização; o mecanismo central discutido na aula para esse tipo de caso é a desproporção entre demanda de O2 aumentada e rede capilar, não a colateralização.", "Errada: obstrução angiográfica não define infarto — infarto é definido por necrose (clínica + ECG + biomarcadores), não apenas pelo grau de estenose, qualquer que seja o percentual."], "source": "original"}, {"vignette": "Mulher, 74 anos, com diagnóstico de DAC estabelecido há 15 anos, obstrução crônica de 88% da artéria circunflexa identificada em exame de imagem, permanece relativamente assintomática mesmo durante esforços moderados. Qual mecanismo mais provavelmente explica essa tolerância inesperada a uma obstrução tão avançada?", "options": ["Desenvolvimento de circulação colateral, favorecido pelo caráter lento e progressivo da obstrução ao longo de muitos anos", "O envelhecimento reduz progressivamente a demanda metabólica basal do miocárdio a ponto de compensar quase totalmente uma obstrução de 88%", "Obstruções crônicas só costumam gerar isquemia sintomática quando ultrapassam 95% de estenose luminal, patamar ainda não atingido nesse caso", "A paciente provavelmente já sofreu um infarto silencioso prévio, que necrosou e eliminou o território de risco dependente da circunflexa antes da obstrução progredir até 88%", "O remodelamento vascular induzido pela hipertensão arterial crônica da paciente promove dilatação compensatória da luz da artéria circunflexa, atenuando o efeito da placa"], "correct": 0, "explanation": ["Correta: um dos quatro determinantes multifatoriais da gravidade da isquemia é justamente a existência de circulação colateral — que precisa de tempo para se formar por neoangiogênese e por isso é mais comum em obstruções lentas e progressivas, como no caso.", "Errada: a demanda metabólica não cai a esse ponto com a idade; ela pode estar reduzida por menor atividade física, mas isso não é o mecanismo central discutido para tolerância a obstruções crônicas graves.", "Errada: não existe esse patamar fixo de 95% citado na aula; obstruções crônicas podem, sim, gerar isquemia e infarto — o que muda é a chance de compensação por colaterais, não um limiar numérico distinto.", "Errada: é uma suposição não sustentada pelo enunciado, que não descreve nenhum evento clínico prévio nem alteração eletrocardiográfica compatível com necrose antiga.", "Errada: hipertensão não promove dilatação compensatória da luz arterial; pelo contrário, é fator de risco para progressão da aterosclerose."], "source": "original"}, {"vignette": "Homem, 45 anos, tabagista (20 cigarros/dia há 20 anos), sedentário, com IMC de 33, glicemia de jejum de 142 mg/dL em duas ocasiões e triglicerídeos de 280 mg/dL, procura a UBS para avaliação de risco cardiovascular. Qual combinação de achados caracteriza a Síndrome Metabólica, principal cluster de risco discutido na aula para cardiopatia isquêmica?", "options": ["Dislipidemia, hipertensão arterial sistêmica, diabetes mellitus e obesidade, associados entre si", "Tabagismo isolado, já que os demais achados (glicemia de jejum alterada e triglicerídeos elevados) representam apenas alterações laboratoriais transitórias sem valor diagnóstico", "Sedentarismo associado a IMC elevado, dispensando confirmação laboratorial de glicemia ou perfil lipídico para fechar o diagnóstico", "Obesidade central associada a triglicerídeos elevados, sem necessidade de avaliar pressão arterial ou glicemia para fechar o diagnóstico", "Predisposição genética somada à idade acima de 40 anos, independentemente dos achados metabólicos laboratoriais já apresentados pelo paciente"], "correct": 0, "explanation": ["Correta: a aula define a Síndrome Metabólica exatamente como a associação de dislipidemia, HAS, DM e obesidade — o paciente do caso já reúne evidências de dislipidemia (triglicerídeos altos), hiperglicemia sugestiva de DM e obesidade.", "Errada: tabagismo é fator de risco importante e independente, mas os achados de glicemia e triglicerídeos não são transitórios nem irrelevantes — eles compõem, junto de outros critérios, a própria Síndrome Metabólica.", "Errada: sedentarismo e obesidade são fatores de risco, mas a síndrome metabólica é definida por critérios metabólicos/laboratoriais combinados, e não dispensa essa confirmação.", "Errada: obesidade e dislipidemia isoladas não fecham o diagnóstico de síndrome metabólica; é preciso a combinação com os demais componentes, incluindo pressão arterial e glicemia.", "Errada: predisposição genética e idade são fatores de risco não modificáveis citados à parte, distintos da definição de síndrome metabólica, que depende dos achados metabólicos."], "source": "original"}]}, {"id": "s2", "num": 2, "title": "Da placa aterosclerótica à oclusão: aterosclerose, trombose e vasoespasmo", "images": [{"key": "evolucao-placa-ruptura-trombo.jpg", "caption": "Sequência esquemática da doença aterosclerótica coronariana. Da artéria normal (três camadas: íntima, média, adventícia) evolui-se para a obstrução coronariana fixa por placa aterosclerótica rica em lipídios (correlato clínico: angina típica/estável). Quando essa placa sofre ruptura, expõe material trombogênico e há agregação plaquetária. A partir daí, dois destinos são possíveis: um trombo mural, com obstrução variável e risco de êmbolos (correlato: angina instável ou IAM sem supra de ST), ou um trombo oclusivo, que fecha completamente a luz do vaso (correlato: IAM com supra de ST — infarto transmural)."}, {"key": "trombo-placa-ateromatosa-DA-hipertrofia.jpg", "caption": "À esquerda, corte transversal de uma coronária mostrando a luz quase obliterada por placa ateromatosa amarelada, com trombo vinhoso sobrejacente ocupando o que restou do lúmen. À direita, corte transversal do coração evidenciando hipertrofia concêntrica acentuada do ventrículo esquerdo — miocárdio muito espessado — com a seta apontando o óstio da artéria descendente anterior (DA). Note como, nesse coração hipertrofiado, a massa muscular aumentada eleva a demanda de O2 sem crescimento proporcional da rede capilar, tornando qualquer obstrução coronariana associada ainda mais perigosa."}, {"key": "histologia-trombo-mural-vs-oclusivo.jpg", "caption": "Cortes histológicos de coronárias trombosadas (coloração HE). Em A, trombo mural (parcial) — ainda existe luz residual pérvia, seta indicando o trombo aderido a uma parte da parede. Em B, trombo oclusivo — o trombo (mais denso, avermelhado) preenche totalmente a luz do vaso, sem qualquer canal residual. Essa diferença anatômica é exatamente o que separa, na prática clínica, uma síndrome coronariana sem supra de ST (trombo mural/suboclusivo) de uma com supra de ST (trombo oclusivo completo)."}], "content": "\n<p>Já vimos que 90% dos casos de cardiopatia isquêmica vêm da aterosclerose. Mas o processo raramente para na simples formação da placa — o que decide se um paciente vai ter angina estável (previsível, controlável) ou um infarto (evento agudo, potencialmente fatal) é a <strong>sequência de eventos que acontece sobre a placa</strong>, e essa sequência tem três atores principais: a própria aterosclerose, a trombose e o vasoespasmo.</p>\n<p>Eles não agem isoladamente — na prática, formam um ciclo vicioso que se retroalimenta.</p>\n\n<h3>Aterosclerose</h3>\n<p>É a causa mais comum (90%) de obstrução coronariana. Os locais mais afetados são a <strong><mark class=\"exam3\" data-refs=\"81:19\">região proximal da artéria descendente anterior (DA), da coronária direita (CD) e da circunflexa (CX)</mark></strong> — vale gravar essas três siglas porque elas vão reaparecer quando falarmos de territórios de infarto. Como já vimos, a obstrução precisa ser mais crítica (≥90%) para causar sintomas em repouso do que durante atividade (≥75%), porque a demanda em repouso é menor.</p>\n<img loading=lazy decoding=async src=\"{evolucao-placa-ruptura-trombo.jpg}\" class=\"fig\">\n\n<h3>Trombose: quando a placa se rompe</h3>\n<p>Quando o ateroma se rompe, ele expõe o endotélio lesado e substâncias teciduais pró-coagulantes que normalmente ficam \"escondidas\" sob uma capa fibrosa intacta. Essa exposição desencadeia agregação plaquetária, formando um trombo sobre a placa rota. É esse trombo — não a placa em si — que costuma ser o evento agudo final que precipita a síndrome coronariana aguda.</p>\n<img loading=lazy decoding=async src=\"{trombo-placa-ateromatosa-DA-hipertrofia.jpg}\" class=\"fig\">\n\n<h3>Vasoespasmo: o terceiro elemento do ciclo vicioso</h3>\n<p>O endotélio normal produz substâncias vasodilatadoras — óxido nítrico (NO) e prostaciclinas. Quando há lesão endotelial (como na ruptura da placa), esse equilíbrio se rompe: a agregação plaquetária libera <strong>tromboxano A2</strong>, um potente vasoconstritor.</p>\n<p>O resultado é redução adicional da luz do vaso por espasmo, o que, por sua vez, <strong>aumenta a chance de nova ruptura da placa ou de progressão da trombose</strong> — fechando um ciclo vicioso entre trombo e vasoespasmo que se autoalimenta (trombo → agregação plaquetária → TXA2 → vasoespasmo → maior chance de ruptura em outro ponto → nova agregação plaquetária → mais TXA2...).</p>\n<img loading=lazy decoding=async src=\"{histologia-trombo-mural-vs-oclusivo.jpg}\" class=\"fig\">\n\n<p>📌 <strong>EXTRA — por que isso importa clinicamente:</strong> essa distinção entre trombo mural (suboclusivo) e trombo oclusivo é exatamente a base fisiopatológica da classificação das síndromes coronarianas agudas em \"com supra de ST\" (oclusão completa, transmural) e \"sem supra de ST\" (suboclusão, subendocárdica) — conceito que vamos aprofundar nos próximos segmentos quando falarmos de angina instável, IAM e os padrões de lesão no ECG.</p>\n", "questions": [{"image": "histologia-trombo-mural-vs-oclusivo.jpg", "vignette": "Paciente admitido com dor torácica intensa e supradesnivelamento do segmento ST em todas as derivações precordiais ao ECG. A imagem acima mostra dois padrões histológicos possíveis de trombose coronariana (A e B). Qual padrão é o correlato anatomopatológico mais provável do quadro clínico desse paciente, e por quê?", "options": ["Padrão B, pois o trombo oclusivo fecha completamente a luz do vaso, produzindo isquemia transmural — o substrato do supradesnivelamento de ST", "Padrão A, pois o trombo mural progride rapidamente para oclusão completa na quase totalidade dos casos, produzindo supra de ST", "Nenhum dos dois, pois o supradesnivelamento de ST nesse contexto decorre de vasoespasmo associado, e não do padrão histológico da trombose observado na imagem", "Padrão A, porque trombos murais tendem a se formar sobre placas de maior volume, resultando em território isquêmico mais extenso do que o produzido pelo trombo oclusivo", "Padrão B, pois o tabagismo do paciente seria o fator determinante que converteria o trombo mural em oclusivo nesse contexto"], "correct": 0, "explanation": ["Correta: o trombo oclusivo (B) fecha totalmente a luz do vaso, interrompendo o fluxo para toda a espessura da parede (transmural) — esse padrão de isquemia transmural é o que se traduz no ECG como supradesnivelamento de ST.", "Errada: o trombo mural (A), por definição, mantém uma luz residual pérvia — a progressão rápida e quase universal para oclusão completa não é o que caracteriza esse padrão.", "Errada: no quadro descrito (supra difuso em todas as precordiais), o correlato mais provável é a oclusão trombótica completa (padrão B), não um vasoespasmo isolado sem relação com o trombo.", "Errada: não há essa relação — o que diferencia A de B é a completude da oclusão (e não o volume da placa subjacente), e é justamente a oclusão completa (B) que gera a maior extensão de isquemia transmural.", "Errada: tabagismo é fator de risco para doença coronariana em geral, mas não é citado como o mecanismo que converte um trombo mural em oclusivo — o que determina o padrão B é a trombose completa sobre a placa rota."], "source": "original"}, {"vignette": "Em um paciente com ruptura recente de placa aterosclerótica coronariana, a agregação plaquetária local libera tromboxano A2 (TXA2) na parede do vaso. Qual é o efeito fisiológico direto do TXA2 nesse contexto, e qual sua principal consequência clínica?", "options": ["Vasoconstrição, reduzindo ainda mais a luz do vaso e aumentando o risco de progressão da trombose ou de nova ruptura em outro ponto da placa", "Vasodilatação, funcionando como um mecanismo compensatório natural que protege contra a isquemia", "Inibição da agregação plaquetária, encerrando o processo trombótico espontaneamente", "Produção aumentada de óxido nítrico pelo endotélio lesado, normalizando o tônus vascular", "Nenhum efeito vascular relevante, atuando apenas como marcador laboratorial"], "correct": 0, "explanation": ["Correta: TXA2 é um potente vasoconstritor liberado pelas plaquetas ativadas; a vasoconstrição resultante reduz ainda mais a luz do vaso e alimenta o ciclo vicioso trombo-vasoespasmo, aumentando o risco de eventos isquêmicos adicionais.", "Errada: é o oposto — TXA2 é vasoconstritor, não vasodilatador (os vasodilatadores fisiológicos do endotélio normal são NO e prostaciclina, que ficam reduzidos justamente quando há lesão endotelial).", "Errada: TXA2 promove agregação plaquetária adicional, não a inibe.", "Errada: a lesão endotelial reduz, e não aumenta, a produção de NO.", "Errada: TXA2 tem efeito vascular direto e clinicamente relevante, não é apenas um marcador."], "source": "original"}, {"vignette": "Em relação à distribuição anatômica da aterosclerose coronariana discutida na aula, assinale a alternativa correta sobre os locais mais comumente acometidos.", "options": ["A região proximal das artérias descendente anterior (DA), coronária direita (CD) e circunflexa (CX) são os locais mais afetados", "A aterosclerose acomete preferencialmente a porção distal das artérias coronárias, poupando quase sempre os segmentos proximais", "Apenas a artéria circunflexa apresenta acometimento proximal relevante, enquanto a descendente anterior e a coronária direita costumam ser poupadas pela aterosclerose", "A aterosclerose coronariana acomete de forma igualmente provável os segmentos proximais e distais dos três grandes troncos epicárdicos, sem preferência anatômica", "Os vasos intramiocárdicos de pequeno calibre concentram a maior carga aterosclerótica, poupando relativamente os grandes troncos epicárdicos proximais"], "correct": 0, "explanation": ["Correta: a aula é explícita ao afirmar que os locais mais afetados são a região proximal de DA, CD e CX — informação relevante inclusive para prever qual território miocárdico está em risco.", "Errada: a tendência é justamente o oposto — a doença costuma ser mais proeminente nos segmentos proximais dos grandes vasos epicárdicos.", "Errada: as três artérias (DA, CD, CX) são citadas como preferencialmente acometidas em sua porção proximal, não apenas a circunflexa.", "Errada: existe, sim, um padrão preferencial de distribuição — a região proximal de DA, CD e CX — e não uma distribuição igualmente provável entre proximal e distal.", "Errada: é o oposto — a aterosclerose clinicamente relevante para o IAM ocorre nos grandes vasos epicárdicos proximais, não nos pequenos vasos intramiocárdicos."], "source": "original"}]}, {"id": "s3", "num": 3, "title": "Angina Pectoris: as três formas clínicas", "images": [], "content": "\n<p>Angina pectoris é o nome que damos a <strong>ataques paroxísticos e recorrentes</strong> de desconforto ou dor precordial — ela surge de forma súbita e \"vai e volta\" (paroxística).</p>\n<p>A isquemia responsável por essa dor é de <strong>curta duração, entre 15 segundos e 15 minutos</strong>, e esse é o ponto-chave que define angina como uma síndrome clínica <strong>insuficiente para provocar necrose</strong> do miocárdio. Assim que a isquemia ultrapassa aproximadamente 15-20 minutos de forma contínua, já não estamos mais falando de angina, e sim de um possível infarto em curso.</p>\n\n<p>📌 <strong>EXTRA:</strong> essa é uma das distinções mais cobradas em prova — angina, por definição, <mark class=\"exam3\" data-refs=\"78:17,81:9\">não eleva marcadores de necrose miocárdica (troponina, CK-MB)</mark>, porque não há morte celular. É justamente a dosagem de troponina que, na prática clínica, separa uma angina instável (troponina negativa) de um infarto sem supradesnivelamento de ST — os dois têm apresentação clínica e ECG muito parecidos, mas só o infarto tem necrose detectável.</p>\n\n<p>Existem três formas clínicas de angina, e cada uma tem um mecanismo fisiopatológico diferente por trás:</p>\n\n<h3>1 — Angina Estável (ou Típica)</h3>\n<p>É a forma mais comum. Ocorre quando há redução da perfusão coronariana a um nível crítico (obstrução fixa por placa, ao redor de 75% de obstrução ativa), de modo que a sintomatologia surge precisamente quando a demanda cardíaca aumenta — por exemplo, durante atividade física ou estresse físico/emocional.</p>\n<p>Costuma durar cerca de 5 a 10 minutos e, ponto importante, <strong><mark class=\"exam2\" data-refs=\"80:11,81:21\">melhora com repouso e com uso de vasodilatadores</mark></strong> (nitrato sublingual), porque ambos reduzem a demanda ou aumentam momentaneamente a oferta.</p>\n\n<h3>2 — Angina Instável (ou Crescente)</h3>\n<p>Aqui a dor já não depende de esforço — ocorre também a pequenos esforços ou mesmo em repouso, e tem duração mais prolongada (>10 minutos). Ela decorre da <strong><mark class=\"exam2\" data-refs=\"81:aberta1\">ruptura de placa com trombose parcial (trombo mural)</mark></strong> — lembra do segmento anterior? É exatamente o mesmo mecanismo que discutimos ali. É considerada grave, porém transitória, e o dado mais importante clinicamente: <strong><mark class=\"exam2\" data-refs=\"81:9\">geralmente antecede o infarto agudo do miocárdio</mark></strong>. Pode melhorar parcialmente com vasodilatador, mas de forma menos previsível que a angina estável — e por isso é considerada uma emergência que exige investigação e conduta imediatas.</p>\n\n<h3>3 — Angina de Prinzmetal (ou de Repouso)</h3>\n<p>É a forma menos comum e a mais \"diferente\" das três: ocorre no repouso, sem qualquer relação com esforço físico, e resulta de <strong><mark class=\"exam4\" data-refs=\"82:16,81:9,78:17\">espasmo coronariano</mark></strong> — sem relação direta obrigatória com a presença de ateroma (embora possa coexistir). Por ser puramente vasoespástica, responde rapidamente a vasodilatadores. É mais comum em pacientes mais jovens e está associada ao tabagismo.</p>\n", "questions": [{"vignette": "Homem, 58 anos, hipertenso, relata episódios recorrentes de dor precordial em aperto que surgem sempre ao subir dois lances de escada e cessam espontaneamente após cerca de 5 minutos de repouso. Nunca ocorreram em repouso. O uso de nitrato sublingual, quando testado, aliviou rapidamente a dor. Qual é o diagnóstico mais provável e o mecanismo fisiopatológico subjacente?", "options": ["Angina estável, por redução da perfusão coronariana a um nível crítico frente ao aumento da demanda desencadeado pelo esforço", "Angina instável, por ruptura de placa com trombose mural, já que houve alívio com nitrato", "Angina de Prinzmetal, por espasmo coronariano puro, dado o alívio rápido com vasodilatador", "Infarto agudo do miocárdio subendocárdico, pois a dor durou aproximadamente 5 minutos", "Trata-se de dor de origem musculoesquelética, não isquêmica, já que o alívio espontâneo em cerca de 5 minutos descartaria qualquer origem coronariana"], "correct": 0, "explanation": ["Correta: o padrão clássico de angina estável é exatamente esse — dor desencadeada de forma previsível pelo esforço (aumento de demanda), com duração de minutos, aliviada por repouso e por vasodilatador.", "Errada: angina instável se caracteriza por dor a pequenos esforços OU em repouso e duração mais prolongada (>10min); o alívio com nitrato, por si só, não define instabilidade — ocorre também na angina estável.", "Errada: Prinzmetal ocorre classicamente em repouso, sem relação com esforço — o padrão descrito é o oposto (desencadeado por esforço).", "Errada: infarto é definido por necrose miocárdica prolongada, com duração de isquemia >15-20min e biomarcadores positivos; uma dor de 5 minutos aliviada com repouso não configura infarto.", "Errada: a própria descrição (dor desencadeada por esforço, aliviada por repouso e nitrato) é o padrão clássico de isquemia miocárdica transitória — alívio rápido não descarta origem coronariana, é esperado na angina estável."], "source": "original"}, {"vignette": "Mulher, 63 anos, diabética, relata que a dor precordial que antes só surgia em grandes esforços agora aparece também ao realizar tarefas domésticas leves e, na última semana, chegou a acordá-la à noite, durando cerca de 20 minutos em um dos episódios. Procurou o pronto-socorro. Qual é a interpretação clínica mais adequada desse quadro e a conduta que ele justifica?", "options": ["Trata-se de um quadro de angina instável (padrão em crescendo), que exige avaliação de emergência pelo risco de progressão para infarto agudo do miocárdio", "Trata-se de angina estável em sua apresentação típica, podendo ser manejada apenas ambulatorialmente sem urgência", "Trata-se de angina de Prinzmetal, já que houve um episódio noturno, sem necessidade de investigação adicional", "Não há indicação de investigação cardiológica, pois a diabetes mellitus protege contra eventos coronarianos agudos", "O quadro é incompatível com origem cardíaca, pois a duração de 20 minutos excluiria qualquer etiologia isquêmica"], "correct": 0, "explanation": ["Correta: piora progressiva da angina (menor limiar de esforço, aparecimento em repouso, maior duração) é o padrão 'em crescendo' que define angina instável — condição que, como visto na aula, geralmente antecede o infarto agudo do miocárdio e exige avaliação de emergência.", "Errada: angina estável tem padrão previsível e estável ao longo do tempo; a piora progressiva descrita foge desse padrão.", "Errada: Prinzmetal não é definida por horário isolado, e sim por ausência de relação com esforço e mecanismo puramente vasoespástico; o caso mostra clara piora relacionada a esforços cada vez menores, sugerindo instabilização de placa, não vasoespasmo isolado.", "Errada: diabetes é fator de risco para doença coronariana (inclusive para isquemia silenciosa por neuropatia autonômica), não fator protetor.", "Errada: episódios de isquemia prolongados (próximos ou acima de 15-20min) são justamente o que preocupa quanto à progressão para infarto, e não algo que exclua causa cardíaca."], "source": "original"}, {"vignette": "Homem de 33 anos, usuário eventual de cocaína, apresenta episódios recorrentes de dor torácica em repouso, principalmente durante a madrugada. O eletrocardiograma realizado durante um episódio demonstra elevação transitória do segmento ST, que desaparece rapidamente após uso de nitrato sublingual. A cineangiocoronariografia revela artérias coronárias sem estenoses significativas. Qual é o melhor diagnóstico para o caso?", "options": ["Angina estável", "Angina instável", "Angina de Prinzmetal", "Infarto agudo do miocárdio", "Angina microvascular (síndrome X)"], "correct": 2, "explanation": ["Errada: a angina estável é desencadeada por esforço, com obstrução fixa à coronariografia — o oposto do caso.", "Errada: a angina instável decorre de ruptura de placa com trombo mural, e a coronariografia mostraria lesão obstrutiva.", "Correta: dor em repouso, de madrugada, com supra transitório de ST que reverte com nitrato e coronárias angiograficamente normais é o quadro clássico de angina de Prinzmetal (vasoespasmo coronariano), associada a uso de cocaína e tabagismo.", "Errada: no IAM a troponina estaria elevada e a alteração de ST não seria transitória/reversível com nitrato.", "Errada: a angina microvascular cursa com dor tipicamente desencadeada por esforço, sem o padrão de supra transitório em repouso."], "source": "real", "sourceLabel": "Parcial 82, Questão 16"}]}, {"id": "s4", "num": 4, "title": "Infarto Agudo do Miocárdio: conceito, diagnóstico e padrões anatômicos", "images": [{"key": "ecg-normal-vs-infarto.jpg", "caption": "Traçado eletrocardiográfico esquemático normal (esquerda) comparado ao traçado após um infarto (direita). Observe, à direita, o supradesnivelamento do segmento ST e o aparecimento de onda Q patológica — os dois achados eletrocardiográficos clássicos associados à necrose miocárdica transmural."}, {"key": "padroes-subendocardico-vs-transmural.jpg", "caption": "Diagrama comparando os dois padrões de infarto. No infarto subendocárdico, a necrose atinge apenas a região interna da parede ventricular — a mais distante da fonte de suprimento arterial (a artéria coronária corre pela superfície epicárdica), sendo por isso a região mais suscetível à isquemia. No infarto transmural, a necrose atinge toda a espessura da parede, da zona de perfusão (área em risco) até a área de infarto completo."}, {"key": "padroes-territorios-DA-CX-CD.jpg", "caption": "Territórios de infarto transmural conforme a artéria ocluída. A oclusão permanente do ramo descendente anterior esquerdo (DA, 40 a 55% dos casos) acomete a parede anterior do VE e a metade anterior do septo interventricular. A oclusão do ramo circunflexo esquerdo (CX, 10 a 20%) acomete a parede livre/lateral do VE. A oclusão da coronária direita (CD, 30%) acomete a parede posterior do VE e a metade posterior do septo interventricular — a CD também irriga o ventrículo direito, exceto sua parede anterior, que recebe irrigação da própria DA."}], "content": "\n<p>O infarto agudo do miocárdio (IAM) — o \"ataque cardíaco\" — é, por definição, uma <strong>área de necrose isquêmica do miocárdio</strong>, resultante de isquemia intensa e prolongada (lembre-se: ultrapassando aquele limite de 15-20 minutos que separava a angina do infarto). É um evento grave e potencialmente fatal, e sua sintomatologia é bastante variável, dependendo do tamanho da área acometida, da localização e das complicações associadas (que veremos em detalhe mais adiante).</p>\n\n<p>Um dado importante: cerca de <strong><mark class=\"exam1\" data-refs=\"82:?\">25% dos infartos são assintomáticos</mark></strong> (\"infarto silencioso\"). 📌 <strong>EXTRA:</strong> a principal explicação clássica para isso é a neuropatia autonômica, especialmente em pacientes diabéticos — a lesão das fibras nervosas aferentes que carregam a sensação dolorosa faz com que o paciente não sinta a dor típica, mesmo com necrose miocárdica em curso.</p>\n<p>É por isso que, em pacientes diabéticos com fatores de risco cardiovascular, um índice de suspeição elevado para síndrome coronariana aguda é essencial mesmo na ausência de dor torácica clássica.</p>\n\n<h3>Diagnóstico do IAM: a tríade clássica</h3>\n<p>O diagnóstico se apoia em três pilares que se complementam:</p>\n<ul>\n<li>Clínica: dor precordial em aperto/opressão/pontada, que pode irradiar para o membro superior esquerdo, região cervical esquerda ou abdome (essa irradiação abdominal se relaciona à face diafragmática do coração). Acompanha-se de palidez e mal-estar (por baixa perfusão sistêmica), dispneia e taquicardia (compensatória, mediada pelo sistema simpático).</li>\n<li>ECG: <mark class=\"exam4\" data-refs=\"82:13,78:aberta3\">supradesnivelamento do segmento ST e onda Q patológica são os achados clássicos de necrose transmural</mark>, entre outras alterações possíveis.</li>\n<li><strong>Alterações bioquímicas:</strong> marcadores de lesão miocárdica — troponina e CK-MB — que se elevam no sangue quando há necrose de miócitos e liberação de seu conteúdo intracelular.</li>\n</ul>\n<img loading=lazy decoding=async src=\"{ecg-normal-vs-infarto.jpg}\" class=\"fig\">\n\n<h3>Padrões anatômicos de infarto: subendocárdico x transmural</h3>\n<p>A parede ventricular pode ser dividida, para fins didáticos, em duas metades: a subendocárdica (interna) e a subepicárdica (externa). Como as artérias coronárias correm pela superfície epicárdica e mandam ramos perfurantes em direção ao endocárdio, <strong><mark class=\"exam3\" data-refs=\"79:12,80:11\">a região subendocárdica é a mais distante da fonte de suprimento sanguíneo</mark></strong>, e por isso é a mais suscetível ao infarto quando há redução do fluxo.</p>\n<img loading=lazy decoding=async src=\"{padroes-subendocardico-vs-transmural.jpg}\" class=\"fig\">\n\n<p>Essa diferença anatômica se traduz diretamente no ECG: na <strong>lesão subendocárdica</strong>, o traçado mostra <strong><mark class=\"exam3\" data-refs=\"80:11\">infradesnivelamento</mark></strong> do segmento ST; na lesão transmural (toda a espessura da parede), o traçado mostra <strong>supradesnivelamento</strong> do segmento ST. É essa correlação anatomo-eletrocardiográfica que sustenta, na prática clínica, a classificação das síndromes coronarianas agudas em \"com supra\" e \"sem supra\" de ST.</p>\n\n<h3>Territórios de infarto conforme a artéria acometida</h3>\n<p>Cada uma das três principais artérias coronárias irriga um território específico do ventrículo esquerdo, e conhecer essa correlação é essencial para prever quais complicações mecânicas e elétricas podem surgir a partir da localização do infarto.</p>\n<img loading=lazy decoding=async src=\"{padroes-territorios-DA-CX-CD.jpg}\" class=\"fig\">\n\n<p>📌 <strong>EXTRA — correlação com as derivações do ECG</strong> (não está explicitamente na aula, mas é extremamente cobrada em prova e complementa perfeitamente o conteúdo acima): infartos da parede anterior (território da DA) alteram classicamente as derivações precordiais V1-V4; infartos laterais (território da CX) alteram D1, aVL, V5-V6; e infartos inferiores (território da CD) alteram D2, D3 e aVF.</p>\n<p>Saber essa tríade território-artéria-derivação permite, só de olhar o ECG, inferir qual artéria provavelmente está ocluída.</p>\n", "questions": [{"image": "ecg-normal-vs-infarto.jpg", "vignette": "Paciente masculino, 60 anos, chega ao pronto-socorro com dor precordial iniciada há 40 minutos, irradiando para o membro superior esquerdo, associada a sudorese e taquicardia. O ECG realizado mostra o padrão ilustrado à direita na imagem acima, em comparação com o traçado normal à esquerda. Quais são os dois achados eletrocardiográficos mostrados na imagem que, em conjunto com o quadro clínico, sustentam fortemente o diagnóstico de infarto com necrose transmural?", "options": ["Supradesnivelamento do segmento ST e onda Q patológica", "Infradesnivelamento do segmento ST e onda T apiculada", "Prolongamento isolado do intervalo PR, sem qualquer alteração de ST", "Ausência completa de onda P, sugerindo fibrilação atrial associada", "Alargamento isolado do complexo QRS, sem qualquer alteração de ST-T"], "correct": 0, "explanation": ["Correta: a imagem mostra exatamente os dois achados clássicos do infarto com necrose transmural — supradesnivelamento do segmento ST e surgimento de onda Q patológica, achados citados explicitamente na aula como parte do diagnóstico de IAM.", "Errada: infradesnivelamento do ST é o padrão de lesão subendocárdica (não transmural), e onda T apiculada não é o achado destacado na imagem.", "Errada: a imagem não evidencia alteração de intervalo PR, e a questão pede justamente os achados de ST/onda Q que estão presentes no traçado.", "Errada: a imagem mostra ondas P preservadas em ambos os traçados — o achado central é a alteração de ST e o aparecimento da onda Q, não uma arritmia atrial.", "Errada: o achado central ilustrado é a alteração do segmento ST e a onda Q, não uma alteração isolada de QRS sem relação com ST-T."], "source": "original"}, {"vignette": "Mulher, 75 anos, tabagista, hipertensa há 30 anos, acordou de madrugada com intensa dor precordial, associada a falta de ar, diaforese, palidez e sensação de ansiedade. O eletrocardiograma revelou alterações sugestivas de isquemia miocárdica, incluindo supradesnivelamento do segmento ST em derivações correspondentes à parede posterosseptal do ventrículo esquerdo, apenas. Considerando o caso descrito e o padrão mais comum de irrigação miocárdica, é correto afirmar que seria observada obstrução na artéria:", "options": ["Circunflexa", "Coronária direita", "Coronária esquerda (tronco)", "Descendente anterior", "Artéria pulmonar"], "correct": 1, "explanation": ["Errada: a circunflexa (CX) irriga classicamente a parede lateral/livre do VE, não a posterosseptal.", "Correta: a coronária direita (CD) é a que mais comumente irriga a parede posterior do VE e a metade posterior do septo interventricular — padrão de dominância direita, o mais frequente na população.", "Errada: 'coronária esquerda' isolada não é uma resposta anatômica específica de território nesse contexto.", "Errada: a descendente anterior (DA) irriga a parede anterior do VE e a metade anterior do septo — não a posterosseptal.", "Errada: a artéria pulmonar não participa da irrigação do miocárdio ventricular esquerdo."], "source": "real", "sourceLabel": "Parcial 82, Questão 13"}, {"vignette": "Mulher, 71 anos, diabética de longa data com neuropatia periférica documentada, é internada por insuficiência cardíaca descompensada. Durante a investigação, um ECG de rotina revela onda Q patológica em parede inferior, sem qualquer relato prévio de dor torácica por parte da paciente. Qual é a explicação fisiopatológica mais provável para esse achado incidental de infarto sem história de dor?", "options": ["Neuropatia autonômica associada ao diabetes, que compromete as fibras aferentes responsáveis pela sensação dolorosa, resultando em infarto silencioso", "A paciente certamente está mentindo sobre a ausência de sintomas prévios", "Ondas Q patológicas em parede inferior costumam refletir apenas sobrecarga ventricular direita crônica, sem indicar necrose miocárdica prévia", "Diabetes mellitus é fator protetor contra infarto do miocárdio, o que torna o achado inexplicável", "A ausência de dor torna esse achado eletrocardiográfico incompatível com infarto prévio, sugerindo mais provavelmente um artefato técnico no traçado"], "correct": 0, "explanation": ["Correta: como discutido na aula, cerca de 25% dos infartos são assintomáticos, e a neuropatia diabética (incluindo a autonômica, que compromete fibras aferentes cardíacas) é a explicação clássica para infartos silenciosos em pacientes diabéticos.", "Errada: não há elementos no caso que sustentem essa suposição; o infarto silencioso é uma entidade clínica real e bem documentada.", "Errada: onda Q patológica é um achado eletrocardiográfico consistente com necrose miocárdica prévia (infarto transmural antigo), não um sinal isolado de sobrecarga ventricular direita.", "Errada: diabetes é fator de risco para doença coronariana, não fator protetor.", "Errada: é exatamente o oposto do que a aula ensina — a ausência de dor não exclui necrose nem sugere artefato; o infarto silencioso é definido justamente pela ausência de sintomas apesar da necrose estabelecida."], "source": "original"}]}, {"id": "s5", "num": 5, "title": "Resposta do miocárdio à isquemia e morfologia temporal do infarto", "images": [{"key": "morfologia-ate-1dia-bandas-contracao.jpg", "caption": "Morfologia do infarto até 1 dia de evolução (12-24h). Necrose por coagulação: fibras hipereosinofílicas (mais rosadas que o normal), bandas de hipercontração (setas) e cariólise (perda progressiva dos núcleos celulares). Ainda não há infiltrado inflamatório significativo neste estágio inicial — este é o clássico infarto 'branco/pálido' à macroscopia."}, {"key": "morfologia-2a6dias-infiltrado-neutrofilico.jpg", "caption": "Morfologia do infarto entre 2 e 6 dias de evolução. Observe a intensa infiltração por neutrófilos entre as fibras necróticas (que já perderam seus núcleos). Macroscopicamente, essa é a fase da área amarelada, friável, com bordas hiperemiadas — reflexo tanto da perda de estrutura tecidual quanto do influxo inflamatório agudo. Esta é também a janela de maior risco para ruptura mecânica do miocárdio, como veremos no segmento sobre complicações."}, {"key": "morfologia-1a2semanas-tecido-granulacao.jpg", "caption": "Morfologia do infarto entre 7 e 14 dias de evolução. Já se observa tecido de granulação — proliferação fibrovascular jovem, com neoformação de pequenos vasos (neovasos) e infiltrado inflamatório associado, começando a substituir o tecido necrótico. Macroscopicamente, a área se torna deprimida e castanho-acinzentada."}, {"key": "morfologia-mais4a6semanas-fibrose.jpg", "caption": "Morfologia do infarto com mais de 4 a 6 semanas de evolução. O tecido de granulação amadurece e é substituído por fibrose — colágeno denso ocupando a área antes ocupada pelos miócitos necróticos, com cardiomiócitos hipertróficos remanescentes nas bordas adjacentes. Macroscopicamente, a área se apresenta esbranquiçada — é a cicatriz definitiva do infarto."}], "content": "\n<p>Uma coisa que costuma confundir muita gente é achar que, assim que a coronária entope, o miocárdio já \"morre visivelmente\". Na verdade, existe uma sequência temporal bem definida entre isquemia, morte celular, e o momento em que essas alterações finalmente se tornam visíveis ao microscópio e, depois, a olho nu.</p>\n<p>Entender essa linha do tempo é essencial tanto para datar infartos em necropsia (pergunta clássica de prova prática) quanto para entender por que a reperfusão precoce salva miocárdio.</p>\n\n<h3>A resposta funcional precede a resposta morfológica</h3>\n<p>A sequência é a seguinte: a <strong><mark class=\"exam1\" data-refs=\"82:?\">contratilidade se perde cerca de 2 minutos após o início da isquemia</mark></strong> — um mecanismo, na verdade, adaptativo: ao parar de contrair, o miocárdio reduz sua própria demanda de O2, tentando \"economizar\" energia enquanto a oferta está comprometida.</p>\n<p>Se a isquemia persistir, o dano celular se torna <strong><mark class=\"exam2\" data-refs=\"79:12\">irreversível entre 20 e 40 minutos</mark></strong> — esse é o ponto de não retorno, quando a lesão reversível se torna morte celular definitiva. A necrose resultante é do tipo coagulação: inicialmente, a arquitetura e os contornos gerais do tecido são preservados (dá para reconhecer que aquilo já foi músculo cardíaco), mesmo com as células já mortas por dentro.</p>\n\n<p>📌 <strong>EXTRA — por que isso importa na prática forense/clínica:</strong> como a alteração morfológica (o que se vê ao microscópio ou macroscopicamente) sempre surge depois da morte celular real, um paciente que morre subitamente poucas horas após o início da dor torácica pode ter, à necropsia convencional com HE, um coração de aparência quase normal — mesmo já tendo sofrido infarto irreversível.</p>\n<p>Nesses casos, técnicas histoquímicas especiais (como a coloração com cloreto de trifeniltetrazólio, TTC) conseguem revelar a área infartada antes que as alterações fiquem visíveis pela histologia de rotina, porque dependem de enzimas que já estão inativas no tecido morto mesmo sem alteração estrutural visível ainda.</p>\n\n<h3>A linha do tempo morfológica do infarto</h3>\n<p>Vamos percorrer, estágio por estágio, o que se vê macro e microscopicamente — essa tabela é provavelmente a parte mais cobrada em prova prática de toda a aula:</p>\n\n<table class=\"tbl\">\n<tr><th>Tempo decorrido</th><th>Achados macroscópicos</th><th>Achados microscópicos</th></tr>\n<tr><td>4 a 12 horas</td><td>Ainda sem alteração visível</td><td><mark class=\"exam5\" data-refs=\"82:14,78:17,81:aberta1\">Necrose em bandas de contração</mark>; células começam a perder o núcleo</td></tr>\n<tr><td>12h a 1 dia</td><td>Área pálida, demarcada (infarto \"branco\")</td><td>+ hipereosinofilia das fibras</td></tr>\n<tr><td>2 a 6 dias</td><td>Área amarelada; friável; bordas hiperemiadas</td><td>Células sem núcleo; <mark class=\"exam5\" data-refs=\"82:14,81:aberta1,78:17\">infiltração intensa de neutrófilos</mark></td></tr>\n<tr><td>7 a 14 dias</td><td>Área deprimida, castanho-acinzentada</td><td><mark class=\"exam5\" data-refs=\"80:13,78:17,80:aberta2\">Tecido de granulação</mark> (proliferação fibrovascular jovem com neovascularização)</td></tr>\n<tr><td>Mais de 4 a 6 semanas</td><td>Área branca (cicatriz)</td><td><mark class=\"exam5\" data-refs=\"80:aberta2,78:17,80:13\">Fibrose</mark></td></tr>\n</table>\n\n<img loading=lazy decoding=async src=\"{morfologia-ate-1dia-bandas-contracao.jpg}\" class=\"fig\">\n<img loading=lazy decoding=async src=\"{morfologia-2a6dias-infiltrado-neutrofilico.jpg}\" class=\"fig\">\n<img loading=lazy decoding=async src=\"{morfologia-1a2semanas-tecido-granulacao.jpg}\" class=\"fig\">\n<img loading=lazy decoding=async src=\"{morfologia-mais4a6semanas-fibrose.jpg}\" class=\"fig\">\n\n<p>📌 <strong>EXTRA — correlação clínica com a fase de maior fragilidade:</strong> repare que a janela de 2 a 6 dias é justamente a fase em que o tecido perdeu sua arquitetura normal (necrose com infiltrado neutrofílico), mas ainda não teve tempo de começar a ser reparado por fibrose — é o miocárdio mecanicamente mais frágil de toda a evolução do infarto.</p>\n<p>Não é coincidência que seja exatamente nessa janela que as complicações mecânicas mais temidas (ruptura de parede livre, ruptura de septo, ruptura de músculo papilar) são mais prováveis, como veremos adiante.</p>\n\n\n<p>📌 <strong>EXTRA — atenção a esta pegadinha de prova:</strong> a necrose em bandas de contração da tabela acima aparece mesmo sem reperfusão, mas é <strong>muito mais intensa e extensa quando há reperfusão precoce</strong> de uma área já isquêmica (angioplastia, trombolítico) — o cálcio que reentra maciçamente nas células reperfundidas, ainda viáveis mas já lesadas, provoca hipercontração irreversível dos sarcômeros.</p>\n<p>Por isso, num caso de prova em que o paciente foi reperfundido (angioplastia/trombolítico) e evolui a óbito horas depois, o achado histológico esperado na necropsia é justamente a <strong>necrose em bandas de contração</strong> — guarde essa associação: <mark class=\"exam4\" data-refs=\"82:14,78:17,81:aberta1\">reperfusão recente + óbito precoce = bandas de contração</mark>. Veja o Segmento 6 para entender o mecanismo completo da lesão de reperfusão.</p>", "questions": [{"image": "morfologia-2a6dias-infiltrado-neutrofilico.jpg", "vignette": "Em uma necropsia, o patologista encontra, na parede do ventrículo esquerdo, uma área de necrose amarelada e friável, com bordas nitidamente hiperemiadas. Ao exame microscópico, como o ilustrado acima, observa-se infiltração intensa de neutrófilos entre fibras miocárdicas que já perderam seus núcleos. Com base nesses achados, qual é o tempo de evolução mais provável do infarto?", "options": ["2 a 6 dias", "Menos de 12 horas", "7 a 14 dias", "Mais de 6 semanas", "Entre 20 e 40 minutos"], "correct": 0, "explanation": ["Correta: área amarelada, friável, com bordas hiperemiadas macroscopicamente, associada a infiltrado neutrofílico intenso e perda de núcleos à microscopia, é exatamente o padrão descrito na aula para a janela de 2 a 6 dias de evolução.", "Errada: nas primeiras 12 horas ainda não há alteração macroscópica visível, e a coloração amarelada/friável com infiltrado neutrofílico intenso ainda não estaria presente.", "Errada: entre 7 e 14 dias, o achado esperado é tecido de granulação (proliferação fibrovascular), não infiltrado neutrofílico predominante com fibras ainda necróticas sem substituição.", "Errada: após 4-6 semanas, a área já é branca, fibrótica — não amarelada e friável.", "Errada: 20-40 minutos é a janela em que o dano celular se torna irreversível a nível funcional/bioquímico, mas é tempo demais curto para qualquer achado morfológico visível, seja macro ou microscopicamente."], "source": "original"}, {"vignette": "Comparando dois cortes histológicos de infarto do miocárdio, o patologista observa, no primeiro, proliferação fibrovascular jovem com neoformação de pequenos vasos e infiltrado inflamatório associado; no segundo, colágeno denso substituindo completamente as fibras necróticas, com hipertrofia de cardiomiócitos adjacentes. Qual é a sequência correta de evolução temporal entre esses dois achados?", "options": ["Tecido de granulação (7-14 dias) precede a fibrose madura/cicatriz (mais de 4-6 semanas)", "A colagenização densa característica da fibrose madura já se inicia nos primeiros dias do infarto, ocorrendo em paralelo à formação do tecido de granulação, sem relação de precedência entre os dois achados", "Os dois achados podem coexistir na mesma peça quando o infarto tem extensão heterogênea, refletindo apenas variação espacial da lesão, sem relação de sequência temporal entre eles", "Tecido de granulação já pode ser identificado nas primeiras 12 horas de evolução do infarto, antes mesmo da fase de infiltração neutrofílica intensa", "Fibrose madura corresponde a uma fase intermediária e reversível do reparo, que pode retroceder para tecido de granulação em infartos submetidos a reperfusão tardia"], "correct": 0, "explanation": ["Correta: a sequência de reparo tecidual segue exatamente essa ordem — tecido de granulação (fibrovascular, jovem, entre 7 e 14 dias) amadurece progressivamente até se tornar fibrose/cicatriz definitiva (após 4-6 semanas), com colágeno denso substituindo o tecido necrótico.", "Errada: a fibrose madura, com colágeno denso, é o estágio final do reparo (após 4-6 semanas) e não se inicia nos primeiros dias — ela sucede, e não antecede ou acompanha em paralelo, o tecido de granulação.", "Errada: mesmo quando há heterogeneidade espacial em infartos extensos, o tecido de granulação e a fibrose madura continuam representando estágios sequenciais e distintos de um mesmo processo de reparo, não eventos sem relação temporal.", "Errada: nas primeiras 12 horas ainda não há sequer alteração morfológica clara, muito menos tecido de granulação, que surge bem mais tarde (7-14 dias), após a fase de infiltração neutrofílica.", "Errada: a fibrose é o estágio final e definitivo da cicatrização do infarto — não há regressão para tecido de granulação, independentemente do momento da reperfusão."], "source": "original"}, {"vignette": "Mulher, 75 anos, tabagista, hipertensa há 30 anos, com IAM confirmado por ECG (supradesnivelamento de ST) e elevação de marcadores. Foi submetida à angioplastia e encaminhada à UTI; cerca de 9 horas após a internação, evoluiu com arritmia e, apesar das manobras de reanimação, foi constatado óbito. Considerando a temporalidade do evento, quais aspectos microscópicos são esperados na área acometida do coração?", "options": ["Fibrose cicatricial", "Tecido de granulação", "Necrose em bandas de contração", "Infiltrado neutrofílico com fagocitose das fibras necróticas", "Ausência de qualquer alteração microscópica, mesmo com TTC"], "correct": 2, "explanation": ["Errada: fibrose cicatricial é achado tardio, de mais de 4 a 6 semanas de evolução — muito além das poucas horas do caso.", "Errada: tecido de granulação surge entre 7 e 14 dias, não em poucas horas.", "Correta: nas primeiras 24 horas (e sobretudo quando há reperfusão, como no caso — paciente foi angioplastado), o achado histológico esperado é a necrose em bandas de contração, decorrente da hipercontração dos sarcômeros por sobrecarga de cálcio nas células reperfundidas ainda viáveis, porém já lesadas.", "Errada: o infiltrado neutrofílico intenso é típico da janela de 2 a 6 dias, não de poucas horas.", "Errada: mesmo sem alteração visível à HE de rotina em óbitos muito precoces, técnicas como o TTC conseguem revelar a área infartada."], "source": "real", "sourceLabel": "Parcial 82, Questão 14"}]}, {"id": "s6", "num": 6, "title": "Reperfusão miocárdica: miocárdio atordoado e lesão de reperfusão", "images": [{"key": "diagrama-reperfusao-tempo-salvamento.jpg", "caption": "Efeito do tempo de reperfusão sobre a extensão do dano miocárdico após oclusão aguda de uma artéria coronária. Com reperfusão muito precoce (<20 minutos), há salvamento quase completo da área em risco. Com reperfusão intermediária (2-4h), há salvamento apenas parcial — um núcleo central já necrosado (vermelho/roxo) persiste, cercado por tecido viável, porém com disfunção pós-isquemia (miocárdio atordoado, em amarelo). Com oclusão permanente, toda a área em risco evolui para necrose consolidada (azul escuro)."}, {"key": "reperfusao-tardia-infarto-hemorragico.jpg", "caption": "Peças cardíacas de infarto reperfundido tardiamente, após a necrose já estar estabelecida. Note as áreas hemorrágicas (vermelho-vivo/arroxeado) dentro da zona infartada — esse aspecto hemorrágico é a marca macroscópica da lesão de reperfusão, resultante da entrada de sangue sob pressão em um tecido cuja microcirculação já estava lesada e incapaz de conter as hemácias dentro dos vasos."}, {"key": "histologia-lesao-reperfusao-hemorragica.jpg", "caption": "Corte histológico correspondente à lesão de reperfusão: extravasamento de hemácias (áreas avermelhadas/alaranjadas) entremeadas às fibras miocárdicas necróticas, confirmando o caráter hemorrágico do infarto reperfundido tardiamente."}], "content": "\n<p>O objetivo central do tratamento do IAM é claro: <strong>impedir ou reduzir os danos ao miocárdio</strong>. As três estratégias principais para isso — trombolíticos, angioplastia coronariana com implante de stent, e cirurgia (revascularização miocárdica) — têm todas o mesmo objetivo fisiológico comum: promover a reperfusão, ou seja, restabelecer o fluxo sanguíneo pela artéria ocluída o mais rápido possível.</p>\n\n<p>Só que aqui entra uma pergunta que costuma surpreender quem está vendo isso pela primeira vez: <strong><mark class=\"exam2\" data-refs=\"82:?\">a reperfusão é sempre benéfica? Não.</mark></strong> Isso parece contraintuitivo — reabrir uma artéria entupida deveria ser sempre bom, certo? A resposta depende inteiramente do tempo decorrido entre a oclusão e a reperfusão.</p>\n\n<h3>A corrida contra o tempo: da região subendocárdica à transmural</h3>\n<p>A progressão da necrose segue uma \"onda\" que se espalha do subendocárdio em direção ao epicárdio (lembra por que a região subendocárdica é a mais vulnerável, do segmento anterior?). Os marcos temporais são: aos <strong>30-40 minutos</strong> de oclusão, já há infarto estabelecido na região subendocárdica; por volta de <strong>3 horas</strong>, o infarto já avançou até a metade interna da parede. Quanto mais cedo a reperfusão acontecer dentro dessa janela, maior a quantidade de miocárdio salvo.</p>\n<img loading=lazy decoding=async src=\"{diagrama-reperfusao-tempo-salvamento.jpg}\" class=\"fig\">\n\n<h3>Miocárdio atordoado (stunned myocardium)</h3>\n<p>Quando a reperfusão acontece em tempo hábil para impedir a necrose (mas não instantaneamente), o miocárdio salvo ainda assim <strong>demora a retornar ao seu estado bioquímico e funcional normal</strong> — mesmo estando viável, ele fica temporariamente \"atordoado\", contraindo mal por um período (horas a dias) antes de se recuperar completamente. Isso se traduz clinicamente em disfunção ventricular transitória pós-isquemia prolongada, mesmo após reperfusão bem-sucedida.</p>\n\n<p>📌 <strong>EXTRA — um diferencial muito cobrado em prova:</strong> não confunda miocárdio atordoado com <strong>miocárdio hibernante</strong>. O atordoado é uma disfunção pós-isquêmica AGUDA e transitória, que se resolve espontaneamente em dias, mesmo com o fluxo já normalizado.</p>\n<p>Já o hibernante é uma adaptação CRÔNICA a um fluxo cronicamente reduzido (mas não ausente) — o miócito reduz deliberadamente sua função contrátil como estratégia de sobrevivência a longo prazo diante de isquemia persistente, e essa disfunção só se resolve quando (e se) a artéria for revascularizada.</p>\n\n<h3>Lesão de reperfusão: quando reabrir tarde demais faz mal</h3>\n<p>Quando a reperfusão ocorre <strong>depois que a necrose já se estabeleceu</strong>, o resultado paradoxal é que <mark class=\"exam3\" data-refs=\"82:?\">ela <strong>torna o infarto hemorrágico</strong></mark>. O mecanismo: ao reabrir o vaso, o sangue volta a fluir sob pressão através de uma microcirculação que já está estruturalmente lesada pela necrose — incapaz de conter as hemácias dentro dos vasos, elas extravasam para dentro do tecido necrótico já estabelecido, produzindo um infarto hemorrágico.</p>\n<img loading=lazy decoding=async src=\"{reperfusao-tardia-infarto-hemorragico.jpg}\" class=\"fig\">\n<img loading=lazy decoding=async src=\"{histologia-lesao-reperfusao-hemorragica.jpg}\" class=\"fig\">\n\n<p>📌 <strong>EXTRA — mecanismos moleculares da lesão de reperfusão</strong> (complemento de alto rendimento): além do componente hemorrágico mecânico, a reperfusão tardia desencadeia o chamado \"paradoxo da reperfusão\" — a reintrodução abrupta de oxigênio gera uma explosão de espécies reativas de oxigênio (estresse oxidativo), há sobrecarga intracelular de cálcio nos miócitos já lesados, e ocorre um influxo adicional de neutrófilos que amplifica a lesão inflamatória local.</p>\n<p>Todos esses mecanismos contribuem para que a reperfusão tardia possa, paradoxalmente, aumentar (e não apenas deixar de reduzir) a extensão final do dano tecidual.</p>\n", "questions": [{"vignette": "Paciente com IAM com supradesnivelamento de ST, com dor torácica iniciada há cerca de 2-3 horas, é rapidamente encaminhado para angioplastia primária, ainda dentro da fase de necrose subendocárdica/intramural (antes da progressão para necrose transmural completa). Em relação ao possível benefício dessa reperfusão precoce, assinale a alternativa correta.", "options": ["Uma reperfusão realizada nesse momento pode salvar a metade interna (subendocárdica) do miocárdio em risco, limitando a extensão final do infarto", "A reperfusão nesse momento tem efeito equivalente sobre a extensão final da necrose, seja realizada ainda nas primeiras horas ou apenas após dias de evolução", "A reperfusão só é benéfica se realizada após a necrose transmural já estar completamente estabelecida", "Nesse estágio ainda subendocárdico, a reperfusão precoce tende a converter a necrose em hemorrágica, mesmo sendo realizada dentro das primeiras horas do quadro", "A reperfusão nesse estágio resgata preferencialmente a musculatura subepicárdica já necrosada, sem impacto sobre a faixa subendocárdica ainda viável"], "correct": 0, "explanation": ["Correta: quanto mais precoce a reperfusão dentro da janela de progressão da necrose (que avança do subendocárdio para o epicárdio), maior a quantidade de miocárdio salvo — nesse estágio, é possível resgatar a metade interna da parede que ainda não necrosou.", "Errada: o tempo de reperfusão é justamente a variável central que determina a extensão final do dano — reperfundir nas primeiras horas (como no caso) salva muito mais miocárdio do que reperfundir tardiamente.", "Errada: reperfusão após necrose transmural estabelecida tende a ser deletéria (infarto hemorrágico), não benéfica.", "Errada: o risco de infarto hemorrágico está associado à reperfusão tardia, após necrose transmural já estabelecida — reperfundir precocemente, como no caso, é benéfico, não deletério.", "Errada: é o oposto — a necrose progride do subendocárdio para o epicárdio, e é justamente a faixa subendocárdica ainda viável (não a subepicárdica já necrosada) que pode ser resgatada pela reperfusão precoce."], "source": "adapted", "sourceLabel": "Parcial 80, Questão 12"}, {"vignette": "Paciente com IAM tratado por angioplastia primária dentro da janela recomendada apresenta, nas primeiras 48 horas após o procedimento, disfunção contrátil segmentar significativa em território correspondente à artéria tratada, apesar de o vaso estar angiograficamente pérvio e sem evidência de nova oclusão. A função contrátil se normaliza espontaneamente nos dias seguintes. Qual conceito discutido na aula melhor explica esse quadro transitório?", "options": ["Miocárdio atordoado — disfunção contrátil pós-isquêmica transitória em tecido que foi salvo da necrose, mas que ainda demora a retornar ao seu estado bioquímico e funcional normal", "Miocárdio hibernante — adaptação crônica a um fluxo cronicamente reduzido, que persistiria indefinidamente até nova revascularização", "Novo infarto agudo do miocárdio, já que houve disfunção contrátil documentada", "Rejeição do stent implantado durante o procedimento de angioplastia", "Pericardite constritiva pós-procedimento"], "correct": 0, "explanation": ["Correta: disfunção contrátil transitória, que se resolve espontaneamente em poucos dias apesar do vaso estar pérvio, é a definição clássica de miocárdio atordoado — miocárdio viável, mas que demora a se recuperar funcionalmente após a agressão isquêmica.", "Errada: miocárdio hibernante é uma condição crônica associada a fluxo cronicamente reduzido (não normalizado por revascularização recente) e não se resolveria espontaneamente em poucos dias sem intervenção adicional — no caso, o vaso já está pérvio e a disfunção se resolve sozinha.", "Errada: não há evidência de nova oclusão ou de necrose adicional no caso; a disfunção é transitória e reversível, incompatível com um novo evento necrótico.", "Errada: o quadro descrito (disfunção contrátil transitória autolimitada) não corresponde a uma complicação mecânica do stent, e sim a um fenômeno fisiológico conhecido pós-reperfusão.", "Errada: pericardite constritiva cursaria com quadro clínico e ecocardiográfico completamente diferente, sem relação com a disfunção contrátil segmentar transitória descrita."], "source": "original"}, {"vignette": "Sobre os benefícios e riscos da reperfusão miocárdica após oclusão coronariana aguda, assinale a alternativa correta.", "options": ["A reperfusão não é sempre benéfica: quanto mais precoce, maior o salvamento miocárdico, mas quando tardia (após a necrose já estabelecida), pode transformar o infarto em hemorrágico", "A reperfusão é sempre benéfica quando realizada dentro das primeiras 12 horas do início dos sintomas, independentemente de a necrose transmural já estar estabelecida", "A reperfusão só apresenta benefício comprovado quando realizada entre 6 e 12 horas do início dos sintomas, sendo ineficaz fora dessa janela específica", "A reperfusão deve ser postergada em infartos subendocárdicos até que a necrose se torne transmural, momento em que traria maior benefício", "O tempo decorrido entre a oclusão e a reperfusão influencia apenas o risco de arritmias de reperfusão, sem qualquer relação com a extensão final da necrose"], "correct": 0, "explanation": ["Correta: como visto na aula, a resposta à pergunta 'a reperfusão é sempre benéfica?' é explicitamente 'não' — o benefício depende do tempo, sendo máximo quando muito precoce (<20min, salvamento quase completo) e podendo se tornar deletério (infarto hemorrágico) quando tardio.", "Errada: mesmo dentro das primeiras 12 horas, se a necrose transmural já estiver estabelecida a reperfusão pode causar infarto hemorrágico — o benefício depende do estágio da necrose, não apenas de uma janela fixa de 12 horas.", "Errada: a reperfusão é mais benéfica quanto mais precoce (inclusive antes de 6h), e não há essa janela fixa de benefício exclusivo entre 6 e 12h — o valor da reperfusão despenca com o tempo, de forma contínua.", "Errada: é o oposto — reperfundir enquanto a necrose ainda é subendocárdica (antes de se tornar transmural) é o que permite salvar mais miocárdio; postergar até a transmuralidade reduz o benefício e aumenta o risco de infarto hemorrágico.", "Errada: o tempo é a variável central que determina tanto a quantidade de miocárdio salvo quanto o risco de lesão de reperfusão — não se limita a um efeito isolado sobre arritmias."], "source": "original"}]}, {"id": "s7", "num": 7, "title": "Complicações do Infarto Agudo do Miocárdio", "images": [{"key": "complicacoes-ruptura-VE-e-septo.jpg", "caption": "Complicações mecânicas do IAM. Em A, ruptura da parede livre do ventrículo esquerdo (seta) — complicação catastrófica que leva a tamponamento cardíaco por hemopericárdio. Em B, ruptura do septo interventricular (seta), criando uma comunicação interventricular (CIV) adquirida, com shunt esquerda-direita agudo."}, {"key": "complicacoes-papilares-trombo-mural.jpg", "caption": "Em C, ruptura de músculo papilar, resultando em insuficiência valvar mitral aguda grave por perda súbita do suporte das cordoalhas tendíneas. Em D (imagem à direita), formação de trombo mural (seta) aderido à parede endocárdica de uma área discinética/aneurismática — substrato para fenômenos tromboembólicos sistêmicos."}, {"key": "aneurisma-ventricular-cardiaco.jpg", "caption": "Aneurisma ventricular cardíaco: dilatação sacular da parede ventricular, com afinamento e fibrose da área previamente infartada, que perde sua capacidade contrátil normal e se torna uma zona discinética (que se expande, em vez de contrair, durante a sístole)."}], "content": "\n<p>As complicações do infarto agudo do miocárdio não são acasos aleatórios — elas dependem diretamente de três variáveis que já vimos ao longo da aula: a extensão do IAM, o <strong>grau de comprometimento da parede</strong> (subendocárdico ou transmural) e a localização do infarto. Vamos organizar as principais complicações e, sempre que possível, amarrar cada uma ao mecanismo fisiopatológico que já discutimos nos segmentos anteriores.</p>\n\n<h3>Complicações funcionais/hemodinâmicas</h3>\n<p><strong>Insuficiência cardíaca</strong> e edema pulmonar surgem quando há infarto extenso do ventrículo esquerdo — o sangue que não consegue ser ejetado adequadamente se acumula retrogradamente, primeiro no próprio VE e depois na circulação pulmonar.</p>\n<p>Quando a extensão do dano é grande o suficiente para comprometer criticamente o débito cardíaco, o quadro evolui para <strong>choque cardiogênico</strong> — instabilidade hemodinâmica com má perfusão tecidual sistêmica (um verdadeiro estado de choque de origem cardíaca).</p>\n\n<h3>Complicações mecânicas: a fragilidade tecidual da janela de 2-6 dias</h3>\n<p>Lembra que no segmento sobre morfologia dissemos que a janela de <strong>2 a 6 dias</strong> é a fase de maior fragilidade mecânica do tecido infartado (necrose já instalada, arquitetura perdida, mas fibrose ainda não iniciada)? Pois é exatamente nessa janela que as complicações mecânicas mais temidas costumam ocorrer:</p>\n\n<p><strong>Ruptura do miocárdio</strong> pode acontecer em diferentes estruturas:</p>\n<img loading=lazy decoding=async src=\"{complicacoes-ruptura-VE-e-septo.jpg}\" class=\"fig\">\n<ul>\n<li>Ruptura da parede livre do ventrículo → sangue extravasa para o saco pericárdico, causando <strong><mark class=\"exam4\" data-refs=\"81:aberta1\">tamponamento cardíaco</mark></strong> (compressão externa do coração pelo acúmulo de sangue no pericárdio, comprometendo o enchimento diastólico) — evento frequentemente fatal em minutos;</li>\n<li>Ruptura do <strong>septo interventricular</strong> → cria uma <strong>comunicação interventricular (CIV)</strong> adquirida, com shunt agudo entre os ventrículos, sobrecarregando subitamente a circulação pulmonar.</li>\n</ul>\n\n<img loading=lazy decoding=async src=\"{complicacoes-papilares-trombo-mural.jpg}\" class=\"fig\">\n<p><strong>Insuficiência valvar aguda</strong> ocorre classicamente por <mark class=\"exam3\" data-refs=\"81:aberta1,78:aberta3\">ruptura de músculo papilar</mark> — o suporte estrutural da valva mitral se perde subitamente, e a valva passa a regurgitar de forma grave e aguda, precipitando edema pulmonar fulminante.</p>\n\n<p><strong>Aneurisma cardíaco</strong> é diferente das rupturas acima: aqui a parede fica friável e adelgaçada, mas <strong>não chega a se romper</strong> — em vez disso, dilata progressivamente sob a pressão intraventricular, formando uma bolsa discinética (que se expande, em vez de contrair, durante a sístole).</p>\n<img loading=lazy decoding=async src=\"{aneurisma-ventricular-cardiaco.jpg}\" class=\"fig\">\n\n<p>📌 <strong>EXTRA:</strong> tanto o aneurisma quanto qualquer área discinética/acinética do ventrículo são um terreno propício para a formação de trombo mural — o sangue fica estagnado exatamente naquela região que não contrai adequadamente, favorecendo a coagulação local segundo a tríade de Virchow (estase sanguínea, disfunção endotelial e hipercoagulabilidade).</p>\n<p>Esse trombo mural, por sua vez, é a origem de <strong>fenômenos tromboembólicos</strong> sistêmicos — fragmentos podem se soltar e embolizar para o cérebro (AVC), membros (isquemia aguda de membro) ou outros órgãos.</p>\n\n<h3>Arritmias cardíacas</h3>\n<p>São uma das complicações mais importantes do IAM, sendo a principal causa de morte muito precoce (nos primeiros minutos a horas) — vamos aprofundar esse ponto no próximo segmento, ao falar de morte súbita cardíaca.</p>\n\n\n<h3>Pericardite pós-infarto — a complicação que costuma faltar na revisão</h3>\n<p>Duas formas, e provas gostam de diferenciá-las pelo tempo:</p>\n<ul>\n<li><strong><mark class=\"exam3\" data-refs=\"82:?\">Pericardite fibrinosa peri-infarto (epistenocárdica)</mark></strong> — surge precocemente, entre o <strong>2º e o 4º dia</strong>, por extensão direta da inflamação transmural até o epicárdio adjacente. Cursa com atrito pericárdico e dor pleurítica que piora ao decúbito e melhora ao inclinar o tronco para frente.</li>\n<li><strong>Síndrome de Dressler</strong> — muito mais tardia (<strong>semanas a poucos meses</strong> após o IAM), de natureza autoimune (resposta contra antígenos miocárdicos expostos pela necrose). Cursa com febre, pericardite, pleurite e, às vezes, derrame pericárdico/pleural.</li>\n</ul>\n<p>📌 <strong>EXTRA — por que isso cai junto com as complicações mecânicas:</strong> uma das perguntas clássicas de prova pede para você distinguir, num paciente poucos dias após o IAM com dor torácica nova, se está diante de reinfarto, <strong>pericardite fibrinosa</strong> ou ruptura — o contexto (febre baixa e atrito pericárdico vs. instabilidade hemodinâmica franca com tamponamento) é o que decide.</p>", "questions": [{"vignette": "Paciente de 72 anos foi internado devido a quadro de infarto agudo do miocárdio, recebendo tratamento de suporte. No 4º dia de evolução, apresentou instalação súbita de hipotensão grave, turgência jugular, abafamento de bulhas cardíacas e pulso paradoxal. O ecocardiograma no leito mostrou acúmulo de conteúdo líquido e viscoso no pericárdio, e o paciente evoluiu a óbito apesar das tentativas de tratamento. Qual mecanismo fisiopatológico melhor explica o desfecho?", "options": ["Ruptura da parede livre do ventrículo, favorecida pela fragilidade tecidual máxima da janela de 2 a 6-7 dias pós-infarto, levando a hemopericárdio e tamponamento cardíaco", "Arritmia fatal (fibrilação ventricular) ocorrida nos primeiros minutos do infarto, sem qualquer componente mecânico", "Formação de aneurisma ventricular cardíaco crônico, que rompeu espontaneamente após meses de evolução", "Embolia pulmonar maciça a partir de trombo mural formado na área discinética do infarto, cursando com cor pulmonale agudo e colapso hemodinâmico", "Pericardite fibrinosa peri-infarto evoluindo excepcionalmente com derrame volumoso e tamponamento cardíaco subagudo"], "correct": 0, "explanation": ["Correta: entre o 2º e o 6-7º dia, o tecido necrótico já perdeu sua arquitetura (digestão enzimática pelos neutrófilos) mas ainda não foi reparado por fibrose — é a janela de maior fragilidade mecânica, predispondo à ruptura da parede livre, hemopericárdio e tamponamento cardíaco (tríade de Beck: hipotensão, turgência jugular, bulhas abafadas).", "Errada: haveria colapso hemodinâmico imediato nos primeiros minutos, sem o intervalo de 4 dias e sem o achado ecocardiográfico de líquido pericárdico compressivo.", "Errada: o aneurisma cardíaco não rompe (a parede dilata, mas não se rompe) e é um evento tardio, de semanas a meses.", "Errada: o quadro descrito (tríade de Beck + líquido pericárdico ao ecocardiograma) é específico de tamponamento cardíaco por hemopericárdio, não de embolia pulmonar, que não produziria esse achado ecocardiográfico.", "Errada: a pericardite fibrinosa peri-infarto cursa classicamente com atrito pericárdico e dor pleurítica, sem o colapso hemodinâmico súbito e grave (tríade de Beck) descrito no caso, que é típico de ruptura de parede livre."], "source": "adapted", "sourceLabel": "Parcial 82, Questão Aberta 1"}, {"image": "complicacoes-papilares-trombo-mural.jpg", "vignette": "Paciente, 5 dias após IAM inferior, desenvolve subitamente dispneia intensa, edema agudo de pulmão e um sopro sistólico novo e importante em foco mitral, com irradiação para axila. Qual complicação mecânica do IAM, ilustrada no painel C da imagem acima, melhor explica esse quadro?", "options": ["Ruptura de músculo papilar, causando insuficiência mitral aguda grave por perda do suporte das cordoalhas tendíneas", "Formação de trombo mural (painel D), que por si só já explicaria o sopro sistólico novo", "Ruptura da parede livre do ventrículo esquerdo, sem qualquer relação com a valva mitral", "Pericardite constritiva de instalação subaguda, cursando com sopro sistólico irradiado para axila por atrito pericárdico intenso", "Angina instável recorrente, com sopro sistólico transitório decorrente de disfunção isquêmica reversível do músculo papilar"], "correct": 0, "explanation": ["Correta: sopro sistólico novo em foco mitral associado a edema agudo de pulmão dias após IAM (especialmente inferior, território frequentemente relacionado à irrigação dos músculos papilares posteromediais pela CD) é o quadro clássico de ruptura de músculo papilar com insuficiência mitral aguda grave, representada no painel C.", "Errada: trombo mural (painel D) não produz sopro valvar — ele é uma complicação relacionada a estase sanguínea em áreas discinéticas, associada a risco de embolização sistêmica, não a disfunção valvar aguda.", "Errada: ruptura de parede livre cursa com tamponamento cardíaco (hipotensão, turgência jugular, bulhas abafadas), não com sopro sistólico mitral e edema pulmonar por regurgitação valvar.", "Errada: pericardite constritiva não produz sopro sistólico mitral irradiado para axila — esse achado é típico de insuficiência mitral aguda por disfunção estrutural da valva, não de doença pericárdica.", "Errada: angina, por definição, não causa dano estrutural permanente (sem necrose); o sopro novo e importante com edema agudo de pulmão descrito é mais compatível com ruptura (não disfunção transitória) do músculo papilar."], "source": "adapted", "sourceLabel": "Parcial 78, Questão Aberta 3"}, {"vignette": "Paciente com histórico de IAM extenso de parede anterior há 3 meses, evolui em acompanhamento ambulatorial com uma área discinética documentada em ecocardiograma na topografia do infarto prévio (aneurisma ventricular). Durante consulta de rotina, apresenta quadro súbito de hemiparesia à direita e afasia. Qual é o mecanismo fisiopatológico mais provável ligando o aneurisma ventricular ao evento neurológico agudo?", "options": ["Formação de trombo mural na área discinética do aneurisma, por estase sanguínea local, com posterior embolização sistêmica para a circulação cerebral", "O aneurisma ventricular, por si só, comprime diretamente estruturas cerebrais, causando o déficit neurológico", "Aneurismas ventriculares só se associam a fenômenos tromboembólicos quando localizados na parede inferior, não na parede anterior como no caso descrito", "O quadro neurológico decorre de vasoespasmo cerebral desencadeado pelo mesmo mecanismo fisiopatológico da angina de Prinzmetal, sem relação com o aneurisma ventricular", "A área discinética do aneurisma libera diretamente êmbolos de tecido miocárdico necrótico para a circulação cerebral"], "correct": 0, "explanation": ["Correta: áreas discinéticas/aneurismáticas favorecem a estase sanguínea local (um dos componentes da tríade de Virchow), propiciando a formação de trombo mural, que pode se fragmentar e embolizar sistemicamente — inclusive para a circulação cerebral, causando um AVC isquêmico embólico, como sugerido pelo quadro de hemiparesia e afasia súbitas.", "Errada: não há relação anatômica de contiguidade entre um aneurisma cardíaco e estruturas cerebrais que justifique compressão direta.", "Errada: é exatamente o oposto do que foi discutido — áreas discinéticas/aneurismáticas, independentemente da localização, são um terreno clássico para formação de trombo mural e fenômenos tromboembólicos.", "Errada: o quadro de déficit neurológico focal agudo (hemiparesia + afasia) é muito mais sugestivo de evento embólico cerebral a partir do trombo mural do aneurisma do que de vasoespasmo cerebral, mecanismo não estabelecido na aula.", "Errada: o material embolizado nesse contexto é o trombo formado sobre a área discinética, não fragmentos de tecido miocárdico necrótico propriamente ditos."], "source": "original"}]}, {"id": "s8", "num": 8, "title": "Cardiopatia Isquêmica Crônica e Morte Súbita Cardíaca", "images": [{"key": "cardiopatia-cronica-cardiomegalia.jpg", "caption": "Peça cardíaca de paciente com cardiopatia isquêmica crônica: note a cardiomegalia, com hipertrofia e dilatação do ventrículo esquerdo, além de áreas de fibrose entremeadas ao miocárdio viável remanescente — o retrato morfológico de um coração que acumulou múltiplas agressões isquêmicas ao longo do tempo."}], "content": "\n<p>Fechamos a aula com os dois últimos quadros clínicos da doença isquêmica do coração — ambos representam, de certa forma, os \"desfechos de longo prazo\" possíveis depois de um ou mais eventos isquêmicos: um é a consequência lenta e progressiva do acúmulo de dano miocárdico; o outro é o desfecho mais abrupto e dramático possível.</p>\n\n<h3>3) Cardiopatia Isquêmica Crônica</h3>\n<p>É uma <strong>complicação do IAM</strong> — mais especificamente, o resultado de <strong>insuficiência cardíaca progressiva</strong> em decorrência do dano acumulado ao miocárdio por alterações isquêmicas repetidas, geralmente por um ou mais infartos prévios.</p>\n<p>Conceitualmente, ela representa a <strong><mark class=\"exam3\" data-refs=\"80:aberta2,78:17,80:13\">exaustão da capacidade de hipertrofia compensatória</mark></strong> do miocárdio ainda viável: depois de anos tentando compensar a perda progressiva de massa contrátil funcionante hipertrofiando o tecido remanescente, esse mecanismo adaptativo se esgota, e a função de bomba do coração declina de forma progressiva e irreversível.</p>\n<img loading=lazy decoding=async src=\"{cardiopatia-cronica-cardiomegalia.jpg}\" class=\"fig\">\n<p>A morfologia reflete exatamente essa história: cardiomegalia, com hipertrofia e dilatação do ventrículo esquerdo (a câmara tentando compensar, mas já claudicando), e áreas de fibrose espalhadas pelo miocárdio — as cicatrizes deixadas por infartos anteriores, muitas vezes silenciosos.</p>\n\n<h3>4) Morte Súbita Cardíaca</h3>\n<p>É definida por um critério temporal bem específico: o óbito acontece <strong><mark class=\"exam3\" data-refs=\"80:19\">em minutos, ou em até 24 horas</mark></strong> após o evento isquêmico inicial. O evento decisivo que efetivamente causa a morte, na grande maioria dos casos, é uma <strong><mark class=\"exam2\" data-refs=\"80:19,82:13\">arritmia fatal — fibrilação ventricular (FV)</mark></strong>.</p>\n\n<p>📌 <strong>EXTRA — como isso se conecta com o resto da aula:</strong> vale a pena amarrar esse conceito ao que vimos no segmento de complicações. Uma morte muito precoce após o início da dor torácica (minutos a poucas horas) tem uma probabilidade muito maior de ser causada por arritmia (FV) do que por uma complicação mecânica como ruptura da parede livre — porque, como vimos, a ruptura mecânica depende de uma janela de fragilidade tecidual que só se instala entre 2 e 6 dias após o infarto (quando a necrose já está estabelecida, mas a fibrose ainda não começou).</p>\n<p>Já a instabilidade elétrica que gera FV pode ocorrer a qualquer momento desde os primeiros minutos de isquemia, o que explica por que arritmias são a causa mais comum de morte nas primeiríssimas horas do IAM, enquanto rupturas mecânicas concentram-se mais tardiamente, na primeira semana.</p>\n\n<h3>Fechando com uma questão real de prova de residência</h3>\n<p>Essa é a questão que estava literalmente na última página da sua aula (HSSJJ, 2009), e ela sintetiza perfeitamente a distinção mais importante entre angina instável e infarto sem supra de ST, que já discutimos nos segmentos 3 e 4 — mas vale reforçar aqui, no fechamento.</p>\n", "questions": [{"vignette": "Um paciente com história de infarto agudo do miocárdio aos 65 anos, tratado com sucesso na época, apresentou progressiva redução da capacidade funcional do coração ao longo dos anos seguintes. Aos 75 anos, retorna ao ambulatório com queixas de insuficiência cardíaca congestiva. Considerando os diagnósticos prévio e atual, e o mecanismo que leva à descompensação ao longo desse intervalo, assinale a alternativa correta.", "options": ["Trata-se de cardiopatia isquêmica crônica; a descompensação decorre do dano isquêmico miocárdico acumulado e da exaustão da hipertrofia compensatória do miocárdio remanescente", "Trata-se de cardiopatia hipertensiva primária, com hipertrofia concêntrica evoluindo para disfunção diastólica de forma independente do infarto prévio", "Trata-se de miocardite viral subaguda, desencadeada por infecção respiratória recente, sem relação com o evento isquêmico ocorrido 10 anos antes", "Trata-se de estenose mitral reumática de longa data, descompensada por fibrilação atrial de início recente", "Trata-se de doença de Chagas crônica, com miocardiopatia dilatada e aneurisma de ponta característicos da forma cardíaca tardia"], "correct": 0, "explanation": ["Correta: o diagnóstico prévio (IAM) somado ao quadro atual (ICC progressiva) define cardiopatia isquêmica crônica — o miocárdio viável tenta compensar a perda de massa contrátil hipertrofiando-se, mas esse mecanismo se esgota (exaustão da hipertrofia compensatória), levando a declínio progressivo e irreversível da função de bomba.", "Errada: não há dado de hipertensão de longa data no enunciado, e o quadro é explicado diretamente pelo IAM prévio e pela exaustão da hipertrofia compensatória, não por uma cardiopatia hipertensiva primária.", "Errada: não há relato de infecção recente no enunciado, e a evolução lenta e progressiva ao longo de 10 anos é incompatível com miocardite viral subaguda, sendo mais coerente com cardiopatia isquêmica crônica.", "Errada: não há dado de valvopatia nem de fibrilação atrial no caso; a história prévia de IAM é o elemento central que explica a descompensação.", "Errada: não há dado epidemiológico (área endêmica) nem clínico sugestivo de Chagas no enunciado; o quadro é explicado diretamente pelo IAM prévio documentado."], "source": "adapted", "sourceLabel": "Parcial 80, Questão Aberta 2"}, {"vignette": "Dois pacientes dão entrada no pronto-socorro com dor precordial típica de início recente. O paciente 1 evolui a óbito 30 minutos após o início da dor, antes mesmo de qualquer intervenção. O paciente 2, que recebeu o mesmo diagnóstico inicial, evolui a óbito no 4º dia de internação, com quadro súbito de hipotensão grave e tamponamento cardíaco. Considerando os mecanismos discutidos na aula, qual é a causa mais provável de morte em cada caso, respectivamente?", "options": ["Paciente 1: arritmia fatal (fibrilação ventricular); Paciente 2: ruptura mecânica da parede livre do ventrículo, complicação típica da janela de maior fragilidade tecidual (2-6 dias)", "Paciente 1: ruptura da parede livre do ventrículo; Paciente 2: arritmia fatal, já que ambas as complicações ocorrem sempre no mesmo intervalo de tempo", "Ambos os pacientes morreram por choque cardiogênico refratário, decorrente de extensa área de necrose transmural presente em ambos os casos", "Paciente 1: embolia pulmonar maciça a partir de trombose venosa profunda; Paciente 2: espasmo coronariano fatal do tipo Prinzmetal", "O tempo de evolução após o início do IAM reflete apenas a gravidade do choque cardiogênico instalado, não distinguindo mecanismos fisiopatológicos diferentes de morte"], "correct": 0, "explanation": ["Correta: morte muito precoce (minutos) após o início da dor é classicamente atribuída a arritmia fatal (FV) — a definição de morte súbita cardíaca; já a morte no 4º dia, com tamponamento cardíaco, é consistente com ruptura mecânica da parede livre, complicação que se concentra justamente na janela de maior fragilidade tecidual (2-6 dias), quando a necrose já está estabelecida mas a fibrose de reparo ainda não começou.", "Errada: é a inversão dos mecanismos corretos — ruptura mecânica da parede livre não ocorre em 30 minutos (o tecido ainda não teve tempo de desenvolver a fragilidade estrutural necessária), e arritmia fatal não é o mecanismo típico associado especificamente ao 4º dia com tamponamento.", "Errada: os dois casos têm mecanismos fisiopatológicos distintos e bem definidos (arritmia fatal precocíssima versus ruptura mecânica tardia) — descrevê-los genericamente como choque cardiogênico ignora essa diferença central discutida na aula.", "Errada: nenhuma das descrições clínicas (morte súbita em 30min; tamponamento cardíaco no 4º dia) corresponde a embolia pulmonar ou a angina de Prinzmetal, que não causam tamponamento cardíaco.", "Errada: é justamente o oposto do que a aula ensina — o tempo de evolução após o início do IAM é uma pista fisiopatológica importante para diferenciar arritmia fatal precoce de complicações mecânicas mais tardias."], "source": "adapted", "sourceLabel": "Parcial 79, Questão 9"}, {"vignette": "Questão de residência (HSSJJ, 2009) — Por definição, qual é a diferença fundamental entre angina instável e infarto sem elevação do segmento ST?", "options": ["No infarto sem supra de ST existem marcadores de necrose detectáveis, o que não ocorre na angina instável", "A dor precordial costuma ser mais prolongada e refratária ao nitrato na angina instável do que no infarto sem supra de ST", "O infarto sem elevação do segmento ST cursa obrigatoriamente com ECG completamente normal, sendo o diagnóstico firmado apenas pelos biomarcadores", "Na angina instável, os marcadores de necrose encontram-se apenas levemente acima dos valores normais", "A diferença entre angina instável e infarto sem elevação do segmento ST está apenas na duração da dor torácica, não na presença de necrose miocárdica"], "correct": 0, "explanation": ["Correta: essa é exatamente a diferença fundamental entre as duas condições, e conecta diretamente com o que vimos no segmento 3 — angina, por definição (inclusive a instável), não causa necrose miocárdica, e portanto não eleva marcadores como troponina; já o infarto sem supra de ST, apesar de também não elevar o segmento ST no ECG, JÁ representa necrose estabelecida (ainda que geralmente subendocárdica, não transmural), com marcadores de necrose positivos.", "Errada: a duração e a refratariedade da dor não são o critério que define a diferença fundamental entre as duas condições — o critério é a presença ou ausência de necrose detectável por biomarcadores.", "Errada: o infarto sem supra de ST pode, sim, apresentar alterações eletrocardiográficas (como infradesnivelamento de ST ou inversão de onda T) — ele não cursa obrigatoriamente com ECG normal.", "Errada: na angina instável, por definição, não há necrose miocárdica, e portanto os marcadores de necrose devem estar negativos (não apenas 'levemente elevados') — qualquer elevação de biomarcador já reclassificaria o quadro como infarto.", "Errada: existe, sim, uma diferença fundamental e clinicamente crucial entre as duas condições, que é justamente a presença de necrose miocárdica detectável (biomarcadores positivos) no infarto sem supra de ST, e não a duração da dor."], "source": "original"}]}, {"id": "s9", "num": 9, "title": "O que mais cai em prova: casos comentados e pegadinhas mais cobradas", "images": [], "content": "\n<p>Este segmento foi montado a partir da análise de provas antigas do departamento (Parciais 78 a 82) sobre cardiopatia isquêmica. O padrão de cobrança é sempre o mesmo: caso clínico (situação-problema) + comando de resposta, frequentemente com um único caso puxando 2 a 3 perguntas em sequência. Os pontos abaixo são os que mais se repetem e que merecem reforço, mesmo já tendo aparecido nos segmentos anteriores.</p>\n\n<h3>1 — A sequência cronológica da aterogênese, aplicada a um caso de dor torácica</h3>\n<p>É comum a prova descrever um caso de síndrome coronariana aguda e, na sequência, pedir a <strong>ordem cronológica dos eventos</strong> que formaram a placa causadora, contando a partir da lesão endotelial: <strong>(1) acúmulo de lipoproteínas na íntima → (2) adesão de monócitos/plaquetas ao endotélio lesado → (3) migração de células musculares lisas da média para a íntima → (4) síntese e deposição de matriz extracelular</strong> pelas células musculares lisas.</p>\n<p>Não confunda com a sequência de eventos agudos sobre a placa já formada (Segmento 2): ruptura → trombose → vasoespasmo. São duas linhas do tempo diferentes, e a prova gosta de testar as duas no mesmo caso — uma para a formação da placa (meses a anos antes) e outra para o evento agudo (minutos a horas antes da chegada ao pronto-socorro).</p>\n\n<h3>2 — Diferenciar reinfarto, pericardite e ruptura num paciente com dor nova pós-IAM</h3>\n<table class=\"tbl\">\n<tr><th></th><th>Reinfarto</th><th>Pericardite fibrinosa</th><th>Ruptura de parede livre</th></tr>\n<tr><td>Quando</td><td>Qualquer momento</td><td>2º–4º dia</td><td>2º–7º dia (pico da fragilidade)</td></tr>\n<tr><td>Dor</td><td>Recorrência da dor anginosa típica</td><td>Pleurítica, piora ao deitar, melhora ao inclinar para frente</td><td>Instalação súbita, associada a colapso hemodinâmico</td></tr>\n<tr><td>Exame/ECG</td><td>Novas alterações de ST, novo pico de troponina</td><td>Atrito pericárdico; supra difuso de ST (côncavo) sem imagem em espelho</td><td>Tríade de Beck (hipotensão + turgência jugular + bulhas abafadas)</td></tr>\n</table>\n\n<h3>3 — Reconhecer a angina de Prinzmetal num enunciado</h3>\n<p>Os elementos que fecham o diagnóstico num caso: dor em repouso, tipicamente de madrugada, sem relação com esforço; coronariografia sem obstrução significativa (ou desproporcionalmente leve para a intensidade do quadro); alívio rápido com nitrato; mais comum em pacientes <strong>jovens e tabagistas</strong>. Não confunda com angina instável, que também ocorre em repouso, mas tem por trás uma placa rota com trombo — e coronariografia alterada.</p>\n\n<h3>4 — A distinção mais cobrada de toda a aula: angina instável x IAM sem supra de ST</h3>\n<p>Clínica e ECG podem ser idênticos nas duas situações. O que separa uma da outra, por definição, é a troponina: <mark class=\"exam4\" data-refs=\"78:17,81:9\">positiva = infarto (há necrose); negativa = angina instável (isquemia sem necrose)</mark>. Essa é, literalmente, a questão de prova de residência com que a aula original termina — e por isso reforçamos aqui.</p>\n\n<h3>5 — Morte precoce x morte tardia pós-IAM: qual mecanismo pensar primeiro</h3>\n<p>Se a morte ocorre nos <strong>primeiros minutos a horas</strong>, pense primeiro em <strong>arritmia (fibrilação ventricular)</strong> — a instabilidade elétrica não depende de nenhuma janela de fragilidade tecidual.</p>\n<p>Se ocorre entre o <strong>2º e o 7º dia</strong>, pense em <strong>complicação mecânica</strong> (ruptura de parede livre, septo ou músculo papilar) — depende da digestão enzimática do tecido necrótico já instalada, mas ainda sem fibrose de reparo. Se ocorre semanas a meses depois, pense em <strong>aneurisma ventricular com trombo mural embolizante</strong> ou em <strong>insuficiência cardíaca progressiva</strong> por cardiopatia isquêmica crônica.</p>\n\n<aside class=\"note-fix\">⚠️ <strong>Pegadinhas clássicas destas provas:</strong>\n<ul>\n<li>Angina, por definição, não eleva troponina — se o enunciado disser \"troponina elevada\", já não é mais angina, é infarto.</li>\n<li>A região <strong><mark class=\"exam3\" data-refs=\"79:12,80:11\">subendocárdica</strong> é a mais vulnerável à isquemia</mark> (não a subepicárdica) — é a mais distante do suprimento que corre pela superfície.</li>\n<li>Reperfusão tardia (após necrose já estabelecida) piora o dano (infarto hemorrágico) — reperfusão não é sempre benéfica; depende do tempo.</li>\n<li>Miocárdio atordoado (agudo, reversível em dias, já sem obstrução) ≠ miocárdio hibernante (crônico, só reverte se revascularizar).</li>\n<li>Circulação colateral é mais comum e mais eficaz em obstruções lentas e crônicas — não se forma a tempo numa oclusão trombótica aguda.</li>\n</ul></aside>\n", "questions": [{"vignette": "Homem, 62 anos, tabagista e hipertenso, é internado com dor precordial típica, supradesnivelamento de ST em parede anterior e troponina positiva. A angiografia confirma trombo oclusivo sobre placa aterosclerótica rota na descendente anterior. Investigando a formação dessa placa ao longo dos anos anteriores ao evento agudo, qual é a sequência cronológica correta dos eventos, a partir da lesão endotelial crônica?", "options": ["Acúmulo de lipoproteínas na íntima → adesão de monócitos/plaquetas → migração de células musculares lisas da média para a íntima → síntese e deposição de matriz extracelular", "Síntese de matriz extracelular → migração de células musculares lisas → adesão de monócitos/plaquetas → acúmulo de lipoproteínas na íntima", "Migração de células musculares lisas → acúmulo de lipoproteínas → síntese de matriz extracelular → adesão de monócitos/plaquetas", "Adesão de monócitos/plaquetas → síntese de matriz extracelular → acúmulo de lipoproteínas → migração de células musculares lisas", "Todos os eventos ocorrem simultaneamente, sem sequência cronológica definida"], "correct": 0, "explanation": ["Correta: após a lesão endotelial, o LDL fica retido e se acumula na íntima, o que desencadeia a adesão de monócitos/plaquetas; estes recrutam células musculares lisas da média, que passam a sintetizar e depositar a matriz extracelular que forma a capa fibrosa.", "Errada: inverte completamente a ordem — a síntese de matriz é o evento final, não o inicial.", "Errada: a migração de células musculares lisas é um evento intermediário/tardio, não o primeiro após a lesão endotelial.", "Errada: a adesão de monócitos ocorre logo após o acúmulo lipídico, não antes dele.", "Errada: a aterogênese segue uma cascata sequencial bem definida, e não eventos simultâneos e desordenados."], "source": "original"}, {"vignette": "Mulher, 70 anos, 3 dias após IAM inferior tratado clinicamente, evolui com dor torácica pleurítica que piora ao deitar e melhora ao inclinar o tronco para frente, associada a atrito à ausculta cardíaca, sem sinais de instabilidade hemodinâmica. O ECG mostra supradesnivelamento difuso e côncavo de ST, sem imagem em espelho. Qual é o diagnóstico mais provável?", "options": ["Pericardite fibrinosa peri-infarto (epistenocárdica)", "Ruptura subaguda da parede livre do ventrículo esquerdo, contida por aderências pericárdicas, cursando com dor pleurítica progressiva e atrito à ausculta", "Reinfarto por nova oclusão trombótica da artéria culpada, com dor pleurítica postural e atrito pericárdico reativo à necrose adicional", "Ruptura parcial de músculo papilar posteromedial, cursando com dor pleurítica postural e atrito pericárdico associado ao sopro mitral", "Síndrome de Dressler, reação autoimune peri-infarto que tipicamente já se manifesta entre o 2º e o 4º dia de evolução pós-IAM"], "correct": 0, "explanation": ["Correta: dor pleurítica, postural, com atrito pericárdico e supra difuso/côncavo de ST, no 2º ao 4º dia pós-IAM, é o quadro clássico da pericardite fibrinosa peri-infarto, por extensão da inflamação transmural até o epicárdio.", "Errada: mesmo quando contida, a ruptura de parede livre tende a cursar com instabilidade hemodinâmica; o quadro estável, postural e com supra difuso côncavo de ST descrito é característico de pericardite, não de ruptura contida.", "Errada: reinfarto reproduziria dor anginosa típica (não pleurítica/postural) e um novo pico de troponina, achados não descritos no caso.", "Errada: ruptura de músculo papilar cursaria com sopro sistólico novo e edema agudo de pulmão, não com dor pleurítica postural e atrito pericárdico isolados, como no caso.", "Errada: a síndrome de Dressler é mais tardia (semanas a meses após o IAM), e não no 3º dia como no caso — o quadro descrito nesse momento é o da pericardite fibrinosa peri-infarto precoce."], "source": "adapted", "sourceLabel": "Parcial 80, Questão 12"}, {"vignette": "Homem, 29 anos, tabagista importante, procura o pronto-socorro por episódios recorrentes de dor precordial intensa que o acordam de madrugada, sem qualquer relação com esforço físico. Durante um episódio monitorizado, o ECG mostra supradesnivelamento transitório de ST que reverte completamente após nitrato sublingual. A cineangiocoronariografia realizada entre as crises não mostra obstrução significativa. Marcadores de necrose permanecem normais em todas as dosagens. Qual o mecanismo fisiopatológico responsável pelo quadro?", "options": ["Espasmo coronariano (angina de Prinzmetal), sem relação obrigatória com aterosclerose significativa", "Ruptura de placa aterosclerótica com trombose oclusiva completa, revertida espontaneamente pela ação de mecanismos fibrinolíticos endógenos a cada episódio", "Infarto agudo do miocárdio subendocárdico recorrente, com elevação transitória de troponina que normaliza espontaneamente entre os episódios", "Angina estável desencadeada por redução fixa e crítica da luz coronariana, com os episódios noturnos explicados por queda postural da pressão de perfusão coronariana", "Ruptura parcial de músculo papilar com regurgitação mitral intermitente, produzindo sopro sistólico transitório durante as crises de dor torácica"], "correct": 0, "explanation": ["Correta: dor em repouso, de madrugada, com supra transitório de ST que reverte com nitrato, coronárias sem lesão obstrutiva relevante e marcadores sempre normais — é o retrato da angina de Prinzmetal, mais comum em jovens tabagistas.", "Errada: uma oclusão trombótica completa recorrente, mesmo com fibrinólise endógena, deixaria evidência de necrose (troponina positiva) em algum dos episódios, o que não ocorre no caso.", "Errada: por definição, infarto implica necrose miocárdica com elevação de troponina — no caso, os marcadores permanecem normais em todas as dosagens, o que exclui infarto.", "Errada: angina estável é desencadeada por esforço, não por repouso/madrugada, e a coronariografia do caso não mostra obstrução fixa relevante que sustente esse mecanismo.", "Errada: não há sopro nem qualquer achado compatível com disfunção valvar descritos no caso, que é dominado por alterações transitórias de ST revertidas por nitrato."], "source": "original"}]}], "quiz": [{"vignette": "Homem, 64 anos, hipertenso e dislipidêmico, é diagnosticado com cardiopatia isquêmica crônica após anos de episódios recorrentes de angina. Investigando a etiologia mais provável desse quadro, qual mecanismo fisiopatológico de base é responsável pela grande maioria (cerca de 90%) dos casos de cardiopatia isquêmica?", "options": ["Obstrução do fluxo coronariano por aterosclerose (doença arterial coronariana)", "Miocardite viral crônica, com fibrose intersticial difusa que mimetiza o padrão isquêmico observado na angina", "Vasoespasmo coronariano isolado (angina de Prinzmetal), responsável pela maioria dos casos crônicos mesmo sem lesão aterosclerótica associada", "Embolia coronariana recorrente de origem valvar, a partir de vegetações em válvula mitral calcificada", "Espessamento congênito idiopático da parede das artérias coronárias, presente desde o nascimento e progressivo com a idade"], "correct": 0, "explanation": ["Correta: a aula estabelece explicitamente que 90% dos casos de isquemia miocárdica decorrem de obstrução do fluxo coronariano por aterosclerose (DAC).", "Errada: miocardite crônica não é a causa discutida como predominante na aula, nem se apresenta tipicamente como episódios recorrentes de angina desencadeada por esforço.", "Errada: vasoespasmo é um dos mecanismos discutidos, mas não é isoladamente a causa mais comum — a grande maioria dos casos crônicos decorre de aterosclerose, com ou sem componente vasoespástico associado.", "Errada: embolia valvar não foi discutida como causa relevante de cardiopatia isquêmica crônica na aula, e não há dado de valvopatia no enunciado.", "Errada: não é a etiologia predominante descrita na aula; a cardiopatia isquêmica crônica do caso é explicada pela aterosclerose adquirida, não por uma anomalia congênita."], "source": "original"}, {"vignette": "Mulher, 60 anos, hipertensa, relata dor precordial em aperto que surge sempre ao subir dois lances de escada. Ao ser orientada sobre o manejo imediato desse tipo de episódio, qual medida classicamente promove alívio da dor, e por qual mecanismo?", "options": ["Repouso e uso de vasodilatadores (nitrato)", "Exercício físico intenso e prolongado, que redistribuiria o fluxo coronariano para a área isquêmica por vasodilatação reflexa induzida pelo esforço", "Aumento da frequência cardíaca por estímulo simpático, que encurtaria a diástole e melhoraria paradoxalmente a perfusão coronariana", "Restrição hídrica isolada, que reduziria a pré-carga e, consequentemente, o consumo miocárdico de oxigênio", "Nenhuma medida farmacológica promove alívio consistente, sendo a angioplastia de urgência a única conduta eficaz mesmo num episódio típico de angina estável"], "correct": 0, "explanation": ["Correta: a angina estável melhora com repouso (reduz demanda) e vasodilatadores (aumentam relativamente a oferta), como visto no segmento sobre angina.", "Errada: exercício aumenta a demanda de O2 do miocárdio, piorando (e não aliviando) a angina estável — não existe essa redistribuição benéfica de fluxo pelo esforço.", "Errada: o aumento de frequência cardíaca eleva a demanda miocárdica de O2 e reduz o tempo diastólico de perfusão coronariana, piorando a isquemia, não melhorando-a.", "Errada: não foi discutida relação entre restrição hídrica isolada e alívio da angina estável; a medida clássica é repouso associado a vasodilatador.", "Errada: a angina estável tipicamente responde bem a repouso e vasodilatadores (nitrato) no próprio episódio, não exigindo angioplastia de urgência para alívio sintomático imediato."], "source": "original"}, {"vignette": "Homem, 55 anos, apresenta episódio típico de dor precordial em aperto ao caminhar, que cede espontaneamente após alguns minutos de repouso, sem elevação de troponina na investigação subsequente. Qual é a duração típica da isquemia responsável por esse tipo de dor, insuficiente para causar necrose miocárdica?", "options": ["Entre 15 segundos e 15 minutos", "Entre 6 e 12 horas", "Menos de 1 segundo", "Mais de 24 horas", "Exatamente 40 minutos, sempre"], "correct": 0, "explanation": ["Correta: a aula define angina como isquemia de curta duração, entre 15 segundos e 15 minutos, insuficiente para provocar necrose.", "Errada: esse intervalo já seria compatível com necrose estabelecida (infarto), não com angina.", "Errada: menos de 1 segundo não é fisiologicamente compatível com um quadro de dor isquêmica percebida clinicamente.", "Errada: infartos evoluem ao longo de horas a semanas, mas a angina propriamente dita é definida por um intervalo bem mais curto.", "Errada: não existe esse valor fixo exato definido na aula; o intervalo é uma faixa (15s a 15min)."], "source": "original"}, {"vignette": "\"O ECG permite determinar, com razoável precisão e elevada frequência, a localização do infarto (...) existem vários fatores limitantes quando se consideram o diagnóstico do infarto e sua localização: o grau de lesão miocárdica, o estágio em que se encontra o infarto, o local do infarto e infartos múltiplos.\" (Mário López, Semiologia Médica). Em relação ao infarto agudo do miocárdio (IAM), assinale a alternativa CORRETA:", "options": ["O IAM ocorre mais frequentemente no ventrículo direito, em correspondência com a porção anterior do septo interventricular e ápice do coração", "O miocárdio localizado na região epicárdica é mais vulnerável à hipóxia do que o miocárdio localizado na porção subendocárdica", "A isquemia ou necrose do miocárdio provoca arritmias que podem desencadear insuficiência cardíaca aguda e morte súbita", "O tempo de início de necrose das fibras miocárdicas a partir da interrupção do fluxo arterial coronariano só se inicia após 4 a 6h, sendo isso importante pois nenhum achado microscópico é esperado em caso de óbito anterior a esse tempo", "O supradesnivelamento do segmento ST e a onda Q patológica indicam necrose restrita exclusivamente ao subendocárdio"], "correct": 2, "explanation": ["Errada: o IAM ocorre mais frequentemente no ventrículo esquerdo, não no direito.", "Errada: é o miocárdio subendocárdico que é mais vulnerável à hipóxia, por ser a região mais distante do suprimento arterial (que corre pela superfície epicárdica).", "Correta: a isquemia/necrose miocárdica é um substrato arritmogênico importante — arritmias (sobretudo fibrilação ventricular) são a principal causa de morte súbita muito precoce no IAM, e também podem desencadear insuficiência cardíaca aguda.", "Errada: a necrose se inicia entre 20 e 40 minutos de isquemia contínua (não 4-6h), e técnicas histoquímicas especiais (TTC) podem revelar a área infartada mesmo antes de alterações visíveis à HE de rotina.", "Errada: supra de ST + onda Q patológica é o padrão de necrose transmural (toda a espessura da parede), não restrita ao subendocárdio (que cursaria com infra de ST)."], "source": "real", "sourceLabel": "Parcial 79, Questão 12"}, {"vignette": "Homem de 33 anos, usuário eventual de cocaína, apresenta episódios recorrentes de dor torácica em repouso, principalmente durante a madrugada. O eletrocardiograma realizado durante um episódio demonstra elevação transitória do segmento ST, que desaparece rapidamente após uso de nitrato sublingual. A cineangiocoronariografia revela artérias coronárias sem estenoses significativas. Qual é o melhor diagnóstico para o caso?", "options": ["Angina estável", "Angina instável", "Angina de Prinzmetal", "Infarto agudo do miocárdio", "Angina microvascular (síndrome X)"], "correct": 2, "explanation": ["Errada: a angina estável se relaciona a esforço, com obstrução fixa à coronariografia.", "Errada: a angina instável decorreria de ruptura de placa/trombo mural, com coronariografia alterada.", "Correta: dor em repouso, de madrugada, supra transitório de ST revertido por nitrato e coronárias angiograficamente normais — quadro clássico de angina de Prinzmetal por vasoespasmo coronariano, associado a cocaína/tabagismo.", "Errada: no IAM a troponina estaria positiva e a alteração de ST não seria transitória.", "Errada: a angina microvascular cursa tipicamente com dor desencadeada por esforço."], "source": "real", "sourceLabel": "Parcial 82, Questão 16"}, {"vignette": "Paciente com doença arterial coronariana estabelecida é submetido a cineangiocoronariografia seriada ao longo do acompanhamento. Em relação aos limiares de obstrução coronariana necessários para desencadear sintomas nesse paciente, qual afirmação está correta?", "options": ["Obstruções acima de 75% costumam causar sintomas durante atividade física, enquanto obstruções acima de 90% causam sintomas mesmo em repouso", "Obstruções entre 50% e 70% já costumam causar sintomas mesmo em repouso, independentemente do nível de atividade física do paciente", "Obstruções abaixo de 50% tornam-se sintomáticas assim que o paciente atinge frequência cardíaca acima de 100 batimentos por minuto", "O limiar sintomático depende exclusivamente da pressão arterial sistêmica do paciente no momento do esforço, não do grau de obstrução coronariana", "Obstruções acima de 90% só se tornam sintomáticas quando há anemia grave concomitante, permanecendo assintomáticas na sua ausência"], "correct": 0, "explanation": ["Correta: como visto no segmento 1, sintomas surgem com obstruções >75% durante esforço e >90% em repouso, refletindo a maior demanda de O2 durante atividade física.", "Errada: obstruções nessa faixa costumam ser toleráveis mesmo ao esforço; sintomas em repouso são esperados apenas com obstruções mais avançadas (>90%), conforme discutido no segmento 1.", "Errada: obstruções abaixo de 50% costumam ser assintomáticas mesmo durante esforço significativo, na maioria dos pacientes, não havendo esse limiar fixo de frequência cardíaca.", "Errada: o nível de atividade física (demanda de O2) é a variável central que determina o limiar sintomático, e não a pressão arterial sistêmica isoladamente.", "Errada: é exatamente o oposto — obstruções acima de 90% são o limiar clássico para sintomas mesmo em repouso, independentemente da presença de anemia associada."], "source": "original"}, {"vignette": "Homem, 68 anos, hipertenso de longa data com hipertrofia ventricular esquerda concêntrica ao ecocardiograma, passa a apresentar angina desencadeada por esforços que antes eram bem tolerados, na ausência de progressão significativa da obstrução coronariana angiográfica. Por que um coração com hipertrofia miocárdica significativa apresenta maior vulnerabilidade à isquemia, mesmo diante de graus de obstrução que seriam bem tolerados por um coração normal?", "options": ["Porque a massa muscular aumentada eleva a demanda de O2 sem crescimento proporcional da rede capilar que a irriga", "Porque a hipertrofia reduz diretamente o calibre das artérias coronárias epicárdicas por compressão extrínseca constante", "Porque a hipertrofia acelera a degeneração de colaterais já formadas, revertendo anos de neoangiogênese compensatória prévia", "Porque corações hipertrofiados têm, por definição, artérias coronárias anatomicamente mais estreitas desde o nascimento", "A relação entre hipertrofia miocárdica e isquemia se dá apenas por aumento da pressão diastólica final, sem qualquer desproporção entre demanda e rede capilar"], "correct": 0, "explanation": ["Correta: como discutido no segmento 1, a hipertrofia aumenta a demanda metabólica de O2 do músculo sem um crescimento proporcional da rede capilar, reduzindo a reserva de perfusão coronariana disponível para atender essa demanda extra.", "Errada: a hipertrofia não age por compressão extrínseca direta e constante das grandes artérias epicárdicas como mecanismo central discutido na aula.", "Errada: não há essa afirmação na aula; o mecanismo central discutido é o aumento da demanda de O2 sem crescimento capilar proporcional, não a degeneração de colaterais previamente formadas.", "Errada: não há relação de causa congênita entre hipertrofia (que é adquirida) e o calibre anatômico das coronárias.", "Errada: existe, sim, uma relação bem estabelecida entre hipertrofia e maior vulnerabilidade isquêmica centrada na desproporção entre demanda de O2 aumentada e rede capilar insuficiente, não apenas na pressão diastólica final."], "source": "original"}, {"vignette": "Paciente chega ao pronto-socorro com dor torácica típica e ECG inconclusivo. Para confirmar bioquimicamente a lesão miocárdica antes de firmar o diagnóstico de infarto, quais são os dois principais marcadores solicitados?", "options": ["Troponina e CK-MB", "Amilase e lipase", "TSH e T4 livre", "Ureia e creatinina", "Bilirrubina direta e indireta"], "correct": 0, "explanation": ["Correta: a aula cita explicitamente troponina e CK-MB como marcadores de lesão miocárdica utilizados no diagnóstico bioquímico do IAM.", "Errada: amilase e lipase são marcadores de lesão pancreática, sem relação direta com o diagnóstico de IAM.", "Errada: TSH e T4 livre são marcadores de função tireoidiana, não de lesão miocárdica.", "Errada: ureia e creatinina avaliam função renal, não lesão miocárdica direta.", "Errada: bilirrubinas avaliam função hepática/hemólise, não lesão miocárdica."], "source": "original"}, {"image": "histologia-trombo-mural-vs-oclusivo.jpg", "vignette": "Um paciente apresenta quadro clínico e eletrocardiográfico de síndrome coronariana aguda sem supradesnivelamento do segmento ST, com troponina positiva (caracterizando infarto sem supra de ST). Qual padrão histológico de trombose coronariana, entre os ilustrados na imagem (A ou B), é o correlato anatomopatológico mais esperado nesse cenário?", "options": ["Padrão A (trombo mural, com luz residual pérvia), compatível com isquemia subendocárdica (não transmural)", "Padrão B (trombo oclusivo), já que qualquer necrose exige oclusão total do vaso", "O padrão histológico de trombose não influencia o tipo de infarto resultante, que dependeria apenas da localização anatômica da lesão coronariana", "Padrão A, mecanismo restrito a pacientes do sexo feminino por menor calibre basal das artérias coronárias", "Padrão B, mecanismo predominante apenas em pacientes idosos, por maior carga aterosclerótica basal acumulada"], "correct": 0, "explanation": ["Correta: infarto sem supra de ST tipicamente se associa a necrose subendocárdica (não transmural), decorrente de obstrução suboclusiva/trombo mural (padrão A) — há necrose (troponina positiva) mas não o grau de oclusão total necessário para gerar isquemia transmural e supra de ST.", "Errada: trombo oclusivo (B) está mais associado a infarto transmural com supra de ST, não ao quadro sem supra descrito.", "Errada: existe, sim, uma correlação bem estabelecida entre o grau de oclusão trombótica (padrão histológico) e o padrão eletrocardiográfico/anatômico do infarto, independentemente da localização.", "Errada: não há relação entre o padrão histológico de trombose e o sexo do paciente — o padrão A se associa ao infarto sem supra de ST em qualquer sexo.", "Errada: não há relação entre o padrão histológico de trombose e a idade do paciente como critério isolado — o padrão B se associa à oclusão completa e ao infarto com supra de ST, independentemente da faixa etária."], "source": "original"}, {"vignette": "Paciente com IAM com supradesnivelamento de ST só consegue ser submetido à angioplastia várias horas após o início dos sintomas, quando a necrose transmural já estava estabelecida. Qual é o principal mecanismo molecular que explica por que essa reperfusão tardia pode agravar, em vez de apenas deixar de beneficiar, o dano miocárdico?", "options": ["Extravasamento de hemácias por uma microcirculação já lesada, somado a explosão de espécies reativas de oxigênio, sobrecarga de cálcio intracelular e influxo adicional de neutrófilos", "A reperfusão tardia apenas acelera a eliminação de detritos necróticos pelos neutrófilos, sem qualquer componente hemorrágico associado a esse processo", "A reperfusão tardia provoca queda abrupta e direta da pressão arterial sistêmica do paciente, sendo esse o mecanismo hemodinâmico central do dano miocárdico adicional", "A reperfusão tardia estimula a formação acelerada de tecido de granulação, antecipando a fase de cicatrização sem qualquer efeito deletério adicional sobre o tecido", "A diferença entre reperfusão precoce e tardia está apenas na velocidade de resolução dos sintomas clínicos, não no mecanismo molecular de dano tecidual"], "correct": 0, "explanation": ["Correta: como discutido no segmento 6, a lesão de reperfusão tardia envolve extravasamento hemorrágico por microcirculação já lesada, além do 'paradoxo da reperfusão' — estresse oxidativo, sobrecarga de cálcio e infiltração neutrofílica adicional, todos contribuindo para ampliar o dano tecidual.", "Errada: a reperfusão tardia tem, sim, efeitos deletérios bem documentados envolvendo extravasamento hemorrágico por microcirculação lesada, não sendo um processo limpo restrito à eliminação de detritos.", "Errada: o mecanismo central discutido não é hemodinâmico sistêmico, e sim local/microvascular e molecular (extravasamento hemorrágico, estresse oxidativo, sobrecarga de cálcio, infiltração neutrofílica).", "Errada: a reperfusão tardia não acelera a cicatrização de forma benéfica — pelo contrário, pode agravar o dano tecidual local por lesão de reperfusão, incluindo o componente hemorrágico.", "Errada: existe diferença fisiopatológica marcante entre reperfusão precoce (salvamento tecidual) e tardia (risco de lesão hemorrágica por mecanismo molecular distinto), como discutido extensamente no segmento 6."], "source": "original"}, {"vignette": "Observe os seguintes eventos patológicos relacionados à evolução do infarto agudo do miocárdio: I - Formação de tecido de granulação; II - Necrose dos cardiomiócitos; III - Fibrose cicatricial; IV - Infiltração de neutrófilos. Qual é a sequência cronológica correta destes eventos?", "options": ["I, II, III e IV", "II, I, III e IV", "II, IV, I e III", "I, II, IV e III", "IV, II, I e III"], "correct": 2, "explanation": ["Errada: coloca fibrose e tecido de granulação antes da infiltração neutrofílica, invertendo a ordem real.", "Errada: coloca o tecido de granulação antes da infiltração de neutrófilos.", "Correta: primeiro a necrose dos cardiomiócitos (coagulação, desde as primeiras horas), depois a infiltração de neutrófilos (2-6 dias), depois o tecido de granulação (7-14 dias) e, por fim, a fibrose cicatricial (>4-6 semanas) — essa sequência é tão cobrada que aparece de forma praticamente idêntica em mais de uma prova antiga.", "Errada: coloca a fibrose antes do tecido de granulação, invertendo a ordem final.", "Errada: a infiltração neutrofílica não precede a necrose — ela é uma resposta a ela."], "source": "real", "sourceLabel": "Parcial 81, Questão 2 (repetida, com o mesmo enunciado e gabarito, na Parcial 79, Questão 2)"}, {"vignette": "Paciente idoso, com obstrução coronariana crônica de instalação lenta e progressiva ao longo de décadas, apresenta território miocárdico relativamente preservado apesar de estenose grave à angiografia, em contraste com um paciente jovem que evolui com infarto extenso após oclusão trombótica aguda de gravidade angiográfica semelhante. Em relação à circulação colateral coronariana como fator modulador da gravidade da isquemia miocárdica, assinale a alternativa correta.", "options": ["A circulação colateral se forma por neoangiogênese, sendo mais comum em obstruções crônicas e progressivas, e mais frequente em pacientes idosos", "A circulação colateral se forma por vasodilatação reflexa imediata de vasos pré-existentes, em poucos minutos, diante de qualquer obstrução coronariana aguda", "A circulação colateral influencia o desfecho clínico apenas em obstruções agudas, perdendo relevância prognóstica nas obstruções crônicas progressivas", "A circulação colateral é mais eficiente em pacientes jovens, por maior capacidade angiogênica basal do endotélio coronariano", "A formação de circulação colateral depende exclusivamente da presença de diabetes mellitus associado, não do tempo de evolução da obstrução coronariana"], "correct": 0, "explanation": ["Correta: como discutido no segmento 1, a circulação colateral se forma por neoangiogênese, um processo que demora, sendo por isso mais associada a obstruções crônicas e progressivas — e, consequentemente, mais comum em pacientes idosos, que tiveram tempo para desenvolvê-la.", "Errada: a neoangiogênese é um processo que demanda tempo (semanas a anos), incompatível com formação em minutos diante de uma obstrução aguda, como no paciente jovem do enunciado.", "Errada: é o oposto — a circulação colateral é mais relevante justamente nas obstruções crônicas progressivas, que dão tempo para sua formação, sendo um dos determinantes discutidos da gravidade final da isquemia.", "Errada: é o oposto do discutido — colaterais são mais comuns em idosos, justamente por terem tido mais tempo de obstrução crônica progressiva para desenvolvê-las, não por maior capacidade angiogênica basal.", "Errada: a formação de colaterais depende diretamente do tempo de evolução (obstruções lentas favorecem sua formação; obstruções agudas não dão tempo suficiente), e não da presença isolada de diabetes."], "source": "original"}, {"vignette": "Paciente com IAM prévio evolui, entre o 3º e o 5º dia de internação, com instalação súbita de hipotensão grave, turgência jugular, abafamento de bulhas cardíacas e pulso paradoxal; o ecocardiograma à beira do leito mostra acúmulo de conteúdo líquido no pericárdio. Assinale a alternativa que explica corretamente o mecanismo fisiopatológico do óbito.", "options": ["O período de 2 a 6-7 dias após o IAM é o de maior fragilidade da parede ventricular necrótica (digestão enzimática do tecido pelos neutrófilos), predispondo à ruptura da parede livre, hemopericárdio e tamponamento cardíaco", "Trata-se de uma arritmia fatal ocorrida nos primeiros minutos do infarto, sem qualquer alteração estrutural da parede", "A cicatriz fibrótica já consolidada, formada ao longo de mais de 6 semanas de evolução, sofreu ruptura espontânea por fragilidade colágena residual", "O quadro decorre de embolia pulmonar maciça, sem relação com o infarto miocárdico prévio", "Trata-se de síndrome de Dressler, reação autoimune peri-infarto que surge tipicamente semanas após o evento, sem risco de tamponamento agudo"], "correct": 0, "explanation": ["Correta: a tríade de Beck (hipotensão + turgência jugular + bulhas abafadas) associada a líquido pericárdico à ecocardiografia, no intervalo de dias após o IAM, é o quadro clássico de ruptura da parede livre com tamponamento cardíaco — justamente na janela de maior fragilidade mecânica do tecido necrótico.", "Errada: haveria colapso hemodinâmico imediato, sem o intervalo de dias nem o achado de líquido pericárdico compressivo.", "Errada: cicatriz fibrótica madura (>6 semanas) é tecido resistente e não se rompe espontaneamente dessa forma — a fragilidade máxima ocorre bem antes, na janela de 2 a 6-7 dias, quando a necrose ainda não foi substituída por colágeno.", "Errada: o quadro descrito é específico de tamponamento cardíaco, não de tromboembolismo pulmonar.", "Errada: a síndrome de Dressler é tardia (semanas a meses) e autoimune, incompatível com o intervalo de 3 a 5 dias e com o quadro agudo de tamponamento (tríade de Beck) descrito no caso."], "source": "adapted", "sourceLabel": "Parcial 82, Questão Aberta 1"}, {"vignette": "Um patologista, ao avaliar um coração em necropsia, precisa diferenciar se a morte de um paciente com IAM prévio ocorreu por ruptura mecânica da parede ventricular ou por arritmia fatal muito precoce. Considerando os conceitos discutidos ao longo da aula sobre morfologia temporal do infarto e complicações mecânicas, qual achado temporal tornaria a hipótese de ruptura mecânica da parede livre mais provável que a de arritmia fatal muito precoce?", "options": ["Óbito ocorrido entre o 2º e o 6º dia após o início dos sintomas isquêmicos, período de maior fragilidade estrutural do tecido necrótico", "Óbito ocorrido nos primeiros 10 minutos após o início da dor torácica, antes mesmo de qualquer alteração estrutural detectável", "Óbito ocorrido mais de 8 semanas após o evento isquêmico, quando a fibrose já estaria plenamente estabelecida e consolidada", "O intervalo de tempo entre o início dos sintomas e o óbito reflete apenas a gravidade da arritmia instalada, não ajudando a diferenciar os dois mecanismos propostos", "Ruptura mecânica da parede livre ocorre exclusivamente nas primeiras 2 horas após o início da dor torácica"], "correct": 0, "explanation": ["Correta: como discutido nos segmentos 5, 7 e 8, a janela de 2 a 6 dias é a fase de maior fragilidade mecânica do miocárdio infartado (necrose já estabelecida, mas fibrose de reparo ainda não iniciada), tornando essa a janela temporal clássica para ruptura mecânica da parede livre — diferente da arritmia fatal, que tipicamente ocorre muito mais precocemente (minutos a poucas horas).", "Errada: óbito em 10 minutos é típico de arritmia fatal (morte súbita cardíaca), não de ruptura mecânica, que exige tempo para o tecido desenvolver a fragilidade estrutural necessária.", "Errada: após 8 semanas, a fibrose já estaria consolidada e o tecido cicatricial é mais resistente, tornando a ruptura mecânica clássica menos provável (a cicatriz fibrótica madura raramente rompe da mesma forma que o tecido necrótico friável da fase aguda).", "Errada: o intervalo de tempo é justamente a informação central que permite diferenciar os dois mecanismos (arritmia fatal precocíssima versus ruptura mecânica na janela de maior fragilidade tecidual), como discutido ao longo da aula.", "Errada: ruptura mecânica da parede livre concentra-se classicamente na janela de 2-6 dias (não nas primeiras 2 horas), justamente pela necessidade de a necrose já estar estabelecida associada à fragilidade tecidual característica dessa fase."], "source": "original"}, {"image": "diagrama-infra-vs-supra-ST.jpg", "vignette": "A imagem acima esquematiza as duas metades da parede ventricular (subendocardica e subepicardica) e seus respectivos padroes eletrocardiograficos de lesao. Um paciente cuja lesao esta restrita a metade subendocardica da parede deve apresentar, no ECG, qual alteracao caracteristica do segmento ST, segundo o diagrama?", "options": ["Infradesnivelamento do segmento ST, ja que a lesao subendocardica nao atinge toda a espessura da parede", "Supradesnivelamento do segmento ST, identico ao padrao da lesao transmural", "Nenhuma alteracao especifica de ST, pois a lesao subendocardica se manifesta preferencialmente por alteracoes isoladas da onda T, e nao do segmento ST", "Inversao da onda P associada a discreto infradesnivelamento de ST, achado combinado tipico da lesao subendocardica segundo o diagrama", "Bloqueio de ramo completo associado a supradesnivelamento de ST, padrao caracteristico atribuido pelo diagrama a lesao subendocardica extensa"], "correct": 0, "explanation": ["Correta: como ilustrado no diagrama e discutido no segmento 4, a lesao subendocardica (que nao atinge toda a espessura da parede) se traduz classicamente em infradesnivelamento do segmento ST, diferente da lesao transmural, que causa supradesnivelamento.", "Errada: supradesnivelamento e o padrao da lesao transmural (toda a espessura da parede), nao da lesao subendocardica isolada.", "Errada: lesoes subendocardicas tem, sim, traducao eletrocardiografica caracteristica de ST (infradesnivelamento), conforme o diagrama discutido no segmento 4, e nao apenas alteracoes de onda T.", "Errada: o diagrama trata da relacao entre profundidade da lesao na parede ventricular e o segmento ST isoladamente, nao havendo alteracao de onda P associada a esse padrao.", "Errada: bloqueio de ramo nao e o achado correlacionado a profundidade da lesao isquemica discutido no diagrama, e supradesnivelamento de ST e o padrao da lesao transmural, nao da subendocardica."], "source": "original"}]}</script>
+<script id="app-images" type="application/json">{"reperfusao-tardia-infarto-hemorragico.jpg": "../_img/14a6cc39eb7df97b.webp", "diagrama-reperfusao-tempo-salvamento.jpg": "../_img/4fb39c924fdabff6.webp", "morfologia-ate-1dia-bandas-contracao.jpg": "../_img/b926947f9961023d.webp", "evolucao-placa-ruptura-trombo.jpg": "../_img/2dfa2024d082365f.webp", "morfologia-1a2semanas-tecido-granulacao.jpg": "../_img/45c15d1301ed2e9b.webp", "complicacoes-papilares-trombo-mural.jpg": "../_img/917eb20ca268655d.webp", "histologia-lesao-reperfusao-hemorragica.jpg": "../_img/3e63a724895a036e.webp", "histologia-trombo-mural-vs-oclusivo.jpg": "../_img/97d9bab962010c9c.webp", "cardiopatia-cronica-cardiomegalia.jpg": "../_img/5ac1f72b3c4431a4.webp", "diagrama-infra-vs-supra-ST.jpg": "../_img/2dd212455e45a328.webp", "padroes-territorios-DA-CX-CD.jpg": "../_img/60a5bba44849046b.webp", "padroes-subendocardico-vs-transmural.jpg": "../_img/7d831cc8702b72ff.webp", "trombo-placa-ateromatosa-DA-hipertrofia.jpg": "../_img/6b58819e167d69ea.webp", "ecg-normal-vs-infarto.jpg": "../_img/67441ea4f788fef8.webp", "complicacoes-ruptura-VE-e-septo.jpg": "../_img/9497d630b3cf16a9.webp", "aneurisma-ventricular-cardiaco.jpg": "../_img/8670711b4842ca78.webp", "morfologia-mais4a6semanas-fibrose.jpg": "../_img/5655766e4a045959.webp", "morfologia-2a6dias-infiltrado-neutrofilico.jpg": "../_img/8b26bb5e67a3b700.webp"}</script>
+
+<script>
+const DATA = JSON.parse(document.getElementById('app-data').textContent);
+const IMAGES = JSON.parse(document.getElementById('app-images').textContent);
+const SEGMENTS = DATA.segments;
+const QUIZ = DATA.quiz;
+
+// Estado: respostas do usuário por pergunta, para persistir enquanto navega nesta sessão
+const answered = {}; // key -> selectedIndex
+
+let currentView = 'home'; // 'home' | 's1'..'s8' | 'quiz'
+
+function resolveImages(html){
+  return html.replace(/\{([a-zA-Z0-9_.\-]+\.jpg)\}/g, function(m, key){
+    return IMAGES[key] || '';
+  });
+}
+
+function letterFor(i){ return String.fromCharCode(65+i); }
+
+function renderFigure(imgObj){
+  const src = IMAGES[imgObj.key] || '';
+  return `<figure class="fig-wrap">
+    <img loading=lazy decoding=async class="fig" src="${src}" alt="${escapeHtml(imgObj.caption.slice(0,80))}">
+    <figcaption>${escapeHtml(imgObj.caption)}</figcaption>
+  </figure>`;
+}
+
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderQuestionCard(q, keyId, idxLabel){
+  const optsHtml = q.options.map((opt,i)=>{
+    return `<button class="qoption" data-idx="${i}" onclick="selectAnswer('${keyId}', ${i}, ${q.correct}, this)">
+      <span class="optletter">${letterFor(i)}</span><span>${escapeHtml(opt)}</span>
+    </button>`;
+  }).join('');
+
+  const imgHtml = q.image ? `<img loading=lazy decoding=async class="qimg" src="${IMAGES[q.image]||''}" alt="Imagem da questão">` : '';
+
+  const srcMap = {
+    real: 'Prova real — ' + (q.sourceLabel||''),
+    adapted: 'Adaptada da ' + (q.sourceLabel||''),
+    original: 'Questão da aula'
+  };
+  const srcClass = q.source || 'original';
+  const srcBadge = `<span class="q-source ${srcClass}">${srcMap[srcClass] || 'Questão da aula'}</span>`;
+
+  return `<div class="qcard" id="qcard-${keyId}">
+    ${srcBadge}
+    <div class="qmeta">${idxLabel}</div>
+    ${imgHtml}
+    <p class="qvignette">${escapeHtml(q.vignette)}</p>
+    <div class="qoptions" id="opts-${keyId}">${optsHtml}</div>
+    <div class="qfeedback" id="fb-${keyId}"></div>
+  </div>`;
+}
+
+function selectAnswer(keyId, chosenIdx, correctIdx, btnEl){
+  if (answered[keyId] !== undefined) return; // já respondida
+  answered[keyId] = chosenIdx;
+
+  const optsWrap = document.getElementById('opts-'+keyId);
+  const buttons = optsWrap.querySelectorAll('.qoption');
+  buttons.forEach((b,i)=>{
+    b.setAttribute('disabled','disabled');
+    if (i === correctIdx) b.classList.add('reveal-correct');
+    if (i === chosenIdx && i !== correctIdx) b.classList.add('selected-incorrect');
+    if (i === chosenIdx && i === correctIdx) b.classList.add('selected-correct');
+  });
+
+  const fb = document.getElementById('fb-'+keyId);
+  const q = getQuestionByKey(keyId);
+  const isCorrect = chosenIdx === correctIdx;
+  fb.className = 'qfeedback show ' + (isCorrect ? 'ok' : 'bad');
+  let explainHtml = '';
+  if (q.explanation && q.explanation.length){
+    explainHtml = '<div class="fb-explain">' + q.explanation.map((e,i)=>`<div>${letterFor(i)}) ${escapeHtml(e)}</div>`).join('') + '</div>';
+  }
+  fb.innerHTML = `<div class="fb-title">${isCorrect ? '✓ Correto' : '✕ Não é essa'}</div>${explainHtml}`;
+
+  if (keyId.startsWith('quiz-')) updateQuizProgress();
+}
+
+// registro global das perguntas para lookup por keyId
+const QUESTION_INDEX = {};
+SEGMENTS.forEach(s=>{
+  s.questions.forEach((q,i)=>{
+    QUESTION_INDEX[`${s.id}-q${i}`] = q;
+  });
+});
+QUIZ.forEach((q,i)=>{ QUESTION_INDEX[`quiz-${i}`] = q; });
+
+function getQuestionByKey(keyId){ return QUESTION_INDEX[keyId]; }
+
+function renderSegment(seg){
+  let html = '';
+  html += `<div class="seg-eyebrow">Segmento ${seg.num} de ${SEGMENTS.length}</div>`;
+  html += `<h2 class="seg-title">${escapeHtml(seg.title)}</h2>`;
+
+  // conteúdo — precisa resolver placeholders {arquivo.jpg} dentro de <img loading=lazy decoding=async> e também inserir figuras dedicadas via seg.images
+  let bodyHtml = resolveImages(seg.content);
+  // envolve as tags <img loading=lazy decoding=async src="..." class="fig"> com figure + acha a legenda correspondente pela ordem
+  let imgPointer = 0;
+  bodyHtml = bodyHtml.replace(/<img loading=lazy decoding=async src="([^"]+)" class="fig">/g, function(m, src){
+    let cap = '';
+    if (seg.images[imgPointer]) { cap = seg.images[imgPointer].caption; }
+    imgPointer++;
+    return `<figure class="fig-wrap"><img loading=lazy decoding=async class="fig" src="${src}" alt="${escapeHtml((cap||'').slice(0,80))}"><figcaption>${escapeHtml(cap)}</figcaption></figure>`;
+  });
+
+  html += `<div class="content-body">${bodyHtml}</div>`;
+
+  html += `<div class="qsection">
+    <div class="qsection-title">Perguntas de verificação — Segmento ${seg.num}</div>`;
+  seg.questions.forEach((q,i)=>{
+    html += renderQuestionCard(q, `${seg.id}-q${i}`, `Questão ${i+1} de 3`);
+  });
+  html += `</div>`;
+
+  const idx = SEGMENTS.findIndex(s=>s.id===seg.id);
+  const prev = idx>0 ? SEGMENTS[idx-1] : null;
+  const next = idx<SEGMENTS.length-1 ? SEGMENTS[idx+1] : null;
+
+  html += `<div class="segnav">
+    <div>${prev ? `<button class="pillbtn ghost" onclick="goTo('${prev.id}')">← ${escapeHtml(prev.title.split(':')[0])}</button>` : `<button class="pillbtn ghost" onclick="goTo('home')">← Início</button>`}</div>
+    <div>${next ? `<button class="pillbtn" onclick="goTo('${next.id}')">${escapeHtml(next.title.split(':')[0])} →</button>` : `<button class="pillbtn" onclick="goTo('quiz')">Ir para o Quiz Final →</button>`}</div>
+  </div>`;
+
+  html += `<div class="footer-note">Masterclass gerada a partir do material de aula "Sistema Cardiovascular — Aula 2: Cardiopatia Isquêmica" (CMMG). Trechos marcados com 📌 EXTRA foram acrescentados além do conteúdo original do PDF.</div>`;
+
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('progressLabel').textContent = `Segmento ${seg.num} · ${seg.title}`;
+  document.getElementById('progressFill').style.width = `${(seg.num/(SEGMENTS.length+1))*100}%`;
+}
+
+function renderHome(){
+  let html = `<div class="hero">
+    <div class="eyebrow">Masterclass interativa</div>
+    <h1>Cardiopatia Isquêmica</h1>
+    <p class="lede">Uma aula mais profunda que a aula: da aterosclerose ao infarto, com correlações clínicas, imagens de peças e lâminas, e perguntas estilo vinheta de residência em cada etapa.</p>
+    <div class="herometa">
+      <div class="stat"><b>${SEGMENTS.length}</b><span>segmentos</span></div>
+      <div class="stat"><b>${SEGMENTS.reduce((a,s)=>a+s.questions.length,0)}</b><span>perguntas nos segmentos</span></div>
+      <div class="stat"><b>${QUIZ.length}</b><span>questões no quiz final</span></div>
+      <div class="stat"><b>18</b><span>imagens de peças e lâminas</span></div>
+    </div>
+    <div class="examcard">
+      <h4>Como usar os grifos coloridos deste material</h4>
+      <p style="margin:0 0 10px;font-size:14px;">Ao longo dos segmentos, fatos que já foram cobrados nas 5 provas antigas de Patologia Médica I analisadas (Parciais 78 a 82) aparecem grifados em cores — quanto mais escura/intensa a cor, maior a recorrência do tema nas provas (peso extra para a prova 82, a mais recente):</p>
+      <div class="exam-legend">
+        <span style="background:#C6F6D5;color:#14532D;">Verde — já caiu uma vez</span>
+        <span style="background:#FFE066;color:#2A1B00;">Amarelo — cai ocasionalmente</span>
+        <span style="background:#FFB020;color:#2A1B00;">Laranja — cai bastante</span>
+        <span style="background:#FF5A5A;color:#3D0000;">Vermelho — cai sempre</span>
+        <span style="background:#111111;color:#FFFFFF;">Preto — certeza absoluta</span>
+      </div>
+      <p style="margin:10px 0 0;font-size:14px;">Nas questões, um selo acima do enunciado indica a origem: <span class="q-source real">Prova real</span> (questão literal de uma prova antiga), <span class="q-source adapted">Adaptada</span> (mesmo tema/gabarito de uma prova, reformatada, ou nova questão no estilo das provas) ou <span class="q-source original">Questão da aula</span> (original deste material).</p>
+    </div>
+    <div class="segindex">`;
+  SEGMENTS.forEach(s=>{
+    html += `<button class="segcard" onclick="goTo('${s.id}')">
+      <span class="num">${s.num}</span>
+      <span class="txt"><b>${escapeHtml(s.title)}</b><span>${s.questions.length} perguntas</span></span>
+    </button>`;
+  });
+  html += `<button class="segcard" onclick="goTo('quiz')" style="border-color:var(--maroon);">
+      <span class="num" style="color:var(--maroon)">Q</span>
+      <span class="txt"><b>Quiz Final</b><span>${QUIZ.length} questões, todos os temas</span></span>
+    </button>`;
+  html += `</div></div>`;
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('progressLabel').textContent = 'Início';
+  document.getElementById('progressFill').style.width = '0%';
+}
+
+function updateQuizProgress(){
+  const answeredCount = QUIZ.filter((q,i)=>answered[`quiz-${i}`]!==undefined).length;
+  const el = document.getElementById('quizProgressText');
+  if (el) el.textContent = `${answeredCount} de ${QUIZ.length} respondidas`;
+
+  if (answeredCount === QUIZ.length){
+    let correctCount = 0;
+    QUIZ.forEach((q,i)=>{ if (answered[`quiz-${i}`] === q.correct) correctCount++; });
+    const scoreWrap = document.getElementById('quizScoreWrap');
+    if (scoreWrap){
+      const pct = Math.round((correctCount/QUIZ.length)*100);
+      let msg = 'Vale revisar os segmentos com mais atenção antes da prova.';
+      if (pct >= 80) msg = 'Excelente domínio do conteúdo — pronto para residência.';
+      else if (pct >= 60) msg = 'Bom resultado — revise os pontos que errou antes da prova.';
+      scoreWrap.innerHTML = `<div class="scorebox">
+        <div class="big">${correctCount}<span style="font-size:28px;color:var(--ink-soft)">/${QUIZ.length}</span></div>
+        <div class="of">${pct}% de acerto</div>
+        <div class="msg">${msg}</div>
+      </div>`;
+    }
+  }
+}
+
+function renderQuiz(){
+  let html = `<div class="seg-eyebrow">Avaliação final</div>`;
+  html += `<h2 class="seg-title">Quiz Final — 15 questões</h2>`;
+  html += `<p style="font-family:'Inter',sans-serif;color:var(--ink-soft);font-size:14.5px;max-width:65ch;margin-bottom:8px;">Questões de múltipla escolha cobrindo toda a aula, em estilo vinheta clínica de residência. Inclui questões diretas, integrativas e algumas de nível mais avançado.</p>`;
+  html += `<div class="quiz-progress" id="quizProgressText">0 de ${QUIZ.length} respondidas</div>`;
+  html += `<div id="quizScoreWrap"></div>`;
+
+  QUIZ.forEach((q,i)=>{
+    html += renderQuestionCard(q, `quiz-${i}`, `Questão ${i+1} de ${QUIZ.length}`);
+  });
+
+  html += `<div class="segnav">
+    <button class="pillbtn ghost" onclick="goTo('home')">← Voltar ao início</button>
+    <button class="pillbtn ghost" onclick="goTo('${SEGMENTS[0].id}')">Rever Segmento 1</button>
+  </div>`;
+
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('progressLabel').textContent = 'Quiz Final';
+  document.getElementById('progressFill').style.width = '100%';
+  updateQuizProgress();
+}
+
+function renderNav(){
+  let html = '';
+  html += `<li><button class="navbtn" data-view="home" onclick="goTo('home')"><span class="num">•</span><span class="navlabel">Início</span></button></li>`;
+  html += `<li class="navdivider"></li>`;
+  SEGMENTS.forEach(s=>{
+    html += `<li><button class="navbtn" data-view="${s.id}" onclick="goTo('${s.id}')">
+      <span class="num">${String(s.num).padStart(2,'0')}</span>
+      <span class="navlabel">${escapeHtml(s.title)}</span>
+    </button></li>`;
+  });
+  html += `<li class="navdivider"></li>`;
+  html += `<li><button class="navbtn navquiz" data-view="quiz" onclick="goTo('quiz')">
+    <span style="display:flex;gap:10px;align-items:center;"><span class="num">Q</span><span class="navlabel">Quiz Final</span></span>
+  </button></li>`;
+  document.getElementById('navlist').innerHTML = html;
+}
+
+function goTo(view){
+  currentView = view;
+  if (view === 'home') renderHome();
+  else if (view === 'quiz') renderQuiz();
+  else {
+    const seg = SEGMENTS.find(s=>s.id===view);
+    if (seg) renderSegment(seg);
+  }
+  document.querySelectorAll('.navbtn').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-view')===view);
+  });
+  window.scrollTo({top:0, behavior:'instant'});
+  // fecha sidebar em mobile após navegar
+  if (window.innerWidth <= 880){
+    document.getElementById('sidebar').classList.add('collapsed');
+  }
+}
+
+document.getElementById('sidebarToggle').addEventListener('click', function(){
+  const sb = document.getElementById('sidebar');
+  sb.classList.toggle('collapsed');
+  document.getElementById('toggleIcon').textContent = sb.classList.contains('collapsed') ? '▸' : '▾';
+});
+
+renderNav();
+if (window.innerWidth <= 880){ document.getElementById('sidebar').classList.add('collapsed'); }
+goTo('home');
+</script>
+<script>
+(function(){
+  var LECTURE_KEY = "aula2";
+  var progress = {};
+  var chkByTarget = {};
+
+  function navKeyOf(item){
+    return item.dataset.target || item.dataset.view || null;
+  }
+  function initChecks(){
+    // duas arquiteturas convivem neste projeto: a maioria usa <a class="nav-item" data-target="segN">;
+    // a Aula 2 (Cardiopatia Isquêmica) usa <button class="navbtn" data-view="segN"> gerado por JS.
+    var navItems = document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]');
+    navItems.forEach(function(item){
+      var key = navKeyOf(item);
+      if(!key || key === 'capa' || key === 'home') return;
+      if(item.querySelector('.mc-chk')) return;
+      var chk = document.createElement('input');
+      chk.type = 'checkbox';
+      chk.className = 'mc-chk';
+      // Neutro de propósito: marcar uma seção é apenas progresso, não "concluído" — a cor
+      // verde fica reservada só para o badge da aula inteira na sidebar do shell (100%).
+      chk.style.marginRight = '6px';
+      chk.style.accentColor = '#8A97A8';
+      chk.style.filter = 'grayscale(1) opacity(.85)';
+      chk.addEventListener('click', function(ev){ ev.stopPropagation(); });
+      chk.addEventListener('change', function(){
+        progress[key] = chk.checked;
+        window.parent.postMessage({type:'setProgress', lecture:LECTURE_KEY, target:key, done:chk.checked}, '*');
+      });
+      item.prepend(chk);
+      chkByTarget[key] = chk;
+    });
+  }
+
+  function refLabel(parcial, q){
+    if(q === '?') return 'Parcial ' + parcial + ' (tema geral)';
+    if(String(q).indexOf('aberta') === 0) return 'Parcial ' + parcial + ' — Discursiva ' + q.replace('aberta','');
+    return 'Parcial ' + parcial + ' — Questão ' + q;
+  }
+
+  var tooltipEl = null;
+  function ensureTooltip(){
+    if(tooltipEl) return tooltipEl;
+    tooltipEl = document.createElement('div');
+    tooltipEl.id = 'mc-tooltip';
+    tooltipEl.style.cssText = 'position:fixed;z-index:99999;background:#0B1E38;color:#EAF1FA;border:1px solid #2A4468;'+
+      'border-radius:8px;padding:10px 12px;font-family:"IBM Plex Sans",sans-serif;font-size:13px;max-width:280px;'+
+      'box-shadow:0 10px 30px rgba(0,0,0,.4);display:none;line-height:1.4';
+    document.body.appendChild(tooltipEl);
+    tooltipEl.addEventListener('mouseenter', function(){ clearTimeout(tooltipEl._hideTimer); });
+    tooltipEl.addEventListener('mouseleave', function(){ hideTooltip(); });
+    return tooltipEl;
+  }
+  function hideTooltip(){
+    if(!tooltipEl) return;
+    tooltipEl._hideTimer = setTimeout(function(){ tooltipEl.style.display='none'; }, 150);
+  }
+  function showTooltip(markEl){
+    var tt = ensureTooltip();
+    clearTimeout(tt._hideTimer);
+    var refs = (markEl.dataset.refs||'').split(',').map(function(s){return s.trim();}).filter(Boolean);
+    if(!refs.length) return;
+    var html = '<div style="font-size:11px;color:#8FAACB;margin-bottom:6px;letter-spacing:.02em">Caiu em prova — clique para ir direto à questão</div>';
+    refs.forEach(function(r){
+      var parts = r.split(':'); var parcial=parts[0]; var q=parts[1];
+      var label = refLabel(parcial, q);
+      var clickable = q && q !== '?';
+      html += '<span class="mc-chip" data-parcial="'+parcial+'" data-q="'+(q||'')+'" style="display:inline-block;margin:2px 4px 2px 0;'+
+        'padding:4px 9px;border-radius:12px;background:#16355F;color:#EAF1FA;font-size:12px;'+
+        (clickable? 'cursor:pointer' : 'cursor:default;opacity:.6') + ';border:1px solid #2A4468">'+label+'</span>';
+    });
+    tt.innerHTML = html;
+    tt.querySelectorAll('.mc-chip').forEach(function(chip){
+      if(chip.style.cursor !== 'pointer') return;
+      chip.addEventListener('mouseenter', function(){ chip.style.background='#C8476B'; chip.style.borderColor='#C8476B'; });
+      chip.addEventListener('mouseleave', function(){ chip.style.background='#16355F'; chip.style.borderColor='#2A4468'; });
+      chip.addEventListener('click', function(){
+        window.parent.postMessage({type:'jumpToSimulado', parcial:chip.dataset.parcial, q:chip.dataset.q}, '*');
+      });
+    });
+    var rect = markEl.getBoundingClientRect();
+    var left = Math.min(rect.left, window.innerWidth-300);
+    var top = rect.bottom + 6;
+    tt.style.left = left+'px';
+    tt.style.top = top+'px';
+    tt.style.display = 'block';
+  }
+
+  function initTooltips(){
+    document.querySelectorAll('mark[data-refs]').forEach(function(m){
+      if(m.dataset.ttBound) return;
+      m.dataset.ttBound = '1';
+      m.style.cursor = 'help';
+      m.addEventListener('mouseenter', function(){ showTooltip(m); });
+      m.addEventListener('mouseleave', hideTooltip);
+    });
+  }
+
+  window.addEventListener('message', function(ev){
+    if(!ev.data) return;
+    if(ev.data.type === 'progressState' && ev.data.lecture === LECTURE_KEY){
+      progress = ev.data.state || {};
+      Object.keys(chkByTarget).forEach(function(id){ chkByTarget[id].checked = !!progress[id]; });
+    }
+  });
+
+  function boot(){
+    initChecks();
+    initTooltips();
+    window.parent.postMessage({type:'requestProgress', lecture:LECTURE_KEY}, '*');
+  }
+  if(document.readyState === 'complete' || document.readyState === 'interactive') boot();
+  else document.addEventListener('DOMContentLoaded', boot);
+  // fallback: alguns masterclass renderizam nav/conteúdo via JS próprio, possivelmente após
+  // este script rodar — reaplica init algumas vezes nos primeiros segundos.
+  [300,800,1500,3000].forEach(function(ms){ setTimeout(boot, ms); });
+  // e também sempre que o usuário navega (conteúdo de segmentos que só é montado no DOM
+  // quando o painel/segmento é aberto pela primeira vez, como na Aula 2)
+  document.addEventListener('click', function(ev){
+    if(ev.target.closest && (ev.target.closest('.nav-item') || ev.target.closest('.navbtn'))){
+      setTimeout(boot, 80);
+      setTimeout(boot, 300);
+    }
+  }, true);
+})();
+</script>
+
+<script>(function(){
+  // Ponte entre a aula (iframe) e a barra lateral do app. Não mexe no conteúdo nem na lógica de quiz.
+  var P = window.parent;
+  if (!P || P === window) return;
+  var root = document.documentElement;
+  root.classList.add('embedded');
+  var parts = (window.name || '').split('|');
+  var LEC = parts[1] || '';
+  var progress = {};
+
+  function setTheme(t){ root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); }
+  setTheme(parts[2] || 'dark');
+
+  function navEls(){ return Array.prototype.slice.call(document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]')); }
+  function keyOf(e){ return e.getAttribute('data-target') || e.getAttribute('data-view'); }
+  function labelOf(e){
+    var n = e.querySelector('.navlabel, .nav-num + span');
+    return (n ? n.textContent : e.textContent).replace(/\s+/g,' ').trim();
+  }
+  function activeKey(){
+    var a = navEls().filter(function(e){ return e.classList.contains('active'); })[0];
+    return a ? keyOf(a) : null;
+  }
+
+  // ----- botão "Concluir" no título de cada segmento -----
+  function paintDone(btn, key){
+    var on = !!progress[key];
+    if (btn.classList.contains('on') !== on) btn.classList.toggle('on', on);   // só mexe no DOM se mudou (evita laço do observer)
+    var lbl = btn.querySelector('.lbl'), txt = on ? 'Concluído' : 'Concluir';
+    if (lbl.textContent !== txt) lbl.textContent = txt;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var fin = document.querySelector('.cel-finish[data-key="' + key + '"]');
+    if (fin) paintFin(fin, on, key);
+  }
+
+  // ----- botão grande no fim do segmento -----
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+  function isSeg(key){ return /^(seg\d+|s\d+|parcial\d+)$/.test(key); }
+  function paintFin(b, on, key){
+    if (b.classList.contains('on') !== on) b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var txt = on ? (isSeg(key) ? 'Segmento concluído' : 'Estudado') + ' · tocar para desfazer'
+                 : (isSeg(key) ? 'Concluir segmento' : 'Marcar como estudado');
+    var s = b.lastChild; if (s.textContent !== txt) s.textContent = txt;
+  }
+  function ensureFin(scope, key){
+    if (!scope || !key || key === 'capa' || key === 'home') return;
+    var foot = scope.querySelector('.navfoot, .segnav');
+    if (!foot) return;
+    var box = scope.querySelector('.cel-fin');
+    if (box && box.getAttribute('data-key') === key && box.nextElementSibling === foot) return;
+    if (box) box.remove();
+    box = document.createElement('div'); box.className = 'cel-fin'; box.setAttribute('data-key', key);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cel-finish'; b.setAttribute('data-key', key);
+    b.innerHTML = CHECK + '<span></span>';
+    b.addEventListener('click', function(){
+      var top = document.querySelector('.done-t[data-key="' + key + '"]');
+      if (top) top.click();
+    });
+    box.appendChild(b);
+    foot.parentNode.insertBefore(box, foot);
+    paintFin(b, !!progress[key], key);
+  }
+  function attachDone(title, key){
+    if (!title || !key || key === 'capa' || key === 'home') return;
+    var old = title.querySelector('.done-t');
+    if (old && old.getAttribute('data-key') === key) { paintDone(old, key); return; }
+    if (old) old.remove();
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'done-t'; b.setAttribute('data-key', key);
+    b.innerHTML = '<span class="d"></span><span class="lbl">Concluir</span>';
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      progress[key] = !progress[key];
+      paintDone(b, key);
+      P.postMessage({type:'setProgress', lecture:LEC, target:key, done:!!progress[key]}, '*');
+    });
+    if (!title.classList.contains('has-done')) title.classList.add('has-done');
+    title.appendChild(b);
+    paintDone(b, key);
+  }
+  function decorate(){
+    // aulas estáticas: um .pane por segmento
+    document.querySelectorAll('.pane').forEach(function(p){
+      if (p.hidden) return;
+      attachDone(p.querySelector('.pane-title'), p.id);
+      ensureFin(p, p.id);
+    });
+    // aula 2: conteúdo montado por JS
+    var t = document.querySelector('h2.seg-title');
+    if (t) { attachDone(t, activeKey()); ensureFin(document.getElementById('content'), activeKey()); }
+  }
+
+  // ----- rodapé anterior/próximo (substitui a barra de navegação escondida) -----
+  function addNavFoot(){
+    var items = navEls();
+    if (!items.length || document.querySelector('.segnav')) return;
+    items.forEach(function(it, i){
+      var id = keyOf(it);
+      var pane = document.getElementById(id);
+      if (!pane || !pane.classList.contains('pane') || pane.querySelector('.navfoot')) return;
+      var prev = items[i-1], next = items[i+1];
+      var f = document.createElement('div'); f.className = 'navfoot';
+      function mk(target, txt, isNext){
+        var b = document.createElement('button'); b.type = 'button';
+        b.textContent = isNext ? txt + ' →' : '← ' + txt;
+        b.addEventListener('click', function(){ target.click(); });
+        return b;
+      }
+      if (prev) f.appendChild(mk(prev, labelOf(prev), false));
+      if (next) f.appendChild(mk(next, labelOf(next), true));
+      pane.appendChild(f);
+    });
+  }
+
+  // piscar o termo achado pela busca
+  function flashTerm(rootEl, term){
+    if (!rootEl || !term) return;
+    var low = term.toLowerCase(), w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentElement; if (!p || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue;
+      var k = n.data.toLowerCase().indexOf(low);
+      if (k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var q = sp.parentNode; if (!q) return; while (sp.firstChild) q.insertBefore(sp.firstChild, sp); q.removeChild(sp); q.normalize(); }, 2600);
+      return;
+    }
+  }
+
+  var last = null;
+  function reportActive(){
+    var k = activeKey();
+    if (k !== last) { last = k; P.postMessage({type:'segActive', lecture:LEC, key:k}, '*'); }
+    var off = (k && k !== 'capa' && k !== 'home' && !document.querySelector('.hero .tabs')) ? 'off' : 'on';
+    if (root.getAttribute('data-hero') !== off) root.setAttribute('data-hero', off);
+    decorate();
+  }
+  var mo = new MutationObserver(function(){ clearTimeout(mo._t); mo._t = setTimeout(reportActive, 30); });
+  mo.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class','hidden']});
+  var content = document.getElementById('content');
+  if (content) mo.observe(content, {childList:true});
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data;
+    if (!d || !d.type) return;
+    if (d.type === 'setTheme') setTheme(d.theme);
+    else if (d.type === 'goto') {
+      var el = navEls().filter(function(e){ return keyOf(e) === d.key; })[0];
+      if (el) el.click();
+    }
+    else if (d.type === 'gotoPane') {
+      if (document.getElementById('hl-pop')) return;   // aulas com marca-texto rosa tratam sozinhas
+      var pe = navEls().filter(function(e){ return keyOf(e) === d.pane; })[0];
+      if (pe) pe.click();
+      setTimeout(function(){ flashTerm(document.getElementById(d.pane) || document.getElementById('content') || document.body, d.term); }, 140);
+    }
+    else if (d.type === 'progressState' && d.lecture === LEC) {
+      progress = d.state || {};
+      document.querySelectorAll('.done-t').forEach(function(b){ paintDone(b, b.getAttribute('data-key')); });
+    }
+  });
+
+  function boot(){
+    addNavFoot();
+    reportActive();
+    P.postMessage({type:'bridgeReady', lecture:LEC}, '*');
+    P.postMessage({type:'requestProgress', lecture:LEC}, '*');
+  }
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', function(){ setTimeout(boot, 0); });
+})();
+</script>
+</body>
+</html>

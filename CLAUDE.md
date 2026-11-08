@@ -31,6 +31,12 @@ Responda sempre em português (Brasil).
 1. Ponha o HTML na pasta da matéria. Pode ser o arquivo gigante, com as imagens em base64.
 2. Acrescente a matéria em `SUBJECTS` no `index.html`, seguindo as entradas que já existem.
 3. Rode o script. Ele otimiza o arquivo e guarda o original em `_originais/`, que fica só naquele PC.
+4. Masters com `DOCS["x"]="<base64>"` (como o de Patologia) têm as aulas separadas pelo script em `<pasta>/aulas/`.
+5. Sidebar: o master **sempre abre com a sidebar o mais recolhida possível**, com todos os grupos fechados na primeira visita. Se a pessoa já estava num capítulo, ele volta para onde ela parou, com só aquele grupo aberto.
+   - O tema cuida disso para masters que navegam por `#hash`: o `<head>` restaura o hash salvo e define `window.VIDRO_NOVO` (`true` na primeira visita); o `vidro.js` salva o hash.
+   - No código de abertura do master novo, quando `window.VIDRO_NOVO` for verdadeiro, feche todos os grupos (ver Farmacologia: `focusActive`; Microbiologia: `openGrp`).
+   - Master sem hash (Patologia) guarda a posição por conta própria (`pato-pos`).
+6. Teste a mudança no tamanho de celular e o tema claro e escuro.
 
 ## Onde fica cada coisa
 

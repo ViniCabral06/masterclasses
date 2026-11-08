@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="pt-BR" data-tone="prova" data-theme="dark">
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css"><!--/vidro:cabeca-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulado — Patologia Médica I (Cardiovascular + Respiratório)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet"><style>/* ===== Visual "Farmacologia" aplicado às aulas de Patologia ===== */
+:root{
+  --ground:#ffffff; --surface:#f5f6f4; --surface-2:#eceeeb; --raised:#ffffff;
+  --border:#e4e6e2; --rule:#eff0ed; --control:#d6d9d4;
+  --ink:#1f201d; --ink-2:#3a3c37; --muted:#676964; --faint:#9a9c96;
+  --accent:#1b6e66; --accent-ink:#0f4d47; --accent-soft:#e3f0ed;
+  --tone:var(--accent);
+  --ok:#2e7d32; --ok-bg:#e6f4e7; --ok-line:#b9dcbb;
+  --bad:#b42318; --bad-bg:#fdecea; --bad-line:#f2c1bb;
+  --warn:#b26a00; --warn-bg:#f8ecd2; --warn-ink:#7a5200;
+  --on-ink:#fff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121413; --surface:#1a1d1b; --surface-2:#242826; --raised:#1f2320;
+  --border:#2c312e; --rule:#222624; --control:#3d4440;
+  --ink:#e6e9e4; --ink-2:#c3c8c1; --muted:#9aa09a; --faint:#6f766f;
+  --accent:#5fc4ae; --accent-ink:#93e0cd; --accent-soft:#17332d;
+  --ok:#62c27a; --ok-bg:#15281a; --ok-line:#2b5233;
+  --bad:#f07a6c; --bad-bg:#2d1714; --bad-line:#5c2b25;
+  --warn-bg:#33290f; --warn-ink:#f0cf86;
+  --on-ink:#121413;
+}
+/* cada grupo de aulas tem a sua cor, só no que orienta */
+:root[data-tone="cv"]{--tone:#a3263a}
+:root[data-tone="resp"]{--tone:#1f6f8b}
+:root[data-tone="prova"]{--tone:#6b4c8a}
+:root[data-tone="sim"]{--tone:#1b6e66}
+:root[data-tone="gi"]{--tone:#2e7d4f}
+:root[data-tone="acc"]{--tone:#9a5a00}
+:root[data-theme="dark"][data-tone="cv"]{--tone:#ec8a98}
+:root[data-theme="dark"][data-tone="resp"]{--tone:#7cc2dc}
+:root[data-theme="dark"][data-tone="prova"]{--tone:#bca0d8}
+:root[data-theme="dark"][data-tone="sim"]{--tone:#5fc4ae}
+:root[data-theme="dark"][data-tone="gi"]{--tone:#6fbf8e}
+:root[data-theme="dark"][data-tone="acc"]{--tone:#e0b06a}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{background:var(--ground)!important;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:inherit;color:inherit}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- cabeçalho da aula (era "hero") ---------- */
+.hero{background:transparent;color:var(--ink);padding:40px clamp(16px,5vw,72px) 0}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;padding-bottom:28px;border-bottom:1px solid var(--border);
+  margin-bottom:32px}
+.hero h1{order:1;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0;font-weight:400;
+  letter-spacing:-.015em;color:var(--ink);max-width:none;text-wrap:balance}
+.tag{order:2;display:block;align-self:flex-start;background:transparent;color:var(--tone);font-family:var(--sans);font-size:14px;
+  font-weight:500;letter-spacing:0;padding:0;border-radius:0;margin:12px 0 0}
+.hero p{order:3;margin:14px 0 0;color:var(--muted);font-family:var(--sans);font-size:14.5px;line-height:1.6;max-width:68ch}
+.strip{order:4;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:22px;overflow:hidden;border-radius:0}
+.strip img{width:100%;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--border);filter:none;opacity:.92}
+:root[data-theme="dark"] .strip img{filter:brightness(.9)}
+@media (max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}.strip img:nth-child(n+4){display:none}}
+
+/* ---------- layout (a navegação agora vive na barra lateral do app) ---------- */
+.shell{display:block;max-width:none;margin:0;padding:0 clamp(16px,5vw,72px) 96px}
+nav.rail{display:none}
+main{display:block;max-width:920px;margin:0 auto;padding:0;background:transparent;border-radius:0;box-shadow:none}
+.pane{display:block;animation:rise .35s var(--ease-out) both;scroll-margin-top:100vh}
+/* o cabeçalho grande só aparece na capa da aula; nos segmentos o título do próprio segmento assume */
+html[data-hero="off"] header.hero{display:none}
+html[data-hero="off"] .shell{padding-top:40px}
+.pane[hidden]{display:none}
+
+.pane-title{position:relative;font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin:0 0 28px;
+  padding:0 0 22px;font-weight:400;letter-spacing:-.012em;color:var(--ink);border-bottom:1px solid var(--border);text-wrap:balance}
+.pane-title.has-done{padding-right:150px}
+
+/* ---------- leitura ---------- */
+.prose,.intro{max-width:none}
+.prose p,.intro p,.prose li,.intro li{font-size:17px;line-height:1.7;color:var(--ink)}
+.prose p,.intro p{margin:0 0 18px;max-width:70ch}
+.prose ul,.prose ol,.intro ul,.intro ol{padding-left:22px;margin:0 0 20px;max-width:70ch}
+.prose li,.intro li{margin-bottom:8px}
+.prose li::marker,.intro li::marker{color:var(--faint)}
+.prose h2,.intro h2{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:56px 0 16px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+.intro h2:first-child{margin-top:0}
+.prose h3,.intro h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.prose strong,.intro strong,.prose b,.intro b{font-weight:600;color:var(--ink)}
+.prose hr,.intro hr{border:0;border-top:1px solid var(--border);margin:36px 0}
+.prose em,.intro em{color:inherit}
+table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;font-family:var(--sans)}
+th{background:transparent;color:var(--muted);text-align:left;padding:10px 14px 10px 0;font-weight:500;font-size:13.5px;
+  border-bottom:1px solid var(--control);vertical-align:bottom}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;text-align:left;
+  font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+@media (max-width:700px){table{display:block;overflow-x:auto}}
+
+.fig{margin:28px auto;max-width:100%;text-align:center}
+.fig img{display:inline-block;max-width:100%;width:auto;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff;
+  cursor:zoom-in;transition:transform .2s var(--ease-out)}
+:root[data-theme="dark"] .fig img{border-color:var(--border);filter:brightness(.94)}
+.fig figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;
+  max-width:68ch;padding:0;border:0}
+
+/* ---------- painéis (notas) ---------- */
+.note{border-radius:18px;padding:18px 22px;margin:24px 0;font-size:16px;line-height:1.68;border:none;position:relative;
+  background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:16px;line-height:1.68;max-width:none}
+.note p + p{margin-top:10px}
+.note-extra{background:#f2f2f8}.note-extra>p>strong:first-child{color:#4b4790}
+.note-fix{background:#fbf0ea}.note-fix>p>strong:first-child{color:#9a4a1f}
+.note-link{background:#edf3f8}.note-link>p>strong:first-child{color:#2d5f8f}
+:root[data-theme="dark"] .note-extra{background:#1d1d2a}:root[data-theme="dark"] .note-extra>p>strong:first-child{color:#aaa6ea}
+:root[data-theme="dark"] .note-fix{background:#2a1c15}:root[data-theme="dark"] .note-fix>p>strong:first-child{color:#ec9f73}
+:root[data-theme="dark"] .note-link{background:#17212b}:root[data-theme="dark"] .note-link>p>strong:first-child{color:#8dbbe6}
+.note + ol,.note + ul{margin-top:-6px}
+
+/* ---------- grifos de frequência em prova ---------- */
+mark.exam1,mark.exam2,mark.exam3,mark.exam4,mark.exam5,mark.hot{padding:1px 3px;border-radius:4px;cursor:help;color:inherit;font-weight:inherit;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1{background:#d8f3e3}
+mark.exam2{background:#fdf0bf}
+mark.exam3,mark.hot{background:#fcd9a8}
+mark.exam4{background:#f8bfb5}
+mark.exam5{background:#1c2331;color:#ffe3a3}
+mark.exam5 *{color:#ffe3a3}
+:root[data-theme="dark"] mark.exam1,:root[data-theme="dark"] mark.exam2,:root[data-theme="dark"] mark.exam3,
+:root[data-theme="dark"] mark.exam4,:root[data-theme="dark"] mark.hot,
+:root[data-theme="dark"] mark.exam1 *,:root[data-theme="dark"] mark.exam2 *,:root[data-theme="dark"] mark.exam3 *,
+:root[data-theme="dark"] mark.exam4 *,:root[data-theme="dark"] mark.hot *{color:#1b2230!important}
+:root[data-theme="dark"] mark.exam5{box-shadow:inset 0 0 0 1px #4a5568}
+.examcard{margin:24px 0;padding:18px 22px;border:none;background:#f8f3e1;border-radius:18px}
+.examcard h4{margin:0 0 8px;font-size:14px;color:#765800;font-family:var(--sans);letter-spacing:0;font-weight:600}
+.examcard p{font-size:15px!important;max-width:none!important}
+:root[data-theme="dark"] .examcard{background:#26220f}:root[data-theme="dark"] .examcard h4{color:#e3c25c}
+.exam-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin:14px 0}
+.exam-legend span{padding:3px 9px;border-radius:999px;font-weight:500}
+:root[data-theme="dark"] .exam-legend span[style*="#111111"]{box-shadow:inset 0 0 0 1px #4a5568}
+.q-source{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;
+  font-family:var(--sans);text-transform:none}
+.q-source.real{background:var(--ok-bg);color:var(--ok)}
+.q-source.adapted{background:var(--warn-bg);color:var(--warn-ink)}
+.q-source.original{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- quiz ---------- */
+.qzone{margin-top:72px;padding-top:0;border-top:none;max-width:none}
+.qzone-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:0 0 12px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em}
+.lede{font-family:var(--sans);font-size:14.5px;color:var(--muted);max-width:68ch;line-height:1.6;margin:0 0 24px}
+.q{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.q-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.q-head>.q-source{order:2;margin-top:3px}
+.q-num{order:1;flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:999px;background:var(--ink);color:var(--on-ink);
+  font-family:var(--sans);font-weight:500;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;margin:0}
+.q-stem{order:3;flex:1 0 100%;min-width:0}
+.q-stem p{margin:0 0 12px;font-size:16.5px;line-height:1.65;color:var(--ink);max-width:none}
+.q-stem .fig{margin:8px 0 16px}
+.q-stem .fig img{max-height:420px}
+.opts{display:flex;flex-direction:column;gap:0;margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  color:var(--ink);transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.opt:active{transform:scale(.995)}
+.opt-letter{flex:none;width:26px;height:26px;min-width:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.opt-text{flex:1;min-width:0;padding-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.opt.is-correct{border-color:var(--ok-line);background:var(--ok-bg);box-shadow:none}
+.opt.is-correct .opt-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-wrong{border-color:var(--bad-line);background:var(--bad-bg);box-shadow:none}
+.opt.is-wrong .opt-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .opt.is-correct .opt-letter,:root[data-theme="dark"] .opt.is-wrong .opt-letter{color:#0d1110}
+.q.done .opt{cursor:default}
+.q.done .opt:active{transform:none}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--control)}:root[data-theme="dark"] .opt:hover{border-color:#4a524d}}
+.q-actions{display:flex;gap:8px;align-items:center;margin:14px 0 0;flex-wrap:wrap}
+.btn-reveal,.btn-grade,.btn-reset{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;
+  cursor:pointer;background:var(--ink);color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn-reveal:active,.btn-grade:active,.btn-reset:active{transform:scale(.97)}
+.btn-reveal{background:var(--surface-2);color:var(--ink)}
+.btn-reset{background:var(--surface-2);color:var(--ink)}
+.btn-grade{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn-grade{color:#0d1110}
+.btn-reveal[hidden],.btn-grade[hidden],.btn-reset[hidden]{display:none}
+.q-why{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:15px;line-height:1.6}
+.q-why[hidden]{display:none}
+.q-why p{margin:0 0 10px;font-size:15px;line-height:1.6;max-width:none}
+.q-why p:last-child{margin:0}
+.q-why:has(.q-verdict.ok){background:var(--ok-bg)}
+.q-why:has(.q-verdict.no){background:var(--bad-bg)}
+.q-verdict{font-family:var(--sans);font-weight:600}
+.q-verdict.ok{color:var(--ok)}.q-verdict.no{color:var(--bad)}
+.q-why hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+.q-open textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;
+  background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+.q-open textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.scorebar{position:sticky;top:12px;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--surface);
+  border:1px solid var(--border);border-radius:22px;padding:14px 20px;margin:22px 0 16px;font-family:var(--sans);font-size:15px}
+#scoretext{flex:1 1 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.closing{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ---------- ampliar imagem ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(18,20,18,.82);display:none;place-items:center;z-index:900;padding:30px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:12px;background:#fff}
+.lightbox figcaption{color:#e6e9e4;font-family:var(--sans);font-size:14.5px;margin-top:14px;max-width:70ch;text-align:center;line-height:1.5}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-family:var(--sans);
+  font-size:14px;font-weight:500;border-radius:999px;height:38px;padding:0 18px;cursor:pointer}
+
+/* ---------- dica "caiu em prova" ---------- */
+#mc-tooltip{background:#2b302d!important;color:#eef0ec!important;border:none!important;border-radius:12px!important;padding:12px 14px!important;
+  font-family:var(--sans)!important;font-size:13px!important;line-height:1.5!important;box-shadow:0 12px 32px rgba(20,22,20,.28)!important}
+#mc-tooltip div{color:#c3c8c1!important;font-size:12px!important;letter-spacing:0!important;font-weight:600}
+#mc-tooltip .mc-chip{background:#3b413d!important;color:#eef0ec!important;border:none!important;border-radius:999px!important;padding:3px 10px!important;
+  font-size:12px!important}
+#mc-tooltip .mc-chip:hover{background:var(--accent)!important;color:#0d1110!important}
+
+/* ---------- concluir (vem da barra lateral do app) ---------- */
+.done-t{position:absolute;top:6px;right:0;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);height:38px;padding:0 16px 0 12px;border-radius:999px;cursor:pointer;background:var(--surface);border:none;user-select:none;
+  letter-spacing:0;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.done-t:active{transform:scale(.97)}
+.done-t .d{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--control);background:var(--raised);
+  transition:background-color .2s ease,border-color .2s ease}
+.done-t.on{color:var(--ok);background:var(--ok-bg)}
+.done-t.on .d{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px var(--ok-bg)}
+@media (max-width:700px){.done-t{position:static;margin-top:14px}.pane-title.has-done{padding-right:0}}
+
+@media (max-width:900px){
+  .hero{padding:24px 16px 0}
+  .shell{padding:0 16px 72px}
+  .q{padding:18px 16px;border-radius:18px}
+  .note{padding:16px 18px}
+  .prose p,.intro p,.prose li,.intro li{font-size:16.5px}
+  .prose h2,.intro h2{font-size:27px;margin-top:44px}
+  .opts{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  .hero,.scorebar,.q-actions,.strip,.done-t{display:none}
+  body{background:#fff!important;color:#000}
+  .pane[hidden],.q-why[hidden]{display:block!important}
+  .q,.fig{break-inside:avoid}
+}
+
+/* ---------- anterior / próximo ---------- */
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{border:none;background:var(--surface);border-radius:16px;padding:14px 18px;font-family:var(--sans);font-size:14.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);max-width:48%;text-align:left;line-height:1.4;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.navfoot button:last-child{text-align:right;margin-left:auto}
+.navfoot button:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.navfoot button:hover{background:var(--surface-2)}}
+
+/* ---------- botão grande de concluir, no fim do segmento ---------- */
+.cel-fin{display:flex;justify-content:center;margin:34px 0 8px}
+.cel-finish{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+  font:500 16px/1 var(--sans);cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+:root[data-theme="dark"] .cel-finish{color:#0d1110}
+.cel-finish:active{transform:scale(.97)}
+.cel-finish svg{width:20px;height:20px}
+.cel-finish svg circle{fill:none;stroke:currentColor;stroke-width:2;opacity:.55}
+.cel-finish svg path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s var(--ease-out)}
+.cel-finish.on{background:var(--ok-bg);color:var(--ok)}
+:root[data-theme="dark"] .cel-finish.on{color:var(--ok)}
+.cel-finish.on svg path{stroke-dashoffset:0}
+@media (hover:hover) and (pointer:fine){.cel-finish:not(.on):hover{transform:translateY(-1px)}}
+@media (max-width:600px){.cel-finish{width:100%}}
+.cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
+
+.find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+
+/* ===== Simulados 1 e 2: markup gerado por JS ===== */
+.hero-in{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.hero p{max-width:68ch}
+.tabs{display:flex;gap:6px;max-width:920px;margin:22px auto 0;padding:0 0 24px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.tabbtn{border:none;background:var(--surface);border-radius:999px;height:34px;padding:0 16px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  cursor:pointer;color:var(--ink-2);position:static;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.tabbtn:active{transform:scale(.97)}
+.tabbtn.active{background:var(--ink);color:var(--on-ink)}
+main.shell{padding-top:32px}
+h2.block-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:48px 0 16px;font-weight:400;color:var(--ink);
+  letter-spacing:-.01em;padding:0;border:0}
+h2.block-title:first-of-type{margin-top:0}
+.block-sub{font-family:var(--sans);font-size:14.5px;color:var(--muted);margin:-4px 0 22px;max-width:68ch}
+#scoretext .n{font-variant-numeric:tabular-nums}
+.btn{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;cursor:pointer;background:var(--ink);
+  color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn:active:not(:disabled){transform:scale(.97)}
+.btn:disabled{opacity:.3;cursor:not-allowed;background:var(--ink)}
+.btn-outline{background:var(--surface-2);color:var(--ink)}
+.btn-sm{height:34px;padding:0 14px;font-size:13.5px}
+.q-stem .vg{margin:0 0 12px;white-space:pre-line;font-size:16.5px;line-height:1.65}
+.q-stem .cmd{margin:0 0 14px;font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink-2);white-space:pre-line}
+.opt.selected{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt.selected .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.q.locked .opt{cursor:default}
+.opt-just{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--ink-2);margin:-2px 0 12px 38px;padding:0}
+.opt-just.j-correct{color:var(--ok)}
+.opt-just.j-wrong{color:var(--bad)}
+.q-actions{margin-top:14px}
+.hint{font-family:var(--sans);font-size:13px;color:var(--faint)}
+.d{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.d-itens{margin:10px 0 16px;padding-left:0;list-style:none}
+.d-itens li{font-family:var(--sans);font-size:14.5px;color:var(--ink-2);margin-bottom:8px;line-height:1.55}
+textarea.d-answer{width:100%;min-height:110px;font-family:var(--sans);font-size:15.5px;line-height:1.55;padding:12px 14px;border:1px solid var(--border);
+  border-radius:14px;resize:vertical;color:var(--ink);background:var(--raised);outline:none}
+textarea.d-answer:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.char-row{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px;font-family:var(--sans);font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.char-row.near-limit{color:var(--warn)}
+.char-row.at-limit{color:var(--bad);font-weight:600}
+.gabarito{margin-top:14px;padding:16px 18px;background:#e9f3f0;border-radius:16px;font-family:var(--sans);font-size:15px;line-height:1.65;white-space:pre-line;
+  color:var(--ink)}
+:root[data-theme="dark"] .gabarito{background:#142824}
+.gabarito-pts{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:10px}
+.closing{font-family:var(--sans);font-size:13px;color:var(--muted);text-align:left;line-height:1.6}
+@media (max-width:700px){.scorebar{flex-direction:column;align-items:stretch}#scoretext{text-align:center}}
+</style><script>(function(){var p=(window.name||"").split("|");document.documentElement.setAttribute("data-theme",p[2]==="light"?"light":"dark")})();</script></head>
+<body><div class="hero">
+  <div class="hero-in">
+    <span class="tag">SIMULADO 2 · PATOLOGIA MÉDICA I</span>
+    <h1>Cardiovascular + Sistema Respiratório</h1>
+    <p>30 questões objetivas (18 Cardiovascular + 12 Respiratório) e 5 questões dissertativas
+    (3 Cardiovascular + 2 Respiratório). Questões mais elaboradas, com raciocínio diagnóstico mais
+    próximo do estilo real de prova. Conta compartilhada — Matheus Tavares e Vinícius Cabral.</p>
+  </div>
+  <div class="tabs">
+    <button class="tabbtn active" data-tab="obj" id="tabbtn-obj">Questões Objetivas</button>
+    <button class="tabbtn" data-tab="diss" id="tabbtn-diss">Questões Dissertativas</button>
+  </div>
+</div>
+
+<main class="shell">
+  <section class="pane" id="pane-obj">
+    <div class="scorebar">
+      <div id="scoretext">Acertos: <span class="n" id="scoreCorrect">0</span> — Verificadas: <span class="n" id="scoreVerified">0</span>/<span class="n" id="scoreTotal">30</span></div>
+      <button class="btn" id="verifyAllBtn">Verificar todas</button>
+    </div>
+
+    <div id="all-objetivas"></div>
+  </section>
+
+  <section class="pane" id="pane-diss" hidden>
+    <p class="block-sub" style="margin-top:6px">Resposta com até 500 caracteres por questão</p>
+    <div id="all-dissertativas"></div>
+  </section>
+
+  <p class="closing">Simulado gerado a partir das 5 provas anteriores e dos resumos de aula ·
+  Faculdade de Ciências Médicas de Minas Gerais</p>
+</main>
+
+<script id="app-data" type="application/json">{"objetivas": [{"id": "obj21", "num": 1, "tema": "CV", "vignette": "Paciente de 48 anos, natural de área endêmica, com sorologia positiva para Trypanosoma cruzi conhecida há anos, é internado por embolia arterial em membro inferior. Ecocardiograma revela discinesia e afilamento acentuado da região apical do ventrículo esquerdo, com imagem compatível com trombo aderido nesse local.", "comando": "O achado ecocardiográfico descrito é classicamente denominado:", "options": ["Discinesia septal isolada, achado inespecífico sem relação com a etiologia chagásica.", "Lesão apical (aneurisma de ponta / lesão vorticilar), típica da cardiopatia chagásica crônica.", "Pseudoaneurisma ventricular, decorrente de ruptura contida de parede livre pós-infarto.", "Aneurisma sacular da aorta ascendente, secundário a degeneração cística da média."], "correct": 1, "justs": ["Errada — o achado descrito é especificamente apical, não septal, e é um marcador reconhecido e bastante específico da etiologia chagásica.", "Correta — afilamento e discinesia da região apical do VE, com trombo mural associado, é a lesão apical (vorticilar) clássica da cardiopatia chagásica crônica.", "Errada — não há história de infarto prévio no caso; o contexto (sorologia positiva para Chagas) aponta para a lesão apical chagásica, não para complicação pós-infarto.", "Errada — o achado descrito é no ápice do ventrículo esquerdo, não na aorta ascendente."]}, {"id": "obj1", "num": 2, "tema": "CV", "vignette": "Homem de 58 anos, hipertenso e tabagista, é admitido no pronto-socorro com dor torácica retroesternal em aperto, iniciada há 40 minutos, sem alívio com o repouso, associada a sudorese fria e náuseas. Ao exame: PA 100x60 mmHg, FC 102 bpm, ausculta cardiopulmonar sem alterações. ECG mostra supradesnivelamento do segmento ST de 3 mm em V1-V4. Troponina ultrassensível: 8,4 ng/L (referência <14 ng/L) na admissão.", "comando": "Diante do quadro apresentado, qual a conduta mais adequada e qual território miocárdico está mais provavelmente envolvido?", "options": ["Antiagregação isolada com AAS e observação ambulatorial; território lateral.", "Aguardar curva de troponina seriada por 6 horas antes de decidir a reperfusão; território inferior.", "Trombólise formalmente contraindicada nesse contexto; território posterior, por oclusão de coronária direita.", "Reperfusão coronariana de urgência; território anterior/septal, por provável oclusão da descendente anterior."], "correct": 3, "justs": ["Errada — o quadro é uma emergência que exige reperfusão urgente, não conduta ambulatorial.", "Errada — em IAMCST não se aguarda curva seriada de troponina para reperfundir, o que atrasaria o tratamento; além disso, o padrão eletrocardiográfico não corresponde a parede inferior.", "Errada — a trombólise pode ser considerada quando a angioplastia primária não está disponível em tempo hábil; o padrão eletrocardiográfico também não corresponde a parede posterior/coronária direita.", "Correta — ST-elevação em V1-V4 indica IAM anterior/septal, território da artéria descendente anterior; a decisão de reperfundir é clínica e eletrocardiográfica, independente do resultado da troponina inicial."]}, {"id": "obj2", "num": 3, "tema": "CV", "vignette": "Homem de 58 anos, hipertenso e tabagista, é admitido no pronto-socorro com dor torácica retroesternal em aperto, iniciada há 40 minutos, sem alívio com o repouso, associada a sudorese fria e náuseas. Ao exame: PA 100x60 mmHg, FC 102 bpm, ausculta cardiopulmonar sem alterações. ECG mostra supradesnivelamento do segmento ST de 3 mm em V1-V4. Troponina ultrassensível: 8,4 ng/L (referência <14 ng/L) na admissão. Considerando o mesmo paciente: no terceiro dia de evolução, apresenta piora súbita da dispneia, hipotensão e surgimento de sopro holossistólico novo em foco mitral, com estertores crepitantes bilaterais.", "comando": "Esse quadro é mais compatível com qual complicação mecânica do infarto, e qual sua base anatômica?", "options": ["Ruptura do septo interventricular, com comunicação interventricular adquirida.", "Tamponamento cardíaco por hemopericárdio, com abafamento de bulhas.", "Pericardite epistenocárdica, com atrito pericárdico à ausculta.", "Ruptura do músculo papilar, com insuficiência mitral aguda grave."], "correct": 3, "justs": ["Errada — a CIV adquirida também causa sopro novo e choque, mas classicamente é mais audível na borda esternal esquerda baixa, com frêmito, não em foco mitral.", "Errada — tamponamento cursa com abafamento de bulhas, turgência jugular e pulso paradoxal, não com sopro holossistólico novo.", "Errada — pericardite epistenocárdica cursa com atrito pericárdico e dor pleurítica, não com sopro holossistólico ou edema agudo de pulmão.", "Correta — sopro holossistólico NOVO em foco mitral associado a edema pulmonar agudo e hipotensão, nos primeiros dias pós-IAM, é o quadro clássico de ruptura de músculo papilar com insuficiência mitral aguda."]}, {"id": "obj3", "num": 4, "tema": "CV", "vignette": "Homem de 58 anos, hipertenso e tabagista, é admitido no pronto-socorro com dor torácica retroesternal em aperto, iniciada há 40 minutos, sem alívio com o repouso, associada a sudorese fria e náuseas. Ao exame: PA 100x60 mmHg, FC 102 bpm, ausculta cardiopulmonar sem alterações. ECG mostra supradesnivelamento do segmento ST de 3 mm em V1-V4. Troponina ultrassensível: 8,4 ng/L (referência <14 ng/L) na admissão. Considerando o mesmo caso: apesar do tratamento, o paciente evolui a óbito no 5º dia de internação, sendo realizada necropsia.", "comando": "Em relação ao aspecto microscópico esperado na área miocárdica infartada nesse momento evolutivo, assinale a alternativa correta:", "options": ["Tecido de granulação já maduro, com deposição significativa e organizada de colágeno tipo I.", "Cicatriz fibrosa densa, hipocelular, já completamente estabelecida nesse momento evolutivo.", "Intensa infiltração por neutrófilos, com fagocitose de fibras necróticas e fragilidade tecidual acentuada nessa fase.", "Miocárdio ainda histologicamente normal nesse momento, sem qualquer alteração inflamatória associada."], "correct": 2, "justs": ["Errada — tecido de granulação bem estabelecido, com deposição relevante de colágeno, é achado de aproximadamente 1-2 semanas, ainda não do 5º dia.", "Errada — cicatriz fibrosa madura é achado de semanas a meses de evolução.", "Correta — por volta do 5º dia, há intensa infiltração neutrofílica com fagocitose de debris necróticos, período de máxima fragilidade mecânica do miocárdio.", "Errada — miocárdio histologicamente normal é achado das primeiras horas (até cerca de 4-6h), não do 5º dia."]}, {"id": "obj15", "num": 5, "tema": "CV", "vignette": "Paciente pós-IAM transmural extenso, no 6º dia de internação, apresenta parada cardiorrespiratória em atividade elétrica sem pulso, com achado, na tentativa de reanimação, de grande quantidade de líquido no espaço pericárdico.", "comando": "O mecanismo mais provável desse desfecho, e o motivo do risco aumentado nesse intervalo específico, são respectivamente:", "options": ["Tromboembolismo pulmonar maciço; estase venosa favorecida pela imobilização prolongada no leito.", "Dissecção aguda de aorta; degeneração cística da média já preexistente antes desse evento.", "Ruptura da parede livre do ventrículo; rigidez máxima da cicatriz fibrótica, já plenamente estabelecida.", "Ruptura da parede livre do ventrículo; fragilidade máxima pela digestão enzimática do tecido necrótico nesse período."], "correct": 3, "justs": ["Errada — TEP maciço não explica diretamente o achado de líquido no espaço pericárdico.", "Errada — não há elementos no caso sugestivos de dissecção de aorta; o contexto pós-IAM aponta para complicação mecânica ventricular.", "Errada — nesse período a parede está mais frágil, não mais rígida; a fibrose madura (mais rígida) só se estabelece semanas depois.", "Correta — entre o 3º e o 7º-10º dia, a digestão enzimática do tecido necrótico por neutrófilos/macrófagos fragiliza mecanicamente a parede, período de maior risco de ruptura e hemopericárdio/tamponamento."]}, {"id": "obj29", "num": 6, "tema": "Resp", "vignette": "Considere três mecanismos distintos de colabamento pulmonar (atelectasia), cada um associado a uma situação clínica típica:\nI — Pneumotórax hipertensivo\nII — Rolha de muco obstruindo um brônquio principal\nIII — Fibrose pulmonar extensa em fase avançada", "comando": "Assinale a alternativa que associa corretamente cada situação ao tipo de atelectasia correspondente (na ordem I, II, III):", "options": ["Compressão; reabsorção (obstrutiva); contração/cicatricial — nessa ordem, respectivamente.", "Contração/cicatricial; reabsorção; compressão — nessa ordem, respectivamente.", "Reabsorção; compressão; contração/cicatricial — nessa ordem, respectivamente.", "Compressão; contração/cicatricial; reabsorção — nessa ordem, respectivamente."], "correct": 0, "justs": ["Correta — pneumotórax hipertensivo comprime o parênquima adjacente (atelectasia por compressão); rolha de muco obstrui via aérea (atelectasia por reabsorção); fibrose restringe a expansão (atelectasia por contração/cicatricial).", "Errada — associa pneumotórax a atelectasia por contração, o que está incorreto.", "Errada — inverte os mecanismos I e II.", "Errada — associa rolha de muco a atelectasia por contração e fibrose a atelectasia por reabsorção, ambos incorretos."]}, {"id": "obj11", "num": 7, "tema": "CV", "vignette": "Placa aterosclerótica em artéria coronária, ao exame anatomopatológico, revela capa fibrosa fina, extenso núcleo necrótico-lipídico e intensa infiltração por macrófagos ativados na região do \"ombro\" (shoulder) da placa.", "comando": "Considerando as características descritas, analise as afirmativas:\nI — Essa placa apresenta alto risco de ruptura aguda, pela fragilidade da capa fibrosa.\nII — Macrófagos ativados liberam metaloproteinases que degradam a matriz extracelular da capa fibrosa, contribuindo para sua instabilidade.\nIII — A ruptura dessa placa expõe material trombogênico subendotelial, podendo desencadear formação de trombo oclusivo.\nIV — Placas com esse perfil morfológico geram, na maioria dos casos, obstrução luminal crítica (>90%) antes de se tornarem clinicamente relevantes.\nSão corretas:", "options": ["I, II, III e IV.", "II e IV, apenas.", "I, II e III, apenas.", "I e III, apenas."], "correct": 2, "justs": ["Errada — inclui a IV, que é falsa: placas vulneráveis frequentemente causam eventos agudos mesmo sem obstrução crítica prévia.", "Errada — inclui a IV, falsa, e omite a I, verdadeira.", "Correta — I, II e III descrevem corretamente as características e consequências de uma placa vulnerável; a IV é falsa.", "Errada — omite a II, também verdadeira, que descreve corretamente o papel dos macrófagos."]}, {"id": "obj19", "num": 8, "tema": "CV", "vignette": "Paciente com antecedente de febre reumática na infância apresenta sopro diastólico em ruflar, com reforço pré-sistólico, mais audível em decúbito lateral esquerdo no foco mitral, associado a hiperfonese de primeira bulha.", "comando": "Esse padrão semiológico é mais compatível com qual disfunção valvar, e qual o substrato morfológico esperado?", "options": ["Estenose aórtica; calcificação e fusão comissural da valva aórtica.", "Insuficiência aórtica; dilatação do anel valvar aórtico por doença da raiz da aorta.", "Estenose mitral; espessamento e fusão das comissuras valvares, reduzindo o orifício valvar.", "Insuficiência mitral; prolapso do folheto posterior por degeneração mixomatosa."], "correct": 2, "justs": ["Errada — o caso descreve achado em foco mitral, não aórtico.", "Errada — a insuficiência aórtica cursa com sopro diastólico em foco aórtico (não mitral) e não apresenta hiperfonese de B1 nem reforço pré-sistólico.", "Correta — sopro diastólico em ruflar com reforço pré-sistólico e hiperfonese de B1 em foco mitral é semiologia clássica de estenose mitral, cujo substrato é o espessamento e fusão comissural pós-reumática.", "Errada — a insuficiência mitral cursa com sopro sistólico (não diastólico), tipicamente holossistólico, não com o padrão diastólico descrito."]}, {"id": "obj30", "num": 9, "tema": "Resp", "vignette": "Paciente de 29 anos, portador de infecção pelo HIV com contagem de CD4 muito baixa, apresenta febre, emagrecimento e hepatoesplenomegalia. Radiografia de tórax mostra padrão micronodular difuso e bilateral, e biópsia hepática revela múltiplos pequenos granulomas com necrose caseosa central.", "comando": "O padrão de disseminação descrito, favorecido pela imunossupressão grave, caracteriza:", "options": ["Tuberculose secundária de reativação, restrita ao ápice pulmonar, sem disseminação sistêmica.", "Tuberculose primária progressiva, restrita exclusivamente ao parênquima pulmonar.", "Complexo de Ghon não complicado, com contenção eficaz pela resposta imune do hospedeiro.", "Tuberculose miliar, por disseminação hematogênica do bacilo para múltiplos órgãos."], "correct": 3, "justs": ["Errada — a reativação restrita ao ápice pulmonar não explicaria o achado de granulomas hepáticos e o padrão miliar difuso.", "Errada — o achado de granulomas hepáticos indica disseminação sistêmica, não restrição exclusiva ao pulmão.", "Errada — o complexo de Ghon representa contenção localizada bem-sucedida, o oposto do quadro disseminado e grave descrito.", "Correta — padrão micronodular difuso pulmonar associado a granulomas caseosos em outro órgão (fígado) caracteriza disseminação hematogênica, ou seja, tuberculose miliar, favorecida pela imunossupressão grave."]}, {"id": "obj28", "num": 10, "tema": "Resp", "vignette": "Paciente de 40 anos, com história de infecções respiratórias de repetição desde a infância, apresenta tosse crônica produtiva com grande volume de secreção purulenta, predominantemente matinal, e episódios recorrentes de hemoptise. Tomografia de alta resolução mostra dilatação e espessamento das paredes brônquicas, com padrão em \"trilho de trem\" em bases pulmonares.", "comando": "O achado tomográfico descrito, associado ao quadro clínico, é compatível com bronquiectasia. Sobre essa condição, assinale a alternativa correta:", "options": ["Resulta de destruição inflamatória crônica da parede brônquica, com perda irreversível do tecido elástico e muscular de sustentação.", "Constitui achado radiológico normal em pacientes com infecções respiratórias recorrentes, sem repercussão funcional.", "Restringe-se, por definição, a um único segmento pulmonar, nunca acometendo múltiplos lobos.", "É definida por dilatação transitória e reversível dos brônquios, que se resolve com o tratamento da infecção aguda."], "correct": 0, "justs": ["Correta — a bronquiectasia resulta de destruição inflamatória crônica da parede brônquica, com perda permanente e irreversível do suporte elástico/muscular, levando à dilatação fixa.", "Errada — é um achado patológico significativo, com repercussão funcional relevante (infecções recorrentes, hemoptise), não um achado normal.", "Errada — a bronquiectasia pode ser localizada ou difusa/multilobar, a depender da etiologia.", "Errada — por definição, a dilatação brônquica na bronquiectasia é permanente e irreversível, não transitória."]}, {"id": "obj20", "num": 11, "tema": "CV", "vignette": "Criança de 5 anos, residente em área rural do norte de Minas Gerais, é levada ao pronto-socorro com febre, mal-estar e edema unilateral doloroso da pálpebra e região periorbitária, associado a linfadenopatia satélite. Poucos dias depois, desenvolve taquicardia persistente e sinais de miocardite ao ecocardiograma.", "comando": "O sinal periorbitário descrito e o quadro miocárdico subsequente são compatíveis com qual diagnóstico, e qual o achado histopatológico esperado no miocárdio nesse momento?", "options": ["Doença de Chagas aguda; ninhos de amastigotas intracelulares e infiltrado inflamatório misto no miocárdio.", "Febre reumática aguda; formação de nódulos de Aschoff no miocárdio acometido do paciente.", "Celulite periorbitária bacteriana; abscesso miocárdico metastático disseminado por via hematogênica.", "Toxoplasmose congênita reativada; calcificações intracranianas associadas à miocardite descrita."], "correct": 0, "justs": ["Correta — edema periorbitário unilateral doloroso com linfadenopatia satélite (sinal de Romaña) seguido de miocardite é o quadro clássico da doença de Chagas aguda, com ninhos de amastigotas ao exame histopatológico.", "Errada — a febre reumática não cursa com edema periorbitário unilateral; esse achado é característico da doença de Chagas aguda.", "Errada — celulite bacteriana não costuma gerar abscesso miocárdico metastático nesse padrão; o quadro descrito é o clássico sinal de Romaña.", "Errada — não há elementos sugestivos de toxoplasmose congênita (que se manifestaria de forma diferente, geralmente ao nascimento/primeira infância com outros achados)."]}, {"id": "obj13", "num": 12, "tema": "CV", "vignette": "Homem de 35 anos, tabagista, sem outros fatores de risco cardiovascular conhecidos, relata episódios recorrentes de dor torácica em repouso, predominantemente nas primeiras horas da madrugada, com duração de 15-20 minutos, aliviados rapidamente após uso de nitrato sublingual. Cineangiocoronariografia realizada em vigência de dor mostra espasmo focal e transitório de artéria coronária direita, sem lesões ateroscleróticas associadas.", "comando": "O quadro descrito caracteriza qual forma de angina?", "options": ["Angina instável, por ruptura de placa com trombo não oclusivo.", "Angina de Prinzmetal (variante), por vasoespasmo coronariano.", "Angina microvascular, por disfunção da microcirculação coronariana distal.", "Angina estável, por obstrução aterosclerótica fixa."], "correct": 1, "justs": ["Errada — a angina instável decorre de ruptura/erosão de placa com trombo, não de espasmo puro em coronária sem lesões.", "Correta — dor em repouso, predomínio noturno/madrugada, alívio rápido com nitrato e espasmo focal documentado em artéria angiograficamente livre de lesões são achados clássicos da angina de Prinzmetal.", "Errada — a angina microvascular cursa com angiografia epicárdica normal, sem espasmo focal visível como o descrito.", "Errada — a angina estável decorre de obstrução fixa e é desencadeada por esforço, não por vasoespasmo em repouso."]}, {"id": "obj6", "num": 13, "tema": "Resp", "vignette": "Homem de 68 anos, tabagista (60 anos-maço), é atendido com dispneia progressiva há 3 anos, atualmente presente até em repouso, tosse com pouca expectoração, e emagrecimento importante. Ao exame: tórax em tonel, uso de musculatura acessória, murmúrio vesicular globalmente reduzido, sem estertores. Gasometria arterial: pO2 58 mmHg, pCO2 40 mmHg. Radiografia de tórax mostra hiperinsuflação pulmonar e retificação diafragmática, sem cardiomegalia.", "comando": "O quadro clínico descrito é mais compatível com qual padrão predominante de DPOC, e qual a principal alteração morfológica esperada?", "options": ["Padrão misto indistinguível, sem qualquer possibilidade de diferenciação clínica entre os dois componentes.", "Padrão predominantemente de bronquite crônica; hiperplasia das glândulas mucosas submucosas com índice de Reid aumentado.", "Padrão predominantemente enfisematoso; destruição dos septos alveolares com aumento permanente dos espaços aéreos distais.", "Asma brônquica de longa data, com broncoespasmo reversível predominante."], "correct": 2, "justs": ["Errada — embora haja sobreposição na prática, os dois padrões têm perfis clínicos reconhecíveis e frequentemente diferenciáveis, como no caso descrito.", "Errada — a bronquite crônica predominante costuma cursar com tosse mais produtiva, sobrepeso e sinais mais precoces de cor pulmonale — perfil diferente do descrito.", "Correta — paciente magro, dispneico mesmo em repouso, com pouca expectoração, hiperinsuflado e sem cardiomegalia é o padrão clássico do enfisema predominante (\"pink puffer\"), com destruição dos septos alveolares.", "Errada — a história de tabagismo intenso e o caráter progressivo e fixo (não episódico/reversível) não são compatíveis com asma."]}, {"id": "obj7", "num": 14, "tema": "Resp", "vignette": "Homem de 68 anos, tabagista (60 anos-maço), é atendido com dispneia progressiva há 3 anos, atualmente presente até em repouso, tosse com pouca expectoração, e emagrecimento importante. Ao exame: tórax em tonel, uso de musculatura acessória, murmúrio vesicular globalmente reduzido, sem estertores. Gasometria arterial: pO2 58 mmHg, pCO2 40 mmHg. Radiografia de tórax mostra hiperinsuflação pulmonar e retificação diafragmática, sem cardiomegalia. Considerando o mesmo paciente: anos depois, retorna com piora da dispneia, agora associada a edema de membros inferiores, turgência jugular e hepatomegalia, sem novo evento agudo identificado.", "comando": "Essa evolução é explicada por qual mecanismo fisiopatológico?", "options": ["Hipoxemia crônica causando vasoconstrição pulmonar sustentada e falência do ventrículo direito (cor pulmonale).", "Tamponamento cardíaco de instalação crônica, por derrame pericárdico organizado ao longo do tempo.", "Insuficiência mitral crônica, com congestão retrógrada tanto pulmonar quanto sistêmica associada ao quadro.", "Embolia pulmonar aguda e maciça, com obstrução súbita e completa do tronco da artéria pulmonar do paciente."], "correct": 0, "justs": ["Correta — a hipoxemia alveolar crônica da pneumopatia leva a vasoconstrição hipóxica sustentada e hipertensão pulmonar, sobrecarregando e eventualmente levando à falência do VD (cor pulmonale).", "Errada — não há elementos sugestivos de tamponamento nesse quadro crônico e progressivo.", "Errada — não há dado de sopro ou disfunção valvar mitral no caso; o mecanismo é pulmonar, não valvar esquerdo.", "Errada — o quadro é de instalação lenta e progressiva, sem evento agudo, incompatível com embolia maciça súbita."]}, {"id": "obj8", "num": 15, "tema": "Resp", "vignette": "Homem de 68 anos, tabagista (60 anos-maço), é atendido com dispneia progressiva há 3 anos, atualmente presente até em repouso, tosse com pouca expectoração, e emagrecimento importante. Ao exame: tórax em tonel, uso de musculatura acessória, murmúrio vesicular globalmente reduzido, sem estertores. Gasometria arterial: pO2 58 mmHg, pCO2 40 mmHg. Radiografia de tórax mostra hiperinsuflação pulmonar e retificação diafragmática, sem cardiomegalia. Considerando o mesmo caso: o paciente vem a óbito por insuficiência respiratória. À necropsia, o parênquima pulmonar mostra espaços aéreos amplamente dilatados, com destruição dos septos concentrada na porção proximal do ácino, relativamente poupando os alvéolos distais, com predomínio em lobos superiores.", "comando": "Esse padrão morfológico caracteriza qual tipo de enfisema?", "options": ["Enfisema irregular, associado a áreas de cicatrização prévia.", "Enfisema parasseptal, com formação predominante de bolhas subpleurais.", "Enfisema panacinar, associado à deficiência de alfa-1-antitripsina.", "Enfisema centroacinar, tipicamente associado ao tabagismo."], "correct": 3, "justs": ["Errada — o enfisema irregular associa-se a áreas de cicatrização prévia, sem o padrão anatômico centroacinar descrito.", "Errada — o enfisema parasseptal acomete a porção distal do ácino, subpleural, associado a bolhas e risco de pneumotórax — não é o padrão descrito.", "Errada — o enfisema panacinar acomete o ácino de forma uniforme e difusa, com predomínio em bases, tipicamente associado à deficiência de alfa-1-antitripsina — padrão diferente do descrito.", "Correta — destruição concentrada na porção proximal do ácino, poupando os alvéolos distais, com predomínio em lobos superiores, é o padrão clássico do enfisema centroacinar relacionado ao tabagismo."]}, {"id": "obj14", "num": 16, "tema": "CV", "vignette": "Observe os seguintes achados possíveis em diferentes momentos evolutivos após um infarto do miocárdio:\nI — Tecido de granulação com neovascularização proeminente\nII — Necrose coagulativa com infiltrado neutrofílico denso e núcleos picnóticos\nIII — Cicatriz fibrosa madura, colagenizada, hipocelular\nIV — Miocárdio sem alterações histológicas significativas à microscopia de luz", "comando": "Assinale a sequência cronológica correta, da mais precoce para a mais tardia:", "options": ["IV, I, II e III", "III, I, II e IV", "II, IV, I e III", "IV, II, I e III"], "correct": 3, "justs": ["Errada — coloca o tecido de granulação antes da necrose neutrofílica, invertendo a ordem real.", "Errada — apresenta a sequência praticamente invertida, da mais tardia para a mais precoce.", "Errada — inverte os dois primeiros achados; a normalidade histológica precede a necrose estabelecida.", "Correta — miocárdio normal (primeiras horas) → necrose coagulativa com neutrófilos (12h-3 dias) → tecido de granulação (1-2 semanas) → cicatriz madura (semanas a meses)."]}, {"id": "obj12", "num": 17, "tema": "CV", "vignette": "Mulher de 66 anos, hipertensa há 20 anos com controle irregular, é avaliada por dispneia aos moderados esforços. Ecocardiograma mostra espessura do septo interventricular de 14 mm (referência até 11 mm), cavidade do VE de dimensões normais, relação E/A alterada sugestiva de disfunção diastólica, e fração de ejeção preservada (62%).", "comando": "O achado ecocardiográfico central desse caso reflete qual tipo de resposta adaptativa do miocárdio, e qual sua principal consequência funcional inicial?", "options": ["Hipertrofia excêntrica por sobrecarga de volume, com disfunção sistólica predominante.", "Hipertrofia concêntrica por sobrecarga de pressão, com disfunção diastólica predominante.", "Atrofia miocárdica secundária a isquemia crônica, com dilatação compensatória do VE.", "Infiltração amiloide da parede ventricular, com padrão restritivo irreversível desde o início."], "correct": 1, "justs": ["Errada — sobrecarga de volume geraria dilatação da cavidade (hipertrofia excêntrica), não espessamento com cavidade normal.", "Correta — espessamento parietal com cavidade de dimensões normais e fração de ejeção preservada é o padrão de hipertrofia concêntrica por sobrecarga de pressão (HAS), cuja disfunção inicial é predominantemente diastólica.", "Errada — não há dado de isquemia ou dilatação no caso; o achado é de espessamento, não atrofia/dilatação.", "Errada — não há elementos sugestivos de amiloidose; o quadro é típico de cardiopatia hipertensiva."]}, {"id": "obj4", "num": 18, "tema": "CV", "vignette": "Homem de 27 anos, usuário de drogas injetáveis, é internado com febre há 10 dias, calafrios e mialgia. Ao exame: sopro sistólico em foco tricúspide, petéquias em conjuntiva, e lesões eritematosas dolorosas em polpas digitais. Hemoculturas seriadas positivas para Staphylococcus aureus. Tomografia de tórax evidencia múltiplos nódulos pulmonares periféricos, alguns cavitados.", "comando": "As lesões dolorosas em polpas digitais descritas no exame físico correspondem a qual achado semiológico, e qual sua base fisiopatológica?", "options": ["Sinal de Romaña; resposta inflamatória local à inoculação do agente.", "Manchas de Janeway; êmbolos sépticos assintomáticos na pele.", "Nódulos de Osler; depósito de imunocomplexos circulantes.", "Nódulos de Aschoff; reação inflamatória granulomatosa da febre reumática."], "correct": 2, "justs": ["Errada — o sinal de Romaña é um achado periorbitário da doença de Chagas aguda, não relacionado a polpas digitais.", "Errada — as manchas de Janeway são tipicamente indolores, em palmas/plantas, e decorrem de microembolização séptica — diferente do achado doloroso descrito.", "Correta — nódulos de Osler são lesões dolorosas em polpas digitais, classicamente atribuídas a depósito de imunocomplexos circulantes na endocardite infecciosa.", "Errada — nódulos de Aschoff são achados miocárdicos da febre reumática, não lesões cutâneas de polpas digitais."]}, {"id": "obj5", "num": 19, "tema": "CV", "vignette": "Homem de 27 anos, usuário de drogas injetáveis, é internado com febre há 10 dias, calafrios e mialgia. Ao exame: sopro sistólico em foco tricúspide, petéquias em conjuntiva, e lesões eritematosas dolorosas em polpas digitais. Hemoculturas seriadas positivas para Staphylococcus aureus. Tomografia de tórax evidencia múltiplos nódulos pulmonares periféricos, alguns cavitados. Considerando o mesmo caso:", "comando": "Os nódulos pulmonares cavitados identificados na tomografia decorrem de qual mecanismo, e o que esse achado sugere quanto à origem da endocardite?", "options": ["Reativação de um foco tuberculoso latente, sem qualquer relação com o quadro cardíaco atual do paciente.", "Êmbolos sépticos originados de vegetação em valva do lado direito, compatível com a valva tricúspide acometida no caso.", "Broncoaspiração de secreção orofaríngea contaminada pelo mesmo agente causador da endocardite.", "Disseminação hematogênica arterial sistêmica, a partir de uma vegetação em valva aórtica do lado esquerdo."], "correct": 1, "justs": ["Errada — não há elementos no caso sugestivos de tuberculose; o quadro é explicado pela embolização séptica a partir da endocardite.", "Correta — vegetações em valva tricúspide (lado direito) embolizam diretamente para a circulação pulmonar, causando nódulos/êmbolos sépticos pulmonares, compatível com o sopro tricúspide descrito.", "Errada — o mecanismo dos nódulos é embólico (a partir da vegetação valvar), não por aspiração.", "Errada — êmbolos de valva aórtica (lado esquerdo) seguiriam para a circulação sistêmica, não para os pulmões."]}, {"id": "obj26", "num": 20, "tema": "Resp", "vignette": "A hipertensão pulmonar pode ser secundária a diversas condições que compartilham, ao final, a mesma via fisiopatológica comum de remodelamento vascular pulmonar.", "comando": "Associe corretamente cada mecanismo à sua principal causa associada:\nI — Vasoconstrição hipóxica crônica\nII — Obstrução mecânica recorrente do leito vascular\nIII — Congestão venosa pulmonar retrógrada crônica\n\na) Tromboembolismo pulmonar de repetição\nb) Doença pulmonar obstrutiva crônica\nc) Disfunção crônica do ventrículo esquerdo\n\nAssinale a alternativa que associa corretamente (na ordem I, II, III):", "options": ["b, a, c", "b, c, a", "c, a, b", "a, b, c"], "correct": 0, "justs": ["Correta — vasoconstrição hipóxica crônica relaciona-se à DPOC; obstrução mecânica recorrente relaciona-se ao TEP de repetição; congestão retrógrada relaciona-se à disfunção do VE.", "Errada — associa disfunção do VE (III) à obstrução mecânica (II), o que está incorreto.", "Errada — desloca todos os pares de forma incorreta.", "Errada — inverte os mecanismos I e II."]}, {"id": "obj16", "num": 21, "tema": "CV", "vignette": "Paciente submetido à angioplastia primária com sucesso 2 horas após o início dos sintomas de IAM, com restabelecimento angiográfico completo do fluxo coronariano. Apesar disso, o ecocardiograma 24 horas depois ainda mostra hipocinesia da parede anterior, com recuperação funcional completa observada apenas 10 dias depois.", "comando": "Esse padrão de recuperação funcional tardia, apesar da reperfusão angiográfica precoce e bem-sucedida, é mais bem explicado por:", "options": ["Miocárdio atordoado (\"stunning\"), disfunção contrátil transitória e reversível em tecido viável reperfundido.", "Miocárdio hibernante, adaptação crônica a um estado de hipoperfusão persistente e não corrigida.", "Necrose miocárdica irreversível, sem qualquer possibilidade de recuperação funcional futura.", "Rejeição imunológica ao stent implantado, com resposta inflamatória local prolongada."], "correct": 0, "justs": ["Correta — disfunção contrátil transitória em tecido viável, que se recupera com o tempo após reperfusão bem-sucedida, é a definição de miocárdio atordoado.", "Errada — miocárdio hibernante refere-se a hipoperfusão crônica NÃO corrigida; nesse caso o fluxo já foi restabelecido angiograficamente.", "Errada — a recuperação funcional completa observada depois contradiz a hipótese de necrose irreversível.", "Errada — não há elementos clínicos sugestivos de rejeição ao stent; o quadro é explicado por um fenômeno fisiológico conhecido e esperado."]}, {"id": "obj27", "num": 22, "tema": "Resp", "vignette": "Paciente politraumatizado, após transfusão maciça de hemocomponentes para controle de choque hemorrágico, evolui em 36 horas com hipoxemia refratária, infiltrado alveolar bilateral difuso à radiografia e necessidade de ventilação mecânica, sem evidência de disfunção ventricular esquerda ao ecocardiograma.", "comando": "O quadro é compatível com dano alveolar difuso (SDRA). Em relação ao mecanismo central dessa condição nesse contexto, assinale a alternativa correta:", "options": ["Lesão inflamatória da barreira alvéolo-capilar, com aumento da permeabilidade vascular pulmonar.", "Obstrução linfática pulmonar por infiltração neoplásica, impedindo a drenagem do interstício pulmonar.", "Elevação primária da pressão hidrostática capilar pulmonar, por sobrecarga de volume do ventrículo esquerdo.", "Deficiência congênita de surfactante, manifestada tardiamente já na vida adulta desse paciente."], "correct": 0, "justs": ["Correta — politraumatismo e transfusão maciça são causas extrapulmonares clássicas de SDRA, cujo mecanismo central é a lesão inflamatória da barreira alvéolo-capilar com aumento da permeabilidade vascular.", "Errada — não há elementos sugestivos de infiltração neoplásica nesse contexto de trauma agudo.", "Errada — o ecocardiograma normal exclui disfunção ventricular esquerda como causa, afastando o mecanismo hidrostático/cardiogênico.", "Errada — não se trata de deficiência congênita de surfactante, condição que se manifesta ao nascimento, não tardiamente após trauma na vida adulta."]}, {"id": "obj23", "num": 23, "tema": "CV", "vignette": "Na insuficiência cardíaca crônica, diversos mecanismos neuro-hormonais são ativados na tentativa de manter a perfusão tecidual adequada, mas contribuem, a longo prazo, para a progressão da doença.", "comando": "Analise as afirmativas:\nI — A ativação do sistema renina-angiotensina-aldosterona promove vasoconstrição e retenção de sódio e água.\nII — O aumento do tônus simpático eleva a frequência cardíaca e a contratilidade, às custas de maior consumo de oxigênio miocárdico.\nIII — Os peptídeos natriuréticos (BNP/ANP) são liberados em resposta ao estiramento das câmaras cardíacas, promovendo natriurese e vasodilatação.\nIV — Esses mecanismos, em conjunto, revertem completamente a progressão da disfunção ventricular a longo prazo.\nSão corretas:", "options": ["II e III, apenas.", "I, II e III, apenas.", "I e IV, apenas.", "I, II, III e IV."], "correct": 1, "justs": ["Errada — omite a I, verdadeira, que descreve corretamente o papel do SRAA.", "Correta — I, II e III descrevem corretamente os três mecanismos neuro-hormonais centrais da IC; a IV é falsa.", "Errada — inclui a IV, que é falsa, e omite II e III, verdadeiras.", "Errada — inclui a IV, falsa: esses mecanismos são inicialmente compensatórios, mas não revertem, e sim contribuem para a progressão da doença a longo prazo."]}, {"id": "obj22", "num": 24, "tema": "CV", "vignette": "Considere dois pacientes com quadros distintos envolvendo a aorta:\nPaciente 1: massa pulsátil abdominal indolor, achado incidental em exame de rotina, sem dor associada.\nPaciente 2: dor torácica súbita, lancinante, irradiada para o dorso, com assimetria de pulsos entre os membros.", "comando": "Assinale a alternativa que associa corretamente cada paciente à condição mais provável e ao seu principal substrato morfológico:", "options": ["P1 — aneurisma micótico por endocardite prévia; P2 — ruptura de seio de Valsalva congênito não diagnosticado.", "P1 — aneurisma aterosclerótico de aorta abdominal; P2 — dissecção aguda de aorta (degeneração cística da média).", "Ambos os pacientes apresentam a mesma condição, apenas em estágios evolutivos diferentes um do outro.", "P1 — dissecção crônica estável de aorta abdominal; P2 — aneurisma aterosclerótico roto de aorta torácica."], "correct": 1, "justs": ["Errada — não há elementos no caso (febre, sopro, cirurgia congênita prévia) que sustentem essas hipóteses mais específicas e menos prováveis.", "Correta — massa pulsátil abdominal indolor e incidental é o quadro típico de aneurisma aterosclerótico; dor lancinante com irradiação dorsal e assimetria de pulsos é o quadro clássico de dissecção aguda de aorta.", "Errada — são entidades distintas, com apresentações clínicas e substratos morfológicos diferentes, não estágios de uma mesma doença.", "Errada — inverte e distorce os diagnósticos; \"dissecção crônica estável\" não é uma entidade compatível com achado incidental indolor."]}, {"id": "obj17", "num": 25, "tema": "CV", "vignette": "Homem de 74 anos, com três infartos documentados nos últimos 15 anos, todos tratados de forma tardia, mantém acompanhamento ambulatorial por dispneia progressiva e episódios recorrentes de descompensação de insuficiência cardíaca, sem angina significativa atualmente. Ecocardiograma mostra fração de ejeção de 28%, com múltiplas áreas de acinesia e adelgaçamento parietal.", "comando": "O quadro descrito caracteriza:", "options": ["Miocardite viral em fase crônica, mimetizando sequela isquêmica.", "Cardiomiopatia dilatada idiopática, sem relação com a doença coronariana prévia do paciente.", "Estenose aórtica crítica não diagnosticada, justificando isoladamente a disfunção ventricular.", "Cardiopatia isquêmica crônica, por acúmulo de dano miocárdico e fibrose de eventos isquêmicos sucessivos."], "correct": 3, "justs": ["Errada — não há elementos clínicos sugestivos de miocardite; a história é diretamente compatível com sequela isquêmica.", "Errada — há claramente uma causa identificável (doença coronariana com infartos documentados), não se tratando de miocardiopatia idiopática.", "Errada — não há dado de estenose aórtica no caso; a disfunção é explicada pelos infartos prévios documentados.", "Correta — múltiplos infartos ao longo do tempo, com fibrose e disfunção ventricular progressivas, é o quadro clássico da cardiopatia isquêmica crônica."]}, {"id": "obj24", "num": 26, "tema": "Resp", "vignette": "Mulher de 34 anos, em uso de anticoncepcional oral combinado, realiza viagem aérea de longa duração (12 horas) e, no dia seguinte ao desembarque, desenvolve dispneia súbita, dor torácica ventilatório-dependente e taquicardia. Exame físico revela discreto edema assimétrico da panturrilha esquerda, com empastamento doloroso à palpação.", "comando": "O conjunto de achados é mais sugestivo de qual condição, e qual exame confirmaria a hipótese diagnóstica com maior acurácia?", "options": ["Dissecção aguda de aorta torácica; angiotomografia de aorta com contraste.", "Síndrome coronariana aguda, por espasmo coronariano relacionado ao uso hormonal; cineangiocoronariografia.", "Tromboembolismo pulmonar, originado de trombose venosa profunda de membro inferior; angiotomografia de tórax.", "Pneumotórax espontâneo, por ruptura de bolha subpleural; radiografia de tórax em expiração."], "correct": 2, "justs": ["Errada — não há descrição de dor lancinante com irradiação dorsal ou assimetria de pulsos; o quadro com sinais de TVP aponta para TEP.", "Errada — não há descrição de dor torácica anginosa típica nem fatores de risco coronarianos; os achados de TVP tornam TEP muito mais provável.", "Correta — imobilização prolongada (voo longo) + uso de anticoncepcional oral (estados que favorecem a tríade de Virchow) associados a sinais de TVP de panturrilha e quadro respiratório agudo apontam para TEP, confirmado por angiotomografia de tórax.", "Errada — não há descrição de dor pleurítica súbita associada a redução do murmúrio vesicular unilateral típica de pneumotórax; o conjunto de achados (fatores de risco + sinais de TVP) aponta para TEP."]}, {"id": "obj9", "num": 27, "tema": "Resp", "vignette": "Mulher de 45 anos, previamente hígida, é internada com febre alta, calafrios, tosse produtiva com expectoração purulenta e dor pleurítica há 4 dias. Radiografia de tórax mostra consolidação homogênea do lobo inferior direito. Iniciada antibioticoterapia empírica.", "comando": "Considerando o tempo de evolução (4 dias) e a fisiopatologia clássica da pneumonia lobar bacteriana, qual o estágio histopatológico mais provável nesse momento?", "options": ["Resolução, com digestão enzimática já completa do exsudato e reaeração progressiva dos alvéolos.", "Hepatização cinzenta, com degradação de hemácias e exsudato fibrinopurulento intra-alveolar persistente.", "Congestão inicial, com hiperemia capilar septal e transudato seroso nos espaços alveolares acometidos.", "Fibrose organizante já estabelecida, com substituição extensa do parênquima por tecido conjuntivo denso."], "correct": 1, "justs": ["Errada — a resolução ocorre mais tardiamente, após o exsudato ter sido digerido enzimaticamente — fase ainda não alcançada aos 4 dias.", "Correta — por volta do 4º-6º dia de evolução, a pneumonia lobar tipicamente se encontra na fase de hepatização cinzenta, com degradação de hemácias e exsudato fibrinopurulento persistente.", "Errada — a fase de congestão é a mais precoce (primeiro dia), incompatível com 4 dias de evolução.", "Errada — fibrose organizante é uma complicação tardia e não o padrão esperado nesse momento evolutivo padrão."]}, {"id": "obj10", "num": 28, "tema": "Resp", "vignette": "Mulher de 45 anos, previamente hígida, é internada com febre alta, calafrios, tosse produtiva com expectoração purulenta e dor pleurítica há 4 dias. Radiografia de tórax mostra consolidação homogênea do lobo inferior direito. Iniciada antibioticoterapia empírica. Considerando o mesmo caso: no 8º dia de internação, apesar da antibioticoterapia, a paciente mantém febre e passa a apresentar dor pleurítica intensa e piora da dispneia. Nova radiografia mostra derrame pleural loculado à direita; a toracocentese obtém líquido turvo, com pH 7,0, glicose baixa e celularidade neutrofílica intensa.", "comando": "Esses achados no líquido pleural são compatíveis com qual complicação?", "options": ["Derrame pleural transudativo, secundário a insuficiência cardíaca associada.", "Empiema pleural, por extensão da infecção bacteriana ao espaço pleural.", "Quilotórax, por lesão do ducto torácico durante a evolução da pneumonia.", "Hemotórax espontâneo, sem relação com o quadro infeccioso de base."], "correct": 1, "justs": ["Errada — um transudato cardiogênico teria aspecto claro, pH e celularidade normais, perfil bioquímico bem diferente do descrito.", "Correta — líquido turvo, com pH baixo, glicose baixa e celularidade neutrofílica intensa é o perfil clássico de empiema pleural, por extensão direta da infecção ao espaço pleural.", "Errada — quilotórax tem aspecto leitoso (rico em triglicerídeos/quilomícrons), não turvo-purulento como descrito.", "Errada — não há elementos sugestivos de sangramento; o perfil bioquímico do líquido é claramente infeccioso/purulento."]}, {"id": "obj18", "num": 29, "tema": "CV", "vignette": "Menina de 9 anos apresenta, há 5 dias, febre, artrite migratória (inicialmente em joelho direito, depois em tornozelo esquerdo) e episódio de faringite tratada de forma incompleta há 3 semanas. Ao exame, ausculta cardíaca revela sopro sistólico novo em foco mitral. Antiestreptolisina O (ASLO) elevada.", "comando": "Com base nos critérios de Jones, o diagnóstico mais provável e os critérios maiores presentes no caso são:", "options": ["Artrite reumatoide juvenil; os achados relevantes seriam apenas a artrite e a febre da paciente.", "Endocardite infecciosa; bastam o sopro cardíaco e a febre, sem exigir evidência de estreptococcia prévia.", "Febre reumática aguda; os critérios maiores presentes no caso são a artrite e a cardite.", "Doença de Kawasaki; a febre e as alterações cardíacas independem de infecção estreptocócica prévia."], "correct": 2, "justs": ["Errada — febre não é critério de Jones para artrite reumatoide juvenil, e o quadro com evidência estreptocócica prévia aponta para febre reumática, não AR juvenil.", "Errada — a endocardite infecciosa exige evidência microbiológica (hemoculturas) e não depende de infecção estreptocócica faríngea prévia como no caso.", "Correta — artrite migratória, cardite (sopro novo) e evidência de infecção estreptocócica prévia (faringite + ASLO elevado) configuram febre reumática aguda, com artrite e cardite como critérios maiores presentes.", "Errada — a doença de Kawasaki tem outros critérios diagnósticos (conjuntivite, exantema, alterações de extremidades) e não se relaciona a faringite estreptocócica prévia."]}, {"id": "obj25", "num": 30, "tema": "Resp", "vignette": "Paciente com tromboembolismo pulmonar confirmado evolui com pequena área de infarto hemorrágico no lobo inferior direito, identificada em exame de imagem como opacidade em cunha, de base pleural.", "comando": "A ocorrência de infarto (e não apenas isquemia reversível) nesse território pulmonar, apesar da dupla circulação (pulmonar e brônquica), sugere que:", "options": ["Houve comprometimento associado da circulação brônquica colateral, insuficiente para suprir adequadamente o território acometido.", "O infarto pulmonar ocorre sempre, independentemente do estado da circulação brônquica, em qualquer episódio de TEP.", "A circulação brônquica é, na verdade, irrelevante para a perfusão do parênquima pulmonar distal.", "A coloração hemorrágica descartaria infarto verdadeiro, sendo mais compatível com hemorragia alveolar difusa isolada."], "correct": 0, "justs": ["Correta — como a circulação brônquica normalmente supre o parênquima mesmo com obstrução da artéria pulmonar, a ocorrência de infarto verdadeiro sugere que essa circulação colateral estava comprometida ou foi insuficiente nesse caso.", "Errada — o infarto pulmonar não ocorre na maioria dos episódios de TEP, justamente pela proteção da circulação brônquica colateral.", "Errada — a circulação brônquica é justamente o principal motivo pelo qual a maioria dos episódios de TEP NÃO causa infarto; ela é relevante, não irrelevante.", "Errada — a coloração hemorrágica é, na verdade, a característica típica do infarto pulmonar (por reperfusão parcial via circulação brônquica), não o descarta."]}], "dissertativas": [{"id": "diss1", "num": 1, "tema": "CV", "vignette": "Homem de 62 anos, hipertenso e diabético, é admitido com infarto agudo do miocárdio de parede inferior, confirmado por supradesnivelamento de ST em DII, DIII e aVF, tratado com angioplastia primária 5 horas após o início dos sintomas — fora da janela ideal. Evolui bem inicialmente, mas no 4º dia apresenta piora súbita da dispneia e surgimento de sopro sistólico novo em foco mitral.", "itens": ["A) Qual artéria coronária está mais provavelmente relacionada ao território infartado? (0,5 ponto)", "B) Qual a complicação mecânica mais provável nesse momento evolutivo, e qual sua base anatômica? (1,5 ponto)", "C) Cite um fator do caso que aumentou o risco dessa complicação. (1,0 ponto)"], "gabarito": "A) Artéria coronária direita (território inferior, na maioria dos indivíduos de dominância direita). (0,5)\n\nB) Ruptura (ou disfunção isquêmica) do músculo papilar, levando a insuficiência mitral aguda; decorre da necrose do músculo papilar — mais comumente o posteromedial, por receber suprimento sanguíneo de uma única fonte (mais vulnerável à isquemia). (1,5)\n\nC) Reperfusão tardia (5 horas após o início dos sintomas, fora da janela ideal), aumentando a área de necrose e o risco de complicações mecânicas. (1,0)", "pontos_total": 3.0, "max_chars": 500}, {"id": "diss4", "num": 2, "tema": "Resp", "vignette": "Homem de 70 anos, tabagista, com DPOC grave conhecida, é internado por exacerbação aguda, com piora da dispneia e hipoxemia. Durante a internação, desenvolve edema de membros inferiores, turgência jugular e hepatomegalia dolorosa, sem novo evento cardíaco agudo identificado.", "itens": ["A) Como se denomina esse quadro de disfunção do ventrículo direito secundária à pneumopatia crônica? (0,5 ponto)", "B) Explique o mecanismo fisiopatológico que liga a hipoxemia crônica a esse quadro. (1,5 ponto)", "C) Cite um achado macroscópico esperado no fígado desse paciente. (1,0 ponto)"], "gabarito": "A) Cor pulmonale (crônico). (0,5)\n\nB) A hipoxemia alveolar crônica desencadeia vasoconstrição hipóxica sustentada das arteríolas pulmonares, levando a hipertensão pulmonar crônica; essa sobrecarga de pressão crônica sobre o ventrículo direito leva à sua hipertrofia e, progressivamente, à falência (cor pulmonale). (1,5)\n\nC) Fígado em \"noz-moscada\" — padrão mosqueado, com áreas centrolobulares congestas/escurecidas alternadas com áreas periportais mais claras. (1,0)", "pontos_total": 3.0, "max_chars": 500}, {"id": "diss3", "num": 3, "tema": "CV", "vignette": "Paciente de 70 anos, com prótese valvar aórtica biológica implantada há 8 meses, é internado com febre há 3 semanas, calafrios e perda de peso. Ecocardiograma transesofágico revela vegetação de 12 mm na prótese, associada a um pequeno abscesso perivalvar. Hemoculturas positivas para Staphylococcus epidermidis.", "itens": ["A) Como é classificada essa endocardite quanto ao tempo de instalação da prótese (precoce ou tardia)? (0,5 ponto)", "B) Cite uma razão pela qual a endocardite em prótese valvar tende a ter pior prognóstico e maior necessidade de intervenção cirúrgica, em comparação com a endocardite de valva nativa. (1,5 ponto)", "C) Cite uma possível complicação local, além do abscesso já identificado, decorrente da progressão dessa infecção na região perivalvar. (1,0 ponto)"], "gabarito": "A) Endocardite tardia de prótese valvar (ocorre classicamente após os primeiros 60 dias do implante). (0,5)\n\nB) A infecção protética frequentemente envolve o tecido perivalvar e o anel de sutura, formando abscessos e levando a destruição estrutural mais extensa, com maior dificuldade de erradicação apenas com antibioticoterapia — por isso frequentemente requer troca cirúrgica da prótese. (1,5)\n\nC) Uma entre: deiscência da prótese (com insuficiência valvar aguda); bloqueio atrioventricular (por extensão ao sistema de condução adjacente); formação de fístula entre câmaras cardíacas. (1,0)", "pontos_total": 3.0, "max_chars": 500}, {"id": "diss2", "num": 4, "tema": "CV", "vignette": "Paciente de 55 anos, natural de área endêmica, com sorologia positiva para Trypanosoma cruzi, apresenta história de disfagia progressiva e constipação crônica há anos, além de insuficiência cardíaca de início recente. Ecocardiograma mostra dilatação biventricular e discinesia apical do VE; esofagografia baritada mostra dilatação importante do esôfago com afilamento distal.", "itens": ["A) Qual o mecanismo fisiopatológico comum às manifestações digestivas e cardíacas descritas? (1,0 ponto)", "B) Cite um achado morfológico esperado no miocárdio, na fase crônica da doença. (1,0 ponto)", "C) Cite uma possível complicação sistêmica grave decorrente do achado cardíaco descrito (discinesia apical). (1,0 ponto)"], "gabarito": "A) Destruição de neurônios ganglionares (dos plexos mioentéricos no tubo digestivo e do sistema de condução/inervação autonômica no coração), por processo inflamatório crônico mediado pela infecção persistente pelo T. cruzi, levando à perda de função motora/contrátil coordenada nos órgãos acometidos. (1,0)\n\nB) Um entre: fibrose miocárdica do tipo endomisial; infiltrado inflamatório crônico mononuclear (linfócitos, plasmócitos, macrófagos). (1,0)\n\nC) Formação de trombo mural no aneurisma apical, com risco de embolia sistêmica (ex.: AVC isquêmico, embolia arterial de membros). (1,0)", "pontos_total": 3.0, "max_chars": 500}, {"id": "diss5", "num": 5, "tema": "Resp", "vignette": "Paciente de 60 anos, etilista crônico, com rebaixamento do nível de consciência após episódio de embriaguez, é encontrado horas depois com febre e tosse produtiva com expectoração fétida. Radiografia de tórax mostra consolidação no segmento posterior do lobo superior direito, com imagem de cavitação e nível hidroaéreo no interior.", "itens": ["A) Qual o provável mecanismo etiopatogênico da pneumonia nesse paciente, considerando o contexto clínico? (1,0 ponto)", "B) Por que a localização da lesão (segmento posterior do lobo superior direito) é característica desse mecanismo? (1,0 ponto)", "C) Qual o nome dado à complicação evolutiva identificada na imagem (cavitação com nível hidroaéreo)? (1,0 ponto)"], "gabarito": "A) Pneumonia aspirativa, por broncoaspiração de conteúdo orofaríngeo/gástrico durante o rebaixamento do nível de consciência associado à intoxicação alcoólica. (1,0)\n\nB) Em decúbito dorsal, o segmento posterior do lobo superior direito (e o segmento superior do lobo inferior direito) são regiões dependentes/gravitacionais do brônquio fonte direito, mais verticalizado e calibroso, favorecendo o direcionamento do material aspirado para essa região. (1,0)\n\nC) Abscesso pulmonar. (1,0)", "pontos_total": 3.0, "max_chars": 500}]}</script>
+<script>
+(function(){
+  "use strict";
+  var DATA = JSON.parse(document.getElementById('app-data').textContent);
+  var OBJ = DATA.objetivas;
+  var DISS = DATA.dissertativas;
+  var LETTERS = ['A','B','C','D'];
+
+  // ---------- estado ----------
+  var state = {}; // qid -> {selected: idx|null, verified: bool}
+  OBJ.forEach(function(q){ state[q.id] = {selected: null, verified: false}; });
+
+  var scoreCorrect = 0, scoreVerified = 0;
+
+  function updateScoreBar(){
+    document.getElementById('scoreCorrect').textContent = scoreCorrect;
+    document.getElementById('scoreVerified').textContent = scoreVerified;
+  }
+
+  // ---------- render objetivas ----------
+  function renderQuestion(q){
+    var st = state[q.id];
+    var art = document.createElement('article');
+    art.className = 'q' + (st.verified ? ' locked' : '');
+    art.id = 'q-' + q.id;
+
+    var head = document.createElement('div');
+    head.className = 'q-head';
+    var num = document.createElement('div');
+    num.className = 'q-num';
+    num.textContent = q.num;
+    var stem = document.createElement('div');
+    stem.className = 'q-stem';
+    var vg = document.createElement('p');
+    vg.className = 'vg';
+    vg.textContent = q.vignette;
+    var cmd = document.createElement('p');
+    cmd.className = 'cmd';
+    cmd.textContent = q.comando;
+    stem.appendChild(vg);
+    stem.appendChild(cmd);
+
+    var optsWrap = document.createElement('div');
+    optsWrap.className = 'opts';
+
+    q.options.forEach(function(optText, idx){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'opt';
+      if (st.selected === idx) btn.classList.add('selected');
+      if (st.verified){
+        if (idx === q.correct) btn.classList.add('is-correct');
+        else if (idx === st.selected) btn.classList.add('is-wrong');
+      }
+      var letter = document.createElement('span');
+      letter.className = 'opt-letter';
+      letter.textContent = LETTERS[idx] + ')';
+      var txt = document.createElement('span');
+      txt.textContent = optText;
+      btn.appendChild(letter);
+      btn.appendChild(txt);
+
+      if (!st.verified){
+        btn.addEventListener('click', function(){
+          state[q.id].selected = idx;
+          rerenderQuestion(q);
+        });
+      }
+      optsWrap.appendChild(btn);
+
+      if (st.verified){
+        var just = document.createElement('p');
+        just.className = 'opt-just ' + (idx === q.correct ? 'j-correct' : 'j-wrong');
+        just.textContent = q.justs[idx];
+        optsWrap.appendChild(just);
+      }
+    });
+
+    var actions = document.createElement('div');
+    actions.className = 'q-actions';
+    if (!st.verified){
+      var vbtn = document.createElement('button');
+      vbtn.className = 'btn btn-sm';
+      vbtn.textContent = 'Verificar';
+      vbtn.disabled = (st.selected === null);
+      vbtn.addEventListener('click', function(){ verifyQuestion(q); });
+      actions.appendChild(vbtn);
+      if (st.selected === null){
+        var hint = document.createElement('span');
+        hint.className = 'hint';
+        hint.textContent = 'Selecione uma alternativa para verificar';
+        actions.appendChild(hint);
+      }
+    } else {
+      var isCorrect = (st.selected === q.correct);
+      var verdict = document.createElement('span');
+      verdict.className = 'q-verdict ' + (isCorrect ? 'ok' : 'no');
+      verdict.textContent = isCorrect ? 'Você acertou ✓' : 'Você errou ✗';
+      actions.appendChild(verdict);
+    }
+
+    art.appendChild(head);
+    head.appendChild(num);
+    head.appendChild(stem);
+    art.appendChild(optsWrap);
+    art.appendChild(actions);
+    return art;
+  }
+
+  function rerenderQuestion(q){
+    var old = document.getElementById('q-' + q.id);
+    var fresh = renderQuestion(q);
+    old.replaceWith(fresh);
+  }
+
+  function verifyQuestion(q){
+    var st = state[q.id];
+    if (st.verified || st.selected === null) return;
+    st.verified = true;
+    scoreVerified += 1;
+    if (st.selected === q.correct) scoreCorrect += 1;
+    updateScoreBar();
+    rerenderQuestion(q);
+  }
+
+  function renderAllObjetivas(){
+    var host = document.getElementById('all-objetivas');
+    host.innerHTML = '';
+    OBJ.forEach(function(q){
+      host.appendChild(renderQuestion(q));
+    });
+    document.getElementById('scoreTotal').textContent = OBJ.length;
+    updateScoreBar();
+  }
+
+  document.getElementById('verifyAllBtn').addEventListener('click', function(){
+    OBJ.forEach(function(q){
+      var st = state[q.id];
+      if (!st.verified && st.selected !== null) verifyQuestion(q);
+    });
+  });
+
+  // ---------- render dissertativas ----------
+  var MAXCHARS = 500;
+  function renderDiss(d){
+    var art = document.createElement('article');
+    art.className = 'd';
+    art.id = 'd-' + d.id;
+
+    var head = document.createElement('div');
+    head.className = 'q-head';
+    var num = document.createElement('div');
+    num.className = 'q-num';
+    num.style.background = 'var(--hema)';
+    num.textContent = d.num;
+    var stem = document.createElement('div');
+    stem.className = 'q-stem';
+    var vg = document.createElement('p');
+    vg.className = 'vg';
+    vg.textContent = d.vignette;
+    stem.appendChild(vg);
+
+    var itens = document.createElement('ol');
+    itens.className = 'd-itens';
+    d.itens.forEach(function(it){
+      var li = document.createElement('li');
+      li.textContent = it;
+      itens.appendChild(li);
+    });
+    stem.appendChild(itens);
+
+    var ta = document.createElement('textarea');
+    ta.className = 'd-answer';
+    ta.maxLength = d.max_chars || MAXCHARS;
+    ta.placeholder = 'Digite sua resposta (até ' + (d.max_chars || MAXCHARS) + ' caracteres, contando espaços e pontuação)...';
+
+    var charRow = document.createElement('div');
+    charRow.className = 'char-row';
+    var charCount = document.createElement('span');
+    charCount.textContent = '0/' + (d.max_chars || MAXCHARS);
+    var revealBtn = document.createElement('button');
+    revealBtn.className = 'btn btn-outline btn-sm';
+    revealBtn.textContent = 'Ver resposta ideal';
+    charRow.appendChild(charCount);
+
+    var gab = document.createElement('div');
+    gab.className = 'gabarito';
+    gab.hidden = true;
+    var gabText = document.createElement('div');
+    gabText.textContent = d.gabarito;
+    var gabPts = document.createElement('div');
+    gabPts.className = 'gabarito-pts';
+    gabPts.textContent = 'Pontuação total da questão: ' + d.pontos_total.toFixed(1).replace('.', ',') + ' pontos';
+    gab.appendChild(gabText);
+    gab.appendChild(gabPts);
+
+    ta.addEventListener('input', function(){
+      var len = ta.value.length;
+      var max = d.max_chars || MAXCHARS;
+      charCount.textContent = len + '/' + max;
+      charRow.classList.remove('near-limit','at-limit');
+      if (len >= max) charRow.classList.add('at-limit');
+      else if (len >= max * 0.9) charRow.classList.add('near-limit');
+    });
+
+    revealBtn.addEventListener('click', function(){
+      gab.hidden = !gab.hidden;
+      revealBtn.textContent = gab.hidden ? 'Ver resposta ideal' : 'Ocultar resposta ideal';
+    });
+
+    art.appendChild(head);
+    head.appendChild(num);
+    head.appendChild(stem);
+    art.appendChild(ta);
+    art.appendChild(charRow);
+    charRow.appendChild(revealBtn);
+    art.appendChild(gab);
+    return art;
+  }
+
+  function renderAllDiss(){
+    var host = document.getElementById('all-dissertativas');
+    DISS.forEach(function(d){
+      host.appendChild(renderDiss(d));
+    });
+  }
+
+  // ---------- tabs ----------
+  var tabbtnObj = document.getElementById('tabbtn-obj');
+  var tabbtnDiss = document.getElementById('tabbtn-diss');
+  var paneObj = document.getElementById('pane-obj');
+  var paneDiss = document.getElementById('pane-diss');
+  tabbtnObj.addEventListener('click', function(){
+    tabbtnObj.classList.add('active'); tabbtnDiss.classList.remove('active');
+    paneObj.hidden = false; paneDiss.hidden = true;
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  tabbtnDiss.addEventListener('click', function(){
+    tabbtnDiss.classList.add('active'); tabbtnObj.classList.remove('active');
+    paneDiss.hidden = false; paneObj.hidden = true;
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  renderAllObjetivas();
+  renderAllDiss();
+})();
+</script>
+<script>(function(){
+  // Ponte entre a aula (iframe) e a barra lateral do app. Não mexe no conteúdo nem na lógica de quiz.
+  var P = window.parent;
+  if (!P || P === window) return;
+  var root = document.documentElement;
+  root.classList.add('embedded');
+  var parts = (window.name || '').split('|');
+  var LEC = parts[1] || '';
+  var progress = {};
+
+  function setTheme(t){ root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); }
+  setTheme(parts[2] || 'dark');
+
+  function navEls(){ return Array.prototype.slice.call(document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]')); }
+  function keyOf(e){ return e.getAttribute('data-target') || e.getAttribute('data-view'); }
+  function labelOf(e){
+    var n = e.querySelector('.navlabel, .nav-num + span');
+    return (n ? n.textContent : e.textContent).replace(/\s+/g,' ').trim();
+  }
+  function activeKey(){
+    var a = navEls().filter(function(e){ return e.classList.contains('active'); })[0];
+    return a ? keyOf(a) : null;
+  }
+
+  // ----- botão "Concluir" no título de cada segmento -----
+  function paintDone(btn, key){
+    var on = !!progress[key];
+    if (btn.classList.contains('on') !== on) btn.classList.toggle('on', on);   // só mexe no DOM se mudou (evita laço do observer)
+    var lbl = btn.querySelector('.lbl'), txt = on ? 'Concluído' : 'Concluir';
+    if (lbl.textContent !== txt) lbl.textContent = txt;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var fin = document.querySelector('.cel-finish[data-key="' + key + '"]');
+    if (fin) paintFin(fin, on, key);
+  }
+
+  // ----- botão grande no fim do segmento -----
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+  function isSeg(key){ return /^(seg\d+|s\d+|parcial\d+)$/.test(key); }
+  function paintFin(b, on, key){
+    if (b.classList.contains('on') !== on) b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var txt = on ? (isSeg(key) ? 'Segmento concluído' : 'Estudado') + ' · tocar para desfazer'
+                 : (isSeg(key) ? 'Concluir segmento' : 'Marcar como estudado');
+    var s = b.lastChild; if (s.textContent !== txt) s.textContent = txt;
+  }
+  function ensureFin(scope, key){
+    if (!scope || !key || key === 'capa' || key === 'home') return;
+    var foot = scope.querySelector('.navfoot, .segnav');
+    if (!foot) return;
+    var box = scope.querySelector('.cel-fin');
+    if (box && box.getAttribute('data-key') === key && box.nextElementSibling === foot) return;
+    if (box) box.remove();
+    box = document.createElement('div'); box.className = 'cel-fin'; box.setAttribute('data-key', key);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cel-finish'; b.setAttribute('data-key', key);
+    b.innerHTML = CHECK + '<span></span>';
+    b.addEventListener('click', function(){
+      var top = document.querySelector('.done-t[data-key="' + key + '"]');
+      if (top) top.click();
+    });
+    box.appendChild(b);
+    foot.parentNode.insertBefore(box, foot);
+    paintFin(b, !!progress[key], key);
+  }
+  function attachDone(title, key){
+    if (!title || !key || key === 'capa' || key === 'home') return;
+    var old = title.querySelector('.done-t');
+    if (old && old.getAttribute('data-key') === key) { paintDone(old, key); return; }
+    if (old) old.remove();
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'done-t'; b.setAttribute('data-key', key);
+    b.innerHTML = '<span class="d"></span><span class="lbl">Concluir</span>';
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      progress[key] = !progress[key];
+      paintDone(b, key);
+      P.postMessage({type:'setProgress', lecture:LEC, target:key, done:!!progress[key]}, '*');
+    });
+    if (!title.classList.contains('has-done')) title.classList.add('has-done');
+    title.appendChild(b);
+    paintDone(b, key);
+  }
+  function decorate(){
+    // aulas estáticas: um .pane por segmento
+    document.querySelectorAll('.pane').forEach(function(p){
+      if (p.hidden) return;
+      attachDone(p.querySelector('.pane-title'), p.id);
+      ensureFin(p, p.id);
+    });
+    // aula 2: conteúdo montado por JS
+    var t = document.querySelector('h2.seg-title');
+    if (t) { attachDone(t, activeKey()); ensureFin(document.getElementById('content'), activeKey()); }
+  }
+
+  // ----- rodapé anterior/próximo (substitui a barra de navegação escondida) -----
+  function addNavFoot(){
+    var items = navEls();
+    if (!items.length || document.querySelector('.segnav')) return;
+    items.forEach(function(it, i){
+      var id = keyOf(it);
+      var pane = document.getElementById(id);
+      if (!pane || !pane.classList.contains('pane') || pane.querySelector('.navfoot')) return;
+      var prev = items[i-1], next = items[i+1];
+      var f = document.createElement('div'); f.className = 'navfoot';
+      function mk(target, txt, isNext){
+        var b = document.createElement('button'); b.type = 'button';
+        b.textContent = isNext ? txt + ' →' : '← ' + txt;
+        b.addEventListener('click', function(){ target.click(); });
+        return b;
+      }
+      if (prev) f.appendChild(mk(prev, labelOf(prev), false));
+      if (next) f.appendChild(mk(next, labelOf(next), true));
+      pane.appendChild(f);
+    });
+  }
+
+  // piscar o termo achado pela busca
+  function flashTerm(rootEl, term){
+    if (!rootEl || !term) return;
+    var low = term.toLowerCase(), w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentElement; if (!p || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue;
+      var k = n.data.toLowerCase().indexOf(low);
+      if (k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var q = sp.parentNode; if (!q) return; while (sp.firstChild) q.insertBefore(sp.firstChild, sp); q.removeChild(sp); q.normalize(); }, 2600);
+      return;
+    }
+  }
+
+  var last = null;
+  function reportActive(){
+    var k = activeKey();
+    if (k !== last) { last = k; P.postMessage({type:'segActive', lecture:LEC, key:k}, '*'); }
+    var off = (k && k !== 'capa' && k !== 'home' && !document.querySelector('.hero .tabs')) ? 'off' : 'on';
+    if (root.getAttribute('data-hero') !== off) root.setAttribute('data-hero', off);
+    decorate();
+  }
+  var mo = new MutationObserver(function(){ clearTimeout(mo._t); mo._t = setTimeout(reportActive, 30); });
+  mo.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class','hidden']});
+  var content = document.getElementById('content');
+  if (content) mo.observe(content, {childList:true});
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data;
+    if (!d || !d.type) return;
+    if (d.type === 'setTheme') setTheme(d.theme);
+    else if (d.type === 'goto') {
+      var el = navEls().filter(function(e){ return keyOf(e) === d.key; })[0];
+      if (el) el.click();
+    }
+    else if (d.type === 'gotoPane') {
+      if (document.getElementById('hl-pop')) return;   // aulas com marca-texto rosa tratam sozinhas
+      var pe = navEls().filter(function(e){ return keyOf(e) === d.pane; })[0];
+      if (pe) pe.click();
+      setTimeout(function(){ flashTerm(document.getElementById(d.pane) || document.getElementById('content') || document.body, d.term); }, 140);
+    }
+    else if (d.type === 'progressState' && d.lecture === LEC) {
+      progress = d.state || {};
+      document.querySelectorAll('.done-t').forEach(function(b){ paintDone(b, b.getAttribute('data-key')); });
+    }
+  });
+
+  function boot(){
+    addNavFoot();
+    reportActive();
+    P.postMessage({type:'bridgeReady', lecture:LEC}, '*');
+    P.postMessage({type:'requestProgress', lecture:LEC}, '*');
+  }
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', function(){ setTimeout(boot, 0); });
+})();
+</script>
+</body>
+</html>

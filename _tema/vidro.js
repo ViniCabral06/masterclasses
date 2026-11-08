@@ -12,6 +12,15 @@ function lib() {
 const HUB = new URL('../index.html#p4', BASE).href;
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (_) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) { } } };
 
+/* lembra onde a pessoa parou (o hash do master); o <head> restaura na próxima visita */
+if (!html.classList.contains('vidro-aula')) {
+  const h0 = location.hash; // na primeira visita só guarda depois que a pessoa sair do ponto inicial
+  const savePos = () => { const h = location.hash; if (window.VIDRO_NOVO && h === h0) return; window.VIDRO_NOVO = false; if (h && h.length > 1) try { localStorage.setItem('vidro-pos:' + location.pathname, h); } catch (_) { } };
+  addEventListener('hashchange', savePos); addEventListener('pagehide', savePos);
+  document.addEventListener('visibilitychange', () => document.hidden && savePos());
+  setInterval(savePos, 5000);
+}
+
 /* ---------- estrutura ---------- */
 const bg = document.createElement('div'); bg.id = 'vidro-bg'; bg.setAttribute('aria-hidden', 'true');
 bg.innerHTML = '<div class="au a"></div><div class="au b"></div><div class="au c"></div><canvas></canvas>';
@@ -48,7 +57,7 @@ async function startBg() {
     stage = await createStage(canvas, { cheap: true, bloom: false, fps: 30, dust: small ? 0 : 200, dpr: 1, fog: .03, alpha: true, exposure: 1 });
     // se mesmo no mínimo o aparelho não acompanhar, o fundo 3D desliga sozinho (sem gravar a escolha)
     stage.onSlow = () => { html.classList.add('vidro-calmo'); stage.running = false; setFxLabel(); };
-    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
+    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : K === 'pato' ? M.makeTissue({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
     stage.world.add(model);
     // com a luz acesa (tema claro) o vidro dos modelos brilha
     const mats = new Set(); model.traverse(o => { if (o.material) [].concat(o.material).forEach(m => m.emissive && mats.add(m)); });

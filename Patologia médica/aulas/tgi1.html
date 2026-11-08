@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tone="gi" data-theme="dark">
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css"><!--/vidro:cabeca-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Masterclass — Patologia Esofágica (TGI Aula 1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet"><style>/* ===== Visual "Farmacologia" aplicado às aulas de Patologia ===== */
+:root{
+  --ground:#ffffff; --surface:#f5f6f4; --surface-2:#eceeeb; --raised:#ffffff;
+  --border:#e4e6e2; --rule:#eff0ed; --control:#d6d9d4;
+  --ink:#1f201d; --ink-2:#3a3c37; --muted:#676964; --faint:#9a9c96;
+  --accent:#1b6e66; --accent-ink:#0f4d47; --accent-soft:#e3f0ed;
+  --tone:var(--accent);
+  --ok:#2e7d32; --ok-bg:#e6f4e7; --ok-line:#b9dcbb;
+  --bad:#b42318; --bad-bg:#fdecea; --bad-line:#f2c1bb;
+  --warn:#b26a00; --warn-bg:#f8ecd2; --warn-ink:#7a5200;
+  --on-ink:#fff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121413; --surface:#1a1d1b; --surface-2:#242826; --raised:#1f2320;
+  --border:#2c312e; --rule:#222624; --control:#3d4440;
+  --ink:#e6e9e4; --ink-2:#c3c8c1; --muted:#9aa09a; --faint:#6f766f;
+  --accent:#5fc4ae; --accent-ink:#93e0cd; --accent-soft:#17332d;
+  --ok:#62c27a; --ok-bg:#15281a; --ok-line:#2b5233;
+  --bad:#f07a6c; --bad-bg:#2d1714; --bad-line:#5c2b25;
+  --warn-bg:#33290f; --warn-ink:#f0cf86;
+  --on-ink:#121413;
+}
+/* cada grupo de aulas tem a sua cor, só no que orienta */
+:root[data-tone="cv"]{--tone:#a3263a}
+:root[data-tone="resp"]{--tone:#1f6f8b}
+:root[data-tone="prova"]{--tone:#6b4c8a}
+:root[data-tone="sim"]{--tone:#1b6e66}
+:root[data-tone="gi"]{--tone:#2e7d4f}
+:root[data-tone="acc"]{--tone:#9a5a00}
+:root[data-theme="dark"][data-tone="cv"]{--tone:#ec8a98}
+:root[data-theme="dark"][data-tone="resp"]{--tone:#7cc2dc}
+:root[data-theme="dark"][data-tone="prova"]{--tone:#bca0d8}
+:root[data-theme="dark"][data-tone="sim"]{--tone:#5fc4ae}
+:root[data-theme="dark"][data-tone="gi"]{--tone:#6fbf8e}
+:root[data-theme="dark"][data-tone="acc"]{--tone:#e0b06a}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{background:var(--ground)!important;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:inherit;color:inherit}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- cabeçalho da aula (era "hero") ---------- */
+.hero{background:transparent;color:var(--ink);padding:40px clamp(16px,5vw,72px) 0}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;padding-bottom:28px;border-bottom:1px solid var(--border);
+  margin-bottom:32px}
+.hero h1{order:1;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0;font-weight:400;
+  letter-spacing:-.015em;color:var(--ink);max-width:none;text-wrap:balance}
+.tag{order:2;display:block;align-self:flex-start;background:transparent;color:var(--tone);font-family:var(--sans);font-size:14px;
+  font-weight:500;letter-spacing:0;padding:0;border-radius:0;margin:12px 0 0}
+.hero p{order:3;margin:14px 0 0;color:var(--muted);font-family:var(--sans);font-size:14.5px;line-height:1.6;max-width:68ch}
+.strip{order:4;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:22px;overflow:hidden;border-radius:0}
+.strip img{width:100%;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--border);filter:none;opacity:.92}
+:root[data-theme="dark"] .strip img{filter:brightness(.9)}
+@media (max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}.strip img:nth-child(n+4){display:none}}
+
+/* ---------- layout (a navegação agora vive na barra lateral do app) ---------- */
+.shell{display:block;max-width:none;margin:0;padding:0 clamp(16px,5vw,72px) 96px}
+nav.rail{display:none}
+main{display:block;max-width:920px;margin:0 auto;padding:0;background:transparent;border-radius:0;box-shadow:none}
+.pane{display:block;animation:rise .35s var(--ease-out) both;scroll-margin-top:100vh}
+/* o cabeçalho grande só aparece na capa da aula; nos segmentos o título do próprio segmento assume */
+html[data-hero="off"] header.hero{display:none}
+html[data-hero="off"] .shell{padding-top:40px}
+.pane[hidden]{display:none}
+
+.pane-title{position:relative;font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin:0 0 28px;
+  padding:0 0 22px;font-weight:400;letter-spacing:-.012em;color:var(--ink);border-bottom:1px solid var(--border);text-wrap:balance}
+.pane-title.has-done{padding-right:150px}
+
+/* ---------- leitura ---------- */
+.prose,.intro{max-width:none}
+.prose p,.intro p,.prose li,.intro li{font-size:17px;line-height:1.7;color:var(--ink)}
+.prose p,.intro p{margin:0 0 18px;max-width:70ch}
+.prose ul,.prose ol,.intro ul,.intro ol{padding-left:22px;margin:0 0 20px;max-width:70ch}
+.prose li,.intro li{margin-bottom:8px}
+.prose li::marker,.intro li::marker{color:var(--faint)}
+.prose h2,.intro h2{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:56px 0 16px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+.intro h2:first-child{margin-top:0}
+.prose h3,.intro h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.prose strong,.intro strong,.prose b,.intro b{font-weight:600;color:var(--ink)}
+.prose hr,.intro hr{border:0;border-top:1px solid var(--border);margin:36px 0}
+.prose em,.intro em{color:inherit}
+table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;font-family:var(--sans)}
+th{background:transparent;color:var(--muted);text-align:left;padding:10px 14px 10px 0;font-weight:500;font-size:13.5px;
+  border-bottom:1px solid var(--control);vertical-align:bottom}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;text-align:left;
+  font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+@media (max-width:700px){table{display:block;overflow-x:auto}}
+
+.fig{margin:28px auto;max-width:100%;text-align:center}
+.fig img{display:inline-block;max-width:100%;width:auto;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff;
+  cursor:zoom-in;transition:transform .2s var(--ease-out)}
+:root[data-theme="dark"] .fig img{border-color:var(--border);filter:brightness(.94)}
+.fig figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;
+  max-width:68ch;padding:0;border:0}
+
+/* ---------- painéis (notas) ---------- */
+.note{border-radius:18px;padding:18px 22px;margin:24px 0;font-size:16px;line-height:1.68;border:none;position:relative;
+  background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:16px;line-height:1.68;max-width:none}
+.note p + p{margin-top:10px}
+.note-extra{background:#f2f2f8}.note-extra>p>strong:first-child{color:#4b4790}
+.note-fix{background:#fbf0ea}.note-fix>p>strong:first-child{color:#9a4a1f}
+.note-link{background:#edf3f8}.note-link>p>strong:first-child{color:#2d5f8f}
+:root[data-theme="dark"] .note-extra{background:#1d1d2a}:root[data-theme="dark"] .note-extra>p>strong:first-child{color:#aaa6ea}
+:root[data-theme="dark"] .note-fix{background:#2a1c15}:root[data-theme="dark"] .note-fix>p>strong:first-child{color:#ec9f73}
+:root[data-theme="dark"] .note-link{background:#17212b}:root[data-theme="dark"] .note-link>p>strong:first-child{color:#8dbbe6}
+.note + ol,.note + ul{margin-top:-6px}
+
+/* ---------- grifos de frequência em prova ---------- */
+mark.exam1,mark.exam2,mark.exam3,mark.exam4,mark.exam5,mark.hot{padding:1px 3px;border-radius:4px;cursor:help;color:inherit;font-weight:inherit;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1{background:#d8f3e3}
+mark.exam2{background:#fdf0bf}
+mark.exam3,mark.hot{background:#fcd9a8}
+mark.exam4{background:#f8bfb5}
+mark.exam5{background:#1c2331;color:#ffe3a3}
+mark.exam5 *{color:#ffe3a3}
+:root[data-theme="dark"] mark.exam1,:root[data-theme="dark"] mark.exam2,:root[data-theme="dark"] mark.exam3,
+:root[data-theme="dark"] mark.exam4,:root[data-theme="dark"] mark.hot,
+:root[data-theme="dark"] mark.exam1 *,:root[data-theme="dark"] mark.exam2 *,:root[data-theme="dark"] mark.exam3 *,
+:root[data-theme="dark"] mark.exam4 *,:root[data-theme="dark"] mark.hot *{color:#1b2230!important}
+:root[data-theme="dark"] mark.exam5{box-shadow:inset 0 0 0 1px #4a5568}
+.examcard{margin:24px 0;padding:18px 22px;border:none;background:#f8f3e1;border-radius:18px}
+.examcard h4{margin:0 0 8px;font-size:14px;color:#765800;font-family:var(--sans);letter-spacing:0;font-weight:600}
+.examcard p{font-size:15px!important;max-width:none!important}
+:root[data-theme="dark"] .examcard{background:#26220f}:root[data-theme="dark"] .examcard h4{color:#e3c25c}
+.exam-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin:14px 0}
+.exam-legend span{padding:3px 9px;border-radius:999px;font-weight:500}
+:root[data-theme="dark"] .exam-legend span[style*="#111111"]{box-shadow:inset 0 0 0 1px #4a5568}
+.q-source{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;
+  font-family:var(--sans);text-transform:none}
+.q-source.real{background:var(--ok-bg);color:var(--ok)}
+.q-source.adapted{background:var(--warn-bg);color:var(--warn-ink)}
+.q-source.original{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- quiz ---------- */
+.qzone{margin-top:72px;padding-top:0;border-top:none;max-width:none}
+.qzone-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:0 0 12px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em}
+.lede{font-family:var(--sans);font-size:14.5px;color:var(--muted);max-width:68ch;line-height:1.6;margin:0 0 24px}
+.q{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.q-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.q-head>.q-source{order:2;margin-top:3px}
+.q-num{order:1;flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:999px;background:var(--ink);color:var(--on-ink);
+  font-family:var(--sans);font-weight:500;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;margin:0}
+.q-stem{order:3;flex:1 0 100%;min-width:0}
+.q-stem p{margin:0 0 12px;font-size:16.5px;line-height:1.65;color:var(--ink);max-width:none}
+.q-stem .fig{margin:8px 0 16px}
+.q-stem .fig img{max-height:420px}
+.opts{display:flex;flex-direction:column;gap:0;margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  color:var(--ink);transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.opt:active{transform:scale(.995)}
+.opt-letter{flex:none;width:26px;height:26px;min-width:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.opt-text{flex:1;min-width:0;padding-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.opt.is-correct{border-color:var(--ok-line);background:var(--ok-bg);box-shadow:none}
+.opt.is-correct .opt-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-wrong{border-color:var(--bad-line);background:var(--bad-bg);box-shadow:none}
+.opt.is-wrong .opt-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .opt.is-correct .opt-letter,:root[data-theme="dark"] .opt.is-wrong .opt-letter{color:#0d1110}
+.q.done .opt{cursor:default}
+.q.done .opt:active{transform:none}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--control)}:root[data-theme="dark"] .opt:hover{border-color:#4a524d}}
+.q-actions{display:flex;gap:8px;align-items:center;margin:14px 0 0;flex-wrap:wrap}
+.btn-reveal,.btn-grade,.btn-reset{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;
+  cursor:pointer;background:var(--ink);color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn-reveal:active,.btn-grade:active,.btn-reset:active{transform:scale(.97)}
+.btn-reveal{background:var(--surface-2);color:var(--ink)}
+.btn-reset{background:var(--surface-2);color:var(--ink)}
+.btn-grade{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn-grade{color:#0d1110}
+.btn-reveal[hidden],.btn-grade[hidden],.btn-reset[hidden]{display:none}
+.q-why{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:15px;line-height:1.6}
+.q-why[hidden]{display:none}
+.q-why p{margin:0 0 10px;font-size:15px;line-height:1.6;max-width:none}
+.q-why p:last-child{margin:0}
+.q-why:has(.q-verdict.ok){background:var(--ok-bg)}
+.q-why:has(.q-verdict.no){background:var(--bad-bg)}
+.q-verdict{font-family:var(--sans);font-weight:600}
+.q-verdict.ok{color:var(--ok)}.q-verdict.no{color:var(--bad)}
+.q-why hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+.q-open textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;
+  background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+.q-open textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.scorebar{position:sticky;top:12px;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--surface);
+  border:1px solid var(--border);border-radius:22px;padding:14px 20px;margin:22px 0 16px;font-family:var(--sans);font-size:15px}
+#scoretext{flex:1 1 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.closing{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ---------- ampliar imagem ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(18,20,18,.82);display:none;place-items:center;z-index:900;padding:30px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:12px;background:#fff}
+.lightbox figcaption{color:#e6e9e4;font-family:var(--sans);font-size:14.5px;margin-top:14px;max-width:70ch;text-align:center;line-height:1.5}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-family:var(--sans);
+  font-size:14px;font-weight:500;border-radius:999px;height:38px;padding:0 18px;cursor:pointer}
+
+/* ---------- dica "caiu em prova" ---------- */
+#mc-tooltip{background:#2b302d!important;color:#eef0ec!important;border:none!important;border-radius:12px!important;padding:12px 14px!important;
+  font-family:var(--sans)!important;font-size:13px!important;line-height:1.5!important;box-shadow:0 12px 32px rgba(20,22,20,.28)!important}
+#mc-tooltip div{color:#c3c8c1!important;font-size:12px!important;letter-spacing:0!important;font-weight:600}
+#mc-tooltip .mc-chip{background:#3b413d!important;color:#eef0ec!important;border:none!important;border-radius:999px!important;padding:3px 10px!important;
+  font-size:12px!important}
+#mc-tooltip .mc-chip:hover{background:var(--accent)!important;color:#0d1110!important}
+
+/* ---------- concluir (vem da barra lateral do app) ---------- */
+.done-t{position:absolute;top:6px;right:0;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);height:38px;padding:0 16px 0 12px;border-radius:999px;cursor:pointer;background:var(--surface);border:none;user-select:none;
+  letter-spacing:0;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.done-t:active{transform:scale(.97)}
+.done-t .d{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--control);background:var(--raised);
+  transition:background-color .2s ease,border-color .2s ease}
+.done-t.on{color:var(--ok);background:var(--ok-bg)}
+.done-t.on .d{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px var(--ok-bg)}
+@media (max-width:700px){.done-t{position:static;margin-top:14px}.pane-title.has-done{padding-right:0}}
+
+@media (max-width:900px){
+  .hero{padding:24px 16px 0}
+  .shell{padding:0 16px 72px}
+  .q{padding:18px 16px;border-radius:18px}
+  .note{padding:16px 18px}
+  .prose p,.intro p,.prose li,.intro li{font-size:16.5px}
+  .prose h2,.intro h2{font-size:27px;margin-top:44px}
+  .opts{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  .hero,.scorebar,.q-actions,.strip,.done-t{display:none}
+  body{background:#fff!important;color:#000}
+  .pane[hidden],.q-why[hidden]{display:block!important}
+  .q,.fig{break-inside:avoid}
+}
+
+/* ---------- anterior / próximo ---------- */
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{border:none;background:var(--surface);border-radius:16px;padding:14px 18px;font-family:var(--sans);font-size:14.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);max-width:48%;text-align:left;line-height:1.4;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.navfoot button:last-child{text-align:right;margin-left:auto}
+.navfoot button:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.navfoot button:hover{background:var(--surface-2)}}
+
+/* ---------- botão grande de concluir, no fim do segmento ---------- */
+.cel-fin{display:flex;justify-content:center;margin:34px 0 8px}
+.cel-finish{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+  font:500 16px/1 var(--sans);cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+:root[data-theme="dark"] .cel-finish{color:#0d1110}
+.cel-finish:active{transform:scale(.97)}
+.cel-finish svg{width:20px;height:20px}
+.cel-finish svg circle{fill:none;stroke:currentColor;stroke-width:2;opacity:.55}
+.cel-finish svg path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s var(--ease-out)}
+.cel-finish.on{background:var(--ok-bg);color:var(--ok)}
+:root[data-theme="dark"] .cel-finish.on{color:var(--ok)}
+.cel-finish.on svg path{stroke-dashoffset:0}
+@media (hover:hover) and (pointer:fine){.cel-finish:not(.on):hover{transform:translateY(-1px)}}
+@media (max-width:600px){.cel-finish{width:100%}}
+.cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
+
+.find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+
+/* ===== Aulas de TGI (Gastrointestinal e Acessórios): extras do material ===== */
+:root{--pink:#ffd3ea;--pink-line:#f39cc9}
+:root[data-theme="dark"]{--pink:#5e2747;--pink-line:#e98abd}
+
+.note-prof{background:#eff5e7}.note-prof>p>strong:first-child{color:#4a6b1f}
+:root[data-theme="dark"] .note-prof{background:#1b2614}:root[data-theme="dark"] .note-prof>p>strong:first-child{color:#a6d374}
+
+details.desc{margin:16px 0 24px;border:none;border-radius:16px;background:var(--surface);overflow:hidden}
+details.desc summary{cursor:pointer;padding:14px 20px;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);list-style:none;display:flex;align-items:center;gap:10px;
+  transition:background-color .15s ease}
+details.desc summary::-webkit-details-marker{display:none}
+details.desc summary::before{content:"▸";font-size:12px;color:var(--faint);transition:transform .2s var(--ease-out)}
+details.desc[open] summary::before{transform:rotate(90deg)}
+details.desc[open] summary{border-bottom:1px solid var(--border)}
+@media (hover:hover) and (pointer:fine){details.desc summary:hover{background:var(--surface-2)}}
+.desc-body{padding:14px 20px 6px}
+.desc-body p{margin:0 0 12px}
+@media print{details.desc>*{display:block}}
+
+.figpair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start;margin:28px 0}
+.figpair .fig{margin:0}
+.figpair .fig img{max-height:360px}
+@media (max-width:700px){.figpair{grid-template-columns:1fr}}
+
+ol.steps{list-style:none;padding:0;margin:20px 0 28px;max-width:none;counter-reset:st;display:flex;flex-direction:column;gap:8px}
+ol.steps li{counter-increment:st;position:relative;display:block;padding:16px 18px 16px 62px;margin:0;background:var(--surface);border:none;border-radius:16px;
+  font-family:var(--sans);font-size:16px;line-height:1.65;max-width:none}
+ol.steps li::before{content:counter(st);position:absolute;left:18px;top:16px;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--on-ink);display:grid;
+  place-items:center;font-weight:500;font-size:14px;font-variant-numeric:tabular-nums}
+.prose table small,td small{color:var(--muted);font-weight:400}
+.q-stem p:last-child{margin-bottom:0}
+
+/* marca-texto rosa (seleção do usuário) */
+mark.mine{background:var(--pink);box-shadow:inset 0 -2px 0 var(--pink-line);color:inherit;border:0;border-radius:2px;padding:0;cursor:pointer;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1 mark.mine,mark.exam2 mark.mine,mark.exam3 mark.mine,mark.exam4 mark.mine{background:#ffd3ea;color:#4a0f33!important}
+mark.exam5 mark.mine{background:#c2528f;color:#fff!important}
+#hl-pop{position:fixed;z-index:100000;display:none;gap:4px;background:#2b302d;border:none;border-radius:999px;padding:4px;box-shadow:0 8px 24px rgba(20,22,20,.28);font-family:var(--sans)}
+#hl-pop button{border:0;border-radius:999px;padding:8px 14px;font:600 13px var(--sans);cursor:pointer;display:flex;align-items:center;gap:7px;background:transparent;
+  transition:background-color .15s ease,transform .16s var(--ease-out)}
+#hl-pop button:active{transform:scale(.96)}
+#hl-pop .add{color:#ffd3ea}
+#hl-pop .del{color:#eef0ec}
+#hl-pop .add:hover,#hl-pop .del:hover{background:#3b413d}
+#hl-pop .dot{width:9px;height:9px;border-radius:50%;background:#f39cc9;display:inline-block}
+.find-flash{background:#ffe08a!important;color:#1f201d!important;outline:none;border-radius:3px;transition:background .8s ease}
+</style><script>(function(){var p=(window.name||"").split("|");document.documentElement.setAttribute("data-theme",p[2]==="light"?"light":"dark")})();</script></head>
+
+<body>
+<header class="hero">
+  <div class="hero-in">
+    <span class="tag">TGI · Aula 1</span>
+    <h1>Patologia esofágica</h1>
+    <p>Patologia Médica I — Faculdade de Ciências Médicas de Minas Gerais. Nove segmentos, 27 questões de verificação e quiz final de 15. Grifos de frequência ligados ao Banco das Somativas 77 a 82. Clique em qualquer imagem para ampliar.</p>
+    <div class="strip"><img loading=lazy decoding=async data-img="barrett-histologia-metaplasia-intestinal.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="cce-histologia-perolas-corneas.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="adenocarcinoma-histologia-glandular.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="varizes-eda-veias-azuladas-calibrosas.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="esofagite-histologia-hiperplasia-basal-comparacao.jpg" alt="" aria-hidden="true"><img loading=lazy decoding=async data-img="barrett-eda-mucosa-salmao-digitiforme.jpg" alt="" aria-hidden="true"></div>
+  </div>
+</header>
+<div class="shell">
+  <nav class="rail" aria-label="Segmentos">
+    <p class="rail-head">Segmentos</p>
+    <a class="nav-item" href="#" data-target="capa"><span>Início</span></a><a class="nav-item" href="#" data-target="seg1"><span class="nav-num">1</span><span>Esôfago normal e barreira antirrefluxo</span></a><a class="nav-item" href="#" data-target="seg2"><span class="nav-num">2</span><span>Varizes esofágicas</span></a><a class="nav-item" href="#" data-target="seg3"><span class="nav-num">3</span><span>Lacerações: Mallory-Weiss e Boerhaave</span></a><a class="nav-item" href="#" data-target="seg4"><span class="nav-num">4</span><span>DRGE e hérnia de hiato</span></a><a class="nav-item" href="#" data-target="seg5"><span class="nav-num">5</span><span>Esofagite de refluxo</span></a><a class="nav-item" href="#" data-target="seg6"><span class="nav-num">6</span><span>Esôfago de Barrett</span></a><a class="nav-item" href="#" data-target="seg7"><span class="nav-num">7</span><span>Neoplasias malignas: CCE × adenocarcinoma</span></a><a class="nav-item" href="#" data-target="seg8"><span class="nav-num">8</span><span>Clínica, estadiamento e prognóstico</span></a><a class="nav-item" href="#" data-target="seg9"><span class="nav-num">9</span><span>O que mais cai em prova</span></a><a class="nav-item" href="#" data-target="apendice"><span>Questões de residência</span></a><a class="nav-item nav-quiz" href="#" data-target="quiz"><span>Quiz final</span></a>
+  </nav>
+  <main><section class="pane" id="capa">
+<div class="intro"><h2>Patologia esofágica</h2>
+<p><strong>Patologia Médica I — Trato Gastrointestinal, Aula 1</strong></p>
+<hr />
+<h3>Como usar este material</h3>
+<ul>
+<li>Nove segmentos: esôfago normal e barreira antirrefluxo, varizes, lacerações (Mallory-Weiss e Boerhaave), DRGE e hérnia de hiato, esofagite de refluxo, esôfago de Barrett, neoplasias (CCE × adenocarcinoma), clínica/estadiamento/prognóstico e uma revisão do que mais cai em prova.</li>
+<li>Cada segmento termina com <strong>3 questões</strong> e gabarito comentado; no fim, <strong>quiz de 15 questões</strong> e as questões de residência que o professor anexou.</li>
+<li>📌 marca o que não estava no PDF; 🔗 marca ligação com outra aula.</li>
+<li><strong>Grifos de frequência</strong> calculados sobre as <strong>6 somativas (77 a 82)</strong>, na numeração oficial do espelho: passe o mouse no trecho para ver em quais questões caiu e <strong>clique para abrir a justificativa</strong> no Banco. Só existem as justificativas — não há enunciados nem alternativas. A cor indica em quantas provas diferentes o fato apareceu: <div class="exam-legend"><span style="background:#C6F6D5;color:#14532D">1 somativa</span><span style="background:#FFE066;color:#2A1B00">2 somativas</span><span style="background:#FFB020;color:#2A1B00">3 somativas</span><span style="background:#FF5A5A;color:#3D0000">4 somativas</span><span style="background:#111;color:#fff">5 ou 6 somativas</span><span style="background:#FFC6E3;color:#5A0F37;border-bottom:2px solid #E0459B">seu grifo rosa</span></div></li><li><strong>Grifo rosa (seu):</strong> selecione qualquer trecho e clique em <em>Grifar</em>. Clique num grifo rosa para removê-lo. Fica salvo neste navegador.</li>
+<li>Todas as questões têm um selo de origem: <strong>adaptada de somativa</strong> (a ideia vem de uma justificativa real) ou <strong>questão da aula</strong>. As cinco alternativas têm extensão equilibrada.</li>
+</ul>
+<hr /></div>
+</section><section class="pane" id="seg1" hidden>
+  <h1 class="pane-title">Esôfago normal e barreira antirrefluxo</h1>
+  <div class="prose"><p class="lede">Antes de qualquer doença do esôfago, vale fixar duas ideias: ele é um <strong>tubo muscular oco e muito distensível</strong>, e quase toda a patologia da aula nasce de uma falha em <strong>uma válvula</strong> (o esfíncter esofágico inferior) ou de um <strong>território venoso</strong> (as veias submucosas do terço distal).</p>
+<h2>Anatomia</h2>
+<ul>
+<li>Vai da <strong>epiglote até a junção esofagogástrica (JEG)</strong>; comprimento de <strong>25 a 33 cm</strong>.</li>
+<li><strong>Três regiões:</strong> superior (cervical, termina no <strong>EES</strong>), média (torácica) e inferior (supra e infradiafragmática, termina no <strong>EEI</strong>).</li>
+<li>A <strong>pressão intraesofágica</strong> é mantida pelo esfíncter esofágico inferior — a importância prática é uma só: <strong>evitar a doença do refluxo gastroesofágico</strong>.</li>
+</ul>
+<figure class="fig"><img data-img="esofago-anatomia-regioes-esquema.jpg" alt="Esôfago: do pescoço ao estômago, com as três regiões (superior, média e inferior)" loading="lazy" data-caption="Esôfago: do pescoço ao estômago, com as três regiões (superior, média e inferior)"><figcaption>Esôfago: do pescoço ao estômago, com as três regiões (superior, média e inferior)</figcaption></figure>
+<h2>Histologia — as quatro camadas</h2>
+<ol>
+<li><strong>Mucosa:</strong> epitélio escamoso estratificado não queratinizado + lâmina própria + muscular da mucosa.</li>
+<li><strong>Submucosa:</strong> tecido conjuntivo frouxo com as <strong>glândulas esofágicas</strong> (mucinas e bicarbonato, em pequena quantidade) e o <strong>plexo venoso submucoso</strong> — o futuro palco das varizes.</li>
+<li><strong>Muscular própria:</strong> estriada no terço superior, mista no médio e lisa no inferior.</li>
+<li><strong>Adventícia:</strong> o esôfago <strong>não tem serosa</strong> (exceto o segmento intra-abdominal curto).</li>
+</ol>
+<figure class="fig"><img data-img="esofago-histologia-camadas-rotulada.jpg" alt="Corte do esôfago rotulado: lâmina própria, muscular da mucosa, glândulas esofágicas na submucosa e músculo estriado esquelético" loading="lazy" data-caption="Corte do esôfago rotulado: lâmina própria, muscular da mucosa, glândulas esofágicas na submucosa e músculo estriado esquelético"><figcaption>Corte do esôfago rotulado: lâmina própria, muscular da mucosa, glândulas esofágicas na submucosa e músculo estriado esquelético</figcaption></figure><figure class="fig"><img data-img="epitelio-escamoso-estratificado-esofago.jpg" alt="Epitélio escamoso estratificado não queratinizado: é ele que resiste à abrasão dos alimentos — mas não ao ácido" loading="lazy" data-caption="Epitélio escamoso estratificado não queratinizado: é ele que resiste à abrasão dos alimentos — mas não ao ácido"><figcaption>Epitélio escamoso estratificado não queratinizado: é ele que resiste à abrasão dos alimentos — mas não ao ácido</figcaption></figure>
+<aside class="note note-extra"><p><strong>Por que a ausência de serosa pesa na prova:</strong> sem uma camada serosa funcionando como "barreira" externa, um tumor que atravessa a muscular própria chega rápido à adventícia e às estruturas vizinhas (aorta, brônquio, traqueia). É a explicação do comportamento agressivo do câncer de esôfago, perguntada em residência (UNICAMP 2016, no Segmento 8).</p></aside>
+<h2>A barreira antirrefluxo</h2>
+<p>Não existe "uma" válvula: existe uma <strong>coordenação anatômica e funcional</strong> de vários elementos que mantém o conteúdo gástrico no estômago.</p>
+<figure class="fig"><img data-img="barreira-antirrefluxo-elementos-esquema.jpg" alt="Elementos da barreira antirrefluxo: diafragma, ligamento frenoesofágico, esfíncter esofágico inferior, esôfago intra-abdominal e ângulo de His" loading="lazy" data-caption="Elementos da barreira antirrefluxo: diafragma, ligamento frenoesofágico, esfíncter esofágico inferior, esôfago intra-abdominal e ângulo de His"><figcaption>Elementos da barreira antirrefluxo: diafragma, ligamento frenoesofágico, esfíncter esofágico inferior, esôfago intra-abdominal e ângulo de His</figcaption></figure><figure class="fig"><img data-img="relaxamento-eei-refluxo-mecanismo-esquema.jpg" alt="O relaxamento transitório do EEI permite a passagem de conteúdo gástrico para o esôfago" loading="lazy" data-caption="O relaxamento transitório do EEI permite a passagem de conteúdo gástrico para o esôfago"><figcaption>O relaxamento transitório do EEI permite a passagem de conteúdo gástrico para o esôfago</figcaption></figure>
+<ul>
+<li><mark class="exam1" data-refs="81:9"><strong>Esfíncter esofágico inferior</strong>, <strong>ligamento frenoesofágico</strong> e <strong>ângulo de His</strong></mark> formam a barreira. O esfíncter esofágico <em>superior</em> e o músculo cricofaríngeo participam da <em>deglutição</em>, não do controle do refluxo.</li>
+<li>A musculatura do <strong>pilar diafragmático</strong> funciona como "pinça" externa sobre o esôfago — por isso a <strong>hérnia de hiato</strong> (Segmento 4) destrói a barreira.</li>
+</ul>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="C" data-qid="seg1-0">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 81, Q9</span><span class="q-num">1</span><div class="q-stem"><p>Estudante discute o que impede o conteúdo gástrico de subir ao esôfago em condições normais. Qual das alternativas descreve corretamente a barreira antirrefluxo gastroesofágica?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Esfíncter esofágico torácico, formado pela muscular própria do terço médio do esôfago</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Esfíncter esofágico superior e músculo cricofaríngeo, responsáveis pelo controle do refluxo gástrico</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Esfíncter esofágico inferior, ligamento frenoesofágico e ângulo de His atuando de forma coordenada</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Angulação duodenopancreática somada à pressão negativa da cavidade torácica durante a inspiração</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Camada serosa do esôfago, que comprime a luz do órgão e impede a subida do conteúdo ácido</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A barreira antirrefluxo resulta da coordenação do EEI, do ligamento frenoesofágico e do ângulo de His. <strong>B</strong> descreve estruturas da deglutição. <strong>A</strong> e <strong>D</strong> citam estruturas anatômicas inexistentes. <strong>E</strong> erra duas vezes: o esôfago não tem serosa e ela não participa da contenção do refluxo.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg1-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Um patologista examina um fragmento da parede esofágica e descreve, de dentro para fora: epitélio escamoso estratificado, lâmina própria, muscular da mucosa, glândulas mucosas, músculo e tecido conjuntivo externo. Qual é a camada em que se encontra o plexo venoso que origina as varizes esofágicas?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Mucosa, entre o epitélio escamoso e a lâmina própria</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Muscular própria, entre as camadas circular e longitudinal</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Submucosa, junto às glândulas esofágicas</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Adventícia, em contato com as estruturas do mediastino</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Muscular da mucosa, que contém o plexo dilatado na hipertensão portal</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O plexo venoso submucoso (e o periesofágico) é o que se dilata na hipertensão portal. <strong>A</strong> e <strong>E</strong> deslocam o plexo para a mucosa. <strong>B</strong> e <strong>D</strong> trocam por camadas que não abrigam o plexo relevante para as varizes.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg1-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Tumor de esôfago invade rapidamente a aorta e o brônquio fonte esquerdo, mesmo com poucos meses de evolução. Qual característica histológica da parede esofágica ajuda a explicar esse comportamento?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Presença de camada serosa espessa que facilita a disseminação transperitoneal</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Epitélio colunar com células caliciformes, que favorece a invasão tecidual</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Glândulas submucosas abundantes, que produzem enzimas capazes de digerir a parede</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Muscular da mucosa ausente em todo o órgão, o que elimina a barreira à invasão</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Ausência de camada serosa, com adventícia em contato direto com as estruturas do mediastino</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Sem serosa, o tumor ultrapassa a muscular própria e alcança a adventícia e as estruturas vizinhas com pouca resistência. <strong>A</strong> inverte a anatomia (o esôfago não tem serosa). <strong>B</strong> descreve o epitélio do Barrett, não da parede normal. <strong>D</strong> e <strong>C</strong> são afirmações sem base anatômica.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg2" hidden>
+  <h1 class="pane-title">Varizes esofágicas</h1>
+  <div class="prose"><div class="note note-extra"><p><strong>Caso clínico 1 (da aula):</strong> homem, 47 anos, trazido pelo SAMU ao pronto-atendimento com <strong>hematêmese vigorosa, palidez e confusão mental</strong>. A filha conta que ele é <strong>etilista crônico</strong> e tem "doença no fígado". <em>Hipótese? Causa de base? Conduta?</em></p></div>
+<p>A resposta que a aula espera: <strong>ruptura de varizes esofágicas</strong>, secundária a <strong>hipertensão portal por cirrose hepática</strong>; conduta inicial = <strong>estabilizar o paciente</strong> (acesso, volume, vasoconstritor esplâncnico) e tratar o sangramento por endoscopia (ligadura elástica), com balão como medida de resgate.</p>
+<h2>Conceito e origem</h2>
+<ul>
+<li><mark class="exam4" data-refs="82:16,79:17,78:17,77:16"><strong>Dilatações circunscritas e permanentes</strong> das veias dos plexos submucoso e periesofágico</mark>, <strong>secundárias à hipertensão portal</strong>.</li>
+<li><mark class="exam1" data-refs="79:16">Em <strong>90% dos pacientes</strong>, a causa é <strong>cirrose</strong> ou <strong>esquistossomose hepática</strong></mark> — paciente esquistossomótico com HDA: pense primeiro em ruptura de varizes (79:16).</li>
+<li><mark class="exam1" data-refs="78:17">Localização: terços <strong>distal e médio</strong></mark>.</li>
+</ul>
+<h2>Por que a hipertensão portal "abre" as veias do esôfago</h2>
+<p>O sangue do território esofágico drena para a veia porta por um caminho indireto: <mark class="exam2" data-refs="78:17,82:16"><strong>veias esofágicas → veia gástrica esquerda → veia porta</strong></mark>. Quando a pressão na porta sobe, o fluxo inverte e procura <strong>circulação colateral portossistêmica</strong>: parte do sangue do sistema porta desvia para as veias esofágicas (que drenam para a circulação sistêmica), que se dilatam, tornam-se tortuosas e acabam em <strong>varizes — com risco de ruptura</strong>.</p>
+<figure class="fig"><img data-img="varizes-esofagicas-cirrose-veia-porta-esquema.jpg" alt="Cirrose hepática, veia porta, veia esplênica e varizes esofágicas: o fluxo desviado dilata as veias do esôfago" loading="lazy" data-caption="Cirrose hepática, veia porta, veia esplênica e varizes esofágicas: o fluxo desviado dilata as veias do esôfago"><figcaption>Cirrose hepática, veia porta, veia esplênica e varizes esofágicas: o fluxo desviado dilata as veias do esôfago</figcaption></figure>
+<h2>Morfologia</h2>
+<ul>
+<li>Dilatações, saliências, tortuosidades e irregularidades das veias submucosas e periesofágicas.</li>
+<li>As veias ficam <strong>superficiais</strong>: a mucosa que as recobre fica <strong>azulada e delgada</strong>.</li>
+</ul>
+<figure class="fig"><img data-img="varizes-eda-veias-azuladas-calibrosas.jpg" alt="EDA: veias azuladas, calibrosas e tortuosas, abaulando a luz do esôfago distal" loading="lazy" data-caption="EDA: veias azuladas, calibrosas e tortuosas, abaulando a luz do esôfago distal"><figcaption>EDA: veias azuladas, calibrosas e tortuosas, abaulando a luz do esôfago distal</figcaption></figure><figure class="fig"><img data-img="varizes-peca-macro-esofago-aberto.jpg" alt="Peça macroscópica: esôfago aberto com veias submucosas dilatadas e azuladas" loading="lazy" data-caption="Peça macroscópica: esôfago aberto com veias submucosas dilatadas e azuladas"><figcaption>Peça macroscópica: esôfago aberto com veias submucosas dilatadas e azuladas</figcaption></figure><figure class="fig"><img data-img="varizes-peca-macro-vasos-submucosos.jpg" alt="Varizes do esôfago: vasos dilatados na parede, vistos em corte" loading="lazy" data-caption="Varizes do esôfago: vasos dilatados na parede, vistos em corte"><figcaption>Varizes do esôfago: vasos dilatados na parede, vistos em corte</figcaption></figure><figure class="fig"><img data-img="varizes-histologia-vasos-dilatados-submucosa.jpg" alt="Histologia: grandes vasos ectásicos ocupando a submucosa" loading="lazy" data-caption="Histologia: grandes vasos ectásicos ocupando a submucosa"><figcaption>Histologia: grandes vasos ectásicos ocupando a submucosa</figcaption></figure>
+<h2>Complicação: a hemorragia</h2>
+<ul>
+<li>Vasos <strong>superficializados</strong> são alvo de microtraumatismos; vasos <strong>congestos</strong> (pressão elevada) rompem espontaneamente.</li>
+<li>Ruptura de <strong>vasos maiores</strong> → <strong>hematêmese</strong>; de <strong>vasos pequenos</strong> → sangramento oculto e <strong>anemia crônica</strong>. O sangue digerido que desce ao intestino aparece como <strong>melena</strong> (fezes escuras, de odor fétido).</li>
+</ul>
+<figure class="fig"><img data-img="varizes-eda-ponto-de-sangramento.jpg" alt="Variz esofágica com ponto de sangramento ativo na EDA" loading="lazy" data-caption="Variz esofágica com ponto de sangramento ativo na EDA"><figcaption>Variz esofágica com ponto de sangramento ativo na EDA</figcaption></figure>
+<h2>Tratamento</h2>
+<ul>
+<li><strong>Vasoconstrição esplâncnica</strong> (ex.: terlipressina) — reduz o fluxo na circulação portal.</li>
+<li><strong>Escleroterapia</strong>, <strong>tamponamento por balão</strong> (resgate) e <strong>ligadura elástica</strong> — o <strong>padrão-ouro</strong> endoscópico.</li>
+</ul>
+<figure class="fig"><img data-img="varizes-tratamento-endoscopico-eda.jpg" alt="Tratamento endoscópico das varizes (ligadura elástica)" loading="lazy" data-caption="Tratamento endoscópico das varizes (ligadura elástica)"><figcaption>Tratamento endoscópico das varizes (ligadura elástica)</figcaption></figure><aside class="note note-extra"><p><strong>Eixo de causa que a prova cruza:</strong> hipertensão portal pode ser <em>pré-hepática</em> (neoplasia obstruindo o hilo), <em>intra-hepática</em> (cirrose, esquistossomose) ou <em>pós-hepática</em> (ICC direita, Budd-Chiari). Em qualquer uma delas as varizes esofágicas são consequência — não doença primária do esôfago.</p></aside><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="A" data-qid="seg2-0">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 82, Q16</span><span class="q-num">1</span><div class="q-stem"><p>Paciente com cirrose hepática avançada apresenta, na EDA, veias esofágicas dilatadas, tortuosas e azuladas no terço distal. Qual é o mecanismo que explica o aparecimento dessas veias?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Aumento da pressão na veia porta, com desvio do fluxo para circulação colateral portossistêmica que inclui as veias esofágicas</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Hipoalbuminemia grave, que provoca extravasamento de líquido para a parede e dilatação passiva das veias esofágicas</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Refluxo ácido crônico, que lesa a parede venosa e induz neoformação vascular na submucosa</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Trombose primária da veia cava inferior, com inversão do fluxo nas veias esofágicas</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Vômitos repetidos, que aumentam a pressão intragástrica e rompem as veias da submucosa</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Na hipertensão portal o sangue procura rotas colaterais portossistêmicas; as veias esofágicas, que drenam para a circulação sistêmica, se dilatam e formam varizes com risco de ruptura. <strong>B</strong> mistura mecanismos da ascite. <strong>C</strong> é a DRGE, que causa esofagite e Barrett, não varizes. <strong>D</strong> não é a via descrita. <strong>E</strong> descreve a síndrome de Mallory-Weiss.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg2-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Homem de 52 anos, etilista, chega com hematêmese volumosa e hipotensão. Já foi estabilizado hemodinamicamente. Qual é o tratamento endoscópico considerado padrão-ouro para o sangramento de varizes esofágicas?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Escleroterapia com injeção de agente esclerosante nas varizes</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Tamponamento com balão como tratamento definitivo e permanente</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Derivação cirúrgica de emergência como primeira linha geral</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Terlipressina em infusão isolada, sem abordagem endoscópica</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Ligadura elástica das varizes esofágicas por via endoscópica</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A ligadura elástica é o tratamento endoscópico padrão-ouro. <strong>A</strong> e <strong>B</strong> são alternativas/resgate (o balão é medida temporária). <strong>D</strong> é adjuvante: reduz o fluxo portal, mas não substitui a endoscopia. <strong>C</strong> não é primeira linha.</p></div>
+</article><article class="q" data-correct="B" data-qid="seg2-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Qual das causas abaixo é uma causa <strong>intra-hepática</strong> de hipertensão portal, responsável por cerca de 90% dos pacientes com varizes esofágicas?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Síndrome de Budd-Chiari, por obstrução das veias hepáticas</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Cirrose hepática ou esquistossomose hepática</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Neoplasia comprimindo o hilo hepático</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Insuficiência cardíaca direita congestiva avançada</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Trombose isolada da veia esplênica sem doença hepática</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Cirrose e esquistossomose hepática respondem por ~90% dos casos de varizes. <strong>A</strong> e <strong>D</strong> são causas pós-hepáticas. <strong>C</strong> é pré-hepática. <strong>E</strong> é uma causa rara, segmentar.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg3" hidden>
+  <h1 class="pane-title">Lacerações: Mallory-Weiss e Boerhaave</h1>
+  <div class="prose"><h2>Síndrome de Mallory-Weiss</h2>
+<ul>
+<li><mark class="exam3" data-refs="82:2,81:21,78:15"><strong>Lacerações lineares e longitudinais</strong> no esôfago, <strong>próximas à junção gastroesofágica</strong></mark>, de poucos milímetros a alguns centímetros.</li>
+<li>Consequência de <strong>vômitos repetidos</strong> — alcoolistas e bulimia são os cenários clássicos. O mecanismo é o <mark class="exam2" data-refs="81:21,78:15"><strong>aumento súbito da pressão intragástrica</strong></mark>.</li>
+<li>Respondem por <strong>10 a 15% das hemorragias digestivas altas</strong>.</li>
+<li>Sangramento geralmente <strong>leve</strong> e que <mark class="exam1" data-refs="81:21">tende a cessar espontaneamente (&gt;90% dos casos)</mark>.</li>
+</ul>
+<figure class="fig"><img data-img="mallory-weiss-eda-laceracao-longitudinal.jpg" alt="EDA: laceração longitudinal (seta) na região da junção esofagogástrica" loading="lazy" data-caption="EDA: laceração longitudinal (seta) na região da junção esofagogástrica"><figcaption>EDA: laceração longitudinal (seta) na região da junção esofagogástrica</figcaption></figure><figure class="fig"><img data-img="mallory-weiss-esquema-laceracao-juncao.jpg" alt="Esquema: laceração mucosa/submucosa próxima ao cárdia" loading="lazy" data-caption="Esquema: laceração mucosa/submucosa próxima ao cárdia"><figcaption>Esquema: laceração mucosa/submucosa próxima ao cárdia</figcaption></figure>
+<h2>Síndrome de Boerhaave — a complicação grave</h2>
+<p>A <strong>ruptura esofágica</strong> é a complicação grave dos vômitos repetidos. A diferença que a prova explora é a profundidade: <mark class="exam1" data-refs="82:2"><strong>Mallory-Weiss</strong> atinge mucosa e submucosa; <strong>Boerhaave</strong> é uma ruptura <strong>transmural completa</strong> (mediastinite)</mark>.</p>
+<table>
+<tr><th></th><th>Varizes esofágicas</th><th>Mallory-Weiss</th><th>Boerhaave</th></tr>
+<tr><td>Mecanismo</td><td>Hipertensão portal</td><td>↑ pressão intragástrica (vômitos)</td><td>↑ pressão intragástrica (vômitos)</td></tr>
+<tr><td>Lesão</td><td>Veias dilatadas na submucosa</td><td>Laceração mucosa/submucosa</td><td>Ruptura transmural</td></tr>
+<tr><td>Fator comum</td><td colspan="3"><mark class="exam1" data-refs="81:21">Etilismo — predispõe tanto a varizes quanto a Mallory-Weiss</mark></td></tr>
+<tr><td>Evolução</td><td>Hemorragia maciça possível</td><td>Cessa sozinha em &gt;90%</td><td>Emergência cirúrgica</td></tr>
+</table>
+<div class="examcard"><h4>📷 Diagnóstico diferencial de HDA de causa esofágica (residência — AMP 2007)</h4><p>"A síndrome de Mallory-Weiss é uma das causas de HDA (cerca de 10%). A afirmativa <strong>ERRADA</strong> é: <strong>a) está associada ao câncer de esôfago</strong>." As demais estão corretas: fisiopatologia = aumento da pressão intragástrica por vômitos; sangramento por ruptura no cárdia com lesão de vasos submucosos da união cardioesofágica; diagnóstico endoscópico; &gt;90% cessam espontaneamente.</p></div>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg3-0">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 81, Q21</span><span class="q-num">1</span><div class="q-stem"><p>Mulher de 24 anos, com bulimia, apresenta hematêmese após episódio de vômitos intensos. A EDA mostra laceração longitudinal junto à junção esofagogástrica. Qual é o mecanismo básico da lesão?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Hipertensão portal com ruptura de veias submucosas dilatadas no terço distal</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Aumento da pressão intragástrica durante o vômito, que lacera a mucosa e a submucosa próximas à junção</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Refluxo ácido crônico com erosão progressiva da mucosa do esôfago distal</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Infiltração neoplásica da parede, com ulceração da mucosa e sangramento tumoral</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Ruptura transmural completa do esôfago, com extravasamento para o mediastino</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O vômito repetido eleva a pressão intragástrica e provoca laceração longitudinal de mucosa e submucosa perto da JEG (Mallory-Weiss). <strong>A</strong> descreve as varizes. <strong>C</strong> descreve a esofagite de refluxo. <strong>D</strong> não tem relação com o quadro. <strong>E</strong> é a síndrome de Boerhaave, que é transmural.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg3-1">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 82, Q2</span><span class="q-num">2</span><div class="q-stem"><p>Após vômitos intensos, um paciente apresenta dor torácica grave, febre e enfisema subcutâneo; a TC mostra mediastinite. Qual diagnóstico e qual a diferença em relação à síndrome de Mallory-Weiss?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Boerhaave; ruptura transmural completa do esôfago, ao contrário da laceração mucosa/submucosa de Mallory-Weiss</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Mallory-Weiss; lesão restrita à mucosa e à submucosa, com cura espontânea na maioria</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Boerhaave; laceração superficial da mucosa que cura sozinha em mais de 90% dos casos</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Varizes esofágicas rotas; sangramento arterial profuso sem relação com vômitos</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Esofagite de refluxo grave; ulceração da mucosa com perfuração espontânea</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Mediastinite após vômito = ruptura esofágica transmural (Boerhaave), mais grave que a laceração mucosa/submucosa do Mallory-Weiss. <strong>B</strong> descreve a síndrome menos grave. <strong>C</strong> mistura nome da grave com evolução da leve. <strong>D</strong> e <strong>E</strong> não explicam mediastinite pós-vômito.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg3-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Em relação à síndrome de Mallory-Weiss como causa de hemorragia digestiva alta, assinale a afirmativa <strong>ERRADA</strong>.</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Há associação direta com o câncer de esôfago, que predispõe às lacerações</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">O diagnóstico é feito por endoscopia digestiva alta</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">O sangramento decorre de lesão de vasos submucosos junto à união cardioesofágica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Em mais de 90% dos casos o sangramento cessa de forma espontânea</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">A fisiopatologia envolve aumento da pressão intragástrica provocado por vômitos</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A síndrome não está associada ao câncer de esôfago — é a afirmativa errada (AMP 2007). <strong>E</strong>, <strong>B</strong>, <strong>C</strong> e <strong>D</strong> estão corretas e reproduzem a fisiopatologia, o diagnóstico, a origem do sangramento e a evolução benigna.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg4" hidden>
+  <h1 class="pane-title">DRGE e hérnia de hiato</h1>
+  <div class="prose"><p class="lede">A DRGE é o <strong>refluxo anormal do conteúdo gástrico para o esôfago</strong>. Ela acontece quando a pressão intra-abdominal e os mecanismos antirrefluxo perdem o equilíbrio — e o principal mecanismo é o <strong>relaxamento transitório do EEI</strong>.</p>
+<h2>Epidemiologia e quadro clínico</h2>
+<ul>
+<li>Acomete <strong>10 a 20% da população</strong>, em qualquer idade e gênero, com pico acima dos <strong>40 anos</strong>.</li>
+<li><strong>Sintomas típicos:</strong> azia, pirose, regurgitação, disfagia.</li>
+<li><strong>Lesões no terço distal do esôfago:</strong> esofagite de refluxo e esôfago de Barrett.</li>
+<li><strong>Manifestações extraesofágicas:</strong> laringe/traqueia/pulmão (rouquidão, tosse, infecções) e cavidade oral (sialorreia reativa, cáries — a saliva básica neutraliza o ácido).</li>
+<li>A DRGE pode ser <strong>sintomática ou assintomática</strong>, com ou sem lesão morfológica.</li>
+</ul>
+<h2>Diagnóstico</h2>
+<ul>
+<li><strong>DRGE:</strong> impedâncio-pHmetria esofágica (padrão-ouro para diagnosticar o refluxo).</li>
+<li><strong>Lesões:</strong> EDA — mas <mark class="exam1" data-refs="80:5">grande parte dos pacientes tem EDA normal ou com achados inespecíficos (eritema, edema)</mark> e os achados mais comuns, quando existem, são hiperemia e erosões da mucosa distal.</li>
+</ul>
+<figure class="fig"><img data-img="impedancio-phmetria-esofagica-esquema.jpg" alt="Impedâncio-pHmetria: seis campos de impedância e um sensor de pH a 5 cm acima da junção" loading="lazy" data-caption="Impedâncio-pHmetria: seis campos de impedância e um sensor de pH a 5 cm acima da junção"><figcaption>Impedâncio-pHmetria: seis campos de impedância e um sensor de pH a 5 cm acima da junção</figcaption></figure>
+<h2>Patogênese</h2>
+<p>O que importa é o balanço: de um lado, a <strong>pressão intra-abdominal</strong> e o conteúdo ácido; do outro, o <strong>EEI (principal barreira)</strong> e a <strong>musculatura diafragmática</strong>. Tudo que reduz a barreira ou aumenta a pressão favorece o refluxo:</p>
+<ul>
+<li><strong>Relaxam o EEI:</strong> <mark class="exam3" data-refs="78:18,77:20,79:14">estresse, VIP e óxido nítrico, tabagismo, álcool, fármacos, café, chocolate, frituras</mark>.</li>
+<li><strong>Aumentam a pressão abdominal:</strong> <mark class="exam3" data-refs="80:5,78:16,77:20">obesidade e gravidez</mark>.</li>
+<li><strong>Destroem a barreira anatômica:</strong> <mark class="exam4" data-refs="80:5,81:9,79:14,78:16">hérnia de hiato</mark> (a marca da aula: ***).</li>
+</ul>
+<figure class="fig"><img data-img="hernia-hiato-ilustracao-estomago-diafragma.jpg" alt="Hiato diafragmático e estômago: a passagem do esôfago pelo diafragma é um ponto de fragilidade" loading="lazy" data-caption="Hiato diafragmático e estômago: a passagem do esôfago pelo diafragma é um ponto de fragilidade"><figcaption>Hiato diafragmático e estômago: a passagem do esôfago pelo diafragma é um ponto de fragilidade</figcaption></figure><figure class="fig"><img data-img="eei-diafragma-pilares-esquema.jpg" alt="EEI e pilares do diafragma: a &quot;pinça&quot; diafragmática reforça o esfíncter" loading="lazy" data-caption="EEI e pilares do diafragma: a &quot;pinça&quot; diafragmática reforça o esfíncter"><figcaption>EEI e pilares do diafragma: a "pinça" diafragmática reforça o esfíncter</figcaption></figure>
+<h2>Hérnia de hiato</h2>
+<ul>
+<li><strong>Deslocamento anormal</strong> de uma estrutura abdominal para o tórax por uma abertura natural: separação dos pilares diafragmáticos e passagem de conteúdo abdominal pelo hiato.</li>
+<li>Pode ser <mark class="exam1" data-refs="80:5">congênita ou adquirida (principalmente adquirida)</mark>; a incidência aumenta com a idade; 1–20% dos adultos; mais comum em mulheres após os 40 anos.</li>
+<li>Patogênese: enfraquecimento dos músculos do hiato + aumento da pressão abdominal (obesidade, tosse, vômitos, gravidez, ascite).</li>
+<li>Pode ser assintomática, mas <mark class="exam2" data-refs="81:9,79:14">favorece o refluxo</mark> e costuma se associar à DRGE e a suas complicações.</li>
+</ul>
+<figure class="fig"><img data-img="hernia-hiato-normal-vs-com-hernia.jpg" alt="Aspecto normal e hérnia de hiato: o EEI e parte do estômago migram para o tórax" loading="lazy" data-caption="Aspecto normal e hérnia de hiato: o EEI e parte do estômago migram para o tórax"><figcaption>Aspecto normal e hérnia de hiato: o EEI e parte do estômago migram para o tórax</figcaption></figure><figure class="fig"><img data-img="hernia-hiato-normal-esquema.jpg" alt="Situação normal: esôfago, diafragma e estômago em posição" loading="lazy" data-caption="Situação normal: esôfago, diafragma e estômago em posição"><figcaption>Situação normal: esôfago, diafragma e estômago em posição</figcaption></figure><figure class="fig"><img data-img="hernia-hiato-deslizamento-tipo3-esquema.jpg" alt="Hérnia por deslizamento (tipo III na numeração da aula): a porção abdominal do esôfago &quot;desliza&quot; para o tórax levando o estômago" loading="lazy" data-caption="Hérnia por deslizamento (tipo III na numeração da aula): a porção abdominal do esôfago &quot;desliza&quot; para o tórax levando o estômago"><figcaption>Hérnia por deslizamento (tipo III na numeração da aula): a porção abdominal do esôfago "desliza" para o tórax levando o estômago</figcaption></figure><figure class="fig"><img data-img="hernia-hiato-paraesofagica-tipo2-esquema.jpg" alt="Hérnia paraesofágica ou por rolamento (tipo II): o esôfago fica no lugar e o fundo gástrico &quot;rola&quot; para o tórax" loading="lazy" data-caption="Hérnia paraesofágica ou por rolamento (tipo II): o esôfago fica no lugar e o fundo gástrico &quot;rola&quot; para o tórax"><figcaption>Hérnia paraesofágica ou por rolamento (tipo II): o esôfago fica no lugar e o fundo gástrico "rola" para o tórax</figcaption></figure>
+<table>
+<tr><th>Tipo (numeração da aula)</th><th>Descrição</th><th>Observação</th></tr>
+<tr><td><strong>I</strong> — esôfago curto</td><td>Esôfago curto traciona o estômago para o tórax</td><td>Congênita</td></tr>
+<tr><td><strong>II</strong> — paraesofágica ou por rolamento</td><td>Esôfago em posição normal; fundo gástrico "rola" para o tórax</td><td>Não é a mais associada à DRGE</td></tr>
+<tr><td><strong>III</strong> — esofagogástrica ou por deslizamento</td><td>Porção abdominal do esôfago e estômago "deslizam" para o tórax</td><td><strong>95% dos casos</strong>; perda do tônus do EEI; a mais associada à DRGE</td></tr>
+<tr><td><strong>IV</strong> — estômago + outros órgãos</td><td>Intestino, baço etc. herniam junto</td><td>Complicação possível das outras três</td></tr>
+</table>
+<aside class="note note-fix"><p><strong>Cuidado com a numeração:</strong> a aula (e a questão da Unifil, no Apêndice) chama a hérnia por deslizamento de <strong>tipo III</strong> e a paraesofágica de tipo II. Muitos livros clínicos numeram o contrário (deslizamento = tipo I). Na prova, siga a numeração do professor — mas a descrição ("deslizamento = 95% e a mais ligada ao refluxo") vale em qualquer fonte.</p></aside>
+<h2>Tratamento</h2>
+<ul>
+<li><strong>Medidas comportamentais:</strong> evitar certos alimentos, comer devagar, não comer antes de dormir, reduzir o volume (sobretudo à noite).</li>
+<li><strong>Medicamentoso:</strong> "antiácidos" — <strong>IBP</strong> (omeprazol) e anti-histamínicos H2.</li>
+</ul>
+<p><strong>Principais consequências da DRGE:</strong> (1) esofagite de refluxo; (2) esôfago de Barrett.</p>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="A" data-qid="seg4-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Mulher de 55 anos, obesa, com pirose e regurgitação noturnas há anos. Qual alternativa descreve corretamente o mecanismo mais frequente da doença de base?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Relaxamento transitório do esfíncter esofágico inferior, permitindo a passagem do conteúdo gástrico ao esôfago</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Hipertonia do esfíncter esofágico inferior, que retém o alimento e provoca regurgitação</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Hipersecreção de gastrina por tumor, que aumenta o volume de ácido no estômago</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Aumento da peristalse do corpo esofágico, que impulsiona o conteúdo em direção cranial</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Ausência congênita do esfíncter esofágico superior, com refluxo para a faringe</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O relaxamento transitório do EEI é o mecanismo mais frequente na DRGE (Unifil). <strong>B</strong> descreve a acalásia (hipertonia, falta de relaxamento). <strong>C</strong> descreve uma doença hipersecretora, não o mecanismo habitual da DRGE. <strong>D</strong> inverte a fisiologia. <strong>E</strong> cita o esfíncter errado.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg4-1">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 80, Q5</span><span class="q-num">2</span><div class="q-stem"><p>Qual dos fatores abaixo NÃO aumenta o risco de doença do refluxo gastroesofágico?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Gravidez, pelo aumento da pressão intra-abdominal</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Obesidade, por aumento crônico da pressão abdominal</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Hérnia de hiato, por perda da barreira anatômica antirrefluxo</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Hiperplasia da camada basal do epitélio esofágico, que impede o contato do ácido</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Tabagismo, que relaxa o esfíncter esofágico inferior</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A hiperplasia da camada basal é uma <em>consequência</em> do refluxo (alteração histológica da esofagite), não um fator de risco nem de proteção. <strong>A</strong>, <strong>B</strong>, <strong>C</strong> e <strong>E</strong> são fatores clássicos de DRGE.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg4-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Qual das hérnias de hiato, segundo a numeração da aula, é a mais frequente (95%) e a mais associada à DRGE?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Tipo I — esôfago curto congênito</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Tipo II — paraesofágica ou por rolamento</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Tipo III — esofagogástrica ou por deslizamento</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Tipo IV — estômago e outros órgãos herniados</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Todas se associam igualmente à DRGE</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A hérnia por deslizamento (tipo III na aula) é a mais comum (95%) e a mais associada ao refluxo. <strong>A</strong> é congênita e rara. <strong>B</strong> é a pegadinha da Unifil: a paraesofágica não é a mais associada à DRGE. <strong>D</strong> é a complicação possível das outras. <strong>E</strong> ignora a diferença entre os tipos.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg5" hidden>
+  <h1 class="pane-title">Esofagite de refluxo</h1>
+  <div class="prose"><div class="note note-extra"><p><strong>Caso clínico 2 (da aula):</strong> homem, 22 anos, sobrepeso, com <strong>pirose após alimentação copiosa</strong>, às vezes com <strong>regurgitação</strong> e <strong>odinofagia</strong> ao acordar; sem comorbidades; tabagista há 2 anos (5 cigarros/dia); nega etilismo. <em>Diagnóstico?</em> → <strong>esofagite de refluxo</strong>. (Quadro piora deitado, pela perda da capacidade antirrefluxo; "queimação" pelo ácido.)</p></div>
+<h2>Por que o refluxo lesa o esôfago</h2>
+<ul>
+<li>O refluxo é a <strong>principal causa de esofagite</strong>.</li>
+<li>O epitélio esofágico é <strong>resistente à abrasão</strong> dos alimentos, mas <strong>sensível ao ácido</strong>; as glândulas submucosas secretam mucinas e bicarbonato em <strong>pequena quantidade</strong>.</li>
+<li><strong>Patogênese:</strong> refluxo ácido → descamação epitelial → regeneração → DRGE prolongada gera um desequilíbrio perda × regeneração → <strong>atrofia do epitélio</strong>, erosões, ulcerações e hemorragias → cicatrização (às vezes com <strong>estenose</strong>).</li>
+</ul>
+<h2>Morfologia — endoscopia</h2>
+<p>Depende do tempo e da intensidade do refluxo: de uma área de <strong>hiperemia/edema</strong> até <strong>erosão/ulceração</strong>. Úlceras cicatrizadas reduzem o lúmen esofágico.</p>
+<figure class="fig"><img data-img="esofagite-refluxo-eda-erosoes-setas.jpg" alt="EDA: erosões da mucosa distal (setas) na esofagite de refluxo" loading="lazy" data-caption="EDA: erosões da mucosa distal (setas) na esofagite de refluxo"><figcaption>EDA: erosões da mucosa distal (setas) na esofagite de refluxo</figcaption></figure><figure class="fig"><img data-img="esofagite-eda-eritema-erosoes.jpg" alt="Hiperemia por lesão da mucosa e erosões lineares" loading="lazy" data-caption="Hiperemia por lesão da mucosa e erosões lineares"><figcaption>Hiperemia por lesão da mucosa e erosões lineares</figcaption></figure><figure class="fig"><img data-img="esofagite-eda-ulcera-cicatrizada-estenose.jpg" alt="Áreas de úlceras cicatrizadas: redução do lúmen esofágico" loading="lazy" data-caption="Áreas de úlceras cicatrizadas: redução do lúmen esofágico"><figcaption>Áreas de úlceras cicatrizadas: redução do lúmen esofágico</figcaption></figure><figure class="fig"><img data-img="esofagite-refluxo-eda-caso-clinico-2.jpg" alt="Esofagite de refluxo no caso clínico 2" loading="lazy" data-caption="Esofagite de refluxo no caso clínico 2"><figcaption>Esofagite de refluxo no caso clínico 2</figcaption></figure>
+<h2>Morfologia — histologia: a tríade clássica</h2>
+<p>Ao microscópio, a esofagite de refluxo tem <strong>três aspectos característicos</strong> — eles caíram nas três somativas:</p>
+<ol>
+<li><mark class="exam5" data-refs="82:27,81:14,80:6,78:22,77:22"><strong>Células inflamatórias intraepiteliais</strong> (eosinófilos, neutrófilos e linfócitos)</mark></li>
+<li><mark class="exam4" data-refs="82:27,81:14,78:22,77:22"><strong>Hiperplasia da camada basal</strong> (até 20% da espessura do epitélio)</mark></li>
+<li><mark class="exam3" data-refs="82:27,81:14,78:22"><strong>Alongamento das papilas da lâmina própria</strong> e congestão</mark></li>
+</ol>
+<figure class="fig"><img data-img="esofagite-histologia-inflamatorio-intraepitelial.jpg" alt="Infiltrado inflamatório intraepitelial (setas)" loading="lazy" data-caption="Infiltrado inflamatório intraepitelial (setas)"><figcaption>Infiltrado inflamatório intraepitelial (setas)</figcaption></figure><figure class="fig"><img data-img="esofagite-histologia-eosinofilos-detalhe.jpg" alt="Eosinófilos no epitélio escamoso" loading="lazy" data-caption="Eosinófilos no epitélio escamoso"><figcaption>Eosinófilos no epitélio escamoso</figcaption></figure><figure class="fig"><img data-img="esofagite-histologia-hiperplasia-basal-comparacao.jpg" alt="Comparação: epitélio normal e epitélio com hiperplasia da camada basal" loading="lazy" data-caption="Comparação: epitélio normal e epitélio com hiperplasia da camada basal"><figcaption>Comparação: epitélio normal e epitélio com hiperplasia da camada basal</figcaption></figure><figure class="fig"><img data-img="esofagite-histologia-papilas-alongadas.jpg" alt="Alongamento das papilas da lâmina própria" loading="lazy" data-caption="Alongamento das papilas da lâmina própria"><figcaption>Alongamento das papilas da lâmina própria</figcaption></figure><figure class="fig"><img data-img="esofagite-histologia-eosinofilos-alto-aumento.jpg" alt="Eosinófilos em alto aumento" loading="lazy" data-caption="Eosinófilos em alto aumento"><figcaption>Eosinófilos em alto aumento</figcaption></figure>
+<aside class="note note-extra"><p><strong>O que NÃO é esofagite de refluxo (distratores clássicos):</strong> tecido de granulação e macrófagos xantomizados (reparo/outras lesões), <strong>necrose fibrinoide e granulomas</strong> (vasculite, tuberculose, Crohn) e <strong>células multinucleadas com moldagem nuclear</strong> (herpes). O infiltrado do refluxo é <em>discreto</em> e eosinofílico/misto, <em>sem predomínio neutrofílico</em>.</p></aside><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg5-0">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 81, Q14</span><span class="q-num">1</span><div class="q-stem"><p>Biópsia de esôfago distal de paciente com DRGE crônica. Qual achado histológico é o esperado na esofagite de refluxo?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Tecido de granulação com macrófagos xantomizados em abundância</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Hiperplasia basal, alongamento das papilas e infiltrado inflamatório intraepitelial discreto</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Células multinucleadas com moldagem nuclear no epitélio</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Necrose fibrinoide com formação de granulomas epitelioides</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Metaplasia intestinal com células caliciformes e displasia de alto grau</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A tríade clássica é hiperplasia da camada basal, alongamento papilar e infiltrado intraepitelial (eosinófilos, neutrófilos, linfócitos). <strong>A</strong> sugere reparo. <strong>D</strong> sugere vasculite/doença granulomatosa. <strong>C</strong> sugere herpes. <strong>E</strong> é o Barrett com displasia, complicação, não a esofagite.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg5-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Paciente de 35 anos, com DRGE há dez anos, apresenta disfagia progressiva para sólidos. A EDA mostra estreitamento do lúmen distal com cicatriz fibrosa e antecedente de úlceras. Qual é a evolução esperada que explica o quadro?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Laceração transmural da parede, com mediastinite</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Transformação direta das úlceras em carcinoma de células escamosas</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Dilatação venosa da submucosa, com formação de varizes</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Cicatrização das úlceras com fibrose, levando a estenose do esôfago distal</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Hiperplasia glandular da submucosa, que oclui a luz do órgão</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Erosões e ulcerações repetidas cicatrizam com fibrose, podendo causar estenose (redução do lúmen). <strong>B</strong> inverte o risco: o CCE não é consequência direta do refluxo. <strong>C</strong> é hipertensão portal. <strong>A</strong> é Boerhaave. <strong>E</strong> não é descrito.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg5-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Na biópsia esofágica de um paciente com esofagite de refluxo, qual é a espessura da hiperplasia da camada basal que a aula cita como critério?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Até 5% da espessura do epitélio</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Até 10% da espessura do epitélio</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Toda a espessura do epitélio, sem camadas superficiais</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Mais de 50% da espessura do epitélio</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Até 20% da espessura do epitélio</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A aula descreve hiperplasia da camada basal "até 20% da espessura do epitélio". Os demais valores não são os citados; <strong>D</strong> e <strong>C</strong> descreveriam displasia/metaplasia, não a hiperplasia basal reativa.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg6" hidden>
+  <h1 class="pane-title">Esôfago de Barrett</h1>
+  <div class="prose"><h2>Definição e epidemiologia</h2>
+<ul>
+<li><mark class="exam5" data-refs="82:15,81:6,80:6,79:13,77:22"><strong>Metaplasia intestinal do epitélio esofágico</strong> (o escamoso é substituído por epitélio colunar com <strong>células caliciformes</strong>)</mark>.</li>
+<li>Complicação da DRGE/esofagite, em cerca de <strong>10% desses pacientes</strong>.</li>
+<li><strong>Homens, brancos, 40 a 60 anos.</strong></li>
+<li>É o <strong>fator de risco mais importante</strong> para o <strong>adenocarcinoma esofágico</strong>.</li>
+</ul>
+<h2>Fisiopatologia</h2>
+<p>O Barrett é uma <strong>metaplasia adaptativa</strong>: o refluxo ácido crônico do conteúdo gástrico para o <mark class="exam1" data-refs="81:6">esôfago distal</mark> lesa o escamoso, que é substituído por um epitélio mais resistente ao ácido. Ocorre tipicamente no <strong>terço distal, junto à junção esofagogástrica</strong>.</p>
+<h2>Critérios diagnósticos</h2>
+<ol>
+<li><strong>Endoscopia:</strong> mucosa <strong>aveludada, de cor salmão</strong>, com pequenas projeções digitiformes acima da JEG.</li>
+<li><strong>Histologia:</strong> <mark class="exam5" data-refs="82:15,81:6,80:6,79:13,77:22">metaplasia intestinal (epitélio colunar com células caliciformes)</mark> — o diagnóstico definitivo é histopatológico, por <strong>biópsia endoscópica</strong>.</li></ol>
+<p>Classificação por extensão: <strong>segmento longo</strong> (&gt;3 cm acima da JEG, <strong>maior risco</strong> de adenocarcinoma) e <strong>segmento curto</strong> (&lt;3 cm).</p>
+<figure class="fig"><img data-img="barrett-eda-mucosa-salmao-digitiforme.jpg" alt="EDA: mucosa de cor salmão com projeções digitiformes acima da junção esofagogástrica" loading="lazy" data-caption="EDA: mucosa de cor salmão com projeções digitiformes acima da junção esofagogástrica"><figcaption>EDA: mucosa de cor salmão com projeções digitiformes acima da junção esofagogástrica</figcaption></figure><figure class="fig"><img data-img="barrett-histologia-juncao-escamoso-glandular.jpg" alt="Transição entre epitélio escamoso (esquerda) e epitélio glandular metaplásico (direita)" loading="lazy" data-caption="Transição entre epitélio escamoso (esquerda) e epitélio glandular metaplásico (direita)"><figcaption>Transição entre epitélio escamoso (esquerda) e epitélio glandular metaplásico (direita)</figcaption></figure><figure class="fig"><img data-img="barrett-histologia-metaplasia-intestinal.jpg" alt="Epitélio colunar com células caliciformes e borda em escova" loading="lazy" data-caption="Epitélio colunar com células caliciformes e borda em escova"><figcaption>Epitélio colunar com células caliciformes e borda em escova</figcaption></figure><figure class="fig"><img data-img="barrett-histologia-celulas-caliciformes.jpg" alt="Detalhe das células caliciformes (mucosas) no epitélio metaplásico" loading="lazy" data-caption="Detalhe das células caliciformes (mucosas) no epitélio metaplásico"><figcaption>Detalhe das células caliciformes (mucosas) no epitélio metaplásico</figcaption></figure>
+<h2>Complicações</h2>
+<ul>
+<li><strong>Da DRGE:</strong> esofagite → úlcera péptica → hemorragia → reparação por fibrose (estenose).</li>
+<li><strong>Malignização:</strong> <mark class="exam3" data-refs="81:12,80:7,77:22">metaplasia intestinal → displasia de baixo grau → displasia de alto grau → adenocarcinoma <em>in situ</em> → adenocarcinoma invasor</mark>.</li>
+</ul>
+<figure class="fig"><img data-img="barrett-sequencia-displasia-adenocarcinoma.jpg" alt="Sequência de Barrett: mucosa normal, metaplasia sem displasia, displasia de baixo grau, displasia de alto grau e adenocarcinoma" loading="lazy" data-caption="Sequência de Barrett: mucosa normal, metaplasia sem displasia, displasia de baixo grau, displasia de alto grau e adenocarcinoma"><figcaption>Sequência de Barrett: mucosa normal, metaplasia sem displasia, displasia de baixo grau, displasia de alto grau e adenocarcinoma</figcaption></figure><aside class="note note-extra"><p><strong>Duas pegadinhas que se espelham:</strong> (1) <strong>metaplasia intestinal</strong> associa-se ao <strong>adenocarcinoma</strong>; a sequência do <strong>CCE</strong> passa por displasia <em>escamosa</em>. (2) Uma mucosa "vermelho-salmão" próxima a uma lesão vegetante aponta para <strong>adenocarcinoma</strong> (Barrett), não CCE. No Barrett, o infiltrado pode ser misto com eosinófilos (esofagite associada), mas <em>sem predomínio neutrofílico</em>; células atípicas infiltrativas já seriam carcinoma.</p></aside><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="C" data-qid="seg6-0">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 80, Q6</span><span class="q-num">1</span><div class="q-stem"><p>Paciente com DRGE de longa data é submetido a EDA com biópsia do esôfago distal. A mucosa é aveludada, de cor salmão. Qual achado histológico confirma o diagnóstico?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Dilatação de vasos submucosos com congestão intensa da mucosa</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Células escamosas atípicas com pérolas córneas invadindo a parede</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Metaplasia intestinal com células caliciformes no epitélio esofágico</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Granulomas epitelioides com necrose caseosa e células gigantes</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Hiperplasia de glândulas gástricas com atrofia das oxínticas</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O Barrett é definido por metaplasia intestinal com células caliciformes (ou de Paneth) no esôfago distal. <strong>B</strong> descreve o CCE. <strong>A</strong> descreve as varizes. <strong>D</strong> descreve tuberculose. <strong>E</strong> descreve doença gástrica.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg6-1">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 81, Q6</span><span class="q-num">2</span><div class="q-stem"><p>Qual afirmativa sobre o esôfago de Barrett está <strong>ERRADA</strong>?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O principal fator etiológico é o refluxo crônico do conteúdo gástrico ácido para o esôfago distal</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">A alteração histológica típica é a metaplasia intestinal</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">O diagnóstico definitivo é histopatológico, por biópsia endoscópica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">A metaplasia é considerada uma resposta adaptativa à irritação ácida crônica</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Ocorre tipicamente no terço proximal do esôfago, próximo ao arco aórtico</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O Barrett ocorre no terço <em>distal</em>, junto à junção esofagogástrica — afirmar o terço proximal é a pegadinha de localização. <strong>A</strong>, <strong>B</strong>, <strong>C</strong> e <strong>D</strong> estão corretas.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg6-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Homem de 58 anos, branco, DRGE há 20 anos, tem Barrett de segmento longo na EDA. Qual é a principal complicação a ser vigiada?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Carcinoma de células escamosas do terço médio do esôfago</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Síndrome de Mallory-Weiss recorrente</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Adenocarcinoma esofágico, precedido por displasia</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Varizes esofágicas por hipertensão portal</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Megaesôfago por perda de peristalse</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O Barrett é o principal fator de risco do adenocarcinoma, e o segmento longo (&gt;3 cm) tem o maior risco; a sequência passa por displasia de baixo e de alto grau. <strong>A</strong> está ligada a tabaco, álcool e bebidas quentes. <strong>B</strong> e <strong>D</strong> têm outros mecanismos. <strong>E</strong> é característico da acalásia/Chagas.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg7" hidden>
+  <h1 class="pane-title">Neoplasias malignas: CCE × adenocarcinoma</h1>
+  <div class="prose"><h2>Epidemiologia</h2>
+<ul>
+<li><strong>6º câncer mais comum em homens</strong> e 13º nas mulheres; <strong>10ª causa de mortalidade oncológica</strong> no Brasil.</li>
+<li><strong>Diagnóstico tardio</strong>: o paciente fica assintomático por muito tempo, ou minimiza ("azia, deixa pra lá").</li>
+<li>Homens (3:1), acima de 50 anos. <strong>CCE → negros; adenocarcinoma → brancos.</strong></li>
+</ul>
+<h2>Fatores de risco</h2>
+<ul>
+<li><strong>DRGE → esôfago de Barrett</strong> e <strong>obesidade</strong> (adenocarcinoma).</li>
+<li><mark class="exam1" data-refs="81:12"><strong>Megaesôfago (acalásia/Chagas)</strong>: a estase alimentar crônica, com inflamação e descamação, é fator de risco para <strong>CCE</strong></mark>.</li>
+<li>Dieta pobre em frutas/vegetais (menos vitaminas e antioxidantes), alimentos contaminados.</li>
+<li><mark class="exam2" data-refs="80:7,80:19,78:2"><strong>Tabagismo, etilismo e bebidas quentes</strong> — fatores de risco do <strong>CCE</strong></mark>; maior incidência no sul do Brasil.</li>
+<li>Genética.</li>
+</ul>
+<h2>Os dois tipos que importam</h2>
+<table>
+<tr><th></th><th>Carcinoma de células escamosas (CCE)</th><th>Adenocarcinoma</th></tr>
+<tr><td>Frequência</td><td>Mais comum no <strong>Brasil e no mundo</strong> (60–70%)</td><td>Mais comum em <strong>países desenvolvidos</strong> (ex.: EUA), onde há mais obesos</td></tr>
+<tr><td>Origem</td><td>Epitélio habitual do esôfago</td><td><mark class="exam4" data-refs="81:12,80:7,79:15,77:21">Epitélio de Barrett (metaplasia intestinal)</mark></td></tr>
+<tr><td>Localização</td><td><mark class="exam2" data-refs="81:12,80:7">Terço médio e inferior (o mais típico: médio)</mark></td><td>Terço inferior e <strong>junção esofagogástrica</strong></td></tr>
+<tr><td>Pré-lesão</td><td>Displasia escamosa de baixo e alto grau → CCE <em>in situ</em></td><td>Metaplasia intestinal → displasia → adenocarcinoma <em>in situ</em></td></tr>
+<tr><td>Fatores de risco</td><td>Tabaco, álcool, bebidas quentes, megaesôfago</td><td>DRGE/Barrett, obesidade (o DRGE <em>não</em> se associa ao CCE)</td></tr>
+</table>
+<h2>Morfologia do CCE</h2>
+<ul>
+<li>Início: discreta elevação irregular da mucosa (displasia, CCE <em>in situ</em> ou microinvasor — achados de EDA).</li>
+<li>Macroscopia: de placas a lesões ulceradas e volumosas — <strong>vegetante/exofítico (mais comum)</strong>, ulcerado, anular, infiltrante.</li>
+<li>Microscopia: <mark class="exam2" data-refs="80:8,82:8">células escamosas atípicas, com graus variáveis de queratinização e <strong>pérolas córneas</strong></mark> invadindo a parede; <strong>estroma desmoplásico</strong> (mais resistente).</li>
+<li><mark class="exam1" data-refs="80:8">No CCE <strong>pouco diferenciado</strong> há pouca queratinização</mark>; as pérolas córneas aparecem no tumor <em>bem</em> diferenciado.</li>
+</ul>
+<figure class="fig"><img data-img="cce-eda-lesao-vegetante.jpg" alt="EDA: lesão vegetante e ulcerada, típica do CCE" loading="lazy" data-caption="EDA: lesão vegetante e ulcerada, típica do CCE"><figcaption>EDA: lesão vegetante e ulcerada, típica do CCE</figcaption></figure><figure class="fig"><img data-img="cce-peca-macro-vegetante-ulcerada.jpg" alt="Peça macroscópica: lesão vegetante e ulcerada na parede esofágica" loading="lazy" data-caption="Peça macroscópica: lesão vegetante e ulcerada na parede esofágica"><figcaption>Peça macroscópica: lesão vegetante e ulcerada na parede esofágica</figcaption></figure><figure class="fig"><img data-img="cce-peca-macro-esofago-inteiro.jpg" alt="Esôfago inteiro com lesão ulcerada no terço médio" loading="lazy" data-caption="Esôfago inteiro com lesão ulcerada no terço médio"><figcaption>Esôfago inteiro com lesão ulcerada no terço médio</figcaption></figure><figure class="fig"><img data-img="cce-peca-macro-ulcera-detalhe.jpg" alt="Detalhe da lesão ulcerada do CCE" loading="lazy" data-caption="Detalhe da lesão ulcerada do CCE"><figcaption>Detalhe da lesão ulcerada do CCE</figcaption></figure><figure class="fig"><img data-img="cce-peca-macro-lesao-ulcerada-escala.jpg" alt="Esôfago aberto com lesão ulcerada extensa (escala em cm)" loading="lazy" data-caption="Esôfago aberto com lesão ulcerada extensa (escala em cm)"><figcaption>Esôfago aberto com lesão ulcerada extensa (escala em cm)</figcaption></figure><figure class="fig"><img data-img="cce-histologia-perolas-corneas.jpg" alt="Pérolas córneas: ninhos de queratina concêntricos" loading="lazy" data-caption="Pérolas córneas: ninhos de queratina concêntricos"><figcaption>Pérolas córneas: ninhos de queratina concêntricos</figcaption></figure><figure class="fig"><img data-img="cce-histologia-estroma-desmoplasico.jpg" alt="Ninhos neoplásicos escamosos em estroma desmoplásico" loading="lazy" data-caption="Ninhos neoplásicos escamosos em estroma desmoplásico"><figcaption>Ninhos neoplásicos escamosos em estroma desmoplásico</figcaption></figure>
+<h2>Morfologia do adenocarcinoma</h2>
+<ul>
+<li>Início: irregularidade da mucosa <strong>"vermelho-salmão"</strong> (displasia, carcinoma <em>in situ</em> ou microinvasor — EDA). <mark class="exam2" data-refs="81:12,79:15">Mucosa de cor vermelho-salmão próxima a lesão neoplásica vegetante sugere adenocarcinoma</mark>.</li>
+<li>Macroscopia: lesões planas ou em placas avermelhadas na mucosa metaplásica; lesões nodulares (massas); ulceração.</li>
+<li>Microscopia: <mark class="exam2" data-refs="80:8,77:21"><strong>tumores glandulares produtores de muco</strong> (estruturas glandulares ou células em anel de sinete = adenocarcinoma, não CCE)</mark>.</li>
+</ul>
+<figure class="fig"><img data-img="adenocarcinoma-eda-barrett-rotulada.jpg" alt="EDA: metaplasia de Barrett adjacente a adenocarcinoma esofágico vegetante" loading="lazy" data-caption="EDA: metaplasia de Barrett adjacente a adenocarcinoma esofágico vegetante"><figcaption>EDA: metaplasia de Barrett adjacente a adenocarcinoma esofágico vegetante</figcaption></figure><figure class="fig"><img data-img="adenocarcinoma-peca-macro-juncao-ulcerada.jpg" alt="Peça: lesão vegetante e ulcerada, de cor salmão, na junção esofagogástrica" loading="lazy" data-caption="Peça: lesão vegetante e ulcerada, de cor salmão, na junção esofagogástrica"><figcaption>Peça: lesão vegetante e ulcerada, de cor salmão, na junção esofagogástrica</figcaption></figure><figure class="fig"><img data-img="adenocarcinoma-peca-macro-obstrucao-jeg.jpg" alt="Obstrução da junção esofagogástrica pelo tumor" loading="lazy" data-caption="Obstrução da junção esofagogástrica pelo tumor"><figcaption>Obstrução da junção esofagogástrica pelo tumor</figcaption></figure><figure class="fig"><img data-img="adenocarcinoma-histologia-panoramica.jpg" alt="Mucosa com adenocarcinoma sobre epitélio de Barrett (panorâmica)" loading="lazy" data-caption="Mucosa com adenocarcinoma sobre epitélio de Barrett (panorâmica)"><figcaption>Mucosa com adenocarcinoma sobre epitélio de Barrett (panorâmica)</figcaption></figure><figure class="fig"><img data-img="adenocarcinoma-histologia-glandular.jpg" alt="Glândulas neoplásicas atípicas" loading="lazy" data-caption="Glândulas neoplásicas atípicas"><figcaption>Glândulas neoplásicas atípicas</figcaption></figure><figure class="fig"><img data-img="adenocarcinoma-histologia-glandular-detalhe.jpg" alt="Detalhe: glândulas com núcleos atípicos e produção de muco" loading="lazy" data-caption="Detalhe: glândulas com núcleos atípicos e produção de muco"><figcaption>Detalhe: glândulas com núcleos atípicos e produção de muco</figcaption></figure><hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="D" data-qid="seg7-0">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 80, Q7</span><span class="q-num">1</span><div class="q-stem"><p>Em relação aos carcinomas do esôfago, assinale a alternativa correta.</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O DRGE associa-se ao CCE; a metaplasia intestinal é a pré-lesão do adenocarcinoma e do CCE</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">O CCE tem origem no epitélio de Barrett e ocorre predominantemente na junção esofagogástrica</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">O adenocarcinoma ocorre mais no terço médio e é favorecido por tabagismo, etilismo e bebidas quentes</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">O CCE ocorre mais no terço médio e tem como pré-lesão a displasia escamosa; o DRGE associa-se ao adenocarcinoma</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Tabagismo e etilismo são fatores de risco do adenocarcinoma, mas não do carcinoma de células escamosas</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>CCE: terço médio, displasia escamosa, tabaco/álcool/bebidas quentes; adenocarcinoma: DRGE/Barrett e junção esofagogástrica. <strong>A</strong> associa o DRGE ao CCE. <strong>C</strong> troca fatores de risco e localização. <strong>B</strong> atribui ao CCE a origem do Barrett. <strong>E</strong> inverte os fatores de risco.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg7-1">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 81, Q12</span><span class="q-num">2</span><div class="q-stem"><p>Homem de 62 anos, tabagista, com megaesôfago chagásico de longa data, apresenta disfagia progressiva e lesão vegetante no terço médio do esôfago. Qual é o tipo histológico mais provável e por que o megaesôfago é um fator de risco?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Adenocarcinoma; a estase alimentar favorece a metaplasia intestinal do esôfago distal</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Adenocarcinoma; o megaesôfago causa refluxo ácido crônico por hipotonia do EEI</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Carcinoma de pequenas células; o megaesôfago cursa com hiperplasia neuroendócrina</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Linfoma de células B; o megaesôfago induz hiperplasia linfoide crônica da submucosa</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Carcinoma de células escamosas; a estase alimentar crônica mantém inflamação e descamação do epitélio</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>No terço médio, em tabagista com estase, o tipo esperado é o CCE; a estase alimentar crônica gera inflamação e descamação continuadas. <strong>A</strong> e <strong>B</strong> atribuem o adenocarcinoma, que se liga ao Barrett. <strong>C</strong> e <strong>D</strong> citam tipos raros no esôfago sem relação com megaesôfago.</p></div>
+</article><article class="q" data-correct="C" data-qid="seg7-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Uma lâmina de neoplasia esofágica mostra proliferação de células com formação de glândulas produtoras de muco, em mucosa vizinha com epitélio colunar e células caliciformes. Qual é o diagnóstico e a localização mais provável?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Carcinoma de células escamosas, no terço médio</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Carcinoma de células escamosas, na junção esofagogástrica</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Adenocarcinoma, no terço inferior e junção esofagogástrica</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Adenocarcinoma, localizado no terço médio do esôfago</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Carcinoma de pequenas células, no terço superior</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Glândulas produtoras de muco + Barrett adjacente = adenocarcinoma, típico do terço inferior e da JEG. <strong>A</strong> e <strong>B</strong> erram o tipo (CCE tem pérolas córneas). <strong>D</strong> acerta o tipo e erra a localização. <strong>E</strong> é um tipo raro.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg8" hidden>
+  <h1 class="pane-title">Clínica, estadiamento e prognóstico</h1>
+  <div class="prose"><div class="note note-extra"><p><strong>Caso clínico 3 (da aula):</strong> homem, 65 anos, <strong>tabagista</strong>, com <strong>perda ponderal de 10 kg em 2 meses</strong> e <strong>disfagia progressiva</strong>. Refere "problemas no estômago" há 20 anos, tratados com antiácidos por conta própria. <em>Diagnóstico?</em> → DRGE crônica sem acompanhamento → provável <strong>Barrett</strong> e <strong>adenocarcinoma esofágico</strong> (o tabaco soma risco para CCE, mas o histórico de refluxo de 20 anos pesa no adenocarcinoma).</p></div>
+<h2>Clínica e complicações</h2>
+<ul>
+<li><strong>Evolução silenciosa</strong> → diagnóstico em fase avançada.</li>
+<li><strong>Disfagia</strong> progressiva: começa para <strong>sólidos</strong> e evolui para líquidos; odinofagia e dor torácica; vômitos; hematêmese ou melena.</li>
+<li><strong>Perda de peso progressiva e agressiva</strong> (a dificuldade de alimentar-se impede a ingestão de nutrientes).</li>
+<li><strong>Complicações:</strong> obstrução; ulceração → hemorragia e <strong>perfuração (mediastinite)</strong>; infiltração de órgãos adjacentes (ex.: traqueia → fístula).</li>
+</ul>
+<h2>Estadiamento — a profundidade manda no T</h2>
+<p>A profundidade de invasão define o T (não é preciso decorar a tabela, só saber que ela existe): T1 = lâmina própria/muscular da mucosa/submucosa; T2 = <strong>muscular própria</strong>; T3 = <mark class="exam2" data-refs="81:12,79:15"><strong>adventícia</strong></mark>; T4 = estruturas adjacentes (pleura, pericárdio, aorta, via aérea…). Um tumor que invade até a adventícia tem <strong>pior prognóstico</strong> que um que invade até a lâmina própria.</p>
+<figure class="fig"><img data-img="estadiamento-profundidade-invasao-esquema.jpg" alt="Esquema: T1 a T4 conforme a profundidade na parede esofágica, e N0/N1" loading="lazy" data-caption="Esquema: T1 a T4 conforme a profundidade na parede esofágica, e N0/N1"><figcaption>Esquema: T1 a T4 conforme a profundidade na parede esofágica, e N0/N1</figcaption></figure><figure class="fig"><img data-img="estadiamento-tnm-tabela-categorias-t.jpg" alt="Categorias T do CCE e do adenocarcinoma de esôfago" loading="lazy" data-caption="Categorias T do CCE e do adenocarcinoma de esôfago"><figcaption>Categorias T do CCE e do adenocarcinoma de esôfago</figcaption></figure>
+<h2>Metástases e prognóstico</h2>
+<ul>
+<li><strong>Linfonodos:</strong> terço superior → cervicais; médio → mediastinais e traqueobrônquicos; inferior → abdominais. Depois: fígado, pulmões, suprarrenais.</li>
+<li><strong>Sobrevida em 5 anos:</strong> &lt;25% em estágio avançado (a partir de T2 ou com metástases); ≈80% no tumor precoce (até T1).</li>
+</ul>
+<figure class="fig"><img data-img="linfonodos-esofago-mapa-regional.jpg" alt="Mapa de estações linfonodais regionais do esôfago" loading="lazy" data-caption="Mapa de estações linfonodais regionais do esôfago"><figcaption>Mapa de estações linfonodais regionais do esôfago</figcaption></figure>
+<div class="examcard"><h4>📷 Residência — UNICAMP 2016</h4><p>Homem de 72 anos, disfagia progressiva, anorexia e emagrecimento; câncer no <strong>terço médio</strong>, com invasão da aorta e do brônquio fonte esquerdo, metástases mediastinais e hepáticas. <em>Justificativa do comportamento agressivo?</em> → <strong>d) a ausência da camada serosa no esôfago</strong>. As demais (terço médio, adenocarcinoma ser o mais comum, relação com Barrett) não explicam a invasão precoce de estruturas vizinhas.</p></div>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="B" data-qid="seg8-0">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">1</span><div class="q-stem"><p>Homem de 65 anos, tabagista, refere refluxo há 20 anos tratado com antiácidos sem acompanhamento, e agora tem disfagia progressiva e perda de 10 kg em 2 meses. Qual é a sequência patogenética mais provável?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Esofagite de refluxo → hérnia de hiato → varizes → ruptura</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Esofagite de refluxo → Barrett → displasia → adenocarcinoma</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Vômitos repetidos → laceração mucosa → Boerhaave</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Megaesôfago → estase → displasia escamosa → adenocarcinoma</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Hipertensão portal → varizes → metaplasia escamosa → CCE</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Refluxo crônico → Barrett → displasia de baixo e alto grau → adenocarcinoma é a cadeia do caso. <strong>A</strong> e <strong>E</strong> misturam mecanismos de varizes. <strong>C</strong> é Mallory-Weiss/Boerhaave. <strong>D</strong> erra o tipo: a estase leva ao CCE, não ao adenocarcinoma.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg8-1">
+  <header class="q-head"><span class="q-source adapted">Adaptada — UNICAMP 2016</span><span class="q-num">2</span><div class="q-stem"><p>Homem de 72 anos, com câncer no terço médio do esôfago, apresenta invasão da aorta e do brônquio fonte esquerdo, metástases mediastinais e hepáticas. Qual é a justificativa para o comportamento agressivo do tumor?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Localização no terço médio, com linfonodos mais agressivos</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">O tipo histológico mais comum ser o adenocarcinoma</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Associação do tumor com o esôfago de Barrett prévio</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Ausência da camada serosa na parede do esôfago</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Camada muscular lisa em todo o órgão, facilitando a invasão</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A ausência de serosa permite que o tumor alcance rapidamente as estruturas adjacentes. <strong>A</strong> e <strong>B</strong> são afirmações epidemiológicas, não explicam a invasão. <strong>C</strong> relaciona-se ao adenocarcinoma de terço inferior. <strong>E</strong> é incorreto: a muscular é estriada no terço superior.</p></div>
+</article><article class="q" data-correct="D" data-qid="seg8-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Paciente com câncer de esôfago apresenta disfagia que começou para sólidos e hoje também é para líquidos, com perda ponderal intensa. Qual é a explicação para a evolução da disfagia e para o emagrecimento?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Paralisia do esfíncter esofágico superior por infiltração tumoral</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Hipersecreção ácida gástrica, que lesa a mucosa e gera dor ao deglutir</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Aumento da peristalse esofágica, que acelera o trânsito e reduz a absorção</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Redução progressiva do lúmen pelo tumor, dificultando a alimentação e a ingestão de nutrientes</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Refluxo biliar, que causa gastrite atrófica e anorexia</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O tumor estreita progressivamente o lúmen: primeiro obstrui sólidos, depois líquidos, e a dificuldade de alimentar-se gera perda de peso agressiva. <strong>B</strong>, <strong>C</strong>, <strong>A</strong> e <strong>E</strong> não explicam a disfagia progressiva mecânica nem a caquexia.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="seg9" hidden>
+  <h1 class="pane-title">O que mais cai em prova</h1>
+  <div class="prose"><p class="lede">Cruzei os <strong>183 itens das Somativas 77 a 82</strong> com esta aula. Esôfago caiu em <strong>todas as seis provas (27 itens)</strong>. Só temos as <em>justificativas</em>; o que segue é a leitura da banca pelo que ela justifica — uma tendência do banco, não uma garantia.</p>
+<table>
+<tr><th>Tema do esôfago</th><th>Provas</th><th>Nº</th><th>Onde caiu</th></tr>
+<tr><td><strong>Varizes esofágicas</strong></td><td>82, 81, 79, 78, 77</td><td>5</td><td>82:16, 81:21, 79:16, 79:17, 78:17, 77:16</td></tr>
+<tr><td><strong>Esôfago de Barrett</strong></td><td>82, 81, 80, 79, 77</td><td>5</td><td>82:15, 81:6, 80:6, 79:13, 77:22</td></tr>
+<tr><td><strong>Esofagite de refluxo (tríade histológica)</strong></td><td>82, 81, 80, 78, 77</td><td>5</td><td>82:27, 81:14, 80:6, 78:22, 77:22</td></tr>
+<tr><td><strong>DRGE: hérnia de hiato, EEI, pressão abdominal</strong></td><td>81, 80, 79, 78, 77</td><td>5</td><td>81:9, 80:5, 79:14, 78:16, 78:18, 77:20</td></tr>
+<tr><td><strong>Neoplasias (CCE × adenocarcinoma)</strong></td><td>81, 80, 79, 77</td><td>4</td><td>81:12, 80:7, 80:8, 79:15, 77:21</td></tr>
+<tr><td><strong>Mallory-Weiss × Boerhaave</strong></td><td>82, 81, 78</td><td>3</td><td>82:2, 81:21, 78:15</td></tr>
+</table>
+<div class="examcard"><h4>⚫ Varizes — 5 provas</h4><p>Dilatações <strong>submucosas e periesofágicas</strong>, permanentes, sem vasos intraepiteliais; rompem por alta pressão ou atrito/digestão ácida; EDA diagnostica e trata (79:17 = 77:16, praticamente iguais). Hipertensão portal → colaterais (82:16); veia gástrica esquerda → terços distal e médio (78:17). Esquistossomótico com HDA = varizes primeiro (79:16).</p></div>
+<div class="examcard"><h4>⚫ Barrett — 5 provas</h4><p>Metaplasia intestinal com <strong>células caliciformes</strong> (ou de Paneth) no esôfago distal, por refluxo ácido crônico; diagnóstico definitivo histológico (82:15, 81:6, 80:6, 79:13). É a pré-lesão do adenocarcinoma. Na somativa 77 (Q22): esofagite e Barrett podem ser assintomáticos, e a displasia de baixo grau pode permanecer estável ou até regredir.</p></div>
+<div class="examcard"><h4>⚫ DRGE — 5 provas</h4><p>Hérnia de hiato (principalmente adquirida), obesidade/gravidez (pressão intra-abdominal) e fatores que relaxam o EEI (estresse, VIP/NO, tabaco, álcool, fármacos, café, chocolate, frituras): 80:5, 78:16, 78:18, 77:20. Distratores: esfíncter esofágico superior/cricofaríngeo na barreira (81:9) e "DRGE causada por hipertensão portal" (79:14 — não há associação).</p></div>
+<div class="examcard"><h4>⚫ Esofagite de refluxo — 5 provas</h4><p>Tríade: hiperplasia da camada basal (até 20% do epitélio) + alongamento das papilas + células inflamatórias intraepiteliais (eosinófilos, neutrófilos, linfócitos) (82:27, 78:22). Distratores (81:14): tecido de granulação com macrófagos xantomizados, granulomas/necrose fibrinoide, células multinucleadas com moldagem nuclear (herpes).</p></div>
+<div class="examcard"><h4>🔴 CCE × adenocarcinoma — 4 provas</h4><p>CCE: tabaco, álcool, bebidas quentes, megaesôfago; terço médio; displasia escamosa; pérolas córneas (o pouco diferenciado quase não queratiniza — 80:8). Adenocarcinoma: DRGE/Barrett; JEG/terço inferior; mucosa vermelho-salmão; mais comum em homens; no Brasil é menos frequente que o CCE; células colunares atípicas em arranjos tubulares (79:15, 77:21). O T muda pela profundidade, não pelo tamanho.</p></div>
+<h2>Pegadinhas clássicas (V/F)</h2>
+<table>
+<tr><th>Afirmação</th><th>Veredito</th></tr>
+<tr><td>O DRGE tem associação com o carcinoma de células escamosas.</td><td><strong>Falso</strong> — associa-se ao adenocarcinoma (80:7).</td></tr>
+<tr><td>A DRGE pode ser causada por hipertensão portal.</td><td><strong>Falso</strong> — não há associação (79:14).</td></tr>
+<tr><td>As varizes têm vasos intraepiteliais e regridem após tratar a causa.</td><td><strong>Falso</strong> — submucosas/periesofágicas e permanentes (79:17, 77:16).</td></tr>
+<tr><td>O Barrett ocorre no terço proximal do esôfago.</td><td><strong>Falso</strong> — terço distal, junto à JEG (81:6).</td></tr>
+<tr><td>Toda displasia de Barrett evolui obrigatoriamente para carcinoma.</td><td><strong>Falso</strong> — a de baixo grau pode ficar estável ou involuir (77:22).</td></tr>
+<tr><td>O esfíncter esofágico superior e o cricofaríngeo fazem parte da barreira antirrefluxo.</td><td><strong>Falso</strong> — participam da deglutição (81:9).</td></tr>
+<tr><td>A hematêmese do Mallory-Weiss costuma exigir cirurgia.</td><td><strong>Falso</strong> — cessa espontaneamente na maioria (81:21).</td></tr>
+<tr><td>Bebidas quentes são fator de risco para câncer de laringe.</td><td><strong>Falso</strong> — são do câncer de esôfago (80:19, 78:2).</td></tr>
+</table>
+<h2>Prática: o que "olhar" (peças D13 e D26 + lâmina de adenocarcinoma esofágico)</h2>
+<p>Roteiro do professor para as peças e lâminas: (1) discutir e descrever macro e microscopia; (2) qual lesão está identificada nas peças; (3) diagnóstico macroscópico; (4) alterações vistas na lâmina e diagnóstico histopatológico. Treine descrevendo nesta ordem: <em>órgão → alteração macro (vegetante/ulcerada, localização) → diagnóstico → na lâmina: glândulas produtoras de muco sobre epitélio com caliciformes → adenocarcinoma.</em></p>
+<hr /></div>
+  <div class="qzone">
+    <h2 class="qzone-title">Questões de verificação</h2>
+    <article class="q" data-correct="D" data-qid="seg9-0">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 79, Q17 · 77, Q16</span><span class="q-num">1</span><div class="q-stem"><p>Homem de 44 anos, com esquistossomose hepatoesplênica, tem hematêmese volumosa. Sobre a causa mais provável, qual afirmação está correta?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">São vasos intraepiteliais que regridem quando a hipertensão portal é tratada</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">É uma laceração longitudinal da mucosa da JEG por aumento da pressão gástrica</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">É uma ruptura transmural do esôfago distal, com mediastinite e enfisema</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">São dilatações venosas submucosas permanentes, diagnosticadas e tratadas por EDA</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">São erosões pépticas do terço proximal causadas pelo refluxo ácido crônico</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Esquistossomótico com HDA: primeira hipótese é ruptura de varizes (79:16). Varizes são dilatações venosas submucosas e periesofágicas, <strong>permanentes</strong> e sem vasos intraepiteliais, que rompem por alta pressão ou atrito; a EDA diagnostica e trata (79:17 e 77:16, quase iguais). <strong>A</strong> traz os dois erros que a banca usa. <strong>B</strong> é Mallory-Weiss; <strong>C</strong> é Boerhaave; <strong>E</strong> não explica HDA volumosa nem a localização.</p></div>
+</article><article class="q" data-correct="E" data-qid="seg9-1">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">2</span><div class="q-stem"><p>Assinale a afirmativa VERDADEIRA, entre as pegadinhas mais cobradas.</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">O DRGE associa-se ao carcinoma de células escamosas do esôfago</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">O esôfago de Barrett ocorre no terço proximal do esôfago</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">A EDA é sempre alterada em todos os pacientes com DRGE</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">O esfíncter esofágico superior faz parte da barreira antirrefluxo</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">A hérnia por deslizamento é a mais associada à DRGE</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A hérnia por deslizamento é a mais frequente (95%) e a mais ligada ao refluxo. <strong>A</strong>: o DRGE liga-se ao adenocarcinoma. <strong>B</strong>: o Barrett é distal. <strong>D</strong>: o EES participa da deglutição. <strong>C</strong>: grande parte tem EDA normal.</p></div>
+</article><article class="q" data-correct="A" data-qid="seg9-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Qual conjunto de achados de EDA e histologia fecha o diagnóstico de esôfago de Barrett?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Mucosa salmão acima da JEG e metaplasia intestinal com caliciformes</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Mucosa azulada com veias dilatadas e metaplasia escamosa</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Laceração longitudinal junto à JEG e infiltrado eosinofílico</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Lesão vegetante e ulcerada com pérolas córneas invasivas</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Erosões lineares com hiperplasia basal e alongamento papilar</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Mucosa salmão + metaplasia intestinal com caliciformes = Barrett. <strong>B</strong> é varizes. <strong>C</strong> é Mallory-Weiss. <strong>D</strong> é CCE. <strong>E</strong> é esofagite de refluxo.</p></div>
+</article>
+  </div>
+</section><section class="pane" id="apendice" hidden><div class="prose"><span class="q-source real">Questões de residência — anexadas pelo professor</span>
+<p><strong>1) Unifil 2026 (adaptada)</strong> — Sobre a DRGE, analise: <br>I. São fatores de risco: gravidez, obesidade, hérnia hiatal, fatores genéticos e idade avançada. <br>II. O relaxamento transitório do EEI é o mecanismo mais frequente, em 60 a 80% dos casos. <br>III. Na EDA, grande parte dos pacientes não apresenta anormalidade, ou apenas achados inespecíficos como eritema e edema. <br>IV. A pHmetria é considerada o exame padrão-ouro para o diagnóstico da DRGE. <br>V. A hérnia hiatal tipo II (paraesofágica) é a configuração anatômica mais associada à DRGE.</p>
+<p>a) I e IV · b) II, III e V · c) I, III e V · d) II, III e IV · e) I, II, III e IV<br><strong>Gabarito: E.</strong> V é falsa — é o <strong>tipo III</strong> (deslizamento) o mais associado. As alternativas com V (b, c) caem; as demais assertivas são verdadeiras.</p>
+<p><strong>2) AMP — Residência 2007</strong> — Mallory-Weiss é causa de ~10% das HDA. A afirmativa <strong>ERRADA</strong>: <strong>a) está associada ao câncer de esôfago.</strong> As demais estão corretas (aumento da pressão intragástrica, ruptura no cárdia com lesão de vasos submucosos, diagnóstico endoscópico, &gt;90% cessam).</p>
+<p><strong>3) UNICAMP 2016</strong> — Câncer do terço médio com invasão de aorta e brônquio fonte esquerdo: o comportamento agressivo se explica pela <strong>ausência da camada serosa</strong> (<strong>d</strong>).</p>
+<aside class="note note-extra"><p><strong>Dica:</strong> nas questões de afirmativas numeradas, derrube primeiro as alternativas que contêm a assertiva claramente falsa (aqui, a V) e só então confira as restantes.</p></aside><hr /></div></section><section class="pane" id="quiz" hidden>
+  <h1 class="pane-title">Quiz final — 15 questões</h1>
+  <p class="lede">Responda todas e corrija de uma vez. Integra os nove segmentos e não repete as questões de verificação.</p>
+  <div class="scorebar" id="scorebar"><span id="scoretext">0 de 15 respondidas</span>
+    <button class="btn-grade" id="btn-grade" type="button">Corrigir prova</button>
+    <button class="btn-reset" id="btn-reset" type="button" hidden>Refazer</button></div>
+  <div id="quizlist"><article class="q" data-correct="C" data-qid="quiz-0">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 82, Q15</span><span class="q-num">1</span><div class="q-stem"><p>A biópsia de um segmento de mucosa esofágica distal mostra epitélio colunar com células caliciformes e de Paneth. Qual é o diagnóstico?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 1"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Esofagite de refluxo</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Esofagite herpética</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Esôfago de Barrett</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Carcinoma de células escamosas</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Varizes esofágicas</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Metaplasia intestinal com caliciformes ou células de Paneth caracteriza o Barrett. As demais não têm epitélio intestinal: <strong>A</strong> tem tríade reativa, <strong>B</strong> tem células multinucleadas, <strong>D</strong> tem pérolas córneas, <strong>E</strong> é vascular.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-1">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 82, Q27</span><span class="q-num">2</span><div class="q-stem"><p>A tríade histológica clássica da esofagite de refluxo é:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 2"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Metaplasia intestinal, displasia e produção de muco</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Hiperplasia basal, alongamento papilar e infiltrado intraepitelial</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Necrose fibrinoide, granulomas e células gigantes multinucleadas</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Atrofia do epitélio, ausência de papilas e predomínio de neutrófilos</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Pérolas córneas, estroma desmoplásico e invasão da muscular própria</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a tríade da aula. <strong>A</strong> é do Barrett. <strong>C</strong> sugere doença granulomatosa. <strong>D</strong> inverte os achados. <strong>E</strong> é do CCE.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-2">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">3</span><div class="q-stem"><p>Mulher de 30 anos, bulimia, tem hematêmese leve após vômitos. A EDA mostra laceração linear junto ao cárdia. Qual é a evolução esperada na maioria dos casos?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 3"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Evolução para varizes esofágicas em poucos meses</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Cessação espontânea do sangramento em mais de 90% dos casos</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Progressão para esôfago de Barrett</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Necessidade de cirurgia de urgência em todos os casos</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Malignização em 10% dos pacientes</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Mallory-Weiss cessa sozinho em >90%. As demais atribuem evoluções que não pertencem à síndrome.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-3">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 81, Q21</span><span class="q-num">4</span><div class="q-stem"><p>Qual dos itens abaixo é fator predisponente comum às varizes esofágicas e à síndrome de Mallory-Weiss?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 4"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Etilismo</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Obesidade</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Hérnia de hiato</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Tabagismo isolado</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Uso de IBP</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O etilismo predispõe a cirrose (varizes) e a vômitos repetidos (Mallory-Weiss). As demais não são o elo comum.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-4">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">5</span><div class="q-stem"><p>Qual a ordem de progressão do esôfago de Barrett para o adenocarcinoma?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 5"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Displasia de alto grau → metaplasia → invasor → in situ</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Metaplasia intestinal → DBG → DAG → adenocarcinoma in situ → invasor</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Metaplasia escamosa → displasia escamosa → in situ → CCE</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Esofagite → úlcera → estenose → adenocarcinoma invasor</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Hiperplasia basal → displasia → carcinoma de pequenas células</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>É a cadeia do Barrett. <strong>A</strong> embaralha. <strong>C</strong> é a sequência do CCE. <strong>D</strong> é a evolução da esofagite, sem malignização direta. <strong>E</strong> mistura tipos.</p></div>
+</article><article class="q" data-correct="C" data-qid="quiz-5">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 81, Q12</span><span class="q-num">6</span><div class="q-stem"><p>Qual associação entre tipo de câncer esofágico e localização/fator está correta?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 6"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Adenocarcinoma: terço superior; CCE: terço inferior</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Adenocarcinoma: terço médio; CCE: junção esofagogástrica</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Adenocarcinoma: junção esofagogástrica; CCE: terço médio</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Ambos predominam no terço superior</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">CCE: associado a Barrett; adenocarcinoma: associado a álcool</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Adenocarcinoma na JEG (Barrett), CCE no terço médio. <strong>B</strong> e <strong>A</strong> trocam as localizações. <strong>D</strong> não existe. <strong>E</strong> troca os fatores de risco.</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-6">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">7</span><div class="q-stem"><p>Na endoscopia de um paciente com lesão neoplásica vegetante esofágica, nota-se mucosa vizinha de cor "vermelho-salmão". Qual é o diagnóstico mais provável?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 7"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Carcinoma de células escamosas</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Tumor neuroendócrino esofágico</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Linfoma primário do esôfago</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Adenocarcinoma sobre Barrett</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Metástase pulmonar para o esôfago</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Mucosa vermelho-salmão adjacente = Barrett, com adenocarcinoma. As outras opções são raras e não se associam a esse achado.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-7">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">8</span><div class="q-stem"><p>Qual é o exame considerado padrão-ouro para o diagnóstico da DRGE segundo a aula?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 8"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Impedâncio-pHmetria esofágica</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">EDA com biópsia da mucosa</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Radiografia contrastada de esôfago</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Manometria esofágica isolada</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Cintilografia gastroesofágica</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>A aula cita a impedâncio-pHmetria como padrão-ouro para a DRGE; a EDA avalia lesões.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-8">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 80, Q5</span><span class="q-num">9</span><div class="q-stem"><p>Qual dos achados abaixo é o mais comum na EDA de pacientes com DRGE que apresentam lesão?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 9"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Laceração longitudinal profunda</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Veias azuladas calibrosas e tortuosas</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Lesão vegetante e ulcerada extensa</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Mucosa salmão em todos os casos</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Hiperemia e erosões da mucosa distal</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Hiperemia e erosões distais são os achados mais comuns; as demais são varizes, neoplasia, Barrett e Mallory-Weiss.</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-9">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">10</span><div class="q-stem"><p>Homem de 52 anos, etilista, com hematêmese. Qual causa de hipertensão portal NÃO é intra-hepática?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 10"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Cirrose alcoólica</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Esquistossomose hepatoesplênica</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Fibrose periportal</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Síndrome de Budd-Chiari</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Cirrose viral</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Budd-Chiari é pós-hepática. As outras são intra-hepáticas.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-10">
+  <header class="q-head"><span class="q-source adapted">Adaptada — Somativa 80, Q8</span><span class="q-num">11</span><div class="q-stem"><p>Um CCE esofágico pouco diferenciado mostra:</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 11"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Pouca queratinização</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Muitas pérolas córneas</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Glândulas produtoras de muco</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Células em anel de sinete</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Metaplasia intestinal</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>No CCE pouco diferenciado há pouca queratinização; pérolas córneas aparecem no bem diferenciado; glândulas/anel de sinete são de adenocarcinoma.</p></div>
+</article><article class="q" data-correct="D" data-qid="quiz-11">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">12</span><div class="q-stem"><p>Paciente com disfagia que começou para sólidos e evoluiu para líquidos, com perda de peso. Qual o principal motivo do diagnóstico tardio do câncer de esôfago?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 12"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Sintomas que ocorrem apenas em pacientes muito jovens</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Ausência de métodos diagnósticos disponíveis para o esôfago</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Doença rara e pouco conhecida pelos profissionais de saúde</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Evolução silenciosa por longo tempo e sintomas minimizados</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Biópsia endoscópica de baixa sensibilidade para o diagnóstico</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>O tumor é assintomático por muito tempo e o paciente tende a ignorar azia/sintomas iniciais.</p></div>
+</article><article class="q" data-correct="B" data-qid="quiz-12">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">13</span><div class="q-stem"><p>Qual é a sobrevida aproximada em 5 anos do câncer de esôfago em tumor precoce (até T1)?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 13"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Menos de 25%</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Cerca de 80%</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Cerca de 60%</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Cerca de 40%</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Mais de 95%</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Tumor precoce: ≈80%; avançado (a partir de T2 ou com metástases): <25%.</p></div>
+</article><article class="q" data-correct="E" data-qid="quiz-13">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">14</span><div class="q-stem"><p>Em qual terço do esôfago e em qual contexto as metástases linfonodais são mediastinais e traqueobrônquicas?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 14"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Terço superior</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">Apenas esôfago cervical</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Terço inferior</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">Junção esofagogástrica</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Terço médio</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Terço médio → mediastinais e traqueobrônquicos; superior → cervicais; inferior → abdominais.</p></div>
+</article><article class="q" data-correct="A" data-qid="quiz-14">
+  <header class="q-head"><span class="q-source original">Questão da aula</span><span class="q-num">15</span><div class="q-stem"><p>(Nível avançado) Homem de 60 anos, obeso, com DRGE e disfagia, tem à EDA lesão ulcerada na JEG sobre mucosa salmão, e a biópsia mostra glândulas produtoras de muco. Qual a alternativa que integra tipo, pré-lesão e fator de risco?</p></div></header>
+  <div class="opts" role="group" aria-label="Alternativas da questão 15"><button class="opt" type="button" data-letter="A" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">Adenocarcinoma; metaplasia intestinal; DRGE e obesidade</span></button><button class="opt" type="button" data-letter="B" aria-pressed="false"><span class="opt-letter">B</span><span class="opt-text">CCE; displasia escamosa; tabagismo e etilismo</span></button><button class="opt" type="button" data-letter="C" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">Adenocarcinoma; displasia escamosa; megaesôfago chagásico</span></button><button class="opt" type="button" data-letter="D" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">CCE; metaplasia intestinal; etilismo e bebidas quentes</span></button><button class="opt" type="button" data-letter="E" aria-pressed="false"><span class="opt-letter">E</span><span class="opt-text">Carcinoma de pequenas células; Barrett; DRGE</span></button></div>
+  <div class="q-actions"><button class="btn-reveal" type="button">Ver resposta</button></div>
+  <div class="q-why" hidden><p class="q-verdict"></p><p>Glândulas com mucina + JEG + mucosa salmão = adenocarcinoma, com pré-lesão de Barrett e fatores DRGE/obesidade. Os demais embaralham tipo, pré-lesão e fator.</p></div>
+</article></div>
+  <div class="prose closing"><ol>
+<li><strong>Barreira antirrefluxo = EEI + ligamento frenoesofágico + ângulo de His</strong> (o EES e o cricofaríngeo são da deglutição). Esôfago: 4 camadas, <strong>sem serosa</strong>.</li>
+<li><strong>Varizes:</strong> hipertensão portal → colaterais portossistêmicas; 90% cirrose/esquistossomose; ligadura elástica = padrão-ouro.</li>
+<li><strong>Mallory-Weiss</strong> (mucosa/submucosa, cessa em &gt;90%) × <strong>Boerhaave</strong> (transmural, mediastinite). Etilismo é o elo com varizes.</li>
+<li><strong>DRGE:</strong> relaxamento transitório do EEI; hérnia por deslizamento (95%, tipo III da aula) é a mais associada; EDA frequentemente normal.</li>
+<li><strong>Esofagite de refluxo:</strong> hiperplasia basal + alongamento papilar + infiltrado intraepitelial.</li>
+<li><strong>Barrett:</strong> metaplasia intestinal com caliciformes, terço distal; metaplasia → DBG → DAG → adenocarcinoma.</li>
+<li><strong>CCE:</strong> terço médio, tabaco/álcool/bebidas quentes/megaesôfago, pérolas córneas. <strong>Adenocarcinoma:</strong> JEG, DRGE/Barrett/obesidade, glândulas com muco.</li>
+<li>T depende da profundidade; sem serosa → invasão precoce; sobrevida ≈80% (até T1) × &lt;25% (T2+ ou metástases).</li>
+</ol></div>
+</section></main>
+</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="lb-close" type="button">Fechar</button>
+  <figure style="margin:0;display:grid;place-items:center"><img loading=lazy decoding=async src="" alt=""><figcaption></figcaption></figure>
+</div>
+<script type="application/json" id="imgdata">{"adenocarcinoma-eda-barrett-rotulada.jpg": "../_img/27e6d0d05c04d609.webp", "adenocarcinoma-histologia-glandular-detalhe.jpg": "../_img/d1555880d9232a06.webp", "adenocarcinoma-histologia-glandular.jpg": "../_img/8ed48ef45175d4cc.webp", "adenocarcinoma-histologia-panoramica.jpg": "../_img/793dbbb46564355a.webp", "adenocarcinoma-peca-macro-juncao-ulcerada.jpg": "../_img/d553652142490de2.webp", "adenocarcinoma-peca-macro-obstrucao-jeg.jpg": "../_img/62d866a87e87a4b0.webp", "barreira-antirrefluxo-elementos-esquema.jpg": "../_img/24bf1f02fda5fc4f.webp", "barrett-eda-mucosa-salmao-digitiforme.jpg": "../_img/a2e7840ce50a5128.webp", "barrett-histologia-celulas-caliciformes.jpg": "../_img/3daebf9e9f48bcb8.webp", "barrett-histologia-juncao-escamoso-glandular.jpg": "../_img/2e54212be2e251e8.webp", "barrett-histologia-metaplasia-intestinal.jpg": "../_img/2681150fbc667a40.webp", "barrett-sequencia-displasia-adenocarcinoma.jpg": "../_img/57b8f85046f923f6.webp", "cce-eda-lesao-vegetante.jpg": "../_img/5ba5b35dce69d8d5.webp", "cce-histologia-estroma-desmoplasico.jpg": "../_img/859d23d090f84f1c.webp", "cce-histologia-perolas-corneas.jpg": "../_img/37fc3314cc93589a.webp", "cce-peca-macro-esofago-inteiro.jpg": "../_img/b4a5a18babce21d6.webp", "cce-peca-macro-lesao-ulcerada-escala.jpg": "../_img/b125dcf6cfbce11e.webp", "cce-peca-macro-ulcera-detalhe.jpg": "../_img/f428bc70fb0d8013.webp", "cce-peca-macro-vegetante-ulcerada.jpg": "../_img/d906b4b45c95ab5a.jpg", "eei-diafragma-pilares-esquema.jpg": "../_img/839a1ee0f5f7ce34.webp", "epitelio-escamoso-estratificado-esofago.jpg": "../_img/3729035577a9acfa.webp", "esofagite-eda-eritema-erosoes.jpg": "../_img/81c28daca48c5f63.webp", "esofagite-eda-ulcera-cicatrizada-estenose.jpg": "../_img/84417b04ac5d1d24.webp", "esofagite-histologia-eosinofilos-alto-aumento.jpg": "../_img/252fa70c1357ec1f.webp", "esofagite-histologia-eosinofilos-detalhe.jpg": "../_img/a91265c31846f1f4.webp", "esofagite-histologia-hiperplasia-basal-comparacao.jpg": "../_img/98cad528ff5ef54f.webp", "esofagite-histologia-inflamatorio-intraepitelial.jpg": "../_img/57eafdbc84bab4fe.webp", "esofagite-histologia-papilas-alongadas.jpg": "../_img/126600b2c07caf4c.webp", "esofagite-refluxo-eda-caso-clinico-2.jpg": "../_img/eb0ac0e2d09faa25.webp", "esofagite-refluxo-eda-erosoes-setas.jpg": "../_img/5147c64ea7881592.webp", "esofago-anatomia-regioes-esquema.jpg": "../_img/3449b61489b430b3.webp", "esofago-histologia-camadas-rotulada.jpg": "../_img/dfd5b883bf4d0c75.webp", "estadiamento-profundidade-invasao-esquema.jpg": "../_img/d322ef89295b791f.webp", "estadiamento-tnm-tabela-categorias-t.jpg": "../_img/d481ff0ecf978683.webp", "hernia-hiato-deslizamento-tipo3-esquema.jpg": "../_img/600d350f68565f9a.webp", "hernia-hiato-ilustracao-estomago-diafragma.jpg": "../_img/3b45c8ae34b6d67e.webp", "hernia-hiato-normal-esquema.jpg": "../_img/b6ea0889aa9c9257.webp", "hernia-hiato-normal-vs-com-hernia.jpg": "../_img/ec4858783abd4eff.webp", "hernia-hiato-paraesofagica-tipo2-esquema.jpg": "../_img/36bd5601157214fe.webp", "impedancio-phmetria-esofagica-esquema.jpg": "../_img/338061b01c99769a.webp", "linfonodos-esofago-mapa-regional.jpg": "../_img/a07e5d123e4c9992.webp", "mallory-weiss-eda-laceracao-longitudinal.jpg": "../_img/c15425efa1c56191.webp", "mallory-weiss-esquema-laceracao-juncao.jpg": "../_img/2a11b11257c7e6b6.webp", "relaxamento-eei-refluxo-mecanismo-esquema.jpg": "../_img/1d575fc5dd7c0911.webp", "varizes-eda-ponto-de-sangramento.jpg": "../_img/9bdcb69d1f5f2fcc.webp", "varizes-eda-veias-azuladas-calibrosas.jpg": "../_img/71385570a93ee4f4.webp", "varizes-esofagicas-cirrose-veia-porta-esquema.jpg": "../_img/b3f189fcfc52acfc.webp", "varizes-histologia-vasos-dilatados-submucosa.jpg": "../_img/a132c61b60ed1656.webp", "varizes-peca-macro-esofago-aberto.jpg": "../_img/9a6fb239cb2a7109.webp", "varizes-peca-macro-vasos-submucosos.jpg": "../_img/fdd378d2aa2cdc8e.webp", "varizes-tratamento-endoscopico-eda.jpg": "../_img/b2180c6e9ef93420.webp"}</script>
+
+<script>
+const IMGS=JSON.parse(document.getElementById('imgdata').textContent);
+document.querySelectorAll('img[data-img]').forEach(i=>{const d=IMGS[i.dataset.img];if(d)i.src=d;});
+const panes=[...document.querySelectorAll('.pane')];
+const navs=[...document.querySelectorAll('.nav-item')];
+function show(id){
+  panes.forEach(p=>p.hidden=(p.id!==id));
+  navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id));
+  window.scrollTo({top:0,behavior:'auto'});
+  try{location.hash=id}catch(e){}
+}
+navs.forEach(n=>n.addEventListener('click',e=>{e.preventDefault();show(n.dataset.target)}));
+
+function markQuestion(q,reveal){
+  const correct=q.dataset.correct;
+  const chosen=q.querySelector('.opt[aria-pressed="true"]');
+  q.classList.add('done');
+  q.querySelectorAll('.opt').forEach(o=>{
+    if(o.dataset.letter===correct)o.classList.add('is-correct');
+    else if(o===chosen)o.classList.add('is-wrong');
+  });
+  const why=q.querySelector('.q-why');
+  const v=why.querySelector('.q-verdict');
+  if(!chosen){v.textContent='Resposta correta: '+correct;v.className='q-verdict';}
+  else if(chosen.dataset.letter===correct){v.textContent='Você acertou.';v.className='q-verdict ok';}
+  else{v.textContent='Você marcou '+chosen.dataset.letter+'. A correta é '+correct+'.';v.className='q-verdict no';}
+  if(reveal)why.hidden=false;
+  return chosen && chosen.dataset.letter===correct;
+}
+
+document.querySelectorAll('.q').forEach(q=>{
+  q.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
+    if(q.classList.contains('done'))return;
+    q.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed','false'));
+    o.setAttribute('aria-pressed','true');
+    updateScore();
+  }));
+  const btn=q.querySelector('.btn-reveal');
+  if(btn)btn.addEventListener('click',()=>{
+    const why=q.querySelector('.q-why');
+    if(q.classList.contains('done')){why.hidden=!why.hidden;btn.textContent=why.hidden?'Ver resposta':'Ocultar resposta';return;}
+    markQuestion(q,true);btn.textContent='Ocultar resposta';
+  });
+});
+
+const quizQs=[...document.querySelectorAll('#quizlist .q')];
+const scoreText=document.getElementById('scoretext');
+const btnGrade=document.getElementById('btn-grade');
+const btnReset=document.getElementById('btn-reset');
+let graded=false;
+function updateScore(){
+  if(graded||!scoreText)return;
+  const n=quizQs.filter(q=>q.querySelector('.opt[aria-pressed="true"]')).length;
+  scoreText.textContent=n+' de '+quizQs.length+' respondidas';
+}
+if(btnGrade)btnGrade.addEventListener('click',()=>{
+  let hits=0;
+  quizQs.forEach(q=>{if(markQuestion(q,true))hits++;});
+  graded=true;
+  const pct=Math.round(hits/quizQs.length*100);
+  scoreText.textContent='Você acertou '+hits+' de '+quizQs.length+' ('+pct+'%)';
+  btnGrade.hidden=true;btnReset.hidden=false;
+  quizQs.forEach(q=>{const b=q.querySelector('.btn-reveal');if(b)b.textContent='Ocultar resposta';});
+});
+if(btnReset)btnReset.addEventListener('click',()=>{
+  quizQs.forEach(q=>{
+    q.classList.remove('done');
+    q.querySelectorAll('.opt').forEach(o=>{o.setAttribute('aria-pressed','false');o.classList.remove('is-correct','is-wrong');});
+    q.querySelector('.q-why').hidden=true;
+    const b=q.querySelector('.btn-reveal');if(b)b.textContent='Ver resposta';
+  });
+  graded=false;btnGrade.hidden=false;btnReset.hidden=true;updateScore();
+});
+
+const lb=document.getElementById('lightbox');
+const lbImg=lb.querySelector('img'),lbCap=lb.querySelector('figcaption');
+document.querySelectorAll('.fig img').forEach(i=>i.addEventListener('click',()=>{
+  lbImg.src=i.src;lbCap.textContent=i.dataset.caption||'';lb.classList.add('open');
+  lb.querySelector('.lb-close').focus();
+}));
+function closeLb(){lb.classList.remove('open');lbImg.src='';}
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('lb-close'))closeLb();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('open'))closeLb();});
+
+const start=location.hash.replace('#','');
+show(panes.some(p=>p.id===start)?start:'capa');
+</script>
+<script>
+(function(){
+  var LECTURE_KEY = "tgi1";
+  var progress = {};
+  var chkByTarget = {};
+
+  function navKeyOf(item){
+    return item.dataset.target || item.dataset.view || null;
+  }
+  function initChecks(){
+    // duas arquiteturas convivem neste projeto: a maioria usa <a class="nav-item" data-target="segN">;
+    // a Aula 2 (Cardiopatia Isquêmica) usa <button class="navbtn" data-view="segN"> gerado por JS.
+    var navItems = document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]');
+    navItems.forEach(function(item){
+      var key = navKeyOf(item);
+      if(!key || key === 'capa' || key === 'home') return;
+      if(item.querySelector('.mc-chk')) return;
+      var chk = document.createElement('input');
+      chk.type = 'checkbox';
+      chk.className = 'mc-chk';
+      // Neutro de propósito: marcar uma seção é apenas progresso, não "concluído" — a cor
+      // verde fica reservada só para o badge da aula inteira na sidebar do shell (100%).
+      chk.style.marginRight = '6px';
+      chk.style.accentColor = '#8A97A8';
+      chk.style.filter = 'grayscale(1) opacity(.85)';
+      chk.addEventListener('click', function(ev){ ev.stopPropagation(); });
+      chk.addEventListener('change', function(){
+        progress[key] = chk.checked;
+        window.parent.postMessage({type:'setProgress', lecture:LECTURE_KEY, target:key, done:chk.checked}, '*');
+      });
+      item.prepend(chk);
+      chkByTarget[key] = chk;
+    });
+  }
+
+  function refLabel(prova, q){
+    if(q === '?') return 'Somativa ' + prova + ' (tema geral)';
+    return 'Somativa ' + prova + ' \u2014 Quest\u00e3o ' + q;
+  }
+
+  var tooltipEl = null;
+  function ensureTooltip(){
+    if(tooltipEl) return tooltipEl;
+    tooltipEl = document.createElement('div');
+    tooltipEl.id = 'mc-tooltip';
+    tooltipEl.style.cssText = 'position:fixed;z-index:99999;background:#142817;color:#EEF6EA;border:1px solid #44714A;'+
+      'border-radius:8px;padding:10px 12px;font-family:"IBM Plex Sans",sans-serif;font-size:13px;max-width:280px;'+
+      'box-shadow:0 10px 30px rgba(0,0,0,.4);display:none;line-height:1.4';
+    document.body.appendChild(tooltipEl);
+    tooltipEl.addEventListener('mouseenter', function(){ clearTimeout(tooltipEl._hideTimer); });
+    tooltipEl.addEventListener('mouseleave', function(){ hideTooltip(); });
+    return tooltipEl;
+  }
+  function hideTooltip(){
+    if(!tooltipEl) return;
+    tooltipEl._hideTimer = setTimeout(function(){ tooltipEl.style.display='none'; }, 150);
+  }
+  function showTooltip(markEl){
+    var tt = ensureTooltip();
+    clearTimeout(tt._hideTimer);
+    var refs = (markEl.dataset.refs||'').split(',').map(function(s){return s.trim();}).filter(Boolean);
+    if(!refs.length) return;
+    var html = '<div style="font-size:11px;color:#A9C9A0;margin-bottom:6px;letter-spacing:.02em">Caiu em prova \u2014 clique para ver a justificativa</div>';
+    refs.forEach(function(r){
+      var parts = r.split(':'); var parcial=parts[0]; var q=parts[1];
+      var label = refLabel(parcial, q);
+      var clickable = q && q !== '?';
+      html += '<span class="mc-chip" data-parcial="'+parcial+'" data-q="'+(q||'')+'" style="display:inline-block;margin:2px 4px 2px 0;'+
+        'padding:4px 9px;border-radius:12px;background:#2B4D2F;color:#EEF6EA;font-size:12px;'+
+        (clickable? 'cursor:pointer' : 'cursor:default;opacity:.6') + ';border:1px solid #44714A">'+label+'</span>';
+    });
+    tt.innerHTML = html;
+    tt.querySelectorAll('.mc-chip').forEach(function(chip){
+      if(chip.style.cursor !== 'pointer') return;
+      chip.addEventListener('mouseenter', function(){ chip.style.background='#D9A441'; chip.style.borderColor='#D9A441'; });
+      chip.addEventListener('mouseleave', function(){ chip.style.background='#2B4D2F'; chip.style.borderColor='#44714A'; });
+      chip.addEventListener('click', function(){
+        window.parent.postMessage({type:'jumpToBanco', prova:chip.dataset.parcial, q:chip.dataset.q}, '*');
+      });
+    });
+    var rect = markEl.getBoundingClientRect();
+    var left = Math.min(rect.left, window.innerWidth-300);
+    var top = rect.bottom + 6;
+    tt.style.left = left+'px';
+    tt.style.top = top+'px';
+    tt.style.display = 'block';
+  }
+
+  function initTooltips(){
+    document.querySelectorAll('mark[data-refs]').forEach(function(m){
+      if(m.dataset.ttBound) return;
+      m.dataset.ttBound = '1';
+      m.style.cursor = 'help';
+      m.addEventListener('mouseenter', function(){ showTooltip(m); });
+      m.addEventListener('mouseleave', hideTooltip);
+    });
+  }
+
+  window.addEventListener('message', function(ev){
+    if(!ev.data) return;
+    if(ev.data.type === 'progressState' && ev.data.lecture === LECTURE_KEY){
+      progress = ev.data.state || {};
+      Object.keys(chkByTarget).forEach(function(id){ chkByTarget[id].checked = !!progress[id]; });
+    }
+  });
+
+  function boot(){
+    initChecks();
+    initTooltips();
+    window.parent.postMessage({type:'requestProgress', lecture:LECTURE_KEY}, '*');
+  }
+  if(document.readyState === 'complete' || document.readyState === 'interactive') boot();
+  else document.addEventListener('DOMContentLoaded', boot);
+  // fallback: alguns masterclass renderizam nav/conteúdo via JS próprio, possivelmente após
+  // este script rodar — reaplica init algumas vezes nos primeiros segundos.
+  [300,800,1500,3000].forEach(function(ms){ setTimeout(boot, ms); });
+  // e também sempre que o usuário navega (conteúdo de segmentos que só é montado no DOM
+  // quando o painel/segmento é aberto pela primeira vez, como na Aula 2)
+  document.addEventListener('click', function(ev){
+    if(ev.target.closest && (ev.target.closest('.nav-item') || ev.target.closest('.navbtn'))){
+      setTimeout(boot, 80);
+      setTimeout(boot, 300);
+    }
+  }, true);
+})();
+</script>
+
+
+<script>
+(function(){
+  var DOC = "tgi1";
+  var list = [];          // [{id, scope, s, e, t}]
+  var ready = false;
+  var inFrame = (window.parent && window.parent !== window);
+  var LS_KEY = 'pinkHL_tgi_' + DOC;
+
+  function scopeEl(node){
+    var el = node.nodeType === 1 ? node : node.parentElement;
+    if(!el) return null;
+    return el.closest('section.pane, article.item');
+  }
+  function textNodes(root){
+    var out = [], w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){ var p=n.parentElement; if(!p) return 2; var tg=p.tagName; return (tg==='SCRIPT'||tg==='STYLE')?2:1; }
+    });
+    var n; while((n = w.nextNode())) out.push(n);
+    return out;
+  }
+  function offsetIn(root, node, off){
+    var nodes = textNodes(root), acc = 0;
+    for(var i=0;i<nodes.length;i++){
+      if(nodes[i] === node) return acc + off;
+      acc += nodes[i].data.length;
+    }
+    return -1;
+  }
+  function boundaryOffset(root, container, off){
+    if(container.nodeType === 3) return offsetIn(root, container, off);
+    // container é elemento: posição = soma dos textos antes do filho [off]
+    var r = document.createRange(); r.setStart(root, 0);
+    try{ r.setEnd(container, off); }catch(e){ return -1; }
+    return r.toString().length;
+  }
+  function wrap(h){
+    var root = document.getElementById(h.scope); if(!root) return false;
+    var nodes = textNodes(root), acc = 0, done = false;
+    for(var i=0;i<nodes.length;i++){
+      var n = nodes[i], len = n.data.length, a = acc, b = acc + len; acc = b;
+      if(b <= h.s || a >= h.e) continue;
+      var st = Math.max(0, h.s - a), en = Math.min(len, h.e - a);
+      if(en <= st) continue;
+      if(!n.data.slice(st, en).trim()) continue;
+      var mid = n;
+      if(st > 0) mid = mid.splitText(st);
+      if(en - st < mid.data.length) mid.splitText(en - st);
+      var m = document.createElement('mark'); m.className = 'mine'; m.dataset.hid = h.id;
+      mid.parentNode.insertBefore(m, mid); m.appendChild(mid); done = true;
+    }
+    return done;
+  }
+  function unwrap(id){
+    document.querySelectorAll('mark.mine[data-hid="'+id+'"]').forEach(function(m){
+      var p = m.parentNode; while(m.firstChild) p.insertBefore(m.firstChild, m); p.removeChild(m); p.normalize();
+    });
+  }
+  function save(){
+    if(inFrame){ try{ window.parent.postMessage({type:'hlSave', doc:DOC, list:list}, '*'); }catch(e){} }
+    else { try{ localStorage.setItem(LS_KEY, JSON.stringify(list)); }catch(e){} }
+  }
+  function applyAll(arr){
+    document.querySelectorAll('mark.mine').forEach(function(m){ unwrap(m.dataset.hid); });
+    list = [];
+    (arr||[]).forEach(function(h){ if(wrap(h)) list.push(h); else list.push(h); });
+    ready = true;
+  }
+
+  // ---------- popover ----------
+  var pop = document.createElement('div'); pop.id = 'hl-pop';
+  pop.innerHTML = '<button class="add" type="button"><span class="dot"></span>Grifar</button><button class="del" type="button">Remover grifo</button>';
+  document.addEventListener('DOMContentLoaded', function(){ document.body.appendChild(pop); });
+  if(document.body) document.body.appendChild(pop);
+  var addBtn = pop.querySelector('.add'), delBtn = pop.querySelector('.del');
+  var pending = null, pendingDel = null;
+  function hidePop(){ pop.style.display = 'none'; pending = null; pendingDel = null; }
+  function showPop(x, y, mode){
+    addBtn.style.display = mode==='add' ? 'flex' : 'none';
+    delBtn.style.display = mode==='del' ? 'flex' : 'none';
+    pop.style.display = 'flex';
+    var w = pop.offsetWidth || 120;
+    pop.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, x - w/2)) + 'px';
+    pop.style.top = Math.min(window.innerHeight - 48, Math.max(8, y - 46)) + 'px';
+  }
+  addBtn.addEventListener('mousedown', function(e){ e.preventDefault(); });
+  addBtn.addEventListener('click', function(){
+    if(!pending) return;
+    var h = pending; list.push(h); wrap(h); save();
+    try{ window.getSelection().removeAllRanges(); }catch(e){}
+    hidePop();
+  });
+  delBtn.addEventListener('click', function(){
+    if(!pendingDel) return;
+    unwrap(pendingDel); list = list.filter(function(h){ return h.id !== pendingDel; }); save(); hidePop();
+  });
+
+  function onSelect(){
+    var sel = window.getSelection();
+    if(!sel || sel.rangeCount === 0 || sel.isCollapsed){ return; }
+    var r = sel.getRangeAt(0), txt = r.toString();
+    if(txt.replace(/\s+/g,'').length < 2) return;
+    var s1 = scopeEl(r.startContainer), s2 = scopeEl(r.endContainer);
+    if(!s1 || s1 !== s2 || !s1.id) return;
+    var anc = r.commonAncestorContainer; anc = anc.nodeType===1?anc:anc.parentElement;
+    if(anc && anc.closest('button, .opts, input, textarea')) return;
+    var s = boundaryOffset(s1, r.startContainer, r.startOffset);
+    var e = boundaryOffset(s1, r.endContainer, r.endOffset);
+    if(s < 0 || e <= s) return;
+    pending = {id: 'h' + Date.now().toString(36) + Math.random().toString(36).slice(2,6), scope: s1.id, s: s, e: e, t: txt.slice(0,140)};
+    var rect = r.getBoundingClientRect();
+    showPop(rect.left + rect.width/2, rect.top, 'add');
+  }
+  document.addEventListener('mouseup', function(ev){
+    if(pop.contains(ev.target)) return;
+    setTimeout(onSelect, 10);
+  });
+  document.addEventListener('touchend', function(ev){
+    if(pop.contains(ev.target)) return;
+    setTimeout(onSelect, 350);
+  });
+  document.addEventListener('mousedown', function(ev){ if(!pop.contains(ev.target)) hidePop(); });
+  document.addEventListener('click', function(ev){
+    var m = ev.target.closest && ev.target.closest('mark.mine');
+    if(!m) return;
+    var sel = window.getSelection(); if(sel && !sel.isCollapsed) return;
+    pendingDel = m.dataset.hid;
+    var rect = m.getBoundingClientRect();
+    showPop(rect.left + rect.width/2, rect.top, 'del');
+  });
+  window.addEventListener('scroll', function(){
+    if(pop.style.display !== 'flex') return;
+    var sel = window.getSelection();
+    if(pending && sel && sel.rangeCount && !sel.isCollapsed){
+      var rc = sel.getRangeAt(0).getBoundingClientRect(); showPop(rc.left + rc.width/2, rc.top, 'add');
+    } else hidePop();
+  }, {passive:true});
+
+  // ---------- busca vinda do shell: abrir painel e piscar o termo ----------
+  function flashTerm(root, term){
+    if(!root || !term) return;
+    var low = term.toLowerCase(), nodes = textNodes(root);
+    for(var i=0;i<nodes.length;i++){
+      var n = nodes[i], k = n.data.toLowerCase().indexOf(low);
+      if(k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var p=sp.parentNode; if(!p) return; while(sp.firstChild) p.insertBefore(sp.firstChild, sp); p.removeChild(sp); p.normalize(); }, 2600);
+      return;
+    }
+  }
+  window.addEventListener('message', function(ev){
+    var d = ev.data; if(!d || !d.type) return;
+    if(d.type === 'hlState' && d.doc === DOC){ applyAll(d.list); }
+    if(d.type === 'gotoPane'){
+      var el = document.getElementById(d.pane);
+      if(el && el.classList.contains('pane') && typeof window.show === 'function') window.show(d.pane);
+      if(el && el.classList.contains('item')){
+        el.hidden = false; var j = el.querySelector('.just'); if(j) j.hidden = false;
+      }
+      setTimeout(function(){ flashTerm(el || document.body, d.term); }, 60);
+    }
+  });
+  function boot(){
+    if(inFrame){ try{ window.parent.postMessage({type:'hlRequest', doc:DOC}, '*'); }catch(e){} }
+    else { var arr=[]; try{ arr = JSON.parse(localStorage.getItem(LS_KEY)||'[]'); }catch(e){} applyAll(arr); }
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>
+
+<script>(function(){
+  // Ponte entre a aula (iframe) e a barra lateral do app. Não mexe no conteúdo nem na lógica de quiz.
+  var P = window.parent;
+  if (!P || P === window) return;
+  var root = document.documentElement;
+  root.classList.add('embedded');
+  var parts = (window.name || '').split('|');
+  var LEC = parts[1] || '';
+  var progress = {};
+
+  function setTheme(t){ root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); }
+  setTheme(parts[2] || 'dark');
+
+  function navEls(){ return Array.prototype.slice.call(document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]')); }
+  function keyOf(e){ return e.getAttribute('data-target') || e.getAttribute('data-view'); }
+  function labelOf(e){
+    var n = e.querySelector('.navlabel, .nav-num + span');
+    return (n ? n.textContent : e.textContent).replace(/\s+/g,' ').trim();
+  }
+  function activeKey(){
+    var a = navEls().filter(function(e){ return e.classList.contains('active'); })[0];
+    return a ? keyOf(a) : null;
+  }
+
+  // ----- botão "Concluir" no título de cada segmento -----
+  function paintDone(btn, key){
+    var on = !!progress[key];
+    if (btn.classList.contains('on') !== on) btn.classList.toggle('on', on);   // só mexe no DOM se mudou (evita laço do observer)
+    var lbl = btn.querySelector('.lbl'), txt = on ? 'Concluído' : 'Concluir';
+    if (lbl.textContent !== txt) lbl.textContent = txt;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var fin = document.querySelector('.cel-finish[data-key="' + key + '"]');
+    if (fin) paintFin(fin, on, key);
+  }
+
+  // ----- botão grande no fim do segmento -----
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+  function isSeg(key){ return /^(seg\d+|s\d+|parcial\d+)$/.test(key); }
+  function paintFin(b, on, key){
+    if (b.classList.contains('on') !== on) b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var txt = on ? (isSeg(key) ? 'Segmento concluído' : 'Estudado') + ' · tocar para desfazer'
+                 : (isSeg(key) ? 'Concluir segmento' : 'Marcar como estudado');
+    var s = b.lastChild; if (s.textContent !== txt) s.textContent = txt;
+  }
+  function ensureFin(scope, key){
+    if (!scope || !key || key === 'capa' || key === 'home') return;
+    var foot = scope.querySelector('.navfoot, .segnav');
+    if (!foot) return;
+    var box = scope.querySelector('.cel-fin');
+    if (box && box.getAttribute('data-key') === key && box.nextElementSibling === foot) return;
+    if (box) box.remove();
+    box = document.createElement('div'); box.className = 'cel-fin'; box.setAttribute('data-key', key);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cel-finish'; b.setAttribute('data-key', key);
+    b.innerHTML = CHECK + '<span></span>';
+    b.addEventListener('click', function(){
+      var top = document.querySelector('.done-t[data-key="' + key + '"]');
+      if (top) top.click();
+    });
+    box.appendChild(b);
+    foot.parentNode.insertBefore(box, foot);
+    paintFin(b, !!progress[key], key);
+  }
+  function attachDone(title, key){
+    if (!title || !key || key === 'capa' || key === 'home') return;
+    var old = title.querySelector('.done-t');
+    if (old && old.getAttribute('data-key') === key) { paintDone(old, key); return; }
+    if (old) old.remove();
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'done-t'; b.setAttribute('data-key', key);
+    b.innerHTML = '<span class="d"></span><span class="lbl">Concluir</span>';
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      progress[key] = !progress[key];
+      paintDone(b, key);
+      P.postMessage({type:'setProgress', lecture:LEC, target:key, done:!!progress[key]}, '*');
+    });
+    if (!title.classList.contains('has-done')) title.classList.add('has-done');
+    title.appendChild(b);
+    paintDone(b, key);
+  }
+  function decorate(){
+    // aulas estáticas: um .pane por segmento
+    document.querySelectorAll('.pane').forEach(function(p){
+      if (p.hidden) return;
+      attachDone(p.querySelector('.pane-title'), p.id);
+      ensureFin(p, p.id);
+    });
+    // aula 2: conteúdo montado por JS
+    var t = document.querySelector('h2.seg-title');
+    if (t) { attachDone(t, activeKey()); ensureFin(document.getElementById('content'), activeKey()); }
+  }
+
+  // ----- rodapé anterior/próximo (substitui a barra de navegação escondida) -----
+  function addNavFoot(){
+    var items = navEls();
+    if (!items.length || document.querySelector('.segnav')) return;
+    items.forEach(function(it, i){
+      var id = keyOf(it);
+      var pane = document.getElementById(id);
+      if (!pane || !pane.classList.contains('pane') || pane.querySelector('.navfoot')) return;
+      var prev = items[i-1], next = items[i+1];
+      var f = document.createElement('div'); f.className = 'navfoot';
+      function mk(target, txt, isNext){
+        var b = document.createElement('button'); b.type = 'button';
+        b.textContent = isNext ? txt + ' →' : '← ' + txt;
+        b.addEventListener('click', function(){ target.click(); });
+        return b;
+      }
+      if (prev) f.appendChild(mk(prev, labelOf(prev), false));
+      if (next) f.appendChild(mk(next, labelOf(next), true));
+      pane.appendChild(f);
+    });
+  }
+
+  // piscar o termo achado pela busca
+  function flashTerm(rootEl, term){
+    if (!rootEl || !term) return;
+    var low = term.toLowerCase(), w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentElement; if (!p || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue;
+      var k = n.data.toLowerCase().indexOf(low);
+      if (k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var q = sp.parentNode; if (!q) return; while (sp.firstChild) q.insertBefore(sp.firstChild, sp); q.removeChild(sp); q.normalize(); }, 2600);
+      return;
+    }
+  }
+
+  var last = null;
+  function reportActive(){
+    var k = activeKey();
+    if (k !== last) { last = k; P.postMessage({type:'segActive', lecture:LEC, key:k}, '*'); }
+    var off = (k && k !== 'capa' && k !== 'home' && !document.querySelector('.hero .tabs')) ? 'off' : 'on';
+    if (root.getAttribute('data-hero') !== off) root.setAttribute('data-hero', off);
+    decorate();
+  }
+  var mo = new MutationObserver(function(){ clearTimeout(mo._t); mo._t = setTimeout(reportActive, 30); });
+  mo.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class','hidden']});
+  var content = document.getElementById('content');
+  if (content) mo.observe(content, {childList:true});
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data;
+    if (!d || !d.type) return;
+    if (d.type === 'setTheme') setTheme(d.theme);
+    else if (d.type === 'goto') {
+      var el = navEls().filter(function(e){ return keyOf(e) === d.key; })[0];
+      if (el) el.click();
+    }
+    else if (d.type === 'gotoPane') {
+      if (document.getElementById('hl-pop')) return;   // aulas com marca-texto rosa tratam sozinhas
+      var pe = navEls().filter(function(e){ return keyOf(e) === d.pane; })[0];
+      if (pe) pe.click();
+      setTimeout(function(){ flashTerm(document.getElementById(d.pane) || document.getElementById('content') || document.body, d.term); }, 140);
+    }
+    else if (d.type === 'progressState' && d.lecture === LEC) {
+      progress = d.state || {};
+      document.querySelectorAll('.done-t').forEach(function(b){ paintDone(b, b.getAttribute('data-key')); });
+    }
+  });
+
+  function boot(){
+    addNavFoot();
+    reportActive();
+    P.postMessage({type:'bridgeReady', lecture:LEC}, '*');
+    P.postMessage({type:'requestProgress', lecture:LEC}, '*');
+  }
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', function(){ setTimeout(boot, 0); });
+})();
+</script>
+</body>
+</html>

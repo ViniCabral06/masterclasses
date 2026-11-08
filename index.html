@@ -18,6 +18,7 @@
   --farmaco:#ff4d6d;
   --micro:#9a5bff;
   --th4:#38f5a3;
+  --pato:#ff6fb5;
   --accent:var(--hub);
   --glass:rgba(255,255,255,.055);
   --glass-hi:rgba(255,255,255,.11);
@@ -35,6 +36,7 @@ body{background:var(--ground);color:var(--ink);font-family:var(--text);font-size
 body[data-accent="farmaco"]{--accent:var(--farmaco)}
 body[data-accent="micro"]{--accent:var(--micro)}
 body[data-accent="th4"]{--accent:var(--th4)}
+body[data-accent="pato"]{--accent:var(--pato)}
 button,a{font:inherit;color:inherit}
 a{text-decoration:none}
 ::selection{background:var(--accent);color:#000}
@@ -154,6 +156,7 @@ main{position:relative;z-index:10;height:100%}
 .card[data-k="farmaco"]{--tint:var(--farmaco)}
 .card[data-k="micro"]{--tint:var(--micro)}
 .card[data-k="th4"]{--tint:var(--th4)}
+.card[data-k="pato"]{--tint:var(--pato)}
 .extra{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:7px 13px 7px 9px;border-radius:999px;background:color-mix(in srgb,var(--th4) 18%,transparent);color:var(--th4);transition:background .3s,transform .4s var(--spring)}
 .extra:hover{background:color-mix(in srgb,var(--th4) 32%,transparent);transform:scale(1.04)}
 .extra svg{width:18px;height:18px}
@@ -272,7 +275,7 @@ main{position:relative;z-index:10;height:100%}
     <div class="wrap subjects-layout">
       <div>
         <h2 id="t-p4" class="in">4º período</h2>
-        <p class="sub in" style="--i:1">Três matérias. Passe o mouse: a cápsula se abre, as bactérias perseguem o cursor e o coração acelera. Clique para agitar.</p>
+        <p class="sub in" style="--i:1">Quatro matérias. Passe o mouse: a cápsula se abre, as bactérias perseguem o cursor, o coração acelera e as células morrem por apoptose. Clique para agitar.</p>
         <div class="cards" id="cards"></div>
       </div>
       <div class="specimen">
@@ -317,9 +320,17 @@ const SUBJECTS = {
     tags:["A reza da OSCE","Exame do abdome","Urológico e próstata","Proctológico","Otoscopia","Fundo de olho"],
     readout:["Habilidades IV","OSCE · casos clínicos · quiz"],
     icon:'<path d="M4 12h3l2-5 3 10 2-5h6"/>'
+  },
+  pato:{
+    name:"Patologia Médica I",
+    href:"Patologia médica/Patologia_I_Masterclass.html",
+    desc:"Cardiovascular, respiratório e TGI pela lâmina: aterosclerose, IAM, pneumonias, cirrose e neoplasias, com provas antigas.",
+    tags:["Aterosclerose","Cardiopatia isquêmica","Pneumonias","DPOC e asma","Esôfago e estômago","Fígado e pâncreas"],
+    readout:["Patologia Médica I","14 aulas · simulados e banco de provas"],
+    icon:'<path d="M6 21h12M9 21v-3h6v3M10 18l-2-6 5-7 3 2-4 7M13 5l1.5-2 2 1.4-1.4 2"/><circle cx="14" cy="14" r="2"/>'
   }
 };
-const TICK = ["Farmacocinética","Inibidores da bomba de prótons","Staphylococcus aureus","Enterobacterales","A reza da OSCE","Sinal de Blumberg","Antagonistas H₂","Micologia","Diuréticos de alça","Toque retal","BGNNF","Farmacodinâmica","Ausculta abdominal","Vancomicina e VRE"];
+const TICK = ["Aterosclerose","Farmacocinética","Cirrose hepática","Inibidores da bomba de prótons","Staphylococcus aureus","Enterobacterales","A reza da OSCE","Sinal de Blumberg","Antagonistas H₂","Micologia","Diuréticos de alça","Toque retal","BGNNF","Farmacodinâmica","Ausculta abdominal","Vancomicina e VRE","Infarto agudo do miocárdio","Pneumonia lobar"];
 
 document.getElementById('tick').innerHTML = [...TICK,...TICK].map(t=>`<span>${t}</span>`).join('');
 
@@ -328,7 +339,7 @@ per.innerHTML = Array.from({length:8},(_,i)=>{
   const n=i+1, live=n===4;
   return `<button class="period glass in ${live?'live':'soon'}" style="--i:${i+2}" data-p="${n}" ${live?'':'aria-disabled="true"'}>
     <span class="num">${n}<sup>º</sup></span>
-    <span class="st">${live?'<i class="dot"></i>3 matérias':'Em breve'}</span></button>`;
+    <span class="st">${live?'<i class="dot"></i>'+Object.keys(SUBJECTS).length+' matérias':'Em breve'}</span></button>`;
 }).join('');
 
 const cards = document.getElementById('cards');
@@ -433,13 +444,13 @@ show(location.hash.slice(1)||'home',false);
 <script src="_tema/palco.js"></script>
 <script type="module">
 import * as THREE from 'three';
-const {makeHelix,makeRing,makePills,makeBugs,makeHeart,COL} = window.VidroModelos(THREE);
+const {makeHelix,makeRing,makePills,makeBugs,makeTissue,makeHeart,COL} = window.VidroModelos(THREE);
 const {createStage} = window.VidroPalco(THREE, COL);
 
 const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30} : {dust:1000, dpr:1.5});
 // se o aparelho sofrer, a primeira coisa a sair é a refração líquida (o efeito mais caro da página)
 W.onDegrade = () => document.documentElement.classList.remove('refract');
-const SCENES = {helix:makeHelix(), ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05})};
+const SCENES = {helix:makeHelix(), ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue()};
 const holders = {};
 for (const [k,o] of Object.entries(SCENES)){ const h = new o.constructor(); h.add(o); h.userData.p = 0; h.visible = false; h.scale.setScalar(.0001); W.world.add(h); holders[k] = h; }
 let active = 'helix';
