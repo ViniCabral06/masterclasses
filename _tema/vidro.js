@@ -230,7 +230,7 @@ async function lampInit() {
   S.running = false;
 
   // posição: a corrente cai logo abaixo do botão
-  let hoverT = 0, btn = null, shown = false, hideT = 0, dragging = false, busy = false, px = 0, py = 0, lastPx = 0;
+  let quietUntil = 0, hoverT = 0, btn = null, shown = false, hideT = 0, dragging = false, busy = false, px = 0, py = 0, lastPx = 0;
   const place = () => { btn = themeBtn(); if (!btn) return; const r = btn.getBoundingClientRect(); const cx = r.left + r.width / 2 - 42; wrap.style.left = Math.max(-40, Math.min(innerWidth - 260, cx - 150)) + 'px'; };
   const show = () => { clearTimeout(hideT); if (shown) return; place(); shown = true; S.running = true; wrap.classList.add('on'); ud.kick((Math.random() < .5 ? -1 : 1) * 1.1); };
   const hideSoon = (ms = 450) => { clearTimeout(hideT); hideT = setTimeout(() => { if (dragging || busy) return hideSoon(300); shown = false; wrap.classList.remove('on'); html.classList.remove('vl-grab'); setTimeout(() => { if (!shown) S.running = false; }, 600); }, ms); };
@@ -246,7 +246,7 @@ async function lampInit() {
     const lr = wrap.getBoundingClientRect(), overLamp = shown && px > lr.left && px < lr.right && py > lr.top + 160 && py < lr.top + 500;
     // só aparece com o mouse em cima do botão (um instante parado), não ao passar perto
     if (overLamp || dragging) show();
-    else if (d < 30) { if (!shown && !hoverT) hoverT = setTimeout(() => { hoverT = 0; show(); }, 160); else if (shown) clearTimeout(hideT); }
+    else if (d < 30) { if (performance.now() < quietUntil) { } else if (!shown && !hoverT) hoverT = setTimeout(() => { hoverT = 0; show(); }, 160); else if (shown) clearTimeout(hideT); }
     else { clearTimeout(hoverT); hoverT = 0; if (shown) hideSoon(); }
     if (shown) {
       setNdc(px, py); P.has = true; P.vx = (px - lastPx) * .6;
@@ -285,15 +285,20 @@ async function lampInit() {
     const R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 40;
     html.style.setProperty('--vt-x', x + 'px'); html.style.setProperty('--vt-y', y + 'px'); html.style.setProperty('--vt-r', R + 'px');
     const real = !reduce && document.startViewTransition ? document.startViewTransition.bind(document) : null;
-    const done = () => { html.classList.remove('vl-acende', 'vl-apaga', 'vl-pausa'); busy = false; };
+    // terminou a troca: a lâmpada sobe logo, e o mouse parado no botão não a chama de volta na hora
+    const done = () => { html.classList.remove('vl-acende', 'vl-apaga', 'vl-pausa'); busy = false; quietUntil = performance.now() + 1500; if (!dragging) hideSoon(60); };
     if (!real) { switchTheme(); ud.setLit(toLight ? 1 : 0); done(); return; }
     const run = () => {
       html.classList.add(toLight ? 'vl-acende' : 'vl-apaga');
       const vt = real(switchTheme);
       vt.ready.then(() => {
         const dur = toLight ? 1150 : 950, ease = toLight ? 'cubic-bezier(.22,.7,.12,1)' : 'cubic-bezier(.75,0,.35,1)';
-        const big = `circle(${R}px at ${x}px ${y}px)`, small = `circle(0px at ${x}px ${y}px)`;
-        html.animate({ clipPath: toLight ? [small, big] : [big, small] }, { duration: dur, easing: ease, fill: 'both', pseudoElement: toLight ? '::view-transition-new(root)' : '::view-transition-old(root)' });
+        // o círculo segue a lâmpada quadro a quadro: ela balança depois do puxão, e ao apagar a luz
+        // tem de voltar para dentro da lâmpada, não para onde ela estava no começo
+        const curva = toLight ? t => 1 - Math.pow(1 - t, 3.2) : t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+        const circ = (r, cx, cy) => `circle(${r}px at ${cx}px ${cy}px)`;
+        const ini = toLight ? circ(0, x, y) : circ(R, x, y);
+        const clip = html.animate({ clipPath: [ini, ini] }, { duration: dur + 400, fill: 'both', pseudoElement: toLight ? '::view-transition-new(root)' : '::view-transition-old(root)' });
         // anel de luz acompanha a borda do círculo
         // camada pequena ampliada (textura leve para a GPU)
         const k = (R / .975) / 320, S1 = `scale(${k})`;
@@ -302,6 +307,16 @@ async function lampInit() {
           ? [{ transform: 'scale(0)', opacity: 1 }, { opacity: 1, offset: .65 }, { transform: S1, opacity: 0 }]
           : [{ transform: S1, opacity: 0 }, { opacity: .9, offset: .25 }, { opacity: 1, offset: .85 }, { transform: 'scale(0)', opacity: 0 }],
           { duration: dur, easing: ease, fill: 'none' });
+        const t0 = performance.now();
+        const passo = () => {
+          const t = Math.min(1, (performance.now() - t0) / dur), e = curva(t);
+          const [bx, by] = toScreen(ud.bulbWorld(v3));
+          const rr = Math.hypot(Math.max(bx, innerWidth - bx), Math.max(by, innerHeight - by)) + 40;
+          try { clip.effect.setKeyframes([{ clipPath: circ((toLight ? e : 1 - e) * rr, bx, by) }, { clipPath: circ((toLight ? e : 1 - e) * rr, bx, by) }]); } catch (_) { }
+          flash.style.left = bx - 320 + 'px'; flash.style.top = by - 320 + 'px';
+          if (t < 1) requestAnimationFrame(passo);
+        };
+        requestAnimationFrame(passo);
         if (!toLight) setTimeout(() => ud.setLit(0), dur * .82);
       }).catch(() => { });
       vt.finished.finally(done);

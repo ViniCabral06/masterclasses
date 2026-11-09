@@ -214,12 +214,39 @@ iframe.show{display:block}
 </style>
 <script>(function(){var t;try{t=localStorage.getItem('patho-theme')}catch(e){}document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')})();</script>
 
+
+<style id="pato-blocos-css">
+.sb-bloco{display:flex;align-items:center;gap:8px;width:calc(100% - 16px);margin:10px 8px 2px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2);color:var(--ink);font:600 13px var(--sans);text-align:left;cursor:pointer;transition:transform .15s var(--ease-out),background .15s}
+.sb-bloco:active{transform:scale(.98)}
+.sb-bloco .fchev{font-size:10px;color:var(--muted);transition:transform .2s var(--ease-out)}
+.sb-bloco.open .fchev{transform:rotate(90deg)}
+.sb-bloco .ft{white-space:nowrap}
+.sb-bloco .fn{margin-left:auto;font-weight:400;font-size:11px;color:var(--muted);text-align:right}
+#welcome{position:absolute;inset:0;overflow:auto;z-index:2;padding:clamp(20px,5vw,56px) 16px}
+#welcome[hidden]{display:none}
+#welcome .wc-in{max-width:880px;margin:0 auto;color:var(--ink)}
+#welcome .wc-k{font:600 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+#welcome h1{font:600 clamp(32px,6vw,52px)/1.05 var(--serif);margin:0 0 14px}
+#welcome .wc-lead{font:16px/1.6 var(--sans);color:var(--ink-2);max-width:68ch}
+#welcome .wc-dicas{color:var(--muted);font:14px/1.7 var(--sans);padding-left:18px}
+#welcome h2{font:600 20px var(--serif);margin:28px 0 10px}
+#welcome h2 small{font:400 13px var(--sans);color:var(--muted);margin-left:6px}
+#welcome .wc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+#welcome .wc-card{display:flex;gap:10px;align-items:center;text-align:left;padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--surface);color:var(--ink);cursor:pointer;transition:transform .15s var(--ease-out),border-color .15s}
+#welcome .wc-card:hover{border-color:var(--accent)}
+#welcome .wc-card:active{transform:scale(.97)}
+#welcome .wc-card .em{font-size:22px}
+#welcome .wc-card b{display:block;font:600 14px var(--sans)}
+#welcome .wc-card small{display:block;font:12px var(--sans);color:var(--muted)}
+#welcome .wc-by{margin-top:32px;font:12px var(--sans);color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.sb-bloco,.sb-bloco .fchev,#welcome .wc-card{transition:none}}
+</style>
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="pato";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=94860f62">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=b559279a"></script><script defer src="../_tema/palco.js?v=6b0ba732"></script><script defer src="../_tema/vidro.js?v=2076e554"></script><script defer src="../_tema/notas.js?v=735adb7c"></script>
+<script defer src="../_tema/modelos.js?v=b559279a"></script><script defer src="../_tema/palco.js?v=6b0ba732"></script><script defer src="../_tema/vidro.js?v=7325c128"></script><script defer src="../_tema/notas.js?v=735adb7c"></script><script defer src="../_tema/extras.js?v=365669b2"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -258,6 +285,8 @@ iframe.show{display:block}
 <!--/vidro:corpo-->
 
 
+
+
 <div class="app">
 <div class="mbar"><button id="mBurger" aria-label="Abrir menu">☰</button><span>Patologia Médica I</span>
   <button class="themebtn" id="themeBtnM" title="Alternar tema" aria-label="Alternar tema"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
@@ -287,7 +316,8 @@ const TABS = [{"key": "aula1", "short": "Ateroma e HAS", "label": "Cardiovascula
 const NAV = {"aula1":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Arquitetura normal do vaso"},{"k":"seg2","n":"2","t":"Hipertensão arterial sistêmica"},{"k":"seg3","n":"3","t":"Aterosclerose"},{"k":"seg4","n":"4","t":"Patogênese"},{"k":"seg5","n":"5","t":"Morfologia"},{"k":"seg6","n":"6","t":"Placa estável x instável e as lesões complicadas"},{"k":"seg7","n":"7","t":"Consequências da doença aterosclerótica"},{"k":"seg8","n":"8","t":"O coração normal"},{"k":"seg9","n":"9","t":"Cardiopatia hipertensiva"},{"k":"seg10","n":"10","t":"IAM e insuficiência cardíaca — o que mais cai"},{"k":"apendice","n":"Q","t":"Questão da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}],"aula2":[{"k":"home","n":"•","t":"Início"},{"k":"s1","n":"1","t":"Isquemia miocárdica: o desequilíbrio entre oferta e demanda"},{"k":"s2","n":"2","t":"Da placa aterosclerótica à oclusão: aterosclerose, trombose e vasoespasmo"},{"k":"s3","n":"3","t":"Angina Pectoris: as três formas clínicas"},{"k":"s4","n":"4","t":"Infarto Agudo do Miocárdio: conceito, diagnóstico e padrões anatômicos"},{"k":"s5","n":"5","t":"Resposta do miocárdio à isquemia e morfologia temporal do infarto"},{"k":"s6","n":"6","t":"Reperfusão miocárdica: miocárdio atordoado e lesão de reperfusão"},{"k":"s7","n":"7","t":"Complicações do Infarto Agudo do Miocárdio"},{"k":"s8","n":"8","t":"Cardiopatia Isquêmica Crônica e Morte Súbita Cardíaca"},{"k":"s9","n":"9","t":"O que mais cai em prova: casos comentados e pegadinhas mais cobradas"},{"k":"quiz","n":"Q","t":"Quiz final"}],"aula3":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Insuficiência cardíaca"},{"k":"seg2","n":"2","t":"Insuficiência cardíaca esquerda"},{"k":"seg3","n":"3","t":"Insuficiência cardíaca direita e cor pulmonale"},{"k":"seg4","n":"4","t":"Doença de Chagas"},{"k":"seg5","n":"5","t":"Doença de Chagas"},{"k":"seg6","n":"6","t":"Forma digestiva da doença de Chagas e o caso clínico final"},{"k":"seg7","n":"7","t":"O que mais cai em prova"},{"k":"quiz","n":"Q","t":"Quiz final"}],"aula4":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Anatomia valvar normal e os dois tipos de disfunção"},{"k":"seg2","n":"2","t":"Consequências hemodinâmicas e etiologias"},{"k":"seg3","n":"3","t":"Lesões valvares degenerativas"},{"k":"seg4","n":"4","t":"Febre reumática"},{"k":"seg5","n":"5","t":"Febre reumática"},{"k":"seg6","n":"6","t":"Endocardite infecciosa"},{"k":"seg7","n":"7","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questão da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}],"aula5":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Anatomia e histologia de normalidade"},{"k":"seg2","n":"2","t":"Tromboembolismo pulmonar (TEP)"},{"k":"seg3","n":"3","t":"Infarto pulmonar"},{"k":"seg4","n":"4","t":"Hipertensão pulmonar"},{"k":"seg5","n":"5","t":"Edema pulmonar cardiogênico"},{"k":"seg6","n":"6","t":"Edema pulmonar não cardiogênico e dano alveolar difuso"},{"k":"seg7","n":"7","t":"O que mais cai em prova"},{"k":"quiz","n":"Q","t":"Quiz final"}],"aula6":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Obstrutiva x restritiva, e o mapa da aula"},{"k":"seg2","n":"2","t":"Enfisema pulmonar"},{"k":"seg3","n":"3","t":"Bronquite crônica"},{"k":"seg4","n":"4","t":"DPOC comparada, e o caso clínico completo da aula"},{"k":"seg5","n":"5","t":"Bronquiectasia"},{"k":"seg6","n":"6","t":"Atelectasia"},{"k":"seg7","n":"7","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questão da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}],"aula7":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Introdução"},{"k":"seg2","n":"2","t":"Pneumonia lobar"},{"k":"seg3","n":"3","t":"Broncopneumonia"},{"k":"seg4","n":"4","t":"Complicações da pneumonia bacteriana"},{"k":"seg5","n":"5","t":"Pneumonia viral (pneumonia intersticial)"},{"k":"seg6","n":"6","t":"Tuberculose"},{"k":"seg7","n":"7","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questão da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}],"aula8":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Introdução e etiopatogênese"},{"k":"seg2","n":"2","t":"Lesões pré-cancerosas"},{"k":"seg3","n":"3","t":"Topografia, clínica e estadiamento"},{"k":"seg4","n":"4","t":"Carcinoma de células escamosas"},{"k":"seg5","n":"5","t":"Adenocarcinoma"},{"k":"seg6","n":"6","t":"Grandes e pequenas células"},{"k":"seg7","n":"7","t":"Caso clínico e imuno-histoquímica"},{"k":"seg8","n":"8","t":"Neoplasias de laringe"},{"k":"seg9","n":"9","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questão da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}],"simulados":[{"k":"capa","n":"•","t":"Início"},{"k":"parcial78","n":"1","t":"Parcial 78"},{"k":"parcial79","n":"2","t":"Parcial 79"},{"k":"parcial80","n":"3","t":"Parcial 80"},{"k":"parcial81","n":"4","t":"Parcial 81"},{"k":"parcial82","n":"5","t":"Parcial 82"}],"simulado1":[],"simulado2":[],"tgi1":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Esôfago normal e barreira antirrefluxo"},{"k":"seg2","n":"2","t":"Varizes esofágicas"},{"k":"seg3","n":"3","t":"Lacerações: Mallory-Weiss e Boerhaave"},{"k":"seg4","n":"4","t":"DRGE e hérnia de hiato"},{"k":"seg5","n":"5","t":"Esofagite de refluxo"},{"k":"seg6","n":"6","t":"Esôfago de Barrett"},{"k":"seg7","n":"7","t":"Neoplasias malignas: CCE × adenocarcinoma"},{"k":"seg8","n":"8","t":"Clínica, estadiamento e prognóstico"},{"k":"seg9","n":"9","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questões de residência"},{"k":"quiz","n":"Q","t":"Quiz final"}],"tgi2":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Estômago normal: regiões, mucosas e fisiologia"},{"k":"seg2","n":"2","t":"Gastrites: conceito, classificação e gastrite crônica"},{"k":"seg3","n":"3","t":"Gastrite crônica autoimune"},{"k":"seg4","n":"4","t":"Gastrite crônica por H. pylori"},{"k":"seg5","n":"5","t":"Úlcera péptica: patogênese, morfologia e complicações"},{"k":"seg6","n":"6","t":"Carcinogênese gástrica: condições e lesões pré-cancerosas"},{"k":"seg7","n":"7","t":"Carcinoma gástrico: Borrmann e Lauren"},{"k":"seg8","n":"8","t":"Caso clínico, estadiamento, disseminação e complicações"},{"k":"seg9","n":"9","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questão da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}],"tgi3":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Intestinos normais: anatomia, histologia e irrigação"},{"k":"seg2","n":"2","t":"Isquemia intestinal: caso clínico e causas"},{"k":"seg3","n":"3","t":"Isquemia crônica e infarto da mucosa"},{"k":"seg4","n":"4","t":"Infarto transmural: macro e microscopia"},{"k":"seg5","n":"5","t":"Infarto: clínica, complicações e prognóstico"},{"k":"seg6","n":"6","t":"Apendicite aguda"},{"k":"seg7","n":"7","t":"Doença diverticular do cólon"},{"k":"seg8","n":"8","t":"Prova prática: peças e lâminas"},{"k":"seg9","n":"9","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questão da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}],"tgi4":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Doença inflamatória intestinal: caso, patogênese e diagnóstico"},{"k":"seg2","n":"2","t":"Doença de Crohn: distribuição e macroscopia"},{"k":"seg3","n":"3","t":"Doença de Crohn: microscopia, clínica e complicações"},{"k":"seg4","n":"4","t":"Retocolite ulcerativa: macro, micro e clínica"},{"k":"seg5","n":"5","t":"Crohn × RCU: comparativo e caso 1"},{"k":"seg6","n":"6","t":"Pólipos colônicos e pólipo hiperplásico"},{"k":"seg7","n":"7","t":"Adenomas colônicos e polipose familiar (FAP)"},{"k":"seg8","n":"8","t":"Adenocarcinoma colônico: epidemiologia e patogênese"},{"k":"seg9","n":"9","t":"Adenocarcinoma: morfologia, estadiamento e clínica"},{"k":"seg10","n":"10","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questão da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}],"banco":[],"tgi5":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"O fígado normal: anatomia, histologia e zonas"},{"k":"seg2","n":"2","t":"Alterações circulatórias e fígado cardíaco"},{"k":"seg3","n":"3","t":"Síndrome de Budd-Chiari"},{"k":"seg4","n":"4","t":"Doença hepática: provas de função e síndromes"},{"k":"seg5","n":"5","t":"Cirrose hepática"},{"k":"seg6","n":"6","t":"Insuficiência hepática crônica"},{"k":"seg7","n":"7","t":"Hipertensão portal e ascite"},{"k":"seg8","n":"8","t":"Esquistossomose: epidemiologia, ciclo e formas"},{"k":"seg9","n":"9","t":"Esquistossomose hepatoesplênica"},{"k":"seg10","n":"10","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questão da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}],"tgi6":[{"k":"capa","n":"•","t":"Início"},{"k":"seg1","n":"1","t":"Hepatites: conceito, vírus e formas de apresentação"},{"k":"seg2","n":"2","t":"Hepatite A"},{"k":"seg3","n":"3","t":"Hepatite B: vírus, antígenos e evolução"},{"k":"seg4","n":"4","t":"Hepatite B: marcadores sorológicos"},{"k":"seg5","n":"5","t":"Hepatite C"},{"k":"seg6","n":"6","t":"Hepatite aguda: morfologia"},{"k":"seg7","n":"7","t":"Hepatite fulminante e insuficiência hepática aguda"},{"k":"seg8","n":"8","t":"Hepatite crônica: morfologia, B e C"},{"k":"seg9","n":"9","t":"Doença hepática alcoólica"},{"k":"seg10","n":"10","t":"Doença hepática gordurosa não alcoólica"},{"k":"seg11","n":"11","t":"O que mais cai em prova"},{"k":"apendice","n":"Q","t":"Questões da aula"},{"k":"quiz","n":"Q","t":"Quiz final"}]};
 const SECTIONS = [
   {t:'Cardiovascular', keys:['aula1','aula2','aula3','aula4']},
-  {t:'Respiratório', keys:['aula5','aula6','aula7','aula8']},
+  {t:'Respiratório', keys:['aula5','aula6','aula7']},
+  {t:'Só na prova prática', keys:['aula8']},
   {t:'Gastrointestinal', keys:['tgi1','tgi2','tgi3','tgi4']},
   {t:'Acessórios do TGI', keys:['tgi5','tgi6']},
   {t:'Provas e simulados', keys:['simulados','banco','simulado1','simulado2']}
@@ -322,6 +352,18 @@ const activeSeg = {};    // key -> segmento ativo dentro da aula
 const openGrp = {};      // key -> grupo aberto?
 let currentKey = null;
 const TABMAP = {}; TABS.forEach(t => TABMAP[t.key] = t);
+TABMAP.home = {key:'home', short:'Boas-vindas', label:'', icon:'🏠'};
+/* blocos da barra lateral: parcial, somativa, pós-somativa e provas (cada um recolhível; todos fechados na 1ª visita) */
+const BLOCOS = [
+  {id:'parcial',  t:'Bloco da parcial', d:'Cardio e pulmão', secs:['Cardiovascular','Respiratório']},
+  {id:'somativa', t:'Somativa', d:'TGI e acessórios', secs:['Gastrointestinal','Acessórios do TGI']},
+  {id:'pratica',  t:'Só na prática', d:'Neoplasias', secs:['Só na prova prática']},
+  {id:'pos',      t:'Pós-somativa', d:'', secs:[]},
+  {id:'provas',   t:'Provas', d:'Antigas e simulados', secs:['Provas e simulados']}
+];
+let blocoAberto = {}; try{ blocoAberto = JSON.parse(localStorage.getItem('pato-blocos') || '{}') || {}; }catch(e){}
+const saveBlocos = () => { try{ localStorage.setItem('pato-blocos', JSON.stringify(blocoAberto)); }catch(e){} };
+const blocoOf = key => { const sec = SECTIONS.find(x => x.keys.includes(key)); const b = sec && BLOCOS.find(x => x.secs.includes(sec.t)); return b ? b.id : null; };
 const SKIP = k => k === 'capa' || k === 'home';
 
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
@@ -367,8 +409,10 @@ function updateProgress(){
 /* ---------- barra lateral ---------- */
 function renderNav(){
   const prog = lectureProgress();
-  let html = '';
-  SECTIONS.forEach(sec => {
+  let html = '<div class="grp noitems' + (currentKey === 'home' ? ' on' : '') + ' closed" data-key="home"><button class="grp-h" data-key="home" aria-expanded="false"><span class="em">🏠</span><span class="lbl">Boas-vindas</span><span class="chev">▼</span></button></div>';
+  BLOCOS.forEach(b => {
+  let bh = '';
+  SECTIONS.filter(sec => b.secs.includes(sec.t)).forEach(sec => {
     let secHtml = '';
     sec.keys.forEach(key => {
       const tb = TABMAP[key]; if (!tb) return;
@@ -395,12 +439,18 @@ function renderNav(){
       }
       secHtml += '</div>';
     });
-    if (secHtml) html += '<div class="sb-sec">' + esc(sec.t) + '</div>' + secHtml;
+    if (secHtml) bh += '<div class="sb-sec">' + esc(sec.t) + '</div>' + secHtml;
+  });
+  if (!bh) return;
+  const ab = !!blocoAberto[b.id];
+  html += '<button type="button" class="sb-bloco' + (ab ? ' open' : '') + '" data-bloco="' + b.id + '" aria-expanded="' + ab + '"><span class="fchev">▶</span><span class="ft">' + esc(b.t) + '</span><span class="fn">' + esc(b.d) + '</span></button><div class="sb-bloco-c"' + (ab ? '' : ' hidden') + '>' + bh + '</div>';
   });
   navEl.innerHTML = html;
 }
 
 navEl.addEventListener('click', ev => {
+  const bl = ev.target.closest('.sb-bloco');
+  if (bl) { blocoAberto[bl.dataset.bloco] = !blocoAberto[bl.dataset.bloco]; saveBlocos(); renderNav(); return; }
   const chk = ev.target.closest('input[data-seg]');
   if (chk) {
     ev.stopPropagation();
@@ -449,8 +499,29 @@ function switchTab(key){
   currentKey = key;
   Object.keys(openGrp).forEach(k => { if (k !== key) openGrp[k] = false; });   // um grupo aberto por vez
   Object.values(iframes).forEach(f => f.classList.remove('show'));
-  ensureIframe(key).classList.add('show');
+  const w = boasVindas();
+  if (key === 'home') { w.hidden = false; loadingEl.style.display = 'none'; w.scrollTop = 0; }
+  else {
+    w.hidden = true; ensureIframe(key).classList.add('show');
+    const b = blocoOf(key); if (b && !blocoAberto[b]) { blocoAberto[b] = true; saveBlocos(); }
+  }
   renderNav(); revealActive();
+}
+/* ---------- página de boas-vindas (primeira visita) ---------- */
+function boasVindas(){
+  let w = document.getElementById('welcome'); if (w) return w;
+  w = document.createElement('section'); w.id = 'welcome'; w.hidden = true;
+  const card = k => { const t = TABMAP[k]; if (!t) return ''; const r = doneOf(k);
+    return '<button type="button" class="wc-card" data-go="' + k + '"><span class="em">' + esc(t.icon) + '</span><span><b>' + esc(t.short) + '</b><small>' + esc(t.label || '') + (r.total ? ' · ' + r.done + '/' + r.total : '') + '</small></span></button>'; };
+  const blocos = BLOCOS.map(b => { const keys = SECTIONS.filter(x => b.secs.includes(x.t)).flatMap(x => x.keys); if (!keys.length) return '';
+    return '<h2>' + esc(b.t) + (b.d ? ' <small>' + esc(b.d) + '</small>' : '') + '</h2><div class="wc-grid">' + keys.map(card).join('') + '</div>'; }).join('');
+  w.innerHTML = '<div class="wc-in"><p class="wc-k">Patologia Médica I · CMMG</p><h1>Bem-vindo à Patologia</h1>' +
+    '<p class="wc-lead">Cada aula vira um capítulo com texto aprofundado, imagens das peças e lâminas, verificações por segmento, quiz final e a página "O que mais cai em prova". As aulas estão separadas em <b>bloco da parcial</b> e <b>somativa</b>; as provas antigas ficam no fim.</p>' +
+    '<ul class="wc-dicas"><li>Clique numa aula na barra lateral ou num cartão abaixo para começar.</li><li>Selecione um trecho para grifar ou anotar.</li><li>Clique numa imagem para ampliar.</li></ul>' +
+    blocos + '<p class="wc-by">by Vinícius Cabral e Matheus Tavares</p></div>';
+  w.addEventListener('click', e => { const c = e.target.closest('[data-go]'); if (!c) return; openGrp[c.dataset.go] = true; switchTab(c.dataset.go); });
+  contentEl.appendChild(w);
+  return w;
 }
 function openSegment(key, seg){
   if (key !== currentKey) { openGrp[key] = true; switchTab(key); }
@@ -768,7 +839,7 @@ updateProgress();
 (function(){
   let pos = null; try{ pos = JSON.parse(localStorage.getItem('pato-pos') || 'null'); }catch(e){}
   if (pos && TABMAP[pos.key]) { if (pos.seg && !SKIP(pos.seg)) openSegment(pos.key, pos.seg); else { openGrp[pos.key] = true; switchTab(pos.key); } }
-  else { openGrp['aula1'] = false; switchTab('aula1'); }
+  else switchTab('home');
   const save = () => { try{ localStorage.setItem('pato-pos', JSON.stringify({key: currentKey, seg: activeSeg[currentKey] || null})); }catch(e){} };
   addEventListener('pagehide', save); document.addEventListener('visibilitychange', () => { if (document.hidden) save(); }); setInterval(save, 5000);
 })();

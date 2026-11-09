@@ -38,6 +38,16 @@ Responda sempre em português (Brasil).
    - No código de abertura do master novo, quando `window.VIDRO_NOVO` for verdadeiro, feche todos os grupos (ver Farmacologia: `focusActive`; Microbiologia: `openGrp`).
    - Master sem hash (Patologia) guarda a posição por conta própria (`pato-pos`).
 6. Teste a mudança no tamanho de celular e o tema claro e escuro.
+7. **Regra: todo master entra com o design integrado e comparado com os outros**, seja do Vinícius ou do Matheus. Rode `python conferir.py` (o `publicar.py` também roda e mostra os avisos). Ele compara o master com o padrão da skill `masterclass-medica` (seção L) e com os outros masters, e aponta o que falta:
+   - tema de vidro, botão de tema, texto em `<main>`;
+   - primeira visita com boas-vindas e sidebar fechada;
+   - blocos parcial / somativa / pós-somativa;
+   - em cada capítulo, só questões de prova, ou o aviso "nunca caiu" mais as autorais recolhidas;
+   - página "O que mais cai";
+   - memes (`<pasta>/_img/memes.json`, ~60, revisados);
+   - crédito "Vinícius e Matheus".
+
+   Corrija tudo antes de dar o master por pronto. Se um item não se aplica (ex.: TH IV é prova prática), ponha o master em `DISPENSA` no `conferir.py`, com o motivo. Item novo no padrão entra em `ITENS` no `conferir.py` **e** na seção L da skill.
 
 ## Onde fica cada coisa
 
@@ -50,6 +60,9 @@ Responda sempre em português (Brasil).
 | `_tema/modelos.js` | Modelos 3D. |
 | `_tema/palco.js` | Palco 3D, com qualidade adaptativa. |
 | `_tema/notas.js` | "Grifar com anotação": funciona sozinho em qualquer master e aula (o `publicar.py` inclui). Detalhes em "Grifos e anotações". |
+| `_tema/extras.js` | Zoom ao clicar nas imagens do conteúdo e crédito no canto (o `publicar.py` inclui). |
+| `_tema/memes.js` | Meme secreto ao gabaritar um grupo de questões. Lê `<pasta>/_img/memes.json`; respeita masters com sistema próprio (Farmacologia, Microbiologia, TH IV). |
+| `conferir.py` | Confere se cada master tem o padrão do site e diz o que falta. |
 | `publicar.py` | Tema, otimização e publicação. Os blocos entre `<!--vidro:...-->` nos masters são gerados por ele: não edite à mão. |
 
 ## Grifos e anotações

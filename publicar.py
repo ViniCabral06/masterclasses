@@ -121,7 +121,7 @@ def bloco_cabeca(m, rel):
            "window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();")
     forcar = "<script>document.documentElement.dataset.vidro=%s;%s</script>" % (json.dumps(k), pos)
     return (f"{H_INI}\n{forcar}\n{FONTES}\n<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\">\n{IMPORTMAP}\n"
-            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script>\n{H_FIM}")
+            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script>\n{H_FIM}")
 
 
 def bloco_corpo(m):
@@ -246,7 +246,7 @@ def bloco_aula(m, rel):
     """Tema de vidro dentro das aulas (iframes): fundo transparente para o 3D do master aparecer atrás."""
     k = json.dumps(m["k"])
     return (f"{H_INI}<script>document.documentElement.dataset.vidro={k};document.documentElement.classList.add('vidro-aula','vidro-ready')</script>"
-            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\"><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script>{H_FIM}")
+            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\"><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script>{H_FIM}")
 
 
 def atualizar_aulas(m):
@@ -297,7 +297,7 @@ def otimizar_fonte(m):
 
 
 def arquivos_do_site(ms):
-    fixos = [".gitignore", ".nojekyll", "index.html", "publicar.py", "LEIAME.md", "CLAUDE.md", "_tema"]
+    fixos = [".gitignore", ".nojekyll", "index.html", "publicar.py", "conferir.py", "LEIAME.md", "CLAUDE.md", "_tema"]
     out = [f for f in fixos if (ROOT / f).exists()]
     for m in ms:
         src = ROOT / m["arquivo"]
@@ -349,6 +349,14 @@ def main():
         otimizar_fonte(m)
     versionar_hub()
     (ROOT / ".nojekyll").touch()
+    # compara cada master com o padrão do site (skill masterclass-medica, seção L); só avisa, não impede
+    try:
+        import conferir
+        print("\nConferindo o padrão dos masters:")
+        if conferir.main([]):
+            print("Corrija as pendências acima (ou peça ao Claude) antes de dar o master por pronto.\n")
+    except Exception as e:
+        print("(não consegui rodar o conferir.py:", e, ")")
     if local:
         print("Pronto (sem enviar). Para ver: python -m http.server 8765 nesta pasta e abra http://localhost:8765"); return
     msg = next((a for a in args if not a.startswith("--")), "Atualiza masterclasses")
