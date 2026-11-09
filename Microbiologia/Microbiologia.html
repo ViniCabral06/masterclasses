@@ -799,6 +799,7 @@ textarea.inp{border-radius:16px}
 .rkx li{font:400 15.5px/1.6 var(--serif);margin:6px 0}
 .rkx ol,.rkx ul{padding-left:20px;margin:0}
 .rkx i{color:var(--ink-2)}
+.pgx{margin:0 0 8px;line-height:1.5}.pgx:last-child{margin:0}.pgl{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.75}.pgl.no{color:#e5484d;opacity:1}.pgl.ok{color:#30a46c;opacity:1}
 </style>
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="micro";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
@@ -1783,7 +1784,7 @@ function pCob(m){
   const rk=C.rk;
   return `<div class="page"><div class="crumb">Aula ${m.num} · ${m.nome}</div><h1 class="pt">O que mais é cobrado</h1><p class="psub">Roteiro de 30 minutos para quem não estudou a aula e tem pouco tempo antes da prova. ${cs.length?`Baseado nas ${cs.length} questões desta aula que já caíram nas somativas 77–82.`:'<b>Esta aula ainda não teve questão nas provas antigas disponíveis.</b> O roteiro mostra o essencial, sem questões inventadas.'}</p>
   ${rk?`<section class="r1b"><div class="r1h"><span>0–5 min</span><h3>1. Relação-chave${rk.t?': '+rk.t:''}</h3></div>${esq(rk.c)}${rk.d?`<div class="rkx"><b>Como ler este esquema</b><ol>${rk.d.map((t,i)=>`<li>${t}${i<rk.d.length-1?' <i>→ isso leva à próxima caixa.</i>':''}</li>`).join('')}</ol></div>`:''}${rk.x?`<div class="rkx"><b>Exemplos lidos do começo ao fim</b><ul>${rk.x.map(r=>`<li>${r.map((s,i)=>i?s:'<b>'+s+'</b>').join(' → ')}</li>`).join('')}</ul></div>`:''}<p class="r1x">${rk.ex}</p><div class="box2"><b>Segunda relação</b> ${rk.b}</div></section>`:''}
-  <section class="r1b"><div class="r1h"><span>5–15 min</span><h3>2. O que cai</h3></div>${cs.length?`<div class="tw"><table class="cobt"><thead><tr><th>Tema da questão</th><th>Pegadinha (distrator da questão)</th><th>Caiu em</th></tr></thead><tbody>${cs.map(c=>`<tr><td>${c.titulo}</td><td>${pega(c)}</td><td>${c.provas.map(p=>'S'+p).join(', ')}${c.letras.length>1?' · <b>mudou de letra</b>':''}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Nenhuma questão das provas cobre esta aula.</div>'}</section>
+  <section class="r1b"><div class="r1h"><span>5–15 min</span><h3>2. O que cai</h3></div>${cs.length?`<div class="tw"><table class="cobt"><thead><tr><th>Tema da questão</th><th>A pegadinha, por que está errada e o certo</th><th>Caiu em</th></tr></thead><tbody>${cs.map(c=>`<tr><td>${c.titulo}</td><td>${pega(c)}</td><td>${c.provas.map(p=>'S'+p).join(', ')}${c.letras.length>1?' · <b>mudou de letra</b>':''}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Nenhuma questão das provas cobre esta aula.</div>'}</section>
   ${C.figs.length?`<section class="r1b"><div class="r1h"><span>15–22 min</span><h3>3. Figuras essenciais</h3></div><div class="cobf">${C.figs.map(f=>`<figure class="fig"><img loading=lazy decoding=async data-img="${f[0]}" alt=""><figcaption><b>O que olhar:</b> ${f[1]} <button class="btn sm ghost" data-go="${m.id}/${f[2]}">Ver no segmento</button></figcaption></figure>`).join('')}</div></section>`:''}
   <section class="r1b"><div class="r1h"><span>22–30 min</span><h3>4. Questões que mais se repetem</h3></div>
   ${rep.map(c=>`<div class="r1i"><b>${c.titulo}</b><span class="chip ${c.n>=3?'rep':''}">caiu em ${c.n} ${c.n===1?'prova':'provas'} (${c.ids.join(', ')})</span><details class="caiq" data-q="${c.rep}"><summary>Responder</summary><div class="caibody"></div></details></div>`).join('')}
@@ -1793,7 +1794,7 @@ function pCob(m){
   <div class="actions"><button class="btn ghost" data-go="${m.id}/quiz">Voltar ao quiz final</button><button class="btn pri" data-go="r1h">Revisão em 1 hora (todas as aulas)</button></div></div>`;
 }
 
-function pega(c){const q=QMAP.get(c.rep);if(!q)return '';const j=(q.gab+1)%q.alts.length;return 'Não é: '+strip(q.alts[j])}
+function pega(c){const q=QMAP.get(c.rep);if(!q)return '';const j=(q.gab+1)%q.alts.length;const why=String((q.com||[])[j]||'').replace(/^s*Errad[ao].?s*/i,'');return `<div class="pgx"><span class="pgl no">❌ Pegadinha</span> ${strip(q.alts[j])}</div>${why?`<div class="pgx"><span class="pgl">Por que está errada</span> ${why}</div>`:''}<div class="pgx"><span class="pgl ok">✅ O certo</span> ${strip(q.alts[q.gab])}</div>`}
 function esq(c){
   const w=150,g=34,h=64,W=c.length*w+(c.length-1)*g;
   const box=(t,i)=>{const x=i*(w+g),ws=t.split(' '),ln=[''];ws.forEach(p=>{if((ln[ln.length-1]+' '+p).trim().length>16)ln.push(p);else ln[ln.length-1]=(ln[ln.length-1]+' '+p).trim()});
