@@ -801,6 +801,7 @@ textarea.inp{border-radius:16px}
 .rkx i{color:var(--ink-2)}
 .pgx{margin:0 0 8px;line-height:1.5}.pgx:last-child{margin:0}.pgl{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.75}.pgl.no{color:#e5484d;opacity:1}.pgl.ok{color:#30a46c;opacity:1}
 .avisoa7{display:grid;gap:6px;justify-items:start;margin:16px 0;padding:16px 18px;border:2px solid #e5484d;border-radius:16px;background:color-mix(in srgb,#e5484d 12%,transparent)}.avisoa7 b{font-size:17px;line-height:1.35}.avisoa7 span{opacity:.85;line-height:1.5}
+.res7h{font-size:19px;margin:26px 0 10px}.res7 .rpi{margin:0 0 16px}
 </style>
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="micro";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
@@ -1775,6 +1776,153 @@ function pRep(m){return `<div class="page"><div class="crumb">Aula ${m.num} · $
 function repAll(){return `<div class="rpwrap"><p class="psub" style="margin-top:0">Para cada aula, os temas que mais voltam nas somativas, explicados em detalhe, com todas as versões da questão para treinar.</p>`+MODS.filter(m=>REP[m.id]).map(m=>`<h2 class="rpa">Aula ${m.num} · ${m.nome}</h2>${repAula(m.id)}`).join('')+'</div>'}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-rp]');if(!a)return;e.preventDefault();const s=document.getElementById('rp-'+a.dataset.rp);if(s)s.scrollIntoView({behavior:reduced()?'auto':'smooth',block:'start'})});
 
+/* ---------- Aula 7: resumo completo do que mais cai (10 de 30 questões da somativa) ---------- */
+const RES7=`<section class="r1b res7" id="res7"><div class="r1h"><span>Resumo da aula</span><h3>📘 Aula 7 inteira, pelo que mais cai</h3></div>
+<p class="r1x">Este resumo segue o peso das somativas 77–82: primeiro o que caiu em 4 ou 5 provas, depois o resto. Nele entram também temas que o slide só cita de passagem (esporotricose, PCM, histoplasmose, dermatófitos), mas que caem muito pelas justificativas da banca. O que vai além do slide e das provas está marcado com <b>■ EXTRA</b>.</p>
+
+<div class="tw"><table class="cobt"><thead><tr><th>Tema</th><th>Provas em que caiu</th><th>Uma linha para lembrar</th></tr></thead><tbody>
+<tr><td>Esporotricose</td><td>5 (+ gestante 2, lesão, notificação)</td><td>Gato → <i>S. brasiliensis</i> → linfocutânea → itraconazol; gestante → calor local</td></tr>
+<tr><td>Mucormicose</td><td>4</td><td>Diabético em cetoacidose + necrose negra no palato → angioinvasão → anfotericina B</td></tr>
+<tr><td>Dermatófitos</td><td>4 (+2)</td><td>Queratina; tinea pedis da ducha; não passam da camada queratinizada</td></tr>
+<tr><td>Criptococose</td><td>4 (+ nanquim, Gram)</td><td>HIV + cefaleia há semanas → levedura com cápsula (halo no nanquim)</td></tr>
+<tr><td>Paracoccidioidomicose</td><td>4 (+2, roda de leme, tratamento)</td><td>Homem rural 30–60 anos, forma crônica 74–96%; roda de leme; itraconazol</td></tr>
+<tr><td>Caspofungina e anfotericina B</td><td>3 (+1)</td><td>Equinocandina: glucano da parede · anfotericina: liga ergosterol e faz poro</td></tr>
+<tr><td>Histoplasmose</td><td>2 (+2, caverna)</td><td>Aves/morcegos, caverna; levedura pequena dentro do macrófago</td></tr>
+<tr><td>Candida, <i>C. auris</i>, Aspergillus, CAPA, Fusarium</td><td>1–2 cada</td><td>Ubíquos e oportunistas; <i>C. auris</i> = superfungo de surto</td></tr>
+</tbody></table></div>
+
+<h4 class="res7h">1. A base: fungo não é bactéria</h4>
+<ul class="cobc">
+<li><b>Fungo é eucarioto</b> (núcleo, organelas, ribossomo 80S), como a célula humana. Por isso há <b>poucos alvos exclusivos</b> e o antifúngico é <b>mais tóxico</b> que o antibiótico.</li>
+<li><b>Membrana com ergosterol</b>, que é o "colesterol do fungo" e o alvo de azóis e anfotericina B. A bactéria não tem esterol, exceto o <i>Mycoplasma</i>.</li>
+<li><b>Parede de β-glucanos (β-1,3 e β-1,6), mananas e quitina, sem peptideoglicano.</b> Por isso β-lactâmico e vancomicina não fazem nada no fungo.</li>
+<li><b>Fungo não se classifica pelo Gram.</b> <i>Candida</i> e <i>Cryptococcus</i> até coram roxo na lâmina, mas isso é só coloração. A Parcial 81 tinha a alternativa errada "fungos são classificados pelo Gram pelo peptideoglicano".</li>
+<li><b>Esporo de fungo é reprodutivo</b> (é como o fungo se espalha). O endósporo bacteriano (<i>Bacillus</i>, <i>Clostridium</i>) é de <b>resistência</b>.</li>
+</ul>
+
+<h4 class="res7h">2. A forma do fungo: a pista da lâmina</h4>
+<div class="tw"><table class="cobt"><thead><tr><th>Forma</th><th>Como é</th><th>Quem</th></tr></thead><tbody>
+<tr><td>Levedura</td><td>Célula única, oval, que brota; colônia <b>cremosa</b>; pode formar pseudo-hifa</td><td><i>Candida</i> (brotamento simples), <i>Cryptococcus</i> (com <b>cápsula</b>)</td></tr>
+<tr><td>Filamentoso (bolor)</td><td>Hifas que formam micélio; colônia <b>algodonosa, aveludada ou pulverulenta</b></td><td><i>Aspergillus</i>, Mucorales, <i>Fusarium</i>, dermatófitos</td></tr>
+<tr><td>Dimórfico</td><td><b>Filamentoso no ambiente (25 °C), levedura no corpo (37 °C)</b>; a levedura é a forma do tecido</td><td><i>Sporothrix</i>, <i>Paracoccidioides</i>, <i>Histoplasma</i>, <i>Coccidioides</i>, <i>Blastomyces</i></td></tr>
+</tbody></table></div>
+<div class="rkx"><b>Imagem → fungo (cai como questão de imagem)</b><ul>
+<li><b>Levedura com múltiplos brotamentos em volta</b> ("roda de leme", "leme de navio") → <i>Paracoccidioides</i></li>
+<li><b>Levedura com halo claro</b> no nanquim (ou halo que não cora no Gram) → <i>Cryptococcus</i> (cápsula)</li>
+<li><b>Levedura pequena dentro do macrófago</b> → <i>Histoplasma</i></li>
+<li><b>Levedura ovoide ou em charuto</b> → <i>Sporothrix</i></li>
+<li><b>Levedura oval com pseudo-hifas</b> → <i>Candida</i></li>
+<li><b>Hifa fina, septada, ramificando em ângulo agudo (~45°)</b> → <i>Aspergillus</i> ■ EXTRA</li>
+<li><b>Hifa larga, com pouco ou nenhum septo, ramificando em ângulo reto</b> → Mucorales ■ EXTRA</li>
+<li><b>Esférula cheia de endósporos</b> → <i>Coccidioides</i> (distrator comum)</li>
+</ul></div>
+
+<h4 class="res7h">3. As gavetas das micoses (os distratores saem daqui)</h4>
+<div class="tw"><table class="cobt"><thead><tr><th>Micose</th><th>Até onde vai</th><th>Exemplos</th></tr></thead><tbody>
+<tr><td>Superficial</td><td>Camada córnea, pelo</td><td><i>Malassezia</i> (ptiríase versicolor), <i>Piedraia</i>, <i>Hortaea</i></td></tr>
+<tr><td>Cutânea</td><td>Pele, pelo e unha queratinizados</td><td>Dermatófitos: <i>Trichophyton</i>, <i>Microsporum</i>, <i>Epidermophyton</i></td></tr>
+<tr><td>Subcutânea (implantação)</td><td>Derme, tecido subcutâneo, músculo, <b>após trauma</b></td><td><i>Sporothrix</i>, <i>Fonsecaea</i> (cromoblastomicose)</td></tr>
+<tr><td>Sistêmica endêmica</td><td>Começa no <b>pulmão</b> (inalação) e pode ir a qualquer órgão; <b>pega até quem é saudável</b></td><td><i>Paracoccidioides</i>, <i>Histoplasma</i>, <i>Coccidioides</i></td></tr>
+<tr><td>Sistêmica oportunista</td><td>Qualquer tecido; precisa de <b>defesa baixa</b></td><td><i>Candida</i>, <i>Cryptococcus</i>, <i>Aspergillus</i>, Mucorales, <i>Fusarium</i></td></tr>
+</tbody></table></div>
+<div class="box2"><b>As duas perguntas do slide</b> Qual é agente de micose oportunista? <i>Cryptococcus neoformans</i>. Os outros das alternativas (<i>Paracoccidioides</i>, <i>Blastomyces</i>, <i>Coccidioides</i>) são dimórficos primários. Qual é agente de micose sistêmica? <i>Histoplasma capsulatum</i>. <i>Candida</i> e <i>Aspergillus</i> são oportunistas, e <i>Fonsecaea</i> é subcutâneo.</div>
+
+<h4 class="res7h">4. Doença por doença</h4>
+
+<div class="rpi"><header class="rph"><span class="rpn">1</span><div><h2>Esporotricose: a campeã das provas</h2><span class="chip rep">caiu em 5 provas</span></div></header>
+<div class="rp2"><div class="rpb"><b>Como pega</b><p><b>Zoonótica:</b> arranhadura ou mordida de <b>gato doente</b> (feridas no focinho, espirros) → <i>Sporothrix brasiliensis</i>. É a forma que domina hoje no Brasil.<br><b>Clássica (sapronótica):</b> <b>trauma com planta, madeira ou espinho</b> (jardineiro, marceneiro, lasca de madeira) → <i>S. schenckii</i>.</p></div>
+<div class="rpb"><b>Como aparece</b><p><b>Forma linfocutânea</b> (a mais comum): nódulo que ulcera no ponto da inoculação e, semanas depois, <b>"caroços" subindo pelo trajeto do linfático</b> (mão → antebraço). Também existe a forma cutânea fixa, só a lesão local, e a disseminada no imunossuprimido.</p></div></div>
+<div class="rp2"><div class="rpb"><b>Tratamento</b><p><b>Itraconazol</b> (azol: inibe a síntese de ergosterol) é a 1ª linha. Nas formas graves ou disseminadas, <b>anfotericina B</b>.<br><b>Gestante: itraconazol não</b> (risco ao feto). Usa-se <b>calor local (termoterapia)</b> até o parto, e anfotericina B se for grave.</p></div>
+<div class="rpb"><b>Saúde pública</b><p>É a <b>micose de implantação mais prevalente</b>, presente nas cinco regiões do Brasil. A esporotricose humana passou a ser de <b>notificação compulsória</b>.</p></div></div>
+<div class="box2"><b>⚠️ Pegadinhas</b> Trocar o agente (<i>S. brasiliensis</i> é o do gato) ou trocar o mecanismo do itraconazol: ele <b>inibe a síntese</b> de ergosterol, não "liga ao ergosterol" (isso é a anfotericina B) nem inibe glucano (isso é a equinocandina). Outra é dar itraconazol à gestante.</div></div>
+
+<div class="rpi"><header class="rph"><span class="rpn">2</span><div><h2>Mucormicose</h2><span class="chip rep">caiu em 4 provas</span></div></header>
+<div class="rp2"><div class="rpb"><b>Quem e como</b><p>Fungos da ordem <b>Mucorales</b> (<i>Rhizopus</i>). Terreno: <b>diabetes descompensado com cetoacidose</b>, corticoide em dose alta, Covid grave (os casos da Índia). O fungo cresce bem no meio ácido, rico em ferro livre.</p></div>
+<div class="rpb"><b>Por que é tão agressiva</b><p><b>Angioinvasão:</b> a hifa invade o vaso → <b>trombose</b> → isquemia → <b>necrose</b>. Isso explica a lesão <b>enegrecida no palato ou na face</b>, o edema periorbitário e a ida rápida ao cérebro (forma rino-órbito-cerebral).</p></div></div>
+<div class="rpb"><b>Tratamento</b><p><b>Anfotericina B</b> + <b>desbridamento cirúrgico</b> + correção da cetoacidose. <b>Fluconazol não age</b> em Mucorales.</p></div>
+<div class="box2"><b>⚠️ Pegadinha</b> A banca oferece "aspergilose" ou "tratar com fluconazol". Diabético em cetoacidose com necrose negra = Mucorales, e a resposta é anfotericina B.</div></div>
+
+<div class="rpi"><header class="rph"><span class="rpn">3</span><div><h2>Criptococose e a meningite fúngica</h2><span class="chip rep">caiu em 4 provas</span></div></header>
+<div class="rp2"><div class="rpb"><b>Quem e como</b><p><i>Cryptococcus neoformans</i>: levedura com <b>cápsula polissacarídica</b>, inalada do ambiente (■ EXTRA: fezes de pombo). Vai do <b>pulmão para o SNC</b>. O paciente típico tem <b>HIV/AIDS com imunossupressão grave</b>.</p></div>
+<div class="rpb"><b>Como aparece</b><p>Meningite <b>crônica ou subaguda</b> (≥ 4 semanas): cefaleia, febre, vômitos e <b>confusão que pioram devagar, há semanas</b>, com rigidez de nuca. Pode deixar hidrocefalia, perda visual e paralisia de nervos cranianos.</p></div></div>
+<div class="rp2"><div class="rpb"><b>Diagnóstico</b><p><b>Tinta nanquim</b> (contraste negativo): levedura com <b>halo transparente</b> sobre fundo escuro. No Gram, é Gram-positiva ou variável, e a cápsula não cora (halo claro). O <b>antígeno criptocócico (látex)</b> no líquor e no soro é muito sensível.</p></div>
+<div class="rpb"><b>Tratamento ■ EXTRA</b><p>Indução com <b>anfotericina B + flucitosina</b>, depois <b>fluconazol</b>. <b>Equinocandina não age</b> em <i>Cryptococcus</i>.</p></div></div>
+<div class="box2"><b>⚠️ Pegadinhas</b> "Meningite por <i>Candida</i>" (levedura com pseudo-hifa e sem cápsula) é o distrator clássico. Lembre também que <b>criptococose e histoplasmose</b> são as duas que começam no pulmão e podem ir ao SNC.</div></div>
+
+<div class="rpi"><header class="rph"><span class="rpn">4</span><div><h2>Paracoccidioidomicose (PCM)</h2><span class="chip rep">caiu em 4 provas</span></div></header>
+<div class="rp2"><div class="rpb"><b>Quem e como</b><p><i>Paracoccidioides</i> spp., <b>dimórfico</b>, vive no <b>solo rural</b>. O homem <b>inala os conídios</b> lidando com a terra (lavoura).</p></div>
+<div class="rpb"><b>As duas formas</b><p><b>Crônica, do adulto: 74% a 96% dos casos</b>, <b>homens de 30 a 60 anos</b>, trabalhadores rurais, muitas vezes tabagistas. Tosse e emagrecimento há meses, mais <b>lesões ulceradas e granulomatosas na boca</b>.<br><b>Aguda ou subaguda, juvenil:</b> crianças e jovens, com linfonodos, fígado e baço aumentados. ■ EXTRA: o estrogênio protege a mulher adulta, por isso a forma crônica é quase toda masculina.</p></div></div>
+<div class="rp2"><div class="rpb"><b>Diagnóstico</b><p>Exame direto com KOH ou biópsia: <b>levedura grande com múltiplos brotamentos</b> em volta, a <b>"roda de leme"</b>.</p></div>
+<div class="rpb"><b>Tratamento</b><p><b>Itraconazol na 1ª linha</b> (oral, eficaz). <b>Anfotericina B nos graves e disseminados.</b> <b>SMX-TMP</b> é a alternativa.</p></div></div>
+<div class="box2"><b>⚠️ Pegadinhas</b> Trocar a forma mais comum ("forma aguda juvenil é a maioria" está errado). Trocar a exposição com a histoplasmose: PCM vem do <b>solo rural</b>, e histoplasmose de <b>aves e morcegos</b>.</div></div>
+
+<div class="rpi"><header class="rph"><span class="rpn">5</span><div><h2>Dermatófitos (tineas)</h2><span class="chip rep">caiu em 4 provas</span></div></header>
+<div class="rp2"><div class="rpb"><b>Quem e como</b><p><i>Trichophyton</i>, <i>Microsporum</i> e <i>Epidermophyton</i>: filamentosos <b>queratinofílicos</b>, que se alimentam de queratina e por isso ficam em <b>pele, pelo e unha</b>. Passam de pessoa a pessoa, de animal (gato, cão) a pessoa, do solo, e por objetos com escamas.</p></div>
+<div class="rpb"><b>Os quadros</b><p><b>Tinea pedis</b> (pé de atleta): duchas coletivas, umidade, fissura interdigital. <b>Tinea capitis</b>: placa com tonsura dos fios na criança, muitas vezes junto com o gato da casa. Também tinea corporis e onicomicose. <b>Não atingem tecidos profundos.</b></p></div></div>
+<div class="rpb"><b>Diagnóstico, tratamento e resistência</b><p><b>Exame direto com KOH</b> do raspado: mostra hifas na hora, a baixo custo. <b>Terbinafina</b> (alilamina: inibe a esqualeno-epoxidase, da síntese de ergosterol). <b><i>Trichophyton indotineae</i></b> (USP, 2025) é um dermatófito emergente <b>resistente à terbinafina</b> por mutação no gene <i>SQLE</i>, com lesões extensas e falha do tratamento, mas sensível ao itraconazol.</p></div>
+<div class="box2"><b>⚠️ Pegadinha</b> "Invadem derme e músculo" ou "são dimórficos endêmicos" está errado. Quem vai fundo após trauma é o subcutâneo (<i>Sporothrix</i>).</div></div>
+
+<div class="rpi"><header class="rph"><span class="rpn">6</span><div><h2>Histoplasmose</h2><span class="chip">caiu em 2 provas (+2)</span></div></header>
+<div class="rp2"><div class="rpb"><b>Quem e como</b><p><i>Histoplasma capsulatum</i>, dimórfico. Inalado de ambientes com <b>fezes de aves e morcegos</b>: <b>cavernas</b>, galinheiros, galpões, sótãos e construções antigas.</p></div>
+<div class="rpb"><b>Como aparece</b><p><b>Pulmonar aguda</b>: febre, tosse e infiltrado difuso semanas depois de uma exposição grande (espeleólogos). <b>Disseminada no HIV</b>: febre, <b>hepatoesplenomegalia e pancitopenia</b>. No tecido, <b>leveduras pequenas dentro dos macrófagos</b>.</p></div></div>
+<div class="box2"><b>⚠️ Pegadinha</b> As alternativas trazem "hifas septadas angioinvasivas" (que é <i>Aspergillus</i>) e "esférulas com endósporos" (que é <i>Coccidioides</i>). O certo é a levedura intracelular.</div></div>
+
+<div class="rpi"><header class="rph"><span class="rpn">7</span><div><h2>Os oportunistas do hospital: <i>Candida</i>, <i>C. auris</i>, <i>Aspergillus</i>, <i>Fusarium</i></h2><span class="chip">1–2 provas cada · a professora avisou: superfungos vão cair</span></div></header>
+<div class="rpb"><b>O que têm em comum</b><p><b>Candidíase e aspergilose são causadas por fungos ubíquos e oportunistas.</b> Esses fungos colonizam o corpo e objetos e causam doença grave quando a defesa cai. O terreno inclui antibiótico de amplo espectro, cateter, quimioterapia, transplante, UTI, AIDS e prematuridade. A infecção fúngica hospitalar <b>dá poucos sinais, é diagnosticada tarde e mata de 40% a 80%</b>.</p></div>
+<div class="tw"><table class="cobt"><thead><tr><th>Espécie</th><th>O que cobram</th></tr></thead><tbody>
+<tr><td><i>C. albicans</i></td><td>A mais comum: oral, vaginal e sistêmica; vem da <b>própria microbiota</b></td></tr>
+<tr><td><i>C. parapsilosis</i></td><td>Cateter (forma <b>biofilme</b>)</td></tr>
+<tr><td><i>C. tropicalis</i></td><td>Paciente neutropênico</td></tr>
+<tr><td><i>C. glabrata</i></td><td>Resistência crescente aos <b>azóis</b></td></tr>
+<tr><td><i>C. krusei</i></td><td><b>Resistência intrínseca ao fluconazol</b></td></tr>
+<tr><td><b><i>C. auris</i></b></td><td><b>"Superfungo"</b>: causa <b>surtos em UTI</b>, <b>persiste em superfícies</b>, é <b>resistente a várias classes</b> de antifúngicos e vem do hospital, não da microbiota. Exige isolamento e controle de infecção (casos em BH). Descrita no Japão em 2009; 1º caso no Brasil em dez/2020, em Salvador.</td></tr>
+<tr><td><i>Aspergillus</i></td><td>Conídios inalados; ataca neutropênicos, transplantados e pacientes críticos. <b>CAPA</b>: Covid grave + ventilação + corticoide, com nódulos pulmonares e <b>galactomanana positiva</b>. ■ EXTRA: tratamento com voriconazol.</td></tr>
+<tr><td><i>Fusarium</i></td><td>Filamentoso do <b>solo, plantas e água</b>; <b>emergente na oncologia</b> (leucemia em neutropenia, lesões de pele necróticas, hemocultura positiva)</td></tr>
+</tbody></table></div></div>
+
+<h4 class="res7h">5. Antifúngicos: alvo → classe → o que lembrar</h4>
+<div class="tw"><table class="cobt"><thead><tr><th>Classe</th><th>Mecanismo</th><th>Usa em</th><th>Toxicidade e limites</th></tr></thead><tbody>
+<tr><td><b>Azóis</b> (fluconazol, itraconazol, voriconazol, cetoconazol)</td><td><b>Inibem a síntese</b> de ergosterol (14-α-desmetilase, do citocromo P450)</td><td>Itraconazol: <b>esporotricose, PCM</b>, histoplasmose leve; fluconazol: manutenção na criptococose, <i>Candida</i></td><td><b>Fígado</b> e <b>interações</b> (P450); fluconazol não pega Mucorales nem <i>C. krusei</i></td></tr>
+<tr><td><b>Polienos</b> (anfotericina B, nistatina)</td><td><b>Ligam-se ao ergosterol e abrem poros</b> na membrana</td><td>Anfotericina B: <b>formas graves</b>, Mucorales, criptococose (indução), PCM grave; nistatina: tópica</td><td><b>Rim (nefrotóxica)</b>; venosa nas formas sistêmicas</td></tr>
+<tr><td><b>Equinocandinas</b> (caspofungina, micafungina)</td><td><b>Inibem a síntese de β-1,3-D-glucano</b> da parede</td><td><i>Candida</i>, inclusive a resistente a azol</td><td><b>As menos tóxicas</b>; só venosa; não agem em <i>Cryptococcus</i></td></tr>
+<tr><td>Alilaminas (terbinafina)</td><td>Inibem a esqualeno-epoxidase (síntese de ergosterol)</td><td>Dermatófitos (pele e unha)</td><td>Resistência: <i>T. indotineae</i></td></tr>
+<tr><td>Flucitosina · griseofulvina · nicomicina</td><td>Ácido nucleico · microtúbulos · quitina sintase</td><td>Flucitosina com anfotericina B na criptococose</td><td>Citados no slide</td></tr>
+</tbody></table></div>
+<div class="box2"><b>⚠️ A troca que mais cai</b> <b>Anfotericina B</b> <u>liga</u> ergosterol (membrana). <b>Azol</b> <u>impede a síntese</u> de ergosterol. <b>Equinocandina</b> mexe no <u>glucano da parede</u>. Alternativas erradas típicas: "anfotericina B oral inibe glucano" e "caspofungina liga ergosterol". Toxicidade cobrada: <b>hepato e nefrotoxicidade</b>.</div>
+<div class="rkx"><b>Por que tratar fungo demora e é difícil (slide 48)</b><ul><li>Poucos alvos exclusivos, porque fungo e humano são eucariontes.</li><li>Crescimento lento: o sintoma melhora antes de o fungo sumir.</li><li>O remédio chega mal a unha, SNC e tecido pouco vascularizado.</li><li>Necrose e biofilme atrapalham, e às vezes é preciso desbridar ou tirar o cateter.</li><li>Resistência, e alguns antifúngicos só inibem o crescimento sem matar o fungo.</li><li>Depende da imunidade: se a neutropenia ou o diabetes continuam, o remédio não basta.</li><li>O diagnóstico costuma ser tardio.</li></ul></div>
+
+<h4 class="res7h">6. Meningite: fúngica × bacteriana</h4>
+<div class="rp2"><div class="rpb"><b>Bacteriana: aguda (horas a dias)</b><p>Pneumococo, meningococo, Hib, <i>Listeria</i> (neonato, idoso acima de 50 anos, imunossuprimido); no <b>recém-nascido, <i>S. agalactiae</i> e <i>E. coli</i></b>. É emergência: <b>ceftriaxona</b> empírica imediata (± ampicilina, vancomicina).</p></div>
+<div class="rpb"><b>Fúngica: crônica (≥ 4 semanas)</b><p>Imunocomprometido: <i>C. neoformans</i> e <i>Candida</i>. Imunocompetente: <i>Histoplasma</i>, <i>Coccidioides</i>, <i>Blastomyces</i>, <i>C. gattii</i>. Chega por inalação → fungemia → SNC.</p></div></div>
+<div class="tw"><table class="cobt"><thead><tr><th>No Gram do líquor</th><th>Agente</th></tr></thead><tbody>
+<tr><td>Diplococo Gram-negativo</td><td>Meningococo</td></tr><tr><td>Diplococo Gram-positivo (lanceolado)</td><td>Pneumococo</td></tr><tr><td>Cocobacilo Gram-negativo</td><td><i>Haemophilus influenzae</i></td></tr><tr><td>Bacilo Gram-positivo</td><td><i>Listeria</i></td></tr><tr><td>Levedura com halo da cápsula</td><td><i>Cryptococcus</i></td></tr></tbody></table></div>
+
+<h4 class="res7h">7. Panorama: por que fungo virou assunto de prova</h4>
+<ul class="cobc"><li>As micoses oportunistas <b>aumentaram nas duas últimas décadas</b>, empurradas por antibiótico de amplo espectro, dispositivos invasivos, quimioterapia, transplantes, UTI, prematuridade, longevidade e AIDS.</li>
+<li>A <b>lista da OMS (2022)</b> tem 4 fungos de <b>prioridade crítica</b>: <i>Cryptococcus neoformans</i>, <i>Candida auris</i>, <i>Aspergillus fumigatus</i> e <i>Candida albicans</i>. São justamente os que mais caem.</li>
+<li>Mecanismos de doença dos fungos: <b>micotoxinas</b>, <b>hipersensibilidade</b>, e <b>invasão e doença</b>. Existem mais de 100 mil espécies, e só cerca de 200 causam doença.</li></ul>
+
+<h4 class="res7h">8. Se cair isto, responda aquilo</h4>
+<div class="tw"><table class="cobt"><thead><tr><th>A pista do caso</th><th>Resposta</th></tr></thead><tbody>
+<tr><td>Arranhadura de gato + úlcera e nódulos subindo pelo braço</td><td><i>S. brasiliensis</i>, linfocutânea → itraconazol</td></tr>
+<tr><td>Lasca de madeira ou espinho de roseira + nódulos ascendentes</td><td>Esporotricose linfocutânea (<i>S. schenckii</i>)</td></tr>
+<tr><td>Gestante com esporotricose</td><td>Calor local; anfotericina B se grave; nada de itraconazol</td></tr>
+<tr><td>Diabético em cetoacidose + necrose negra no palato</td><td>Mucormicose → anfotericina B + cirurgia</td></tr>
+<tr><td>HIV + cefaleia e confusão há mais de 1 mês</td><td><i>Cryptococcus</i>; nanquim com halo</td></tr>
+<tr><td>Lavrador de 30–60 anos, tabagista, tosse há meses + úlceras na boca</td><td>PCM crônica do adulto → itraconazol</td></tr>
+<tr><td>Caverna com morcegos, galinheiro + infiltrado pulmonar</td><td>Histoplasmose</td></tr>
+<tr><td>HIV + febre, hepatoesplenomegalia e pancitopenia; levedura no macrófago</td><td>Histoplasmose disseminada</td></tr>
+<tr><td>Ducha de academia + fissura interdigital</td><td>Tinea pedis por dermatófito (só camada queratinizada)</td></tr>
+<tr><td>Criança com placa e tonsura no couro cabeludo + gato com lesão</td><td>Dermatófito (tinea capitis); transmissão animal → homem</td></tr>
+<tr><td>Dermatófito que não responde à terbinafina</td><td><i>T. indotineae</i></td></tr>
+<tr><td>Surto em UTI, fungo em superfícies, multirresistente</td><td><i>Candida auris</i></td></tr>
+<tr><td>Covid grave em ventilação + corticoide, com galactomanana positiva</td><td>CAPA (<i>Aspergillus</i>)</td></tr>
+<tr><td>Leucemia em neutropenia + lesões de pele necróticas + fungo filamentoso</td><td><i>Fusarium</i></td></tr>
+<tr><td><i>Candida</i> resistente a azol</td><td>Equinocandina (caspofungina)</td></tr>
+<tr><td>Raspado de pele para exame micológico</td><td>Exame direto com KOH: rápido e barato</td></tr>
+</tbody></table></div>
+</section>`;
+
 function pCob(m){
   const C=m.cob,cs=C.keys.map(k=>CAIK.get(k)).filter(Boolean);
   const rep=cs;
@@ -1784,7 +1932,7 @@ function pCob(m){
   const extras=[...new Set(m.segs.flatMap(s=>s.pv||[]))].filter(id=>!visto.has(norm(id))&&QMAP.get(id));
   const aut=[];
   const rk=C.rk;
-  return `<div class="page"><div class="crumb">Aula ${m.num} · ${m.nome}</div><h1 class="pt">O que mais é cobrado</h1>${m.id==='a7'?'<div class="avisoa7"><b>🚨 Aviso da professora: 10 das 30 questões da somativa serão sobre a Aula 7 (Micoses).</b><span>Um terço da prova. Priorize a Aula 7: “O que mais é cobrado”, “Questões que se repetem” e o simulado só da Aula 7.</span></div>':''}<p class="psub">Roteiro de 30 minutos para quem não estudou a aula e tem pouco tempo antes da prova. ${cs.length?`Baseado nas ${cs.length} questões desta aula que já caíram nas somativas 77–82.`:'<b>Esta aula ainda não teve questão nas provas antigas disponíveis.</b> O roteiro mostra o essencial, sem questões inventadas.'}</p>
+  return `<div class="page"><div class="crumb">Aula ${m.num} · ${m.nome}</div><h1 class="pt">O que mais é cobrado</h1>${m.id==='a7'?'<div class="avisoa7"><b>🚨 Aviso da professora: 10 das 30 questões da somativa serão sobre a Aula 7 (Micoses).</b><span>Um terço da prova. Priorize a Aula 7: “O que mais é cobrado”, “Questões que se repetem” e o simulado só da Aula 7.</span></div>':''}${m.id==='a7'?RES7:''}<p class="psub">Roteiro de 30 minutos para quem não estudou a aula e tem pouco tempo antes da prova. ${cs.length?`Baseado nas ${cs.length} questões desta aula que já caíram nas somativas 77–82.`:'<b>Esta aula ainda não teve questão nas provas antigas disponíveis.</b> O roteiro mostra o essencial, sem questões inventadas.'}</p>
   ${rk?`<section class="r1b"><div class="r1h"><span>0–5 min</span><h3>1. Relação-chave${rk.t?': '+rk.t:''}</h3></div>${esq(rk.c)}${rk.d?`<div class="rkx"><b>Como ler este esquema</b><ol>${rk.d.map((t,i)=>`<li>${t}${i<rk.d.length-1?' <i>→ isso leva à próxima caixa.</i>':''}</li>`).join('')}</ol></div>`:''}${rk.x?`<div class="rkx"><b>Exemplos lidos do começo ao fim</b><ul>${rk.x.map(r=>`<li>${r.map((s,i)=>i?s:'<b>'+s+'</b>').join(' → ')}</li>`).join('')}</ul></div>`:''}<p class="r1x">${rk.ex}</p><div class="box2"><b>Segunda relação</b> ${rk.b}</div></section>`:''}
   <section class="r1b"><div class="r1h"><span>5–15 min</span><h3>2. O que cai</h3></div>${cs.length?`<div class="tw"><table class="cobt"><thead><tr><th>Tema da questão</th><th>A pegadinha, por que está errada e o certo</th><th>Caiu em</th></tr></thead><tbody>${cs.map(c=>`<tr><td>${c.titulo}</td><td>${pega(c)}</td><td>${c.provas.map(p=>'S'+p).join(', ')}${c.letras.length>1?' · <b>mudou de letra</b>':''}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Nenhuma questão das provas cobre esta aula.</div>'}</section>
   ${C.figs.length?`<section class="r1b"><div class="r1h"><span>15–22 min</span><h3>3. Figuras essenciais</h3></div><div class="cobf">${C.figs.map(f=>`<figure class="fig"><img loading=lazy decoding=async data-img="${f[0]}" alt=""><figcaption><b>O que olhar:</b> ${f[1]} <button class="btn sm ghost" data-go="${m.id}/${f[2]}">Ver no segmento</button></figcaption></figure>`).join('')}</div></section>`:''}
