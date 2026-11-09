@@ -159,8 +159,11 @@ def bloco_corpo(m):
     dicas = json.dumps(["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"], ensure_ascii=False)
     js = ("(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=%s,i=0,t0=Date.now(),ok=0;"
           "var iv=setInterval(function(){i=(i+1)%%d.length;s.textContent=d[i]},1300);"
-          "function done(){if(ok)return;ok=1;clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');"
+          "function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');"
           "setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}"
+          # espera o 3D (fundo e lâmpada) ficar pronto, com limite: a página só aparece depois do pesado
+          "function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};"
+          "if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}"
           "if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);"
           "addEventListener('pageshow',function(e){if(e.persisted)done()})})();") % dicas
     return (f"{B_INI}\n<style>{css}</style>\n"

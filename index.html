@@ -478,19 +478,19 @@ show(location.hash.slice(1)||'home',false);
   "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
 }}
 </script>
-<script src="_tema/modelos.js?v=b559279a"></script>
-<script src="_tema/palco.js?v=6b0ba732"></script>
+<script src="_tema/modelos.js?v=d6fecf06"></script>
+<script src="_tema/palco.js?v=713ea5fe"></script>
 <script type="module">
 // modo leve: sem 3D (o hub continua igual, só sem o fundo animado)
 if (window.LENTO) { document.getElementById('gl').style.display = 'none'; throw new Error('hub em modo leve: 3D desligado'); }
 import * as THREE from 'three';
-const {makeHelix,makeRing,makePills,makeBugs,makeTissue,makeVaccine,makeHandshake,makeHeart,COL} = window.VidroModelos(THREE);
+const {makeHelix,makeRing,makePills,makeBugs,makeTissue,makeVaccine,makeHandshake,makeDialogo,makeHeart,COL} = window.VidroModelos(THREE);
 const {createStage} = window.VidroPalco(THREE, COL);
 
-const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30} : {dust:1000, dpr:1.5});
+const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30, start:false} : {dust:1000, dpr:1.5, start:false});
 // se o aparelho sofrer, a primeira coisa a sair é a refração líquida (o efeito mais caro da página)
 W.onDegrade = () => document.documentElement.classList.remove('refract');
-const SCENES = {helix:makeHelix(), ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue(), prev:makeVaccine(), huma:makeHandshake()};
+const SCENES = {helix:makeHelix(), ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue(), prev:makeVaccine(), huma:makeDialogo()};
 /* modo leve automático: mede os quadros com tudo ligado; se não passa de ~30 fps
    (ex.: navegador sem placa de vídeo), desliga o 3D, a refração e o desfoque, e lembra disso */
 setTimeout(function medir(){
@@ -515,6 +515,8 @@ window.HUB.setScene = k => { active = SCENES[k] ? k : 'helix'; W.l1.color.set(CO
 window.HUB.setScene(window.HUB.want);
 W.onResize = w => { const wide = w > 1100; W.world.position.x = wide ? 2.9 : 0; W.world.position.y = wide ? 0 : (w < 700 ? -.8 : 0); W.world.userData.base = wide ? 1 : (w < 700 ? .72 : .85); };
 W.resize();
+// compila os 8 modelos de uma vez, antes de mostrar: sem isso a página trava na primeira vez que cada matéria aparece
+await W.aquecer(); W.running = true;
 let warp = 0; window.HUB.warp = () => { warp = 1; };
 const I = W.I;
 W.frame.push((t, dt) => {

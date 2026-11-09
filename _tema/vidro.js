@@ -91,16 +91,18 @@ addEventListener('scroll', e => {
 /* ---------- 3D ---------- */
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const small = innerWidth < 860;
-let stage = null;
-async function startBg() {
+let stage = null, bgP = null;
+// uma montagem por vez: a tela de carregamento e o início da página chamam juntas
+function startBg() { if (stage) return Promise.resolve(); if (!bgP) bgP = montarBg().finally(() => { bgP = null; }); return bgP; }
+async function montarBg() {
   if (stage || html.classList.contains('vidro-calmo') || reduce) return;
   try {
     const [{ createStage }, M] = await lib();
     const canvas = bg.querySelector('canvas');
-    stage = await createStage(canvas, { cheap: true, bloom: false, fps: 30, dust: small ? 0 : 200, dpr: 1, fog: .03, alpha: true, exposure: 1 });
+    stage = await createStage(canvas, { cheap: true, bloom: false, fps: 30, dust: small ? 0 : 200, dpr: 1, fog: .03, alpha: true, exposure: 1, start: false });
     // se mesmo no mínimo o aparelho não acompanhar, o fundo 3D desliga sozinho (sem gravar a escolha)
     stage.onSlow = () => { html.classList.add('vidro-calmo'); stage.running = false; setFxLabel(); };
-    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : K === 'pato' ? M.makeTissue({ cheap: true }) : K === 'prev' ? M.makeVaccine({ cheap: true }) : K === 'huma' ? M.makeHandshake({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
+    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : K === 'pato' ? M.makeTissue({ cheap: true }) : K === 'prev' ? M.makeVaccine({ cheap: true }) : K === 'huma' ? M.makeDialogo({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
     stage.world.add(model);
     // com a luz acesa (tema claro) o vidro dos modelos brilha
     const mats = new Set(); model.traverse(o => { if (o.material) [].concat(o.material).forEach(m => m.emissive && mats.add(m)); });
@@ -120,6 +122,9 @@ async function startBg() {
       stage.world.rotation.z += (-stage.I.sv * .012 - stage.world.rotation.z) * .08;
       stage.world.rotation.x += (stage.I.my * .2 - stage.world.rotation.x) * .04;
     });
+    // compila e sobe tudo para a placa de vídeo antes de mostrar (senão a página trava quando o modelo aparece)
+    await stage.aquecer();
+    stage.running = !html.classList.contains('vidro-calmo');
     requestAnimationFrame(() => bg.classList.add('on'));
     // enquanto rola a página, o fundo quase some para não disputar a leitura
     let tm = 0; addEventListener('scroll', () => { if (Math.abs(stage.I.sv || 0) < 4) return; bg.classList.add('lendo'); clearTimeout(tm); tm = setTimeout(() => bg.classList.remove('lendo'), 700); }, { passive: true, capture: true });
@@ -219,12 +224,13 @@ async function lampInit() {
   let S, lamp, THREE;
   try {
     const [{ createStage }, M] = await lib(); THREE = await import('three');
-    S = await createStage(cv, { cheap: false, bloom: false, fps: 60, dust: 0, dpr: fraco ? 1 : 1.5, fog: 0, alpha: true, exposure: 1.05, listen: false });
+    S = await createStage(cv, { cheap: false, bloom: false, fps: 60, dust: 0, dpr: fraco ? 1 : 1.5, fog: 0, alpha: true, exposure: 1.05, listen: false, start: false });
     S.semPausa = true;
     S.camera.position.set(0, 0, 10.2); S.camera.fov = 49.56; S.camera.updateProjectionMatrix();
     S.l1.color.set(0xffffff); S.l1.intensity = 26; S.l1.position.set(3, 1, 5);
     lamp = M.makeLamp({ accent: M.COL[K] }); lamp.position.y = 2.425; S.world.add(lamp);
     lamp.userData.setLit(isLight() ? 1 : 0, true);
+    await S.aquecer(); // o vidro da lâmpada é o shader mais pesado: compila agora, não quando ela desce
   } catch (e) { console.warn('[vidro] lâmpada indisponível', e); wrap.remove(); flash.remove(); return; }
   const ud = lamp.userData, P = { world: S.I.world, has: false, vx: 0 };
   S.running = false;
@@ -367,7 +373,11 @@ function modoLeve() {
   if (stage) stage.running = false;
   setFxLabel();
 }
-const go = () => { startBg(); if (!lento) setTimeout(medirPC, 4000); if (K === 'th4') heartMonitor(); (window.requestIdleCallback || (f => setTimeout(f, 1)))(() => setTimeout(lampInit, 900), { timeout: 2500 }); };
+/* O 3D (fundo e lâmpada) é preparado já durante a tela de carregamento, um depois do outro, para não
+   disputarem a página. A tela de carregamento espera window.VIDRO_3D (com limite de tempo), então a
+   pessoa só vê a página quando o pesado já passou. */
+window.VIDRO_3D = (async () => { try { await startBg(); } catch (_) { } try { await lampInit(); } catch (_) { } })();
+const go = () => { startBg(); if (!lento) setTimeout(medirPC, 4000); if (K === 'th4') heartMonitor(); };
 if (html.classList.contains('vidro-ready')) go(); else {
   const mo = new MutationObserver(() => { if (html.classList.contains('vidro-ready')) { mo.disconnect(); go(); } });
   mo.observe(html, { attributes: true, attributeFilter: ['class'] });

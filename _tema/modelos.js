@@ -679,6 +679,127 @@ function makeHandshake(o = {}) {
   return g;
 }
 
+/* ======================= balões de diálogo (Humanização) =======================
+   Dois balões de conversa de vidro, um azul e um claro, que se revezam: quem "fala" cresce um pouco
+   e as reticências pulam nele. Balõezinhos e corações flutuam em volta.
+   Mouse perto: os balões viram para o mouse e a conversa acelera. Clique: os dois pulam e soltam corações. */
+function makeDialogo(o = {}) {
+  const cheap = !!o.cheap, g = new THREE.Group(), items = [];
+  const AZUL = COL.huma || 0x5aa9ff, ROSA = 0xff7aa8;
+
+  // balão: retângulo arredondado com o rabinho embaixo, de um lado ou do outro
+  function balaoGeo(w, h, r, lado, prof = .34) {
+    const s = new THREE.Shape(), x0 = -w / 2, x1 = w / 2, y0 = -h / 2, y1 = h / 2;
+    const ta = lado < 0 ? x0 + r + .05 : x1 - r - .45, tb = ta + .4, tp = lado < 0 ? x0 + .08 : x1 - .08;
+    s.moveTo(x0 + r, y0);
+    if (lado < 0) { s.lineTo(ta, y0); s.quadraticCurveTo(ta - .02, y0 - .22, tp, y0 - .42); s.quadraticCurveTo(ta + .2, y0 - .14, tb, y0); }
+    s.lineTo(lado > 0 ? ta : x1 - r, y0);
+    if (lado > 0) { s.quadraticCurveTo(ta + .2, y0 - .14, tp, y0 - .42); s.quadraticCurveTo(tb + .02, y0 - .22, tb, y0); s.lineTo(x1 - r, y0); }
+    s.quadraticCurveTo(x1, y0, x1, y0 + r); s.lineTo(x1, y1 - r); s.quadraticCurveTo(x1, y1, x1 - r, y1);
+    s.lineTo(x0 + r, y1); s.quadraticCurveTo(x0, y1, x0, y1 - r); s.lineTo(x0, y0 + r); s.quadraticCurveTo(x0, y0, x0 + r, y0);
+    const geo = new THREE.ExtrudeGeometry(s, { depth: prof, bevelEnabled: true, bevelThickness: .1, bevelSize: .09, bevelSegments: cheap ? 2 : 4, curveSegments: cheap ? 8 : 14 });
+    geo.translate(0, 0, -prof / 2); return geo;
+  }
+  const dotGeo = new THREE.SphereGeometry(.1, 16, 12);
+  function balao(cor, lado, w, h) {
+    const b = new THREE.Group();
+    const corpo = new THREE.Mesh(balaoGeo(w, h, .42, lado), glassMat(cor, cheap, { thickness: .8 }));
+    b.add(corpo);
+    const dm = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: .35, roughness: .3 });
+    const dots = [-1, 0, 1].map(k => { const d = new THREE.Mesh(dotGeo, dm); d.position.set(k * .32, 0, .33); b.add(d); return d; });
+    b.userData = { dots, dm, fala: S(0), pulo: S(0), olha: S(0), olhaX: S(0) };
+    return b;
+  }
+  const A = balao(AZUL, -1, 1.9, 1.15), B = balao(0xffffff, 1, 1.6, 1);
+  A.position.set(-.62, .5, 0); B.position.set(.72, -.62, .35);
+  const par = new THREE.Group(); par.add(A, B); g.add(par);
+
+  /* em volta: balõezinhos e corações */
+  const hs = new THREE.Shape();
+  hs.moveTo(0, -.5); hs.bezierCurveTo(-.15, -.35, -.55, -.12, -.55, .18); hs.bezierCurveTo(-.55, .45, -.3, .58, -.12, .5);
+  hs.bezierCurveTo(-.05, .47, 0, .4, 0, .34); hs.bezierCurveTo(0, .4, .05, .47, .12, .5); hs.bezierCurveTo(.3, .58, .55, .45, .55, .18);
+  hs.bezierCurveTo(.55, -.12, .15, -.35, 0, -.5);
+  const heartGeo = new THREE.ExtrudeGeometry(hs, { depth: .2, bevelEnabled: true, bevelThickness: .07, bevelSize: .06, bevelSegments: 3, curveSegments: 12 });
+  heartGeo.center();
+  const miniGeo = balaoGeo(1, .66, .26, 1, .2);
+  const fofo = c => new THREE.MeshPhysicalMaterial({ color: c, roughness: .35, clearcoat: cheap ? 0 : .7, clearcoatRoughness: .25, emissive: c, emissiveIntensity: .12 });
+  const mats = [fofo(ROSA), fofo(0x7fb9ff), fofo(0xffffff)];
+  for (let i = 0; i < 14; i++) {
+    const coracao = i % 3 === 0;
+    const m = new THREE.Mesh(coracao ? heartGeo : miniGeo, mats[i % 3]); m.scale.setScalar(coracao ? .34 + Math.random() * .2 : .4 + Math.random() * .25);
+    const r = 2.5 + Math.random() * 1.3, a = Math.random() * Math.PI * 2, y = (Math.random() - .5) * 4.2;
+    m.userData = { home: new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r * .8), off: V(), vel: V(), w: new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5).multiplyScalar(1.1), ph: Math.random() * 6 };
+    m.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6); g.add(m); items.push(m);
+  }
+
+  /* corações que sobem no clique */
+  const CN = 18, sobe = new THREE.InstancedMesh(heartGeo, mats[0], CN), cp = [], cv = [], cl = new Float32Array(CN);
+  for (let i = 0; i < CN; i++) { cp.push(V()); cv.push(V()); _m.compose(cp[i], _q.identity(), _s.setScalar(.0001)); sobe.setMatrixAt(i, _m); }
+  _s.set(1, 1, 1); sobe.frustumCulled = false; g.add(sobe);
+  let prox = 0;
+  const solta = (n, forca, de) => {
+    for (let k = 0; k < n; k++) {
+      const i = prox = (prox + 1) % CN;
+      cp[i].copy(de.position).add(par.position); cp[i].z += .4; cp[i].x += (Math.random() - .5) * .8;
+      cv[i].set((Math.random() - .5) * 1.4 * forca, (1.2 + Math.random()) * forca, (Math.random() - .5) * forca); cl[i] = 1;
+    }
+  };
+
+  const ck = {}; let vez = 0, relogio = 0, acc = 0;
+  g.userData.offset = new THREE.Vector3(.2, .1, 0);
+  g.userData.tick = (t, dt, I) => {
+    g.rotation.y = Math.sin(t * .3) * .28;
+    const P = localPointer(g, I), burst = clicked(ck, I);
+    items.forEach(m => {
+      const u = m.userData, p = _b.copy(u.home).add(u.off);
+      p.y += Math.sin(t + u.ph) * .18;
+      if (P) {
+        _c.subVectors(p, P); const d = _c.length();
+        if (d < 1.6) { const n = _c.normalize(); u.vel.addScaledVector(n, (1 - d / 1.6) * 34 * dt); u.w.addScaledVector(new THREE.Vector3(n.y, -n.x, n.z), (1 - d / 1.6) * 14 * dt); }
+        if (burst && d < 3.5) { u.vel.addScaledVector(_c.normalize(), 9 * (1 - d / 3.5)); u.w.multiplyScalar(4); }
+      }
+      if (I && I.sv) { u.vel.y += I.sv * (.7 + Math.abs(u.w.z) * .3) * dt * 3.2; u.vel.x += I.sv * Math.sin(u.w.y * 9) * dt; }
+      u.vel.addScaledVector(u.off, -9 * dt); u.vel.multiplyScalar(Math.exp(-2.6 * dt)); u.off.addScaledVector(u.vel, dt);
+      u.w.multiplyScalar(Math.exp(-.6 * dt)); if (u.w.length() < .5) u.w.setLength(.5);
+      m.position.copy(p); m.rotation.x += u.w.x * dt; m.rotation.y += u.w.y * dt; m.rotation.z += u.w.z * dt;
+    });
+    // conversa: os dois se revezam; com o mouse perto ela acelera
+    let near = 0;
+    if (P) { const d = P.length(); near = THREE.MathUtils.clamp(1 - (d - .6) / 2, 0, 1); }
+    relogio += dt * (1 + near * 1.2);
+    if (relogio > 2.6) { relogio = 0; vez = 1 - vez; }
+    if (burst) { A.userData.pulo.v += 5; B.userData.pulo.v += 5; solta(7, 1.4, A); solta(7, 1.4, B); }
+    [A, B].forEach((b, i) => {
+      const u = b.userData, falando = vez === i;
+      const f = spring(u.fala, falando ? 1 : 0, 30, 8, dt);
+      const pl = spring(u.pulo, 0, 40, 7, dt);
+      b.scale.setScalar(.92 + f * .1);
+      const base = i ? -.62 : .5;
+      b.position.y = base + Math.sin(t * 1.3 + i * 2) * .07 + pl * .25;
+      // vira para o mouse
+      const alvoY = P ? THREE.MathUtils.clamp((P.x - b.position.x) * .18, -.4, .4) : 0, alvoX = P ? THREE.MathUtils.clamp(-(P.y - b.position.y) * .15, -.3, .3) : 0;
+      b.rotation.y = spring(u.olha, alvoY, 14, 6, dt); b.rotation.x = spring(u.olhaX, alvoX, 14, 6, dt);
+      b.rotation.z = (i ? -.07 : .08) + Math.sin(t * .9 + i) * .03 - pl * .12 * (i ? -1 : 1);
+      u.dots.forEach((d, k) => {
+        const onda = falando ? Math.max(0, Math.sin(t * (7 + near * 4) - k * .9)) : 0;
+        d.position.y = onda * .14; d.scale.setScalar(.8 + onda * .35);
+      });
+      u.dm.emissiveIntensity = .2 + f * .55;
+    });
+    if (near > .3) { acc += dt * near * 2; while (acc > 1) { acc -= 1; solta(1, .8, vez ? B : A); } }
+    for (let i = 0; i < CN; i++) {
+      if (cl[i] > 0) {
+        cl[i] -= dt * .55; cv[i].multiplyScalar(Math.exp(-.9 * dt)); cv[i].y += .25 * dt; cp[i].addScaledVector(cv[i], dt);
+        _q.setFromEuler(new THREE.Euler(0, t * 2 + i, Math.sin(t * 3 + i) * .3));
+        _m.compose(cp[i], _q, _s.setScalar(Math.max(.0001, Math.sin(Math.min(1, cl[i]) * Math.PI) * .2)));
+      } else _m.compose(cp[i], _q.identity(), _s.setScalar(.0001));
+      sobe.setMatrixAt(i, _m);
+    }
+    _s.set(1, 1, 1); _q.identity(); sobe.instanceMatrix.needsUpdate = true;
+  };
+  return g;
+}
+
 /* ======================= coração anatômico ======================= */
 function bump(x, a, b) { if (x < a || x > b) return 0; return Math.sin((x - a) / (b - a) * Math.PI); }
 function ventricleShape(v) {
@@ -913,6 +1034,6 @@ function makeLamp(o = {}) {
   return root;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHandshake, makeHeart, makeLamp };
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHandshake, makeDialogo, makeHeart, makeLamp };
 };
 })();

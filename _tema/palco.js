@@ -2,7 +2,7 @@
 (function () {
 window.VidroPalco = function (THREE, COL) {
 
-async function createStage(canvas, { cheap = false, bloom = true, fps = 60, dust = 1800, exposure = .9, dpr = 1.75, fog = .045, background = 0x04070b, alpha = false, listen = true } = {}) {
+async function createStage(canvas, { cheap = false, bloom = true, fps = 60, dust = 1800, exposure = .9, dpr = 1.75, fog = .045, background = 0x04070b, alpha = false, listen = true, start = true } = {}) {
   const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: !cheap, alpha, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, dpr));
@@ -46,12 +46,63 @@ async function createStage(canvas, { cheap = false, bloom = true, fps = 60, dust
   document.addEventListener('pointerleave', () => { I.has = false; });
   addEventListener('blur', () => { I.has = false; });
 
-  const W = { poke: () => { moved = true; idle = 0; }, scene, camera, renderer, world, I, composer, bloom: bloomPass, l1, dust: points, frame: [], running: true };
+  const W = { poke: () => { moved = true; idle = 0; }, scene, camera, renderer, world, I, composer, bloom: bloomPass, l1, dust: points, frame: [], running: start };
   function resize() {
     const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight;
     renderer.setSize(w, h, false); composer && composer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
     W.onResize && W.onResize(w, h);
   }
+  /* aquecer: compila todos os shaders (em paralelo, sem travar a página, onde o navegador deixa) e
+     desenha um quadro com tudo visível, para as geometrias subirem para a placa de vídeo.
+     Sem isso, cada modelo trava a página na primeira vez que aparece. Chame com o palco parado
+     (start:false) e ligue running depois. */
+  W.aquecer = async () => {
+    const escondidos = []; scene.traverse(o => { if (!o.visible) { escondidos.push(o); o.visible = true; } });
+    try {
+      if (renderer.compileAsync) {
+        // A mesma cena usa versões diferentes dos shaders conforme o destino:
+        // - na tela (com tone mapping), quando não há bloom;
+        // - numa textura (sem tone mapping, cor linear), quando há bloom (a cena é desenhada antes
+        //   numa textura) ou vidro com transmissão (que redesenha a cena numa textura à parte).
+        // O compile só cobre o destino atual, então compila para cada destino que vai ser usado.
+        let vidro = false; scene.traverse(o => { if (o.material) [].concat(o.material).forEach(m => { if (m.transmission > 0) vidro = true; }); });
+        const rt = new THREE.WebGLRenderTarget(4, 4, { type: THREE.HalfFloatType }), antes = renderer.getRenderTarget();
+        const emTextura = async alvo => { renderer.setRenderTarget(rt); try { await renderer.compileAsync(alvo, camera); } finally { renderer.setRenderTarget(antes); } };
+        try {
+          if (!W.composer) await renderer.compileAsync(scene, camera);
+          if (W.composer || vidro) await emTextura(scene);
+          // o vidro de dois lados é desenhado também pelo avesso (BackSide) no passo de transmissão
+          if (vidro) {
+            const avesso = []; scene.traverse(o => { if (o.material) [].concat(o.material).forEach(m => { if (m.transmission > 0 && m.side === THREE.DoubleSide) avesso.push(m); }); });
+            if (avesso.length) { avesso.forEach(m => { m.side = THREE.BackSide; m.needsUpdate = true; }); try { await emTextura(scene); } finally { avesso.forEach(m => { m.side = THREE.DoubleSide; m.needsUpdate = true; }); } }
+          }
+          // shaders do bloom (quadros de tela cheia que não estão na cena)
+          if (W.composer && bloomPass) {
+            const pos = new THREE.Scene(), geo = new THREE.PlaneGeometry(2, 2), tela = new THREE.Scene();
+            [bloomPass.materialHighPassFilter, ...(bloomPass.separableBlurMaterials || []), bloomPass.compositeMaterial, bloomPass.blendMaterial, bloomPass.basic]
+              .filter(Boolean).forEach(m => pos.add(new THREE.Mesh(geo, m)));
+            await emTextura(pos);
+            // a última passada (saída) vai para a tela; ela só põe os defines no primeiro render, então põe aqui
+            const ult = W.composer.passes[W.composer.passes.length - 1];
+            if (ult && ult.material) {
+              if ('_toneMapping' in ult && ult._toneMapping !== renderer.toneMapping) {
+                ult._outputColorSpace = renderer.outputColorSpace; ult._toneMapping = renderer.toneMapping;
+                const d = ult.material.defines = {};
+                if (THREE.ColorManagement.getTransfer(renderer.outputColorSpace) === THREE.SRGBTransfer) d.SRGB_TRANSFER = '';
+                if (renderer.toneMapping === THREE.ACESFilmicToneMapping) d.ACES_FILMIC_TONE_MAPPING = '';
+                ult.material.needsUpdate = true;
+              }
+              tela.add(new THREE.Mesh(geo, ult.material));
+            }
+            if (tela.children.length) await renderer.compileAsync(tela, camera);
+            geo.dispose();
+          }
+        } finally { rt.dispose(); }
+      } else renderer.compile(scene, camera);
+    } catch (_) { try { renderer.compile(scene, camera); } catch (_) { } }
+    W.composer ? W.composer.render() : renderer.render(scene, camera);
+    escondidos.forEach(o => { o.visible = false; });
+  };
   W.resize = resize; addEventListener('resize', resize); resize();
 
   const clock = new THREE.Clock(); let t = 0, acc = 0, minDt = 1 / fps;
