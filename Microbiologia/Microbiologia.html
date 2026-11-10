@@ -806,6 +806,7 @@ textarea.inp{border-radius:16px}
 .tab2{min-width:880px}.tab2 td{vertical-align:top;font-size:14.5px;line-height:1.5}
 .medt{min-width:760px}.medt td{vertical-align:top;font-size:14.5px;line-height:1.5}
 @media (max-width:700px){.medt,.tab2{min-width:0!important}.medt thead,.tab2 thead{display:none}.medt tr,.tab2 tr{display:block;padding:12px 0;border-bottom:1px solid var(--line,rgba(127,127,127,.3))}.medt td,.tab2 td{display:block;border:0!important;padding:3px 0!important}.medt td:first-child,.tab2 td:nth-child(2){font-size:16px}.medt td:nth-child(2)::before{content:"Como age: ";font-weight:700}.medt td:nth-child(3)::before{content:"Quando usar: ";font-weight:700}.medt td:nth-child(4)::before{content:"Pegadinha: ";font-weight:700;color:#e5484d}.tab2 td:nth-child(1){font-size:12px;text-transform:uppercase;letter-spacing:.04em;opacity:.7}.tab2 td:nth-child(3)::before{content:"Exemplos: ";font-weight:700}.tab2 td:nth-child(4)::before{content:"Uso na prova: ";font-weight:700}.tab2 td:nth-child(5)::before{content:"Resistência: ";font-weight:700;color:#e5484d}}
+.mon .mh2{font:600 26px/1.2 var(--serif);margin:34px 0 8px;display:flex;gap:10px;align-items:center}.mon .mh3{font-size:18px;margin:24px 0 10px}.mon .mp{margin:8px 0}.mon .mli{margin:8px 0 12px;padding-left:22px}.mon .mli li{margin:4px 0}.msec{scroll-margin-top:80px}.mag{border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:10px 0}.magh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.magh h4{margin:0;font-size:16.5px}.mag ul{margin:8px 0 0;padding-left:20px}.mag li{margin:3px 0}.mfix{margin:12px 0;padding:12px 14px;border-radius:12px}.mfix p{margin:6px 0 0}.mchips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.mfix p b,.mfix p i{display:inline;margin:0;font:inherit;font-weight:700;text-transform:none;letter-spacing:normal}.mfix p i{font-weight:inherit;font-style:italic}.mchips span{padding:6px 12px;border-radius:99px;border:1px solid var(--accent);font-size:14px}
 </style>
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="micro";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
@@ -961,6 +962,7 @@ function render(){
   else if(r[0]==='doencas'){html=pDoe();after=cobBind;title='Estudo pelas doenças'}
   else if(r[0]==='med'){html=pMed();title='Medicamentos'}
   else if(r[0]==='infec'){html=pInf();after=cobBind;title='Aula de infecções'}
+  else if(r[0]==='monitor'){html=pMon();title='Anotações do monitor'}
   else if(r[0]==='r1h'){html=pR1h();title='Revisão em 1 hora'}
   else if(r[0]==='cai'){html=pCai();after=caiBind;title='O que vai cair'}
   else if(r[0]==='rx'){html=pRx(r[1]||'pano');after=()=>rxBind(r[1]||'pano');title='Raio-X da prova'}
@@ -1017,7 +1019,7 @@ function paintNav(){
   DATA.soon.forEach(t=>h+=`<div class="it"><span class="ck"></span><span class="lb">${t}</span></div>`);
   h+=`</div></div></div><div class="sep"></div>`;
   h+=`<div class="grp ${openGrp==='_rev'?'open':''} ${['rev','sim','som','my','rx','cai','r1h','infec','doencas','med'].includes(r[0])?'cur':''}" data-g="_rev"><button class="gh" data-act="grp" data-g="_rev" title="Estudo e revisão"><span class="gi">${MODIC._rev}</span><span class="t">Estudo e revisão<small>Revisão, simulados e erros</small></span>${IC.chev}</button><div class="items"><div>`;
-  [['infec','🦠 Aula de infecções'],['med','💊 Medicamentos'],['rev/resumo','Revisão final'],['r1h','Revisão em 1 hora'],['cai','O que vai cair'],['sim','Simulados'],['som','Somativas anteriores'],['rx/pano','Raio-X da prova'],['my','Minha revisão']].forEach(([p,l])=>{
+  [['infec','🦠 Aula de infecções'],['monitor','📝 Anotações do monitor'],['med','💊 Medicamentos'],['rev/resumo','Revisão final'],['r1h','Revisão em 1 hora'],['cai','O que vai cair'],['sim','Simulados'],['som','Somativas anteriores'],['rx/pano','Raio-X da prova'],['my','Minha revisão']].forEach(([p,l])=>{
     const on=(r[0]==='rev'&&p.startsWith('rev'))||(r[0]==='rx'&&p.startsWith('rx'))||r[0]===p;h+=`<button class="it ${on?'on':''}" data-go="${p}"><span class="ck"></span><span class="lb">${l}</span></button>`});
   h+=`</div></div></div>`;
   $('#nav').innerHTML=h;
@@ -1026,7 +1028,7 @@ function railGo(g){if(g==='_rev'){go('rev/resumo');return}const m=modById(g);if(
 /* ===================== página inicial ===================== */
 function pHome(){
   const m=MODS[0];
-  let h=`<div class="page"><div class="crumb">Medicina · 4º período</div><h1 class="pt">Microbiologia</h1><p class="psub">Cada aula vira um módulo: texto aprofundado com as figuras dos slides, verificações em três níveis, quiz final e jogos. As aulas seguintes entram como novos módulos neste mesmo arquivo.</p><div class="caibn" data-go="infec"><div><b>🦠 Aula de infecções</b><span>ITU, pele e partes moles, PAC, PAV, meningite e peritonite: os principais agentes (bactérias e fungos) e o tratamento de cada um.</span></div><span class="btn pri sm">Abrir</span></div><div class="avisoa7"><b>🚨 Aviso da professora: 10 das 30 questões da somativa serão sobre a Aula 7 (Micoses).</b><span>Um terço da prova. Priorize a Aula 7: “O que mais é cobrado”, “Questões que se repetem” e o simulado só da Aula 7.</span><button class="btn pri sm" data-go="a7/cob">Ir para a Aula 7</button></div><div class="gcap"><h3>Como ler os grifos</h3><p>Trechos do texto vêm grifados quando o assunto já caiu nas somativas. A cor mostra em quantas provas o tema apareceu:</p><div class="gl2"><span class="f1">verde — já caiu em 1 prova</span><span class="f2">amarelo — cai ocasionalmente (2 provas)</span><span class="f3">laranja — cai bastante (3 provas)</span><span class="f4">vermelho — cai sempre (4 provas)</span><span class="f5">preto — certeza absoluta (5 ou mais)</span></div><p>Passe o mouse ou toque no grifo para ver quais provas cobraram o tema e abrir o item direto. Cada prova conta uma vez por tema.</p><p>Selecione qualquer trecho do texto e use <b>Grifar</b> para marcar de <span class="gl2" style="display:inline"><span class="pk">rosa</span></span> o que for seu: esses grifos ficam salvos no navegador.</p></div><div class="hero">`;
+  let h=`<div class="page"><div class="crumb">Medicina · 4º período</div><h1 class="pt">Microbiologia</h1><p class="psub">Cada aula vira um módulo: texto aprofundado com as figuras dos slides, verificações em três níveis, quiz final e jogos. As aulas seguintes entram como novos módulos neste mesmo arquivo.</p><div class="caibn" data-go="infec"><div><b>🦠 Aula de infecções</b><span>ITU, pele e partes moles, PAC, PAV, meningite e peritonite: os principais agentes (bactérias e fungos) e o tratamento de cada um.</span></div><span class="btn pri sm">Abrir</span></div><div class="caibn" data-go="monitor"><div><b>📝 Anotações do monitor</b><span>O resumo do monitor Lucas Naves (2026/1): bactérias, síndromes e antibióticos, fungos e vírus, com os ajustes de pegadinha.</span></div><span class="btn pri sm">Abrir</span></div><div class="avisoa7"><b>🚨 Aviso da professora: 10 das 30 questões da somativa serão sobre a Aula 7 (Micoses).</b><span>Um terço da prova. Priorize a Aula 7: “O que mais é cobrado”, “Questões que se repetem” e o simulado só da Aula 7.</span><button class="btn pri sm" data-go="a7/cob">Ir para a Aula 7</button></div><div class="gcap"><h3>Como ler os grifos</h3><p>Trechos do texto vêm grifados quando o assunto já caiu nas somativas. A cor mostra em quantas provas o tema apareceu:</p><div class="gl2"><span class="f1">verde — já caiu em 1 prova</span><span class="f2">amarelo — cai ocasionalmente (2 provas)</span><span class="f3">laranja — cai bastante (3 provas)</span><span class="f4">vermelho — cai sempre (4 provas)</span><span class="f5">preto — certeza absoluta (5 ou mais)</span></div><p>Passe o mouse ou toque no grifo para ver quais provas cobraram o tema e abrir o item direto. Cada prova conta uma vez por tema.</p><p>Selecione qualquer trecho do texto e use <b>Grifar</b> para marcar de <span class="gl2" style="display:inline"><span class="pk">rosa</span></span> o que for seu: esses grifos ficam salvos no navegador.</p></div><div class="hero">`;
   MODS.forEach(m=>{const pr=modProg(m);h+=`<div class="mcard" data-go="${m.id}/${m.segs[0].id}"><div class="crumb">Aula ${m.num}</div><h3>${m.nome}</h3><div>${m.segs.length} segmentos · ${(m.quiz||[]).length} questões no quiz final · ${m.widgets.length} jogos</div><div class="bar"><i style="width:${pr.p*100}%"></i></div><div class="crumb">${pr.d} de ${pr.t} segmentos concluídos</div></div>`});
   h+=`</div>${recadosPainel()}${caiBanner()}${DATA.soon.length?`<div class="crumb">Próximos módulos</div><div class="soonrow">${DATA.soon.map(t=>`<div>${t}</div>`).join('')}</div>`:''}</div>`;
   return h;
@@ -2079,6 +2081,87 @@ function pMed(m){
   if(m)return `<div class="page"><div class="crumb">Aula ${m.num} · ${m.nome}</div><h1 class="pt">💊 Medicamentos e função</h1>${medAula(m.id)}<div class="actions"><button class="btn ghost" data-go="${m.id}/cob">⭐ O que mais é cobrado</button><button class="btn pri" data-go="med">Todos os medicamentos</button></div></div>`;
   return `<div class="page"><div class="crumb">Estudo e revisão</div><h1 class="pt">💊 Medicamentos de todas as aulas</h1><p class="psub">Primeiro a tabela geral de classes e alvos; depois, aula por aula, os medicamentos que importam ali, o que fazem e a pegadinha.</p>${TAB2}${MODS.filter(m=>MED[m.id]&&!MED[m.id].table).map(m=>`<h2 class="rpa">Aula ${m.num} · ${m.nome}</h2>${medAula(m.id)}`).join('')}</div>`;
 }
+
+/* ---------- Anotações do monitor (Lucas Naves, 2026/1) ---------- */
+const MON=(()=>{
+const ag=(n,a,li,extra='')=>`<div class="mag"><div class="magh"><h4>${n}</h4>${a?`<button class="btn ghost sm" data-go="${a}/s1">📚 ${a.replace('a','Aula ')}</button>`:''}</div><ul>${li.map(x=>`<li>${x}</li>`).join('')}</ul>${extra}</div>`;
+const fix=t=>`<div class="warn mfix"><b>⚠️ Ajuste do material</b><p>${t}</p></div>`;
+const tb=(h,rows)=>`<div class="tw"><table class="cobt"><thead><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td>${i?c:`<b>${c}</b>`}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+const S=[
+['bac','🦠','1. Bactérias',`
+<h3 class="mh3">Cocos gram-positivos</h3>
+${ag('<i>Staphylococcus aureus</i>','a3',['Clínica: <b>foliculite, terçol, impetigo, síndrome da pele escaldada e síndrome do choque tóxico</b>.','Patógeno frequente de <b>pele e tecidos moles</b> (junto com <i>Pseudomonas</i>).','Fatores de virulência em comum com <i>Pseudomonas</i>: <b>elastases e exotoxinas</b>.'])}
+${ag('<i>Staphylococcus epidermidis</i>','a3',['Faz parte da <b>microbiota residente da pele</b>.','Causa <b>endocardite</b>, entrando por <b>dispositivos implantáveis contaminados</b> (biofilme).'])}
+${ag('<i>Streptococcus pyogenes</i>','a4',['Virulência: <b>cápsula, estreptolisinas S e O, estreptoquinase, exotoxinas e proteína M</b>.','<b>Escarlatina</b> em crianças.','Faringite estreptocócica → <b>febre reumática</b>; outra sequela não supurativa: <b>glomerulonefrite</b>.','Também causa lesões de pele.'])}
+${ag('<i>Streptococcus pneumoniae</i>','a4',['Cocos gram-positivos <b>em pares ou cadeias curtas</b>, com <b>cápsula polissacarídea</b>.','Causa de <b>PAC</b> e de <b>meningite</b> (inclusive a meningite tardia do neonato, segundo o monitor).'])}
+${ag('<i>Enterococcus faecalis</i> e <i>faecium</i>','a4',['Oportunistas: <b>ITU, endocardite</b> e outras infecções hospitalares, sobretudo no paciente debilitado.','Podem ser resistentes à vancomicina (<b>VRE</b>). Alternativa: <b>linezolida</b>.'])}
+<h3 class="mh3">Bacilos gram-negativos</h3>
+${ag('<i>Escherichia coli</i>','a5',['Uma das principais causas de <b>meningite no bebê</b> (primeiros meses):<br>• <b>precoce:</b> passa pela corrente sanguínea durante o parto;<br>• infecções adquiridas no hospital;<br>• <b>tardia:</b> contato com cuidadores.','<b>EHEC O157</b>: infecção intestinal grave que pode levar à <b>síndrome hemolítico-urêmica (SHU)</b>, sobretudo em crianças e idosos.','Tríade da SHU: <b>anemia hemolítica + insuficiência renal aguda + plaquetopenia</b>.'])}
+${ag('<i>Shigella dysenteriae</i>','a5',['<b>Diarreia com sangue e muco</b>.','Surtos em ambientes com aglomeração (escolas).'])}
+${ag('<i>Salmonella</i> Typhi','a5',['<b>Febre tifoide</b>. Tratamento: <b>quinolonas</b>.'])}
+${ag('Enterobacterales (<i>Serratia, Enterobacter</i>)','a5',['Resistência por <b>ESBL</b> e por <b>alteração da permeabilidade da membrana</b>.','Cefalosporinas de 3ª geração e penicilinas <b>não funcionam</b>.','Alternativa: <b>carbapenêmico (meropenem)</b>.'])}
+${ag('<i>Proteus</i>','a5',['Associado a <b>ITU</b>.','Produz <b>urease</b> → <b>aumenta o pH da urina</b>.','Consequências: mais proliferação bacteriana, recorrência, <b>cristais e cálculos renais</b> (estruvita).'])}
+${ag('<i>Pseudomonas aeruginosa</i> e <i>Acinetobacter</i>','a6',['Entre os principais causadores de <b>IRAS</b>.','<b>Resistência intrínseca</b> a antibióticos e <b>biofilme</b>.','Sobrevivem no hospital: <b>superfícies úmidas, equipamentos e sistemas de água</b>.','Atingem imunocomprometidos, pacientes de UTI e submetidos a procedimentos invasivos.','<i>Pseudomonas</i> é oportunista: pele e partes moles, trato respiratório e urinário.','<i>Pseudomonas</i> da comunidade: <b>ciprofloxacino</b> (principal escolha).','<i>Pseudomonas</i> pode responder a β-lactâmicos; <i>Acinetobacter</i> não: usar <b>polimixina B</b>.','Prevenção: higiene, limpeza e desinfecção dos equipamentos e uso consciente de antibióticos.'],fix('A frase “<i>Acinetobacter</i> não responde a β-lactâmicos” vale para o <b><i>Acinetobacter</i> multirresistente</b> (resistente a carbapenêmico), que é o da UTI e o da prova: aí a saída é a <b>polimixina</b>. Cepa sensível ainda pode responder a carbapenêmico ou ampicilina-sulbactam.'))}
+${ag('<i>Yersinia pestis</i>','',['Transmitida pela <b>picada de pulgas</b> que se alimentaram de roedores infectados.','Forma <b>bubônica</b>: linfonodos inflamados e dolorosos (<b>bubões</b>).','Tratamento: <b>estreptomicina</b>, para reduzir a carga bacteriana e evitar a peste pneumônica e a septicêmica.'])}
+${ag('<i>Leptospira</i> (leptospirose)','',['Exposição à <b>água contaminada por urina de roedores</b>; associada a <b>enchentes</b>.','Profilaxia: <b>doxiciclina</b> (tetraciclina).'])}
+<h3 class="mh3">Outras bactérias e estruturas</h3>
+${ag('<i>Clostridioides difficile</i>','a2',['<b>Diarreia grave</b>.','Prolifera quando o <b>antibiótico desequilibra a microbiota</b>.'])}
+${ag('Esporos de <i>Clostridium</i> e <i>Bacillus</i>','a1',['Resistem a <b>calor alto, desidratação e produtos químicos</b>.','<i>Clostridium perfringens</i> também causa lesões de pele (gangrena gasosa).'])}
+${ag('<i>Mycobacterium tuberculosis</i>','a1',['Parede rica em <b>ácidos micólicos</b>.','Resiste a condições ambientais extremas e se transmite bem por <b>aerossóis</b>.'])}
+${ag('<i>Chlamydia</i> e <i>Mycoplasma</i>','a1',['Parede <b>incompleta</b> (<i>Chlamydia</i>) ou <b>ausente</b> (<i>Mycoplasma</i>).','<b>β-lactâmicos não funcionam</b> (agem na parede).','Usar quem age na <b>síntese proteica</b>: <b>doxiciclina ou azitromicina</b>.'])}`],
+['sin','🩺','2. Síndromes e antibióticos',`
+<h3 class="mh3">Infecção do trato urinário (ITU)</h3>
+<p class="mp">A escolha empírica depende da apresentação clínica, do hospedeiro e do agente.</p>
+${tb(['Quadro','Opções'],[['Cistite','Nitrofurantoína, fosfomicina, sulfametoxazol-trimetoprima e fluoroquinolonas'],['Pielonefrite','Ciprofloxacino, sulfametoxazol-trimetoprima e/ou ceftriaxona']])}
+<ul class="mli"><li>Caso grave: preferir <b>via IV</b>.</li><li><b>Ciprofloxacino</b>: boa penetração no trato urinário e eficaz contra gram-negativos.</li><li><b>Nitrofurantoína não age bem no rim</b>: serve para cistite, não para pielonefrite.</li></ul>
+<h3 class="mh3">Pneumonia adquirida na comunidade (PAC)</h3>
+<ol class="mli"><li><b>Fluoroquinolona respiratória</b> (levofloxacino, moxifloxacino ou gemifloxacino).</li><li><b>β-lactâmico + macrolídeo</b>.</li></ol>
+<p class="mp">Os dois cobrem <i>S. pneumoniae</i>, <i>M. pneumoniae</i>, <i>C. pneumoniae</i>, <i>H. influenzae</i> e <i>Legionella</i>.</p>
+<h3 class="mh3">Meningite</h3>
+<ul class="mli"><li>Agentes: <i>N. meningitidis</i>, <i>S. pneumoniae</i>, <i>H. influenzae</i> b, <i>Listeria monocytogenes</i>, <i>S. agalactiae</i> e <i>E. coli</i>.</li><li><b>Neonatal:</b> <i>E. coli</i>, <i>S. agalactiae</i> e <i>Listeria</i>; <i>S. pneumoniae</i> na forma tardia.</li><li>Esquemas citados: <b>1.</b> cefalosporina de 3ª geração; <b>2.</b> ampicilina + ceftriaxona; <b>3.</b> vancomicina + ampicilina + ceftriaxona.</li><li><b><i>Listeria</i>: ampicilina</b> (cefalosporina não cobre).</li></ul>
+${fix('Para ligar os esquemas: a <b>ampicilina</b> entra quando há risco de <i>Listeria</i> (neonato, idoso, imunossuprimido, gestante); a <b>vancomicina</b> entra quando há risco de pneumococo resistente.')}
+<h3 class="mh3">Pele e partes moles</h3>
+<ul class="mli"><li>Patógenos frequentes: <i>Pseudomonas</i>, <i>S. aureus</i>, <i>S. pyogenes</i> e <i>C. perfringens</i>.</li><li>Resistência: <b>bombas de efluxo, enzimas e alteração de PBP</b>.</li><li>Gram-negativo multirresistente + MRSA: <b>meropenem + vancomicina</b>.</li></ul>
+<h3 class="mh3">Associações que cobrem gram-positivos e gram-negativos</h3>
+<div class="mchips">${['Piperacilina-tazobactam','Ceftriaxona + azitromicina','Vancomicina + cefepime','Ampicilina + gentamicina','Ampicilina + cefotaxima','Ciprofloxacino + clindamicina'].map(x=>`<span>${x}</span>`).join('')}</div>
+<h3 class="mh3">Fluoroquinolonas</h3>
+<ul class="mli"><li>Podem ser tomadas <b>por via oral</b> e usadas <b>na comunidade</b>.</li><li>Podem substituir as penicilinas em algumas infecções (por exemplo, por estreptococos).</li></ul>
+${fix('Para estreptococo (pneumococo), a quinolona que serve é a <b>respiratória</b> (levofloxacino, moxifloxacino). O <b>ciprofloxacino cobre mal o pneumococo</b>: fica para ITU e <i>Pseudomonas</i>.')}`],
+['fun','🍄','3. Fungos',`
+<h3 class="mh3">Antifúngicos e mecanismos</h3>
+${tb(['Fármaco','Classe','Mecanismo'],[['Caspofungina','Equinocandina','Inibe a síntese de <b>β-(1,3)-glucano</b> (parede)'],['Anfotericina B','Polieno','<b>Liga-se ao ergosterol</b> da membrana'],['Voriconazol','Azólico','<b>Inibe a síntese</b> de ergosterol'],['Itraconazol','Azólico','<b>Inibe a síntese</b> de ergosterol'],['Nistatina','Polieno','Interfere na integridade da membrana']])}
+${fix('A nistatina é <b>polieno</b>, igual à anfotericina B: <b>liga-se ao ergosterol</b> e abre poros na membrana. Ela <b>não inibe a síntese</b> do ergosterol (isso é dos azólicos). Pegadinha clássica: <b>polieno liga, azol inibe a síntese</b>.')}
+<h3 class="mh3">Micoses</h3>
+${ag('Mucormicose','a7',['Oportunista, causada por <b>Mucorales</b>.','Associada a <b>diabetes descompensado</b> e outras comorbidades.','<b>Invade vasos</b> e causa <b>necrose</b>.','Tratamento: <b>anfotericina B</b>.'])}
+${ag('Esporotricose','a7',['Transmissão zoonótica clássica pelo <b>gato</b>; agente <i>Sporothrix brasiliensis</i>.','Primeira linha: <b>itraconazol</b>.','Forma <b>linfocutânea</b>: nódulo doloroso → úlcera → <b>linfangite ascendente</b> ao longo dos linfáticos.'])}
+${ag('Paracoccidioidomicose (PCM)','a7',['A forma <b>crônica (adulto)</b> é a mais comum (74% a 96%).','Predomina em <b>homens de 30 a 60 anos</b>.','<b>Dimórfico</b>: filamentoso no ambiente (esporos inalados) e <b>levedura em “roda de leme”</b> (brotamento múltiplo) no corpo.','Tratamento: <b>itraconazol</b> (leve a moderada) e <b>anfotericina B</b> (grave).','<b>Sulfametoxazol-trimetoprima</b> também é usado e cobre infecção bacteriana secundária.'])}
+${ag('Criptococose','a7',['<i>Cryptococcus neoformans</i> (e <i>gattii</i>), com <b>cápsula evidente</b>.','Começa no pulmão e pode ir ao <b>SNC → meningite</b>.','Sobretudo no imunossuprimido (<b>HIV</b>).'])}
+${ag('Histoplasmose','a7',['<i>Histoplasma capsulatum</i>: a levedura fica <b>dentro dos macrófagos</b>.','Pode atingir o SNC no imunossuprimido.'])}
+${ag('Aspergilose','a7',['Micose <b>invasiva</b>.','Causa <b>pneumonia</b>, inclusive associada à COVID-19.'])}
+${ag('<i>Candida</i>','a7',['Principalmente <i>C. albicans</i>.','<i>Candida auris</i>: “superfungo”, com casos confirmados em <b>Belo Horizonte</b>.'])}
+${ag('Dermatofitoses (micoses cutâneas)','a7',['Agentes: <b><i>Trichophyton</i>, <i>Epidermophyton</i> e <i>Microsporum</i></b>.','Vivem nas áreas <b>queratinizadas</b> e se alimentam de <b>queratina</b>.','Comuns em áreas úmidas e compartilhadas.','Ficam na epiderme, <b>sem atingir tecidos profundos</b>.'])}
+<p class="mp">Também citado: <i>Coccidioides</i> spp.</p>
+<h3 class="mh3">Diagnóstico</h3>
+<ul class="mli"><li><b>Exame direto com KOH</b>: técnica fundamental, mostra o fungo na hora, simples e barato.</li><li><b>Sorologia</b>: ajuda nas micoses sistêmicas endêmicas (por exemplo, criptococose e histoplasmose).</li></ul>`],
+['vir','🧬','4. Vírus',`
+<h3 class="mh3">Efeito citopático</h3>
+<p class="mp">Alterações degenerativas que alguns vírus causam nas células infectadas.</p>
+${tb(['Vírus','Achado'],[['Raiva','<b>Corpúsculo de Negri</b>: inclusões eosinofílicas no citoplasma de neurônios do SNC'],['Citomegalovírus','Células em <b>“olho de coruja”</b>'],['Herpesvírus e vírus sincicial respiratório','<b>Sincício</b>'],['HPV','<b>Coilocitose</b> (alterações no núcleo e no citoplasma)']])}
+<h3 class="mh3">Hepatites virais</h3>
+${tb(['','Hepatite A','Hepatite B','Hepatite C'],[['Transmissão','Fecal-oral','Sangue, fluidos corporais e via perinatal','Sangue contaminado (usuários de drogas)'],['Cronificação','Raramente','Minoria no adulto (~10%); quanto mais cedo a infecção, maior o risco. Pode levar a cirrose e CHC','Maioria (~80%), com cirrose e CHC'],['Observações','Comum onde o saneamento é precário','Maioria dos casos é assintomática','']])}
+<h3 class="mh3">Oncogênese viral (HPV)</h3>
+<ul class="mli"><li>O DNA do vírus se <b>integra ao genoma</b> da célula; as alterações passam adiante a cada mitose → transformação e câncer.</li><li><b>E6 → degrada a p53</b>: sem esse supressor de tumor, não há apoptose e a célula com DNA danificado prolifera.</li><li><b>E7 → inativa a pRb</b>: o ciclo celular perde o freio (entrada descontrolada na fase S).</li><li>Resultado: transformação maligna e crescimento descontrolado.</li></ul>
+<p class="mp"><b>Emergentes e reemergentes:</b> Mpox e SARS-CoV-2.</p>
+<h3 class="mh3">Diagnóstico viral</h3>
+${tb(['Método','Uso'],[['Sorologia','Detecta anticorpos (infecção passada ou recente); hepatites B e C'],['PCR','Detecta o genoma direto; HIV e SARS-CoV-2'],['Imunofluorescência','Detecta antígenos virais específicos'],['Isolamento em cultura','Demorado, pouco usado para diagnóstico rápido']])}`]];
+return {S};})();
+function pMon(){
+  return `<div class="page mon"><div class="crumb">Estudo e revisão</div><h1 class="pt">📝 Anotações do monitor</h1><p class="psub">O resumo das anotações do monitor <b>Lucas Naves (2026/1)</b>, organizado por grupo de micro-organismo e por tema. As caixas <b>⚠️ Ajuste do material</b> corrigem ou completam pontos que costumam virar pegadinha. Os botões “Aula X” levam à aula onde o assunto é explicado em detalhe.</p>
+  <nav class="doenav" aria-label="Seções">${MON.S.map(s=>`<a href="#" data-mon="${s[0]}"><span aria-hidden="true">${s[1]}</span>${s[2].replace(/^\d\.\s*/,'')}</a>`).join('')}</nav>
+  ${MON.S.map(s=>`<section class="msec" id="mon-${s[0]}"><h2 class="mh2"><span aria-hidden="true">${s[1]}</span> ${s[2]}</h2>${s[3]}</section>`).join('')}
+  <div class="actions"><button class="btn ghost" data-go="infec">🦠 Aula de infecções</button><button class="btn pri" data-go="sim">Simulados</button></div></div>`;
+}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-mon]');if(!a)return;e.preventDefault();const t=document.getElementById('mon-'+a.dataset.mon);t&&t.scrollIntoView({behavior:'smooth',block:'start'})});
 
 function pCob(m){
   const C=m.cob,cs=C.keys.map(k=>CAIK.get(k)).filter(Boolean);
