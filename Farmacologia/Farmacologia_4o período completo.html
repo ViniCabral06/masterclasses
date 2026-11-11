@@ -415,6 +415,7 @@ mark.sflash{background:#ffe08a;animation:fl 2.4s ease forwards}
 .sim-bar .btn{height:36px}
 .sim-bar .btn.ghost{background:#33362f;color:#e3e6e1;border:none}
 .sim.ended .sim-end,.sim.ended .sim-abort{display:none}
+.sim-new{display:none}.sim.ended .sim-new{display:inline-flex}
 .sim .q{scroll-margin-top:110px}
 .sim .q .qact{display:none}
 .sim-flag{margin-left:auto;border:none;background:var(--raised);border-radius:999px;height:28px;padding:0 10px;cursor:pointer;opacity:.5;font-size:14px;transition:opacity .15s ease,transform .16s var(--ease-out)}
@@ -750,6 +751,7 @@ mark.uhl.uhl-new{animation:sweep .55s var(--ease-out) both}
 
 
 
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="farmaco";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
@@ -791,6 +793,7 @@ mark.uhl.uhl-new{animation:sweep .55s var(--ease-out) both}
 <div id="vidro-load" style="--vl:#ff4d6d" role="status" aria-label="Carregando Farmacologia"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-35 12 12)"/><path d="M9.2 7.6 14.8 16.4"/></svg></div><div class="vl-t">Farmacologia</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
 
 
 
@@ -4847,15 +4850,17 @@ function Sim(root){
     var go={6:'p1',7:'r1',8:'s1',9:'v1',10:'d1',11:'u1',12:'g1',13:'l1'}[weak];
     res.innerHTML='<div class="sr-card"><div class="sr-top"><div class="sr-big">'+ok+'<small>/'+tot+'</small></div><div><div class="sr-lv">'+lv+'</div><div class="sr-sub">'+pct+'% de acerto · nota '+(ok/tot*10).toFixed(1).replace('.',',')+' · tempo '+fmt(st.end-st.start)+'</div></div></div>'+rows+
       (wrong.length?'<div class="sr-wrong">Erradas ou em branco: '+wrong.map(function(n){return '<a href="#" data-n="'+n+'">'+n+'</a>';}).join(' ')+'</div>':'<div class="sr-wrong">Gabaritou! 🎉</div>')+
-      '<div class="sr-act"><button class="btn acc sr-go" type="button">Revisar o ponto fraco ('+({6:'Aula 6',7:'Aula 7',8:'Aula 8',9:'Aula 9',10:'Aula 10',11:'Aula 11',12:'Aula 12'}[weak])+')</button><button class="btn ghost sr-redo" type="button">↺ Refazer simulado</button></div></div>';
+      '<div class="sr-act"><button class="btn acc sr-go" type="button">Revisar o ponto fraco ('+({6:'Aula 6',7:'Aula 7',8:'Aula 8',9:'Aula 9',10:'Aula 10',11:'Aula 11',12:'Aula 12'}[weak])+')</button><button class="btn '+(isRand?'acc':'ghost')+' sr-redo" type="button">'+(isRand?'🎲 Gerar outro simulado':'↺ Refazer simulado')+'</button></div></div>';
     $$('.sr-wrong a',res).forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();qs()[+a.getAttribute('data-n')-1].scrollIntoView({behavior:'smooth',block:'start'});});});
     $('.sr-go',res).addEventListener('click',function(){MC.go(go);});
-    confirm2($('.sr-redo',res),'↺ Refazer simulado',reset);
+    if(isRand)$('.sr-redo',res).addEventListener('click',novo);else confirm2($('.sr-redo',res),'↺ Refazer simulado',reset);
     if(fresh&&!isRand&&!st.awarded&&MC.award){MC.award('sim:'+id,ok*2,'simulado entregue');st.awarded=1;save();}
     paint();if(fresh)res.scrollIntoView({behavior:'smooth',block:'start'});
   }
   function clearMarks(){qs().forEach(function(q){q.classList.remove('done','flagged');$$('.opt',q).forEach(function(o){o.classList.remove('right','wrong','sel');});var fb=$('.qfb',q);fb.classList.remove('ok','no');});res.innerHTML='';}
   function reset(){clearInterval(timers[id]);st={};save();clearMarks();if(isRand)qbox.innerHTML='';paint();}
+  /* depois de entregar: volta para a tela de montar a prova (mantém a configuração) */
+  function novo(){reset();window.scrollTo(0,root.getBoundingClientRect().top+window.scrollY-70);}
   // controls
   var sb=$('.sim-go',root);if(sb)sb.addEventListener('click',function(){
     if(isRand){var n=+$('.sim-n',root).value,au=$$('.sim-au input:checked',root).map(function(c){return +c.value;});
@@ -4866,6 +4871,9 @@ function Sim(root){
     start();});
   confirm2($('.sim-end',bar),'Entregar prova',function(){finish();});
   var ab=$('.sim-abort',bar);if(ab)confirm2(ab,'Desistir',reset);
+  /* botão na barra fixa, visível depois de entregar (inclusive no celular) */
+  var nb=document.createElement('button');nb.type='button';nb.className='btn acc sim-new';nb.textContent=isRand?'🎲 Gerar outro':'↺ Refazer';
+  $('.sim-bact',bar).appendChild(nb);if(isRand)nb.addEventListener('click',novo);else confirm2(nb,nb.textContent,novo);
   // restore
   if(isRand&&st.ids)buildRandom(st.ids);
   wireQs();
