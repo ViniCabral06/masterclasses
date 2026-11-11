@@ -10,11 +10,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ground:#04070b;
-  --ink:#eef4f6;
-  --ink-2:rgba(238,244,246,.72);
-  --ink-3:rgba(238,244,246,.5);
-  --hub:#4ff3ff;
+  /* Paleta do site.
+     Base: tinta (fundo), duas superfícies e papel (texto).
+     Marca: verde marca-texto, a cor do grifo. Só em ação, destaque e campo de cor.
+     Corantes: uma cor por matéria, usada só dentro do assunto dela. */
+  --ground:#06080c;
+  --surface:#0d1218;
+  --surface-2:#161d26;
+  --ink:#f3f6f1;
+  --ink-2:rgba(243,246,241,.74);
+  --ink-3:rgba(243,246,241,.5);
+  --hub:#d8ff3d;
+  --on-hub:#0b0f04;
   --farmaco:#ff4d6d;
   --micro:#9a5bff;
   --th4:#38f5a3;
@@ -43,10 +50,11 @@ body[data-accent="prev"]{--accent:var(--prev)}
 body[data-accent="huma"]{--accent:var(--huma)}
 button,a{font:inherit;color:inherit}
 a{text-decoration:none}
-::selection{background:var(--accent);color:#000}
+::selection{background:var(--hub);color:var(--on-hub)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:12px}
 
-#gl{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;transition:opacity .7s var(--ease)}
+body.quiet #gl{opacity:.2}
 .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(120% 90% at 0% 50%,rgba(4,7,11,.82) 0%,rgba(4,7,11,.35) 45%,rgba(4,7,11,0) 70%)}
 .grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
@@ -69,7 +77,7 @@ a{text-decoration:none}
 .refract .glass{-webkit-backdrop-filter:url(#liquid) blur(14px) saturate(190%) brightness(1.08);backdrop-filter:url(#liquid) blur(14px) saturate(190%) brightness(1.08)}
 .modo-leve .glass{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:linear-gradient(160deg,rgba(40,48,58,.82),rgba(14,19,26,.76) 40%,rgba(22,28,36,.78))}
 .modo-leve .grain{display:none}
-.modo-leve body{background:radial-gradient(70vmax 60vmax at 85% 30%,rgba(79,243,255,.10),transparent 70%),var(--ground)}
+.modo-leve body{background:radial-gradient(70vmax 60vmax at 85% 30%,rgba(216,255,61,.08),transparent 70%),var(--ground)}
 .glass::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
   background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.22),transparent 45%);
   opacity:var(--hl,.55);transition:opacity .4s}
@@ -78,7 +86,8 @@ a{text-decoration:none}
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55}
 
 /* ---------- Top bar ---------- */
-.bar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:16px;padding:18px var(--gutter)}
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:16px;padding:18px var(--gutter);pointer-events:none}
+.bar>*{pointer-events:auto}
 .mark{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em;cursor:pointer;background:none;border:0}
 .mark svg{width:34px;height:34px}
 .crumbs{display:flex;gap:6px;align-items:center;margin-left:auto;padding:6px;border-radius:999px;--r:999px}
@@ -105,7 +114,7 @@ main{position:relative;z-index:10;height:100%}
 .lede{margin-top:36px;max-width:24ch;font-size:clamp(22px,2.1vw,30px);line-height:1.3;font-weight:500;color:var(--ink-2);text-wrap:balance}
 .cta-row{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .btn{--r:999px;display:inline-flex;align-items:center;gap:14px;border:0;cursor:pointer;padding:18px 30px;border-radius:999px;font-weight:600;font-size:17px;transition:transform .5s var(--spring),background .3s}
-.btn.primary{background:var(--accent);color:#03080a;box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent);animation:pulse 2.6s infinite}
+.btn.primary{background:var(--accent);color:var(--on-hub);box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent);animation:pulse 2.6s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 22px transparent}100%{box-shadow:0 0 0 0 transparent}}
 .btn .arr{display:inline-block;transition:transform .5s var(--spring)}
 .btn:hover .arr{transform:translateX(6px)}
@@ -119,11 +128,114 @@ main{position:relative;z-index:10;height:100%}
 .credits b{font-weight:600;color:var(--ink-2)}
 @media (max-width:700px){.credits{position:static;margin-top:28px}}
 
-.ticker{position:absolute;left:0;right:0;bottom:28px;overflow:hidden;pointer-events:none;opacity:.55;
-  -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
 .ticker div{display:flex;gap:42px;white-space:nowrap;width:max-content;animation:tick 60s linear infinite;font-family:var(--display);font-size:15px;font-weight:600;color:var(--ink-2)}
 .ticker span::before{content:"✚";margin-right:42px;color:var(--accent);opacity:.8}
 @keyframes tick{to{transform:translateX(-50%)}}
+
+/* ===================== HOME: página de rolagem ===================== */
+#s-home{display:block;padding:0;outline:0}
+.progress{position:fixed;left:0;top:0;height:4px;width:100%;z-index:30;background:var(--hub);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:110px var(--gutter) 110px}
+.what{margin-top:18px;max-width:44ch;font-size:18px;line-height:1.5;color:var(--ink-2)}
+.cue{position:absolute;right:var(--gutter);bottom:26px;display:flex;flex-direction:row-reverse;align-items:center;gap:12px;font-size:14px;font-weight:500;color:var(--ink-2);background:none;border:0;cursor:pointer}
+.cue i{display:block;width:26px;height:42px;border-radius:14px;box-shadow:inset 0 0 0 2px var(--ink-3);position:relative}
+.cue i::after{content:"";position:absolute;left:50%;top:8px;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--hub);animation:cue 1.8s var(--ease) infinite}
+@keyframes cue{0%{transform:none;opacity:1}70%{transform:translateY(16px);opacity:0}100%{transform:none;opacity:0}}
+.hero .credits{bottom:34px}.hero .hint{bottom:34px}
+
+.rv{transition:opacity .8s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0)*80ms)}
+.js .rv{opacity:0;transform:translateY(28px)}
+.js .rv.seen{opacity:1;transform:none}
+
+/* manifesto: o marca-texto passa conforme a rolagem */
+.manif{height:230vh;position:relative}
+.manif .pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;padding:0 var(--gutter)}
+.say{max-width:1480px;width:100%;margin:0 auto;font-family:var(--display);font-weight:800;font-size:clamp(30px,4.3vw,72px);line-height:1.08;letter-spacing:-.035em}
+.say>span{display:block;max-width:17ch}
+.wd{transition:opacity .45s var(--ease),color .45s}
+.js .wd{opacity:.16}
+.js .wd.on{opacity:1}
+.mk{color:inherit;padding:0 .12em;margin:0 -.06em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  background:linear-gradient(var(--hub),var(--hub)) no-repeat 0 55%/0% 84%;transition:background-size .7s var(--ease),color .4s .1s,opacity .4s}
+.mk.on,html:not(.js) .mk{background-size:100% 84%;color:var(--on-hub)}
+
+/* matérias: um capítulo por matéria, o 3D troca junto */
+.sec-h{max-width:1480px;margin:0 auto;padding:0 var(--gutter)}
+.sec-h h2,.fim h2{font-family:var(--display);font-weight:800;font-size:clamp(44px,7vw,124px);line-height:.9;letter-spacing:-.05em}
+.sec-h p{margin-top:20px;max-width:40ch;font-size:19px;color:var(--ink-2)}
+.mats{padding-top:12vh}
+.chap{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:0 var(--gutter)}
+.chap-in{max-width:1480px;width:100%;margin:0 auto}
+.chap-in>*{max-width:min(620px,48vw)}
+.chap h3{font-family:var(--display);font-weight:800;font-size:clamp(42px,5.6vw,98px);line-height:.92;letter-spacing:-.045em;text-wrap:balance}
+.chap .facts{margin-top:22px;font-weight:600;font-size:18px;color:var(--tint)}
+.chap .desc{margin-top:12px;font-size:20px;line-height:1.45;color:var(--ink)}
+.chap .topics{margin-top:14px;font-size:15px;line-height:1.6;color:var(--ink-2)}
+.chap .cta-row{margin-top:30px}
+.btn.tinted{background:var(--tint);color:#07090c}
+.btn.plain{background:var(--surface-2);color:var(--ink)}
+.btn.plain svg{width:18px;height:18px}
+
+/* por dentro: capturas reais que andam de lado com a rolagem */
+.inside{height:340vh;position:relative}
+.inside .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,4vh,44px);padding-top:70px}
+.inside .sec-h{width:100%}
+.inside .sec-h h2{font-size:clamp(36px,5vw,84px)}
+.track{display:flex;gap:28px;padding:0 var(--gutter);will-change:transform}
+.shot{flex:0 0 min(54vw,84vh);margin:0}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:18px;background:var(--surface)}
+.shot figcaption{margin-top:16px;max-width:46ch}
+.shot b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(20px,1.8vw,28px);letter-spacing:-.02em;line-height:1.1}
+.shot span{display:block;margin-top:6px;font-size:16px;color:var(--ink-2)}
+
+/* também tem */
+.feats{padding:18vh 0 16vh}
+.feats ul{list-style:none;max-width:1480px;margin:44px auto 0;padding:0 var(--gutter)}
+.feats li{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.7vw,62px);line-height:1.12;letter-spacing:-.035em;padding:.16em 0;color:var(--ink-2)}
+.feats li span{padding:0 .14em;margin:0 -.14em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  background:linear-gradient(var(--hub),var(--hub)) no-repeat 0 55%/0% 86%;transition:background-size .5s var(--ease),color .3s}
+.feats li:hover span,.feats li.hot span{background-size:100% 86%;color:var(--on-hub)}
+
+.ticker{position:static;overflow:hidden;pointer-events:none;padding:22px 0;opacity:.8}
+
+/* fecho: campo de cor da marca */
+.fim{position:relative;background:var(--hub);color:var(--on-hub);padding:16vh var(--gutter) 0;overflow:hidden}
+.fim-in{max-width:1480px;margin:0 auto}
+.fim p.lead{margin-top:22px;font-size:clamp(20px,1.7vw,26px);font-weight:500;max-width:30ch}
+.fim .btn{margin-top:34px;background:var(--on-hub);color:var(--hub);animation:none}
+.fim .credits{position:static;margin-top:11vh;color:rgba(11,15,4,.72);font-size:14px}
+.fim .credits b{color:var(--on-hub)}
+.fim .ticker{margin:0 calc(-1*var(--gutter))}
+.fim .ticker div{color:var(--on-hub)}
+.fim .ticker span::before{color:var(--on-hub)}
+.word{display:block;margin:5vh calc(-1*var(--gutter)) -.17em;font-family:var(--display);font-weight:800;font-size:15.2vw;line-height:.8;letter-spacing:-.06em;white-space:nowrap;text-align:center}
+.word i{display:inline-block;font-style:normal;transition:transform .9s var(--ease);transition-delay:calc(var(--n)*35ms)}
+.js .word:not(.seen) i{transform:translateY(105%)}
+
+@media (max-width:1100px){
+  .chap-in>*{max-width:640px}
+}
+@media (max-width:900px){
+  .inside{height:auto;padding:14vh 0 0}
+  .inside .pin{position:static;height:auto;overflow:visible;padding-top:0}
+  .track{overflow-x:auto;scroll-snap-type:x mandatory;transform:none!important;scrollbar-width:none;padding-bottom:8px}
+  .shot{flex-basis:84vw;scroll-snap-align:center}
+}
+@media (max-width:700px){
+  #s-home{padding:0}
+  .hero{padding:96px 16px 120px;justify-content:flex-start}
+  .hero .credits{position:static;margin-top:28px}
+  .manif{height:200vh}
+  .chap{min-height:0;padding:11vh 16px}
+  .mats{padding-top:6vh}
+  .chap .desc{font-size:18px}
+  .feats{padding:12vh 0}
+  .fim{padding-top:11vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .rv,.js .wd,.js .word:not(.seen) i{opacity:1;transform:none}
+  .mk{background-size:100% 84%;color:var(--on-hub)}
+}
 
 /* periods */
 .wrap{max-width:1480px;width:100%;margin:0 auto}
@@ -207,7 +319,11 @@ main{position:relative;z-index:10;height:100%}
   main{height:auto;min-height:100%}
   .stage{position:absolute;min-height:100%;justify-content:flex-start;padding-top:96px;padding-bottom:48px}
   .stage.on{position:relative;overflow:visible;overscroll-behavior:auto}
-  .bar{padding:14px 16px;background:linear-gradient(var(--ground),rgba(4,7,11,0))}
+  .bar{padding:14px 16px;background:linear-gradient(var(--ground) 45%,rgba(6,8,12,0))}
+  body:has(#s-home.on) .credit{display:none}
+}
+.modo-leve .chap{background:radial-gradient(70% 55% at 85% 72%,color-mix(in srgb,var(--tint) 24%,transparent),transparent 72%)}
+@media (max-width:700px){
   .crumbs{display:none}
   .home{margin-top:18vh}
   .periods{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:32px}
@@ -217,7 +333,6 @@ main{position:relative;z-index:10;height:100%}
   .card .ico{width:52px;height:52px;border-radius:16px}
   .card:hover,.card.hot{transform:none}
   .veil{background:linear-gradient(rgba(4,7,11,.25),rgba(4,7,11,.75) 60%)}
-  .ticker{position:fixed}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0ms!important}
@@ -255,11 +370,15 @@ main{position:relative;z-index:10;height:100%}
 </header>
 
 <main>
-  <!-- HOME -->
-  <section class="stage" id="s-home" aria-labelledby="t-home">
-    <div class="home">
-      <h1 id="t-home"><span class="w"><span style="--i:0">Medicina</span></span> <span class="w"><span style="--i:1">em</span></span> <span class="w"><span style="--i:2">masterclass</span></span></h1>
-      <p class="lede in" id="lede" style="--i:6">O que vamos estudar hoje?</p>
+  <!-- HOME: página de rolagem -->
+  <section class="stage" id="s-home" aria-labelledby="t-home" tabindex="-1">
+   <div id="hs">
+    <div class="progress" id="prog" aria-hidden="true"></div>
+
+    <div class="hero">
+      <div class="home">
+        <h1 id="t-home"><span class="w"><span style="--i:0">Medicina</span></span> <span class="w"><span style="--i:1">em</span></span> <span class="w"><span style="--i:2">masterclass</span></span></h1>
+        <p class="lede in" id="lede" style="--i:6">O que vamos estudar hoje?</p>
       <script>
       /* uma frase sorteada a cada abertura, sem repetir a da última vez */
       (function(){
@@ -270,14 +389,65 @@ main{position:relative;z-index:10;height:100%}
         try{localStorage.setItem('mc-frase',i)}catch(_){}
       })();
       </script>
-      <div class="cta-row in" style="--i:8">
-        <button class="btn primary" data-nav="periodos">Escolher período <span class="arr">→</span></button>
-        <a class="btn ghost glass resume" id="resume" hidden href="#">Continuar</a>
+        <p class="what in" style="--i:7">As aulas de Medicina viraram masterclasses interativas: segmentos curtos, questões de prova comentadas e simulados. De aluno pra aluno.</p>
+        <div class="cta-row in" style="--i:8">
+          <button class="btn primary" data-nav="periodos">Escolher período <span class="arr">→</span></button>
+          <a class="btn ghost glass resume" id="resume" hidden href="#">Continuar</a>
+        </div>
       </div>
+      <p class="credits in" style="--i:10">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></p>
+      <button class="cue in" style="--i:11" data-scroll="manif"><i></i>Role a página</button>
     </div>
-    <p class="credits in" style="--i:10">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></p>
-    <p class="hint in" style="--i:10">Mexa o mouse no DNA. Clique para soltar as peças.</p>
-    <div class="ticker"><div id="tick"></div></div>
+
+    <section class="manif" id="manif" aria-label="O que é">
+      <div class="pin"><p class="say" id="say"><span>Ninguém precisa de mais um PDF de 90 slides. Aqui cada aula vira uma masterclass: <mark class="mk">o&nbsp;que cai na&nbsp;prova</mark>, <mark class="mk">o&nbsp;porquê de cada&nbsp;resposta</mark> e <mark class="mk">questões pra&nbsp;testar</mark> se ficou.</span></p></div>
+    </section>
+
+    <section class="mats" id="mats" aria-labelledby="t-mats">
+      <div class="sec-h">
+        <h2 id="t-mats" class="rv"><span id="n-mat">6</span> matérias, <span id="n-aul">51</span> aulas</h2>
+        <p class="rv" style="--d:1">Tudo do 4º período, no ar agora. Role para conhecer cada uma: o modelo 3D muda junto. Mexa o mouse nele e clique para agitar.</p>
+      </div>
+      <div id="chaps"></div>
+    </section>
+
+    <section class="inside" id="inside" aria-labelledby="t-in">
+      <div class="pin">
+        <div class="sec-h"><h2 id="t-in" class="rv">Por dentro de uma masterclass</h2></div>
+        <div class="track" id="track">
+          <figure class="shot"><img src="_tema/hub/questao.webp" width="1200" height="750" loading="lazy" alt="Questão de prova de Farmacologia respondida, com a justificativa oficial de cada alternativa"><figcaption><b>Questão de prova, com o porquê</b><span>As questões das somativas anteriores, com gabarito oficial e a explicação de cada alternativa, certa ou errada.</span></figcaption></figure>
+          <figure class="shot"><img src="_tema/hub/farmaco.webp" width="1200" height="750" loading="lazy" alt="Segmento de Farmacologia sobre vasodilatadores, com a legenda dos grifos de frequência nas provas"><figcaption><b>Grifado pelo que mais cai</b><span>O texto já vem marcado pela frequência com que cada tema apareceu nas provas. Passe o mouse e veja as questões.</span></figcaption></figure>
+          <figure class="shot"><img src="_tema/hub/micro.webp" width="1200" height="750" loading="lazy" alt="Página de simulados de Microbiologia, com três simulados de 30 questões"><figcaption><b>Simulado no formato da prova</b><span>30 questões, cronômetro, nota e correção comentada. Saiu no meio? Ele continua de onde parou.</span></figcaption></figure>
+          <figure class="shot"><img src="_tema/hub/pato.webp" width="1200" height="750" loading="lazy" alt="Página inicial de Patologia, com as aulas separadas em bloco da parcial e somativa"><figcaption><b>Separado por prova</b><span>As aulas já vêm divididas em bloco da parcial e da somativa, com lâminas e peças pra ampliar.</span></figcaption></figure>
+          <figure class="shot"><img src="_tema/hub/prev.webp" width="1200" height="750" loading="lazy" alt="Página inicial de Medicina Preventiva, com contagem de aulas, questões e a legenda dos grifos"><figcaption><b>Seu progresso fica guardado</b><span>Segmentos estudados, questões acertadas e o ponto onde você parou ficam salvos no seu navegador.</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="feats" id="feats" aria-labelledby="t-ft">
+      <div class="sec-h"><h2 id="t-ft" class="rv">E ainda tem</h2></div>
+      <ul>
+        <li class="rv" style="--d:0"><span>Página “O que mais é cobrado”</span></li>
+        <li class="rv" style="--d:1"><span>Grifos e anotações que ficam salvos</span></li>
+        <li class="rv" style="--d:2"><span>Busca em todas as aulas</span></li>
+        <li class="rv" style="--d:3"><span>Modo claro e escuro, na cordinha da lâmpada</span></li>
+        <li class="rv" style="--d:4"><span>Jogo 3D do corredor da OSCE</span></li>
+        <li class="rv" style="--d:5"><span>Celular, tablet e PC</span></li>
+        <li class="rv" style="--d:6"><span>Um meme secreto pra quem gabarita</span></li>
+      </ul>
+    </section>
+
+    <section class="fim" id="fim" aria-labelledby="t-fim">
+      <div class="fim-in">
+        <h2 id="t-fim" class="rv">Bora estudar?</h2>
+        <p class="lead rv" style="--d:1">Escolha o período e abra a primeira masterclass.</p>
+        <button class="btn primary rv" style="--d:2" data-nav="periodos">Escolher período <span class="arr">→</span></button>
+        <p class="credits">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></p>
+      </div>
+      <div class="ticker"><div id="tick"></div></div>
+      <span class="word" id="word" aria-hidden="true">Masterclasses</span>
+    </section>
+   </div>
   </section>
 
   <!-- PERIODOS -->
@@ -377,6 +547,26 @@ per.innerHTML = Array.from({length:8},(_,i)=>{
     <span class="st">${live?'<i class="dot"></i>'+Object.keys(SUBJECTS).length+' matérias':'Em breve'}</span></button>`;
 }).join('');
 
+/* capítulos da home: um por matéria */
+document.documentElement.classList.add('js');
+document.getElementById('chaps').innerHTML = Object.entries(SUBJECTS).map(([k,s])=>`
+  <article class="chap" data-k="${k}" style="--tint:var(--${k})" aria-label="${s.name}">
+    <div class="chap-in">
+      <h3 class="rv">${s.name}</h3>
+      <p class="facts rv" style="--d:1">${s.readout[1]}</p>
+      <p class="desc rv" style="--d:2">${s.desc}</p>
+      <p class="topics rv" style="--d:3">${s.tags.join(' · ')}</p>
+      <div class="cta-row rv" style="--d:4">
+        <button class="btn tinted" data-open="${k}">Abrir masterclass <span class="arr">→</span></button>
+        ${s.game?`<a class="btn plain" href="${encodeURI(s.game)}" data-game="1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Jogar o Corredor da OSCE</a>`:''}
+      </div>
+    </div>
+  </article>`).join('');
+const N_MAT = Object.keys(SUBJECTS).length;
+const N_AUL = Object.values(SUBJECTS).reduce((n,s)=>n+(+(/(\d+) aulas/.exec(s.readout[1])||[0,0])[1]),0);
+document.getElementById('n-mat').textContent = N_MAT;
+document.getElementById('n-aul').textContent = N_AUL;
+
 const cards = document.getElementById('cards');
 cards.innerHTML = Object.entries(SUBJECTS).map(([k,s],i)=>`
   <div class="card glass in" style="--i:${i+2}" data-k="${k}" role="link" tabindex="0" aria-label="Abrir masterclass de ${s.name}">
@@ -407,6 +597,8 @@ function show(name,push=true){
   document.querySelectorAll('.crumbs [data-c="p"]').forEach(e=>e.style.display=name==='p4'?'':'none');
   document.body.dataset.accent='hub';
   HUB.setScene(name==='home'?'helix':name==='periodos'?'ring':'helix');
+  document.body.classList.remove('quiet');
+  if(name==='home') setTimeout(()=>{ homeScroll(); if(matchMedia('(min-width:701px)').matches) document.getElementById('s-home').focus({preventScroll:true}); }, 320);
   if(name==='p4'){roT.textContent='Escolha uma matéria';roS.textContent='Fármacos, bactérias ou coração';}
 }
 addEventListener('popstate',()=>show(location.hash.slice(1)||'home',false));
@@ -414,6 +606,8 @@ document.addEventListener('click',e=>{
   const n=e.target.closest('[data-nav]'); if(n){show(n.dataset.nav);return}
   const p=e.target.closest('.period');
   if(p){ if(p.classList.contains('live')) show('p4'); else {p.classList.remove('shake');void p.offsetWidth;p.classList.add('shake')} return}
+  const sc=e.target.closest('[data-scroll]'); if(sc){document.getElementById(sc.dataset.scroll).scrollIntoView({behavior:'smooth'});return}
+  const o=e.target.closest('[data-open]'); if(o){openSubject(o.dataset.open);return}
   const g=e.target.closest('[data-game]'); if(g){e.preventDefault();open(SUBJECTS.th4,'Corredor da OSCE',g.getAttribute('href'));return}
   const c=e.target.closest('.card'); if(c) openSubject(c.dataset.k);
 });
@@ -469,6 +663,57 @@ window.LENTO = (()=>{try{return localStorage.getItem('vidro-lento')==='true'}cat
 if(window.LENTO) document.documentElement.classList.add('modo-leve');
 if(!window.FRACO && !window.LENTO && navigator.userAgentData&&navigator.userAgentData.brands.some(b=>/Chrom/.test(b.brand))) document.documentElement.classList.add('refract');
 
+/* ---------- home: tudo que reage à rolagem ---------- */
+const hs=document.getElementById('hs'), homeEl=document.getElementById('s-home'), prog=document.getElementById('prog');
+const manif=document.getElementById('manif'), inside=document.getElementById('inside'), track=document.getElementById('track'), feats=document.getElementById('feats'), fim=document.getElementById('fim');
+const chaps=[...document.querySelectorAll('.chap')];
+// manifesto: cada palavra acende, e os trechos importantes levam o marca-texto
+(function(){
+  const box=document.querySelector('#say>span'); let h='';
+  box.childNodes.forEach(n=>{
+    if(n.nodeType===3) h+=n.textContent.split(/(\s+)/).map(w=>w.trim()?`<span class="wd">${w}</span>`:w).join('');
+    else { n.classList.add('wd'); h+=n.outerHTML; }
+  });
+  box.innerHTML=h;
+})();
+const words=[...document.querySelectorAll('#say .wd')];
+// letras do fecho
+(function(){const w=document.getElementById('word');w.innerHTML=[...w.textContent].map((c,i)=>`<i style="--n:${i}">${c}</i>`).join('')})();
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+let hTick=false, lastY=0, sceneNow='';
+function setHomeScene(k){ if(k===sceneNow) return; sceneNow=k; document.body.dataset.accent=k==='helix'?'hub':k; HUB.setScene(k); chaps.forEach(c=>c.classList.toggle('cur',c.dataset.k===k)); }
+function homeScroll(){ if(!hTick){hTick=true;requestAnimationFrame(homeUpdate)} }
+function homeUpdate(){
+  hTick=false; if(current!=='home') return;
+  const vh=innerHeight, r=hs.getBoundingClientRect(), y=-r.top, total=Math.max(1,r.height-vh);
+  prog.style.transform=`scaleX(${clamp(y/total)})`;
+  HUB.rot=y*.0024; HUB.sv=(HUB.sv||0)+(y-lastY); lastY=y;
+  // manifesto
+  const m=manif.getBoundingClientRect(), mp=clamp((vh*.35-m.top)/(m.height-vh*.55));
+  const lit=mp*words.length*1.08; words.forEach((w,i)=>w.classList.toggle('on',i<lit));
+  // capítulo no centro da tela decide o modelo 3D e a cor
+  let k='helix'; for(const c of chaps){const cr=c.getBoundingClientRect(); if(cr.top<vh*.55&&cr.bottom>vh*.45){k=c.dataset.k;break}}
+  setHomeScene(k);
+  // capturas andam de lado
+  const ir=inside.getBoundingClientRect();
+  if(innerWidth>900){const ip=clamp(-ir.top/(ir.height-vh)); const max=Math.max(0,track.scrollWidth-innerWidth); track.style.transform=`translate3d(${-ip*max}px,0,0)`}
+  document.body.classList.toggle('quiet', ir.top<vh*.7 && feats.getBoundingClientRect().bottom>vh*.2);
+}
+homeEl.addEventListener('scroll',homeScroll,{passive:true});
+addEventListener('scroll',homeScroll,{passive:true});
+addEventListener('resize',homeScroll);
+// entradas: cada parte aparece quando chega na tela
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target)} }),{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv,#word').forEach(e=>io.observe(e));
+} else document.querySelectorAll('.rv,#word').forEach(e=>e.classList.add('seen'));
+// no toque não existe hover: a linha do meio da tela leva o grifo
+if(matchMedia('(hover:none)').matches){
+  const lis=[...document.querySelectorAll('.feats li')];
+  const mid=()=>{const c=innerHeight*.5;lis.forEach(l=>{const b=l.getBoundingClientRect();l.classList.toggle('hot',b.top<c&&b.bottom>c-8)})};
+  addEventListener('scroll',mid,{passive:true}); homeEl.addEventListener('scroll',mid,{passive:true});
+}
+
 show(location.hash.slice(1)||'home',false);
 </script>
 
@@ -485,6 +730,7 @@ show(location.hash.slice(1)||'home',false);
 if (window.LENTO) { document.getElementById('gl').style.display = 'none'; throw new Error('hub em modo leve: 3D desligado'); }
 import * as THREE from 'three';
 const {makeHelix,makeRing,makePills,makeBugs,makeTissue,makeVaccine,makeHandshake,makeDialogo,makeHeart,COL} = window.VidroModelos(THREE);
+COL.hub = 0xd8ff3d; // a cor da marca (verde marca-texto) no DNA e no anel
 const {createStage} = window.VidroPalco(THREE, COL);
 
 const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30, start:false} : {dust:1000, dpr:1.5, start:false});
@@ -531,6 +777,10 @@ W.frame.push((t, dt) => {
     const off = SCENES[k].userData.offset; if (off && wide) h.position.copy(off); else h.position.set(0,0,0);
     SCENES[k].userData.tick(t, dt, I);
   }
+  // rolagem: o DNA gira como um parafuso e estica com a velocidade
+  const hx = holders.helix, sv = window.HUB.sv || 0; window.HUB.sv = sv * .86;
+  hx.rotation.y += ((window.HUB.rot || 0) - hx.rotation.y) * .09;
+  if (hx.visible) hx.scale.y *= 1 + Math.min(Math.abs(sv) / 1400, .3);
   W.world.rotation.y += ((I.mx * .25) - W.world.rotation.y) * .05;
   W.world.rotation.x += ((I.my * .15) - W.world.rotation.x) * .05;
   if (warp > 0){ const c = W.camera; c.position.z += (3 - c.position.z) * .06; c.fov += (70 - c.fov) * .06; c.updateProjectionMatrix(); if (W.bloom) W.bloom.strength = .55 + warp * 1.4; }
