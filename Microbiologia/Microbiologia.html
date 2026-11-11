@@ -159,6 +159,11 @@ mark{background:none;color:inherit;border-radius:4px;padding:1px 3px;box-decorat
 mark[data-refs]{cursor:help;transition:filter .15s}
 mark.f1{background:#cfe9d4}mark.f2{background:#fbe9a6}mark.f3{background:#fbc98d}mark.f4{background:#f4a39a}mark.f5{background:#1f1a17;color:#fff}
 mark.hl{background:#f6b6d0;cursor:pointer}
+mark.pf{background:transparent;text-decoration:underline wavy #2f6fd6;text-decoration-thickness:2px;text-underline-offset:4px;cursor:help;color:inherit;padding:0}
+.pfbox{background:#e6eefb;border-left:4px solid #2f6fd6;color:#172a4a;border-radius:10px;padding:12px 16px;margin:0 0 16px;font:400 16px/1.5 var(--ui)}.pfbox>b:first-child{display:block;color:#1d4f9e;margin-bottom:4px}
+[data-theme=dark] .pfbox,[data-theme=dark] .pfhead{background:rgba(70,130,230,.16);color:#dfe8fb;border-left-color:#7fb0ff}[data-theme=dark] .pfbox>b:first-child{color:#9cc2ff}[data-theme=dark] mark.pf{text-decoration-color:#7fb0ff}[data-theme=dark] .pfconf{color:#e8c48a}.pfbox p{margin:0 0 8px}
+.pfhead{background:#e6eefb;border-left:4px solid #2f6fd6;color:#172a4a;border-radius:10px;padding:14px 18px;margin-bottom:10px;font:400 16px/1.5 var(--ui)}.pfhead p{margin:6px 0 0}
+.pfex{background:var(--card-soft);border-radius:10px;padding:10px 14px;margin:8px 0;font:400 16px/1.5 var(--ui)}.pfex summary{cursor:pointer;font-weight:700}.pfex p{margin:8px 0}.pfconf{color:#8a5a14;font-size:14.5px}
 mark.sr{background:#ffe08a;transition:background 1.6s}
 .refchip{display:inline-block;background:#1f1a17;color:#fff;border-radius:6px;padding:0 6px;font:600 12.5px var(--ui);cursor:pointer}
 #tip{position:fixed;z-index:60;max-width:300px;background:#1f1a17;color:#f6efe6;border-radius:10px;padding:10px 12px;font:500 13px/1.4 var(--ui);pointer-events:none;opacity:0;transform:translateY(4px) scale(.98);transition:opacity .14s,transform .14s var(--ease-out)}
@@ -808,6 +813,7 @@ textarea.inp{border-radius:16px}
 @media (max-width:700px){.medt,.tab2{min-width:0!important}.medt thead,.tab2 thead{display:none}.medt tr,.tab2 tr{display:block;padding:12px 0;border-bottom:1px solid var(--line,rgba(127,127,127,.3))}.medt td,.tab2 td{display:block;border:0!important;padding:3px 0!important}.medt td:first-child,.tab2 td:nth-child(2){font-size:16px}.medt td:nth-child(2)::before{content:"Como age: ";font-weight:700}.medt td:nth-child(3)::before{content:"Quando usar: ";font-weight:700}.medt td:nth-child(4)::before{content:"Pegadinha: ";font-weight:700;color:#e5484d}.tab2 td:nth-child(1){font-size:12px;text-transform:uppercase;letter-spacing:.04em;opacity:.7}.tab2 td:nth-child(3)::before{content:"Exemplos: ";font-weight:700}.tab2 td:nth-child(4)::before{content:"Uso na prova: ";font-weight:700}.tab2 td:nth-child(5)::before{content:"Resistência: ";font-weight:700;color:#e5484d}}
 .mon .mh2{font:600 26px/1.2 var(--serif);margin:34px 0 8px;display:flex;gap:10px;align-items:center}.mon .mh3{font-size:18px;margin:24px 0 10px}.mon .mp{margin:8px 0}.mon .mli{margin:8px 0 12px;padding-left:22px}.mon .mli li{margin:4px 0}.msec{scroll-margin-top:80px}.mag{border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:10px 0}.magh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.magh h4{margin:0;font-size:16.5px}.mag ul{margin:8px 0 0;padding-left:20px}.mag li{margin:3px 0}.mfix{margin:12px 0;padding:12px 14px;border-radius:12px}.mfix p{margin:6px 0 0}.mchips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.mfix p b,.mfix p i{display:inline;margin:0;font:inherit;font-weight:700;text-transform:none;letter-spacing:normal}.mfix p i{font-weight:inherit;font-style:italic}.mchips span{padding:6px 12px;border-radius:99px;border:1px solid var(--accent);font-size:14px}
 </style>
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="micro";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
@@ -850,6 +856,8 @@ textarea.inp{border-radius:16px}
 <div id="vidro-load" style="--vl:#9a5bff" role="status" aria-label="Carregando Microbiologia"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><rect x="4" y="9" width="11" height="6" rx="3"/><path d="M15 12c2 0 2-2 4-2M15 12c2 0 2 2 4 2"/><circle cx="18" cy="5" r="1.6"/><circle cx="6" cy="19" r="1.6"/></svg></div><div class="vl-t">Microbiologia</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
+
 
 <div id="app">
   <aside id="side" aria-label="Navegação"><div class="wm"><span class="wl">Feito por: Vinicius Cabral e Matheus Tavares</span><span class="ws">VC<br>e MT</span></div>
@@ -1061,7 +1069,106 @@ const RECADOS=[
  {m:'a6',s:'s4',t:'<strong>Stenotrophomonas e Burkholderia</strong>: infecção respiratória hospitalar; <strong>Burkholderia → fibrose cística</strong>.'},
  {m:'a7',s:'s7',t:'<strong>Ver meningite.</strong> <strong><i>Neisseria</i> → meningite e gonorreia.</strong>'}
 ];
-function recados(m,s){return RECADOS.filter(r=>r.m===m.id&&r.s===s.id).map(r=>r.warn?`<div class="warn"><b>⚠️ Correção da anotação</b><p>${r.t}</p></div>`:`<div class="prof"><b>🗣️ A professora em aula · anotação de prova</b><p>${r.t}</p></div>`).join('')}
+/* ===================== recado da prova final (Turma 83, Prof.ª Lucélia) =====================
+   PF_SEC: a mensagem organizada por tópico (aba Revisão final → Recado da prova final).
+   PF: o que vira caixa no segmento (t) e grifo azul ondulado (k = termos grifados nesse segmento). */
+const PF_SEC=[
+ {h:'Como a prova vai ser',it:[
+  ['Conteúdos essenciais com foco na <b>aplicação clínica</b>.',[]],
+  ['Comece a revisão pelas <b>aulas mais recentes</b> e volte até <b>antibióticos</b>: esse bloco, com a aula de antibióticos, é a <b>maior parte da prova</b>.',['a2/s3','a7/s1']],
+  ['Revise os temas das atividades dos <b>sábados letivos</b>.',[]],
+  ['Os antibióticos aparecem <b>pelo nome e/ou pela classe</b>: revise os principais discutidos em sala.',['a2/s7']],
+  ['Em todas as infecções: <b>comunitária × hospitalar</b>, quadros que pedem <b>intervenção rápida</b>, e ligar quadro → agente provável → tratamento, olhando a <b>resistência</b>.',['a2/s1']]]},
+ {h:'Bacteriologia: os grupos',it:[
+  ['<b>Cocos Gram +</b> (estafilo, estrepto e enterococos), <b>Enterobactérias</b> (ordem da <i>E. coli</i>) e <b>BGNNF</b>: diferenciar os grupos, espécies principais, quadros, sensibilidade e resistência e a melhor opção terapêutica.',['a3/s1','a4/s1','a5/s1','a6/s1']]]},
+ {h:'ITU',it:[
+  ['Principalmente <b>Enterobactérias</b>, sobretudo <i>E. coli</i>; revise os <b>Gram + relacionados</b> (<i>S. saprophyticus</i>, enterococo).',['a5/s3','a3/s6','a4/s6']],
+  ['<b>Cistite × pielonefrite × bacteriúria assintomática</b>: diagnóstico, quadro e antibiótico de cada uma.',['a5/s3','a2/s6']],
+  ['Reconhecer perfis de resistência: <b>ESBL, KPC</b>…',['a5/s4']]]},
+ {h:'Gastroenterites',it:[
+  ['<b>ETEC</b>: principal causa da diarreia do viajante (toxinas secretoras). <b>EHEC</b>: toxina Shiga, diarreia hemorrágica e <b>SHU</b>.',['a5/s2']],
+  ['<b><i>Salmonella enterica</i></b>: de gastroenterite autolimitada à <b>febre tifoide</b> (Typhi e Paratyphi): transmissão, quadro e tratamento. <b><i>Shigella</i></b>: disenteria (febre, cólica, muco e sangue), fecal-oral.',['a5/s5']],
+  ['<b><i>Yersinia</i></b>.',['a5/s6']]]},
+ {h:'Pneumonias',it:[
+  ['<b><i>S. pneumoniae</i></b> é o principal agente da pneumonia comunitária (lembre os outros das aulas e atividades).',['a4/s5']],
+  ['Nosocomial e associada à ventilação: <b><i>Klebsiella pneumoniae</i>, <i>Pseudomonas aeruginosa</i>, <i>Acinetobacter baumannii</i></b> e <b><i>S. aureus</i></b>.',['a5/s3','a6/s3','a6/s4','a3/s3']]]},
+ {h:'Meningites',it:[
+  ['Agentes por faixa etária; no <b>recém-nascido</b>: <i>E. coli</i>, <i>Listeria</i> e <i>S. agalactiae</i>. Listar os <b>7 mais comuns</b> vistos em sala e a morfologia de cada um.',['a7/s7','a4/s4']],
+  ['Tratamento: <b>cefalosporina de 3ª geração + vancomicina</b>, e <b>ampicilina para <i>Listeria</i></b>.',['a7/s7']],
+  ['Agentes não bacterianos: <b>FUNGOS</b>. Cite 3.',['a7/s7']]]},
+ {h:'Intra-abdominal e pele e partes moles',it:[
+  ['Intra-abdominal: <b>Enterobactérias e anaeróbios</b>, muitas vezes <b>polimicrobiana</b>.',['a5/s3']],
+  ['Pele e partes moles (conteúdo da parcial): <b><i>S. aureus</i> (inclusive MRSA)</b> e <b><i>S. pyogenes</i></b>; <i>Pseudomonas</i> em feridas crônicas, queimaduras e imunocomprometidos, além de enterobactérias e anaeróbios. Diferenciar superficial de complicação profunda.',['a3/s3','a4/s2','a6/s3']]]},
+ {h:'Resistência: pontos críticos',it:[
+  ['<b>AmpC</b>: hidrolisa penicilinas e cefalosporinas de 3ª geração e pode ser <b>induzida durante o tratamento</b>. <b>Cefepime</b> é opção se sensível; em infecção invasiva por <i>Enterobacter cloacae</i> complex, <b>evita-se ceftriaxona</b> mesmo com antibiograma sensível.',['a5/s4','a2/s5']],
+  ['<b>ESBL</b>: resistência a penicilinas e cefalosporinas; primeira escolha muitas vezes <b>carbapenêmico</b>.',['a5/s4','a2/s5']],
+  ['<b>KPC</b>: resiste inclusive aos carbapenêmicos, alta letalidade hospitalar; principal escolha <b>ceftazidima-avibactam</b>.',['a5/s4','a2/s4']],
+  ['<b>NDM</b> (metalo): hidrolisa penicilinas, cefalosporinas e carbapenêmicos, <b>não o aztreonam</b> (mas outras betalactamases da mesma bactéria podem). Opção: <b>ceftazidima-avibactam + aztreonam</b> (o avibactam protege o aztreonam) ou <b>cefiderocol</b>, conforme a sensibilidade.',['a5/s4','a2/s5']],
+  ['Importância dos <b>testes de sensibilidade</b>.',['a2/s3']]]},
+ {h:'BGNNF, MRSA e VRE',it:[
+  ['<b><i>Pseudomonas aeruginosa</i></b>: BGNNF com grande resistência intrínseca. Mantêm ação: <b>ciprofloxacino, cefepime, ceftazidima, piperacilina-tazobactam, meropenem, polimixinas</b>. Sem decorar: saiba o porquê e a indicação de cada um.',['a6/s3']],
+  ['<b><i>Acinetobacter baumannii</i></b>: oportunista, frequentemente multirresistente; muitas vezes sensível só a <b>polimixinas, algumas tetraciclinas e antibióticos novos</b>. Lembre os <b>BGNNF menos conhecidos</b> (estão nos slides) e os casos dos monitores.',['a6/s4']],
+  ['<b>MRSA</b>: pele, pulmão e corrente sanguínea; gene <b><i>mecA</i></b> → resistência a todos os betalactâmicos; <b>vancomicina</b> é a principal opção.',['a3/s5','a2/s4']],
+  ['<b>VRE</b>: ITU, intra-abdominal e corrente sanguínea; <b>linezolida ou daptomicina</b>.',['a4/s6']]]},
+ {h:'Micologia',it:[
+  ['Classifique os fungos: <b>leveduras</b> (<i>Candida</i>), <b>filamentosos</b> (<i>Aspergillus</i>) e <b>dimórficos</b> (<i>Histoplasma</i>: levedura no corpo, filamento no ambiente).',['a7/s3']],
+  ['Micoses <b>superficiais, cutâneas, subcutâneas, sistêmicas e oportunistas</b>; diferenciar <b>sistêmicas endêmicas × oportunistas</b>.',['a7/s4']],
+  ['Os <b>5 oportunistas</b> enfatizados em aula, cada um com seu <b>fator predisponente</b> principal.',['a7/s4','a7/s5']],
+  ['Cada doença → agente: <b>morfologia, transmissão, epidemiologia, quadro típico, diagnóstico laboratorial e tratamento</b>.',['a7/s4']],
+  ['<b>Antifúngicos</b>: mecanismo, espectro e indicação. Graves: <b>anfotericina B</b> (hospitalar), <b>equinocandinas</b> (caspofungina, candidíase invasiva). Leves: <b>fluconazol, terbinafina</b> (cutâneas). Azóis (fluconazol, itraconazol): leves a moderadas.',['a7/s6']]]},
+ {h:'Viroses',it:[
+  ['<b>Viroses emergentes e reemergentes</b>: contexto geral e atual (primeira aula).',[]]]}
+];
+/* exercícios que a professora deixou "sem entregar": resposta tirada do próprio master */
+const PF_EX=[
+ {q:'Os 5 fungos oportunistas enfatizados na aula',a:'Pela tabela de micoses da Aula 7: <b><i>Candida</i>, <i>Cryptococcus</i>, <i>Aspergillus</i>, <i>Fusarium</i> e zigomicetos/Mucorales (<i>Rhizopus</i>)</b>. Fatores que o master traz: <i>Candida</i> → antibiótico de amplo espectro e cateter (biofilme), neutropenia; <i>Cryptococcus</i> → HIV/AIDS com CD4 baixo; <i>Aspergillus</i> → neutropenia, transplante e paciente crítico em ventilação (CAPA); Mucorales → diabetes descompensado.',go:'a7/s4',conf:'Confira com o slide: a professora não disse quais são; esta é a lista de oportunistas sistêmicos da tabela da aula.'},
+ {q:'Os 7 agentes mais comuns de meningite e a morfologia',a:'<b>Meningococo</b> (diplococo Gram −), <b>pneumococo</b> (diplococo Gram +), <b><i>Haemophilus influenzae</i></b> (cocobacilo Gram −), <b><i>Listeria monocytogenes</i></b> (bacilo Gram +), <b><i>S. agalactiae</i></b> (cocos Gram + em cadeia), <b><i>E. coli</i></b> (bacilo Gram −) e <b>estafilococos</b> (cocos Gram + em cacho, derivação e neurocirurgia).',go:'a7/s7',conf:'Montei a partir da lista de agentes e da tabela de Gram da aula; confira se o 7º da sala era estafilococo.'},
+ {q:'3 fungos que causam meningite',a:'<b><i>Cryptococcus neoformans</i></b> (HIV, tinta nanquim), <b><i>Candida</i></b> e <b><i>Histoplasma capsulatum</i></b> (também <i>Coccidioides</i> e <i>Blastomyces</i>).',go:'a7/s7'},
+ {q:'Os BGNNF menos conhecidos',a:'<b><i>Burkholderia</i></b> (fibrose cística), <b><i>Stenotrophomonas maltophilia</i></b> e <b><i>Moraxella</i></b>, além de <i>Pseudomonas</i> e <i>Acinetobacter</i>.',go:'a6/s4'}
+];
+const PF={
+ 'a2/s1':{t:'Diferencie <b>infecção comunitária × hospitalar</b> em todos os tipos de infecção.',k:['comunitária','hospitalar']},
+ 'a2/s3':{t:'A aula de antibióticos e as aulas seguintes são a <b>maior parte da prova</b>. Reflita sobre a importância dos <b>testes de sensibilidade</b>.',k:['antibiograma','sensibilidade']},
+ 'a2/s4':{t:'<b>KPC</b> → ceftazidima-avibactam. <b>MRSA</b> (<i>mecA</i>) → vancomicina.',k:['ceftazidima-avibactam','mecA','KPC']},
+ 'a2/s5':{t:'<b>AmpC</b> pode ser induzida no tratamento; <b>ESBL</b> → carbapenêmico; <b>NDM</b> não hidrolisa o aztreonam: ceftazidima-avibactam + aztreonam ou cefiderocol.',k:['AmpC','NDM','ESBL']},
+ 'a2/s6':{t:'<b>Cistite × pielonefrite × bacteriúria assintomática</b>: o antibiótico muda com o quadro.',k:['cistite','pielonefrite']},
+ 'a2/s7':{t:'Na prova final os antibióticos vêm <b>pelo nome e/ou pela classe</b>.',k:[]},
+ 'a3/s3':{t:'Pele e partes moles: <b><i>S. aureus</i> (inclusive MRSA)</b>; diferenciar superficial de complicação profunda. <i>S. aureus</i> também na pneumonia nosocomial.',k:['pele','pneumonia']},
+ 'a3/s5':{t:'<b>MRSA</b>: <i>mecA</i> → resistência a todos os betalactâmicos; <b>vancomicina</b> é a principal opção.',k:['mecA','vancomicina']},
+ 'a3/s6':{t:'ITU: revise os <b>Gram + relacionados</b> (<i>S. saprophyticus</i>).',k:['saprophyticus']},
+ 'a4/s2':{t:'Pele e partes moles: <b><i>S. pyogenes</i></b>.',k:[]},
+ 'a4/s4':{t:'Meningite do <b>recém-nascido</b>: <i>E. coli</i>, <i>Listeria</i> e <i>S. agalactiae</i>.',k:['meningite']},
+ 'a4/s5':{t:'<b><i>S. pneumoniae</i></b> é o principal agente da <b>pneumonia comunitária</b>.',k:['pneumonia']},
+ 'a4/s6':{t:'<b>VRE</b>: ITU, intra-abdominal e corrente sanguínea → <b>linezolida ou daptomicina</b>.',k:['VRE','linezolida']},
+ 'a5/s2':{t:'<b>ETEC</b> = diarreia do viajante; <b>EHEC</b> = toxina Shiga, diarreia hemorrágica e <b>SHU</b>.',k:['ETEC','EHEC','SHU','viajante']},
+ 'a5/s3':{t:'ITU: <b><i>E. coli</i></b>, cistite × pielonefrite. <b><i>Klebsiella</i></b> na pneumonia nosocomial. Intra-abdominal: enterobactérias + anaeróbios, <b>polimicrobiana</b>.',k:['cistite','pielonefrite','polimicrobiana']},
+ 'a5/s4':{t:'Resistência que vai cair: <b>AmpC</b> (evitar ceftriaxona em <i>Enterobacter</i> invasivo), <b>ESBL</b> (carbapenêmico), <b>KPC</b> (ceftazidima-avibactam), <b>NDM</b> (ceftazidima-avibactam + aztreonam ou cefiderocol).',k:['AmpC','ESBL','KPC','NDM']},
+ 'a5/s5':{t:'<b><i>Salmonella</i></b>: gastroenterite → febre tifoide (Typhi, Paratyphi): transmissão, quadro e tratamento. <b><i>Shigella</i></b>: disenteria fecal-oral.',k:['Typhi','disenteria']},
+ 'a5/s6':{t:'<b><i>Yersinia</i></b> está na lista da prova final.',k:['Yersinia']},
+ 'a6/s3':{t:'<b><i>Pseudomonas</i></b>: ciprofloxacino, cefepime, ceftazidima, piperacilina-tazobactam, meropenem e polimixinas. Saiba o porquê de cada um.',k:['ciprofloxacino','cefepime','piperacilina-tazobactam']},
+ 'a6/s4':{t:'<b><i>Acinetobacter</i></b>: muitas vezes só polimixinas, algumas tetraciclinas e antibióticos novos. Lembre os <b>BGNNF menos conhecidos</b>.',k:['Stenotrophomonas','Burkholderia']},
+ 'a7/s3':{t:'Classifique os fungos: <b>leveduras, filamentosos e dimórficos</b>, com exemplo de cada.',k:['dimórficos','leveduras','filamentosos']},
+ 'a7/s4':{t:'Micoses superficiais → oportunistas; <b>sistêmicas endêmicas × oportunistas</b>; os <b>5 oportunistas</b> e seus fatores predisponentes.',k:['oportunista','endêmica']},
+ 'a7/s5':{t:'Cada oportunista com seu <b>fator predisponente</b> mais significativo.',k:['predisponentes']},
+ 'a7/s6':{t:'Antifúngicos: <b>mecanismo, espectro e indicação</b>. Anfotericina B (grave, hospitalar), equinocandinas (candidíase invasiva), fluconazol e terbinafina (leves).',k:['anfotericina B','equinocandina','fluconazol','terbinafina']},
+ 'a7/s7':{t:'Meningite: os <b>7 agentes</b> e a morfologia, <b>cefalosporina de 3ª + vancomicina</b>, <b>ampicilina para <i>Listeria</i></b> e <b>3 fungos</b>.',k:['ampicilina','Listeria','Cryptococcus']}
+};
+function pfBox(m,s){const p=PF[m.id+'/'+s.id];return p?`<div class="pfbox"><b>📣 Recado da prova final · Turma 83</b><p>${p.t}</p><button class="btn sm ghost" data-go="rev/pf">Ver o recado inteiro</button></div>`:''}
+function paintPF(){
+  const p=$('#prose');if(!p||!cur)return;const it=PF[cur.m.id+'/'+cur.s.id];if(!it||!it.k.length)return;
+  it.k.forEach(term=>{
+    let n_=0;const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentNode.closest('.pfbox,.prof,.warn,h1,h2,h3,h4,mark.pf,mark.hl,button')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+    const hits=[];let n;while((n=w.nextNode())&&hits.length<2){const i=n.data.toLowerCase().indexOf(term.toLowerCase());if(i>=0)hits.push([n,i])}
+    hits.forEach(([n,i])=>{const mid=n.splitText(i);mid.splitText(term.length);const m=document.createElement('mark');m.className='pf';m.dataset.pf=it.t.replace(/<[^>]+>/g,'');mid.parentNode.insertBefore(m,mid);m.appendChild(mid)});
+  });
+}
+function pfTab(){
+  return `<div class="pfhead"><b>📣 Mensagem da Prof.ª Lucélia para a Turma 83 sobre a prova final</b><p>Organizada por tópico. Cada item leva ao segmento do master; nos segmentos, o que ela pediu aparece com <mark class="pf" data-pf="Itens que a professora pediu na mensagem da prova final">sublinhado azul ondulado</mark>.</p></div>`+
+  PF_SEC.map((sec,si)=>`<h3>${sec.h}</h3><div class="chk">${sec.it.map((it,ii)=>{const id='pf.'+si+'.'+ii;return `<label><input type="checkbox" data-act="chk" data-id="${id}" ${S.check[id]?'checked':''}><span>${it[0]}${it[1].length?' '+it[1].map(g=>{const [a,s]=g.split('/');return `<button class="btn sm ghost" data-go="${g}">Aula ${a.slice(1)} · seg. ${s.slice(1)}</button>`}).join(' '):''}</span></label>`}).join('')}</div>`).join('')+
+  `<h3>Exercícios que ela deixou "sem entregar"</h3><p style="font:400 15px/1.5 var(--ui);color:var(--card-ink2)">Tente responder antes de abrir. A resposta vem do conteúdo do master.</p>${PF_EX.map(x=>`<details class="pfex"><summary>${x.q}</summary><p>${x.a}</p>${x.conf?`<p class="pfconf">⚠️ ${x.conf}</p>`:''}<button class="btn sm ghost" data-go="${x.go}">Ver no segmento</button></details>`).join('')}`;
+}
+
+function recados(m,s){return pfBox(m,s)+RECADOS.filter(r=>r.m===m.id&&r.s===s.id).map(r=>r.warn?`<div class="warn"><b>⚠️ Correção da anotação</b><p>${r.t}</p></div>`:`<div class="prof"><b>🗣️ A professora em aula · anotação de prova</b><p>${r.t}</p></div>`).join('')}
 function recadosPainel(){
   const mods=MODS.filter(m=>RECADOS.some(r=>r.m===m.id));
   return `<section class="r1b" id="recados"><div class="r1h"><span>Anotações de aula</span><h3>🗣️ Recados da professora</h3></div><div class="box2"><b>10 das 30 questões da somativa serão da Aula 7 (Micoses).</b></div><div class="box2"><b>Se tem um fungo importante, ele VAI cair</b> (<i>Candida auris</i> e os superfungos).</div>${mods.map(m=>`<div class="crumb" style="margin-top:14px">Aula ${m.num} · ${m.nome}</div><ul class="cobc">${RECADOS.filter(r=>r.m===m.id&&!r.top).map(r=>`<li>${r.warn?'⚠️ ':''}${r.t} <button class="btn sm ghost" data-go="${m.id}/${r.s}">Ver no segmento</button></li>`).join('')}</ul>`).join('')}</section>`;
@@ -1073,7 +1180,7 @@ function pSeg(m,s){
   const doneBtn=pos=>`<button class="btn ${dn?'ok':'pri'}" data-act="done" data-k="${k}" data-pos="${pos}">${IC.ck}<span>${dn?'Segmento concluído':'Concluir segmento'}</span></button>`;
   let h=`<div class="page"><div class="crumb">Aula ${m.num} · ${m.nome} · Segmento ${i+1} de ${m.segs.length}</div><h1 class="pt">${s.titulo}</h1>
   <div class="actions">${doneBtn('top')}${next?`<button class="btn ghost" data-go="${m.id}/${next.id}">Próximo segmento</button>`:`<button class="btn ghost" data-go="${m.id}/quiz">Ir ao quiz final</button>`}</div>
-  <div class="legend"><span>Frequência nas somativas:</span>${[1,2,3,4,5].map(n=>`<span><span class="sw" style="background:${['#cfe9d4','#fbe9a6','#fbc98d','#f4a39a','#1f1a17'][n-1]}"></span>${n===5?'5+':n} ${n===1?'prova':'provas'}</span>`).join('')}<span>Selecione um trecho para grifar de rosa.</span></div>
+  <div class="legend"><span>Frequência nas somativas:</span>${[1,2,3,4,5].map(n=>`<span><span class="sw" style="background:${['#cfe9d4','#fbe9a6','#fbc98d','#f4a39a','#1f1a17'][n-1]}"></span>${n===5?'5+':n} ${n===1?'prova':'provas'}</span>`).join('')}<span><mark class="pf" data-pf="Itens que a professora pediu na mensagem da prova final">azul ondulado</mark> = pedido no recado da prova final</span><span>Selecione um trecho para grifar de rosa.</span></div>
   <article class="card"><div class="prose" id="prose">${recados(m,s)}${s.html}</div></article>`;
   h+=vBlock(m,s);
   h+=`<div class="actions" style="margin-top:26px">${doneBtn('bot')}${prev?`<button class="btn ghost" data-go="${m.id}/${prev.id}">Segmento anterior</button>`:''}${next?`<button class="btn ghost" data-go="${m.id}/${next.id}">Próximo segmento</button>`:`<button class="btn ghost" data-go="${m.id}/quiz">Ir ao quiz final</button>`}</div></div>`;
@@ -1135,7 +1242,7 @@ function segBind(m,s){
   cur={m,s};
   const v=$('#view');
   bindQs($('#vb'));
-  paintHL();
+  paintHL();paintPF();
 }
 /* teaser da carta */
 function nextCardIdx(){
@@ -1265,12 +1372,13 @@ function wAnswer(id,cat){
 }
 /* ===================== revisão final ===================== */
 function pRev(tab){
-  const T=[['doe','🩺 Doenças'],['rep','🎯 Mais repetidas'],['resumo','Resumo'],['vf','Pegadinhas V/F'],['check','Checklist'],['gl','Termos A–Z'],['freq','Análise de frequência']];
+  const T=[['pf','📣 Recado da prova final'],['doe','🩺 Doenças'],['rep','🎯 Mais repetidas'],['resumo','Resumo'],['vf','Pegadinhas V/F'],['check','Checklist'],['gl','Termos A–Z'],['freq','Análise de frequência']];
   return `<div class="page"><div class="crumb">Revisão final</div><h1 class="pt">Revisão final</h1><p class="psub">Para quem tem pouco tempo: o essencial de cada aula, as pegadinhas e o que mais caiu nas somativas.</p><div class="tabs" role="tablist">${T.map(t=>`<button class="${t[0]===tab?'on':''}" data-go="rev/${t[0]}" role="tab">${t[1]}</button>`).join('')}</div><div class="rv" id="rvbody"></div></div>`;
 }
 function revBind(tab){
   const body=$('#rvbody');if(!body)return;let h='';
-  if(tab==='doe'){h=doeChapter()}
+  if(tab==='pf'){h=pfTab()}
+  else if(tab==='doe'){h=doeChapter()}
   else if(tab==='rep'){h=repAll()}
   else if(tab==='resumo'){h=MODS.map(m=>`<h3>Aula ${m.num} · ${m.nome}</h3><ul>${m.resumo.map(r=>`<li><b>${r[0]}.</b> ${r[1]}</li>`).join('')}</ul>`).join('')}
   else if(tab==='vf'){
@@ -1517,13 +1625,16 @@ $('#hlbtn').addEventListener('click',()=>{
 /* ===================== tooltip de frequência ===================== */
 const tip=$('#tip');
 function showTip(el){
-  const refs=el.dataset.refs.split(',');const provas=[...new Set(refs.map(r=>r.split(':')[0]))];
-  tip.innerHTML=`<b>${provas.length===1?'Caiu em 1 prova':'Caiu em '+provas.length+' provas'}</b>${refs.join(' · ')}<br><span style="opacity:.7">Clique para abrir a justificativa</span>`;
+  const fr=el.closest('mark[data-refs]');let h=el.classList.contains('pf')?`<b>📣 Recado da prova final (T83)</b>${el.dataset.pf}<br>`:'';
+  if(fr){const refs=fr.dataset.refs.split(',');const provas=[...new Set(refs.map(r=>r.split(':')[0]))];
+  h+=`<b>${provas.length===1?'Caiu em 1 prova':'Caiu em '+provas.length+' provas'}</b>${refs.join(' · ')}<br><span style="opacity:.7">Clique para abrir a justificativa</span>`}
+  else h+='<span style="opacity:.7">Clique para abrir o recado inteiro</span>';
+  tip.innerHTML=h;
   const r=el.getBoundingClientRect();tip.classList.add('on');
   const w=tip.offsetWidth;tip.style.left=Math.max(8,Math.min(innerWidth-w-8,r.left))+'px';
   tip.style.top=(r.top-tip.offsetHeight-8<8?r.bottom+8:r.top-tip.offsetHeight-8)+'px';
 }
-document.addEventListener('mouseover',e=>{const m=e.target.closest('mark[data-refs]');if(m)showTip(m);else tip.classList.remove('on')});
+document.addEventListener('mouseover',e=>{const m=e.target.closest('mark.pf,mark[data-refs]');if(m)showTip(m);else tip.classList.remove('on')});
 /* ===================== busca ===================== */
 const IDX=[];MODS.forEach(m=>m.segs.forEach(s=>IDX.push({m,s,txt:strip(s.html).replace(/\s+/g,' ')})));
 $('#q').addEventListener('input',e=>{
@@ -1550,6 +1661,7 @@ function zeroAll(btn){
 document.addEventListener('click',e=>{
   const g=e.target.closest('[data-go]');
   if(g&&!e.target.closest('[data-act]')){go(g.dataset.go);return}
+  const pfm=e.target.closest('mark.pf');if(pfm&&!pfm.closest('mark[data-refs]')){go('rev/pf');return}
   const ref=e.target.closest('[data-ref],mark[data-refs]');
   if(ref){const r=ref.dataset.ref||ref.dataset.refs.split(',')[0];go('som/'+encodeURIComponent(r));return}
   const el=e.target.closest('[data-act]');if(!el)return;
