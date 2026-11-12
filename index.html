@@ -733,20 +733,20 @@ show(location.hash.slice(1)||'home',false);
   "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
 }}
 </script>
-<script src="_tema/modelos.js?v=8a3e9625"></script>
+<script src="_tema/modelos.js?v=df19cee8"></script>
 <script src="_tema/palco.js?v=713ea5fe"></script>
 <script type="module">
 // modo leve: sem 3D (o hub continua igual, só sem o fundo animado)
 if (window.LENTO) { document.getElementById('gl').style.display = 'none'; throw new Error('hub em modo leve: 3D desligado'); }
 import * as THREE from 'three';
-const {makeHelix,makeRing,makePills,makeBugs,makeTissue,makeVaccine,makeHandshake,makeDialogo,makeBook,makeHeart,COL} = window.VidroModelos(THREE);
+const {makeHelix,makeFrog,makeRing,makePills,makeBugs,makeTissue,makeVaccine,makeHandshake,makeDialogo,makeBook,makeHeart,COL} = window.VidroModelos(THREE);
 COL.hub = 0xd8ff3d; // a cor da marca (verde marca-texto) no DNA e no anel
 const {createStage} = window.VidroPalco(THREE, COL);
 
 const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30, start:false} : {dust:1000, dpr:1.5, start:false});
 // se o aparelho sofrer, a primeira coisa a sair é a refração líquida (o efeito mais caro da página)
 W.onDegrade = () => document.documentElement.classList.remove('refract');
-const SCENES = {helix:makeHelix(), ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook()};
+const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook()};
 /* modo leve automático: mede os quadros com tudo ligado; se não passa de ~30 fps
    (ex.: navegador sem placa de vídeo), desliga o 3D, a refração e o desfoque, e lembra disso */
 setTimeout(function medir(){
@@ -787,10 +787,9 @@ W.frame.push((t, dt) => {
     const off = SCENES[k].userData.offset; if (off && wide) h.position.copy(off); else h.position.set(0,0,0);
     SCENES[k].userData.tick(t, dt, I);
   }
-  // rolagem: o DNA gira como um parafuso e estica com a velocidade
+  // rolagem: o sapo da página inicial vira um pouco acompanhando a rolagem (sem esticar, como fazia o DNA)
   const hx = holders.helix, sv = window.HUB.sv || 0; window.HUB.sv = sv * .86;
-  hx.rotation.y += ((window.HUB.rot || 0) - hx.rotation.y) * .09;
-  if (hx.visible) hx.scale.y *= 1 + Math.min(Math.abs(sv) / 1400, .3);
+  hx.rotation.y += (THREE.MathUtils.clamp((window.HUB.rot || 0) * .25, -.6, .6) - hx.rotation.y) * .09;
   W.world.rotation.y += ((I.mx * .25) - W.world.rotation.y) * .05;
   W.world.rotation.x += ((I.my * .15) - W.world.rotation.x) * .05;
   if (warp > 0){ const c = W.camera; c.position.z += (3 - c.position.z) * .06; c.fov += (70 - c.fov) * .06; c.updateProjectionMatrix(); if (W.bloom) W.bloom.strength = .55 + warp * 1.4; }
