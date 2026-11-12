@@ -800,6 +800,116 @@ function makeDialogo(o = {}) {
   return g;
 }
 
+/* ======================= livro se abrindo (português) =======================
+   Livro de capa coral aberto em V, com os dois blocos de páginas e folhas que viram de um lado
+   para o outro. Mini livros e folhas soltas flutuam em volta.
+   Mouse perto: o livro se abre mais e as folhas viram mais rápido. Clique: uma rajada de folhas vira de uma vez. */
+function makeBook(o = {}) {
+  const cheap = !!o.cheap, g = new THREE.Group(), items = [];
+  const CORAL = COL.port || 0xff8a5b;
+  const capa = new THREE.MeshPhysicalMaterial({ color: CORAL, roughness: .45, clearcoat: cheap ? 0 : .6, clearcoatRoughness: .3, sheen: cheap ? 0 : .6, sheenColor: new THREE.Color(0xffd0bd), emissive: CORAL, emissiveIntensity: .08 });
+  const capaInt = new THREE.MeshStandardMaterial({ color: 0xc8553a, roughness: .7 });
+  const papel = new THREE.MeshStandardMaterial({ color: 0xfff6e8, roughness: .92, side: THREE.DoubleSide, emissive: 0xfff6e8, emissiveIntensity: .06 });
+  const bordaPag = new THREE.MeshStandardMaterial({ color: 0xf1e4cf, roughness: .95 });
+  const linha = new THREE.MeshBasicMaterial({ color: 0x9aa3ad, transparent: true, opacity: .55 });
+  const W = 1.4, H = 1.9;
+
+  /* metade do livro: capa + bloco de páginas + linhas de texto, articulada na lombada (x = 0) */
+  function metade(lado) {
+    const h = new THREE.Group();
+    const c = new THREE.Mesh(new THREE.BoxGeometry(W + .08, H + .12, .06), [capa, capa, capa, capa, lado > 0 ? capaInt : capa, lado > 0 ? capa : capaInt]);
+    c.position.set(lado * (W + .08) / 2, 0, -.05); h.add(c);
+    const bloco = new THREE.Mesh(new THREE.BoxGeometry(W, H, .12), [bordaPag, bordaPag, bordaPag, bordaPag, papel, papel]);
+    bloco.position.set(lado * W / 2, 0, .04); h.add(bloco);
+    // "texto": linhas finas na página de cima
+    for (let i = 0; i < 9; i++) {
+      const l = new THREE.Mesh(new THREE.PlaneGeometry(i % 4 === 3 ? W * .45 : W * .72, .022), linha);
+      l.position.set(lado * W / 2 + (i % 4 === 3 ? -lado * W * .12 : 0), H * .36 - i * .18, .101); h.add(l);
+    }
+    return h;
+  }
+  const livro = new THREE.Group();
+  const esq = metade(-1), dir = metade(1);
+  livro.add(esq, dir);
+  // lombada arredondada
+  const lomb = new THREE.Mesh(new THREE.CylinderGeometry(.09, .09, H + .12, 20, 1, false, Math.PI / 2, Math.PI), capa);
+  lomb.position.z = -.09; livro.add(lomb);
+
+  /* folhas que viram: plano articulado na lombada, que se curva no meio da virada */
+  const NF = 6, folhas = [];
+  for (let i = 0; i < NF; i++) {
+    const geo = new THREE.PlaneGeometry(W * .98, H * .97, 16, 1); geo.translate(W * .49, 0, 0);
+    const f = new THREE.Mesh(geo, papel); f.userData = { base: geo.attributes.position.array.slice(), t: i / NF };
+    livro.add(f); folhas.push(f);
+  }
+  const abertura = S(.9);   // ângulo de cada metade em relação ao plano (0 = fechado, PI/2 = plano)
+  function poseFolha(f, p, a) {
+    // p de 0 (deitada na página da direita) a 1 (deitada na da esquerda)
+    const ang = THREE.MathUtils.lerp(-a, a - Math.PI, p);   // gira em torno da lombada, passando pela frente (por dentro do V)
+    const curva = Math.sin(p * Math.PI) * .35;
+    const pos = f.geometry.attributes.position, b = f.userData.base;
+    for (let k = 0; k < pos.count; k++) {
+      const x = b[k * 3], u = x / W;                       // 0 na lombada, 1 na borda
+      const dz = -Math.sin(u * Math.PI * .9) * curva;      // a folha "barriga" enquanto vira
+      pos.setXYZ(k, x, b[k * 3 + 1], dz);
+    }
+    pos.needsUpdate = true; f.geometry.computeVertexNormals();
+    f.rotation.y = ang; f.position.z = .1;
+  }
+  livro.rotation.set(-.42, 0, 0); livro.scale.setScalar(1.25);
+  g.add(livro);
+
+  /* mini livros e folhas soltas flutuando em volta */
+  const cores = [CORAL, 0x5aa9ff, 0x38f5a3, 0xffb547, 0x9a5bff];
+  for (let i = 0; i < 14; i++) {
+    let m;
+    if (i % 3 === 2) { m = new THREE.Mesh(new THREE.PlaneGeometry(.42, .56), papel); }
+    else {
+      const cor = new THREE.MeshStandardMaterial({ color: cores[i % cores.length], roughness: .5 });
+      m = new THREE.Group();
+      const cv = new THREE.Mesh(new THREE.BoxGeometry(.5, .66, .12), [bordaPag, cor, cor, cor, cor, cor]); m.add(cv);
+    }
+    const r = 2.3 + Math.random() * 1.4, a = Math.random() * Math.PI * 2, y = (Math.random() - .5) * 4.2;
+    m.userData = { home: new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r * .5 - .6), off: V(), vel: V(), w: new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5).multiplyScalar(1.2), ph: Math.random() * 6 };
+    m.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6); g.add(m); items.push(m);
+  }
+
+  const ck = {}; let rajada = 0, vel = .22;
+  g.userData.offset = new THREE.Vector3(.2, 0, 0);
+  g.userData.tick = (t, dt, I) => {
+    g.rotation.y = Math.sin(t * .3) * .25;
+    const P = localPointer(g, I), burst = clicked(ck, I);
+    items.forEach(m => {
+      const u = m.userData, p = _b.copy(u.home).add(u.off);
+      p.y += Math.sin(t + u.ph) * .18;
+      if (P) {
+        _c.subVectors(p, P); const d = _c.length();
+        if (d < 1.6) { const n = _c.normalize(); u.vel.addScaledVector(n, (1 - d / 1.6) * 34 * dt); u.w.addScaledVector(new THREE.Vector3(n.y, -n.x, n.z), (1 - d / 1.6) * 14 * dt); }
+        if (burst && d < 3.5) { u.vel.addScaledVector(_c.normalize(), 9 * (1 - d / 3.5)); u.w.multiplyScalar(4); }
+      }
+      if (I && I.sv) { u.vel.y += I.sv * (.7 + Math.abs(u.w.z) * .3) * dt * 3.2; u.vel.x += I.sv * Math.sin(u.w.y * 9) * dt; }
+      u.vel.addScaledVector(u.off, -9 * dt); u.vel.multiplyScalar(Math.exp(-2.6 * dt)); u.off.addScaledVector(u.vel, dt);
+      u.w.multiplyScalar(Math.exp(-.6 * dt)); if (u.w.length() < .5) u.w.setLength(.5);
+      m.position.copy(p); m.rotation.x += u.w.x * dt; m.rotation.y += u.w.y * dt; m.rotation.z += u.w.z * dt;
+    });
+    let near = 0;
+    if (P) { const d = P.length(); near = THREE.MathUtils.clamp(1 - (d - .8) / 2, 0, 1); }
+    if (burst) rajada = 1;
+    rajada = Math.max(0, rajada - dt * .8);
+    // abre mais com o mouse perto (de ~60° a quase plano)
+    const a = spring(abertura, .9 - near * .45 - rajada * .25, 16, 6, dt);
+    esq.rotation.y = a; dir.rotation.y = -a;
+    vel = .2 + near * .45 + rajada * 1.6;
+    folhas.forEach((f, i) => {
+      f.userData.t = (f.userData.t + dt * vel / NF * (1 + i * .04)) % 1;
+      const p = THREE.MathUtils.smootherstep(f.userData.t, .08, .92);
+      poseFolha(f, p, a);
+    });
+    livro.position.y = Math.sin(t * 1.1) * .08;
+  };
+  return g;
+}
+
 /* ======================= coração anatômico ======================= */
 function bump(x, a, b) { if (x < a || x > b) return 0; return Math.sin((x - a) / (b - a) * Math.PI); }
 function ventricleShape(v) {
@@ -1034,6 +1144,6 @@ function makeLamp(o = {}) {
   return root;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHandshake, makeDialogo, makeHeart, makeLamp };
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHandshake, makeDialogo, makeBook, makeHeart, makeLamp };
 };
 })();

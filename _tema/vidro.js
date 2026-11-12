@@ -46,7 +46,9 @@ document.body.append(home);
 const HOME_ICO = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h5v-6h4v6h5V9.5"/></svg>';
 // só ids e classes (buscas rápidas, mesmo em masters com dezenas de milhares de elementos)
 const homeAlvos = () => {
-  const l = ['sbCollapse', 'mBurger', 'bcol', 'btnCol'].map(i => document.getElementById(i));
+  const l = ['sbCollapse', 'mBurger', 'bcol', 'btnCol', 'collapse'].map(i => document.getElementById(i));
+  // padrão do LPII: #collapse na barra e #menu no topo do celular (só quando os dois existem, pois #menu aparece em outros masters)
+  if (document.getElementById('collapse') && document.getElementById('menu')) l.push(document.getElementById('menu'));
   l.push(...document.getElementsByClassName('menu-btn'));
   const top = document.getElementById('top'); if (top) l.push(top.querySelector('[data-act="menu"]'));
   return l.filter(e => e && !e.classList.contains('vidro-inicio'));
@@ -102,7 +104,7 @@ async function montarBg() {
     stage = await createStage(canvas, { cheap: true, bloom: false, fps: 30, dust: small ? 0 : 200, dpr: 1, fog: .03, alpha: true, exposure: 1, start: false });
     // se mesmo no mínimo o aparelho não acompanhar, o fundo 3D desliga sozinho (sem gravar a escolha)
     stage.onSlow = () => { html.classList.add('vidro-calmo'); stage.running = false; setFxLabel(); };
-    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : K === 'pato' ? M.makeTissue({ cheap: true }) : K === 'prev' ? M.makeVaccine({ cheap: true }) : K === 'huma' ? M.makeDialogo({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
+    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : K === 'pato' ? M.makeTissue({ cheap: true }) : K === 'prev' ? M.makeVaccine({ cheap: true }) : K === 'port' ? M.makeBook({ cheap: true }) : K === 'huma' ? M.makeDialogo({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
     stage.world.add(model);
     // com a luz acesa (tema claro) o vidro dos modelos brilha
     const mats = new Set(); model.traverse(o => { if (o.material) [].concat(o.material).forEach(m => m.emissive && mats.add(m)); });

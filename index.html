@@ -733,20 +733,20 @@ show(location.hash.slice(1)||'home',false);
   "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
 }}
 </script>
-<script src="_tema/modelos.js?v=479e2fcd"></script>
+<script src="_tema/modelos.js?v=5adcb090"></script>
 <script src="_tema/palco.js?v=713ea5fe"></script>
 <script type="module">
 // modo leve: sem 3D (o hub continua igual, só sem o fundo animado)
 if (window.LENTO) { document.getElementById('gl').style.display = 'none'; throw new Error('hub em modo leve: 3D desligado'); }
 import * as THREE from 'three';
-const {makeHelix,makeRing,makePills,makeBugs,makeTissue,makeVaccine,makeHandshake,makeDialogo,makeHeart,COL} = window.VidroModelos(THREE);
+const {makeHelix,makeRing,makePills,makeBugs,makeTissue,makeVaccine,makeHandshake,makeDialogo,makeBook,makeHeart,COL} = window.VidroModelos(THREE);
 COL.hub = 0xd8ff3d; // a cor da marca (verde marca-texto) no DNA e no anel
 const {createStage} = window.VidroPalco(THREE, COL);
 
 const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30, start:false} : {dust:1000, dpr:1.5, start:false});
 // se o aparelho sofrer, a primeira coisa a sair é a refração líquida (o efeito mais caro da página)
 W.onDegrade = () => document.documentElement.classList.remove('refract');
-const SCENES = {helix:makeHelix(), ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue(), prev:makeVaccine(), huma:makeDialogo()};
+const SCENES = {helix:makeHelix(), ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook()};
 /* modo leve automático: mede os quadros com tudo ligado; se não passa de ~30 fps
    (ex.: navegador sem placa de vídeo), desliga o 3D, a refração e o desfoque, e lembra disso */
 setTimeout(function medir(){
