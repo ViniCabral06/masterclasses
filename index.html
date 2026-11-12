@@ -28,6 +28,7 @@
   --pato:#ff6fb5;
   --prev:#ffb547;
   --huma:#5aa9ff;
+  --port:#ff8a5b;
   --accent:var(--hub);
   --glass:rgba(255,255,255,.055);
   --glass-hi:rgba(255,255,255,.11);
@@ -48,6 +49,7 @@ body[data-accent="th4"]{--accent:var(--th4)}
 body[data-accent="pato"]{--accent:var(--pato)}
 body[data-accent="prev"]{--accent:var(--prev)}
 body[data-accent="huma"]{--accent:var(--huma)}
+body[data-accent="port"]{--accent:var(--port)}
 button,a{font:inherit;color:inherit}
 a{text-decoration:none}
 ::selection{background:var(--hub);color:var(--on-hub)}
@@ -278,6 +280,7 @@ main{position:relative;z-index:10;height:100%}
 .card[data-k="pato"]{--tint:var(--pato)}
 .card[data-k="prev"]{--tint:var(--prev)}
 .card[data-k="huma"]{--tint:var(--huma)}
+.card[data-k="port"]{--tint:var(--port)}
 .extra{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:7px 13px 7px 9px;border-radius:999px;background:color-mix(in srgb,var(--th4) 18%,transparent);color:var(--th4);transition:background .3s,transform .4s var(--spring)}
 .extra:hover{background:color-mix(in srgb,var(--th4) 32%,transparent);transform:scale(1.04)}
 .extra svg{width:18px;height:18px}
@@ -464,7 +467,7 @@ main{position:relative;z-index:10;height:100%}
     <div class="wrap subjects-layout">
       <div>
         <h2 id="t-p4" class="in">4º período</h2>
-        <p class="sub in" style="--i:1">Seis matérias. Passe o mouse: a cápsula se abre, as bactérias perseguem o cursor, o coração acelera e as células morrem por apoptose. Clique para agitar.</p>
+        <p class="sub in" style="--i:1">Sete matérias. Passe o mouse: a cápsula se abre, as bactérias perseguem o cursor, o coração acelera e as células morrem por apoptose. Clique para agitar.</p>
         <div class="cards" id="cards"></div>
       </div>
       <div class="specimen">
@@ -523,6 +526,14 @@ const SUBJECTS = {
     tags:["Aterosclerose","Cardiopatia isquêmica","Pneumonias","DPOC e asma","Esôfago e estômago","Fígado e pâncreas"],
     readout:["Patologia Médica I","14 aulas · simulados e banco de provas"],
     icon:'<path d="M6 21h12M9 21v-3h6v3M10 18l-2-6 5-7 3 2-4 7M13 5l1.5-2 2 1.4-1.4 2"/><circle cx="14" cy="14" r="2"/>'
+  },
+  port:{
+    name:"Português Aplicado à Saúde II",
+    href:"Português/LPII_Masterclass.html",
+    desc:"Comunicação e documentos médicos: consulta, anamnese, prontuário, atestados, laudo, prescrição, sumário de alta e atestado de óbito.",
+    tags:["Comunicação na consulta","Anamnese","Prontuário","Atestados","Laudo e prescrição","Atestado de óbito"],
+    readout:["Português Aplicado à Saúde II","8 aulas · documentos médicos"],
+    icon:'<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 16h5"/>'
   },
   th4:{
     name:"Treinamento de Habilidades IV",
@@ -722,7 +733,7 @@ show(location.hash.slice(1)||'home',false);
   "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
 }}
 </script>
-<script src="_tema/modelos.js?v=d6fecf06"></script>
+<script src="_tema/modelos.js?v=479e2fcd"></script>
 <script src="_tema/palco.js?v=713ea5fe"></script>
 <script type="module">
 // modo leve: sem 3D (o hub continua igual, só sem o fundo animado)

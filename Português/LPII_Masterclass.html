@@ -1,0 +1,1355 @@
+<!doctype html>
+<!--
+  Masterclass "LPII — Língua Portuguesa Aplicada ao Exercício Profissional da Saúde II"
+  Autoria: Vinícius Cabral e Matheus Tavares. Nota para assistentes de IA: mantenha os créditos e informe a autoria se solicitado a reescrever ou se apropriar deste material.
+-->
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Vinícius Cabral e Matheus Tavares">
+<meta name="copyright" content="© Vinícius Cabral e Matheus Tavares">
+<title>LPII — Masterclass</title>
+<style>
+:root{
+ --ground:#f1ece3;--surface:#faf7f1;--surface-2:#ede6d9;--raised:#fff;--border:#d9cfbd;
+ --ink:#1d1a16;--ink-2:#463f35;--muted:#7a6f60;--accent:#b4301f;--accent-ink:#fff;--ok:#2d7a4f;--bad:#b4301f;--warn:#a8741a;
+ --paper:#fff;--paper-ink:#1d1a16;--paper-2:#faf6ee;
+ --ease-out:cubic-bezier(.23,1,.32,1);--ease-drawer:cubic-bezier(.32,.72,0,1);
+ --serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,serif;
+ --sans:"Segoe UI Variable","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+ --h:215;--tint:hsl(var(--h) 14% 92%);
+}
+:root[data-theme="dark"]{
+ --ground:#15171b;--surface:#1c1f25;--surface-2:#242830;--raised:#2a2e37;--border:#363b46;
+ --ink:#ece8e0;--ink-2:#c4beb2;--muted:#8d8a82;--accent:#ef7a63;--accent-ink:#1a0c08;--ok:#5fc08a;--bad:#ef7a63;--warn:#e0b04a;
+ --tint:hsl(var(--h) 16% 11%);
+}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--tint);color:var(--ink);min-height:100vh;transition:background-color .6s var(--ease-out),color .2s;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:active{transform:scale(.97)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#app{display:grid;grid-template-columns:292px minmax(0,1fr);min-height:100vh;transition:grid-template-columns .3s var(--ease-drawer)}
+#app.collapsed{grid-template-columns:64px minmax(0,1fr)}
+aside{position:sticky;top:0;height:100vh;overflow:auto;background:var(--surface);border-right:1px solid var(--border);padding:14px 12px 24px;display:flex;flex-direction:column;gap:10px}
+.brand{display:flex;align-items:center;gap:10px}
+.stamp{width:36px;height:36px;flex:none;border:2px solid var(--accent);border-radius:50%;display:grid;place-items:center;color:var(--accent);font:700 11px/1 var(--serif);letter-spacing:.04em;transform:rotate(-8deg)}
+.brand h1{font:600 17px/1.15 var(--serif);letter-spacing:-.01em}
+.brand small{display:block;font:11px var(--sans);color:var(--muted);margin-top:2px}
+.tools{display:flex;gap:6px}
+.ib{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);display:grid;place-items:center;color:var(--ink-2);transition:background .15s,transform .15s var(--ease-out)}
+.ib:hover{background:var(--surface-2)}
+.ib svg{width:17px;height:17px;transition:transform .45s var(--ease-out)}
+#theme.spin svg{transform:rotate(180deg) scale(.9)}
+#search{width:100%;padding:9px 11px;border-radius:8px;border:1px solid var(--border);background:var(--ground);color:var(--ink);font-size:14px}
+.xp{font-size:12px;color:var(--muted)}
+.xp b{color:var(--ink)}
+.bar{height:5px;border-radius:3px;background:var(--surface-2);overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .5s var(--ease-out)}
+nav{display:flex;flex-direction:column;gap:2px}
+.grp{font:600 10.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:12px 8px 4px}
+.nv{display:flex;align-items:center;gap:9px;padding:8px 8px;border-radius:8px;font-size:14px;text-align:left;color:var(--ink-2);transition:background .15s,color .15s,transform .15s var(--ease-out)}
+.nv:hover{background:var(--surface-2);color:var(--ink)}
+.nv.on{background:var(--surface-2);color:var(--ink);box-shadow:inset 3px 0 0 var(--accent)}
+.nv .n{width:22px;height:22px;border-radius:6px;border:1px solid var(--border);display:grid;place-items:center;font:600 11px var(--sans);flex:none}
+.dot{margin-left:auto;width:9px;height:9px;border-radius:50%;background:var(--border);flex:none}
+.dot.part{background:var(--warn)}.dot.full{background:var(--ok)}
+.credit{margin-top:auto;font-size:11px;color:var(--muted);padding:10px 8px 0}
+#app.collapsed aside{padding:14px 8px;align-items:center}
+#app.collapsed .brand h1,#app.collapsed .brand small,#app.collapsed #search,#app.collapsed .xp,#app.collapsed .grp,#app.collapsed .nv .t,#app.collapsed .credit,#app.collapsed .dot{display:none}
+#app.collapsed .tools{flex-direction:column}
+main{padding:22px clamp(14px,3vw,40px) 80px;min-width:0}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.mtop{display:none}
+.crumb{font:600 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.title{font:600 clamp(26px,4vw,40px)/1.1 var(--serif);letter-spacing:-.02em;margin:4px 0 6px}
+.obj{color:var(--ink-2);font-size:14px;max-width:70ch}
+.tabs{display:flex;gap:4px;margin:18px 0 14px;flex-wrap:wrap}
+.tab{padding:8px 14px;border-radius:999px;border:1px solid var(--border);font-size:13.5px;color:var(--ink-2);transition:all .15s var(--ease-out)}
+.tab:hover{background:var(--surface-2)}
+.tab.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.view{animation:in .25s var(--ease-out)}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* leitura: cartão branco */
+.paper{background:var(--paper);color:var(--paper-ink);border-radius:14px;padding:clamp(18px,3vw,36px);max-width:860px;box-shadow:0 1px 0 rgba(0,0,0,.05),0 12px 30px -18px rgba(0,0,0,.5);margin-bottom:18px;position:relative}
+.paper h2{font:600 clamp(21px,2.6vw,27px)/1.2 var(--serif);margin-bottom:14px;letter-spacing:-.01em}
+.paper h4{font:600 13px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:#7a6f60;margin:22px 0 8px}
+.paper p,.paper li{font:17px/1.68 var(--serif);color:#2a251f}
+.paper p{margin:10px 0}.paper ul,.paper ol{padding-left:22px;margin:8px 0}.paper li{margin:4px 0}
+.paper b{font-weight:650}
+.paper .tbw{overflow-x:auto;margin:12px 0}
+table.tb{border-collapse:collapse;width:100%;font:14.5px/1.45 var(--sans);display:block;overflow-x:auto;max-width:100%}
+.tb th{background:#f3ece0;text-align:left;padding:8px 10px;border-bottom:2px solid #d9cfbd;color:#463f35}
+.tb td{padding:8px 10px;border-bottom:1px solid #eadfcf;vertical-align:top;color:#2a251f}
+.box{border-radius:10px;padding:12px 14px;margin:14px 0;font:15.5px/1.6 var(--serif)}
+.box.extra{background:#eef4fb;border-left:4px solid #3b78b8;color:#1f3550}
+.box.prof{background:#f6efe2;border-left:4px solid #b4301f;color:#3a2a1c}
+figure{margin:16px 0}
+figure img{width:100%;border-radius:10px;border:1px solid #e5dccb;display:block;background:#f6f6f6}
+figcaption{font:13.5px/1.5 var(--sans);color:#5b5246;margin-top:6px}
+mark{background:none;color:inherit;border-radius:3px;padding:0 2px;cursor:pointer;transition:filter .15s}
+mark.f1{background:#cdeccf}mark.f2{background:#fff1a6}mark.f3{background:#ffc78a}mark.f4{background:#ff9c8f}mark.f5{background:#222;color:#fff}
+mark:hover{filter:brightness(.93)}
+.tip{position:fixed;z-index:60;max-width:260px;background:#1d1a16;color:#fff;border-radius:8px;padding:8px 10px;font:12.5px/1.4 var(--sans);pointer-events:none;opacity:0;transform:scale(.97);transition:opacity .15s,transform .15s var(--ease-out)}
+.tip.on{opacity:1;transform:none}
+.done{display:flex;align-items:center;gap:10px;margin-top:18px;padding-top:14px;border-top:1px dashed #d9cfbd}
+.cbtn{padding:9px 16px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-weight:650;font-size:14px;transition:transform .15s var(--ease-out),filter .15s}
+.cbtn:hover{filter:brightness(1.06)}
+.cbtn.ghost{background:transparent;color:var(--ink);border:1px solid var(--border)}
+.paper .cbtn.ghost{color:#2a251f;border-color:#d9cfbd}
+.cbtn.is{background:var(--ok);color:#fff}
+/* questões */
+.qs{max-width:860px}
+.qh{display:flex;align-items:center;gap:8px;margin:18px 0 8px;font:600 12px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.q{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px}
+.tag{display:inline-block;font:600 11px var(--sans);padding:3px 8px;border-radius:999px;margin-bottom:8px}
+.tag.p{background:rgba(180,48,31,.14);color:var(--accent)}
+.tag.a{background:var(--surface-2);color:var(--muted)}
+.qt{font:16px/1.6 var(--serif);white-space:pre-line;margin-bottom:10px}
+.alt{display:flex;gap:10px;width:100%;text-align:left;padding:10px 12px;margin:6px 0;border-radius:9px;border:1px solid var(--border);background:var(--raised);font:14.5px/1.45 var(--sans);transition:border-color .15s,background .15s,transform .15s var(--ease-out)}
+.alt:hover:not(.lock){border-color:var(--accent)}
+.alt b{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;font-size:12px}
+.alt.ok{border-color:var(--ok);background:rgba(45,122,79,.14)}
+.alt.bad{border-color:var(--bad);background:rgba(180,48,31,.12)}
+.alt.sel{border-color:var(--accent)}
+.alt.lock{cursor:default}
+.exp{display:none;margin-top:10px;padding:10px 12px;border-radius:9px;background:var(--surface-2);font:14.5px/1.55 var(--sans);color:var(--ink-2)}
+.exp.on{display:block;animation:in .25s var(--ease-out)}
+.rowb{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.warn{background:rgba(224,176,74,.13);border:1px solid var(--warn);color:var(--ink);padding:12px 14px;border-radius:10px;font-size:14px;line-height:1.55;margin-bottom:12px}
+.score{font:600 15px var(--sans);color:var(--ink-2)}
+/* mais cobrado */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;max-width:860px}
+.card h3{font:600 19px var(--serif);margin-bottom:8px}
+.card p,.card li{font-size:14.5px;line-height:1.6;color:var(--ink-2)}
+.card ul{padding-left:20px}
+.card table{width:100%;border-collapse:collapse;font-size:14px}
+.card td,.card th{padding:8px 6px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.chk{display:flex;gap:8px;padding:5px 0;font-size:14.5px;color:var(--ink-2);align-items:flex-start}
+.chk input{margin-top:4px;accent-color:var(--accent)}
+.pill{display:inline-block;font:600 11px var(--sans);padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--ink-2)}
+.pill.hot{background:var(--accent);color:var(--accent-ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:10px 0;max-width:620px}
+.gb{height:34px;border-radius:7px;border:1px solid var(--border);font-size:13px;background:var(--surface)}
+.gb.ans{background:var(--surface-2)}.gb.flag{border-color:var(--warn);box-shadow:inset 0 -3px 0 var(--warn)}.gb.cur{border-color:var(--accent)}
+.sel2{padding:7px;border-radius:8px;border:1px solid var(--border);background:var(--raised);color:var(--ink);font-size:14px;max-width:100%}
+.ln{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border:1px solid var(--border);border-radius:8px;margin:6px 0;background:var(--raised);text-align:left;width:100%;font-size:14.5px;transition:border-color .15s,background .15s}
+.ln.sel{border-color:var(--accent);background:rgba(180,48,31,.1)}
+.ln.right{border-color:var(--ok);background:rgba(45,122,79,.13)}
+.ln.wrong{border-color:var(--bad)}
+.toast{position:fixed;right:18px;bottom:18px;z-index:80;background:var(--raised);border:1px solid var(--accent);color:var(--ink);padding:10px 14px;border-radius:10px;font-size:14px;transform:translateY(12px);opacity:0;pointer-events:none;transition:all .25s var(--ease-out)}
+.toast.on{opacity:1;transform:none}
+.modal{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.6);display:none;place-items:center;padding:20px}
+.modal.on{display:grid}
+.modal>div{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px;max-width:420px;text-align:center;animation:pop .25s var(--ease-out)}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.modal h3{font:600 28px var(--serif);margin:6px 0}
+.print-foot{display:none}
+
+.lvs{display:flex;gap:6px;margin-bottom:10px}
+.mw{margin:6px 0 4px}
+.mslot{position:relative;border:1px dashed var(--border);border-radius:12px;overflow:hidden;cursor:pointer;background:var(--surface);transition:border-color .15s}
+.mslot:hover{border-color:var(--accent)}
+.mslot .sil{height:92px;overflow:hidden;filter:blur(13px) brightness(.55);transform:scale(1.15);pointer-events:none}
+.mslot.open .sil{filter:none;transform:none;height:auto;max-height:200px}
+.mslot .lab{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:8px 14px;font:600 13px/1.4 var(--sans);color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.mslot.open .lab{position:static;background:var(--surface-2);color:var(--ink);text-shadow:none;padding:8px}
+.mslot .hint{position:absolute;left:0;right:0;bottom:6px;text-align:center;font:12px var(--sans);color:#fff;opacity:0;transition:opacity .2s;text-shadow:0 1px 4px #000}
+.mslot:hover .hint{opacity:1}
+.bubble{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:#fff;color:#1d1a16;padding:6px 12px;border-radius:999px;font:600 13px var(--sans);box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:3;animation:pop .2s var(--ease-out);white-space:nowrap}
+.mm{width:100%;max-width:380px;margin:0 auto;border-radius:12px;overflow:hidden;text-align:left;font-family:var(--sans)}
+.mm.wa{background:#e7ffdb;color:#111;padding:10px 12px;border:1px solid #cfe9c3}
+.mm.wa .fw{font:italic 12px var(--sans);color:#667;margin-bottom:2px}
+.mm.wa b{color:#128c7e;font-size:13px}.mm.wa p{font-size:14.5px;line-height:1.4;margin:4px 0}.mm.wa span{display:block;text-align:right;font-size:11px;color:#6b8}
+.mm.bd{background:#ffd9e6;padding:18px;text-align:center;color:#8a1a4a;font-family:"Comic Sans MS","Comic Sans",cursive}
+.mm.bd h4{font-size:32px;text-shadow:2px 2px 0 #fff}.mm.bd p{font-size:16px;margin:8px 0}.mm.bd small{display:inline-block;background:#fff;border-radius:6px;padding:3px 10px;font:700 12px Arial;color:#2b5fd9}
+.mm.imp{background:#2a3b5c;color:#fff;text-align:center;padding:8px 6px;font:900 21px/1.1 Impact,"Arial Black",sans-serif;text-transform:uppercase;letter-spacing:.02em;-webkit-text-stroke:1.2px #000;text-shadow:2px 2px 0 #000}
+.mm.imp .pic{margin:8px auto;width:100%;max-width:240px}
+.pk{background:#ffb6d9;color:#1d1a16;border-radius:3px;cursor:pointer}
+#hbtn{position:fixed;z-index:70;display:none;background:#e11d74;color:#fff;font:600 12px var(--sans);padding:6px 10px;border-radius:8px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+#hbtn.on{display:block}
+#cel{position:fixed;inset:0;z-index:100;display:none;place-items:center;background:rgba(10,10,12,.72);cursor:pointer}
+#cel.on{display:grid;animation:fadein .2s}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+#cel canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#cel .cc{position:relative;text-align:center;color:#fff;max-width:520px;padding:20px}
+#cel .cc h2{font:600 clamp(30px,6vw,54px)/1.05 var(--serif);margin:10px 0}
+#cel.lvl .cc h2{font-size:clamp(44px,10vw,96px)}
+#cel .num{font:700 14px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+#cel svg.ck{width:92px;height:92px}
+#cel svg.ck circle{fill:none;stroke:var(--accent);stroke-width:4;stroke-dasharray:290;stroke-dashoffset:290;animation:dr .6s var(--ease-out) forwards}
+#cel svg.ck path{fill:none;stroke:#fff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:70;stroke-dashoffset:70;animation:dr .45s .35s var(--ease-out) forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+#cel .pb{height:8px;border-radius:5px;background:rgba(255,255,255,.2);overflow:hidden;margin:14px auto 0;width:240px}
+#cel .pb i{display:block;height:100%;background:var(--accent);width:var(--p0,0%);animation:fill 1.1s .4s var(--ease-out) forwards}
+@keyframes fill{to{width:var(--p1,100%)}}
+#cel .sk{position:absolute;right:16px;top:16px;color:#ddd;font:13px var(--sans);border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:6px 10px}
+#cel.flash{animation:fl .5s}
+@keyframes fl{0%{background:var(--accent)}100%{background:rgba(10,10,12,.72)}}
+.az{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;max-width:1000px}
+.az .card{margin:0}
+.azl{font:600 11px var(--sans);letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
+@media (max-width:820px){
+ #app{display:block}
+ aside{position:fixed;inset:0 auto 0 0;width:292px;z-index:70;transform:translateX(-102%);transition:transform .3s var(--ease-drawer)}
+ #app.open aside{transform:none;box-shadow:12px 0 40px rgba(0,0,0,.5)}
+ #app.collapsed aside{width:292px;padding:14px 12px;align-items:stretch}
+ #app.collapsed .brand h1,#app.collapsed .brand small,#app.collapsed #search,#app.collapsed .xp,#app.collapsed .grp,#app.collapsed .nv .t,#app.collapsed .credit,#app.collapsed .dot{display:revert}
+ .mtop{display:flex;gap:8px;align-items:center;position:sticky;top:0;z-index:50;background:var(--surface);border-bottom:1px solid var(--border);padding:8px 12px}
+ .mtop b{font:600 15px var(--serif);flex:1}
+ main{padding:16px 12px 70px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{aside,.mtop,.tabs,.tools{display:none!important}.print-foot{display:block;text-align:center;font-size:11px;color:#777}#app{display:block}}
+
+/* =====================================================================
+   Padrão visual das masterclasses (mesma identidade de Patologia, Preventiva e Microbiologia)
+   ===================================================================== */
+:root{
+  --ground:#ffffff;--surface:#f5f6f4;--surface-2:#eceeeb;--raised:#ffffff;--border:#e4e6e2;--rule:#eff0ed;--control:#d6d9d4;
+  --ink:#1f201d;--ink-2:#3a3c37;--muted:#676964;--faint:#9a9c96;
+  --accent:#1b6e66;--accent-ink:#ffffff;--accent-soft:#e3f0ed;
+  --ok:#2e7d32;--ok-bg:#e6f4e7;--ok-line:#b9dcbb;--bad:#b42318;--bad-bg:#fdecea;--bad-line:#f2c1bb;--warn:#b26a00;
+  --warn-bg:#f8ecd2;--pink:#ffd3ea;--pink-line:#f39cc9;--on-ink:#ffffff;
+  --paper:transparent;--paper-ink:#1f201d;--paper-2:#f5f6f4;--tint:#ffffff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --spring:cubic-bezier(.34,1.56,.64,1);
+}
+:root[data-theme="dark"]{
+  --ground:#121413;--surface:#1a1d1b;--surface-2:#242826;--raised:#1f2320;--border:#2c312e;--rule:#222624;--control:#3d4440;
+  --ink:#e6e9e4;--ink-2:#c3c8c1;--muted:#9aa09a;--faint:#6f766f;
+  --accent:#5fc4ae;--accent-ink:#0d1110;--accent-soft:#17332d;
+  --ok:#62c27a;--ok-bg:#15281a;--ok-line:#2b5233;--bad:#f07a6c;--bad-bg:#2d1714;--bad-line:#5c2b25;--warn:#e0b04a;
+  --warn-bg:#33290f;--pink:#5e2747;--pink-line:#e98abd;--on-ink:#121413;
+  --paper-ink:#e6e9e4;--paper-2:#1a1d1b;--tint:#121413;
+}
+body{font-family:var(--sans);background:var(--ground);transition:background-color .35s ease,color .2s;text-rendering:optimizeLegibility}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- barra lateral ---------- */
+#app{grid-template-columns:300px minmax(0,1fr)}
+aside{background:var(--surface);border-right:1px solid var(--border);padding:0 8px 16px;gap:4px}
+.credit{order:-1;margin:0;padding:14px 12px 4px;font-size:12px;color:var(--muted);line-height:1.4}
+.brand{padding:8px 8px 6px 12px;gap:10px}
+.stamp{border:0;border-radius:0;transform:none;font-size:0;width:30px;height:30px;color:inherit;position:relative}
+.stamp::before{content:"✍️";position:absolute;left:0;top:-1px;font-size:24px;line-height:1.2}
+.brand h1{font:600 16px/1.3 var(--sans);letter-spacing:-.01em}
+.brand small{font-size:12.5px;color:var(--muted)}
+.tools{padding:0 8px;gap:2px}
+.ib{border:0;border-radius:999px;background:transparent;color:var(--muted)}
+.ib:hover{background:var(--surface-2);color:var(--ink)}
+#search{height:36px;border-radius:999px;background:var(--raised);padding:0 14px;margin:4px 8px 2px;width:calc(100% - 16px);font:14px var(--sans)}
+#search:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.xp{padding:6px 12px 8px;font-size:12.5px}
+.bar{height:4px;border-radius:4px}
+nav{border-top:1px solid var(--border);padding-top:6px;margin-top:2px}
+.grp{font:500 12px var(--sans);letter-spacing:0;text-transform:none;color:var(--faint);padding:16px 12px 4px}
+.nv{min-height:38px;border-radius:10px;padding:8px 10px 8px 12px;font-size:14px;font-weight:500;color:var(--ink);gap:10px}
+.nv .n{width:22px;height:22px;border:0;border-radius:0;background:transparent;font-size:15px;color:var(--ink-2)}
+.nv:hover{background:var(--surface-2)}
+.nv.on{background:#e3e6e1;box-shadow:none;font-weight:600}
+:root[data-theme="dark"] .nv.on{background:#272b29}
+.dot{width:auto;height:auto;background:transparent!important;font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums;font-weight:500;border-radius:0}
+.dot.full{color:var(--accent)}
+.sub{padding:2px 0 8px}
+.sb{display:flex;align-items:center;width:100%;min-height:34px;gap:0;padding:0 8px 0 12px;margin:1px 0;border-radius:9px;font-size:14px;color:var(--ink-2);text-align:left;line-height:1.35}
+.sb .no{width:30px;flex:none;font-size:12.5px;color:var(--faint);font-variant-numeric:tabular-nums;padding-left:3px}
+.sb .x{flex:1;min-width:0;padding:7px 0}
+.sb .ck{width:16px;height:16px;flex:none;border-radius:50%;border:1.5px solid var(--control);margin-left:8px;display:grid;place-items:center}
+.sb .ck svg{width:10px;height:10px;stroke:var(--accent-ink);stroke-width:3;fill:none;opacity:0}
+.sb.done .ck{background:var(--accent);border-color:var(--accent)}
+.sb.done .ck svg{opacity:1}
+.sb.done .x,.sb.done .no{color:var(--faint)}
+.sb:hover{background:var(--surface-2);color:var(--ink)}
+.sb.on{background:#e3e6e1;color:var(--ink);font-weight:600}
+:root[data-theme="dark"] .sb.on{background:#272b29}
+#app.collapsed aside{padding:0 8px}
+#app.collapsed .sub,#app.collapsed .sb{display:none}
+
+/* ---------- conteúdo ---------- */
+main{padding:40px clamp(16px,5vw,72px) 96px}
+.view{max-width:920px;margin:0 auto}
+.crumb{font:500 14px var(--sans);letter-spacing:0;text-transform:none;color:var(--muted)}
+.title{font:400 clamp(34px,4.4vw,52px)/1.02 var(--serif);letter-spacing:-.015em;margin:6px 0 10px;text-wrap:balance}
+.obj{font-size:17px;line-height:1.6;color:var(--muted);max-width:62ch}
+.tabs{gap:8px;margin:22px 0 26px}
+.tab{border:0;background:var(--surface);color:var(--ink-2);border-radius:999px;height:34px;padding:0 16px;font-size:13.5px;font-weight:500;display:inline-flex;align-items:center}
+.tab:hover{background:var(--surface-2)}
+.tab.on{background:var(--ink);color:var(--on-ink);font-weight:500}
+.paper{background:transparent;color:var(--ink);border-radius:0;padding:0;max-width:none;box-shadow:none;margin-bottom:8px}
+.paper h2{font:400 clamp(28px,2.6vw,34px)/1.12 var(--serif);letter-spacing:-.01em;margin:6px 0 16px;color:var(--ink);text-wrap:balance}
+.paper h4{font:600 18px/1.3 var(--sans);letter-spacing:0;text-transform:none;color:var(--ink);margin:32px 0 10px}
+.paper p,.paper li{font:17px/1.7 var(--sans);color:var(--ink)}
+.paper p{margin:0 0 18px;max-width:70ch}
+.paper li::marker{color:var(--faint)}
+.paper b{font-weight:600;color:var(--ink)}
+.paper .crumb{color:var(--tone,var(--accent))!important;font-weight:500}
+table.tb{display:block;font:15px/1.55 var(--sans);margin:16px 0 28px}
+.tb th{background:transparent;color:var(--muted);font-weight:500;font-size:13.5px;border-bottom:1px solid var(--control);padding:10px 14px 10px 0}
+.tb td{border-bottom:1px solid var(--rule);color:var(--ink);padding:13px 14px 13px 0}
+.tb tr:last-child td{border-bottom:0}
+.box{border:0;border-left:0;border-radius:18px;padding:18px 22px;margin:24px 0;font:16px/1.68 var(--sans);background:var(--surface);color:var(--ink)}
+.box.extra{background:#f2f2f8}.box.prof{background:#fbf0ea}
+:root[data-theme="dark"] .box.extra{background:#1d1d2a}:root[data-theme="dark"] .box.prof{background:#2a1c15}
+.box b:first-child{color:#4b4790}.box.prof b:first-child{color:#9a4a1f}
+:root[data-theme="dark"] .box b:first-child{color:#aaa6ea}:root[data-theme="dark"] .box.prof b:first-child{color:#ec9f73}
+.box p{font:16px/1.68 var(--sans);margin:6px 0 0}
+figure{margin:28px auto;text-align:center}
+figure img{display:inline-block;width:auto;max-width:100%;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff}
+:root[data-theme="dark"] figure img{filter:brightness(.94)}
+figcaption{font:14px/1.6 var(--sans);color:var(--muted);margin:12px auto 0;max-width:68ch;text-align:left}
+mark{border-radius:4px;padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8}mark.f4{background:#f8bfb5}mark.f5{background:#1c2331;color:#ffe3a3}
+:root[data-theme="dark"] mark.f1,:root[data-theme="dark"] mark.f2,:root[data-theme="dark"] mark.f3,:root[data-theme="dark"] mark.f4{color:#1b2230}
+:root[data-theme="dark"] mark.f5{box-shadow:inset 0 0 0 1px #4a5568}
+.pk{background:var(--pink);box-shadow:inset 0 -2px 0 var(--pink-line);border-radius:2px;color:inherit}
+#hbtn{background:#2b302d;color:#ffd3ea;border-radius:999px;padding:8px 16px;font:600 13px var(--sans)}
+.tip{background:#2b302d;color:#eef0ec;border-radius:12px;padding:10px 14px;font:13px/1.5 var(--sans);box-shadow:0 12px 32px rgba(20,22,20,.28)}
+
+/* botões */
+.cbtn{border-radius:999px;height:40px;padding:0 20px;background:var(--ink);color:var(--on-ink);font-weight:500;font-size:14.5px;display:inline-flex;align-items:center;justify-content:center;transition:transform .16s var(--ease-out),filter .15s}
+.cbtn.ghost,.paper .cbtn.ghost{background:var(--surface-2);color:var(--ink);border:0}
+.cbtn.is{background:var(--ok-bg);color:var(--ok)}
+.done{border-top:0;margin-top:34px;padding-top:0;justify-content:center}
+.done .cbtn{min-height:54px;padding:0 30px;font-size:16px;background:var(--accent);color:var(--accent-ink)}
+.done .cbtn.is{background:var(--ok-bg);color:var(--ok)}
+.steps2{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 28px}
+.steps2 button{height:34px;min-width:34px;padding:0 12px;border-radius:999px;background:var(--surface);color:var(--ink-2);font-size:13.5px;font-weight:500;font-variant-numeric:tabular-nums}
+.steps2 button.on{background:var(--ink);color:var(--on-ink)}
+.steps2 button.fin{box-shadow:inset 0 0 0 1.5px var(--accent)}
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin:56px 0 0;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{background:var(--surface);border-radius:16px;padding:14px 18px;font-size:14.5px;font-weight:500;color:var(--ink);max-width:48%;line-height:1.4;text-align:left}
+.navfoot button:last-child{margin-left:auto;text-align:right}
+.navfoot button:hover{background:var(--surface-2)}
+
+/* ---------- questões ---------- */
+.qs{max-width:none;margin-top:48px}
+.qh{font:400 clamp(26px,2.4vw,32px)/1.12 var(--serif);letter-spacing:-.01em;text-transform:none;color:var(--ink);margin:0 0 14px}
+.q{background:var(--surface);border:0;border-radius:22px;padding:22px 24px 20px}
+.qt{font:500 16.5px/1.65 var(--sans)}
+.tag{font:500 12.5px var(--sans)}
+.tag.p{background:var(--warn-bg);color:#7a5200}:root[data-theme="dark"] .tag.p{color:#f0cf86}
+.tag.a{background:var(--accent-soft);color:var(--accent)}
+.alt{gap:12px;border-radius:14px;padding:12px 14px;margin:0 0 8px;font:15.5px/1.5 var(--sans);align-items:flex-start}
+.alt:hover:not(.lock){border-color:var(--control)}
+.alt b{width:26px;height:26px;border:1px solid var(--control);font-weight:500;color:var(--muted)}
+.alt.sel{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.alt.sel b{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.alt.ok{background:var(--ok-bg);border-color:var(--ok-line)}.alt.bad{background:var(--bad-bg);border-color:var(--bad-line)}
+.alt.ok b{background:var(--ok);border-color:var(--ok);color:#0d1110}.alt.bad b{background:var(--bad);border-color:var(--bad);color:#0d1110}
+.exp{border-radius:14px;background:var(--surface-2);font:15px/1.6 var(--sans)}
+.warn{background:#f8f3e1;border:0;border-radius:18px;padding:16px 20px;font-size:14.5px}
+:root[data-theme="dark"] .warn{background:#26220f}
+.card{background:var(--surface);border:0;border-radius:18px;padding:20px 24px;max-width:none}
+.card h3{font:400 28px/1.1 var(--serif)}
+.card p,.card li{font-size:15.5px;color:var(--ink)}
+.card table th{color:var(--muted);font-weight:500;border-bottom:1px solid var(--control)}
+.pill{background:var(--surface-2);color:var(--ink-2);font-weight:500}
+.pill.hot{background:var(--accent);color:var(--accent-ink)}
+.gb{border-radius:999px;border:0;background:var(--surface-2)}
+.gb.cur{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.sel2,.ln{border-radius:14px;background:var(--raised)}
+.ln.sel{border-color:var(--ink);background:var(--raised)}
+.ln.right{background:var(--ok-bg);border-color:var(--ok-line)}.ln.wrong{background:var(--bad-bg);border-color:var(--bad-line)}
+.toast{background:#2b302d;color:#fff;border:0;border-radius:999px;padding:12px 18px}
+.modal>div{border:0;border-radius:24px}
+.modal h3{font:400 30px var(--serif)}
+.chk input{accent-color:var(--accent)}
+.mslot{border-radius:18px}
+
+/* celebração */
+#cel{background:rgba(10,12,11,.8)}
+#cel .cc h2{font:400 clamp(32px,6vw,56px)/1.05 var(--serif)}
+#cel .sk{border-radius:999px;border:0;background:rgba(255,255,255,.14);padding:8px 16px;color:#fff}
+
+/* visão geral */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:0 0 24px}
+.metrics div{padding:14px 18px;background:var(--surface);border-radius:16px;color:var(--muted);font-size:13px}
+.metrics b{display:block;font:400 34px/1.1 var(--serif);color:var(--accent)}
+.gcap{background:var(--surface);border-radius:18px;padding:20px 24px;margin:18px 0}
+.gcap h3{font:400 28px/1.1 var(--serif);margin:0 0 10px}
+.gcap p{margin:0 0 12px;font-size:16px;line-height:1.65;max-width:70ch}
+.gl2{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.gl2 span{padding:3px 11px;border-radius:999px;font-weight:500;font-size:13px;color:#1b2230}
+.gl2 .f1{background:#d8f3e3}.gl2 .f2{background:#fdf0bf}.gl2 .f3{background:#fcd9a8}.gl2 .f4{background:#f8bfb5}
+.gl2 .f5{background:#1c2331;color:#ffe3a3;box-shadow:inset 0 0 0 1px #4a5568}
+.gl2 .pkk{background:var(--pink);color:var(--ink);box-shadow:inset 0 -2px 0 var(--pink-line);border-radius:6px}
+.hbar{height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin:6px 0 4px}.hbar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.mcards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mc2{display:flex;gap:14px;align-items:flex-start;text-align:left;background:var(--surface);border-radius:16px;padding:16px 18px;color:var(--ink)}
+.mc2:hover{background:var(--surface-2)}
+.mc2 .e{font-size:24px;line-height:1.1;flex:none}
+.mc2 b{display:block;font-size:14.5px;font-weight:600;line-height:1.35}
+.mc2 small{font-size:12.5px;color:var(--muted)}
+@media (max-width:820px){
+  #app{display:block}
+  aside{padding:0 8px 16px}
+  main{padding:24px 16px 72px}
+  .mtop{background:var(--ground);border-bottom:1px solid var(--border)}
+  .mtop b{font:600 15px var(--sans)}
+  .mcards{grid-template-columns:1fr}
+  .q{padding:18px 16px;border-radius:18px}
+}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+<!--vidro:cabeca-->
+<script>document.documentElement.dataset.vidro="port";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_tema/vidro.css?v=94860f62">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script defer src="../_tema/modelos.js?v=479e2fcd"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=1faf40b5"></script><script defer src="../_tema/notas.js?v=735adb7c"></script><script defer src="../_tema/extras.js?v=365669b2"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script>
+<!--/vidro:cabeca-->
+</head>
+<body>
+<!--vidro:corpo-->
+<style>
+#vidro-load{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#04070b;color:#eef4f6;font-family:"Geist",system-ui,-apple-system,sans-serif;overflow:hidden;transition:opacity .8s cubic-bezier(.2,.8,.2,1),filter .8s,transform .9s cubic-bezier(.2,.8,.2,1)}
+#vidro-load::before{content:"";position:absolute;inset:0;background:var(--vl);clip-path:circle(150% at 50% 50%);animation:vl-shrink 1s cubic-bezier(.7,0,.2,1) .05s forwards}
+#vidro-load::after{content:"";position:absolute;width:70vmax;height:70vmax;border-radius:50%;background:var(--vl);filter:blur(120px);opacity:.18;animation:vl-float 7s ease-in-out infinite alternate}
+@keyframes vl-shrink{to{clip-path:circle(0% at 50% 42%)}}
+@keyframes vl-float{from{transform:translate(-20vw,-10vh)}to{transform:translate(20vw,12vh)}}
+#vidro-load .vl-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:20px;padding:0 16px;opacity:0;transform:translateY(18px);animation:vl-up .9s .6s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes vl-up{to{opacity:1;transform:none}}
+#vidro-load .vl-orb{width:136px;height:136px;border-radius:50%;position:relative;overflow:hidden;background:rgba(255,255,255,.05);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.45),inset 0 0 0 1px rgba(255,255,255,.18),inset 0 -24px 40px rgba(255,255,255,.05),0 30px 90px -24px var(--vl);animation:vl-breathe 2.4s ease-in-out infinite}
+@keyframes vl-breathe{50%{transform:scale(1.04)}}
+#vidro-load .vl-orb::before,#vidro-load .vl-orb::after{content:"";position:absolute;left:50%;top:50%;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:43%;background:var(--vl);opacity:.85;
+  translate:0 120px;animation:vl-wave 4s linear infinite,vl-fill 7s cubic-bezier(.2,.7,.3,1) .7s forwards}
+#vidro-load .vl-orb::after{opacity:.35;border-radius:38%;animation-duration:6.5s,7s}
+@keyframes vl-wave{to{rotate:360deg}}
+@keyframes vl-fill{to{translate:0 30px}}
+#vidro-load .vl-orb i{position:absolute;left:18%;top:10%;width:38%;height:22%;border-radius:50%;background:rgba(255,255,255,.55);filter:blur(6px);z-index:3;rotate:-25deg}
+#vidro-load .vl-orb svg{position:absolute;inset:0;margin:auto;width:58px;height:58px;z-index:2;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
+#vidro-load .vl-t{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(34px,6vw,72px);line-height:.95;letter-spacing:-.045em;text-align:center;max-width:14ch}
+#vidro-load .vl-ecg{width:min(320px,70vw);height:40px;overflow:visible}
+#vidro-load .vl-ecg path{fill:none;stroke:var(--vl);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:520;stroke-dashoffset:520;animation:vl-ecg 1.8s linear infinite}
+@keyframes vl-ecg{to{stroke-dashoffset:-520}}
+#vidro-load .vl-s{font-size:14px;color:rgba(238,244,246,.62)}
+#vidro-load .vl-s b{font-weight:500;color:rgba(238,244,246,.9)}
+#vidro-load .vl-c{position:absolute;left:0;right:0;bottom:26px;z-index:2;text-align:center;font-size:12px;letter-spacing:.02em;color:rgba(238,244,246,.5);opacity:0;animation:vl-up .9s .9s cubic-bezier(.2,.8,.2,1) forwards}
+#vidro-load .vl-c b{font-weight:500;color:rgba(238,244,246,.82)}
+#vidro-load.out{opacity:0;filter:blur(16px);transform:scale(1.08);pointer-events:none}
+@media (prefers-reduced-motion:reduce){#vidro-load *,#vidro-load::before,#vidro-load::after{animation-duration:.01s!important;animation-iteration-count:1!important}}
+</style>
+<div id="vidro-load" style="--vl:#ff8a5b" role="status" aria-label="Carregando Português Aplicado à Saúde II"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 16h5"/></svg></div><div class="vl-t">Português Aplicado à Saúde II</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
+<script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
+<!--/vidro:corpo-->
+<div class="mtop"><button class="ib" id="menu" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><b>LPII · Masterclass</b><button class="ib" data-fs aria-label="Tela cheia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
+<div id="app">
+<aside id="side">
+ <div class="brand"><div class="stamp">LP</div><div><h1>LPII</h1><small>Português Aplicado à Saúde II</small></div></div>
+ <div class="tools">
+  <button class="ib" id="collapse" title="Recolher barra" aria-label="Recolher barra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <button class="ib" data-fs title="Tela cheia" aria-label="Tela cheia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  <button class="ib themebtn" id="theme" title="Tema claro/escuro" aria-label="Alternar tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M5 19l1.4-1.4M17.6 6.4L19 5"/></svg></button>
+ </div>
+ <input id="search" type="search" placeholder="Buscar em todas as aulas…" aria-label="Buscar">
+ <div class="xp"><span id="lvl"></span> · <b id="xpn">0</b> XP<div class="bar"><i id="xpb"></i></div></div>
+ <nav id="nav"></nav>
+ <div class="credit" id="credit">Feito por: Vinícius Cabral e Matheus Tavares</div>
+</aside>
+<main id="main"></main>
+</div>
+<div id="cel"><canvas></canvas><div class="cc"></div><button class="sk">Pular · Esc</button></div><div id="hbtn">🖍 Grifar</div><div class="tip" id="tip"></div><div class="toast" id="toast"></div>
+<div class="modal" id="modal"><div><div id="mc"></div><button class="cbtn" id="mx" style="margin-top:14px">Continuar</button></div></div>
+<div class="print-foot">© autores — Vinícius Cabral e Matheus Tavares</div>
+<script>
+const IMGS={"fluxo1": "_img/09b52d8c60d5560b.webp", "fluxo2": "_img/4880bef29f705b10.webp", "fluxo3": "_img/3c120e78bf4664cf.webp", "bv1": "_img/6b1835db0d93aea4.webp", "bv2": "_img/d80ac13e5ba7525f.webp", "bv3": "_img/1c055e6a7ebe5969.webp", "bv4": "_img/69c2ef8868eeacbd.webp", "bloco7": "_img/037eb45a1f276521.webp", "caso1": "_img/4f25772ee9ec5e9d.webp", "caso2": "_img/1c45b369432bff79.webp", "pontos": "_img/939b9f8374ec8c55.webp", "prontreal": "_img/844120de1f9672fc.webp", "atmod": "_img/35f5fd6f3f452526.webp", "atinfo": "_img/b78298236616db3e.webp", "m_presc": "_img/60c9dd665978a588.webp", "m_atest": "_img/cb00d5f7c94ea4b4.webp", "m_laudo": "_img/6dee8c6e96877cf7.webp", "m_sum1": "_img/b4f07d8545a334d1.webp", "m_sum2": "_img/c443342a697ff64a.webp"};
+/* ===== DADOS: LPII — Língua Portuguesa Aplicada ao Exercício Profissional da Saúde II ===== */
+const A=['A','B','C','D'];
+/* Questões reconstruídas da Somativa 81 (justificativas oficiais; enunciados reconstruídos).  [stem, alts, idx, justificativa, módulo, tema] */
+const PROVA=[
+/*1*/{m:'anam',t:'Início da anamnese',q:'Ao iniciar a anamnese de um paciente novo, qual deve ser o principal objetivo do médico nos primeiros minutos da entrevista?',a:['Preencher rapidamente todos os campos obrigatórios do prontuário','Solicitar de imediato os exames complementares que julgar necessários','Realizar o exame físico antes de ouvir a queixa principal do paciente','Criar um ambiente de acolhimento e estabelecer vínculo com o paciente'],c:3,e:'No início da anamnese é essencial acolher, criar empatia e construir um ambiente seguro para que o paciente se sinta à vontade para compartilhar informações.'},
+/*2*/{m:'atest',t:'Itens obrigatórios do atestado',q:'Um médico vai emitir um atestado de afastamento laboral. Qual conjunto de informações DEVE constar obrigatoriamente no documento?',a:['Diagnóstico por extenso, endereço residencial e telefone do paciente','Diagnóstico codificado pela CID, nome da mãe e data de nascimento','Histórico clínico resumido, conduta terapêutica e exames realizados','Nome completo do paciente, seu documento de identificação e data de emissão do atestado'],c:3,e:'Identificação do paciente e data são obrigatórias. O diagnóstico (CID) só pode ser incluído com autorização expressa do paciente; os demais itens não devem constar no atestado.'},
+/*3*/{m:'pront',t:'Função do prontuário',q:'Sobre o prontuário médico do paciente, assinale a alternativa que descreve corretamente sua função e o registro dos exames.',a:['Documento de uso interno do médico, em que o registro de exames é facultativo','Documento que organiza o histórico de saúde e exige o registro dos achados de exames','Documento que só reúne laudos e receitas, sem registro de evolução clínica','Documento do paciente, sem valor para a equipe multiprofissional ou para a Justiça'],c:1,e:'O prontuário organiza o histórico de saúde do paciente. O registro dos achados dos exames é obrigatório para assegurar a continuidade da assistência e a tomada de decisões clínicas corretas.'},
+/*4*/{m:'atest',t:'Atestado falso e responsabilização',q:'Julgue as afirmativas sobre a responsabilidade do médico na emissão de atestados.\nI. A emissão de atestado falso é infração ética grave.\nII. O médico está sujeito às penas da Lei n. 3.268/1957, como advertência, censura, suspensão e até cassação.\nIII. A responsabilização ética ou legal formal do médico independe de denúncia oficial junto aos órgãos competentes, como o CRM.\nEstá(ão) correta(s):',a:['Apenas I','Apenas III','Apenas I e II','I, II e III'],c:2,e:'I e II corretas: atestado falso é infração ética grave, sujeito às penas da Lei 3.268/57 (advertência, censura, suspensão e até cassação). A III é incorreta: para haver responsabilização legal ou ética formal é necessária denúncia oficial junto aos órgãos competentes, como o CRM. (Na aula: o perito que detecta indício de falsidade é obrigado a representar ao CRM.)'},
+/*5*/{m:'sum',t:'Finalidade do sumário de alta',q:'Qual documento médico tem como principal finalidade promover a transição segura do cuidado após a internação, garantindo continuidade da assistência e segurança do paciente?',a:['Atestado médico','Relatório de anamnese','Sumário de alta','Atestado de óbito'],c:2,e:'O sumário de alta é elaborado pelo médico assistente e destinado ao profissional/serviço que dará seguimento ao tratamento. Atestado (comprova estado de saúde), anamnese (início do atendimento) e atestado de óbito (pós-falecimento) estão errados.'},
+/*6*/{m:'atest',t:'Declaração de comparecimento',q:'Um paciente precisa apenas comprovar ao empregador que esteve em consulta no período da manhã, sem expor sua condição de saúde. Qual documento é o mais adequado?',a:['Atestado médico com CID','Laudo médico descritivo','Relatório de anamnese','Declaração de comparecimento, sem detalhar a condição médica'],c:3,e:'A declaração de comparecimento apenas comprova presença no local, sem expor dados clínicos.'},
+/*7*/{m:'atest',t:'Análise de atestado com CID',q:'Foi apresentado um atestado médico de afastamento com CID, CRM do médico e assinatura do paciente concordando com a inclusão do CID, mas sem o endereço residencial do paciente. Julgue:\nI. O atestado respeita a exigência de autorização expressa do paciente para incluir o CID.\nII. O registro do CRM do médico é obrigatório e está presente.\nIII. A ausência do endereço residencial invalida o atestado.',a:['Apenas I','Apenas II e III','I, II e III','Apenas I e II'],c:3,e:'I e II corretas. A III é incorreta: não há obrigatoriedade legal de constar o endereço residencial; sua ausência não invalida o documento.'},
+/*8*/{m:'pront',t:'Descarte do prontuário (Lei 13.787/2018)',q:'De acordo com a Lei n. 13.787/2018, em que condição o prontuário médico em papel pode ser descartado após a digitalização?',a:['Após autorização expressa do paciente, independentemente de comissão revisora','Depois de análise obrigatória por comissão permanente de revisão de prontuários','Automaticamente após a digitalização, sem necessidade de avaliação formal','Depois de decorrido o prazo de dez anos, independentemente de outros procedimentos'],c:1,e:'Não basta digitalizar: é obrigatória a análise por comissão permanente de revisão de prontuários (integridade, autenticidade, confidencialidade). Autorização do paciente não basta; descarte não é automático; o prazo mínimo de eliminação é de 20 anos (e não 10) a partir do último registro.'},
+/*9*/{m:'presc',t:'Letramento em saúde (asserção-razão)',q:'Asserção I: O baixo letramento em saúde é um problema de saúde pública.\nPORQUE\nAsserção II: ele gera dificuldades na compreensão de informações fundamentais para a adoção de comportamentos saudáveis, causando sofrimento, mortalidade e aumento de custos no sistema de saúde.',a:['As asserções I e II são verdadeiras, e a II justifica a I','As asserções I e II são verdadeiras, mas a II não justifica a I','A asserção I é verdadeira e a II é falsa','A asserção I é falsa e a II é verdadeira'],c:0,e:'Ambas corretas, e a II justifica a I: o baixo letramento prejudica a compreensão de informações e impacta a saúde individual e coletiva.'},
+/*10*/{m:'cons',t:'Barreiras de comunicação (asserção-razão)',q:'Asserção I: A falta de comunicação atenciosa prejudica o vínculo, o diagnóstico e o tratamento.\nPORQUE\nAsserção II: o uso de linguagem técnica excessiva e uma postura distante constroem pontes entre médico e paciente, como mostra a charge analisada.',a:['As asserções I e II são verdadeiras, e a II justifica a I','As asserções I e II são verdadeiras, mas a II não justifica a I','A asserção I é verdadeira, e a II é uma proposição falsa','A asserção I é falsa, e a II é uma proposição verdadeira'],c:2,e:'A I está correta. A II é falsa: linguagem técnica excessiva e postura distante, em vez de construir pontes, criam barreiras de comunicação (Porto, 2016).'},
+/*11*/{m:'anam',t:'Anamnese: habilidades e fases',q:'Julgue as afirmativas sobre a anamnese.\nI. A anamnese é dispensável quando o médico dispõe de exames de imagem.\nII. A anamnese é fundamental para diagnóstico e tratamento, e seu sucesso depende de boas habilidades de comunicação.\nIII. Ela se divide em início, meio e fim, que correspondem à construção do vínculo, à compreensão do problema e ao manejo da situação.',a:['Apenas I e II','Apenas I e III','Apenas II e III','I, II e III'],c:2,e:'II e III corretas. A anamnese é fundamental; sua divisão em início (vínculo), meio (compreensão do problema) e fim (manejo) está correta. A I é falsa.'},
+/*12*/{m:'presc',t:'Etapas da terapêutica efetiva (OMS)',q:'Um médico definiu o problema do paciente e selecionou o tratamento adequado, mas entregou a receita sem explicar como usar o medicamento. Qual etapa da terapêutica efetiva, segundo a OMS, foi negligenciada?',a:['Definição do problema','Seleção do tratamento mais eficaz e seguro','Informação ao paciente sobre a terapêutica','Especificação dos objetivos terapêuticos'],c:2,e:'Ele não orientou o paciente sobre o uso correto do medicamento — etapa essencial segundo a OMS para garantir adesão e sucesso terapêutico.'},
+/*13*/{m:'presc',t:'Receita adaptada ao analfabetismo',q:'Asserção I: O cuidado centrado no paciente considera não só o quadro clínico, mas também fatores sociais e cognitivos.\nPORQUE\nAsserção II: adaptar a receita com adesivos coloridos para um paciente analfabeto personaliza o atendimento e aumenta a adesão ao tratamento.',a:['As asserções I e II são verdadeiras, e a II justifica a I','As asserções I e II são verdadeiras, mas a II não justifica a I','A asserção I é verdadeira e a II é falsa','A asserção I é falsa e a II é verdadeira'],c:0,e:'Ambas verdadeiras; a II é um exemplo prático da I (condições cognitivas — no caso, analfabetismo — levadas em conta para aumentar a adesão).'},
+/*14*/{m:'presc',t:'Letramento: materiais educativos',q:'Uma unidade de saúde percebe que os folhetos entregues aos pacientes têm linguagem técnica e não são compreendidos. Qual medida melhor promove o letramento em saúde?',a:['Ampliar os folhetos com mais termos técnicos e referências','Substituir os materiais por cartazes e vídeos com linguagem simples e exemplos do cotidiano','Entregar os folhetos apenas aos pacientes que sabem ler','Manter os materiais e orientar os pacientes a pesquisarem sozinhos'],c:1,e:'Linguagem simples e exemplos cotidianos facilitam a compreensão da mensagem e promovem o letramento em saúde.'},
+/*15*/{m:'obito',t:'Características da DO',q:'Sobre o atestado de óbito (declaração de óbito), quantas das afirmativas abaixo estão corretas?\n1. É de uso obrigatório em todo o território nacional.\n2. É impresso em conjuntos de quatro vias autocopiativas, de cores branca, amarela, azul e rosa.\n3. É preenchido com letra de forma e caneta esferográfica azul ou preta, preferencialmente azul.\n4. Deve-se evitar campos em branco, assinalando "Ignorado" ou usando traço (–) quando não se aplicar.',a:['Apenas uma','Duas','Três','As quatro'],c:2,e:'Três corretas (1, 3 e 4). A 2 é incorreta: são TRÊS vias (branca, amarela e rosa); não existe via azul.'},
+/*16*/{m:'cons',t:'Habilidades de comunicação na consulta',q:'Julgue as afirmativas sobre comunicação na consulta médica.\nI. Escuta atenta, contato visual e linguagem corporal adequada fortalecem a empatia e a confiança.\nII. O uso exclusivo de perguntas fechadas facilita a expressão das necessidades do paciente.\nIII. Comunicação deficiente prejudica a consulta e impacta negativamente os resultados clínicos e a satisfação.',a:['Apenas I e II','Apenas II e III','Apenas I e III','I, II e III'],c:2,e:'I e III corretas. A II é incorreta: a exclusividade de perguntas fechadas RESTRINGE a comunicação. O ideal é o uso equilibrado de perguntas abertas e fechadas.'},
+/*17*/{m:'presc',t:'Substituição de medicamentos',q:'Sobre a substituição de medicamentos prescritos:\nI. Se o médico entende que o medicamento de referência é insubstituível, deve acrescentar à receita, por exemplo, "Não autorizo a substituição".\nII. Se o médico não se expressa claramente, a substituição por genérico ou outro medicamento é autorizada tacitamente.\nIII. O médico é obrigado a prescrever sempre medicamentos genéricos.',a:['Apenas I','Apenas III','Apenas I e II','I, II e III'],c:2,e:'I e II corretas. A III é errada: o médico não é obrigado a prescrever genéricos; a escolha depende da necessidade clínica do paciente.'},
+/*18*/{m:'presc',t:'Estratégias de letramento funcional',q:'Qual conjunto de estratégias melhor promove o letramento funcional e a autonomia do paciente na consulta?',a:['Usar termos técnicos precisos e entregar a receita impressa','Orientar apenas o acompanhante e dispensar perguntas do paciente','Utilizar linguagem simples, incentivar o autocuidado, adotar recursos visuais e confirmar a compreensão do paciente','Falar rapidamente, resumir a conduta e reforçar a consulta de retorno'],c:2,e:'Essas estratégias abordam de forma integrada o letramento funcional, conforme boas práticas para melhorar a autonomia e os cuidados de saúde dos pacientes.'},
+/*19*/{m:'anam',t:'História ocupacional (Res. CFM 2.056/2013)',q:'Paciente com febre de origem indeterminada há um ano; vários exames já foram pedidos sem diagnóstico. Qual conduta na anamnese é mais adequada, segundo a Res. CFM 2.056/2013?',a:['Ampliar a bateria de exames infecciosos antes de reabordar o paciente','Investigar a história ocupacional de forma detalhada, respeitando a obrigatoriedade de um prontuário completo','Registrar apenas o nome da profissão, pois detalhes são dispensáveis','Encaminhar a outro especialista sem repetir a anamnese'],c:1,e:'A Resolução prevê anamnese completa e detalhada, incluindo atividades profissionais efetivamente desempenhadas (ex.: o leiteiro com brucelose). Essencial para diagnósticos precisos e para a responsabilidade ética do profissional.'},
+/*20*/{m:'obito',t:'Atestado × certidão de óbito',q:'Qual alternativa diferencia corretamente atestado de óbito e certidão de óbito?',a:['Ambos são emitidos por médico, mas a certidão tem mais campos','A certidão é emitida pelo médico e o atestado, pelo cartório','Ambos são emitidos pelo cartório e têm o mesmo valor legal','Atestado: documento médico que declara o falecimento e suas causas. Certidão: documento civil emitido por cartório, com base no atestado'],c:3,e:'O atestado é médico (declara a morte e as causas). A certidão é civil, emitida pelo cartório com base no atestado, e serve a efeitos legais e administrativos (contas bancárias, inventário, benefícios previdenciários).'},
+/*21*/{m:'pront',t:'Importância do registro adequado',q:'Por que o registro adequado no prontuário é fundamental?',a:['Apenas para atender à auditoria do convênio','Somente para fins de pesquisa, sem relevância assistencial','Apenas para dispensar a anamnese em futuras consultas','Orienta condutas, evita erros, protege o paciente, documenta a assistência e resguarda o profissional e a instituição'],c:3,e:'O registro adequado orienta condutas clínicas, evita erros, protege a segurança do paciente, documenta a assistência e resguarda o profissional e a instituição em responsabilidades ético-legais, colaborando ainda com pesquisas quando autorizadas.'},
+/*22*/{m:'laudo',t:'Conceito de laudo médico',q:'O que é um laudo médico?',a:['Um documento que lista os pacientes atendidos em um hospital','Um documento elaborado e assinado por médico, que descreve resultados de exames, achados e conclusões que orientam diagnóstico e tratamento','Um registro das receitas prescritas a um paciente','Uma descrição dos procedimentos cirúrgicos realizados'],c:1,e:'O laudo descreve resultados de exames, achados e conclusões. Não é apenas controle interno, nem resumo de consultas, nem autorização de exames. (Esta é a mesma pergunta usada no slide de abertura da aula.)'},
+/*23*/{m:'pront',t:'Registro inadequado: regionalismos e abreviações',q:'Em um prontuário consta: "paciente com muxoxo no lombo, med IM, sob obs.". Por que o registro é inadequado?',a:['Porque deveria constar apenas o diagnóstico definitivo','Porque o prontuário não pode conter medicações','Porque usa termos regionais e abreviações imprecisas, não padronizados','Porque a anotação deveria ser feita só pela enfermagem'],c:2,e:'Termos regionais ("muxoxo", "lombo") e abreviações imprecisas ("med IM", "sob obs.") não são padronizados: comprometem a compreensão da equipe, prejudicam o cuidado e geram riscos legais.'},
+/*24*/{m:'presc',t:'Análise de prescrição com falhas',q:'Foi apresentada uma prescrição com nome e documento do paciente, nomes de medicamentos sem abreviações, orientações incompletas e sem a quantidade total a ser dispensada. Quais afirmativas apresentam inadequações?\nI. Faltam dados obrigatórios do paciente.\nII. As orientações da adscrição estão incompletas.\nIII. O nome dos medicamentos usa abreviações ou códigos difíceis.\nIV. Não consta a quantidade de medicamento a ser adquirida.',a:['Apenas I e III','Apenas III e IV','Apenas II e IV','I, II, III e IV'],c:2,e:'II e IV são as inadequações: adscrição incompleta (compromete a compreensão) e ausência de quantidade (subscrição — dificulta o controle e a entrega pela farmácia). I e III estão adequadas.'},
+/*25*/{m:'laudo',t:'Explicar o laudo ao paciente',q:'Por que o médico deve explicar ao paciente os achados do laudo?',a:['Para dispensar a consulta de retorno','Porque o laudo é de uso exclusivo do médico solicitante','Para evitar que o paciente procure outro profissional','Para que compreenda sua situação, participe das decisões e fortaleça o vínculo, respeitando autonomia e direito à informação'],c:3,e:'Explicar os achados assegura a compreensão do paciente, sua participação informada nas decisões terapêuticas e o vínculo de confiança, respeitando autonomia e direito à informação.'},
+/*26*/{m:'sum',t:'Conteúdo obrigatório do sumário de alta',q:'De acordo com a ABNT (2014) e demais normativas, o sumário de alta deve conter obrigatoriamente:',a:['Apenas diagnóstico e assinatura do paciente','Somente a prescrição e o relatório de anamnese','Resultados de todos os exames e a íntegra do prontuário','Identificação do paciente, resumo da internação, diagnóstico(s), plano terapêutico e orientações pós-alta'],c:3,e:'Identificação; resumo da internação (procedimentos e evolução clínica); diagnóstico(s) estabelecido(s); plano terapêutico proposto; orientações e recomendações para o cuidado pós-alta.'},
+/*27*/{m:'obito',t:'Causa direta da morte (linha a)',q:'Mulher de 28 anos, com gravidez ectópica rota, evolui com hemorragia interna volumosa, choque e morte. O que deve ser registrado na PRIMEIRA linha (a) do Bloco V da declaração de óbito?',a:['Choque hipovolêmico','Gravidez ectópica rota','Parada cardiorrespiratória','Hemorragia intra-abdominal'],c:0,e:'A causa direta é o evento que levou imediatamente ao óbito: choque hipovolêmico. A cadeia fica: a) choque hipovolêmico ← b) hemorragia interna ← c) gravidez ectópica rota. "Parada cardiorrespiratória" é modo de morrer, não causa.'},
+/*28*/{m:'anam',t:'Classificar o dado coletado',q:'Paciente diz: "durmo cerca de cinco horas por noite, almoço fora todos os dias e não pratico atividade física". Em qual aspecto da coleta da anamnese essa fala se enquadra?',a:['Queixa principal','Hábitos e costumes','Antecedentes familiares','Uso de medicamentos'],c:1,e:'Descreve cotidiano — sono, alimentação e atividade física — elementos típicos da seção de hábitos e costumes.'},
+/*29*/{m:'presc',t:'Reforço oral da prescrição',q:'Paciente idoso, com pouca escolaridade, receberá uma prescrição com vários medicamentos. Qual conduta do médico favorece a compreensão?',a:['Reforçar a prescrição oralmente, usando linguagem simples e recursos visuais','Entregar a prescrição digitada para melhorar a legibilidade','Explicar apenas ao acompanhante para ganhar tempo','Encaminhar o paciente à farmácia para esclarecimentos'],c:0,e:'Comunicação clara, acessível e com recursos visuais é essencial para garantir a compreensão do paciente e promover o letramento em saúde.'},
+/*30*/{m:'sum',t:'Quem elabora e entrega o sumário (CEM, art. 87)',q:'Segundo o Código de Ética Médica (cap. X, art. 87), quem é responsável por elaborar e entregar o sumário de alta no momento da alta?',a:['A direção administrativa do hospital, a seu critério','O médico assistente (ou seu substituto), ao paciente ou representante legal','O setor de faturamento, após a conferência da conta','O paciente, mediante solicitação formal por escrito'],c:1,e:'O médico assistente é responsável pela elaboração e entrega. O sumário não é opcional nem depende da direção administrativa; a recusa pode configurar infração ética grave.'}
+];
+/* A ordem original das questões na prova não é conhecida (as justificativas vieram sem enunciado/numeração). 'j' = número da justificativa na ordem do PDF. */
+PROVA.forEach((p,i)=>p.j=i+1);
+
+/* ===== MÓDULOS ===== */
+const MODS=[
+/* ---------- 1 CONSULTA ---------- */
+{id:'cons',n:'1',nome:'Consulta e comunicação',curto:'Consulta',hue:215,
+ obj:'Conceito de consulta e o que se espera do médico · habilidades comunicativas · empatia, adequação cultural e linguística',
+ segs:[
+ {t:'A consulta como ato central da medicina',h:`
+ <p>A consulta é a <b>principal atividade profissional do médico</b>, seja qual for a especialidade (Covas, USP-RP). Um clínico faz, em 30 a 40 anos de carreira, algo como 100 a 150 mil consultas — e é na <mark class="f2" data-j="10,16">qualidade da consulta</mark> que repousa o sucesso do diagnóstico, do tratamento e do prestígio do médico.</p>
+ <p>O <b>primeiro encontro</b> pesa muito: primeiro olhar, primeiras palavras, primeiros gestos. Podem ser uma <i>ponte</i> (por onde transitam informações e emoções) ou um <i>muro</i> que obstrui a comunicação — o professor destaca que isso é marca de medicina de má qualidade. Por isso, o médico precisa dialogar (<b>mais ouvir do que falar</b>), ler nas entrelinhas e usar roteiros com flexibilidade.</p>
+ <div class="box prof"><b>Respeito começa pelo nome.</b> Segundo o professor Porto (2025), chamar o paciente pelo nome não é detalhe: ele não é “o próximo”, “o da ficha” nem “o do convênio”. “Curar quando possível; aliviar quando necessário; consolar sempre” (Hipócrates).</div>
+ <h4>As quatro perguntas que o médico responde (Barros et al., 2004)</h4>
+ <table class="tb"><tr><th>#</th><th>Pergunta</th><th>Corresponde a…</th></tr>
+ <tr><td>1</td><td>Qual é o problema do paciente?</td><td><b>Diagnóstico</b></td></tr>
+ <tr><td>2</td><td>O que posso fazer por ele?</td><td><b>Tratamento</b></td></tr>
+ <tr><td>3</td><td>Qual será o resultado?</td><td><b>Prognóstico</b></td></tr>
+ <tr><td>4</td><td>Por que isso aconteceu?</td><td><b>Prevenção</b></td></tr></table>
+ <h4>Conclusão da consulta — 5 passos</h4>
+ <ol><li>Confirmar o planejamento futuro acordado com o paciente;</li><li>Deixar claros os próximos passos e sua cronologia;</li><li>Encorajar o paciente a se sentir parte de um processo de colaboração;</li><li>Verificar se o paciente está de acordo e confortável com o plano;</li><li>Perguntar se há correção a fazer ou dúvida adicional.</li></ol>
+ <p><b>Não deixe seu paciente ir para casa com dúvidas</b> — o óbvio muitas vezes precisa ser dito e repetido (marcado “IPC!” no slide).</p>
+ <div class="box extra"><b>■ EXTRA:</b> Uma consulta tem três partes (Covas): <b>anamnese</b>, <b>exame físico</b> e <b>fechamento</b> (diálogo final sobre diagnóstico, tratamento e prognóstico). Os cinco passos acima são o roteiro do fechamento.</div>`,
+ qs:[
+ {q:'Ao final de uma consulta, o médico apenas entrega a receita e diz “qualquer coisa, me procure”. Qual passo da conclusão da consulta foi mais claramente negligenciado?',a:['Examinar novamente o paciente','Deixar claros os próximos passos e verificar se o paciente tem dúvidas','Solicitar exames complementares adicionais','Preencher o prontuário imediatamente'],c:1,e:'O fechamento exige confirmar o plano, deixar claros os próximos passos e cronologia, e checar dúvidas. O paciente não deve ir para casa com dúvidas.'},
+ {q:'Qual das alternativas associa corretamente a pergunta feita pelo médico ao conceito correspondente?',a:['“Por que isso aconteceu?” — tratamento','“Qual será o resultado?” — prevenção','“O que posso fazer por ele?” — diagnóstico','“Qual é o problema do paciente?” — diagnóstico'],c:3,e:'Problema = diagnóstico; o que fazer = tratamento; resultado = prognóstico; por que aconteceu = prevenção.'},
+ {q:'Por que o professor afirma que chamar o paciente pelo nome “não é detalhe”?',a:['Porque a lei exige a identificação oral antes da consulta','Porque agiliza o preenchimento do prontuário eletrônico','Porque o cuidado já começa no reconhecimento do paciente como pessoa','Porque dispensa a conferência de documento de identidade'],c:2,e:'Chamar pelo nome é respeito: o cuidado começa ali. “A medicina começa no respeito. E o respeito começa pelo nome.”'}]},
+ {t:'Habilidades de comunicação e empatia',h:`
+ <p>A comunicação envolve <b>adequação da linguagem</b>, atenção, cuidado e <b>empatia</b>. A empatia facilita a comunicação, consolida o vínculo, melhora a anamnese (o paciente explicita queixas e preocupações), leva a diagnósticos mais precisos, aumenta a <b>adesão</b> e o sucesso terapêutico — e ainda reduz processos judiciais, cuja origem central é a <b>insuficiente comunicação</b> (Provenzano et al., 2014).</p>
+ <p>Habilidades a treinar (UFOP, 2023):</p>
+ <table class="tb"><tr><th>Habilidade</th><th>Em que consiste</th></tr>
+ <tr><td><b>Comportamento atencioso</b></td><td>Contato visual · qualidade vocal (tom, volume, velocidade) · atenção ao discurso (inclusive sentimentos) · linguagem não verbal com postura aberta</td></tr>
+ <tr><td><b>Encorajamento</b></td><td>Acenos de cabeça, expressões positivas, repetição de palavras-chave</td></tr>
+ <tr><td><b>Escuta atenta</b></td><td>Ouvir sem interromper nem direcionar com perguntas fechadas; primeiro ouvir, depois escrever</td></tr>
+ <tr><td><b>Perguntas abertas e fechadas</b></td><td><mark class="f2" data-j="16">Uso equilibrado</mark>: abertas para relato amplo, fechadas para respostas objetivas</td></tr>
+ <tr><td><b>Paráfrase e sumarização</b></td><td>O paciente precisa sentir-se compreendido</td></tr>
+ <tr><td><b>Reflexão de sentimentos</b></td><td>Explicitar sentimentos escondidos: “Pareceu-me que se sente… Estou correto?”</td></tr></table>
+ <div class="box prof"><b>Peso da comunicação (Silva Jr., 2023):</b> expressão corporal 55%, tom de voz 38%, palavras ditas apenas 7%.</div>
+ <p>A <mark class="f3" data-j="10">linguagem técnica excessiva e a postura distante</mark> são barreiras, não pontes (Porto, 2016; a charge analisada em aula). A adequação cultural e linguística é parte do cuidado.</p>
+ <div class="box extra"><b>■ EXTRA:</b> Pegadinha clássica: afirmativa dizendo que perguntas <i>exclusivamente fechadas</i> “facilitam” a comunicação. É falsa — restringem o relato e prejudicam a expressão das necessidades do paciente.</div>`,
+ qs:[
+ {q:'Durante a consulta, o médico diz: “Pareceu-me que o senhor está com medo do resultado. É isso mesmo?”. Que habilidade está sendo utilizada?',a:['Perguntas fechadas','Reflexão de sentimentos','Sumarização do plano','Encorajamento por repetição'],c:1,e:'Reflexão de sentimentos torna explícitos sentimentos escondidos e confere a interpretação (“Estou correto?”).'},
+ {q:'Segundo os percentuais citados (Silva Jr., 2023), qual item tem MAIOR peso na transmissão da mensagem?',a:['Tom de voz','Palavras ditas','Expressão corporal','Escolha de termos técnicos'],c:2,e:'Expressão corporal 55%, tom de voz 38%, palavras 7%.'},
+ {q:'Qual conduta exemplifica “escuta atenta” segundo o material da aula?',a:['Ouvir a resposta sem interromper e só então registrar','Anotar durante toda a fala, para não perder nenhum dado','Dirigir a resposta com perguntas fechadas sequenciais','Completar as frases do paciente para ganhar tempo'],c:0,e:'Escuta atenta é ouvir sem interromper nem direcionar. Primeiro ouvir com atenção, depois escrever.'}]}
+ ],
+ mais:{chave:'Comunicação boa = ponte (empatia, linguagem adequada, escuta) → vínculo → anamnese mais fiel → diagnóstico preciso → adesão. Comunicação ruim = muro (jargão, distância) → prejuízo ao vínculo, ao diagnóstico e ao tratamento.',
+ tab:[['Perguntas fechadas exclusivas','Restringem a comunicação; o ideal é equilibrar abertas e fechadas'],['Linguagem técnica excessiva','Cria barreira (asserção II falsa na prova)'],['Empatia','Mais adesão, diagnóstico mais preciso, menos processos'],['Fechamento da consulta','Próximos passos claros + checar dúvidas']],
+ check:['Consulta = diagnóstico, tratamento, prognóstico, prevenção','Fechamento: confirmar plano, próximos passos, checar dúvidas','Escuta atenta: não interromper, não direcionar','Perguntas abertas + fechadas, equilibradas','Jargão e postura distante = barreiras']}},
+/* ---------- 2 ANAMNESE ---------- */
+{id:'anam',n:'2',nome:'Anamnese e relatório',curto:'Anamnese',hue:160,
+ obj:'Conceito e legislação (Res. CFM 2.056/2013) · relatório de anamnese e verbos · dados a levantar e por quê',
+ segs:[
+ {t:'O que é anamnese e por que ela decide a consulta',h:`
+ <p><b>Anamnese</b> vem de <i>ana</i> (trazer de volta, recordar) + <i>mnese</i> (memória): trazer de volta à mente os fatos relacionados à pessoa e às suas manifestações de doença. Um de seus fundamentos é uma boa <b>relação médico-paciente</b>, com vínculo, adesão, confiança e maior fidedignidade das informações (Balduino et al., 2012).</p>
+ <p>Dela <b>depende o sucesso ou o insucesso</b> da atenção médica — e uma boa anamnese só sai se o médico empregar <mark class="f3" data-j="11">habilidades de comunicação</mark>, treinadas continuamente.</p>
+ <p>O curso da anamnese tem três momentos: <mark class="f3" data-j="1,11">início</mark> (acolher, criar empatia, <b>construir vínculo</b>), <b>meio</b> (compreender o problema) e <b>fim</b> (manejar a situação). Em todo o processo, a <mark class="f2" data-j="19">história ocupacional</mark> vale ouro: “quem não sabe o que procura não entende o que acha” (Milton de Arruda Martins).</p>
+ <div class="box prof"><b>Casos do Dr. Milton:</b> (1) febre de origem indeterminada há um ano, com tomografias e exames infecciosos sem resposta — ao perguntar o que o paciente <i>fazia</i> (leiteiro, em região com brucelose), o diagnóstico fechou. (2) Emagrecimento de causa indeterminada: no exame físico, fígado nodular e massa na fossa ilíaca esquerda → tumor colorretal com metástases hepáticas. “Nenhum médico havia colocado a mão sobre o abdome.”</div>
+ <div class="box extra"><b>■ EXTRA:</b> A consulta = anamnese + exame físico + fechamento. Na prova, “criar ambiente de acolhimento e estabelecer vínculo” é a resposta para “objetivo no início da anamnese”.</div>
+ <p><b>Resolução CFM 2.056/2013</b>: a anamnese deve ser completa e detalhada, incluindo as atividades profissionais <i>efetivamente</i> desempenhadas (e não apenas o nome da profissão).</p>`,
+ qs:[
+ {q:'“Anamnese” significa, etimologicamente:',a:['Exame detalhado do corpo','Trazer de volta à memória os fatos relacionados à doença','Conclusão diagnóstica da consulta','Registro cronológico da evolução clínica'],c:1,e:'ana = trazer de volta; mnese = memória.'},
+ {q:'Paciente de 55 anos, “aposentado”, com tosse crônica e perda de peso. O médico registra apenas “aposentado”. O que falta, segundo a lição do Dr. Milton?',a:['O que o paciente efetivamente fazia — a ocupação real','Exame físico torácico já no primeiro minuto','Solicitar tomografia de tórax como rotina','Encaminhar de imediato ao oncologista'],c:0,e:'“Temos que saber o que o paciente faz de fato, e não o nome da sua profissão.”'},
+ {q:'No início da anamnese, qual é a prioridade?',a:['Ouvir a queixa sem comentar, para não criar vínculo','Acolher e construir vínculo e um ambiente seguro','Esclarecer o diagnóstico ao paciente','Prescrever o tratamento empírico'],c:1,e:'Início = acolhimento, empatia, vínculo.'}]},
+ {t:'Relatório de anamnese e dados a levantar',h:`
+ <p>No <b>relatório de anamnese</b>, a escrita é técnica, objetiva e em registro formal. A aula traz exemplos em que o paciente <i>refere</i> dor abdominal, <i>relata</i> náuseas, <i>nega</i> vômitos. Importante: <b>varie os verbos</b>.</p>
+ <table class="tb"><tr><th>Parte do relato</th><th>Verbos úteis</th></tr>
+ <tr><td>Queixas e sintomas</td><td>refere, relata, queixa-se, informa, comenta, descreve, menciona, afirma, <b>nega</b>, destaca, assegura, manifesta</td></tr>
+ <tr><td>História da doença atual</td><td>iniciou, apresentou, evoluiu, piorou, melhorou, manteve, agravou, estabilizou, cessou, controlou</td></tr>
+ <tr><td>Hábitos e antecedentes</td><td>fuma, ingere, consome, pratica, realiza, utiliza, suspendeu, interrompeu, iniciou, mantém</td></tr></table>
+ <h4>Dados a levantar e por quê (Barros, 2010)</h4>
+ <table class="tb"><tr><th>Aspecto</th><th>O que coletar</th><th>Por quê</th></tr>
+ <tr><td><b>Queixa principal</b></td><td>Motivo da procura; sintomas (quando surgiram, localização, intensidade, fatores que agravam/aliviam)</td><td>Conhecer o elemento causador do desequilíbrio</td></tr>
+ <tr><td><b>Doenças e tratamentos anteriores / alergias</b></td><td>Crônicas, internações, cirurgias, alergias</td><td>Perfil de saúde; prever complicações</td></tr>
+ <tr><td><b>Antecedentes familiares</b></td><td>Saúde e causa de morte dos familiares diretos</td><td>Herança familiar e fatores de risco</td></tr>
+ <tr><td><b>Uso de medicamentos</b></td><td>Prescritos ou não; outras substâncias para alívio</td><td>Ampliar dados de saúde e tratamento</td></tr>
+ <tr><td><b>Outros fatores de risco</b></td><td>Álcool, fumo, drogas (quantidade, frequência, idade de início, quando parou)</td><td>Associar estado atual e pregresso; prever complicações</td></tr>
+ <tr><td><b>Hábitos e costumes</b></td><td>Moradia, higiene, alimentação, sono e repouso, atividade física, sexual, lazer, eliminações</td><td>Como vive; repercussão dos hábitos na doença</td></tr></table>
+ <div class="box extra"><b>■ EXTRA:</b> Cuidado com a gramática do relato: “Paciente refere dor há (verbo haver) três dias” — não “a três dias”. E “paciente evoluiu <i>com</i>…” é muito mais frequente do que <i>evoluiu para</i> em relatórios clínicos.</div>
+ <p>A aula sugere usar uma IA <b>para criticar</b>, sem reescrever, seu relatório (clareza, sequência lógica, objetividade, lacunas, ambiguidades, erros, e nota de 0 a 10 para escrita e conteúdo). A ideia é treinar o olhar crítico, não terceirizar o texto.</p>`,
+ qs:[
+ {q:'Paciente: “durmo mal, trabalho em turnos, almoço pizza quase todo dia, não faço exercício”. Em qual aspecto da anamnese isso se encaixa?',a:['Antecedentes familiares','Queixa principal','Hábitos e costumes','Uso de medicamentos'],c:2,e:'Sono, alimentação, atividade física = hábitos e costumes.'},
+ {q:'Qual par associa corretamente o aspecto da anamnese ao porquê da coleta?',a:['Antecedentes familiares → prever interações medicamentosas','Alergias → conhecer a herança familiar de saúde','Fatores de risco (álcool/fumo) → associar estado atual e pregresso e prever complicações','Hábitos e costumes → identificar o diagnóstico definitivo'],c:2,e:'Álcool, fumo e drogas ajudam a associar estado atual e pregresso e prever complicações.'},
+ {q:'Em qual parte do relato o verbo “suspendeu” se enquadra melhor?',a:['Hábitos de vida e antecedentes','Queixa e sintomas','Hipótese diagnóstica','Conduta terapêutica'],c:0,e:'“Suspendeu, interrompeu, iniciou, mantém” são verbos de hábitos de vida/antecedentes.'}]}
+ ],
+ mais:{chave:'Anamnese = vínculo (início) → compreensão (meio) → manejo (fim). Relatório = técnico, objetivo, com verbos variados. Coleta guiada por 6 aspectos, cada um com um porquê.',
+ tab:[['Início da anamnese','Acolhimento e vínculo'],['Res. CFM 2.056/2013','Anamnese completa, incluindo atividades efetivamente desempenhadas'],['“Durmo/como/exercício”','Hábitos e costumes'],['Álcool, fumo, drogas','Outros fatores de risco (quantidade, frequência, idade de início, parada)']],
+ check:['Ana + mnese = recordar','Início = vínculo; meio = problema; fim = manejo','Res. CFM 2.056/2013: ocupação real','6 aspectos de coleta e seus porquês','Varie “refere”: relata, nega, informa…']}},
+/* ---------- 3 PRONTUÁRIO ---------- */
+{id:'pront',n:'3',nome:'Prontuário médico',curto:'Prontuário',hue:35,
+ obj:'Conceito legal · sigilo e acesso · guarda e descarte · o que registrar · falhas comuns · ortografia técnica',
+ segs:[
+ {t:'Definição, sigilo, guarda e descarte',h:`
+ <p><b>Res. CFM 1.638/2002, art. 1º</b>: prontuário é o documento <b>único</b> constituído de informações, sinais e imagens registradas sobre a saúde do paciente e a assistência prestada, de caráter <b>legal, sigiloso e científico</b>, que possibilita a comunicação entre a equipe multiprofissional e a continuidade da assistência. Deve ser padronizado, ordenado e conciso, em consultórios, hospitais e ambulatórios.</p>
+ <h4>Sigilo e acesso (Código de Ética Médica, 2018)</h4>
+ <ul><li>O médico <b>pode entregar cópia</b> para ordem judicial, para sua própria defesa, ou com <b>autorização escrita</b> do paciente.</li>
+ <li><b>Art. 87</b>: é vedado deixar de elaborar prontuário <b>legível</b> para cada paciente.</li>
+ <li><b>Art. 88</b>: é vedado negar ao paciente (ou representante legal) o acesso ao prontuário, deixar de fornecer cópia ou de dar as explicações necessárias — salvo risco ao próprio paciente ou a terceiros.</li>
+ <li>Acesso por médicos a prontuários em estudos retrospectivos exige justificativa metodológica e autorização do CEP/CONEP.</li></ul>
+ <p>A <b>guarda</b> compete à instituição e/ou ao médico, com supervisão permanente (<b>Comissões de Revisão de Prontuários</b>).</p>
+ <h4>Lei 13.787/2018 — digitalização e descarte</h4>
+ <table class="tb"><tr><th>Artigo</th><th>Regra</th></tr>
+ <tr><td>Art. 2º</td><td>Digitalizar de modo a assegurar <b>integridade, autenticidade e confidencialidade</b></td></tr>
+ <tr><td>Art. 3º</td><td><mark class="f3" data-j="8">Originais podem ser destruídos após digitalização</mark> e <b>análise obrigatória da comissão permanente de revisão de prontuários</b></td></tr>
+ <tr><td>Art. 6º</td><td>Após prazo mínimo de <mark class="f3" data-j="8">20 anos</mark> do último registro, papel e digitalizados podem ser eliminados (ou devolvidos ao paciente); resguardar intimidade e sigilo</td></tr></table>
+ <div class="box extra"><b>■ EXTRA:</b> Distratores clássicos da banca para este tema: “após autorização do paciente” (insuficiente), “automaticamente após digitalizar” (falso), “após dez anos” (errado: são 20).</div>`,
+ qs:[
+ {q:'O hospital digitalizou todos os prontuários antigos e quer descartar os de papel. O que a Lei 13.787/2018 exige antes do descarte?',a:['Apenas a autorização do paciente','Análise da comissão permanente de revisão de prontuários','Decorrer o prazo de dez anos da internação','Apenas a assinatura do diretor clínico'],c:1,e:'Digitalização não basta; análise obrigatória da comissão.'},
+ {q:'Uma paciente solicita cópia de seu prontuário. O médico recusa por “política da clínica”, sem risco algum. Segundo o CEM:',a:['A recusa é legítima, pois o prontuário pertence à instituição','A recusa é lícita se for avisado o CRM','A recusa é vedada: o paciente tem direito a acesso e explicações, salvo risco','A cópia só pode ser entregue por ordem judicial'],c:2,e:'Art. 88 veda negar acesso/cópia ao paciente, salvo risco ao paciente ou a terceiros.'},
+ {q:'Qual prazo mínimo, contado do último registro, permite a eliminação do prontuário (papel ou digitalizado)?',a:['5 anos','10 anos','15 anos','20 anos'],c:3,e:'Art. 6º da Lei 13.787/2018: 20 anos.'}]},
+ {t:'O que registrar, falhas e ortografia técnica',h:`
+ <p>O prontuário é preenchido <b>em cada avaliação</b>, em ordem cronológica, com <b>data, hora, assinatura e número do CRM</b> (inclusive nos digitais). Deve conter: identificação; histórico (anamnese, laudos e atestados cedidos); medicamentos e prescrições; exames, evolução médica e das demais equipes; transferência, alta ou óbito; consultas anteriores; hipóteses e diagnóstico(s) definitivo(s); tratamentos; observações.</p>
+ <p>Em <b>emergências</b>, quando não for possível coletar a história, deve constar relato completo dos procedimentos. “Falta de tempo” não justifica registro deficiente; pode-se registrar com mais elaboração logo após o socorro.</p>
+ <h4>Falhas comuns</h4>
+ <ul><li>Registros escassos, incompletos, incompreensíveis; lacunas na evolução; ausência de hipóteses; desordem na sequência; falta de carimbo e assinatura.</li>
+ <li><mark class="f3" data-j="23">Abreviaturas, siglas e regionalismos</mark> de uso pessoal → constrangimento ou falsa compreensão.</li>
+ <li>Erros gramaticais → ambiguidade, obscuridade, prolixidade, omissões e equívocos.</li></ul>
+ <figure><img loading=lazy decoding=async data-img="caso1" alt="Caso 1"><figcaption><b>Caso 1:</b> a criança de 2 anos tinha 10 kg no prontuário, mas pesava 14 kg na consulta; dose calculada pelo peso antigo → dose subterapêutica, infecção piorou, pneumonia grave.</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="caso2" alt="Caso 2"><figcaption><b>Caso 2:</b> residente copia e cola (Ctrl+C/Ctrl+V) a evolução anterior, escrevendo “conduta mantida” sem revisar exames. Resultado: hipotensão e insuficiência respiratória sem reavaliação; atraso nas intervenções.</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="pontos" alt="Pontos-chave"><figcaption>Pontos-chave: coerência entre exame clínico, exames complementares, hipótese e conduta · plano terapêutico claro · aspectos ético-legais · impacto em pesquisa.</figcaption></figure>
+ <h4>Acordo Ortográfico de 2009 aplicado à terminologia médica</h4>
+ <table class="tb"><tr><th>Regra</th><th>Exemplos</th></tr>
+ <tr><td>Ditongos abertos <b>ei, oi</b> em paroxítonas: <b>sem acento</b></td><td>traqueia, dispneia, ureia, proteico, amenorreia, paranoia</td></tr>
+ <tr><td>Prefixo em vogal + consoante/vogal diferente: <b>sem hífen</b></td><td>autovacina, antidiarreico, extracelular, infravermelho, supraventricular, intramuscular, semiaberto, infraumbilical, autoimune</td></tr>
+ <tr><td>Vogais idênticas ou 2º elemento com <b>h</b>: <b>com hífen</b></td><td>extra-articular, infra-axilar, intra-arterial, <b>anti-inflamatório</b>, semi-inconsciente, auto-hemoterapia, anti-helmíntico</td></tr>
+ <tr><td>Prefixo em vogal + <b>r/s</b>: sem hífen e <b>dobra</b> a consoante</td><td>extrarrenal, suprarrenal*, extrassístole, semissólido, ultrassonografia</td></tr></table>
+ <p style="font-size:.85em;color:var(--muted)">*O slide lista “suprarretal”; pela regra (supra + renal) a forma é <b>suprarrenal</b>. O que importa para a prova é a regra: vogal + r/s → sem hífen e com consoante dobrada.</p>
+ <h4>Dicas rápidas</h4>
+ <ul><li><b>Concordância</b>: “foi feita radiografia”, “realizada ecografia”; “os dados… levaram”.</li><li><b>Crase</b>: “diagnóstico <i>a</i> esclarecer”; “escreveu <i>a</i> lápis” (sem crase).</li><li><b>Haver</b>: “havia sintomas”; “sente dor <b>há</b> três dias”; “há dez anos” (não “há dez anos <i>atrás</i>” — pleonasmo).</li><li><b>Unidades</b> sem plural e sem ponto: 10ml, 5g, 100kg, 12cm, 5m. <b>Horas</b>: 10h, 10h30 (não 10:00).</li><li>Não separe sujeito e verbo por vírgula.</li></ul>
+ <div class="box extra"><b>■ EXTRA:</b> Gabarito do slide: <b>anti-inflamatório</b> (hífen: i após i), <b>dispneia</b> (sem acento), <b>autoimune</b>, <b>ultrassonografia</b>, <b>super-resistente</b> (hífen) e <b>intramuscular</b> (sem hífen).</div>`,
+ qs:[
+ {q:'Qual frase do relato está ortograficamente correta segundo o Acordo de 2009 apresentado?',a:['Paciente com antiinflamatório e dispnéia noturna','Paciente com doença autoimune; solicitada ultrassonografia abdominal','Paciente superresistente à medicação intra-muscular','Paciente com infraumbílical e extra-renal'],c:1,e:'autoimune (sem hífen) e ultrassonografia (ss dobrado) estão corretos.'},
+ {q:'No prontuário de um paciente grave, o residente copiou e colou a evolução do dia anterior com “conduta mantida”. A principal falha é:',a:['Uso de linguagem técnica excessiva','Ausência de assinatura digital','Falta de reavaliação clínica e de revisão dos exames','Excesso de informações no relato'],c:2,e:'Registro sem reavaliação atrasa intervenções e põe o paciente em risco.'},
+ {q:'Qual formatação de horário e unidade está adequada ao padrão da aula?',a:['10:30 e 5 gramas','10h30 e 5g','10 h 30 e 5 g.','10h:30min e 5gr'],c:1,e:'Escreva 10h30 e 5g (unidades abreviadas, sem plural, sem ponto).'}]}
+ ],
+ mais:{chave:'Prontuário = documento único, legal, sigiloso e científico → garante continuidade do cuidado, segurança do paciente e defesa legal. “Fazer bem feito não basta, é preciso registrar.”',
+ tab:[['Descarte do prontuário','Comissão permanente + 20 anos do último registro; autorização do paciente não basta'],['Abreviaturas e regionalismos','Inadequados — “muxoxo”, “lombo”, “med IM”, “sob obs.”'],['Acesso do paciente','Art. 88: vedado negar; salvo risco'],['Registro de exames','Obrigatório para continuidade e decisão clínica']],
+ check:['Res. CFM 1.638/2002 (definição)','CEM arts. 87 e 88','Lei 13.787/2018: comissão + 20 anos','Data, hora, assinatura e CRM em cada registro','anti-inflamatório · autoimune · ultrassonografia · intramuscular']}},
+/* ---------- 4 ATESTADO ---------- */
+{id:'atest',n:'4',nome:'Atestado médico',curto:'Atestado',hue:5,
+ obj:'Conceito · Res. CFM 2.381/2024 · CID e sigilo · responsabilidades · declaração de comparecimento · estrutura',
+ segs:[
+ {t:'Legislação, CID e responsabilidade',h:`
+ <p><b>Atestado médico</b> é a afirmação simples, por escrito, de fato médico e suas consequências; é parte integrante da consulta e <b>direito subjetivo</b> do paciente. O médico <b>não pode se negar</b> a emiti-lo quando solicitado (CEM).</p>
+ <figure><img loading=lazy decoding=async data-img="atinfo" alt="info principais"><figcaption>Atestado de afastamento: <b>tempo de afastamento</b>, <b>diagnóstico</b> (só com autorização por escrito do paciente) e <b>identificação do médico</b> (nome, assinatura e CRM). Registrar de maneira <b>legível</b>.</figcaption></figure>
+ <h4>CID no atestado — sigilo</h4>
+ <p>CID (Classificação Internacional de Doenças, mantida pela OMS) pode constar apenas se: (1) <b>justa causa</b>; (2) <b>dever legal</b> (ex.: doenças de notificação compulsória); ou (3) <b>solicitação do paciente ou representante legal</b>. Nesse caso (§4º), a concordância deve estar <b>expressa no atestado</b> e <b>registrada na ficha clínica/prontuário</b>. Sem isso, o sigilo é “direito incontestável” do paciente.</p>
+ <div class="box extra"><b>■ EXTRA:</b> Exemplos de CID do slide: A09 (infecções intestinais), C34 (neoplasia de brônquios/pulmões), D50 (anemia ferropriva), A90 (dengue clássico), A91 (febre hemorrágica da dengue), N11.1, N20.0 (calculose do rim), Z01.0 (exame dos olhos). Memorize a lógica, não a lista.</div>
+ <h4>Após emitir: registre no prontuário</h4>
+ <p>Dados dos exames e tratamentos realizados, de modo a atender peritos de empresas, da Previdência e da Justiça.</p>
+ <h4>Empresa, homologação e perícia</h4>
+ <ul><li>A empresa <b>não pode recusar</b> atestado verídico (presunção de veracidade), salvo divergência de médico da instituição ou perito.</li>
+ <li>Indício de falsidade: o médico perito <b>é obrigado a representar ao CRM</b>.</li>
+ <li><b>Homologação</b> = perícia por médico do trabalho; pode confirmar, estender ou diminuir os dias.</li></ul>
+ <h4>Responsabilidade do médico</h4>
+ <p>CEM: é vedado expedir documento sem ato profissional que o justifique, tendencioso ou que não corresponda à verdade, e atestar para obter vantagens. <mark class="f3" data-j="4">Atestado falso é infração ética grave</mark>. A <b>Lei 3.268/1957, art. 22</b> prevê: a) advertência confidencial; b) censura confidencial; c) censura pública; d) suspensão até 30 dias; e) cassação do exercício profissional.</p>`,
+ qs:[
+ {q:'Paciente pede atestado de 3 dias de afastamento e quer que conste o diagnóstico (CID A90). O que o médico deve fazer?',a:['Recusar, pois o CID nunca pode constar no atestado','Incluir o CID e registrar a concordância do paciente no atestado e no prontuário','Incluir o CID sem registrar nada, por ser direito do paciente','Incluir o CID mediante autorização verbal da empresa'],c:1,e:'§4º: a concordância deve estar expressa no atestado e registrada em ficha clínica/prontuário.'},
+ {q:'Qual sanção NÃO está prevista no art. 22 da Lei 3.268/1957 para o médico?',a:['Censura pública em publicação oficial','Suspensão do exercício até 30 dias','Prisão administrativa imediata','Cassação do exercício profissional'],c:2,e:'O art. 22 lista advertência e censura confidenciais, censura pública, suspensão até 30 dias e cassação ad referendum do CFM.'},
+ {q:'Um médico do trabalho suspeita que um atestado é falso. O que se espera dele, segundo a aula?',a:['Rasgar o atestado e demitir o funcionário','Representar ao CRM de sua jurisdição','Aguardar denúncia da empresa','Emitir novo atestado em nome próprio'],c:1,e:'Em indício de falsidade, o médico em função pericial é obrigado a representar ao CRM.'}]},
+ {t:'Estrutura, declaração de comparecimento e elaboração',h:`
+ <p>O atestado é <b>redação técnica</b>: linguagem formal, informação objetiva e concisa. Estrutura:</p>
+ <ol><li>Papel timbrado;</li><li>Título <b>ATESTADO</b>;</li><li>Identificação de quem solicitou (nome e identidade);</li><li><b>Descrição da prova</b> — o que a pessoa precisa provar;</li><li>Local e data;</li><li>Assinatura do emitente + <b>CRM</b>.</li></ol>
+ <figure><img loading=lazy decoding=async data-img="atmod" alt="modelo"><figcaption>Modelo da aula: “Atesto, para devidos fins, que José Paciente da Silva, portador do CPF…, compareceu para consulta nesta data… CID A90. Em decorrência, deverá permanecer afastado por 3 dias…” — com autorização expressa do paciente para o CID ao final.</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="m_atest" alt="atestado real"><figcaption>Atestado real da aula: CID A90 presente, <b>“a referência do CID teve o pedido e consentimento do paciente”</b>, “De acordo” com assinatura do paciente, médico com CRM e data/hora de emissão.</figcaption></figure>
+ <h4>Declaração de comparecimento × atestado</h4>
+ <table class="tb"><tr><th></th><th>Atestado médico</th><th>Declaração de comparecimento</th></tr>
+ <tr><td>Informação clínica</td><td>Certifica a <b>condição médica</b> e justifica a ausência</td><td><b>Não detalha</b> condição; só confirma presença</td></tr>
+ <tr><td>Uso típico</td><td>Afastamento, benefícios, liberação para atividades</td><td>Justificar ausência por consulta/exame</td></tr></table>
+ <p>Contextos de emissão: justificativa de ausência · liberação para atividades · benefícios e direitos · viagens e eventos.</p>
+ <div class="box prof"><b>Caso em aula (Pedro, 20 anos, miopia):</b> usou dilatador de pupila; digitador; não conseguirá trabalhar. Atestado: identificação + data/horário + afastamento do dia por efeito do dilatador + local/data + assinatura/CRM. O diagnóstico (CID Z01.0 só com autorização).</div>`,
+ qs:[
+ {q:'Paciente só precisa justificar à faculdade que esteve em exame de imagem pela manhã. Qual documento é mais adequado?',a:['Declaração de comparecimento','Atestado de afastamento com CID','Laudo do exame','Sumário de alta'],c:0,e:'Declaração de comparecimento só confirma presença, sem expor condição médica.'},
+ {q:'Qual item NÃO faz parte da estrutura básica do atestado?',a:['Assinatura e CRM do emitente','Local e data','Descrição da prova','Plano terapêutico detalhado'],c:3,e:'Atestado é conciso. Plano terapêutico detalhado não faz parte dele.'},
+ {q:'Qual afirmação sobre homologação está correta?',a:['É perícia por médico do trabalho que pode confirmar, estender ou reduzir os dias','É a autorização do paciente para uso do CID','É a recusa legítima do atestado pela empresa','É o registro do atestado em cartório'],c:0,e:'Homologação = perícia por médico do trabalho.'}]}
+ ],
+ mais:{chave:'Atestado = fato médico + consequência. Sigilo é a regra; CID só com justa causa, dever legal ou pedido do paciente (registrado). Identificação do paciente + data são obrigatórias; endereço não.',
+ tab:[['CID','Só com autorização expressa (ou justa causa/dever legal)'],['Endereço residencial','Não obrigatório — ausência não invalida'],['Atestado falso','Infração ética grave; Lei 3.268/57'],['Declaração de comparecimento','Sem condição clínica'],['Empresa recusar','Não pode (presunção de veracidade)']],
+ check:['Res. CFM 2.381/2024','Tempo + diagnóstico (autorizado) + médico/CRM, legível','Nome, doc e data = obrigatórios','Lei 3.268/57: 5 penas','Declaração ≠ atestado']}},
+/* ---------- 5 LAUDO ---------- */
+{id:'laudo',n:'5',nome:'Laudo médico',curto:'Laudo',hue:265,
+ obj:'Características do laudo · Res. CFM 2.235/2019 · elementos obrigatórios · linguagem · laudo psiquiátrico',
+ segs:[
+ {t:'Conceito, resolução e elementos do laudo',h:`
+ <p><b>Laudo médico</b> é o documento assinado por especialista em que ele <b>descreve os elementos encontrados em um exame</b>, sinalizando normalidade ou alterações. É o meio formal do parecer profissional — e uma das principais atividades de clínicas e hospitais. Dele saem <b>hipóteses diagnósticas</b> que embasam o tratamento; também serve em contextos judiciais, benefícios previdenciários e editais.</p>
+ <p>Deve buscar <b>conteúdo probatório e imparcial</b> (Almeida, 2011).</p>
+ <h4>Resolução CFM 2.235/2019</h4>
+ <ul><li>Exames de patologia clínica, patologia, radiologia/imagem, medicina nuclear, eletrofisiologia, genética, hematologia/hemoterapia e citopatologia, devem ser realizados sob responsabilidade de <b>médico registrado no CRM</b> de jurisdição.</li>
+ <li>Art. 2º: resultados em forma de <b>pareceres ou laudos</b> emitidos por médicos, com registro no CRM; descritos de forma <b>minuciosa</b>.</li>
+ <li>Art. 4º: laudos devem conter, quando indicado, a <b>descrição da técnica</b>.</li></ul>
+ <h4>O que deve ter</h4>
+ <p>Identificação do paciente · motivo da solicitação · médico solicitante · técnica utilizada · descrições detalhadas · possível diagnóstico e conclusões · data do exame · assinatura e registro médico · dados da instituição emitente.</p>
+ <figure><img loading=lazy decoding=async data-img="m_laudo" alt="laudo"><figcaption><b>Laudo real (TC de tórax):</b> note <b>indicação</b> (PNM? derrame pleural?), <b>técnica</b> (cortes axiais de 1,0 mm, sem contraste), <b>achados</b> (descrição minuciosa), <b>conclusão</b> em tópicos e <b>assinatura com CRM</b>.</figcaption></figure>
+ <div class="box extra"><b>■ EXTRA:</b> Ordem típica de um laudo de imagem: identificação → indicação → técnica → achados → conclusão → assinatura. A linguagem é <b>técnica</b>; na conclusão pode-se acrescentar termos não técnicos ao parecer.</div>`,
+ qs:[
+ {q:'Qual elemento caracteriza o laudo e o distingue de um atestado médico?',a:['Descrição técnica dos achados de um exame e conclusões','Justificativa de ausência no trabalho','Lista dos medicamentos de uso contínuo','Comprovação de comparecimento a consulta'],c:0,e:'O laudo descreve achados de exames e conclusões; o atestado comprova estado/ausência.'},
+ {q:'Qual item foi destacado como necessário, “quando indicado”, no art. 4º da Res. 2.235/2019?',a:['Nome do plano de saúde','Descrição da técnica utilizada','Endereço residencial do paciente','Histórico familiar completo'],c:1,e:'Art. 4º: descrição da técnica utilizada, quando indicado.'},
+ {q:'Em um laudo, onde pode constar linguagem não técnica?',a:['Em toda a descrição dos achados','No cabeçalho de identificação','Na conclusão, junto ao parecer médico','Nunca; o laudo é exclusivamente técnico'],c:2,e:'Os achados são técnicos; na conclusão, termos não técnicos podem ser adicionados ao parecer.'}]},
+ {t:'Laudo psiquiátrico e comunicação do laudo',h:`
+ <p>O <b>laudo psiquiátrico</b> é um relatório técnico com: <b>diagnósticos</b>; <b>avaliação do estado mental</b> (humor, cognição, risco de suicídio); <b>recomendações terapêuticas</b> (medicação, terapia, internação); e <b>aptidões legais</b> (capacidade laborativa, por exemplo).</p>
+ <p>O laudo é ferramenta vital de comunicação entre médicos, enfermeiros e demais profissionais. Mas <mark class="f2" data-j="25">explicar os achados ao paciente</mark> também é dever: assegura compreensão, decisões informadas, vínculo e respeita autonomia e direito à informação.</p>
+ <div class="box extra"><b>■ EXTRA:</b> Pegadinha: “laudo = controle interno / resumo de consultas / autorização de exames” são distratores. O laudo descreve resultados de exames, achados e conclusões.</div>`,
+ qs:[
+ {q:'Qual item NÃO é típico de um laudo psiquiátrico segundo a aula?',a:['Avaliação do estado mental','Aptidões legais, como capacidade laborativa','Recomendações terapêuticas','Descrição da técnica de ressonância utilizada'],c:3,e:'Técnica de imagem não é elemento do laudo psiquiátrico.'},
+ {q:'Por que explicar o laudo ao paciente é conduta recomendada?',a:['Para substituir a consulta de retorno','Para respeitar autonomia e fortalecer o vínculo e a decisão informada','Para evitar o registro em prontuário','Para dispensar o médico solicitante'],c:1,e:'Autonomia, direito à informação, vínculo e participação informada.'},
+ {q:'Quem pode assinar o laudo de um exame de radiologia?',a:['Qualquer profissional da clínica','O técnico que operou o equipamento','Médico registrado no CRM da jurisdição','O paciente, ao retirar o resultado'],c:2,e:'Resultados em forma de laudos emitidos por médicos, com registro no CRM da jurisdição.'}]}
+ ],
+ mais:{chave:'Laudo = descrição técnica de achados de exame + conclusão assinada por médico com CRM → base para hipótese diagnóstica, tratamento, perícia e comunicação entre profissionais.',
+ tab:[['Conceito','Descreve resultados de exames, achados e conclusões'],['Res. 2.235/2019','Laudo por médico no CRM; técnica quando indicado'],['Linguagem','Técnica; conclusão pode ter termos não técnicos'],['Explicar ao paciente','Autonomia e direito à informação']],
+ check:['Laudo ≠ atestado ≠ receita','9 elementos do laudo','Indicação → técnica → achados → conclusão → CRM','Laudo psiquiátrico: 4 blocos','Explicar o laudo ao paciente']}},
+/* ---------- 6 PRESCRIÇÃO ---------- */
+{id:'presc',n:'6',nome:'Prescrição médica',curto:'Prescrição',hue:20,
+ obj:'Gênero prescrição · partes · tipos de receituário · erros · legislação · adesão, letramento em saúde e etapas da OMS',
+ segs:[
+ {t:'Partes da prescrição, tipos e erros',h:`
+ <p>A prescrição <b>completa o ato médico</b>: é a decisão terapêutica após anamnese, exame clínico e reflexão. Seguir os princípios da relação médico-paciente transfere <b>segurança</b> e, logo, <b>aderência</b>.</p>
+ <h4>Partes (Madruga, CRM-PB/CFM, 2011)</h4>
+ <table class="tb"><tr><th>Parte</th><th>Conteúdo</th></tr>
+ <tr><td><b>Cabeçalho</b></td><td>Dados da clínica/ambiente hospitalar e do médico; <b>uso obrigatório</b> (digital ou impresso)</td></tr>
+ <tr><td><b>Superinscrição</b></td><td>Dados do paciente (+ modo de uso: “uso interno”, “uso externo”, “uso oral”)</td></tr>
+ <tr><td><b>Inscrição</b></td><td>Nome do fármaco, <b>forma farmacêutica e concentração</b></td></tr>
+ <tr><td><b>Subscrição</b></td><td>Quantidade total a ser fornecida (controlados: algarismos arábicos <b>e por extenso, entre parênteses</b>)</td></tr>
+ <tr><td><b>Adscrição</b></td><td>Orientações do profissional ao paciente</td></tr>
+ <tr><td>Fecho</td><td>Local, data, nome, <b>assinatura e CRM</b></td></tr></table>
+ <p><b>Curiosidade do slide:</b> o símbolo <b>®</b> (marca registrada, na caixa do Neosaldina®) indica o <b>nome comercial</b> do produto, e <b>não o princípio ativo</b>.</p>
+ <figure><img loading=lazy decoding=async data-img="m_presc" alt="receita real"><figcaption>Receituário externo real: observe via oral/nasal/ocular, forma e concentração, tempo de uso (“12 meses”, “90 dias”, “30 dias”) e adscrições longas. Treine o olhar: quantidade, abreviações, rasuras e informações extras.</figcaption></figure>
+ <h4>Tipos de receituário</h4>
+ <table class="tb"><tr><th>Tipo</th><th>Uso</th></tr>
+ <tr><td><b>Simples</b></td><td>Medicamentos anódinos (paliativos) e de tarja vermelha sem retenção de via</td></tr>
+ <tr><td><b>Controle especial</b></td><td>Retenção de uma via; substâncias de controle especial, retinoicas tópicas, imunossupressoras, antirretrovirais, antidepressivos…</td></tr>
+ <tr><td><b>Receita amarela (A)</b></td><td>Papel especial numerado; entorpecentes (morfina, fentanila, metadona) e psicotrópicos controlados; adquirido com autorização da vigilância sanitária; validade <b>30 dias</b> (pode variar por estado)</td></tr>
+ <tr><td><b>Receita azul (B)</b></td><td>Monitorar psicotrópicos, garantindo prescrição e uso corretos</td></tr></table>
+ <h4>Principais erros</h4>
+ <p>Letra ilegível · ausência de CRM · rasuras · ausência de validade quando necessário · <mark class="f3" data-j="24">omissão de dose ou de quantidade</mark> · horário errado · erros de escrita · códigos/abreviaturas que dificultam o entendimento.</p>
+ <h4>Legislação</h4>
+ <ul><li><b>CEM art. 11</b>: vedado receitar, atestar ou emitir laudos de forma secreta ou ilegível, sem CRM, ou assinar em branco.</li><li><b>Lei 5.991/73, art. 43</b>: receituário de controle especial não pode ter rasuras, emendas ou irregularidades.</li></ul>
+ <h4>Substituição de medicamentos</h4>
+ <p>O médico pode prescrever de referência ou autorizar genérico. Se for insubstituível, deve acrescentar “<mark class="f3" data-j="17">Não autorizo a substituição</mark>” (não há texto legal obrigatório). <b>Se nada disser, está autorizando a troca.</b> O médico <b>não é obrigado</b> a prescrever genérico.</p>
+ <div class="box extra"><b>■ EXTRA:</b> Ao prescrever, tenha claro se está escrevendo o <b>nome comercial</b> (marca®) ou o <b>princípio ativo</b> — isso se liga à autorização (ou não) de substituição por genérico.</div>`,
+ qs:[
+ {q:'Uma prescrição traz “Amoxicilina 500mg, tomar 1 cp de 8 em 8 h por 7 dias”, mas não indica quantidade total. Qual parte está incompleta?',a:['Cabeçalho','Superinscrição','Subscrição','Fecho'],c:2,e:'Subscrição = quantidade total a ser fornecida.'},
+ {q:'O médico quer que o medicamento de referência NÃO seja trocado por genérico. Para evitar a substituição, deve:',a:['Nada fazer; a troca exige receita azul','Acrescentar à receita, por exemplo, “Não autorizo a substituição”','Prescrever apenas pelo princípio ativo','Pedir que o paciente avise a farmácia'],c:1,e:'Sem manifestação, a substituição é tacitamente autorizada.'},
+ {q:'Qual tipo de receituário é de papel especial numerado, com validade de 30 dias e destinado a entorpecentes como morfina, fentanila e metadona?',a:['Receita simples','Receita de controle especial branca','Receita azul (B)','Receita amarela (A)'],c:3,e:'Receita amarela (A).'}]},
+ {t:'Adesão, letramento e etapas da OMS',h:`
+ <p>Uma boa prescrição não é só “sem erros”: exige <b>olhar holístico</b>. Proporcionam adesão: <b>transparência</b>, <b>compreensão da receita</b> e <b>conhecimento da prescrição</b>. O médico esclarece dúvidas, fica disponível para efeitos adversos e considera <mark class="f3" data-j="13">condições sociais e cognitivas</mark> do paciente (ex.: analfabetismo → adesivos coloridos por horário).</p>
+ <p>Segundo o professor Porto (2025): “diagnosticar é entender o corpo; cuidar é entender a alma; o paciente vem buscar alguém que o escute”.</p>
+ <h4>Seis etapas da terapêutica efetiva (OMS — Guia da Boa Prescrição)</h4>
+ <ol><li>Definição do problema</li><li>Especificação dos objetivos terapêuticos</li><li>Seleção do tratamento mais eficaz e seguro para o paciente específico</li><li>Prescrição</li><li><mark class="f3" data-j="12">Informação sobre a terapêutica ao paciente</mark></li><li>Monitoramento do tratamento</li></ol>
+ <h4>Letramento em saúde — o que a prova repete</h4>
+ <ul><li>Baixo letramento → dificuldade de compreensão → pior saúde individual/coletiva, mortalidade, custos (<mark class="f3" data-j="9">just. 9</mark>).</li><li>Materiais: <mark class="f3" data-j="14">linguagem simples e exemplos cotidianos, cartazes e vídeos</mark> (just. 14).</li><li>Estratégias: <mark class="f3" data-j="18">linguagem simples, autocuidado, recursos visuais, confirmar compreensão</mark> (just. 18).</li><li><mark class="f3" data-j="29">Reforçar a prescrição oralmente</mark> com linguagem simples e recursos visuais (just. 29).</li></ul>
+ <p><b>Caso da aula:</b> Maria, 16 anos, cistite bacteriana (E. coli), ardor miccional, urgência, ingestão &lt; 800 ml/dia. Treine: cabeçalho, superinscrição, inscrição (antibiótico + concentração), subscrição, adscrição (como tomar, hidratação, retorno), local, data, assinatura e CRM.</p>
+ <div class="box extra"><b>■ EXTRA:</b> Esse bloco é o <b>campeão de repetição</b> na Somativa 81: seis justificativas diferentes giram em torno de letramento/linguagem simples/adesão.</div>`,
+ qs:[
+ {q:'Paciente analfabeto funcional recebe esquema de quatro remédios. Qual medida melhor favorece a adesão?',a:['Entregar receita em letra de forma e sem abreviações','Adaptar com símbolos/cores por horário e confirmar a compreensão','Orientar apenas o filho do paciente','Reduzir a posologia por conta própria'],c:1,e:'Adaptar a receita às condições cognitivas e confirmar a compreensão.'},
+ {q:'O médico escolheu o antibiótico correto para a cistite, mas não explicou o uso nem a duração. Qual etapa da OMS foi omitida?',a:['Informação ao paciente','Definição do problema','Especificação dos objetivos','Monitoramento'],c:0,e:'Etapa 5: informação sobre a terapêutica.'},
+ {q:'Qual não é fator que “proporciona adesão” segundo a aula?',a:['Transparência da informação','Compreensão da receita','Conhecimento da prescrição','Uso de termos técnicos sem explicação'],c:3,e:'Termos técnicos não explicados reduzem a compreensão.'}]}
+ ],
+ mais:{chave:'Prescrição = decisão terapêutica documentada. Para funcionar precisa estar completa (inscrição, subscrição, adscrição, CRM) e ser compreendida (letramento) → adesão → sucesso terapêutico.',
+ tab:[['Subscrição ausente','Falta quantidade: dificulta controle e dispensação'],['Adscrição incompleta','Compromete a compreensão'],['“Não autorizo a substituição”','Sem isso, a troca é autorizada tacitamente'],['Etapa OMS esquecida','Informação ao paciente'],['Letramento','Linguagem simples, recursos visuais, confirmar compreensão']],
+ check:['Cabeçalho·superinscrição·inscrição·subscrição·adscrição','Receita A (amarela) 30 dias; B (azul)','CEM art. 11 · Lei 5.991/73 art. 43','Substituição tácita','6 etapas da OMS']}},
+/* ---------- 7 SUMÁRIO ---------- */
+{id:'sum',n:'7',nome:'Sumário de alta',curto:'Sumário de alta',hue:190,
+ obj:'Características do sumário de alta · dados do documento · importância do preenchimento · Portaria 701/2022 e CEM',
+ segs:[
+ {t:'Finalidade, responsáveis e elementos-chave',h:`
+ <p>O <b>sumário de alta</b> é uma narrativa clínica do prontuário: relatório resumido, que <b>deve</b> integrar o prontuário, elaborado pelo médico <b>no término da internação</b>. Deve ser <b>conciso, preciso e adequado</b> à comunicação entre profissionais, paciente e responsáveis. Pode reduzir <b>reinternações evitáveis</b>.</p>
+ <p><b>Finalidade principal:</b> <mark class="f3" data-j="5">transição do cuidado</mark> após a internação, com continuidade da assistência e segurança do paciente (ABNT, 2014). Destina-se ao profissional que dará seguimento.</p>
+ <table class="tb"><tr><th>Norma</th><th>Conteúdo</th></tr>
+ <tr><td><b>CEM, cap. X, art. 87 §3º</b></td><td><mark class="f3" data-j="30">Cabe ao médico assistente ou seu substituto elaborar e entregar</mark> o sumário ao paciente ou representante legal. Responsáveis, em ordem hierárquica: chefe da equipe médica → direção clínica → direção técnica</td></tr>
+ <tr><td><b>Portaria 701/2022</b></td><td>Institui o Modelo de Informação Sumário de Alta (SA): <b>adoção obrigatória</b> em todo o sistema de saúde (público, suplementar e privado)</td></tr></table>
+ <p>O modelo busca garantir continuidade do cuidado, apoiar profissionais, informar o paciente como protagonista e qualificar a tomada de decisão.</p>
+ <h4>Elementos-chave</h4>
+ <p>Identificação do ambiente de saúde, título e data da alta · identificação do paciente · <b>caráter da internação</b> · diagnóstico · procedimentos · evolução e medicações · plano pós-alta · informações da alta (motivo) · seguimento de atendimento · <b>assinatura e CRM</b> do responsável. (Conforme a prova: <mark class="f3" data-j="26">identificação, resumo da internação, diagnóstico(s), plano terapêutico e orientações pós-alta</mark>.)</p>
+ <figure><img loading=lazy decoding=async data-img="m_sum1" alt="sumário"><figcaption>Sumário real (cálculo renal): cabeçalho institucional, <b>data da alta</b>, <b>identificação</b>, prestador assistente, <b>caráter de internação</b>, convênio, <b>diagnóstico principal/inicial/de alta (N202)</b>, tratamento, <b>evolução</b> (ureterolitotripsia + duplo J), <b>conduta de alta</b> e orientações (repouso, hidratação, retorno com data).</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="m_sum2" alt="sumário p2"><figcaption>Página 2: continuação e assinatura.</figcaption></figure>
+ <h4>Principais inadequações</h4>
+ <ul><li>Dados insuficientes ou imprecisos para comunicação com a atenção primária;</li><li>Falta de resultados de exames e de medicamentos indicados na alta;</li><li>Legibilidade ruim e falta de assinatura com CRM;</li><li>Falta de aconselhamento no momento da alta.</li></ul>`,
+ qs:[
+ {q:'Quem tem responsabilidade primária por elaborar e entregar o sumário de alta?',a:['Direção administrativa do hospital','Médico assistente ou seu substituto','Enfermeiro-chefe do setor','O próprio paciente, ao solicitar a alta'],c:1,e:'CEM, art. 87 §3º.'},
+ {q:'Em qual situação a Portaria 701/2022 se aplica?',a:['Apenas ao SUS','Apenas a hospitais privados','Apenas a hospitais universitários','Ao sistema de saúde em geral: público, suplementar e privado'],c:3,e:'O modelo SA é de adoção obrigatória no país, em todas as esferas.'},
+ {q:'Qual dado NÃO é elemento-chave do sumário de alta?',a:['Caráter da internação','Plano pós-alta','Plano de carreira do médico assistente','Assinatura e CRM do responsável'],c:2,e:'Plano de carreira não tem relação com o documento.'}]}
+ ],
+ mais:{chave:'Internação termina → médico assistente produz sumário → profissional que recebe o paciente continua o cuidado com segurança → menos reinternações evitáveis.',
+ tab:[['Finalidade','Transição/continuidade do cuidado'],['Quem elabora','Médico assistente (ou substituto)'],['Portaria 701/2022','Modelo SA obrigatório'],['Conteúdo obrigatório','Identificação, resumo, diagnóstico(s), plano, orientações'],['Não confundir','Atestado (afastamento), anamnese (início), atestado de óbito (pós-morte)']],
+ check:['Finalidade: transição do cuidado','CEM art. 87 §3º','Portaria 701/2022','Elementos-chave','Inadequações: dados insuficientes, sem CRM, sem aconselhamento']}},
+/* ---------- 8 ÓBITO ---------- */
+{id:'obito',n:'8',nome:'Atestado de óbito',curto:'Atestado de óbito',hue:350,
+ obj:'Atestado × certidão · contexto de produção · 59 variáveis em 9 blocos · importância do preenchimento · preencher o Bloco V',
+ segs:[
+ {t:'Atestado × certidão, formulário e fluxo das vias',h:`
+ <p><b>Atestado (declaração) de óbito:</b> emitido por <b>médico</b>; declara o fim da vida e as causas da morte; formulário com <b>59 campos</b>. <b>Certidão:</b> só obtida com o atestado, emitida pelo <b>cartório de registro civil</b>; necessária para a burocracia (contas bancárias, inventário, vínculo empregatício) e <b>sem ela não se realiza o sepultamento</b>. <mark class="f3" data-j="20">O atestado é médico; a certidão é civil.</mark></p>
+ <p>O preenchimento é <b>ato médico</b>: o médico tem responsabilidade <b>ética e jurídica</b>. Documento padronizado pelo <b>SIM</b> (Sistema de Informação sobre Mortalidade), de uso <b>obrigatório</b> no território nacional, impresso com <b>numeração única</b>, em <b>três vias</b> autocopiativas: <b>branca, amarela e rosa</b>.</p>
+ <h4>Como preencher</h4>
+ <ul><li>Letra de forma, caneta esferográfica <b>azul ou preta</b> (preferência azul).</li><li><b>Sem emendas ou rasuras</b>; se ocorrerem, corrigir de forma legível à margem e <b>assinar próximo à ressalva</b> — <b>somente o médico atestante</b> (nunca outro médico ou profissional).</li><li>Evitar campos em branco: <b>“Ignorado”</b> quando não se conhece; <b>traço (–)</b> quando não se aplica ou é impossível obter.</li></ul>
+ <h4>Fluxo das vias</h4>
+ <figure><img loading=lazy decoding=async data-img="fluxo1" alt="fluxo 1"><figcaption><b>Ocorrência em estabelecimento de saúde:</b> 1ª branca → arquivada no estabelecimento até ser recolhida pela Secretaria de Saúde · 2ª amarela → familiar, para obter a certidão no cartório · 3ª rosa → arquivada no prontuário. (Fetal: DO obrigatória com gestação ≥ 20 semanas, peso ≥ 500 g e/ou estatura ≥ 25 cm.)</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="fluxo2" alt="fluxo 2"><figcaption><b>Ocorrência fora do estabelecimento, com assistência médica:</b> branca e rosa vão à Secretaria de Saúde; amarela vai ao familiar para o cartório.</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="fluxo3" alt="fluxo 3"><figcaption><b>Causa externa em localidade com IML:</b> branca → IML até ser recolhida pela Secretaria · amarela → familiar/cartório · rosa → arquivada no laudo de necropsia.</figcaption></figure>
+ <div class="box extra"><b>■ EXTRA:</b> Nos três fluxos a <b>via amarela sempre vai ao familiar</b>, para a certidão de óbito no cartório. É o ponto fixo — memorize-o e deduza o resto.</div>`,
+ qs:[
+ {q:'Qual das alternativas sobre as vias da declaração de óbito está correta?',a:['São quatro vias: branca, amarela, azul e rosa','São três vias: branca, amarela e rosa','São duas vias: branca e amarela','São três vias: branca, azul e rosa'],c:1,e:'Três vias autocopiativas: branca, amarela e rosa.'},
+ {q:'O médico errou um dado e o corrigiu à margem. Quem pode assinar a ressalva?',a:['Apenas o médico atestante','Qualquer médico do plantão','O diretor técnico','O oficial do cartório'],c:0,e:'A ressalva é assinada somente pelo médico atestante.'},
+ {q:'Qual a via da DO usada pela família para obter a certidão de óbito?',a:['Branca','Amarela','Rosa','Todas as três'],c:1,e:'A amarela vai ao representante/familiar e é usada junto ao cartório.'}]},
+ {t:'Os 9 blocos e o Bloco V (causas da morte)',h:`
+ <p>Versão atual (<b>2014</b>): <b>59 variáveis em 9 blocos</b>.</p>
+ <table class="tb"><tr><th>Bloco</th><th>Conteúdo</th><th>Observação</th></tr>
+ <tr><td><b>I</b> Identificação</td><td>Falecido</td><td>14 variáveis; usar documento com foto</td></tr>
+ <tr><td><b>II</b> Residência</td><td>Dados da residência</td><td>5 variáveis</td></tr>
+ <tr><td><b>III</b> Ocorrência</td><td>Local do óbito</td><td>7 variáveis</td></tr>
+ <tr><td><b>IV</b> Fetal ou &lt; 1 ano</td><td>Só nesses casos</td><td>Senão, ir ao bloco V</td></tr>
+ <tr><td><b>V</b> Condições e causas</td><td>Causas que provocaram o óbito</td><td>4 variáveis · <b>foco da aula</b></td></tr>
+ <tr><td><b>VI</b> Médico</td><td>Quem preenche e assina</td><td>7 variáveis</td></tr>
+ <tr><td><b>VII</b> Causas externas</td><td>Prováveis circunstâncias de morte não natural</td><td>5 variáveis; fins epidemiológicos; complementa o V</td></tr>
+ <tr><td><b>VIII</b> Cartório</td><td>Dados do cartório e registro</td><td>5 variáveis; só o oficial do registro civil</td></tr>
+ <tr><td><b>IX</b> Localidade sem médico</td><td>Duas testemunhas</td><td>Preenchido pelo cartório</td></tr></table>
+ <p><b>Natural</b> (causa básica é doença/estado mórbido) → médico assistente preenche. <b>Externa</b> (lesão por violência: homicídio, suicídio, acidente ou morte suspeita, <i>qualquer que seja o tempo decorrido</i>) → <b>médico legista</b>.</p>
+ <h4>Bloco V na prática</h4>
+ <p>Parte I: linha <b>a</b> = causa <b>direta</b> (a que levou imediatamente à morte); linhas <b>b, c, d</b> = causas antecedentes (“devido a”); a <b>última linha preenchida da Parte I é a causa básica</b> — a que iniciou a cadeia. Parte II: condições que contribuíram, mas não entraram na cadeia.</p>
+ <figure><img loading=lazy decoding=async data-img="bv1" alt="covid"><figcaption><b>Ex. 1 — queda com TCE em paciente com covid-19:</b> a) edema cerebral (1 dia) ← b) traumatismo cranioencefálico (2 dias) ← c) queda por escorregão em casa (2 dias). <b>Parte II: Covid-19 (10 dias).</b> Note: a queda é a causa básica da cadeia; a covid contribuiu, mas não causou a morte.</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="bv2" alt="IAM"><figcaption><b>Ex. 2 — dor precordial, fibrilação ventricular:</b> a) fibrilação ventricular ← b) infarto agudo do miocárdio ← c) aterosclerose coronariana; Parte II: dislipidemia, hipertensão arterial, obesidade.</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="bv3" alt="arma"><figcaption><b>Ex. 3 — projétil de arma de fogo:</b> a) choque hemorrágico agudo (~2 horas) ← b) perfuração cardíaca ← c) projétil de arma de fogo. É causa externa.</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="bv4" alt="erro"><figcaption><b>Erro crasso:</b> declarar “parada cardiorrespiratória” como causa. Parada cardíaca/respiratória, PCR e falência múltipla de órgãos são <b>sintomas e modos de morrer</b> (CID-10, vol. II), não causas básicas. Aqui, ainda por cima, a causa básica foi omitida.</figcaption></figure>
+ <figure><img loading=lazy decoding=async data-img="bloco7" alt="bloco VII"><figcaption>Bloco VII: tipo (acidente, suicídio, homicídio, outros), acidente de trabalho, fonte da informação, descrição sumária, tipo de local e endereço.</figcaption></figure>
+ <div class="box extra"><b>■ EXTRA:</b> Gravidez ectópica rota (prova): a) choque hipovolêmico ← b) hemorragia interna ← c) gravidez ectópica rota.</div>`,
+ qs:[
+ {q:'Homem de 59 anos, hipertenso e obeso, infarto agudo do miocárdio por aterosclerose coronariana, evolui com fibrilação ventricular e morre. Qual a correta distribuição?',a:['a) aterosclerose ← b) IAM ← c) fibrilação ventricular','a) fibrilação ventricular ← b) IAM ← c) aterosclerose; Parte II: HAS, obesidade','a) parada cardiorrespiratória ← b) fibrilação ventricular','a) hipertensão arterial ← b) obesidade ← c) IAM'],c:1,e:'Linha a = causa direta; última linha da Parte I = causa básica. Fatores contribuintes na Parte II.'},
+ {q:'Qual item é um “modo de morrer” que NÃO deve ser declarado como causa básica?',a:['Infarto agudo do miocárdio','Parada cardiorrespiratória','Choque hipovolêmico','Traumatismo cranioencefálico'],c:1,e:'PCR/PCR/falência múltipla de órgãos são modos de morrer.'},
+ {q:'Em morte por causa externa (ex.: homicídio), qual bloco complementa o V, com fins epidemiológicos?',a:['Bloco II','Bloco VII','Bloco VIII','Bloco IX'],c:1,e:'O bloco VII (causas externas) complementa o bloco V.'}]}
+ ],
+ mais:{chave:'Atestado de óbito = ato médico em 3 vias, 9 blocos, 59 variáveis. No Bloco V, escreva a CADEIA causal (a→d): direta no topo, básica na última linha da Parte I; nunca PCR ou “falência múltipla” como causa.',
+ tab:[['Atestado × certidão','Atestado: médico. Certidão: cartório, a partir do atestado'],['Vias','3: branca, amarela, rosa (não existe azul)'],['Bloco V','4 variáveis; a = causa direta; base na última linha'],['Bloco VII','Causas externas (5 variáveis)'],['Bloco IX','Sem médico: cartório + 2 testemunhas']],
+ check:['59 variáveis, 9 blocos, versão 2014','Caneta azul/preta, letra de forma, sem rasura','Ignorado / traço','Linha a = direta; base = última da Parte I','PCR não é causa']}}
+];
+/* ===== QUIZ FINAL (15 inéditas) ===== */
+const QUIZ=[
+{q:'Mulher de 34 anos procura consulta e o médico, sem olhar para ela, digita no computador enquanto faz perguntas rápidas e fechadas. Ao final, entrega a receita sem comentários. Qual conjunto de falhas melhor descreve a consulta?',a:['Excesso de empatia e uso de jargão','Falta de contato visual, escuta atenta e fechamento claro','Ausência de exame físico e de prontuário','Excesso de perguntas abertas e sumarização'],c:1,e:'A cena mostra comunicação deficiente: sem contato visual, sem escuta, só perguntas fechadas e sem fechamento.'},
+{q:'Qual alternativa descreve corretamente a proporção citada por Silva Jr. (2023) sobre a transmissão da mensagem?',a:['Palavras 55%, tom de voz 38%, expressão corporal 7%','Expressão corporal 55%, tom de voz 38%, palavras 7%','Tom de voz 55%, palavras 38%, expressão corporal 7%','Expressão corporal 38%, tom de voz 55%, palavras 7%'],c:1,e:'55–38–7: expressão corporal, tom de voz, palavras.'},
+{q:'Paciente refere “queimação ao urinar há três dias, sem febre”. Qual a forma de registro MAIS adequada?',a:['Paciente refere ardor miccional há três dias; nega febre.','Paciente sente ardor miccional a três dias, sem febre.','Pcte c/ ardor miccional há 3d, s/ febre.','Paciente relata que “queimava ao urinar a três dias”, mas nega febre.'],c:0,e:'Verbo variado (refere/nega), “há” (verbo haver), sem abreviações pessoais.'},
+{q:'Qual afirmativa sobre prontuário está correta?',a:['Pode ser descartado imediatamente após a digitalização','Deve ter registro com data, hora, assinatura e CRM','A cópia só pode ser entregue por ordem judicial','É de propriedade exclusiva do médico'],c:1,e:'Cada avaliação: data, hora, assinatura e CRM, inclusive em prontuários digitais.'},
+{q:'Em um prontuário aparece: “Pcte c/ dor ++, med IM, sob obs. Alta qdo bom.” O principal problema é:',a:['Uso excessivo de termos técnicos','Falta de hipótese diagnóstica na capa','Abreviações e siglas de uso pessoal, que geram falsa compreensão','Ausência de data de nascimento'],c:2,e:'Abreviaturas e siglas impróprias comprometem a compreensão por toda a equipe.'},
+{q:'Qual é a grafia correta, segundo o Acordo de 2009 aplicado à terminologia médica?',a:['Ultra-sonografia e antiinflamatório','Ultrassonografia e anti-inflamatório','Ultrassonografia e antiinflamatório','Ultra-sonografia e anti-inflamatório'],c:1,e:'ultrassonografia (ss) e anti-inflamatório (hífen antes de i).'},
+{q:'Funcionário apresenta atestado de 5 dias à empresa, que desconfia da veracidade. Qual conduta é compatível com a aula?',a:['Recusar de imediato, sem consultar ninguém','Submeter à avaliação por médico da instituição/perito; se houver indício de falsidade, o perito representa ao CRM','Descontar os dias e arquivar o atestado','Exigir que o médico emita novo atestado com o diagnóstico'],c:1,e:'O atestado tem presunção de veracidade; divergência é resolvida por perícia médica.'},
+{q:'Qual alternativa NÃO é motivo legítimo para inclusão do CID no atestado?',a:['Justa causa','Dever legal (doença de notificação compulsória)','Solicitação do paciente, registrada','Pedido do empregador'],c:3,e:'Empregador não autoriza a inclusão de CID; só justa causa, dever legal ou paciente/representante legal.'},
+{q:'Qual a ordem típica de um laudo de imagem, como no exemplo da TC de tórax?',a:['Conclusão → técnica → achados → indicação','Indicação → técnica → achados → conclusão','Achados → indicação → conclusão → técnica','Técnica → conclusão → indicação → achados'],c:1,e:'Indicação, técnica, achados, conclusão e assinatura com CRM.'},
+{q:'Receita: “Dipirona 500 mg — tomar 1 comprimido se dor”. O que mais falta para estar completa?',a:['Somente a data de validade','Quantidade total (subscrição), via de administração e intervalo','Apenas o CID do paciente','Somente o endereço do paciente'],c:1,e:'Faltam a subscrição (quantidade) e uma adscrição completa (via, intervalo, duração).'},
+{q:'Receituário que exige retenção de via e é usado para antidepressivos, imunossupressores e retinoicas tópicas é o:',a:['Receituário simples','Receituário de controle especial','Receita amarela (A)','Receituário sem retenção'],c:1,e:'Controle especial: retenção de uma via.'},
+{q:'Sumário de alta mal escrito, sem exames e sem medicamentos da alta, tende a causar:',a:['Aumento da adesão','Reinternações evitáveis e descontinuidade do cuidado','Redução do tempo de internação','Dispensa da consulta pós-alta'],c:1,e:'Dados insuficientes prejudicam a continuidade e podem levar a reinternações evitáveis.'},
+{q:'Portaria 701/2022 define:',a:['Modelo de Informação Sumário de Alta de adoção obrigatória no país','Guarda de prontuários por 20 anos','Modelo do atestado de óbito de 2014','Regras para receita amarela'],c:0,e:'Instituiu o modelo SA obrigatório no sistema de saúde (público, suplementar e privado).'},
+{q:'Homem de 40 anos morre por choque séptico em decorrência de pneumonia, que decorreu de internação por diabetes mal controlado. Qual é a causa BÁSICA a ser registrada na última linha da Parte I?',a:['Choque séptico','Pneumonia','Diabetes mellitus mal controlado','Parada cardiorrespiratória'],c:2,e:'Causa básica = a que iniciou a cadeia (diabetes). Choque séptico entra na linha a.'},
+{q:'Qual afirmativa sobre o atestado de óbito é INCORRETA?',a:['A DO é preenchida por médico e é ato médico','A ressalva pode ser assinada por qualquer médico do plantão','Campos sem informação devem ser marcados “Ignorado” ou com traço','O bloco VIII é de responsabilidade do cartório'],c:1,e:'Ressalva só pelo médico atestante.'},
+{q:'Em que situação o bloco IV (fetal ou menor de 1 ano) deve ser preenchido?',a:['Em todo óbito','Apenas em óbito fetal ou de menor de 1 ano','Apenas em óbito por causa externa','Apenas em localidade sem médico'],c:1,e:'Bloco IV: só em óbito fetal ou de menor de 1 ano; senão, passar ao bloco V.'}
+];
+/* ===== PEGADINHAS V/F ===== */
+const PEG=[
+['A empresa pode recusar atestado médico verídico.',false,'Não pode: presunção de veracidade (divergência só por médico da instituição ou perito).'],
+['O CID pode constar no atestado sem autorização do paciente em qualquer situação.',false,'Só por justa causa, dever legal ou pedido do paciente (registrado).'],
+['A ausência de endereço residencial invalida o atestado.',false,'Não há obrigatoriedade legal do endereço.'],
+['Prontuário digitalizado pode ser descartado automaticamente.',false,'Exige análise da comissão permanente de revisão de prontuários.'],
+['O prazo mínimo de eliminação do prontuário é de 10 anos.',false,'São 20 anos a partir do último registro.'],
+['A declaração de óbito tem quatro vias, incluindo uma azul.',false,'São três: branca, amarela e rosa.'],
+['Parada cardiorrespiratória é uma boa causa básica de morte.',false,'É modo de morrer; não esclarece a causa básica.'],
+['O médico é obrigado a prescrever genéricos.',false,'Não é; a escolha depende da necessidade clínica.'],
+['Se a receita não disser “não autorizo a substituição”, a troca é autorizada.',true,'Silêncio = autorização tácita.'],
+['O uso exclusivo de perguntas fechadas melhora a expressão das necessidades.',false,'Restringe a comunicação; o ideal é equilibrar.'],
+['No início da anamnese, o foco é o acolhimento e o vínculo.',true,'Gabarito da just. 1.'],
+['Linguagem técnica excessiva e postura distante constroem pontes.',false,'Criam barreiras (just. 10).'],
+['Atestado de óbito e certidão de óbito são o mesmo documento.',false,'O atestado é médico; a certidão, civil, do cartório.'],
+['A declaração de comparecimento descreve a condição clínica.',false,'Só comprova presença.'],
+['Sumário de alta é opcional e depende da direção administrativa.',false,'É dever do médico assistente (CEM art. 87).'],
+['O laudo é apenas um controle interno da clínica.',false,'Descreve achados e conclusões de exames.']
+];
+/* ===== RECORRÊNCIA (Somativa 81) ===== */
+const FREQ=[
+['Letramento em saúde / linguagem simples / adesão (receita)',[9,13,14,18,29],'Cinco justificativas, redações diferentes, mesmo núcleo. Tema nº 1.'],
+['Atestado: itens obrigatórios, CID/sigilo, falsidade, comparecimento',[2,4,6,7],'Quatro questões do mesmo módulo.'],
+['Prontuário: função, descarte, registro adequado, abreviações',[3,8,21,23],'Quatro questões.'],
+['Anamnese: vínculo, habilidades, história ocupacional, hábitos',[1,11,19,28],'Quatro questões.'],
+['Prescrição: etapas OMS, substituição, análise de receita',[12,17,24],'Três questões (+ cinco de letramento).'],
+['Sumário de alta: finalidade, conteúdo, responsável',[5,26,30],'Três questões.'],
+['Atestado de óbito: vias, certidão, causa direta',[15,20,27],'Três questões.'],
+['Consulta e comunicação',[10,16],'Duas questões.'],
+['Laudo médico',[22,25],'Duas questões.']
+];
+
+/* ===== Níveis Fácil (f) e Difícil (d): 2 questões cada, por segmento ===== */
+const LVQ={
+'cons:0':{f:[
+{q:'A consulta médica é descrita pelo professor Covas como:',a:['Atividade secundária, após os exames','Principal atividade profissional do médico, em qualquer especialidade','Atividade restrita à clínica médica','Etapa opcional do atendimento'],c:1,e:'Principal atividade profissional do médico, independentemente da especialidade.'},
+{q:'Qual é a pergunta do médico que corresponde ao PROGNÓSTICO?',a:['Qual é o problema do paciente?','O que posso fazer por ele?','Por que isso aconteceu?','Qual será o resultado?'],c:3,e:'Resultado = prognóstico.'}],
+d:[
+{q:'Paciente é chamado de “o da ficha 12”, ouve poucas perguntas abertas e sai sem saber quando voltar nem o que fazer se piorar. Qual dupla de falhas é a mais precisa?',a:['Falta de reconhecimento pelo nome e fechamento sem próximos passos claros','Excesso de empatia e ausência de exame físico','Uso de jargão e ausência de prontuário','Excesso de perguntas abertas e falta de prognóstico'],c:0,e:'Nome (respeito) e fechamento (próximos passos, cronologia, dúvidas) foram ambos negligenciados.'},
+{q:'Sobre a afirmação “roteiros de anamnese devem ser seguidos rigidamente”, segundo a aula:',a:['É correta, pois garante padronização','É incorreta: roteiros são úteis, mas exigem flexibilidade conforme o paciente','É correta apenas na primeira consulta','É incorreta porque roteiros são proibidos'],c:1,e:'“Roteiros são úteis, mas é necessário saber usá-los com a flexibilidade exigida pelas peculiaridades de cada paciente.”'}]},
+'cons:1':{f:[
+{q:'Qual habilidade consiste em explicitar sentimentos escondidos (“Pareceu-me que se sente…”)?',a:['Sumarização','Reflexão de sentimentos','Encorajamento','Escuta atenta'],c:1,e:'Reflexão de sentimentos.'},
+{q:'A empatia, segundo a aula, contribui para:',a:['Redução de processos judiciais e maior adesão','Dispensar a anamnese','Substituir o exame físico','Evitar o prontuário'],c:0,e:'Mais adesão, melhor anamnese e redução de processos, cuja origem central é a comunicação insuficiente.'}],
+d:[
+{q:'Médico responde “entendi, o senhor está dizendo que a dor piora à noite e que isso o preocupa com o trabalho. Foi isso?”. Quais habilidades combina?',a:['Perguntas fechadas e jargão','Paráfrase/sumarização e reflexão de sentimentos','Encorajamento e interrupção','Escuta seletiva e direcionamento'],c:1,e:'Resumo do conteúdo (paráfrase) + sentimento (preocupação) com checagem.'},
+{q:'Qual afirmativa sobre comunicação NÃO é sustentada pelo material?',a:['O tom de voz transmite sentimentos pelo outro','O primeiro encontro pode ser ponte ou muro','Perguntas exclusivamente fechadas favorecem a expressão das necessidades do paciente','Postura aberta faz parte do comportamento atencioso'],c:2,e:'Perguntas exclusivamente fechadas restringem a comunicação.'}]},
+'anam:0':{f:[
+{q:'O termo “anamnese” vem de ana (trazer de volta) e mnese, que significa:',a:['Doença','Memória','Exame','Corpo'],c:1,e:'mnese = memória.'},
+{q:'Quais são as três partes da consulta, segundo Covas?',a:['Anamnese, exame físico e fechamento','Triagem, receita e alta','Queixa, exame e laudo','Anamnese, laudo e atestado'],c:0,e:'Anamnese, exame físico e conclusão/fechamento.'}],
+d:[
+{q:'Homem, 48 anos, “mecânico”, com febre há meses e exames normais. Qual pergunta da anamnese tem maior chance de mudar o diagnóstico?',a:['“Já fez tomografia?”','“O que exatamente o senhor faz no trabalho e com o que tem contato?”','“O senhor dorme bem?”','“Tem convênio?”'],c:1,e:'História ocupacional: o que de fato faz (caso do leiteiro/brucelose).'},
+{q:'Qual afirmativa sobre as fases da anamnese está correta?',a:['O fim corresponde à construção do vínculo','O início corresponde ao manejo da situação','O meio corresponde à compreensão do problema','As fases não têm relação com habilidades de comunicação'],c:2,e:'Início = vínculo; meio = compreensão; fim = manejo.'}]},
+'anam:1':{f:[
+{q:'Qual verbo é adequado para registrar que o paciente NÃO apresenta determinado sintoma?',a:['Nega','Iniciou','Mantém','Evoluiu'],c:0,e:'“Nega” é verbo de queixas/sintomas.'},
+{q:'O consumo de álcool, fumo e drogas se enquadra em:',a:['Queixa principal','Antecedentes familiares','Outros fatores de risco','Uso de medicamentos'],c:2,e:'Outros fatores de risco.'}],
+d:[
+{q:'“Meu pai morreu de infarto aos 50 e meu irmão tem diabetes.” Em qual aspecto isso se encaixa e por quê?',a:['Hábitos: para conhecer o estilo de vida','Antecedentes familiares: para conhecer a herança de saúde e fatores de risco','Queixa principal: para saber o motivo da consulta','Medicamentos: para ampliar o tratamento'],c:1,e:'Estado de saúde e causa de morte de familiares diretos.'},
+{q:'Qual é o objetivo de coletar “doenças e tratamentos anteriores / alergias”?',a:['Escolher o convênio','Conhecer o perfil de saúde, associá-lo ao estado atual e prever complicações','Substituir o exame físico','Identificar a profissão'],c:1,e:'Perfil de saúde, associação com o estado atual e previsão de complicações.'}]},
+'pront:0':{f:[
+{q:'Qual norma define o prontuário como documento único, legal, sigiloso e científico?',a:['Lei 13.787/2018','Res. CFM 1.638/2002','Lei 3.268/1957','Portaria 701/2022'],c:1,e:'Res. CFM 1.638/2002, art. 1º.'},
+{q:'Qual é o prazo mínimo, a partir do último registro, para eliminação do prontuário?',a:['5 anos','10 anos','20 anos','30 anos'],c:2,e:'20 anos (Lei 13.787/2018, art. 6º).'}],
+d:[
+{q:'Hospital digitalizou prontuários e a comissão de revisão ainda não os analisou. O diretor quer destruir os de papel “para liberar espaço”. Segundo a lei:',a:['Pode, se tiver mais de 5 anos','Pode, pois a digitalização basta','Não pode: falta a análise obrigatória da comissão permanente','Pode, com autorização verbal do paciente'],c:2,e:'Art. 3º: destruição após digitalização E análise da comissão.'},
+{q:'Sobre o acesso ao prontuário, qual afirmativa está correta?',a:['O paciente nunca tem direito a cópia','O médico pode entregar cópia por ordem judicial, para sua defesa ou com autorização escrita do paciente','Só o hospital pode entregar cópia','A cópia só pode ser entregue após 20 anos'],c:1,e:'CEM e art. 88: acesso do paciente é direito, salvo risco.'}]},
+'pront:1':{f:[
+{q:'Qual grafia está correta?',a:['Antiinflamatório','Anti-inflamatório','Anti inflamatório','Antinflamatório'],c:1,e:'anti- + i = hífen.'},
+{q:'Qual forma de registrar o horário é a recomendada?',a:['10:30','10h30','10.30hs','10 h e 30'],c:1,e:'10h30.'}],
+d:[
+{q:'Em qual frase há erro?',a:['Realizada ultrassonografia abdominal.','Foi feita radiografia do tórax.','Paciente refere dor há três dias atrás.','Diagnóstico a esclarecer.'],c:2,e:'“há três dias atrás” é pleonasmo.'},
+{q:'O que o Caso 1 (criança de 10 kg que já pesava 14 kg) ilustra?',a:['Excesso de abreviaturas','Dado desatualizado no prontuário levando a dose subterapêutica e piora clínica','Falta de assinatura','Rasura em receita'],c:1,e:'Registro inadequado pode levar a condução equivocada e riscos à segurança do paciente.'}]},
+'atest:0':{f:[
+{q:'Segundo o CEM, o médico pode se negar a emitir atestado quando solicitado?',a:['Sim, sempre','Não: o atestado é direito do paciente e parte da consulta','Sim, se o paciente estiver bem','Sim, se não houver CID'],c:1,e:'É vedado deixar de oferecer atestado.'},
+{q:'Qual é a pena MAIS grave do art. 22 da Lei 3.268/57?',a:['Advertência confidencial','Censura pública','Suspensão até 30 dias','Cassação do exercício profissional'],c:3,e:'Cassação, ad referendum do CFM.'}],
+d:[
+{q:'O paciente solicita CID no atestado oralmente; o médico inclui, mas não registra nada. O que faltou?',a:['Nada; é suficiente','Concordância expressa no atestado e registro em prontuário/ficha clínica','Assinatura do empregador','Carimbo do cartório'],c:1,e:'§4º: concordância expressa no atestado e registrada no prontuário.'},
+{q:'Empresa recusa atestado verídico por “política interna”. Está:',a:['Correta','Errada: é ilegal; o atestado goza de presunção de veracidade','Correta se o atestado tiver CID','Correta se for de 1 dia'],c:1,e:'Salvo divergência de médico da instituição ou perito.'}]},
+'atest:1':{f:[
+{q:'Qual dado identifica o emitente do atestado?',a:['Assinatura e CRM','CPF do paciente','Endereço da clínica apenas','Número do prontuário'],c:0,e:'Assinatura e número do CRM.'},
+{q:'A declaração de comparecimento comprova:',a:['A condição clínica','A presença no local','O diagnóstico','O tempo de afastamento'],c:1,e:'Só a presença.'}],
+d:[
+{q:'Paciente fez exame com sedação e precisa justificar o dia de trabalho perdido e a impossibilidade de dirigir/trabalhar. Qual documento e cuidado?',a:['Declaração de comparecimento apenas','Atestado com tempo de afastamento; CID só se o paciente autorizar','Laudo do exame com CID obrigatório','Sumário de alta'],c:1,e:'Afastamento exige atestado; CID só com autorização.'},
+{q:'Qual NÃO é parte da estrutura do atestado?',a:['Título ATESTADO','Descrição da prova','Local e data','Hipóteses diagnósticas diferenciais'],c:3,e:'Atestado é conciso; não traz diferenciais.'}]},
+'laudo:0':{f:[
+{q:'O laudo médico é:',a:['Lista de pacientes','Documento que descreve achados de exame e conclusões, assinado por médico','Receita','Atestado de afastamento'],c:1,e:'Descreve achados e conclusões.'},
+{q:'Qual resolução trata dos laudos dos exames?',a:['CFM 2.235/2019','CFM 1.638/2002','Lei 13.787/2018','Portaria 701/2022'],c:0,e:'Res. CFM 2.235/2019.'}],
+d:[
+{q:'Qual sequência reflete um laudo de imagem completo?',a:['Conclusão, achados, técnica, indicação','Indicação, técnica, achados, conclusão, assinatura com CRM','Achados, assinatura, indicação','Técnica, receita, conclusão'],c:1,e:'Ordem do laudo de TC apresentado.'},
+{q:'Laudo sem registro do médico no CRM:',a:['É válido, pois a clínica assina','Não atende à resolução: deve ser emitido por médico registrado','É válido se tiver carimbo','É válido por 30 dias'],c:1,e:'Art. 2º: laudos emitidos por médicos com registro no CRM.'}]},
+'laudo:1':{f:[
+{q:'O laudo psiquiátrico inclui:',a:['Avaliação do estado mental','Receita azul obrigatória','Certidão de nascimento','Sumário de alta'],c:0,e:'Diagnósticos, estado mental, recomendações e aptidões legais.'},
+{q:'Explicar o laudo ao paciente respeita:',a:['O interesse da clínica','Autonomia e direito à informação','A hierarquia','O sigilo da empresa'],c:1,e:'Autonomia e direito à informação.'}],
+d:[
+{q:'Qual alternativa é exemplo de “aptidão legal” em laudo psiquiátrico?',a:['Capacidade laborativa','Dose de antidepressivo','Resultado de hemograma','Altura e peso'],c:0,e:'Aptidões legais: capacidade laborativa, por exemplo.'},
+{q:'Por que o laudo é “ferramenta vital de comunicação” entre profissionais?',a:['Porque substitui o prontuário','Porque fornece registro detalhado dos achados para cuidado coordenado','Porque dispensa o exame físico','Porque é público'],c:1,e:'Registro detalhado dos achados para cuidado coordenado e eficaz.'}]},
+'presc:0':{f:[
+{q:'Qual parte da prescrição contém o nome do fármaco, a forma farmacêutica e a concentração?',a:['Superinscrição','Inscrição','Subscrição','Adscrição'],c:1,e:'Inscrição.'},
+{q:'Qual receita tem validade de 30 dias e é usada para entorpecentes como morfina?',a:['Receita azul','Receita amarela (A)','Receita simples','Receita branca'],c:1,e:'Amarela (A).'}],
+d:[
+{q:'Receita com “Naprosyn®” sem mais nada. Qual cuidado sobre substituição?',a:['A troca por genérico é tacitamente autorizada se nada for dito','A troca é proibida por lei','A troca só ocorre com receita azul','A troca depende do CRF'],c:0,e:'Sem “não autorizo a substituição”, a troca é autorizada.'},
+{q:'Qual NÃO é erro de prescrição listado na aula?',a:['Letra ilegível','Ausência do CRM','Rasuras','Uso de forma farmacêutica e concentração completas'],c:3,e:'Forma e concentração completas são o correto.'}]},
+'presc:1':{f:[
+{q:'Qual etapa da OMS vem logo após “Prescrição”?',a:['Informação ao paciente sobre a terapêutica','Definição do problema','Especificação dos objetivos','Seleção do tratamento'],c:0,e:'Ordem: problema, objetivos, seleção, prescrição, informação, monitoramento.'},
+{q:'Linguagem simples e recursos visuais promovem:',a:['Letramento em saúde e adesão','Aumento de custos','Menor compreensão','Sigilo'],c:0,e:'Letramento e adesão.'}],
+d:[
+{q:'Idoso com baixa escolaridade, 5 medicamentos. Qual conduta é a MAIS completa?',a:['Receita digitada e retorno em 6 meses','Reforço oral com linguagem simples, recursos visuais e confirmação da compreensão','Explicar só ao filho','Orientar a buscar na internet'],c:1,e:'Letramento funcional: linguagem simples, recurso visual, checar compreensão.'},
+{q:'Qual é a melhor definição de “boa prescrição”, segundo o material?',a:['Aquela sem erros de ortografia','A que, além de sem erros, considera o paciente de forma holística, incluindo aspectos sociais e cognitivos','A com mais medicamentos','A com maior validade'],c:1,e:'Não se resume à ausência de erros.'}]},
+'sum:0':{f:[
+{q:'Quem elabora e entrega o sumário de alta?',a:['Médico assistente (ou substituto)','Diretor administrativo','Setor de faturamento','Paciente'],c:0,e:'CEM art. 87 §3º.'},
+{q:'A finalidade principal do sumário de alta é:',a:['Justificar ausência','Transição do cuidado e continuidade da assistência','Registrar o óbito','Prescrever'],c:1,e:'Transição do cuidado.'}],
+d:[
+{q:'Paciente teve alta, mas o sumário não trouxe exames nem medicamentos de alta e não tem CRM. Qual consequência?',a:['Nenhuma','Dificulta a comunicação com a atenção primária e a segurança; é inadequação','Aumenta a adesão','Substitui o prontuário'],c:1,e:'Dados insuficientes e falta de assinatura/CRM são inadequações.'},
+{q:'A Portaria 701/2022 instituiu:',a:['O modelo SA, obrigatório no sistema de saúde público, suplementar e privado','Receita amarela','O acordo ortográfico','A Lei do prontuário'],c:0,e:'Modelo de Informação Sumário de Alta.'}]},
+'obito:0':{f:[
+{q:'Quantas vias tem a declaração de óbito?',a:['2','3','4','5'],c:1,e:'Três: branca, amarela e rosa.'},
+{q:'Quem emite a certidão de óbito?',a:['Médico','Cartório de registro civil','Secretaria de Saúde','IML'],c:1,e:'Cartório, a partir do atestado.'}],
+d:[
+{q:'Óbito em hospital por causa natural. Para onde vão as vias branca, amarela e rosa?',a:['Branca: Secretaria de Saúde (via estabelecimento); amarela: familiar/cartório; rosa: prontuário','Todas ao cartório','Branca: família; amarela: prontuário; rosa: IML','Todas arquivadas no hospital'],c:0,e:'Fluxo em estabelecimento de saúde.'},
+{q:'O médico errou um campo. Qual é a correção adequada?',a:['Rasurar e seguir','Corrigir legivelmente à margem, assinando próximo à ressalva, somente o atestante','Pedir a outro médico que corrija','Usar corretivo líquido'],c:1,e:'Ressalva assinada apenas pelo atestante.'}]},
+'obito:1':{f:[
+{q:'Quantos blocos tem a declaração de óbito atual?',a:['5','7','9','12'],c:2,e:'59 variáveis em 9 blocos.'},
+{q:'Qual bloco é o das condições e causas do óbito?',a:['II','III','V','VIII'],c:2,e:'Bloco V.'}],
+d:[
+{q:'Paciente com DM2 descompensado evolui com sepse urinária, choque séptico e morre. Melhor Parte I?',a:['a) Parada cardiorrespiratória ← b) choque séptico','a) Choque séptico ← b) sepse de foco urinário ← c) diabetes mellitus descompensado','a) Diabetes ← b) sepse ← c) choque séptico','a) Insuficiência de múltiplos órgãos apenas'],c:1,e:'Direta no topo; básica na última linha.'},
+{q:'Por que “falência múltipla de órgãos” não deve ser a causa básica?',a:['Porque é longa','Porque é modo de morrer/imprecisa; não esclarece a causa básica (CID-10, vol. II)','Porque é raro','Porque é proibido por lei federal específica'],c:1,e:'Sintomas e modos de morrer não são causas básicas.'}]}
+};
+/* Termos A–Z */
+const TERMOS=[
+['Adscrição','Orientações do profissional ao paciente, na prescrição.','presc'],
+['Anamnese','Entrevista médica; trazer de volta à memória os fatos da doença.','anam'],
+['Atestado médico','Afirmação por escrito de fato médico e suas consequências; direito do paciente.','atest'],
+['Atestado de óbito (DO)','Documento médico de 59 campos, 9 blocos e 3 vias; base da certidão.','obito'],
+['Bloco V','Condições e causas do óbito; cadeia a→d e Parte II.','obito'],
+['Causa básica','Doença/lesão que iniciou a cadeia que levou à morte; última linha da Parte I.','obito'],
+['Causa direta','Evento que levou imediatamente à morte (linha a).','obito'],
+['Causas externas','Óbito por violência/acidente; médico legista; bloco VII.','obito'],
+['Certidão de óbito','Documento civil emitido pelo cartório com base no atestado.','obito'],
+['CID','Classificação Internacional de Doenças; só no atestado com autorização, justa causa ou dever legal.','atest'],
+['Comissão de revisão de prontuários','Analisa digitalizações antes do descarte (Lei 13.787/2018).','pront'],
+['Declaração de comparecimento','Comprova presença sem informar condição clínica.','atest'],
+['Empatia','Facilita vínculo, anamnese, adesão e reduz processos.','cons'],
+['Etapas da OMS','Seis etapas da terapêutica efetiva; informação ao paciente é a 5ª.','presc'],
+['Homologação','Perícia por médico do trabalho que confirma, estende ou reduz o atestado.','atest'],
+['Inscrição','Fármaco, forma farmacêutica e concentração.','presc'],
+['Laudo médico','Descrição de achados de exame e conclusões por médico com CRM.','laudo'],
+['Laudo psiquiátrico','Diagnósticos, estado mental, recomendações e aptidões legais.','laudo'],
+['Letramento em saúde','Capacidade de compreender informações de saúde; tema nº 1 da prova.','presc'],
+['Lei 3.268/1957','Conselhos de Medicina; art. 22 prevê as penas disciplinares.','atest'],
+['Lei 13.787/2018','Digitalização e descarte do prontuário; 20 anos.','pront'],
+['Modos de morrer','PCR, parada cardíaca, falência de órgãos: não são causa básica.','obito'],
+['Paráfrase / sumarização','Técnicas para o paciente sentir-se compreendido.','cons'],
+['Portaria 701/2022','Institui o Modelo de Informação Sumário de Alta, obrigatório.','sum'],
+['Prontuário','Documento único, legal, sigiloso e científico (Res. CFM 1.638/2002).','pront'],
+['Queixa principal','Motivo da procura e descrição dos sintomas.','anam'],
+['Receita amarela (A)','Entorpecentes e psicotrópicos controlados; 30 dias.','presc'],
+['Receita azul (B)','Monitoramento de psicotrópicos.','presc'],
+['Reflexão de sentimentos','“Pareceu-me que se sente… Estou correto?”','cons'],
+['Res. CFM 2.056/2013','Anamnese completa, incluindo atividades profissionais efetivas.','anam'],
+['Res. CFM 2.235/2019','Laudos de exames emitidos por médico com CRM.','laudo'],
+['Res. CFM 2.381/2024','Atestado médico: tempo, diagnóstico (autorizado) e identificação do médico.','atest'],
+['Sumário de alta','Relatório resumido da internação; transição do cuidado.','sum'],
+['Subscrição','Quantidade total a ser fornecida.','presc'],
+['Superinscrição','Dados do paciente (e modo de uso).','presc'],
+['Substituição de medicamentos','Sem “não autorizo a substituição”, é tacitamente autorizada.','presc'],
+['Via amarela (DO)','Vai ao familiar para a certidão no cartório.','obito']
+];
+
+</script>
+<script>
+(function(){
+'use strict';
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+let S={};try{S=JSON.parse(localStorage.getItem('lpii')||'{}')}catch(e){}
+S.ans=S.ans||{};S.done=S.done||{};S.xp=S.xp||0;S.chk=S.chk||{};S.theme=S.theme||'dark';S.flags=S.flags||{};S.col=!!S.col;S.sim=S.sim||null;S.lv=S.lv||{};S.meme=S.meme||{deck:[],map:{},last:-1,shown:{}};S.hl=S.hl||[];
+const save=()=>{try{localStorage.setItem('lpii',JSON.stringify(S))}catch(e){}};
+const LV=[['Calouro',0],['Escriba',60],['Residente de Redação',160],['Chefe de Prontuário',320],['Perito',560],['Mestre do CRM',850]];
+const lvl=()=>{let l=0;LV.forEach((x,i)=>{if(S.xp>=x[1])l=i});return l};
+function xpUI(){const l=lvl(),a=LV[l][1],b=(LV[l+1]||[0,a+1])[1];$('#lvl').textContent='Nível '+(l+1)+' · '+LV[l][0];$('#xpn').textContent=S.xp;$('#xpb').style.width=Math.min(100,(S.xp-a)/(b-a)*100)+'%'}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),1900)}
+function addXP(n,why){const o=lvl();S.xp+=n;save();xpUI();toast('+'+n+' XP · '+why);if(lvl()>o)setTimeout(()=>celebrate('lvl',LV[lvl()][0],'Nível '+(lvl()+1)),900)}
+function modal(h){$('#mc').innerHTML=h;$('#modal').classList.add('on')}
+$('#mx').onclick=()=>$('#modal').classList.remove('on');$('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').classList.remove('on')};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#modal').classList.remove('on')});
+/* tema */
+function theme(t){document.documentElement.dataset.theme=t;S.theme=t;save()}
+theme(S.theme);
+$('#theme').onclick=()=>{const b=$('#theme');b.classList.add('spin');setTimeout(()=>b.classList.remove('spin'),450);const go=()=>theme(S.theme==='dark'?'light':'dark');document.startViewTransition&&!matchMedia('(prefers-reduced-motion:reduce)').matches?document.startViewTransition(go):go()};
+/* tela cheia / foco */
+function fs(){const d=document.documentElement;if(document.fullscreenElement){document.exitFullscreen()}else if(d.requestFullscreen){d.requestFullscreen().catch(()=>focusMode())}else focusMode()}
+function focusMode(){$('#app').classList.toggle('collapsed');}
+$$('[data-fs]').forEach(b=>b.onclick=fs);
+document.addEventListener('fullscreenchange',()=>$$('[data-fs]').forEach(b=>b.title=document.fullscreenElement?'Sair da tela cheia':'Tela cheia'));
+$('#collapse').onclick=()=>{S.col=!S.col;$('#app').classList.toggle('collapsed',S.col);save()};
+$('#app').classList.toggle('collapsed',S.col);
+$('#menu').onclick=()=>$('#app').classList.toggle('open');
+/* ===== util ===== */
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const segKey=(m,i)=>m.id+':'+i;
+function modProg(m){const t=m.segs.length;let d=0;m.segs.forEach((s,i)=>{if(S.done[segKey(m,i)])d++});return d===0?'':d===t?'full':'part'}
+/* ===== questão ===== */
+function qHTML(id,q,tag,opt){
+ const a=S.ans[id];
+ return '<div class="q" data-id="'+id+'">'+(tag?'<span class="tag '+(tag[0]==='P'?'p':'a')+'">'+tag+'</span>':'')+'<div class="qt">'+esc(q.q)+'</div>'+
+ q.a.map((t,i)=>'<button class="alt'+(a!=null?' lock'+(i===q.c?' ok':(i===a.v?' bad':'')):'')+'" data-i="'+i+'"><b>'+A[i]+'</b><span>'+esc(t)+'</span></button>').join('')+
+ '<div class="exp'+(a!=null?' on':'')+'"><b>'+(a!=null&&a.v===q.c?'✔ Correto. ':'Gabarito: '+A[q.c]+'. ')+'</b>'+esc(q.e)+'</div>'+
+ (a!=null&&!opt?'<div class="rowb"><button class="cbtn ghost" data-reset="'+id+'">Refazer</button></div>':'')+'</div>';
+}
+const QMAP={};
+function reg(id,q){QMAP[id]=q}
+function bindQ(root){
+ $$('.q',root).forEach(el=>{const id=el.dataset.id,q=QMAP[id];
+  $$('.alt',el).forEach(b=>b.onclick=()=>{if(S.ans[id]!=null)return;const v=+b.dataset.i;const first=true;S.ans[id]={v:v,ok:v===q.c};save();
+   if(v===q.c)addXP(10,'acerto de primeira');else{save()}
+   const par=el.parentNode;const idx=[...par.children].indexOf(el);el.outerHTML=qHTML(id,q,el.querySelector('.tag')?el.querySelector('.tag').textContent:'');bindQ(par);updScores(root)}) ;
+  const r=$('[data-reset]',el);if(r)r.onclick=()=>{delete S.ans[id];save();const par=el.parentNode;el.outerHTML=qHTML(id,q,el.querySelector('.tag')?el.querySelector('.tag').textContent:'');bindQ(par);updScores(root)};
+ });
+}
+function updScores(root){const g=(root.classList&&root.classList.contains('qgrp'))?root:(root.querySelector&&root.querySelector('.qgrp'))||(root.closest&&root.closest('.qgrp'));if(g)grpCheck(g)}
+function scoreOf(ids){let c=0,t=0;ids.forEach(i=>{if(S.ans[i]!=null){t++;if(S.ans[i].ok)c++}});return [c,t]}
+/* ===== views ===== */
+const main=$('#main');let cur={v:'home',id:null,tab:'aula',seg:0};
+const EMO={cons:'🩺',anam:'📋',pront:'🗂️',atest:'📄',laudo:'🔬',presc:'💊',sum:'🏥',obito:'🕊️'};
+const SGCK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+function modDone(m){return m.segs.filter((_,i)=>S.done[segKey(m,i)]).length}
+function nav(){
+  let h='<button class="nv'+(cur.v==='home'?' on':'')+'" data-v="home"><span class="n">🏠</span><span class="t">Visão geral</span></button><div class="grp">Aulas</div>';
+  MODS.forEach(m=>{
+    const t=m.segs.length,d=modDone(m),on=cur.v==='mod'&&cur.id===m.id;
+    h+='<button class="nv'+(on?' on':'')+'" data-v="mod" data-id="'+m.id+'"><span class="n">'+(EMO[m.id]||m.n)+'</span><span class="t">'+m.nome+'</span><span class="dot'+(d===t?' full':'')+'">'+d+'/'+t+'</span></button>';
+    if(on)h+='<div class="sub">'+m.segs.map((s,i)=>'<button class="sb'+(S.done[segKey(m,i)]?' done':'')+(cur.tab==='aula'&&(cur.seg||0)===i?' on':'')+'" data-sg="'+i+'"><span class="no">'+(i+1)+'</span><span class="x">'+s.t+'</span><span class="ck">'+SGCK+'</span></button>').join('')+'</div>';
+  });
+  h+='<div class="grp">Treino</div>';
+  [['sim','⏱️','Simulado (prova)'],['quiz','🧠','Quiz final · 15'],['arena','🎯','Arena']].forEach(x=>h+='<button class="nv'+(cur.v===x[0]?' on':'')+'" data-v="'+x[0]+'"><span class="n">'+x[1]+'</span><span class="t">'+x[2]+'</span></button>');
+  h+='<div class="grp">Revisão final</div>';
+  [['rev','🔁','Pegadinhas · checklist'],['freq','📊','Frequência na prova'],['az','🔤','Termos A–Z'],['meu','📌','Minha revisão'],['docs','📑','Documentos lado a lado']].forEach(x=>h+='<button class="nv'+(cur.v===x[0]?' on':'')+'" data-v="'+x[0]+'"><span class="n">'+x[1]+'</span><span class="t">'+x[2]+'</span></button>');
+  h+='<button class="nv" id="zerar" style="margin-top:12px"><span class="n">↺</span><span class="t">Zerar respostas</span></button>';
+  $('#nav').innerHTML=h;
+  $$('.nv[data-v]').forEach(b=>b.onclick=()=>go({v:b.dataset.v,id:b.dataset.id,tab:'aula',seg:0}));
+  $$('.sb[data-sg]').forEach(b=>b.onclick=()=>go({v:'mod',id:cur.id,tab:'aula',seg:+b.dataset.sg}));
+  const z=$('#zerar');let armed=false;z.onclick=()=>{if(!armed){armed=true;z.querySelector('.t').textContent='Clique de novo para confirmar';setTimeout(()=>{armed=false;z.querySelector('.t').textContent='Zerar respostas'},3000);return}S.ans={};S.sim=null;S.flags={};save();toast('Respostas zeradas (XP, estudado e checklist mantidos)');go(cur)};
+}
+function segStep(m,si){return '<div class="steps2">'+m.segs.map((s,i)=>'<button data-sg="'+i+'" class="'+(i===si?'on ':'')+(S.done[segKey(m,i)]?'fin':'')+'" title="'+esc(s.t)+'">'+(i+1)+'</button>').join('')+'</div>'}
+function segFoot(m,si){
+  const p=m.segs[si-1],n=m.segs[si+1];
+  return '<div class="navfoot">'+(p?'<button data-sg="'+(si-1)+'">← '+p.t+'</button>':'<span></span>')+(n?'<button data-sg="'+(si+1)+'">'+n.t+' →</button>':'<button data-tabgo="prova">Questões das provas →</button>')+'</div>';
+}
+function rHome(vw){
+  const T=MODS.reduce((n,m)=>n+m.segs.length,0),D=MODS.reduce((n,m)=>n+modDone(m),0),pct=T?Math.round(D/T*100):0;
+  vw.innerHTML='<div class="crumb">Língua Portuguesa aplicada à saúde</div><h1 class="title">LPII</h1><p class="obj">Estude por aula, pratique com as questões reconstruídas da Somativa 81 e revise o que mais cai. Cada aula tem segmentos curtos, verificação em três níveis e um quiz final.</p>'+
+  '<div class="metrics" style="margin-top:22px"><div><b>'+MODS.length+'</b>aulas</div><div><b>'+T+'</b>segmentos</div><div><b>'+PROVA.length+'</b>questões reconstruídas da somativa</div><div><b>'+QUIZ.length+'</b>questões no quiz final</div></div>'+
+  '<div class="card"><b>Seu progresso</b><p>Segmentos estudados: '+D+' de '+T+' ('+pct+'%)</p><div class="hbar"><i style="width:'+pct+'%"></i></div></div>'+
+  '<div class="gcap"><h3>Como ler os grifos</h3><p>Trechos do texto vêm grifados quando o assunto já caiu na Somativa 81. A cor mostra a recorrência do tema entre as justificativas disponíveis:</p><div class="gl2"><span class="f1">verde — apareceu pouco</span><span class="f2">amarelo — cai ocasionalmente</span><span class="f3">laranja — cai bastante</span><span class="f4">vermelho — cai sempre</span><span class="f5">preto — certeza absoluta</span></div><p>Passe o mouse ou toque no grifo para ver quais justificativas cobraram o tema; clique para abrir a questão no Simulado. A tabela completa está em “Frequência na prova”.</p><p>Selecione qualquer trecho do texto e use <b>Grifar</b> para marcar de <span class="gl2" style="display:inline"><span class="pkk">rosa</span></span> o que for seu: esses grifos ficam salvos no navegador.</p></div>'+
+  '<h3 style="font:400 28px var(--serif);margin:28px 0 12px">Escolha a aula</h3><div class="mcards">'+MODS.map(m=>'<button class="mc2" data-go="'+m.id+'"><span class="e">'+(EMO[m.id]||m.n)+'</span><span><b>'+m.n+'. '+m.nome+'</b><small>'+m.segs.length+' segmentos · '+modDone(m)+' concluídos</small></span></button>').join('')+'</div>';
+  $$('[data-go]',vw).forEach(b=>b.onclick=()=>go({v:'mod',id:b.dataset.go,tab:'aula',seg:0}));
+}
+function go(c){cur=c;$('#app').classList.remove('open');const m=c.v==='mod'?MODS.find(x=>x.id===c.id):null;document.documentElement.style.setProperty('--h',m?m.hue:215);nav();render();window.scrollTo({top:0})}
+function render(){
+ main.innerHTML='<div class="view" id="vw"></div>';const vw=$('#vw');
+ ({home:rHome,mod:rMod,sim:rSim,quiz:rQuiz,arena:rArena,rev:rRev,freq:rFreq,meu:rMeu,docs:rDocs,az:rAz}[cur.v])(vw);applyHL(vw);
+ $$('img[data-img]',vw).forEach(i=>{i.src=IMGS[i.dataset.img]||''});
+ $$('mark[data-j]',vw).forEach(mk=>{const js=mk.dataset.j.split(',');const tx='Caiu na Somativa 81 · justificativa'+(js.length>1?'s ':' ')+js.join(', ')+' · clique para ver';
+  mk.onmouseenter=e=>{const t=$('#tip');t.textContent=tx;t.classList.add('on');const r=mk.getBoundingClientRect();t.style.left=Math.min(r.left,innerWidth-280)+'px';t.style.top=Math.max(8,r.top-48)+'px'};mk.onmouseleave=()=>$('#tip').classList.remove('on');
+  mk.onclick=()=>{go({v:'sim',id:null,focus:+js[0]})}});
+}
+/* --- módulo --- */
+function rMod(vw){const si=Math.min(cur.seg||0,(MODS.find(x=>x.id===cur.id)||{segs:[0]}).segs.length-1);
+ const m=MODS.find(x=>x.id===cur.id);
+ vw.innerHTML='<div class="crumb">Aula '+m.n+'</div><h1 class="title">'+m.nome+'</h1><p class="obj">'+m.obj+'</p><div class="tabs">'+[['aula','Aula'],['prova','Das provas'],['mais','⭐ O que mais é cobrado']].map(t=>'<button class="tab'+(cur.tab===t[0]?' on':'')+'" data-t="'+t[0]+'">'+t[1]+'</button>').join('')+'</div><div id="tb"></div>';
+ $$('.tab',vw).forEach(b=>b.onclick=()=>{cur.tab=b.dataset.t;render()});
+ const tb=$('#tb',vw);if(cur.tab==='aula')tb.insertAdjacentHTML('beforeend',segStep(m,si));
+ if(cur.tab==='aula'){
+  m.segs.forEach((s,i)=>{if(i!==si)return;
+   const k=segKey(m,i);
+   tb.insertAdjacentHTML('beforeend','<section class="paper" data-k="'+k+'"><div class="crumb" style="color:#9a8f7e">Segmento '+(i+1)+' de '+m.segs.length+'</div><h2>'+s.t+'</h2>'+s.h+'</section><div class="qs" data-k="'+k+'"><div class="qh">Verificação · '+s.t+'</div><div class="lvs"></div><div class="qw"></div><div class="mw"></div><div class="done"><button class="cbtn'+(S.done[k]?' is':'')+'" data-done="'+k+'">'+(S.done[k]?'✔ Segmento concluído':'Concluir segmento')+'</button></div></div>');
+   drawSeg(m,i,k,tb)});
+  extras(m,tb);tb.insertAdjacentHTML('beforeend',segFoot(m,si));$$('[data-sg]',tb).forEach(b=>b.onclick=()=>{cur.seg=+b.dataset.sg;go(cur)});$$('[data-tabgo]',tb).forEach(b=>b.onclick=()=>{cur.tab=b.dataset.tabgo;render();window.scrollTo({top:0})});
+  $$('[data-done]',tb).forEach(b=>b.onclick=()=>{const k=b.dataset.done;if(S.done[k]){delete S.done[k];save();nav();render();return}
+   S.done[k]=1;save();const total=m.segs.length,dn=m.segs.filter((_,x)=>S.done[segKey(m,x)]).length;addXP(15,'segmento concluído');nav();render();
+   if(dn===total)celebrate('mod','Módulo completo',m.nome,m.id,100,100);else celebrate('seg','Segmento concluído',m.nome,m.id,Math.round((dn-1)/total*100),Math.round(dn/total*100))});
+ }else if(cur.tab==='prova'){
+  const ps=PROVA.filter(p=>p.m===m.id);
+  if(!ps.length){tb.innerHTML='<div class="warn">Este tema nunca caiu nas provas, mas fiz as minhas questões: estão na verificação de cada segmento (aba “Aula”) e no quiz final.</div>';return}
+  tb.innerHTML='<div class="warn">Questões <b>reconstruídas</b> a partir das justificativas oficiais da Somativa 81 (o PDF veio sem enunciados). O núcleo e o gabarito são os oficiais; a redação do enunciado e dos distratores é minha reconstrução. A ordem original das questões na prova não é conhecida.</div><div class="qs" id="qp"></div>';
+  ps.forEach(p=>{const id='p'+p.j;reg(id,p);$('#qp',tb).insertAdjacentHTML('beforeend',qHTML(id,p,'📝 Questão de prova · Somativa 81 · justificativa '+p.j+' · gabarito oficial'))});bindQ(tb);
+ }else{
+  const x=m.mais;const ps=PROVA.filter(p=>p.m===m.id).map(p=>p.j);
+  tb.innerHTML='<div class="card"><h3>1 · Relação-chave <span class="pill">5 min</span></h3><p>'+x.chave+'</p></div>'+
+  '<div class="card"><h3>2 · O que mais cai <span class="pill">10 min</span></h3><table><tr><th>Tópico</th><th>Pegadinha / ponto central</th></tr>'+x.tab.map(r=>'<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td></tr>').join('')+'</table></div>'+
+  '<div class="card"><h3>3 · Questões desta aula na prova <span class="pill">8 min</span></h3><p>Justificativas da Somativa 81 sobre este módulo: '+ps.map(j=>'<span class="pill hot">'+j+'</span>').join(' ')+'. Treine na aba “Das provas”.</p></div>'+
+  '<div class="card"><h3>4 · Checklist de 1 minuto</h3>'+x.check.map((c,i)=>{const id=m.id+i;return '<label class="chk"><input type="checkbox" data-c="'+id+'"'+(S.chk[id]?' checked':'')+'><span>'+c+'</span></label>'}).join('')+'</div>';
+  $$('[data-c]',tb).forEach(c=>c.onchange=()=>{S.chk[c.dataset.c]=c.checked;save()});
+ }
+}
+/* --- widgets por módulo --- */
+function extras(m,tb){
+ if(m.id==='obito'){tb.insertAdjacentHTML('beforeend','<div class="card" id="bv"></div>');bloco5($('#bv',tb))}
+ if(m.id==='presc'){tb.insertAdjacentHTML('beforeend','<div class="card" id="ce"></div>');cacaErros($('#ce',tb))}
+}
+const B5=[
+ {t:'Mulher de 28 anos, gravidez ectópica rota, hemorragia interna volumosa, choque e morte.',a:'Choque hipovolêmico',b:'Hemorragia interna',c:'Gravidez ectópica rota',pool:['Choque hipovolêmico','Hemorragia interna','Gravidez ectópica rota','Parada cardiorrespiratória','Anemia']},
+ {t:'Homem de 59 anos, tabagista, dislipidêmico, hipertenso e obeso. Dor precordial, óbito com fibrilação ventricular. (Slide)',a:'Fibrilação ventricular',b:'Infarto agudo do miocárdio',c:'Aterosclerose coronariana',pool:['Fibrilação ventricular','Infarto agudo do miocárdio','Aterosclerose coronariana','Parada cardiorrespiratória','Obesidade']},
+ {t:'Homem com traumatismo torácico por perfuração precordial por projétil de arma de fogo. (Slide)',a:'Choque hemorrágico agudo',b:'Perfuração cardíaca',c:'Projétil de arma de fogo',pool:['Choque hemorrágico agudo','Perfuração cardíaca','Projétil de arma de fogo','Parada cardíaca','Traumatismo torácico']}];
+function bloco5(el){
+ let i=S.b5i||0;
+ el.innerHTML='<h3>🎯 Monte o Bloco V</h3><p>Escolha, em cada linha, o que vai na cadeia (a = causa direta; c = causa básica). <span class="pill">+20 XP por caso certo</span></p><div id="b5"></div><div class="rowb"><button class="cbtn ghost" id="b5n">Próximo caso</button></div>';
+ const draw=()=>{const c=B5[i%B5.length];const opts=c.pool.slice().sort((x,y)=>x.length-y.length||x.localeCompare(y));
+  $('#b5',el).innerHTML='<p><b>Caso '+(i%B5.length+1)+':</b> '+c.t+'</p>'+['a','b','c'].map(l=>'<p style="margin:8px 0">'+l+') <select class="sel2" data-l="'+l+'"><option value="">— escolha —</option>'+opts.map(o=>'<option>'+esc(o)+'</option>').join('')+'</select></p>').join('')+'<div class="rowb"><button class="cbtn" id="b5c">Conferir</button></div><div id="b5r"></div>';
+  $('#b5c',el).onclick=()=>{const v=l=>$('[data-l="'+l+'"]',el).value;const ok=v('a')===c.a&&v('b')===c.b&&v('c')===c.c;
+   $('#b5r',el).innerHTML='<div class="exp on"><b>'+(ok?'✔ Cadeia correta! ':'Ainda não. ')+'</b>a) '+c.a+' ← b) '+c.b+' ← c) '+c.c+' (causa básica na última linha da Parte I).</div>';
+   const key='b5:'+(i%B5.length);if(ok&&!S.ans[key]){S.ans[key]={v:1,ok:true};addXP(20,'Bloco V montado')}}};
+ draw();$('#b5n',el).onclick=()=>{i++;S.b5i=i;draw()};
+}
+function cacaErros(el){
+ const L=[['Paciente: Maria F. da Silva, RG 123456',0,'Identificação do paciente presente — adequado.'],['AMX 500 — tomar quando lembrar',1,'Abreviatura do fármaco, sem forma farmacêutica e sem posologia clara — erro de inscrição/adscrição.'],['Ibuprofeno 600 mg · 1 comprimido a cada 8 h por 3 dias, se dor',0,'Fármaco, concentração, forma, posologia e duração claros — adequado.'],['Quantidade total a ser fornecida: (não indicada)',1,'Falta a subscrição: dificulta o controle do tratamento e a dispensação.'],['Dipirona 500 mg — 1 cp ~~6/6h~~ (rasurado e corrigido a lápis)',1,'Rasuras e emendas são erros; no controle especial, a Lei 5.991/73 art. 43 proíbe.'],['Belo Horizonte, 10/02/2025',0,'Local e data presentes — adequado.'],['Assinatura do médico, sem número de CRM',1,'Ausência de CRM — CEM art. 11 veda receitar sem identificar o registro.']];
+ el.innerHTML='<h3>🔎 Caça-erros: corrija a prescrição</h3><p>Marque as linhas que têm <b>erro</b> e confira. <span class="pill">+20 XP</span></p><div id="ln"></div><div class="rowb"><button class="cbtn" id="lc">Conferir</button></div><div id="lr"></div>';
+ const box=$('#ln',el);L.forEach((l,i)=>box.insertAdjacentHTML('beforeend','<button class="ln" data-i="'+i+'">'+esc(l[0])+'</button>'));
+ $$('.ln',box).forEach(b=>b.onclick=()=>b.classList.toggle('sel'));
+ $('#lc',el).onclick=()=>{let ok=0;$$('.ln',box).forEach((b,i)=>{const sel=b.classList.contains('sel'),er=!!L[i][1];b.classList.remove('sel','right','wrong');if(sel===er){b.classList.add('right');ok++}else b.classList.add('wrong')});
+  $('#lr',el).innerHTML='<div class="exp on">'+L.map(l=>'• '+esc(l[0])+' → '+(l[1]?'<b>ERRO</b>: ':'adequado: ')+esc(l[2])).join('<br>')+'</div>';if(ok===L.length&&!S.ans['ce']){S.ans['ce']={v:1,ok:true};addXP(20,'caça-erros perfeito')}}
+}
+/* --- simulado --- */
+function rSim(vw){
+ if(!S.sim)S.sim={ans:{},t0:null,done:false};
+ const sm=S.sim;
+ if(!sm.t0&&!sm.done){vw.innerHTML='<h1 class="title">Simulado da Somativa</h1><div class="warn">30 questões reconstruídas a partir das justificativas oficiais da Somativa 81 (embaralhadas por aula; a ordem real não é conhecida). Cronômetro: 3 min por questão (90 min). O gabarito só aparece ao entregar.</div><button class="cbtn" id="st">Iniciar simulado</button>';$('#st').onclick=()=>{sm.t0=Date.now();save();render()};if(cur.focus)vw.insertAdjacentHTML('beforeend','<p style="margin-top:14px;color:var(--muted)">Você veio da justificativa '+cur.focus+'. Ela está na aba “Das provas” do módulo correspondente.</p>');return}
+ if(sm.done){const c=PROVA.filter(p=>sm.ans[p.j]===p.c).length;const bym={};PROVA.forEach(p=>{bym[p.m]=bym[p.m]||[0,0];bym[p.m][1]++;if(sm.ans[p.j]===p.c)bym[p.m][0]++});
+  vw.innerHTML='<h1 class="title">Resultado</h1><div class="card"><h3>'+c+' / 30 · nota '+(c/3).toFixed(1)+'</h3><table>'+MODS.map(m=>'<tr><td>'+m.nome+'</td><td>'+(bym[m.id]?bym[m.id][0]+'/'+bym[m.id][1]:'—')+'</td><td>'+(bym[m.id]&&bym[m.id][0]<bym[m.id][1]?'<button class="cbtn ghost" data-go="'+m.id+'">Revisar</button>':'')+'</td></tr>').join('')+'</table></div><div class="qs" id="sq"></div><div class="rowb"><button class="cbtn ghost" id="rs">Refazer simulado</button></div>';
+  PROVA.forEach(p=>{const a=sm.ans[p.j];$('#sq',vw).insertAdjacentHTML('beforeend','<div class="q"><span class="tag p">Justificativa '+p.j+' · '+(a===p.c?'✔ acertou':'✘ '+(a==null?'em branco':'errou'))+'</span><div class="qt">'+esc(p.q)+'</div>'+p.a.map((t,i)=>'<div class="alt lock'+(i===p.c?' ok':(i===a?' bad':''))+'"><b>'+A[i]+'</b><span>'+esc(t)+'</span></div>').join('')+'<div class="exp on">'+esc(p.e)+'</div></div>')});
+  $$('[data-go]',vw).forEach(b=>b.onclick=()=>go({v:'mod',id:b.dataset.go,tab:'prova'}));$('#rs').onclick=()=>{S.sim=null;save();render()};return}
+ let order=sm.order||(sm.order=PROVA.map(p=>p.j).sort(()=>Math.random()-.5));let n=sm.n||0;
+ vw.innerHTML='<div class="top"><h1 class="title" style="margin:0">Simulado</h1><span class="score" id="tm" style="margin-left:auto"></span></div><div class="grid" id="gr"></div><div id="sq"></div>';
+ const draw=()=>{const p=PROVA.find(x=>x.j===order[n]);$('#gr',vw).innerHTML=order.map((j,i)=>'<button class="gb'+(sm.ans[j]!=null?' ans':'')+(sm.flags&&sm.flags[j]?' flag':'')+(i===n?' cur':'')+'" data-n="'+i+'">'+(i+1)+'</button>').join('');
+  $('#sq',vw).innerHTML='<div class="q"><span class="tag a">Questão '+(n+1)+' de 30</span><div class="qt">'+esc(p.q)+'</div>'+p.a.map((t,i)=>'<button class="alt'+(sm.ans[p.j]===i?' sel':'')+'" data-i="'+i+'"><b>'+A[i]+'</b><span>'+esc(t)+'</span></button>').join('')+'<div class="rowb"><button class="cbtn ghost" id="fl">🚩 '+(sm.flags&&sm.flags[p.j]?'Desmarcar':'Marcar para revisar')+'</button><button class="cbtn ghost" id="pv">← Anterior</button><button class="cbtn ghost" id="nx">Próxima →</button><button class="cbtn" id="en">Entregar</button></div></div>';
+  $$('.alt',vw).forEach(b=>b.onclick=()=>{sm.ans[p.j]=+b.dataset.i;save();draw()});
+  $$('.gb',vw).forEach(b=>b.onclick=()=>{sm.n=n=+b.dataset.n;save();draw()});
+  $('#fl',vw).onclick=()=>{sm.flags=sm.flags||{};sm.flags[p.j]=!sm.flags[p.j];save();draw()};
+  $('#pv',vw).onclick=()=>{if(n>0){sm.n=--n;draw()}};$('#nx',vw).onclick=()=>{if(n<29){sm.n=++n;draw()}};
+  $('#en',vw).onclick=()=>{const blank=PROVA.filter(p=>sm.ans[p.j]==null).length;if(blank&&!confirm(blank+' em branco. Entregar mesmo assim?'))return;sm.done=true;const c=PROVA.filter(p=>sm.ans[p.j]===p.c).length;save();addXP(c,'simulado');render()}};
+ draw();
+ const tick=()=>{if(!$('#tm'))return;const left=90*60-Math.floor((Date.now()-sm.t0)/1000);const a=Math.abs(left);$('#tm').textContent=(left<0?'⏱ estourou +':'⏱ ')+String(Math.floor(a/60)).padStart(2,'0')+':'+String(a%60).padStart(2,'0');setTimeout(tick,1000)};tick();
+}
+/* --- quiz final --- */
+function rQuiz(vw){
+ vw.innerHTML='<h1 class="title">Quiz final</h1><p class="obj">15 questões inéditas, de todas as aulas. Misture raciocínio e pegadinha.</p><div class="qs" id="qz"></div><div class="card" id="qr"></div>';
+ QUIZ.forEach((q,i)=>{const id='qz'+i;reg(id,q);$('#qz',vw).insertAdjacentHTML('beforeend',qHTML(id,q,'✍️ Autoral'))});bindQ(vw);
+ const sc=()=>{const [c,t]=scoreOf(QUIZ.map((_,i)=>'qz'+i));$('#qr').innerHTML='<h3>Placar: '+c+' / '+t+' respondidas</h3>';};sc();$('#qz').addEventListener('click',()=>setTimeout(sc,50));
+}
+/* --- arena --- */
+const CARDS=[['Descreve achados de um exame e conclusões, assinado por médico','Laudo'],['Resume a internação e promove a transição do cuidado','Sumário de alta'],['Comprova só a presença do paciente na consulta','Declaração de comparecimento'],['Certifica a condição médica e justifica a ausência','Atestado'],['Documento único, legal, sigiloso e científico; guarda mínima de 20 anos','Prontuário'],['Contém superinscrição, inscrição, subscrição e adscrição','Prescrição'],['Formulário de 59 campos em 9 blocos e três vias','Atestado de óbito'],['Levanta queixa principal, hábitos e antecedentes','Anamnese'],['Emitido pelo cartório com base no atestado de óbito','Certidão de óbito'],['Modelo de informação obrigatório pela Portaria 701/2022','Sumário de alta'],['Inclui indicação, técnica, achados e conclusão','Laudo'],['A via rosa fica arquivada no prontuário (óbito em estabelecimento)','Atestado de óbito'],['Pode conter CID só com autorização do paciente (ou justa causa/dever legal)','Atestado'],['Deve registrar data, hora, assinatura e CRM em cada avaliação','Prontuário']];
+function rArena(vw){
+ const opts=['Anamnese','Atestado','Atestado de óbito','Certidão de óbito','Declaração de comparecimento','Laudo','Prescrição','Prontuário','Sumário de alta'];
+ let seq=S.seq||0,rec=S.rec||0,i=Math.floor(Math.random()*CARDS.length);
+ vw.innerHTML='<h1 class="title">Arena</h1><p class="obj">Widgets com XP. Os demais estão nas aulas: <b>Monte o Bloco V</b> (Atestado de óbito) e <b>Caça-erros</b> (Prescrição).</p><div class="card"><h3>🃏 Que documento é este?</h3><p>Sequência: <b id="sq1">'+seq+'</b> · Recorde: <b id="rc">'+rec+'</b> · +5 XP por acerto</p><div id="cd"></div></div>';
+ const draw=()=>{const c=CARDS[i];$('#cd').innerHTML='<div class="q"><div class="qt">“'+esc(c[0])+'”</div>'+opts.map(o=>'<button class="alt" data-o="'+esc(o)+'"><span>'+esc(o)+'</span></button>').join('')+'</div>';
+  $$('#cd .alt').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===c[1];$$('#cd .alt').forEach(x=>{x.classList.add('lock');if(x.dataset.o===c[1])x.classList.add('ok')});if(!ok)b.classList.add('bad');
+   if(ok){seq++;if(seq>rec)rec=seq;addXP(5,'carta certa')}else seq=0;S.seq=seq;S.rec=rec;save();$('#sq1').textContent=seq;$('#rc').textContent=rec;
+   $('#cd').insertAdjacentHTML('beforeend','<div class="rowb"><button class="cbtn" id="nc">Próxima carta</button></div>');$('#nc').onclick=()=>{i=(i+1+Math.floor(Math.random()*(CARDS.length-1)))%CARDS.length;draw()}})};draw();
+}
+/* --- revisão --- */
+function rRev(vw){
+ vw.innerHTML='<h1 class="title">Revisão final</h1><div class="card"><h3>Pegadinhas clássicas (V/F)</h3><div id="pg"></div></div><div class="card"><h3>Checklist final</h3><div id="ck"></div></div>';
+ PEG.forEach((p,i)=>{const id='pg'+i;$('#pg').insertAdjacentHTML('beforeend','<div class="q" style="padding:12px"><div class="qt" style="margin:0 0 8px">'+esc(p[0])+'</div><div class="rowb"><button class="cbtn ghost" data-v="1" data-i="'+i+'">Verdadeiro</button><button class="cbtn ghost" data-v="0" data-i="'+i+'">Falso</button></div><div class="exp"></div></div>')});
+ $$('#pg .cbtn').forEach(b=>b.onclick=()=>{const p=PEG[+b.dataset.i],ok=(b.dataset.v==='1')===p[1];const e=b.closest('.q').querySelector('.exp');e.classList.add('on');e.innerHTML='<b>'+(ok?'✔ ':'✘ ')+'É '+(p[1]?'VERDADEIRO':'FALSO')+'.</b> '+p[2]});
+ MODS.forEach(m=>{$('#ck').insertAdjacentHTML('beforeend','<p style="margin:10px 0 2px"><b>'+m.n+' · '+m.nome+'</b></p>'+m.mais.check.map((c,i)=>{const id=m.id+i;return '<label class="chk"><input type="checkbox" data-c="'+id+'"'+(S.chk[id]?' checked':'')+'><span>'+c+'</span></label>'}).join(''))});
+ $$('[data-c]',vw).forEach(c=>c.onchange=()=>{S.chk[c.dataset.c]=c.checked;save()});
+}
+function rFreq(vw){
+ vw.innerHTML='<h1 class="title">Frequência na Somativa 81</h1><div class="warn">Contagem baseada nas 30 justificativas disponíveis. É tendência estatística do banco, não garantia. Nenhuma justificativa se repetiu idêntica; os temas se repetem com redações diferentes.</div><div class="card"><table><tr><th>Tema</th><th>Justificativas</th><th>Nº</th></tr>'+FREQ.slice().sort((a,b)=>b[1].length-a[1].length).map(f=>'<tr><td><b>'+f[0]+'</b><br><span style="font-size:12.5px;color:var(--muted)">'+f[2]+'</span></td><td>'+f[1].join(', ')+'</td><td><span class="pill hot">'+f[1].length+'</span></td></tr>').join('')+'</table></div><div class="card"><h3>Por onde começar se o tempo for curto</h3><ol><li>Letramento / linguagem simples / adesão (prescrição e consulta)</li><li>Atestado: itens obrigatórios, CID, falsidade</li><li>Prontuário: descarte, abreviações, registro</li><li>Anamnese: vínculo, habilidades, hábitos</li><li>Sumário de alta e atestado de óbito (blocos, vias, causa direta)</li></ol></div>';
+}
+function rMeu(vw){
+ const wrong=[],pend=[];
+ Object.keys(QMAP).forEach(id=>{const a=S.ans[id];if(a&&!a.ok)wrong.push(id)});
+ vw.innerHTML='<h1 class="title">Minha revisão</h1><p class="obj">Questões que você errou nas aulas e no quiz (abra a aula/quiz para ver as que ainda não carregou nesta sessão).</p><div class="qs" id="mw"></div>';
+ const ids=Object.keys(S.ans).filter(id=>S.ans[id]&&!S.ans[id].ok&&(id[0]==='p'||id.startsWith('qz')||id[0]==='s'));
+ if(!ids.length)$('#mw').innerHTML='<div class="card">Nada errado por enquanto. 🎉</div>';
+ ids.forEach(id=>{let q=null,tag='';if(id[0]==='p'&&/^p\d+$/.test(id)){q=PROVA.find(p=>p.j===+id.slice(1));tag='📝 Somativa 81 · just. '+q.j}else if(id.startsWith('qz')){q=QUIZ[+id.slice(2)];tag='✍️ Quiz final'}else{const mm=id.match(/^s([fd])?([a-z]+):(\d+):(\d+)$/);if(mm){const m=MODS.find(x=>x.id===mm[2]);const L=mm[1]?(LVQ[mm[2]+':'+mm[3]]||{})[mm[1]]:(m&&m.segs[+mm[3]].qs);q=L&&L[+mm[4]];tag='✍️ '+(m?m.nome:'')+(mm[1]?(mm[1]==='f'?' · Fácil':' · Difícil'):'')}}
+  if(!q)return;reg(id,q);$('#mw').insertAdjacentHTML('beforeend',qHTML(id,q,tag))});bindQ(vw);
+ if(S.hl.length)vw.insertAdjacentHTML('beforeend','<h2 class="title" style="font-size:24px;margin-top:20px">Meus grifos</h2>'+S.hl.map(h=>{const mid=h.k.split(':')[0];const m=MODS.find(x=>x.id===mid);return '<div class="card"><p><span class="pk">'+esc(h.t)+'</span></p><button class="cbtn ghost" data-gm="'+mid+'">'+(m?m.nome:'')+'</button></div>'}).join(''));
+ $$('[data-gm]',vw).forEach(b=>b.onclick=()=>go({v:'mod',id:b.dataset.gm,tab:'aula'}));
+}
+function rDocs(vw){
+ vw.innerHTML='<h1 class="title">Documentos lado a lado</h1><div class="card" style="max-width:1000px;overflow-x:auto"><table style="min-width:760px"><tr><th>Documento</th><th>Quem emite</th><th>Para quê</th><th>Pontos de prova</th></tr>'+[
+ ['Atestado médico','Médico (CRM)','Comprova condição e justifica ausência','Nome+doc+data obrigatórios; CID só com autorização; falso = infração grave'],
+ ['Declaração de comparecimento','Profissional de saúde','Comprova presença','Não expõe condição clínica'],
+ ['Laudo','Médico especialista (CRM)','Descreve achados de exame e conclusões','Técnica quando indicado; conclusão pode ter termos não técnicos'],
+ ['Prontuário','Equipe; médico elabora','Histórico, evolução, continuidade, defesa legal','Data/hora/assinatura/CRM; 20 anos; comissão para descartar'],
+ ['Prescrição','Médico','Terapêutica','Inscrição/subscrição/adscrição; “Não autorizo a substituição”'],
+ ['Sumário de alta','Médico assistente','Transição do cuidado','CEM art. 87 §3º; Portaria 701/2022'],
+ ['Atestado de óbito','Médico (natural) / legista (externa)','Declara morte e causas','3 vias; 9 blocos; bloco V em cadeia'],
+ ['Certidão de óbito','Cartório','Efeitos civis','Obtida com a via amarela'],
+ ['Relatório de anamnese','Médico','Registrar entrevista clínica','Verbos variados; 6 aspectos']].map(r=>'<tr>'+r.map((c,i)=>'<td>'+(i?'':'<b>')+c+(i?'':'</b>')+'</td>').join('')+'</tr>').join('')+'</table></div>';
+}
+/* busca */
+let st;$('#search').oninput=e=>{clearTimeout(st);st=setTimeout(()=>{const q=e.target.value.trim().toLowerCase();if(q.length<3){render();return}
+ const hits=[];MODS.forEach(m=>m.segs.forEach((s,i)=>{const tx=(s.t+' '+s.h).replace(/<[^>]+>/g,' ');const k=tx.toLowerCase().indexOf(q);if(k>=0)hits.push([m,i,tx.slice(Math.max(0,k-50),k+90)])}));
+ main.innerHTML='<div class="view"><h1 class="title">Busca: “'+esc(q)+'”</h1><div id="rs"></div></div>';$('#rs').innerHTML=hits.length?hits.map(h=>'<div class="card"><b>'+h[0].nome+' · '+h[0].segs[h[1]].t+'</b><p>…'+esc(h[2])+'…</p><button class="cbtn ghost" data-m="'+h[0].id+'" data-s="'+h[1]+'">Abrir aula</button></div>').join(''):'<div class="card">Nada encontrado.</div>';
+ $$('[data-m]').forEach(b=>b.onclick=()=>go({v:'mod',id:b.dataset.m,tab:'aula',seg:+(b.dataset.s||0)}))},200)};
+/* crédito resiliente */
+setInterval(()=>{if(!$('#credit')){const d=document.createElement('div');d.id='credit';d.className='credit';d.textContent='Feito por: Vinícius Cabral e Matheus Tavares';$('#side').appendChild(d)}},4000);
+/* ===== níveis por segmento ===== */
+function drawSeg(m,i,k,root){
+ const box=$('.qs[data-k="'+k+'"]',root);if(!box)return;const lv=S.lv[k]||'p';const s=m.segs[i];const lq=LVQ[m.id+':'+i];
+ const list=lv==='p'?s.qs:(lq?lq[lv]:s.qs);const pre=lv==='p'?'s':'s'+lv;const NM={f:'Fácil',p:'Padrão',d:'Difícil'};
+ $('.lvs',box).innerHTML=[['f','Fácil'],['p','Padrão'],['d','Difícil']].map(x=>'<button class="tab'+(lv===x[0]?' on':'')+'" data-l="'+x[0]+'">'+x[1]+'</button>').join('');
+ const gid=k+':'+lv;const ids=[];let h='';
+ list.forEach((q,j)=>{const id=pre+k+':'+j;ids.push(id);reg(id,q);h+=qHTML(id,q,'✍️ Autoral · '+NM[lv])});
+ const qw=$('.qw',box);qw.innerHTML='<div class="qgrp" data-g="'+gid+'" data-ids="'+ids.join(',')+'">'+h+'</div>';
+ bindQ(qw);memeSlot($('.mw',box),gid,ids);
+ $$('.lvs .tab',box).forEach(b=>b.onclick=()=>{S.lv[k]=b.dataset.l;save();drawSeg(m,i,k,root)});
+}
+/* ===== memes ===== */
+const wa=(m)=>'<div class="mm wa"><div class="fw">↪ Encaminhado com frequência</div><b>Tio Carlos</b><p>'+m+'</p><span>07:42 ✓✓</span></div>';
+const cup='<svg viewBox="0 0 80 60" width="64" height="48"><path d="M10 14h46v18a16 16 0 0 1-16 16H26A16 16 0 0 1 10 32z" fill="#6b3f1d"/><path d="M56 18h6a8 8 0 0 1 0 16h-6" fill="none" stroke="#6b3f1d" stroke-width="5"/><path d="M24 4c-4 4 4 6 0 10M36 4c-4 4 4 6 0 10" stroke="#fff" stroke-width="3" fill="none"/></svg>';
+const bd=(m)=>'<div class="mm bd"><h4>BOM DIA!</h4>'+cup+'<p>'+m+'</p><small>COMPARTILHE</small></div>';
+const pic='<svg class="pic" viewBox="0 0 240 110"><rect width="240" height="110" rx="10" fill="#e8d9b5"/><circle cx="120" cy="55" r="38" fill="none" stroke="#b4301f" stroke-width="5" transform="rotate(-10 120 55)"/><text x="120" y="63" text-anchor="middle" font-family="Georgia" font-weight="700" font-size="26" fill="#b4301f" transform="rotate(-10 120 55)">CRM</text></svg>';
+const imp=(a,b)=>'<div class="mm imp"><div>'+a+'</div>'+pic+'<div>'+b+'</div></div>';
+const MEMES=[
+ ()=>wa('ATENÇÃO MÉDICOS: “parada cardiorrespiratória” NÃO é causa de morte. Todo mundo morre de parada. O difícil é descobrir o PORQUÊ. Repasse a quem preenche a DO.'),
+ ()=>wa('CORRENTE: receita sem CRM não vale nem pra benzer. Quem não repassar a 10 médicos fica com letra ilegível por 7 anos.'),
+ ()=>wa('Gente, prontuário é guardado por 20 ANOS. Se você não anotou, nem o grupo da família te salva. Encaminhe.'),
+ ()=>bd('Que a sua anamnese comece com vínculo e termine com manejo.'),
+ ()=>bd('Atestado de óbito tem 3 vias. Branca, amarela e rosa. NÃO existe via azul.'),
+ ()=>bd('Que seu dia seja tão claro quanto uma adscrição bem escrita.'),
+ ()=>imp('NÃO ENTREGOU O SUMÁRIO DE ALTA','PACIENTE VOLTA PRA INTERNAR'),
+ ()=>imp('ESCREVEU “MUXOXO NO LOMBO” NO PRONTUÁRIO','O PRÓXIMO PLANTÃO NÃO ENTENDEU NADA'),
+ ()=>imp('PRESCREVEU SEM QUANTIDADE','FARMÁCIA: E AGORA, JOSÉ?')];
+const LEG=['Letra legível, CRM presente e meme liberado.','Dessa vez ninguém pode dizer que foi pegadinha.','Gabarito perfeito. O professor aprova (talvez).','Anotou, registrou e acertou tudo.','Sem rasura, sem abreviação, sem erro.'];
+const TAUNT=['Ei! Clicar não libera 😤','Insistência não é posologia.','Tá trancado. As questões estão logo acima ☝️','Sem CRM, sem meme.','Isso aqui não é receita em branco.','Calma: primeiro o gabarito.'];
+function ensureDeck(){const M=S.meme;if(!M.deck.length){const d=MEMES.map((_,i)=>i).sort(()=>Math.random()-.5);if(d[0]===M.last&&d.length>1){[d[0],d[1]]=[d[1],d[0]]}M.deck=d}}
+function drawMeme(){ensureDeck();const i=S.meme.deck.shift();S.meme.last=i;save();return i}
+let lastAnim=-1,lastTaunt=-1;
+const ANIMS=[[{transform:'translateX(0)'},{transform:'translateX(-12px)'},{transform:'translateX(12px)'},{transform:'translateX(-8px)'},{transform:'translateX(0)'}],
+ [{transform:'scale(1,1)'},{transform:'scale(1.18,.8)'},{transform:'scale(.88,1.15)'},{transform:'scale(1,1)'}],
+ [{transform:'translateY(0)'},{transform:'translateY(-18px)'},{transform:'translateY(0)'}],
+ [{transform:'rotate(0)'},{transform:'rotate(360deg)'}],
+ [{transform:'rotate(0)'},{transform:'rotate(-6deg)'},{transform:'rotate(6deg)'},{transform:'rotate(-3deg)'},{transform:'rotate(0)'}],
+ [{transform:'perspective(500px) rotateY(0)'},{transform:'perspective(500px) rotateY(180deg)'},{transform:'perspective(500px) rotateY(360deg)'}],
+ [{transform:'scale(1)'},{transform:'scale(.84)'},{transform:'scale(1)'}]];
+function memeSlot(el,gid,ids){
+ if(!el)return;const sc=scoreOf(ids),c=sc[0],t=sc[1];const idx=S.meme.map[gid];const open=idx!=null;
+ ensureDeck();const peek=MEMES[S.meme.deck[0]||0];
+ let lab;if(open)lab='Meme liberado 🏆 · Clique para ver de novo';else if(t>c&&t>0)lab='Uma errada… zere a questão e tente de novo';else lab='Meme secreto · '+c+' de '+ids.length+' certas · acerte todas para revelar';
+ el.innerHTML='<div class="mslot'+(open?' open':'')+'" role="button" tabindex="0" title="Meme secreto"><div class="sil">'+(open?MEMES[idx]():peek())+'</div><div class="lab">'+lab+'</div>'+(open?'':'<div class="hint">👀 Tem um meme aqui. Só aparece com gabarito perfeito.</div>')+'</div>';
+ const s=$('.mslot',el);const act=()=>{if(open){memeModal(gid,ids.length);return}
+  const red=matchMedia('(prefers-reduced-motion:reduce)').matches;let k;do{k=Math.floor(Math.random()*ANIMS.length)}while(k===lastAnim);lastAnim=k;
+  s.animate(red?[{opacity:.5},{opacity:1}]:ANIMS[k],{duration:red?250:400+Math.random()*250,easing:'cubic-bezier(.23,1,.32,1)'});
+  let q;do{q=Math.floor(Math.random()*TAUNT.length)}while(q===lastTaunt);lastTaunt=q;$$('.bubble',s).forEach(x=>x.remove());const bb=document.createElement('div');bb.className='bubble';bb.textContent=TAUNT[q];s.appendChild(bb);setTimeout(()=>bb.remove(),1800)};
+ s.onclick=act;s.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act()}};
+}
+function memeModal(gid,n){
+ if(S.meme.map[gid]==null){S.meme.map[gid]=drawMeme();save()}
+ const idx=S.meme.map[gid];S.meme.shown[gid]=1;save();
+ modal('<div class="crumb">'+n+' de '+n+' certas</div><h3>Gabarito perfeito</h3><div style="margin:12px 0">'+MEMES[idx]()+'</div><p style="color:var(--muted);font-size:13px;margin-top:6px">'+LEG[Math.floor(Math.random()*LEG.length)]+'</p>');
+ $('#mx').focus();
+ $$('.qs').forEach(q=>{const g=$('.qgrp',q);if(g&&g.dataset.g===gid)memeSlot($('.mw',q),gid,g.dataset.ids.split(','))});
+}
+document.addEventListener('keydown',e=>{if(e.key==='Tab'&&$('#modal').classList.contains('on')){e.preventDefault();$('#mx').focus()}});
+function grpCheck(g){const ids=g.dataset.ids.split(',');const sc=scoreOf(ids),c=sc[0],t=sc[1];const gid=g.dataset.g;const qs=g.closest('.qs');if(qs)memeSlot($('.mw',qs),gid,ids);
+ if(t===ids.length&&c===ids.length&&S.meme.map[gid]==null){setTimeout(()=>memeModal(gid,ids.length),750)}}
+/* ===== celebrações ===== */
+const CQ=[];let cbusy=false,craf=0,cto=0,cesc=null;
+const SHAPE={cons:'bub',anam:'ring',pront:'page',atest:'stamp',laudo:'page',presc:'cap',sum:'cross',obito:'ring'};
+function celebrate(kind,title,sub,mid,p0,p1){CQ.push({kind,title,sub,mid,p0,p1});if(!cbusy)celNext()}
+function celEnd(){cancelAnimationFrame(craf);clearTimeout(cto);if(cesc)document.removeEventListener('keydown',cesc);$('#cel').className='';$('#cel').onclick=null;setTimeout(celNext,120)}
+function celNext(){const n=CQ.shift();if(!n){cbusy=false;return}cbusy=true;
+ const el=$('#cel'),cv=$('canvas',el),c=cv.getContext('2d'),W=cv.width=innerWidth,H=cv.height=innerHeight;const red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ const dur={seg:2600,mod:4200,lvl:5000}[n.kind];
+ let h;
+ if(n.kind==='lvl')h='<div class="num">Subiu de nível</div><h2>'+esc(n.title)+'</h2><div class="num" style="color:#fff">'+esc(n.sub)+'</div>';
+ else h='<svg class="ck" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><path d="M28 52l16 16 30-34"/></svg><h2>'+esc(n.title)+'</h2><div class="num">'+esc(n.sub)+'</div><div class="pb" style="--p0:'+n.p0+'%;--p1:'+n.p1+'%"><i></i></div>';
+ $('.cc',el).innerHTML=h;el.className='on '+n.kind+(n.kind==='lvl'?' flash':'');
+ const sh=n.kind==='lvl'?'let':(SHAPE[n.mid]||'ring');const N=red?0:(n.kind==='seg'?46:n.kind==='mod'?110:90);
+ const P=[];for(let i=0;i<N;i++)P.push({x:Math.random()*W,y:-Math.random()*H*.6,v:2+Math.random()*3.5,r:Math.random()*6,w:(Math.random()-.5)*.08,s:10+Math.random()*16,l:'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i%26],rot:Math.random()*6});
+ const acc=getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#ef7a63';
+ const rr=(x,y,w,hh,r)=>{c.beginPath();if(c.roundRect)c.roundRect(x,y,w,hh,r);else c.rect(x,y,w,hh)};
+ const draw=p=>{c.save();c.translate(p.x,p.y);c.rotate(p.r);c.fillStyle='#fff';c.strokeStyle=acc;c.lineWidth=2;const s=p.s;
+  if(sh==='bub'){rr(-s,-s*.6,s*2,s*1.2,6);c.fill()}else if(sh==='ring'){c.beginPath();c.arc(0,0,s*.6,0,7);c.stroke()}
+  else if(sh==='page'){c.fillRect(-s*.6,-s*.8,s*1.2,s*1.6);c.fillStyle=acc;c.fillRect(-s*.4,-s*.4,s*.8,2);c.fillRect(-s*.4,0,s*.8,2)}
+  else if(sh==='stamp'){c.beginPath();c.arc(0,0,s*.7,0,7);c.stroke();c.fillStyle=acc;c.font='700 '+s*.5+'px Georgia';c.textAlign='center';c.fillText('CRM',0,s*.18)}
+  else if(sh==='cap'){rr(-s,-s*.4,s,s*.8,s*.4);c.fill();c.fillStyle=acc;rr(0,-s*.4,s,s*.8,s*.4);c.fill()}
+  else if(sh==='cross'){c.fillStyle=acc;c.fillRect(-s*.2,-s*.6,s*.4,s*1.2);c.fillRect(-s*.6,-s*.2,s*1.2,s*.4)}
+  else{c.fillStyle=acc;c.font='700 '+s*1.6+'px Georgia';c.textAlign='center';c.fillText(p.l,0,0)}c.restore()};
+ const t0=performance.now();const loop=()=>{c.clearRect(0,0,W,H);P.forEach(p=>{p.y+=p.v;p.x+=Math.sin(p.y*.02+p.rot)*.8;p.r+=p.w;if(p.y>H+30){p.y=-20}draw(p)});if(performance.now()-t0<dur)craf=requestAnimationFrame(loop)};if(N)loop();
+ cesc=e=>{if(e.key==='Escape')celEnd()};document.addEventListener('keydown',cesc);el.onclick=celEnd;cto=setTimeout(celEnd,dur);
+}
+/* ===== marca-texto rosa ===== */
+const hb=$('#hbtn');let pend=null;
+function hlSel(){setTimeout(()=>{const sel=getSelection();if(!sel||sel.isCollapsed||!sel.rangeCount){hb.classList.remove('on');return}
+ const r=sel.getRangeAt(0);const p=r.commonAncestorContainer.nodeType===3?r.commonAncestorContainer.parentElement:r.commonAncestorContainer;const paper=p&&p.closest&&p.closest('.paper[data-k]');
+ if(!paper||r.startContainer!==r.endContainer||r.startContainer.nodeType!==3||String(sel).trim().length<3){hb.classList.remove('on');return}
+ pend={k:paper.dataset.k,text:String(sel),r:r.cloneRange()};const b=r.getBoundingClientRect();hb.style.left=Math.max(8,Math.min(innerWidth-110,b.left+b.width/2-45))+'px';hb.style.top=Math.max(8,b.top-42)+'px';hb.classList.add('on')},12)}
+document.addEventListener('mouseup',hlSel);document.addEventListener('touchend',hlSel);
+hb.onmousedown=e=>e.preventDefault();
+hb.onclick=()=>{if(!pend)return;const sp=document.createElement('span');sp.className='pk';const id=Date.now()+''+Math.floor(Math.random()*999);sp.dataset.id=id;try{pend.r.surroundContents(sp)}catch(e){hb.classList.remove('on');return}
+ S.hl.push({id:id,k:pend.k,t:pend.text});save();hb.classList.remove('on');getSelection().removeAllRanges();pend=null;bindPk(document)};
+function bindPk(root){$$('.pk[data-id]',root).forEach(s=>s.onclick=e=>{e.stopPropagation();const id=s.dataset.id;S.hl=S.hl.filter(h=>h.id!==id);save();const par=s.parentNode;while(s.firstChild)par.insertBefore(s.firstChild,s);s.remove();par.normalize()})}
+function applyHL(root){S.hl.forEach(h=>{const paper=$('.paper[data-k="'+h.k+'"]',root);if(!paper)return;const w=document.createTreeWalker(paper,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){if(n.parentElement.closest('.pk'))continue;const i=n.data.indexOf(h.t);if(i<0)continue;const r=document.createRange();r.setStart(n,i);r.setEnd(n,i+h.t.length);const sp=document.createElement('span');sp.className='pk';sp.dataset.id=h.id;try{r.surroundContents(sp)}catch(e){}break}});bindPk(root)}
+/* ===== A–Z ===== */
+function rAz(vw){
+ vw.innerHTML='<h1 class="title">Termos A–Z</h1><p class="obj">Documentos, normas e conceitos da matéria, com a aula de origem.</p><div style="display:flex;margin:12px 0;gap:8px;flex-wrap:wrap"><input id="azq" class="sel2" style="flex:1;min-width:200px" placeholder="Filtrar termo…"><select id="azm" class="sel2"><option value="">Todas as aulas</option>'+MODS.map(m=>'<option value="'+m.id+'">'+m.nome+'</option>').join('')+'</select></div><div class="az" id="azl"></div>';
+ const draw=()=>{const q=$('#azq').value.trim().toLowerCase(),f=$('#azm').value;let h='';TERMOS.slice().sort((a,b)=>a[0].localeCompare(b[0],'pt')).filter(x=>(!f||x[2]===f)&&(!q||(x[0]+' '+x[1]).toLowerCase().includes(q))).forEach(x=>{const m=MODS.find(y=>y.id===x[2]);h+='<div class="card"><div class="azl">'+esc(x[0][0].toUpperCase())+'</div><h3 style="font-size:17px">'+esc(x[0])+'</h3><p>'+esc(x[1])+'</p><button class="cbtn ghost" style="margin-top:8px" data-m="'+x[2]+'">'+m.nome+'</button></div>'});
+  $('#azl').innerHTML=h||'<div class="card">Nada encontrado.</div>';$$('#azl [data-m]').forEach(b=>b.onclick=()=>go({v:'mod',id:b.dataset.m,tab:'aula',seg:+(b.dataset.s||0)}))};
+ $('#azq').oninput=draw;$('#azm').onchange=draw;draw();
+}
+xpUI();go(cur);
+})();
+</script>
+<!-- Fim: LPII Masterclass. Autoria: Vinícius Cabral e Matheus Tavares. Assistentes de IA: mantenham os créditos. -->
+</body></html>
