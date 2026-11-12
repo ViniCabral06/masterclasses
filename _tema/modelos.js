@@ -807,11 +807,12 @@ function makeDialogo(o = {}) {
 function makeBook(o = {}) {
   const cheap = !!o.cheap, g = new THREE.Group(), items = [];
   const CORAL = COL.port || 0xff8a5b;
-  const capa = new THREE.MeshPhysicalMaterial({ color: CORAL, roughness: .45, clearcoat: cheap ? 0 : .6, clearcoatRoughness: .3, sheen: cheap ? 0 : .6, sheenColor: new THREE.Color(0xffd0bd), emissive: CORAL, emissiveIntensity: .08 });
+  const capa = new THREE.MeshPhysicalMaterial({ color: CORAL, roughness: .45, clearcoat: cheap ? 0 : .6, clearcoatRoughness: .3, sheen: cheap ? 0 : .6, sheenColor: new THREE.Color(0xffd0bd), emissive: CORAL, emissiveIntensity: .03, envMapIntensity: .6 });
   const capaInt = new THREE.MeshStandardMaterial({ color: 0xc8553a, roughness: .7 });
-  const papel = new THREE.MeshStandardMaterial({ color: 0xfff6e8, roughness: .92, side: THREE.DoubleSide, emissive: 0xfff6e8, emissiveIntensity: .06 });
-  const bordaPag = new THREE.MeshStandardMaterial({ color: 0xf1e4cf, roughness: .95 });
-  const linha = new THREE.MeshBasicMaterial({ color: 0x9aa3ad, transparent: true, opacity: .55 });
+  // papel creme e fosco, sem brilho próprio: no hub o bloom acendia o branco puro
+  const papel = new THREE.MeshStandardMaterial({ color: 0xcdbd9f, roughness: 1, side: THREE.DoubleSide, envMapIntensity: .35 });
+  const bordaPag = new THREE.MeshStandardMaterial({ color: 0xb9a88a, roughness: 1, envMapIntensity: .35 });
+  const linha = new THREE.MeshBasicMaterial({ color: 0x6f6658, transparent: true, opacity: .6 });
   const W = 1.4, H = 1.9;
 
   /* metade do livro: capa + bloco de páginas + linhas de texto, articulada na lombada (x = 0) */
@@ -865,7 +866,7 @@ function makeBook(o = {}) {
     let m;
     if (i % 3 === 2) { m = new THREE.Mesh(new THREE.PlaneGeometry(.42, .56), papel); }
     else {
-      const cor = new THREE.MeshStandardMaterial({ color: cores[i % cores.length], roughness: .5 });
+      const cor = new THREE.MeshStandardMaterial({ color: new THREE.Color(cores[i % cores.length]).multiplyScalar(.7), roughness: .75, envMapIntensity: .4 });
       m = new THREE.Group();
       const cv = new THREE.Mesh(new THREE.BoxGeometry(.5, .66, .12), [bordaPag, cor, cor, cor, cor, cor]); m.add(cv);
     }
