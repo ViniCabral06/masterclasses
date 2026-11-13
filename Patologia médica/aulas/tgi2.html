@@ -1085,12 +1085,7 @@ E) O H. pylori é carcinógeno secundário e sua participação na carcinogênes
 <li><strong>Carcinogênese:</strong> gastrite → atrofia → MI → displasia → adenocarcinoma; condições (atrofia, MI) × lesões (displasia).</li>
 <li><strong>Carcinoma:</strong> Borrmann I–IV (IV = linite); Lauren intestinal (glândulas, idoso, H. pylori) × difuso (anel de sinete, jovem, linite); precoce = mucosa/submucosa; Virchow, Irmã Maria José, Krukenberg.</li>
 </ol></div>
-</section><section class="pane" id="arena" hidden>
-<h1 class="title">Arena</h1>
-<p class="ar-intro" style="color:var(--muted);max-width:62ch;margin:6px 0 16px">Todos os jogos e menus interativos desta aula num lugar só. Clique num cartão para ir até ele. O XP fica salvo neste navegador.</p>
-<div class="wa-top"><span id="wa-xp"></span><span class="wa-bar"><i id="wa-bar"></i></span><button id="wa-reset" type="button" style="font:500 13px var(--sans);border:1px solid var(--border);background:transparent;color:var(--muted);border-radius:999px;padding:7px 14px;cursor:pointer">Zerar XP</button></div>
-<div class="wa-grid" id="wa-grid"></div>
-</section>
+</section><section class="pane" id="arena" hidden><h1 class="title">Arena</h1><div class="ca-arena"><p class="ca-sub">Jogos rápidos para fixar o que a prova mais confunde. Cada acerto vale 2 XP. A sequência e o recorde ficam salvos.</p><div class="ca-act"><button class="ca-zero" type="button">Zerar recordes</button><span class="ca-xp"></span></div><div class="ca-grid" data-a="tgi2"></div></div></section>
 </main>
 </div>
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
@@ -2358,18 +2353,48 @@ MC.REG=REG;
 $$('.wg[data-type]').forEach(runW);
 })();
 </script>
-<script id="wg-arena">(function(){
-function $(s){return document.querySelector(s);}
-function go(seg,wid){var n=document.querySelector('.nav-item[data-target="'+seg+'"]');if(n)n.click();setTimeout(function(){var w=document.getElementById(wid);if(w)window.scrollTo({top:w.getBoundingClientRect().top+window.scrollY-16,behavior:'auto'});},150);}
-window.WGarena=function(){
-  var box=$('#wa-grid');if(!box||!window.MC)return;var tot=0,max=0,h='';
-  window.WGLIST.forEach(function(w){var s=MC.wgXP(w.id),m=window.WGMAX[w.id]||0;tot+=s;max+=m;
-    h+='<button class="wa-card" type="button" data-seg="'+w.seg+'" data-w="'+w.id+'"><span class="ic">'+w.ic+'</span><span class="tx"><b>'+w.t+'</b><span>'+w.d+'</span></span><span class="pts'+(m&&s>=m?' full':'')+'">'+s+' / '+m+' XP</span></button>';});
-  box.innerHTML=h;var n=$('#wa-xp');if(n)n.textContent=tot+' / '+max+' XP';var b=$('#wa-bar');if(b)b.style.width=(max?Math.min(100,tot/max*100):0)+'%';
-  [].forEach.call(box.querySelectorAll('.wa-card'),function(c){c.addEventListener('click',function(){go(c.getAttribute('data-seg'),c.getAttribute('data-w'));});});
-};
-function init(){if(window.MC&&MC.renderXP)MC.renderXP();var r=$('#wa-reset');if(r)r.addEventListener('click',function(){if(!confirm('Zerar o XP e as respostas dos jogos desta aula?'))return;MC.resetXP();if(MC.rerunAllWidgets)MC.rerunAllWidgets();});}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();</script>
+<style id="ca-css">
+.ca-sub{color:var(--muted,var(--ink-3,#8a8f98));max-width:62ch;margin:6px 0 14px;line-height:1.55}
+.ca-act{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.ca-act button{font:600 13px var(--sans,system-ui);border:1px solid rgba(127,127,127,.3);background:rgba(127,127,127,.1);color:inherit;border-radius:999px;padding:9px 16px;cursor:pointer}
+.ca-xp{font:600 13px var(--sans,system-ui);opacity:.75}
+.ca-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:16px}
+.ca-p{border:1px solid rgba(127,127,127,.25);border-radius:18px;padding:18px;background:rgba(127,127,127,.06)}
+.ca-p h3{margin:0 0 4px;font-size:1.35em;line-height:1.2}
+.ca-p .d{margin:0 0 14px;font-size:.88em;opacity:.75}
+.ca-card{border:1px solid rgba(127,127,127,.4);border-radius:14px;padding:22px 18px;min-height:118px;display:grid;place-items:center;text-align:center;font-size:1.2em;line-height:1.35;margin-bottom:12px;transition:background .2s}
+.ca-card.ok{background:rgba(52,168,83,.22)}
+.ca-card.no{background:rgba(220,70,60,.22)}
+.ca-card small{display:block;font-size:.72em;margin-top:8px;opacity:.9}
+.ca-op{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px}
+.ca-op button{padding:12px 10px;border-radius:999px;border:1px solid rgba(127,127,127,.25);background:rgba(127,127,127,.12);color:inherit;font:600 14px/1.3 var(--sans,system-ui);cursor:pointer;transition:transform .15s}
+.ca-op button:active{transform:scale(.97)}
+.ca-op button:disabled{opacity:.55;cursor:default}
+.ca-st{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:.8em;opacity:.8}
+.ca-st b{color:#8b5cf6}
+</style>
+<script id="ca-js">window.CA_DECKS={"tgi2": [{"id": "t2a", "titulo": "Qual gastrite?", "desc": "Associe o achado ao tipo de gastrite.", "cats": [["hp", "Gastrite por H. pylori"], ["ai", "Gastrite autoimune"], ["ag", "Gastropatia aguda (AINE, estresse)"]], "cards": [["Anticorpos anticélula parietal e antifator intrínseco", "ai", "Destruição das células parietais."], ["Predomínio no antro", "hp", "A bactéria coloniza o antro."], ["Predomínio no corpo e fundo", "ai", "Onde ficam as células parietais."], ["Anemia megaloblástica por falta de B12", "ai", "Sem fator intrínseco."], ["Folículos linfoides e risco de MALT", "hp", "Estimulação imune crônica."], ["Erosões após uso de anti-inflamatório", "ag", "Inibição da COX reduz prostaglandinas protetoras."], ["Úlcera de Curling em grande queimado", "ag", "Úlcera de estresse."], ["Hipergastrinemia e hiperplasia de células G", "ai", "Acloridria estimula a gastrina."], ["Urease positiva", "hp", "Teste rápido da urease."], ["Úlcera de Cushing em lesão do SNC", "ag", "Estímulo vagal e hipersecreção ácida."]]}, {"id": "t2b", "titulo": "Intestinal ou difuso?", "desc": "Classificação de Lauren do adenocarcinoma gástrico.", "cats": [["i", "Tipo intestinal"], ["d", "Tipo difuso"]], "cards": [["Células em anel de sinete", "d", "Muco empurra o núcleo para a periferia."], ["Precedido por metaplasia intestinal", "i", "Via gastrite atrófica por H. pylori."], ["Mutação de E-caderina (CDH1)", "d", "Perda de adesão celular."], ["Linite plástica", "d", "Infiltração difusa da parede, estômago em \"garrafa de couro\"."], ["Forma massa exofítica ou ulcerada", "i", "Crescimento coeso."], ["Mais comum em idosos e homens", "i", "Ligado a fatores ambientais."], ["Incidência caindo com o controle do H. pylori", "i", "Ligado à gastrite crônica."], ["Mais comum em jovens e sem predomínio de sexo", "d", "Menos ligado ao ambiente."], ["Forma glândulas", "i", "Diferenciação glandular."], ["Tumor de Krukenberg (ovário)", "d", "Metástase de células em anel de sinete."]]}]};
+(function(){var K='ca:'+location.pathname+':';
+function g(k){try{return +localStorage.getItem(K+k)||0}catch(e){return 0}}function p(k,v){try{localStorage.setItem(K+k,v)}catch(e){}}
+function xp(){[].forEach.call(document.querySelectorAll('.ca-xp'),function(n){n.textContent='⚡ '+g('xp')+' XP';});}
+function start(el){var w=el._w,d=w.cards.map(function(_,i){return i});for(var i=d.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=d[i];d[i]=d[j];d[j]=t}el._s={d:d,pos:0,st:0,ok:0,no:0};draw(el);}
+function lab(w,k){for(var i=0;i<w.cats.length;i++)if(w.cats[i][0]===k)return w.cats[i][1];return k}
+function draw(el){var w=el._w,s=el._s,best=g('b:'+w.id);
+ if(s.pos>=s.d.length){el.innerHTML='<h3>'+w.titulo+'</h3><p class="d">Rodada concluída.</p><div class="ca-card">'+s.ok+' acertos e '+s.no+' erros</div><div class="ca-st"><span>Melhor sequência: <b>'+best+'</b></span></div><div class="ca-op" style="margin-top:12px"><button data-r="1">Jogar de novo</button></div>';return}
+ var c=w.cards[s.d[s.pos]];
+ el.innerHTML='<h3>'+w.titulo+'</h3><p class="d">'+w.desc+'</p><div class="ca-card">'+c[0]+'</div><div class="ca-op">'+w.cats.map(function(k){return '<button data-c="'+k[0]+'">'+k[1]+'</button>'}).join('')+'</div><div class="ca-st"><span>Carta '+(s.pos+1)+' de '+s.d.length+'</span><span>Sequência: <b>'+s.st+'</b></span><span>Recorde: <b>'+best+'</b></span></div>';}
+function ans(el,k){var w=el._w,s=el._s,c=w.cards[s.d[s.pos]],ok=c[1]===k,box=el.querySelector('.ca-card');
+ box.classList.add(ok?'ok':'no');
+ if(ok){s.st++;s.ok++;if(s.st>g('b:'+w.id))p('b:'+w.id,s.st);p('xp',g('xp')+2);xp();}
+ else{s.st=0;s.no++;box.innerHTML+='<small><b>Era: '+lab(w,c[1])+'</b>'+(c[2]?' · '+c[2]:'')+'</small>';}
+ [].forEach.call(el.querySelectorAll('.ca-op button'),function(b){b.disabled=true});
+ setTimeout(function(){s.pos++;draw(el)},ok?450:(c[2]?2600:1300));}
+function init(gr){gr.setAttribute('data-on','1');gr.innerHTML='';((window.CA_DECKS||{})[gr.getAttribute('data-a')]||[]).forEach(function(w){var el=document.createElement('div');el.className='ca-p';el._w=w;gr.appendChild(el);start(el);});xp();}
+function scan(){[].forEach.call(document.querySelectorAll('.ca-grid:not([data-on])'),init);}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ca-p button,.ca-zero');if(!b)return;
+ if(b.classList.contains('ca-zero')){if(!confirm('Zerar recordes e XP da Arena desta página?'))return;try{Object.keys(localStorage).forEach(function(k){if(k.indexOf(K)===0)localStorage.removeItem(k)})}catch(x){}[].forEach.call(document.querySelectorAll('.ca-grid'),init);return}
+ var el=b.closest('.ca-p');if(b.getAttribute('data-r'))start(el);else if(!b.disabled)ans(el,b.getAttribute('data-c'));});
+new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scan);else scan();})();</script>
 </body>
 </html>
