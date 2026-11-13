@@ -17,8 +17,8 @@
   --vg-side:rgba(8,12,18,.42); --vg-bar:rgba(8,12,18,.5); --vg-hov:rgba(255,255,255,.07); --vg-rule:rgba(255,255,255,.06);
   --vg-control:rgba(255,255,255,.2); --vg-faint:rgba(238,244,246,.4); --vg-sidesh:inset -1px 0 0 rgba(255,255,255,.08);
   --vg-btn:rgba(255,255,255,.09); --vg-btnh:rgba(255,255,255,.15); --vg-bench:rgba(6,10,14,.55); --vg-canvas:.38;
-  --vg-display:"Bricolage Grotesque",system-ui,sans-serif;
-  --vg-text:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --vg-display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --vg-text:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   color-scheme:dark;
 }
 :root:is([data-vidro="farmaco"],[data-vidro="pato"]){--vg-acc:#ff4d6d;--vg-acc-ink:#ff9aac;--vg-on-acc:#1a0207}
@@ -102,7 +102,7 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
 :root:is([data-vidro="farmaco"],[data-vidro="pato"]) .mbar{background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
 :root:is([data-vidro="farmaco"],[data-vidro="pato"]) :is(.q,.box,.step,.legend,.score,.bk,.vf,.mr-item,.arena-card,.xpbig,.wg,.done-t,.navfoot button,.chipbtn){
   -webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);box-shadow:var(--vg-shadow)}
-:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .pane h2,:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .pane h1{font-family:var(--vg-display);font-weight:800;letter-spacing:-.035em}
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .pane h2,:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .pane h1{font-family:var(--vg-display);font-weight:400;letter-spacing:-.01em}
 :root:is([data-vidro="farmaco"],[data-vidro="pato"]) .btn.acc{color:var(--vg-on-acc)!important}
 :root:is([data-vidro="farmaco"],[data-vidro="pato"]) figure img,:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .chart,:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .hs-wrap{border-radius:14px}
 
@@ -120,7 +120,7 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
 :root[data-vidro="micro"] .it.on{background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)!important}
 :root[data-vidro="micro"] :is(.card,.wcard,.rv,#mem .mc){-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);box-shadow:var(--vg-paper-shadow);border-color:transparent!important;border-radius:24px}
 :root[data-vidro="micro"] :is(.q,.panel,.mcard,.somi,.cai,.caistats>div,.caibn){-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);box-shadow:var(--vg-shadow);border-color:transparent!important;border-radius:20px}
-:root[data-vidro="micro"] :is(h1.pt,.card h2,.card h3,#view h2){font-family:var(--vg-display);font-weight:800;letter-spacing:-.035em}
+:root[data-vidro="micro"] :is(h1.pt,.card h2,.card h3,#view h2){font-family:var(--vg-display);font-weight:400;letter-spacing:-.01em}
 :root[data-vidro="micro"] .card{font-family:var(--vg-text)}
 :root[data-vidro="micro"] .btn{border-radius:999px}
 :root[data-vidro="micro"] .btn.pri{color:#fff}
@@ -139,7 +139,7 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
 :root[data-vidro="th4"] .sb-item.on{background:color-mix(in srgb,var(--vg-acc) 18%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)}
 :root[data-vidro="th4"] :is(.sheet,.qcard,.modal){-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);border-radius:26px}
 :root[data-vidro="th4"] :is(.tile,.station,.chip,.lvl){-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);box-shadow:var(--vg-shadow);border-color:transparent!important}
-:root[data-vidro="th4"] :is(h1,h2,h3,.h-page){font-weight:800;letter-spacing:-.035em}
+:root[data-vidro="th4"] :is(h1,h2,h3,.h-page){font-weight:400;letter-spacing:-.01em}
 :root[data-vidro="th4"] .snd-cv{border-radius:12px}
 :root[data-vidro="th4"] .btn{border-radius:999px}
 
@@ -154,7 +154,7 @@ html.vidro-ready #vidro-heart{transform:none;opacity:1}
 #vidro-heart canvas{display:block;width:100%;height:210px;cursor:grab;touch-action:none}
 #vidro-heart canvas:active{cursor:grabbing}
 #vidro-heart .vh-bar{display:flex;align-items:center;gap:10px;padding:10px 14px 12px}
-#vidro-heart .vh-bpm{font:800 26px/1 var(--vg-display);letter-spacing:-.03em;min-width:2.4ch}
+#vidro-heart .vh-bpm{font:400 30px/1 var(--vg-display);letter-spacing:-.01em;min-width:2.4ch}
 #vidro-heart .vh-bpm small{font:500 11px var(--vg-text);color:var(--vg-muted);margin-left:3px;letter-spacing:0}
 #vidro-heart .vh-txt{font-size:12px;line-height:1.3;color:var(--vg-ink2)}
 #vidro-heart .vh-txt b{color:var(--vg-acc);font-weight:600}

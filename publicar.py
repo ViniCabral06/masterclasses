@@ -91,7 +91,7 @@ COR_PADRAO, ICONE_PADRAO = "#4ff3ff", '<path d="M8 4c0 6 8 6 8 8s-8 2-8 8M16 4c0
 H_INI, H_FIM = "<!--vidro:cabeca-->", "<!--/vidro:cabeca-->"
 B_INI, B_FIM = "<!--vidro:corpo-->", "<!--/vidro:corpo-->"
 FONTES = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-          '<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">')
+          '<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">')
 IMPORTMAP = ('<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",'
              '"three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>')
 
@@ -122,14 +122,14 @@ def bloco_cabeca(m, rel):
            "window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();")
     forcar = "<script>document.documentElement.dataset.vidro=%s;%s</script>" % (json.dumps(k), pos)
     return (f"{H_INI}\n{forcar}\n{FONTES}\n<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\">\n{IMPORTMAP}\n"
-            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script>\n{H_FIM}")
+            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script>\n{H_FIM}")
 
 
 def bloco_corpo(m):
     cor, icone = CORES.get(m["k"], COR_PADRAO), ICONES.get(m["k"], ICONE_PADRAO)
     nome = m["nome"]
     css = """
-#vidro-load{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#04070b;color:#eef4f6;font-family:"Geist",system-ui,-apple-system,sans-serif;overflow:hidden;transition:opacity .8s cubic-bezier(.2,.8,.2,1),filter .8s,transform .9s cubic-bezier(.2,.8,.2,1)}
+#vidro-load{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#04070b;color:#eef4f6;font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden;transition:opacity .8s cubic-bezier(.2,.8,.2,1),filter .8s,transform .9s cubic-bezier(.2,.8,.2,1)}
 #vidro-load::before{content:"";position:absolute;inset:0;background:var(--vl);clip-path:circle(150% at 50% 50%);animation:vl-shrink 1s cubic-bezier(.7,0,.2,1) .05s forwards}
 #vidro-load::after{content:"";position:absolute;width:70vmax;height:70vmax;border-radius:50%;background:var(--vl);filter:blur(120px);opacity:.18;animation:vl-float 7s ease-in-out infinite alternate}
 @keyframes vl-shrink{to{clip-path:circle(0% at 50% 42%)}}
@@ -146,7 +146,7 @@ def bloco_corpo(m):
 @keyframes vl-fill{to{translate:0 30px}}
 #vidro-load .vl-orb i{position:absolute;left:18%;top:10%;width:38%;height:22%;border-radius:50%;background:rgba(255,255,255,.55);filter:blur(6px);z-index:3;rotate:-25deg}
 #vidro-load .vl-orb svg{position:absolute;inset:0;margin:auto;width:58px;height:58px;z-index:2;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
-#vidro-load .vl-t{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(34px,6vw,72px);line-height:.95;letter-spacing:-.045em;text-align:center;max-width:14ch}
+#vidro-load .vl-t{font-family:"Instrument Serif","Iowan Old Style",Georgia,serif;font-weight:400;font-size:clamp(38px,6.4vw,80px);line-height:.98;letter-spacing:-.01em;text-align:center;max-width:14ch}
 #vidro-load .vl-ecg{width:min(320px,70vw);height:40px;overflow:visible}
 #vidro-load .vl-ecg path{fill:none;stroke:var(--vl);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:520;stroke-dashoffset:520;animation:vl-ecg 1.8s linear infinite}
 @keyframes vl-ecg{to{stroke-dashoffset:-520}}
@@ -250,7 +250,7 @@ def bloco_aula(m, rel):
     """Tema de vidro dentro das aulas (iframes): fundo transparente para o 3D do master aparecer atrás."""
     k = json.dumps(m["k"])
     return (f"{H_INI}<script>document.documentElement.dataset.vidro={k};document.documentElement.classList.add('vidro-aula','vidro-ready')</script>"
-            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\"><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script>{H_FIM}")
+            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\"><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script>{H_FIM}")
 
 
 def atualizar_aulas(m):

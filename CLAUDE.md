@@ -60,6 +60,7 @@ Responda sempre em português (Brasil).
 | `_tema/modelos.js` | Modelos 3D. |
 | `_tema/palco.js` | Palco 3D, com qualidade adaptativa. |
 | `_tema/notas.js` | "Grifar com anotação": funciona sozinho em qualquer master e aula (o `publicar.py` inclui). Detalhes em "Grifos e anotações". |
+| `_tema/segmentos.js` | Barra lateral v2 (uma linha com o nome curto; o item aberto mostra o título inteiro) + migalha "Aula › N. título", "Segmento X / Y" sob o título e ⭐ em "O que mais cai" (continua com concluir). O `publicar.py` inclui. Fonte padrão dos masters: Instrument Sans + Instrument Serif. |
 | `_tema/extras.js` | Zoom ao clicar nas imagens do conteúdo e crédito no canto (o `publicar.py` inclui). |
 | `_tema/memes.js` | Meme secreto ao gabaritar um grupo de questões. Lê `<pasta>/_img/memes.json`; respeita masters com sistema próprio (Farmacologia, Microbiologia, TH IV). |
 | `conferir.py` | Confere se cada master tem o padrão do site e diz o que falta. |

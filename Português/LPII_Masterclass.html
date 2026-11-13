@@ -398,16 +398,16 @@ mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="port";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../_tema/vidro.css?v=5a3fc8fe">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_tema/vidro.css?v=cb5b8acf">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=df19cee8"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=6217c843"></script><script defer src="../_tema/notas.js?v=735adb7c"></script><script defer src="../_tema/extras.js?v=365669b2"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script>
+<script defer src="../_tema/modelos.js?v=df19cee8"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=6217c843"></script><script defer src="../_tema/notas.js?v=735adb7c"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=365669b2"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
 <!--vidro:corpo-->
 <style>
-#vidro-load{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#04070b;color:#eef4f6;font-family:"Geist",system-ui,-apple-system,sans-serif;overflow:hidden;transition:opacity .8s cubic-bezier(.2,.8,.2,1),filter .8s,transform .9s cubic-bezier(.2,.8,.2,1)}
+#vidro-load{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#04070b;color:#eef4f6;font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden;transition:opacity .8s cubic-bezier(.2,.8,.2,1),filter .8s,transform .9s cubic-bezier(.2,.8,.2,1)}
 #vidro-load::before{content:"";position:absolute;inset:0;background:var(--vl);clip-path:circle(150% at 50% 50%);animation:vl-shrink 1s cubic-bezier(.7,0,.2,1) .05s forwards}
 #vidro-load::after{content:"";position:absolute;width:70vmax;height:70vmax;border-radius:50%;background:var(--vl);filter:blur(120px);opacity:.18;animation:vl-float 7s ease-in-out infinite alternate}
 @keyframes vl-shrink{to{clip-path:circle(0% at 50% 42%)}}
@@ -424,7 +424,7 @@ mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8
 @keyframes vl-fill{to{translate:0 30px}}
 #vidro-load .vl-orb i{position:absolute;left:18%;top:10%;width:38%;height:22%;border-radius:50%;background:rgba(255,255,255,.55);filter:blur(6px);z-index:3;rotate:-25deg}
 #vidro-load .vl-orb svg{position:absolute;inset:0;margin:auto;width:58px;height:58px;z-index:2;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
-#vidro-load .vl-t{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(34px,6vw,72px);line-height:.95;letter-spacing:-.045em;text-align:center;max-width:14ch}
+#vidro-load .vl-t{font-family:"Instrument Serif","Iowan Old Style",Georgia,serif;font-weight:400;font-size:clamp(38px,6.4vw,80px);line-height:.98;letter-spacing:-.01em;text-align:center;max-width:14ch}
 #vidro-load .vl-ecg{width:min(320px,70vw);height:40px;overflow:visible}
 #vidro-load .vl-ecg path{fill:none;stroke:var(--vl);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:520;stroke-dashoffset:520;animation:vl-ecg 1.8s linear infinite}
 @keyframes vl-ecg{to{stroke-dashoffset:-520}}
@@ -1073,7 +1073,7 @@ function nav(){
   MODS.forEach(m=>{
     const t=m.segs.length,d=modDone(m),on=cur.v==='mod'&&cur.id===m.id;
     h+='<button class="nv'+(on?' on':'')+'" data-v="mod" data-id="'+m.id+'"><span class="n">'+(EMO[m.id]||m.n)+'</span><span class="t">'+m.nome+'</span><span class="dot'+(d===t?' full':'')+'">'+d+'/'+t+'</span></button>';
-    if(on)h+='<div class="sub">'+m.segs.map((s,i)=>'<button class="sb'+(S.done[segKey(m,i)]?' done':'')+(cur.tab==='aula'&&(cur.seg||0)===i?' on':'')+'" data-sg="'+i+'"><span class="no">'+(i+1)+'</span><span class="x">'+s.t+'</span><span class="ck">'+SGCK+'</span></button>').join('')+'</div>';
+    if(on)h+='<div class="sub">'+m.segs.map((s,i)=>'<button class="sb'+(S.done[segKey(m,i)]?' done':'')+(cur.tab==='aula'&&(cur.seg||0)===i?' on':'')+'" data-sg="'+i+'"><span class="no">'+(i+1)+'</span><span class="x">'+s.t+'</span><span class="ck">'+SGCK+'</span></button>').join('')+'<button class="sb'+(S.done[m.id+':mais']?' done':'')+(cur.tab==='mais'?' on':'')+'" data-mais="1"><span class="no">⭐</span><span class="x">O que mais é cobrado</span><span class="ck">'+SGCK+'</span></button></div>';
   });
   h+='<div class="grp">Treino</div>';
   [['sim','⏱️','Simulado (prova)'],['quiz','🧠','Quiz final · 15'],['arena','🎯','Arena']].forEach(x=>h+='<button class="nv'+(cur.v===x[0]?' on':'')+'" data-v="'+x[0]+'"><span class="n">'+x[1]+'</span><span class="t">'+x[2]+'</span></button>');
@@ -1083,6 +1083,7 @@ function nav(){
   $('#nav').innerHTML=h;
   $$('.nv[data-v]').forEach(b=>b.onclick=()=>go({v:b.dataset.v,id:b.dataset.id,tab:'aula',seg:0}));
   $$('.sb[data-sg]').forEach(b=>b.onclick=()=>go({v:'mod',id:cur.id,tab:'aula',seg:+b.dataset.sg}));
+  $$('.sb[data-mais]').forEach(b=>b.onclick=()=>go({v:'mod',id:cur.id,tab:'mais'}));
   const z=$('#zerar');let armed=false;z.onclick=()=>{if(!armed){armed=true;z.querySelector('.t').textContent='Clique de novo para confirmar';setTimeout(()=>{armed=false;z.querySelector('.t').textContent='Zerar respostas'},3000);return}S.ans={};S.sim=null;S.flags={};save();toast('Respostas zeradas (XP, estudado e checklist mantidos)');go(cur)};
 }
 function segStep(m,si){return '<div class="steps2">'+m.segs.map((s,i)=>'<button data-sg="'+i+'" class="'+(i===si?'on ':'')+(S.done[segKey(m,i)]?'fin':'')+'" title="'+esc(s.t)+'">'+(i+1)+'</button>').join('')+'</div>'}
@@ -1117,7 +1118,7 @@ function rMod(vw){const si=Math.min(cur.seg||0,(MODS.find(x=>x.id===cur.id)||{se
  if(cur.tab==='aula'){
   m.segs.forEach((s,i)=>{if(i!==si)return;
    const k=segKey(m,i);
-   tb.insertAdjacentHTML('beforeend','<section class="paper" data-k="'+k+'"><div class="crumb" style="color:#9a8f7e">Segmento '+(i+1)+' de '+m.segs.length+'</div><h2>'+s.t+'</h2>'+s.h+'</section><div class="qs" data-k="'+k+'"><div class="qh">Verificação · '+s.t+'</div><div class="lvs"></div><div class="qw"></div><div class="mw"></div><div class="done"><button class="cbtn'+(S.done[k]?' is':'')+'" data-done="'+k+'">'+(S.done[k]?'✔ Segmento concluído':'Concluir segmento')+'</button></div></div>');
+   tb.insertAdjacentHTML('beforeend','<section class="paper" data-k="'+k+'"><div class="crumb" style="color:#9a8f7e">Aula '+m.n+' › '+(i+1)+'. '+s.t+'</div><h2>'+s.t+'</h2><div class="vg-segxy">Segmento <b>'+(i+1)+'</b> / '+m.segs.length+'</div>'+s.h+'</section><div class="qs" data-k="'+k+'"><div class="qh">Verificação · '+s.t+'</div><div class="lvs"></div><div class="qw"></div><div class="mw"></div><div class="done"><button class="cbtn'+(S.done[k]?' is':'')+'" data-done="'+k+'">'+(S.done[k]?'✔ Segmento concluído':'Concluir segmento')+'</button></div></div>');
    drawSeg(m,i,k,tb)});
   extras(m,tb);tb.insertAdjacentHTML('beforeend',segFoot(m,si));$$('[data-sg]',tb).forEach(b=>b.onclick=()=>{cur.seg=+b.dataset.sg;go(cur)});$$('[data-tabgo]',tb).forEach(b=>b.onclick=()=>{cur.tab=b.dataset.tabgo;render();window.scrollTo({top:0})});
   $$('[data-done]',tb).forEach(b=>b.onclick=()=>{const k=b.dataset.done;if(S.done[k]){delete S.done[k];save();nav();render();return}
@@ -1130,11 +1131,13 @@ function rMod(vw){const si=Math.min(cur.seg||0,(MODS.find(x=>x.id===cur.id)||{se
   ps.forEach(p=>{const id='p'+p.j;reg(id,p);$('#qp',tb).insertAdjacentHTML('beforeend',qHTML(id,p,'📝 Questão de prova · Somativa 81 · justificativa '+p.j+' · gabarito oficial'))});bindQ(tb);
  }else{
   const x=m.mais;const ps=PROVA.filter(p=>p.m===m.id).map(p=>p.j);
-  tb.innerHTML='<div class="card"><h3>1 · Relação-chave <span class="pill">5 min</span></h3><p>'+x.chave+'</p></div>'+
+  const kM=m.id+':mais';
+  tb.innerHTML='<div class="done" style="margin:0 0 12px"><button class="cbtn'+(S.done[kM]?' is':'')+'" data-donemais="1">'+(S.done[kM]?'✔ Concluído':'Concluir ⭐ O que mais é cobrado')+'</button></div><div class="card"><h3>1 · Relação-chave <span class="pill">5 min</span></h3><p>'+x.chave+'</p></div>'+
   '<div class="card"><h3>2 · O que mais cai <span class="pill">10 min</span></h3><table><tr><th>Tópico</th><th>Pegadinha / ponto central</th></tr>'+x.tab.map(r=>'<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td></tr>').join('')+'</table></div>'+
   '<div class="card"><h3>3 · Questões desta aula na prova <span class="pill">8 min</span></h3><p>Justificativas da Somativa 81 sobre este módulo: '+ps.map(j=>'<span class="pill hot">'+j+'</span>').join(' ')+'. Treine na aba “Das provas”.</p></div>'+
   '<div class="card"><h3>4 · Checklist de 1 minuto</h3>'+x.check.map((c,i)=>{const id=m.id+i;return '<label class="chk"><input type="checkbox" data-c="'+id+'"'+(S.chk[id]?' checked':'')+'><span>'+c+'</span></label>'}).join('')+'</div>';
   $$('[data-c]',tb).forEach(c=>c.onchange=()=>{S.chk[c.dataset.c]=c.checked;save()});
+  $$('[data-donemais]',tb).forEach(b=>b.onclick=()=>{if(S.done[kM])delete S.done[kM];else{S.done[kM]=1;addXP(15,'revisão concluída')}save();nav();render()});
  }
 }
 /* --- widgets por módulo --- */

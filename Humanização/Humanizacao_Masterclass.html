@@ -452,16 +452,16 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="huma";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../_tema/vidro.css?v=5a3fc8fe">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_tema/vidro.css?v=cb5b8acf">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=df19cee8"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=6217c843"></script><script defer src="../_tema/notas.js?v=735adb7c"></script><script defer src="../_tema/extras.js?v=365669b2"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script>
+<script defer src="../_tema/modelos.js?v=df19cee8"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=6217c843"></script><script defer src="../_tema/notas.js?v=735adb7c"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=365669b2"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
 <!--vidro:corpo-->
 <style>
-#vidro-load{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#04070b;color:#eef4f6;font-family:"Geist",system-ui,-apple-system,sans-serif;overflow:hidden;transition:opacity .8s cubic-bezier(.2,.8,.2,1),filter .8s,transform .9s cubic-bezier(.2,.8,.2,1)}
+#vidro-load{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#04070b;color:#eef4f6;font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden;transition:opacity .8s cubic-bezier(.2,.8,.2,1),filter .8s,transform .9s cubic-bezier(.2,.8,.2,1)}
 #vidro-load::before{content:"";position:absolute;inset:0;background:var(--vl);clip-path:circle(150% at 50% 50%);animation:vl-shrink 1s cubic-bezier(.7,0,.2,1) .05s forwards}
 #vidro-load::after{content:"";position:absolute;width:70vmax;height:70vmax;border-radius:50%;background:var(--vl);filter:blur(120px);opacity:.18;animation:vl-float 7s ease-in-out infinite alternate}
 @keyframes vl-shrink{to{clip-path:circle(0% at 50% 42%)}}
@@ -478,7 +478,7 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 @keyframes vl-fill{to{translate:0 30px}}
 #vidro-load .vl-orb i{position:absolute;left:18%;top:10%;width:38%;height:22%;border-radius:50%;background:rgba(255,255,255,.55);filter:blur(6px);z-index:3;rotate:-25deg}
 #vidro-load .vl-orb svg{position:absolute;inset:0;margin:auto;width:58px;height:58px;z-index:2;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
-#vidro-load .vl-t{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(34px,6vw,72px);line-height:.95;letter-spacing:-.045em;text-align:center;max-width:14ch}
+#vidro-load .vl-t{font-family:"Instrument Serif","Iowan Old Style",Georgia,serif;font-weight:400;font-size:clamp(38px,6.4vw,80px);line-height:.98;letter-spacing:-.01em;text-align:center;max-width:14ch}
 #vidro-load .vl-ecg{width:min(320px,70vw);height:40px;overflow:visible}
 #vidro-load .vl-ecg path{fill:none;stroke:var(--vl);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:520;stroke-dashoffset:520;animation:vl-ecg 1.8s linear infinite}
 @keyframes vl-ecg{to{stroke-dashoffset:-520}}
@@ -672,10 +672,10 @@ let blk={};try{blk=JSON.parse(localStorage.getItem(BLK_KEY)||'{}')||{}}catch(e){
 function bloco(id,t,sub,lessons,html){
   if(!lessons.length)return '';
   const temAtivo=lessons.some(l=>l.id===active);
-  const ab=blk[id]!==undefined?blk[id]:temAtivo;
+  const sv=blk[id],ab=(sv&&typeof sv==='object'&&sv.a===active)?sv.v:temAtivo; // só o bloco da aula atual abre; abrir/fechar à mão vale enquanto se está nessa aula
   return '<button type="button" class="sb-bloco'+(ab?' open':'')+'" data-bloco="'+id+'" aria-expanded="'+ab+'"><span class="fchev">▶</span><span class="ft">'+t+'</span><span class="fn">'+sub+'</span></button><div class="sb-bloco-c"'+(ab?'':' hidden')+'>'+html+'</div>';
 }
-document.addEventListener('click',e=>{const b=e.target.closest('#nav [data-bloco]');if(!b)return;e.preventDefault();const id=b.dataset.bloco;blk[id]=!(b.getAttribute('aria-expanded')==='true');try{localStorage.setItem(BLK_KEY,JSON.stringify(blk))}catch(_){}nav()},true);
+document.addEventListener('click',e=>{const b=e.target.closest('#nav [data-bloco]');if(!b)return;e.preventDefault();const id=b.dataset.bloco;blk[id]={v:!(b.getAttribute('aria-expanded')==='true'),a:active};try{localStorage.setItem(BLK_KEY,JSON.stringify(blk))}catch(_){}nav()},true);
 function nav(){
   const total=data.lessons.reduce((n,l)=>n+l.sections.length,0),done=data.lessons.reduce((n,l)=>n+readN(l),0),pct=total?Math.round(done/total*100):0;
   $('#progPct').textContent=pct+'%';$('#progFill').style.width=pct+'%';
@@ -684,7 +684,7 @@ function nav(){
     const st=readN(l),n=l.sections.length,on=l.id===active,open=openGrp[l.id]!==undefined?openGrp[l.id]:on;
     return '<div class="grp'+(on?' on':'')+(open?'':' closed')+'" data-lesson="'+l.id+'"><a class="grp-h" href="'+route(l.id)+'" data-lesson-h="'+l.id+'"><span class="em">'+EM[l.id]+'</span><span class="lbl"><span class="ga">Aula '+l.number+' ·&nbsp;</span>'+esc(l.title)+'</span><span class="cnt'+(st===n?' full':'')+'">'+st+'/'+n+'</span><span class="chev">▼</span></a><div class="grp-items">'+
       '<a class="it'+(curSeg==='capa'?' active':'')+'" href="'+route(l.id)+'" data-seg="capa"><span class="no">•</span><span class="x">Início da aula</span></a>'+l.sections.map((s,i)=>'<a class="it'+(state.read[s.id]?' isdone':'')+(curSeg===s.id?' active':'')+'" href="'+route(l.id,s.id)+'" data-seg="'+s.id+'"><span class="no">'+(i+1)+'</span><span class="x">'+esc(s.title)+'</span><input type="checkbox" aria-label="Marcar como estudado" data-sbread="'+s.id+'"'+(state.read[s.id]?' checked':'')+'></a>').join('')+
-      '<a class="it'+(curSeg===l.id+'-revisao'?' active':'')+'" href="'+route(l.id,l.id+'-revisao')+'" data-seg="'+l.id+'-revisao"><span class="no">Q</span><span class="x">O que mais foi cobrado</span></a></div></div>';
+      '<a class="it'+(state.read[l.id+'-revisao']?' isdone':'')+(curSeg===l.id+'-revisao'?' active':'')+'" href="'+route(l.id,l.id+'-revisao')+'" data-seg="'+l.id+'-revisao"><span class="no">Q</span><span class="x">⭐ O que mais foi cobrado</span><input type="checkbox" aria-label="Marcar como estudado" data-sbread="'+l.id+'-revisao"'+(state.read[l.id+'-revisao']?' checked':'')+'></a></div></div>';
   };
   const L1=data.lessons.slice(0,4),L2=data.lessons.slice(4);$('#nav').innerHTML=single('home')+bloco('parcial','Bloco da parcial','Aulas 2 a 5',L1,L1.map(lessonGrp).join(''))+bloco('somativa','Somativa','Aulas 6 a 9',L2,L2.map(lessonGrp).join(''))+'<div class="sb-sec">Provas e revisão</div>'+Object.keys(pages).slice(1).map(single).join('');
 }
@@ -786,7 +786,7 @@ function lesson(l,anchor){const rev=l.id+'-revisao',view=l.sections.some(s=>s.id
  ''+''+
  '<div class="cel-fin"><button type="button" class="cel-finish read" data-read="'+s.id+'">'+CHECK+'<span class="lbl"></span></button></div><div class="row"><button data-note="'+s.id+'">Guardar seleção</button></div></section>';
  }).join('')+
- (view===rev?'<section class="section" id="'+l.id+'-revisao"><div class="eyebrow">Revisão por aula</div><h2>O que mais foi cobrado</h2><div class="flow">'+l.sections.map(s=>'<span>'+link(l.id,s.title,s.id)+'</span>').join(' → ')+'</div><p>'+esc(l.review)+'</p>'+maisCobrado(l)+lessonNav(l)+'</section>':'')+segNav(l,view);
+ (view===rev?'<section class="section" id="'+l.id+'-revisao"><div class="eyebrow">Revisão por aula</div><button type="button" class="done-t" data-read="'+l.id+'-revisao"><span class="d"></span><span class="lbl"></span></button><h2>⭐ O que mais foi cobrado</h2><div class="flow">'+l.sections.map(s=>'<span>'+link(l.id,s.title,s.id)+'</span>').join(' → ')+'</div><p>'+esc(l.review)+'</p>'+maisCobrado(l)+lessonNav(l)+'</section>':'')+segNav(l,view);
 }
 function training(){
  return hero('Questões autorais','Treino baseado nas somativas','Casos inéditos com alternativas A–D. A justificativa original aparece como referência após conferir.')+data.lessons.map(l=>'<section class="section">'+quiz(data.final.filter(q=>q.aula===l.id),l.title)+'</section>').join('');
