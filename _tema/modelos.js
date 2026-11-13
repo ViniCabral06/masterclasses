@@ -4,7 +4,7 @@
 (function () {
 window.VidroModelos = function (THREE) {
 
-const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3, pato: 0xff6fb5, prev: 0xffb547, huma: 0x5aa9ff, port: 0xff8a5b };
+const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3, pato: 0xff6fb5, prev: 0xffb547, huma: 0x5aa9ff, port: 0xff8a5b, img: 0x9fd3ff };
 const V = () => new THREE.Vector3();
 const _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _s = new THREE.Vector3(1, 1, 1), _up = new THREE.Vector3(0, 1, 0);
 const _a = V(), _b = V(), _c = V(), _d = V();
@@ -911,6 +911,69 @@ function makeBook(o = {}) {
   return g;
 }
 
+/* ======================= negatoscópio com RX de tórax (Propedêutica de imagem) =======================
+   Painel de luz com uma radiografia estilizada: coluna, costelas, clavículas, coração e cúpulas.
+   Uma faixa de "varredura" desce o filme; com o mouse perto ela segue o cursor; clique dá um flash. */
+function makeRaiox(o = {}) {
+  const cheap = !!o.cheap, g = new THREE.Group(), items = [];
+  const COR = COL.img || 0x9fd3ff;
+  const caixa = new THREE.MeshPhysicalMaterial({ color: 0x1b2633, roughness: .35, metalness: .4, clearcoat: cheap ? 0 : .7, envMapIntensity: .8 });
+  const luz = new THREE.MeshBasicMaterial({ color: 0x0d1a26 });
+  const osso = new THREE.MeshBasicMaterial({ color: 0xdcecff, transparent: true, opacity: .82 });
+  const tecido = new THREE.MeshBasicMaterial({ color: 0x8fb4d6, transparent: true, opacity: .35 });
+  const W = 2.2, H = 2.6;
+  const painel = new THREE.Group();
+  const moldura = new THREE.Mesh(new THREE.BoxGeometry(W + .22, H + .22, .16), caixa); moldura.position.z = -.1; painel.add(moldura);
+  const filme = new THREE.Mesh(new THREE.PlaneGeometry(W, H), luz); filme.position.z = -.015; painel.add(filme);
+  const tubo = (pts, r, mat) => { const c = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(p[0], p[1], 0))); const m = new THREE.Mesh(new THREE.TubeGeometry(c, 24, r, 6), mat); painel.add(m); return m; };
+  // coluna
+  for (let i = 0; i < 11; i++) { const v = new THREE.Mesh(new THREE.BoxGeometry(.13, .15, .02), osso); v.position.set(0, .95 - i * .19, 0); painel.add(v); }
+  // costelas: arcos dos dois lados
+  for (let i = 0; i < 8; i++) {
+    const y = .78 - i * .2, w = .55 + Math.sin((i + 1) / 9 * Math.PI) * .38;
+    for (const L of [-1, 1]) tubo([[L * .08, y], [L * w * .7, y + .1], [L * w, y - .08], [L * w * .82, y - .32]], .018, osso);
+  }
+  for (const L of [-1, 1]) tubo([[L * .1, 1.02], [L * .5, 1.08], [L * .9, 1.0]], .03, osso);          // clavículas
+  const cor = new THREE.Mesh(new THREE.CircleGeometry(.42, 32), tecido); cor.scale.set(1.1, .9, 1); cor.position.set(.12, -.48, .005); painel.add(cor);
+  for (const L of [-1, 1]) { const d = new THREE.Mesh(new THREE.CircleGeometry(.5, 32, 0, Math.PI), tecido); d.scale.set(1.15, .35, 1); d.position.set(L * .5, -1.05, .004); painel.add(d); }
+  // faixa de varredura
+  const scanMat = new THREE.MeshBasicMaterial({ color: COR, transparent: true, opacity: .45, blending: THREE.AdditiveBlending, depthWrite: false });
+  const scan = new THREE.Mesh(new THREE.PlaneGeometry(W, .12), scanMat); scan.position.z = .02; painel.add(scan);
+  painel.rotation.set(-.12, 0, 0); painel.scale.setScalar(1.15);
+  g.add(painel);
+  // pequenos "filmes" e cruzes de medida flutuando
+  for (let i = 0; i < 12; i++) {
+    const m = i % 2 ? new THREE.Mesh(new THREE.PlaneGeometry(.42, .52), new THREE.MeshBasicMaterial({ color: 0x23384d, transparent: true, opacity: .8, side: THREE.DoubleSide }))
+                    : new THREE.Mesh(new THREE.TorusGeometry(.14, .025, 8, 24), new THREE.MeshStandardMaterial({ color: COR, emissive: COR, emissiveIntensity: .25, roughness: .4 }));
+    const r = 2.4 + Math.random() * 1.3, a = Math.random() * Math.PI * 2, y = (Math.random() - .5) * 4.2;
+    m.userData = { home: new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r * .5 - .6), off: V(), vel: V(), w: new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5), ph: Math.random() * 6 };
+    g.add(m); items.push(m);
+  }
+  const ck = {}, sy = S(0); let flash = 0;
+  g.userData.offset = new THREE.Vector3(.2, 0, 0);
+  g.userData.tick = (t, dt, I) => {
+    g.rotation.y = Math.sin(t * .3) * .3;
+    const P = localPointer(g, I), burst = clicked(ck, I);
+    if (burst) flash = 1;
+    flash = Math.max(0, flash - dt * 1.4);
+    const alvo = P && Math.abs(P.x) < 2 ? THREE.MathUtils.clamp(P.y / 1.15, -H / 2, H / 2) : Math.sin(t * .7) * H * .45;
+    scan.position.y = spring(sy, alvo, 18, 7, dt);
+    scanMat.opacity = .35 + Math.sin(t * 6) * .08 + flash * .5;
+    luz.color.setRGB(.05 + flash * .5, .1 + flash * .55, .15 + flash * .6);
+    osso.opacity = .7 + flash * .3;
+    items.forEach(m => {
+      const u = m.userData, p = _b.copy(u.home).add(u.off);
+      p.y += Math.sin(t + u.ph) * .18;
+      if (P) { _c.subVectors(p, P); const d = _c.length(); if (d < 1.6) u.vel.addScaledVector(_c.normalize(), (1 - d / 1.6) * 30 * dt); if (burst && d < 3.5) u.vel.addScaledVector(_c.normalize(), 8 * (1 - d / 3.5)); }
+      if (I && I.sv) u.vel.y += I.sv * dt * 2.5;
+      u.vel.addScaledVector(u.off, -9 * dt); u.vel.multiplyScalar(Math.exp(-2.6 * dt)); u.off.addScaledVector(u.vel, dt);
+      m.position.copy(p); m.rotation.x += u.w.x * dt; m.rotation.y += u.w.y * dt; m.rotation.z += u.w.z * dt;
+    });
+    painel.position.y = Math.sin(t * 1.1) * .08;
+  };
+  return g;
+}
+
 /* ======================= sapão de jaleco (página inicial) =======================
    Mascote nosso, inspirado no "Sapão" da atlética (sem a logo): sapo verde bruto e musculoso,
    tronco em V, peitoral e abdômen marcados, trapézio alto, braços enormes cruzados, pernas grossas
@@ -1304,6 +1367,6 @@ function makeLamp(o = {}) {
   return root;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHandshake, makeDialogo, makeBook, makeFrog, makeHeart, makeLamp };
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHandshake, makeDialogo, makeBook, makeRaiox, makeFrog, makeHeart, makeLamp };
 };
 })();

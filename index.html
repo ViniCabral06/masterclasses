@@ -29,6 +29,7 @@
   --prev:#ffb547;
   --huma:#5aa9ff;
   --port:#ff8a5b;
+  --img:#9fd3ff;
   --accent:var(--hub);
   --glass:rgba(255,255,255,.055);
   --glass-hi:rgba(255,255,255,.11);
@@ -49,6 +50,7 @@ body[data-accent="th4"]{--accent:var(--th4)}
 body[data-accent="pato"]{--accent:var(--pato)}
 body[data-accent="prev"]{--accent:var(--prev)}
 body[data-accent="huma"]{--accent:var(--huma)}
+body[data-accent="img"]{--accent:var(--img)}
 body[data-accent="port"]{--accent:var(--port)}
 button,a{font:inherit;color:inherit}
 a{text-decoration:none}
@@ -280,6 +282,7 @@ main{position:relative;z-index:10;height:100%}
 .card[data-k="pato"]{--tint:var(--pato)}
 .card[data-k="prev"]{--tint:var(--prev)}
 .card[data-k="huma"]{--tint:var(--huma)}
+.card[data-k="img"]{--tint:var(--img)}
 .card[data-k="port"]{--tint:var(--port)}
 .extra{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:7px 13px 7px 9px;border-radius:999px;background:color-mix(in srgb,var(--th4) 18%,transparent);color:var(--th4);transition:background .3s,transform .4s var(--spring)}
 .extra:hover{background:color-mix(in srgb,var(--th4) 32%,transparent);transform:scale(1.04)}
@@ -467,7 +470,7 @@ main{position:relative;z-index:10;height:100%}
     <div class="wrap subjects-layout">
       <div>
         <h2 id="t-p4" class="in">4º período</h2>
-        <p class="sub in" style="--i:1">Sete matérias. Passe o mouse: a cápsula se abre, as bactérias perseguem o cursor, o coração acelera e as células morrem por apoptose. Clique para agitar.</p>
+        <p class="sub in" style="--i:1">Oito matérias. Passe o mouse: a cápsula se abre, as bactérias perseguem o cursor, o coração acelera, as células morrem por apoptose e o raio X varre o tórax. Clique para agitar.</p>
         <div class="cards" id="cards"></div>
       </div>
       <div class="specimen">
@@ -526,6 +529,14 @@ const SUBJECTS = {
     tags:["Aterosclerose","Cardiopatia isquêmica","Pneumonias","DPOC e asma","Esôfago e estômago","Fígado e pâncreas"],
     readout:["Patologia Médica I","14 aulas · simulados e banco de provas"],
     icon:'<path d="M6 21h12M9 21v-3h6v3M10 18l-2-6 5-7 3 2-4 7M13 5l1.5-2 2 1.4-1.4 2"/><circle cx="14" cy="14" r="2"/>'
+  },
+  img:{
+    name:"Propedêutica de Imagem",
+    href:"Propedêutica de imagem/Propedeutica_Imagem_Masterclass.html",
+    desc:"Do raio X de tórax ao abdome agudo: densidades, padrões pulmonares, TC, osso, pâncreas, fígado, rins e esôfago, com as questões de imagem das provas 77 a 81.",
+    tags:["Raio X e densidades","TC, RM e USG","RX de tórax","Padrões pulmonares","TC de tórax","Osteoarticular","Abdome agudo"],
+    readout:["Propedêutica de Imagem","13 aulas · provas 77 a 81"],
+    icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 6v12M8 8c-2 1-2 3-2 5M16 8c2 1 2 3 2 5M8 11c-1.5.5-1.5 2-1.5 3M16 11c1.5.5 1.5 2 1.5 3"/>'
   },
   port:{
     name:"Português Aplicado à Saúde II",
@@ -733,20 +744,20 @@ show(location.hash.slice(1)||'home',false);
   "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
 }}
 </script>
-<script src="_tema/modelos.js?v=df19cee8"></script>
+<script src="_tema/modelos.js?v=c78e6277"></script>
 <script src="_tema/palco.js?v=713ea5fe"></script>
 <script type="module">
 // modo leve: sem 3D (o hub continua igual, só sem o fundo animado)
 if (window.LENTO) { document.getElementById('gl').style.display = 'none'; throw new Error('hub em modo leve: 3D desligado'); }
 import * as THREE from 'three';
-const {makeHelix,makeFrog,makeRing,makePills,makeBugs,makeTissue,makeVaccine,makeHandshake,makeDialogo,makeBook,makeHeart,COL} = window.VidroModelos(THREE);
+const {makeHelix,makeFrog,makeRing,makePills,makeBugs,makeTissue,makeVaccine,makeHandshake,makeDialogo,makeBook,makeRaiox,makeHeart,COL} = window.VidroModelos(THREE);
 COL.hub = 0xd8ff3d; // a cor da marca (verde marca-texto) no DNA e no anel
 const {createStage} = window.VidroPalco(THREE, COL);
 
 const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30, start:false} : {dust:1000, dpr:1.5, start:false});
 // se o aparelho sofrer, a primeira coisa a sair é a refração líquida (o efeito mais caro da página)
 W.onDegrade = () => document.documentElement.classList.remove('refract');
-const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook()};
+const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook(), img:makeRaiox()};
 /* modo leve automático: mede os quadros com tudo ligado; se não passa de ~30 fps
    (ex.: navegador sem placa de vídeo), desliga o 3D, a refração e o desfoque, e lembra disso */
 setTimeout(function medir(){
