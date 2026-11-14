@@ -30,7 +30,11 @@ def pele_de_vidro(s, pasta, aulas):
 
 def sem_foto_de_justificativa(s, pasta, aulas):
     """Prova que chegou só como justificativa vira questão reconstruída, nunca foto da justificativa."""
-    return not re.search(r'"question"\s*:\s*null|fac-simil', s + aulas, re.I)
+    t = s + aulas
+    if re.search(r'"question"\s*:\s*null|fac-simil', t, re.I):
+        return False
+    # nunca entregar a letra certa antes da resposta (aviso, rótulo ou botão da justificativa)
+    return not re.search(r'gabarito oficial [A-E]\b|gabarito \(letra [A-E]\)|\(letra [A-E]\) e a justificativa', t)
 
 
 def origem_das_questoes(s, pasta, aulas):
@@ -57,7 +61,8 @@ ITENS = [
      'veja o bloco "MASTERS NOVOS" ou o da Microbiologia'),
     ('Provas como questões, não fotos', sem_foto_de_justificativa,
      'prova que veio só com justificativa vira questão reconstruída (enunciado e alternativas imaginados, gabarito e '
-     'justificativa oficiais), como em Microbiologia e Português; foto da justificativa não conta como questão'),
+     'justificativa oficiais), como em Microbiologia e Português; foto da justificativa não conta como questão; '
+     'e nunca mostre a letra certa antes da resposta (nem no aviso, nem no rótulo)'),
     ('Origem de cada questão marcada', origem_das_questoes,
      'cada questão diz de onde veio: "Das provas" (texto original), "reconstruída da justificativa" ou "✍️ autoral"'),
     ('Seções finais (revisão final, o que vai cair, simulados, minha revisão)', fim_do_master,

@@ -54,7 +54,7 @@ Responda sempre em português (Brasil).
 
 8. **Regra: Modelo: Microbiologia.** Todo master segue o que foi feito no de Microbiologia, seja do Vinícius ou do Matheus:
    - **Liquid glass de verdade.** O `liquido.js` só põe a lente onde o tema já põe vidro. Master novo precisa da sua pele no `_tema/vidro.css` (cor da matéria em `--vg-acc`, barra lateral e barra do celular com `backdrop-filter`); veja o bloco "MASTERS NOVOS". Sem ela a barra fica sólida, fora do tema.
-   - **Questões, não fotos.** Prova que chegou só como justificativa de gabarito vira **questão reconstruída**: enunciado e alternativas imaginados no padrão da prova, gabarito na mesma letra e justificativa oficial embaixo. Foto ou recorte da justificativa não conta como questão e não entra no master (o OCR serve de matéria-prima).
+   - **Questões, não fotos.** Prova que chegou só como justificativa de gabarito vira **questão reconstruída**: enunciado e alternativas imaginados no padrão da prova, gabarito na mesma letra e justificativa oficial embaixo. Foto ou recorte da justificativa não conta como questão e não entra no master (o OCR serve de matéria-prima). **Nunca mostre qual é a alternativa certa antes de a pessoa responder**: nada de letra no aviso, no rótulo, no título ou no botão da justificativa; a justificativa oficial (que entrega a resposta) só aparece depois de conferir.
    - **Origem de cada questão marcada**, sempre visível:
      - `📝 Das provas`: texto original da prova;
      - `📝 Questão de prova · reconstruída da justificativa`: com o aviso "Enunciado e alternativas reconstruídos a partir da justificativa oficial; o gabarito é o oficial";
@@ -79,6 +79,7 @@ Responda sempre em português (Brasil).
 | `_tema/segmentos.js` | Barra lateral v2 (uma linha com o nome curto; o item aberto mostra o título inteiro) + migalha "Aula › N. título", "Segmento X / Y" sob o título e ⭐ em "O que mais cai" (continua com concluir). O `publicar.py` inclui. Fonte padrão dos masters: Instrument Sans + Instrument Serif. |
 | `_tema/extras.js` | Zoom ao clicar nas imagens do conteúdo e crédito no canto (o `publicar.py` inclui). |
 | `_tema/memes.js` | Meme secreto ao gabaritar um grupo de questões. Lê `<pasta>/_img/memes.json`; respeita masters com sistema próprio (Farmacologia, Microbiologia, TH IV). |
+| `_tema/foco.js` | Painel "🎯 Foco de estudo" no topo da barra lateral: grifo de frequência nas aulas e segmentos (parciais / somativas / todas / desligado), divisão das aulas escolhida pela pessoa ("a parcial da minha turma vai até a aula N") e grupo "✅ Já estudadas". Fica salvo por master em `vg-foco:<chave>`. Cada master tem um adaptador em `AD`; master novo precisa do seu. Patologia (dividida por sistema) e TH IV ficam de fora de propósito. O `publicar.py` inclui. |
 | `conferir.py` | Confere se cada master tem o padrão do site e diz o que falta. |
 | `publicar.py` | Tema, otimização e publicação. Os blocos entre `<!--vidro:...-->` nos masters são gerados por ele: não edite à mão. |
 
