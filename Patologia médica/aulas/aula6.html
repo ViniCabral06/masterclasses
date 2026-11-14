@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-tone="resp" data-theme="dark">
-<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=cb5b8acf"><script defer src="../../_tema/notas.js?v=735adb7c"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=365669b2"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><!--/vidro:cabeca-->
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=cb5b8acf"><script defer src="../../_tema/notas.js?v=41a060d3"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=365669b2"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><!--/vidro:cabeca-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Masterclass — Doenças Pulmonares Obstrutivas</title>
@@ -1566,5 +1566,19 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
  var el=b.closest('.ca-p');if(b.getAttribute('data-r'))start(el);else if(!b.disabled)ans(el,b.getAttribute('data-c'));});
 new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scan);else scan();})();</script>
+<script id="zerar-q">(function(){
+var CSS='.zq-btn{float:right;border:1px solid var(--border,rgba(127,127,127,.3));background:transparent;color:var(--muted,inherit);border-radius:999px;padding:6px 14px;font:500 13px var(--sans,system-ui);cursor:pointer;margin:4px 0 8px 10px}.zq-btn:hover{color:var(--ink,inherit);border-color:currentColor}';
+var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
+function btn(){var b=document.createElement('button');b.type='button';b.className='zq-btn';b.textContent='↺ Zerar questões';return b;}
+function zerarZona(z){z.querySelectorAll('.q').forEach(function(q){q.classList.remove('done');q.querySelectorAll('.opt').forEach(function(o){o.setAttribute('aria-pressed','false');o.classList.remove('is-correct','is-wrong');});var w=q.querySelector('.q-why');if(w)w.hidden=true;var r=q.querySelector('.btn-reveal');if(r)r.textContent='Ver resposta';});}
+function por(){
+  /* aulas com .qzone (questões de verificação de cada segmento) */
+  document.querySelectorAll('.qzone').forEach(function(z){if(z.querySelector('.zq-btn')||z.closest('#quizlist')||!z.querySelector('.q'))return;var t=z.querySelector('.qzone-title');var b=btn();b.onclick=function(){zerarZona(z)};if(t)t.parentNode.insertBefore(b,t);else z.prepend(b);});
+  /* aula 2: segmento desenhado por script */
+  document.querySelectorAll('.qsection').forEach(function(z){if(z.querySelector('.zq-btn'))return;var t=z.querySelector('.qsection-title');var b=btn();b.onclick=function(){try{var v=currentView;Object.keys(answered).forEach(function(k){if(k.indexOf(v+'-')===0)delete answered[k];});var y=scrollY,sc=[].filter.call(document.querySelectorAll('main,div,section,body,html'),function(e){return e.scrollTop>0}).map(function(e){return [e,e.scrollTop]});goTo(v);setTimeout(function(){scrollTo(0,y);sc.forEach(function(x){x[0].scrollTop=x[1]})},80);}catch(e){}};if(t)t.parentNode.insertBefore(b,t);else z.prepend(b);});
+}
+new MutationObserver(por).observe(document.documentElement,{childList:true,subtree:true});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',por);else por();
+})();</script>
 </body>
 </html>

@@ -79,8 +79,16 @@
   const ta = ed.querySelector('textarea');
   let pendente = null, editando = null, segura = false, tTip = 0;
 
-  function montar() { D.body.append(barra, tip, ed); }
-  const esconder = el => { el.classList.remove('on'); };
+  function montar() {
+    D.body.append(barra, tip, ed);
+    const st = D.createElement('style'); st.id = 'vg-n-css';
+    st.textContent = '#hl-pop:not(:has(.del[style*="flex"])){display:none!important}#hl-pop .add{display:none!important}'
+      + 'html.vg-n-aberta #mc-tooltip,html.vg-n-aberta #tip,html.vg-n-aberta .tip{display:none!important}'
+      + '.vg-n-tip .chips a[data-a="remover"]{background:#5a2231;color:#ffd3ea}.vg-n-tip .chips a[data-a="remover"]:hover{background:#7a2c41}'
+      + '.vg-n-tip .chips a{padding:6px 12px;font-size:13px}';
+    D.head.appendChild(st);
+  }
+  const esconder = el => { el.classList.remove('on'); if (el === tip) html.classList.remove('vg-n-aberta'); };
   function posicionar(el, rect, acima = true) {
     el.style.left = '0px'; el.style.top = '0px'; el.classList.add('on');
     const w = el.offsetWidth, h = el.offsetHeight;
@@ -110,6 +118,7 @@
       pendente = { q: s.q, pre: txt.slice(Math.max(0, ini - 40), ini), pos: txt.slice(fim, fim + 40), ini, fim };
       // master com grifo próprio: só o "Anotar", grudado no botão dele
       const nativo = D.querySelector('#hlbtn,.hlbtn');
+      const hp = D.getElementById('hl-pop'); if (hp && !hp.querySelector('.del[style*="flex"]')) hp.style.display = 'none';
       const nativoVisivel = nativo && getComputedStyle(nativo).display !== 'none' && nativo.getBoundingClientRect().width > 0;
       barra.innerHTML = (nativoVisivel ? '' : '<a data-a="grifar">🖍 Grifar</a>') + '<a data-a="anotar">💬 ' + (nativoVisivel ? 'Anotar' : 'Grifar com anotação') + '</a>';
       if (nativoVisivel) { const r = nativo.getBoundingClientRect(); barra.classList.add('on'); barra.style.left = Math.min(innerWidth - barra.offsetWidth - 10, r.right + 6) + 'px'; barra.style.top = r.top + 'px'; }
@@ -155,15 +164,15 @@
     tip.innerHTML = '<div class="h">' + (n.t ? '💬 Sua anotação' : '🖍 Seu grifo') + '</div>'
       + (n.t ? '<div class="txt">' + escapar(n.t).replace(/\n/g, '<br>') + '</div>' : '')
       + '<div class="chips"><a data-a="editar">' + (n.t ? '✎ Editar' : '💬 Anotar') + '</a><a data-a="remover">✕ Remover</a></div>';
-    tip.dataset.n = n.id;
+    tip.dataset.n = n.id; html.classList.add('vg-n-aberta');
     const marks = D.querySelectorAll('mark.vg-nota[data-n="' + n.id + '"]');
     posicionar(tip, (marks[0] || m).getBoundingClientRect());
   }
   D.addEventListener('mouseover', e => { const m = e.target.closest && e.target.closest('mark.vg-nota'); if (m) { clearTimeout(tTip); mostrarTip(m); } });
-  D.addEventListener('mouseout', e => { const m = e.target.closest && e.target.closest('mark.vg-nota'); if (m) tTip = setTimeout(() => { if (!segura) esconder(tip); }, 350); });
+  D.addEventListener('mouseout', e => { const m = e.target.closest && e.target.closest('mark.vg-nota'); if (m) tTip = setTimeout(() => { if (!segura) esconder(tip); }, 700); });
   D.addEventListener('click', e => {
     const m = e.target.closest && e.target.closest('mark.vg-nota');
-    if (m) { e.stopPropagation(); mostrarTip(m); return; }
+    if (m) { if (!getSelection().isCollapsed) return; e.stopPropagation(); e.preventDefault(); mostrarTip(m); segura = true; setTimeout(() => { segura = false; }, 400); return; }
     if (!e.target.closest('.vg-n-ui')) { esconder(tip); }
   }, true);
   tip.addEventListener('mouseenter', () => { segura = true; clearTimeout(tTip); });
