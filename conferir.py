@@ -20,6 +20,8 @@ def tem(*pads):
 ITENS = [
     ('Tema de vidro aplicado', tem(r'<!--vidro:cabeca-->|<!--vidro:'),
      'rode python publicar.py --local (o script põe o bloco do tema)'),
+    ('Liquid glass (liquido.js)', tem(r'liquido\.js'),
+     'rode python publicar.py --local: o script inclui o _tema/liquido.js; peça flutuante nova entra em SEL nesse arquivo'),
     ('Botão de tema claro/escuro', tem(r'data-act="theme"|id="btnTheme"|\bthemebtn\b'),
      'o botão precisa de data-act="theme", id="btnTheme" ou class="themebtn" para a lâmpada achar'),
     ('Texto dentro de <main>', tem(r'<main\b|id="main"|id="view"|class="main\b'),

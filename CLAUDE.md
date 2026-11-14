@@ -44,6 +44,7 @@ Responda sempre em português (Brasil).
    - blocos parcial / somativa / pós-somativa;
    - em cada capítulo, só questões de prova, ou o aviso "nunca caiu" mais as autorais recolhidas;
    - página "O que mais cai";
+   - liquid glass (`_tema/liquido.js`);
    - memes (`<pasta>/_img/memes.json`, ~60, revisados);
    - crédito "Vinícius e Matheus".
 
@@ -59,6 +60,7 @@ Responda sempre em português (Brasil).
 | `_tema/vidro.js` | Fundo 3D, lâmpada de cordinha do tema e monitor cardíaco (TH IV). |
 | `_tema/modelos.js` | Modelos 3D. |
 | `_tema/palco.js` | Palco 3D, com qualidade adaptativa. |
+| `_tema/liquido.js` | Liquid glass real: refração do fundo na borda do vidro, com leve aumento (lente). Ver "Liquid glass". |
 | `_tema/notas.js` | "Grifar com anotação": funciona sozinho em qualquer master e aula (o `publicar.py` inclui). Detalhes em "Grifos e anotações". |
 | `_tema/segmentos.js` | Barra lateral v2 (uma linha com o nome curto; o item aberto mostra o título inteiro) + migalha "Aula › N. título", "Segmento X / Y" sob o título e ⭐ em "O que mais cai" (continua com concluir). O `publicar.py` inclui. Fonte padrão dos masters: Instrument Sans + Instrument Serif. |
 | `_tema/extras.js` | Zoom ao clicar nas imagens do conteúdo e crédito no canto (o `publicar.py` inclui). |
@@ -73,6 +75,16 @@ Responda sempre em português (Brasil).
 - Fica no navegador de cada pessoa (`localStorage`, chave `vidro-notas:<caminho da página>`), ancorada pelo texto do trecho, então não depende da estrutura do master.
 - Master ou aula nova não precisa de nada: o `publicar.py` põe o `notas.js` no bloco do tema, inclusive nas aulas separadas em `aulas/` (também nas que já existiam).
 - O texto do master deve ficar dentro de `<main>` (ou `#main`, `#view`, `.main`); barra lateral, menus e botões ficam de fora de propósito.
+
+## Liquid glass
+
+**Regra: o site inteiro usa o tema liquid glass.** Hub, masters, aulas e qualquer página nova entram com ele; nada de vidro próprio ou visual à parte.
+
+- O `_tema/liquido.js` dá a cada peça de vidro um mapa de refração feito do tamanho e do raio dela. O `publicar.py` inclui o arquivo nos masters e nas aulas; o hub carrega direto.
+- Vale para barras, botões, cartões do hub e janelas flutuantes. Peça flutuante nova: ponha `data-liquido` nela (ou acrescente o seletor em `SEL`, no `liquido.js`) e dê a ela um `backdrop-filter` de vidro fosco, que é o que fica quando a lente não liga.
+- Caixas de conteúdo (questões, cards de texto) não recebem a lente: seguem "Cuidados de desempenho".
+- A lente só liga em Chrome/Edge no PC. Safari, Firefox, celular e PC fraco ficam com o vidro fosco: é de propósito, não "conserte".
+- O `conferir.py` acusa master sem o `liquido.js`.
 
 ## Cuidados de desempenho
 

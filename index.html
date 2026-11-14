@@ -78,7 +78,6 @@ body.quiet #gl{opacity:.2}
     inset 0 0 40px rgba(255,255,255,.04),
     0 30px 80px -20px rgba(0,0,0,.6);
   transition:transform .6s var(--ease),box-shadow .5s var(--ease),background .5s}
-.refract .glass{-webkit-backdrop-filter:url(#liquid) blur(14px) saturate(190%) brightness(1.08);backdrop-filter:url(#liquid) blur(14px) saturate(190%) brightness(1.08)}
 .modo-leve .glass{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:linear-gradient(160deg,rgba(40,48,58,.82),rgba(14,19,26,.76) 40%,rgba(22,28,36,.78))}
 .modo-leve .grain{display:none}
 .modo-leve body{background:radial-gradient(70vmax 60vmax at 85% 30%,rgba(216,255,61,.08),transparent 70%),var(--ground)}
@@ -349,11 +348,7 @@ main{position:relative;z-index:10;height:100%}
 <body data-accent="hub">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="liquid" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
-    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="2" seed="7" result="n"/>
-    <feGaussianBlur in="n" stdDeviation="2" result="nb"/>
-    <feDisplacementMap in="SourceGraphic" in2="nb" scale="38" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
+
 </svg>
 
 <canvas id="gl" aria-hidden="true"></canvas>
@@ -746,6 +741,7 @@ show(location.hash.slice(1)||'home',false);
 </script>
 <script src="_tema/modelos.js?v=c78e6277"></script>
 <script src="_tema/palco.js?v=713ea5fe"></script>
+<script src="_tema/liquido.js?v=727b02a3"></script>
 <script type="module">
 // modo leve: sem 3D (o hub continua igual, só sem o fundo animado)
 if (window.LENTO) { document.getElementById('gl').style.display = 'none'; throw new Error('hub em modo leve: 3D desligado'); }
@@ -756,7 +752,7 @@ const {createStage} = window.VidroPalco(THREE, COL);
 
 const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30, start:false} : {dust:1000, dpr:1.5, start:false});
 // se o aparelho sofrer, a primeira coisa a sair é a refração líquida (o efeito mais caro da página)
-W.onDegrade = () => document.documentElement.classList.remove('refract');
+W.onDegrade = () => { document.documentElement.classList.remove('refract'); window.Liquido && Liquido.off(); };
 const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeTissue(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook(), img:makeRaiox()};
 /* modo leve automático: mede os quadros com tudo ligado; se não passa de ~30 fps
    (ex.: navegador sem placa de vídeo), desliga o 3D, a refração e o desfoque, e lembra disso */
