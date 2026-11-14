@@ -60,6 +60,7 @@ Responda sempre em português (Brasil).
      - `📝 Questão de prova · reconstruída da justificativa`: com o aviso "Enunciado e alternativas reconstruídos a partir da justificativa oficial; o gabarito é o oficial";
      - `✍️ Autoral`: feita por nós, num bloco recolhível, nunca misturada com as de prova.
    - **Se o tema caiu na prova**: o capítulo diz quantas vezes caiu (grifo de frequência, "Caiu em N provas"); se nunca caiu, o aviso "nunca caiu" antes das autorais.
+   - **Ordem em cada capítulo de aula, em todos os masters: primeiro as questões de prova**, incluindo as reconstruídas das justificativas (que contam como questão de prova e vão no capítulo do tema delas). Só depois, recolhidas, as autorais. Se o tema nunca caiu, o capítulo mostra o aviso "Este tema nunca caiu nas provas do acervo" e as autorais logo abaixo, como na Microbiologia. Toda justificativa nova que chegar vira questão reconstruída e entra no capítulo e na seção da prova.
    - **Cada aula** fecha com quiz, "⭐ O que mais é cobrado" e Arena.
    - **Seções finais**, como em Microbiologia: Revisão final (revisão em 1 hora **com esquemas**: tabelas, fluxogramas, comparações), O que vai cair, Simulados (com as provas anteriores em questões), Raio-X da prova e Minha revisão.
    - **Sempre avise o que falta.** Pode adicionar ou publicar um master incompleto se o usuário pedir, mas diga com todas as letras o que ainda falta ("ainda falta: questões reconstruídas da Somativa 81; revisão final sem esquemas"). Nunca dê como pronto um master com pendência no `conferir.py`.

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tone="prova" data-theme="dark">
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=bf3bebc3"><script defer src="../../_tema/notas.js?v=41a060d3"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=365669b2"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><!--/vidro:cabeca-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reta final · Patologia Médica I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet"><style>/* ===== Visual "Farmacologia" aplicado às aulas de Patologia ===== */
+:root{
+  --ground:#ffffff; --surface:#f5f6f4; --surface-2:#eceeeb; --raised:#ffffff;
+  --border:#e4e6e2; --rule:#eff0ed; --control:#d6d9d4;
+  --ink:#1f201d; --ink-2:#3a3c37; --muted:#676964; --faint:#9a9c96;
+  --accent:#1b6e66; --accent-ink:#0f4d47; --accent-soft:#e3f0ed;
+  --tone:var(--accent);
+  --ok:#2e7d32; --ok-bg:#e6f4e7; --ok-line:#b9dcbb;
+  --bad:#b42318; --bad-bg:#fdecea; --bad-line:#f2c1bb;
+  --warn:#b26a00; --warn-bg:#f8ecd2; --warn-ink:#7a5200;
+  --on-ink:#fff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121413; --surface:#1a1d1b; --surface-2:#242826; --raised:#1f2320;
+  --border:#2c312e; --rule:#222624; --control:#3d4440;
+  --ink:#e6e9e4; --ink-2:#c3c8c1; --muted:#9aa09a; --faint:#6f766f;
+  --accent:#5fc4ae; --accent-ink:#93e0cd; --accent-soft:#17332d;
+  --ok:#62c27a; --ok-bg:#15281a; --ok-line:#2b5233;
+  --bad:#f07a6c; --bad-bg:#2d1714; --bad-line:#5c2b25;
+  --warn-bg:#33290f; --warn-ink:#f0cf86;
+  --on-ink:#121413;
+}
+/* cada grupo de aulas tem a sua cor, só no que orienta */
+:root[data-tone="cv"]{--tone:#a3263a}
+:root[data-tone="resp"]{--tone:#1f6f8b}
+:root[data-tone="prova"]{--tone:#6b4c8a}
+:root[data-tone="sim"]{--tone:#1b6e66}
+:root[data-tone="gi"]{--tone:#2e7d4f}
+:root[data-tone="acc"]{--tone:#9a5a00}
+:root[data-theme="dark"][data-tone="cv"]{--tone:#ec8a98}
+:root[data-theme="dark"][data-tone="resp"]{--tone:#7cc2dc}
+:root[data-theme="dark"][data-tone="prova"]{--tone:#bca0d8}
+:root[data-theme="dark"][data-tone="sim"]{--tone:#5fc4ae}
+:root[data-theme="dark"][data-tone="gi"]{--tone:#6fbf8e}
+:root[data-theme="dark"][data-tone="acc"]{--tone:#e0b06a}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{background:var(--ground)!important;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:inherit;color:inherit}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- cabeçalho da aula (era "hero") ---------- */
+.hero{background:transparent;color:var(--ink);padding:40px clamp(16px,5vw,72px) 0}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;padding-bottom:28px;border-bottom:1px solid var(--border);
+  margin-bottom:32px}
+.hero h1{order:1;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0;font-weight:400;
+  letter-spacing:-.015em;color:var(--ink);max-width:none;text-wrap:balance}
+.tag{order:2;display:block;align-self:flex-start;background:transparent;color:var(--tone);font-family:var(--sans);font-size:14px;
+  font-weight:500;letter-spacing:0;padding:0;border-radius:0;margin:12px 0 0}
+.hero p{order:3;margin:14px 0 0;color:var(--muted);font-family:var(--sans);font-size:14.5px;line-height:1.6;max-width:68ch}
+.strip{order:4;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:22px;overflow:hidden;border-radius:0}
+.strip img{width:100%;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--border);filter:none;opacity:.92}
+:root[data-theme="dark"] .strip img{filter:brightness(.9)}
+@media (max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}.strip img:nth-child(n+4){display:none}}
+
+/* ---------- layout (a navegação agora vive na barra lateral do app) ---------- */
+.shell{display:block;max-width:none;margin:0;padding:0 clamp(16px,5vw,72px) 96px}
+nav.rail{display:none}
+main{display:block;max-width:920px;margin:0 auto;padding:0;background:transparent;border-radius:0;box-shadow:none}
+.pane{display:block;animation:rise .35s var(--ease-out) both;scroll-margin-top:100vh}
+/* o cabeçalho grande só aparece na capa da aula; nos segmentos o título do próprio segmento assume */
+html[data-hero="off"] header.hero{display:none}
+html[data-hero="off"] .shell{padding-top:40px}
+.pane[hidden]{display:none}
+
+.pane-title{position:relative;font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin:0 0 28px;
+  padding:0 0 22px;font-weight:400;letter-spacing:-.012em;color:var(--ink);border-bottom:1px solid var(--border);text-wrap:balance}
+.pane-title.has-done{padding-right:150px}
+
+/* ---------- leitura ---------- */
+.prose,.intro{max-width:none}
+.prose p,.intro p,.prose li,.intro li{font-size:17px;line-height:1.7;color:var(--ink)}
+.prose p,.intro p{margin:0 0 18px;max-width:70ch}
+.prose ul,.prose ol,.intro ul,.intro ol{padding-left:22px;margin:0 0 20px;max-width:70ch}
+.prose li,.intro li{margin-bottom:8px}
+.prose li::marker,.intro li::marker{color:var(--faint)}
+.prose h2,.intro h2{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:56px 0 16px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+.intro h2:first-child{margin-top:0}
+.prose h3,.intro h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.prose strong,.intro strong,.prose b,.intro b{font-weight:600;color:var(--ink)}
+.prose hr,.intro hr{border:0;border-top:1px solid var(--border);margin:36px 0}
+.prose em,.intro em{color:inherit}
+table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;font-family:var(--sans)}
+th{background:transparent;color:var(--muted);text-align:left;padding:10px 14px 10px 0;font-weight:500;font-size:13.5px;
+  border-bottom:1px solid var(--control);vertical-align:bottom}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;text-align:left;
+  font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+@media (max-width:700px){table{display:block;overflow-x:auto}}
+
+.fig{margin:28px auto;max-width:100%;text-align:center}
+.fig img{display:inline-block;max-width:100%;width:auto;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff;
+  cursor:zoom-in;transition:transform .2s var(--ease-out)}
+:root[data-theme="dark"] .fig img{border-color:var(--border);filter:brightness(.94)}
+.fig figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;
+  max-width:68ch;padding:0;border:0}
+
+/* ---------- painéis (notas) ---------- */
+.note{border-radius:18px;padding:18px 22px;margin:24px 0;font-size:16px;line-height:1.68;border:none;position:relative;
+  background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:16px;line-height:1.68;max-width:none}
+.note p + p{margin-top:10px}
+.note-extra{background:#f2f2f8}.note-extra>p>strong:first-child{color:#4b4790}
+.note-fix{background:#fbf0ea}.note-fix>p>strong:first-child{color:#9a4a1f}
+.note-link{background:#edf3f8}.note-link>p>strong:first-child{color:#2d5f8f}
+:root[data-theme="dark"] .note-extra{background:#1d1d2a}:root[data-theme="dark"] .note-extra>p>strong:first-child{color:#aaa6ea}
+:root[data-theme="dark"] .note-fix{background:#2a1c15}:root[data-theme="dark"] .note-fix>p>strong:first-child{color:#ec9f73}
+:root[data-theme="dark"] .note-link{background:#17212b}:root[data-theme="dark"] .note-link>p>strong:first-child{color:#8dbbe6}
+.note + ol,.note + ul{margin-top:-6px}
+
+/* ---------- grifos de frequência em prova ---------- */
+mark.exam1,mark.exam2,mark.exam3,mark.exam4,mark.exam5,mark.hot{padding:1px 3px;border-radius:4px;cursor:help;color:inherit;font-weight:inherit;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1{background:#d8f3e3}
+mark.exam2{background:#fdf0bf}
+mark.exam3,mark.hot{background:#fcd9a8}
+mark.exam4{background:#f8bfb5}
+mark.exam5{background:#1c2331;color:#ffe3a3}
+mark.exam5 *{color:#ffe3a3}
+:root[data-theme="dark"] mark.exam1,:root[data-theme="dark"] mark.exam2,:root[data-theme="dark"] mark.exam3,
+:root[data-theme="dark"] mark.exam4,:root[data-theme="dark"] mark.hot,
+:root[data-theme="dark"] mark.exam1 *,:root[data-theme="dark"] mark.exam2 *,:root[data-theme="dark"] mark.exam3 *,
+:root[data-theme="dark"] mark.exam4 *,:root[data-theme="dark"] mark.hot *{color:#1b2230!important}
+:root[data-theme="dark"] mark.exam5{box-shadow:inset 0 0 0 1px #4a5568}
+.examcard{margin:24px 0;padding:18px 22px;border:none;background:#f8f3e1;border-radius:18px}
+.examcard h4{margin:0 0 8px;font-size:14px;color:#765800;font-family:var(--sans);letter-spacing:0;font-weight:600}
+.examcard p{font-size:15px!important;max-width:none!important}
+:root[data-theme="dark"] .examcard{background:#26220f}:root[data-theme="dark"] .examcard h4{color:#e3c25c}
+.exam-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin:14px 0}
+.exam-legend span{padding:3px 9px;border-radius:999px;font-weight:500}
+:root[data-theme="dark"] .exam-legend span[style*="#111111"]{box-shadow:inset 0 0 0 1px #4a5568}
+.q-source{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;
+  font-family:var(--sans);text-transform:none}
+.q-source.real{background:var(--ok-bg);color:var(--ok)}
+.q-source.adapted{background:var(--warn-bg);color:var(--warn-ink)}
+.q-source.original{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- quiz ---------- */
+.qzone{margin-top:72px;padding-top:0;border-top:none;max-width:none}
+.qzone-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:0 0 12px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em}
+.lede{font-family:var(--sans);font-size:14.5px;color:var(--muted);max-width:68ch;line-height:1.6;margin:0 0 24px}
+.q{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.q-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.q-head>.q-source{order:2;margin-top:3px}
+.q-num{order:1;flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:999px;background:var(--ink);color:var(--on-ink);
+  font-family:var(--sans);font-weight:500;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;margin:0}
+.q-stem{order:3;flex:1 0 100%;min-width:0}
+.q-stem p{margin:0 0 12px;font-size:16.5px;line-height:1.65;color:var(--ink);max-width:none}
+.q-stem .fig{margin:8px 0 16px}
+.q-stem .fig img{max-height:420px}
+.opts{display:flex;flex-direction:column;gap:0;margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  color:var(--ink);transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.opt:active{transform:scale(.995)}
+.opt-letter{flex:none;width:26px;height:26px;min-width:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.opt-text{flex:1;min-width:0;padding-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.opt.is-correct{border-color:var(--ok-line);background:var(--ok-bg);box-shadow:none}
+.opt.is-correct .opt-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-wrong{border-color:var(--bad-line);background:var(--bad-bg);box-shadow:none}
+.opt.is-wrong .opt-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .opt.is-correct .opt-letter,:root[data-theme="dark"] .opt.is-wrong .opt-letter{color:#0d1110}
+.q.done .opt{cursor:default}
+.q.done .opt:active{transform:none}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--control)}:root[data-theme="dark"] .opt:hover{border-color:#4a524d}}
+.q-actions{display:flex;gap:8px;align-items:center;margin:14px 0 0;flex-wrap:wrap}
+.btn-reveal,.btn-grade,.btn-reset{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;
+  cursor:pointer;background:var(--ink);color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn-reveal:active,.btn-grade:active,.btn-reset:active{transform:scale(.97)}
+.btn-reveal{background:var(--surface-2);color:var(--ink)}
+.btn-reset{background:var(--surface-2);color:var(--ink)}
+.btn-grade{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn-grade{color:#0d1110}
+.btn-reveal[hidden],.btn-grade[hidden],.btn-reset[hidden]{display:none}
+.q-why{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:15px;line-height:1.6}
+.q-why[hidden]{display:none}
+.q-why p{margin:0 0 10px;font-size:15px;line-height:1.6;max-width:none}
+.q-why p:last-child{margin:0}
+.q-why:has(.q-verdict.ok){background:var(--ok-bg)}
+.q-why:has(.q-verdict.no){background:var(--bad-bg)}
+.q-verdict{font-family:var(--sans);font-weight:600}
+.q-verdict.ok{color:var(--ok)}.q-verdict.no{color:var(--bad)}
+.q-why hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+.q-open textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;
+  background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+.q-open textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.scorebar{position:sticky;top:12px;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--surface);
+  border:1px solid var(--border);border-radius:22px;padding:14px 20px;margin:22px 0 16px;font-family:var(--sans);font-size:15px}
+#scoretext{flex:1 1 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.closing{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ---------- ampliar imagem ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(18,20,18,.82);display:none;place-items:center;z-index:900;padding:30px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:12px;background:#fff}
+.lightbox figcaption{color:#e6e9e4;font-family:var(--sans);font-size:14.5px;margin-top:14px;max-width:70ch;text-align:center;line-height:1.5}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-family:var(--sans);
+  font-size:14px;font-weight:500;border-radius:999px;height:38px;padding:0 18px;cursor:pointer}
+
+/* ---------- dica "caiu em prova" ---------- */
+#mc-tooltip{background:#2b302d!important;color:#eef0ec!important;border:none!important;border-radius:12px!important;padding:12px 14px!important;
+  font-family:var(--sans)!important;font-size:13px!important;line-height:1.5!important;box-shadow:0 12px 32px rgba(20,22,20,.28)!important}
+#mc-tooltip div{color:#c3c8c1!important;font-size:12px!important;letter-spacing:0!important;font-weight:600}
+#mc-tooltip .mc-chip{background:#3b413d!important;color:#eef0ec!important;border:none!important;border-radius:999px!important;padding:3px 10px!important;
+  font-size:12px!important}
+#mc-tooltip .mc-chip:hover{background:var(--accent)!important;color:#0d1110!important}
+
+/* ---------- concluir (vem da barra lateral do app) ---------- */
+.done-t{position:absolute;top:6px;right:0;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);height:38px;padding:0 16px 0 12px;border-radius:999px;cursor:pointer;background:var(--surface);border:none;user-select:none;
+  letter-spacing:0;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.done-t:active{transform:scale(.97)}
+.done-t .d{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--control);background:var(--raised);
+  transition:background-color .2s ease,border-color .2s ease}
+.done-t.on{color:var(--ok);background:var(--ok-bg)}
+.done-t.on .d{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px var(--ok-bg)}
+@media (max-width:700px){.done-t{position:static;margin-top:14px}.pane-title.has-done{padding-right:0}}
+
+@media (max-width:900px){
+  .hero{padding:24px 16px 0}
+  .shell{padding:0 16px 72px}
+  .q{padding:18px 16px;border-radius:18px}
+  .note{padding:16px 18px}
+  .prose p,.intro p,.prose li,.intro li{font-size:16.5px}
+  .prose h2,.intro h2{font-size:27px;margin-top:44px}
+  .opts{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  .hero,.scorebar,.q-actions,.strip,.done-t{display:none}
+  body{background:#fff!important;color:#000}
+  .pane[hidden],.q-why[hidden]{display:block!important}
+  .q,.fig{break-inside:avoid}
+}
+
+/* ---------- anterior / próximo ---------- */
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{border:none;background:var(--surface);border-radius:16px;padding:14px 18px;font-family:var(--sans);font-size:14.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);max-width:48%;text-align:left;line-height:1.4;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.navfoot button:last-child{text-align:right;margin-left:auto}
+.navfoot button:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.navfoot button:hover{background:var(--surface-2)}}
+
+/* ---------- botão grande de concluir, no fim do segmento ---------- */
+.cel-fin{display:flex;justify-content:center;margin:34px 0 8px}
+.cel-finish{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+  font:500 16px/1 var(--sans);cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+:root[data-theme="dark"] .cel-finish{color:#0d1110}
+.cel-finish:active{transform:scale(.97)}
+.cel-finish svg{width:20px;height:20px}
+.cel-finish svg circle{fill:none;stroke:currentColor;stroke-width:2;opacity:.55}
+.cel-finish svg path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s var(--ease-out)}
+.cel-finish.on{background:var(--ok-bg);color:var(--ok)}
+:root[data-theme="dark"] .cel-finish.on{color:var(--ok)}
+.cel-finish.on svg path{stroke-dashoffset:0}
+@media (hover:hover) and (pointer:fine){.cel-finish:not(.on):hover{transform:translateY(-1px)}}
+@media (max-width:600px){.cel-finish{width:100%}}
+.cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
+
+.find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+</style><script>(function(){var p=(window.name||"").split("|");document.documentElement.setAttribute("data-theme",p[2]==="light"?"light":"dark")})();</script><style id="reta-css">
+.lede{max-width:70ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.chipl{display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;background:var(--surface);color:var(--ink);text-decoration:none;font:500 14px var(--sans)}
+.chipl:hover{background:var(--surface-2)}
+.plano{counter-reset:p;list-style:none;padding:0;margin:0 0 24px;display:grid;gap:10px}
+.plano li{counter-increment:p;background:var(--surface);border-radius:16px;padding:14px 16px 14px 56px;position:relative;line-height:1.55}
+.plano li::before{content:counter(p);position:absolute;left:16px;top:14px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--on-ink);display:flex;align-items:center;justify-content:center;font:600 13px var(--sans)}
+.sys{margin:0 0 40px;scroll-margin-top:20px}
+.sys h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,34px);margin:0 0 4px;color:var(--ink)}
+.sys-sub{color:var(--muted);margin:0 0 16px;font-size:14px}
+.esq{background:var(--surface);border-radius:20px;padding:18px 20px;margin:0 0 14px}
+.esq h3{font:600 17px var(--sans);margin:0 0 12px;color:var(--ink)}
+.tbw{overflow-x:auto;margin:0 0 12px;-webkit-overflow-scrolling:touch}
+.tb{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px;line-height:1.45}
+.tb th,.tb td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--border)}
+.tb tr:first-child th{color:var(--muted);font-weight:600;font-size:13px;background:transparent}
+.tb td:first-child{color:var(--ink);font-weight:500}
+.tb tr:last-child td{border-bottom:none}
+.flow{list-style:none;display:flex;flex-wrap:wrap;gap:6px 0;padding:0;margin:4px 0 14px;align-items:stretch}
+.flow li{background:var(--accent-soft);color:var(--ink);border-radius:12px;padding:8px 12px;font-size:14px;line-height:1.4;display:flex;align-items:center;max-width:100%}
+.flow li+li::before{content:"→";margin:0 8px 0 -2px;color:var(--accent-ink);font-weight:700}
+.flow li+li{margin-left:6px}
+.pega{margin:4px 0 0;padding:12px 14px 12px 32px;background:var(--warn-bg);border-radius:12px;font-size:14.5px;line-height:1.55}
+.pega li{margin:0 0 4px}.pega li:last-child{margin:0}
+.pega::before{content:"Pegadinha";display:block;margin:0 0 4px -18px;font:600 12px var(--sans);color:var(--warn-ink);text-transform:uppercase;letter-spacing:.04em}
+.tbx{border-collapse:collapse;width:100%;font-size:14px}
+.tbx th,.tbx td{padding:8px 8px;border-bottom:1px solid var(--border);text-align:left}
+.tbx .num{text-align:right;font-variant-numeric:tabular-nums}
+.tbx .small{font-size:13px;color:var(--ink-2)}
+.bar{display:inline-block;width:120px;max-width:30vw;height:8px;border-radius:99px;background:var(--surface-2);vertical-align:middle;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.temas{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:8px}
+.tema{width:100%;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;text-align:left;border:none;background:var(--surface);border-radius:14px;padding:12px 14px;cursor:pointer;font:15px var(--sans);color:var(--ink)}
+.tema:hover{background:var(--surface-2)}
+.tn{font-weight:600;flex:1 1 200px}.pvs{color:var(--muted);font-size:13px}
+.freq{border-radius:999px;padding:2px 10px;font:600 12px var(--sans);background:var(--surface-2);color:var(--ink-2)}
+.freq.hot{background:var(--ink);color:var(--on-ink)}
+.box{background:var(--surface);border-radius:20px;padding:18px 20px;margin:0 0 16px}
+.box h3{font:600 17px var(--sans);margin:0 0 10px}
+.stat{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.stat div{background:var(--surface);border-radius:16px;padding:12px 16px;min-width:130px}
+.stat b{display:block;font:600 26px var(--sans);font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:13px}
+.err{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.err button{width:100%;text-align:left;border:none;background:var(--bad-bg);color:var(--ink);border-radius:14px;padding:10px 14px;cursor:pointer;font:15px var(--sans);display:flex;gap:10px;flex-wrap:wrap}
+.err button span{color:var(--muted);font-size:13px}
+.vazio{color:var(--muted);padding:12px 0}
+#notas{width:100%;min-height:180px;font:15px/1.6 var(--sans);padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+#notas:focus{border-color:var(--accent)}
+.btnl{border:none;border-radius:999px;height:38px;padding:0 18px;background:var(--ink);color:var(--on-ink);font:500 14px var(--sans);cursor:pointer}
+@media (max-width:640px){.esq,.box{padding:14px 14px}.flow li{font-size:13.5px}.bar{width:70px}}
+</style></head>
+<body><header class="hero"><div class="hero-in">
+    <span class="tag">Reta final</span>
+    <h1>Revisão final, o que vai cair e a sua revisão</h1>
+    <p>Patologia Médica I. Tudo da matéria em esquemas, o Raio-X das parciais 78–82 e das somativas 77–82, e as questões que você errou no banco.</p>
+  </div></header>
+  <div class="shell">
+    <nav class="rail"><p class="rail-head">Reta final</p><a class="nav-item" href="#" data-target="capa">Início</a><a class="nav-item" href="#" data-target="rev1h"><span class="nav-num">1</span><span>Revisão final em 1 hora</span></a><a class="nav-item" href="#" data-target="cair"><span class="nav-num">2</span><span>O que vai cair · Raio-X</span></a><a class="nav-item" href="#" data-target="minha"><span class="nav-num">3</span><span>Minha revisão</span></a></nav>
+    <main><section class="pane" id="capa">
+  <h1 class="pane-title">Reta final</h1>
+  <p class="lede">Para a semana da prova. Siga a ordem: ela começa pelo que mais cai.</p>
+  <ol class="plano">
+    <li><b>O que vai cair · Raio-X da prova (10 min).</b> Veja os temas que voltaram em três ou mais somativas e onde as parciais mais bateram. Clicar num tema abre a questão no banco.</li>
+    <li><b>Revisão final em 1 hora (60 min).</b> Os quatro sistemas em tabelas, fluxos e pegadinhas. Leia o bloco da sua prova: parcial = cardio e pulmão; somativa = tubo digestivo, fígado, vias biliares e pâncreas (e a revisão de cardio e pulmão).</li>
+    <li><b>Somativas em questões.</b> Faça as questões do banco (reconstruídas das justificativas oficiais, gabarito oficial). As respostas ficam salvas.</li>
+    <li><b>Minha revisão.</b> Volte nas que você errou, por eixo, e escreva as suas anotações.</li>
+  </ol>
+  <p class="lede">Provas completas: as Parciais 78–82 estão em "5 Parciais", e os Simulados 1 e 2 seguem o estilo do departamento.</p>
+</section><section class="pane" id="rev1h" hidden>
+  <h1 class="pane-title">Revisão final em 1 hora</h1>
+  <p class="lede">Um bloco por sistema, só com esquemas: tabelas de comparação, fluxos de patogênese e as pegadinhas que as provas repetem.</p>
+  <div class="chips"><a class="chipl" href="#sys-cardio">🫀 Cardiovascular</a><a class="chipl" href="#sys-resp">🫁 Respiratório</a><a class="chipl" href="#sys-gi">🍽️ Tubo digestivo</a><a class="chipl" href="#sys-acc">🩸 Fígado, vias biliares e pâncreas</a></div>
+  <section class="sys" id="sys-cardio"><h2>🫀 Cardiovascular</h2><p class="sys-sub">Aulas 1 a 4 · bloco da parcial</p><div class="esq"><h3>Aterosclerose: da lesão à placa</h3><ol class="flow"><li>Lesão endotelial (HAS, tabaco, LDL, DM)</li><li>LDL entra na íntima e oxida</li><li>Monócitos viram macrófagos espumosos</li><li>Estria lipídica</li><li>Músculo liso migra e faz matriz: placa fibrogordurosa</li><li>Complicação: ruptura, trombose, hemorragia, calcificação, aneurisma</li></ol><div class="tbw"><table class="tb "><tr><th></th><th>Placa estável</th><th>Placa instável (vulnerável)</th></tr><tr><td>Capa fibrosa</td><td>Espessa</td><td>Fina</td></tr><tr><td>Núcleo lipídico</td><td>Pequeno</td><td>Grande</td></tr><tr><td>Inflamação</td><td>Pouca</td><td>Muitos macrófagos e linfócitos T</td></tr><tr><td>Clínica</td><td>Angina estável</td><td>Síndrome coronariana aguda</td></tr></table></div></div><div class="esq"><h3>Cardiopatia isquêmica: as quatro caras</h3><div class="tbw"><table class="tb "><tr><th></th><th>Mecanismo</th><th>Dor</th><th>Troponina</th></tr><tr><td><b>Angina estável</b></td><td>Placa fixa &gt; 75% da luz, isquemia de demanda</td><td>Aos esforços, passa com repouso</td><td>Normal</td></tr><tr><td><b>Angina instável</b></td><td>Fissura de placa + trombo não oclusivo</td><td>Em repouso ou em crescendo</td><td>Normal</td></tr><tr><td><b>Prinzmetal</b></td><td>Vasoespasmo</td><td>Em repouso, cíclica</td><td>Normal</td></tr><tr><td><b>Infarto</b></td><td>Trombo oclusivo, necrose</td><td>Prolongada</td><td>Sobe</td></tr></table></div><div class="tbw"><table class="tb "><tr><th>Tempo do infarto</th><th>O que se vê</th></tr><tr><td>até 30 min</td><td>Lesão reversível</td></tr><tr><td>4 a 12 h</td><td>Começa a necrose de coagulação, fibras onduladas</td></tr><tr><td>1 a 3 dias</td><td>Neutrófilos</td></tr><tr><td>3 a 7 dias</td><td>Macrófagos: parede mais fraca, <b>risco de ruptura</b></td></tr><tr><td>7 a 10 dias</td><td>Tecido de granulação</td></tr><tr><td>2 a 8 semanas</td><td>Colágeno; depois, cicatriz</td></tr></table></div><ul class="pega"><li>Arritmia mata nas primeiras horas; ruptura de parede livre (tamponamento), de septo ou de músculo papilar aparece em 3 a 7 dias.</li><li>Pericardite fibrinosa em 2 a 3 dias; Dressler semanas depois; aneurisma ventricular e trombo mural são tardios.</li></ul></div><div class="esq"><h3>Insuficiência cardíaca</h3><div class="tbw"><table class="tb "><tr><th></th><th>IC esquerda</th><th>IC direita</th></tr><tr><td>Causas</td><td>HAS, isquemia, valvopatia aórtica e mitral</td><td>IC esquerda (a principal), cor pulmonale</td></tr><tr><td>Onde congestiona</td><td>Pulmão: edema, dispneia, ortopneia, DPN</td><td>Sistêmica: fígado em noz-moscada, edema de MMII, ascite, turgência jugular</td></tr><tr><td>Achado clássico</td><td>Macrófagos com hemossiderina (células do vício cardíaco)</td><td>Necrose centrolobular (zona 3)</td></tr></table></div><div class="tbw"><table class="tb "><tr><th>Hipertrofia</th><th>Sobrecarga</th><th>Exemplo</th></tr><tr><td>Concêntrica (parede grossa, cavidade normal)</td><td>Pressão</td><td>HAS, estenose aórtica</td></tr><tr><td>Excêntrica (dilata)</td><td>Volume</td><td>Insuficiência valvar, fase descompensada</td></tr></table></div><ul class="pega"><li>HAS crônica: primeiro concêntrica; ela aumenta a demanda e predispõe a isquemia e fibrose; ao descompensar, o VE dilata.</li><li>Cor pulmonale = coração direito doente por causa de doença do pulmão (não o contrário).</li></ul></div><div class="esq"><h3>Chagas</h3><div class="tbw"><table class="tb "><tr><th>Fase</th><th>O que acontece</th></tr><tr><td>Aguda</td><td>Chagoma ou sinal de Romaña; miocardite com ninhos de amastigotas</td></tr><tr><td>Crônica cardíaca</td><td>Miocardite fibrosante, cardiomegalia, <b>aneurisma de ponta</b> (lesão vorticilar), trombos, BRD + BDAS</td></tr><tr><td>Crônica digestiva</td><td>Destruição dos plexos mioentéricos: megaesôfago e megacólon</td></tr></table></div></div><div class="esq"><h3>Valvopatias</h3><div class="tbw"><table class="tb "><tr><th></th><th>Quem</th><th>Marca</th></tr><tr><td>Febre reumática</td><td>Após faringite estreptocócica (mimetismo molecular)</td><td>Corpos de Aschoff; pancardite; crônica: estenose mitral em "boca de peixe"</td></tr><tr><td>Endocardite aguda</td><td>S. aureus, válvula normal</td><td>Vegetações grandes, destrutivas</td></tr><tr><td>Endocardite subaguda</td><td>Estreptococo viridans, válvula já lesada</td><td>Vegetações friáveis, êmbolos</td></tr><tr><td>Estenose aórtica calcificada</td><td>Idoso, degenerativa</td><td>Calcificação nas cúspides, hipertrofia concêntrica</td></tr><tr><td>Prolapso mitral</td><td>Degeneração mixomatosa</td><td>Cúspides em balão</td></tr></table></div></div></section><section class="sys" id="sys-resp"><h2>🫁 Respiratório</h2><p class="sys-sub">Aulas 5 a 8 · bloco da parcial (neoplasias: prova prática)</p><div class="esq"><h3>TEP e infarto pulmonar</h3><ol class="flow"><li>Tríade de Virchow (estase, lesão endotelial, hipercoagulabilidade)</li><li>Trombo em veia profunda de MMII</li><li>Êmbolo na artéria pulmonar</li><li>Dupla circulação protege: só infarta se a brônquica também falha (IC, por exemplo)</li><li>Infarto <b>hemorrágico</b>, em cunha, periférico, com base na pleura</li></ol></div><div class="esq"><h3>Edema pulmonar</h3><div class="tbw"><table class="tb "><tr><th></th><th>Cardiogênico</th><th>Não cardiogênico (lesão)</th></tr><tr><td>Mecanismo</td><td>Pressão hidrostática alta (IC esquerda)</td><td>Lesão da membrana alveolocapilar</td></tr><tr><td>Morfologia</td><td>Bases, pulmão pesado e úmido</td><td><b>Dano alveolar difuso</b>: membranas hialinas (SDRA)</td></tr></table></div></div><div class="esq"><h3>DPOC e companhia</h3><div class="tbw"><table class="tb "><tr><th></th><th>Enfisema</th><th>Bronquite crônica</th></tr><tr><td>Onde</td><td>Ácino (espaço distal)</td><td>Brônquios (glândulas mucosas)</td></tr><tr><td>Marca</td><td>Centroacinar (tabaco, lobos superiores) ou panacinar (alfa-1-antitripsina, bases)</td><td>Índice de Reid &gt; 0,4; tosse produtiva 3 meses por 2 anos</td></tr><tr><td>Perfil</td><td>"Soprador rosado"</td><td>"Inchado azul"</td></tr></table></div><ul class="pega"><li>Bronquiectasia: dilatação <b>permanente</b> por infecção e obstrução (fibrose cística, Kartagener).</li><li>Atelectasia: reabsorção (obstrução), compressão (derrame) ou contração (fibrose).</li></ul></div><div class="esq"><h3>Pneumonias e tuberculose</h3><div class="tbw"><table class="tb "><tr><th></th><th>Lobar</th><th>Broncopneumonia</th><th>Intersticial</th></tr><tr><td>Agente típico</td><td>Pneumococo</td><td>Vários</td><td>Vírus, Mycoplasma</td></tr><tr><td>Distribuição</td><td>Lobo inteiro</td><td>Focos peribrônquicos</td><td>Septos alveolares</td></tr><tr><td>Exsudato</td><td>Alveolar</td><td>Alveolar focal</td><td>Pouco nos alvéolos</td></tr></table></div><ol class="flow"><li>Lobar: congestão</li><li>Hepatização vermelha</li><li>Hepatização cinzenta</li><li>Resolução</li></ol><div class="tbw"><table class="tb "><tr><th>Tuberculose</th><th>Marca</th></tr><tr><td>Primária</td><td>Complexo de Ghon (nódulo + linfonodo hilar)</td></tr><tr><td>Secundária</td><td>Ápice, cavitação</td></tr><tr><td>Lesão básica</td><td>Granuloma com <b>necrose caseosa</b></td></tr><tr><td>Miliar</td><td>Disseminação hematogênica</td></tr></table></div></div><div class="esq"><h3>Neoplasias de pulmão</h3><div class="tbw"><table class="tb "><tr><th></th><th>Onde</th><th>Marca</th><th>Extra</th></tr><tr><td>Escamoso</td><td>Central</td><td>Queratina e pontes intercelulares</td><td>Tabaco; hipercalcemia (PTHrP)</td></tr><tr><td>Adenocarcinoma</td><td>Periférico</td><td>Glândulas, mucina, TTF-1</td><td>O mais comum; mulher e não fumante</td></tr><tr><td>Pequenas células</td><td>Central</td><td>Neuroendócrino: cromogranina, sinaptofisina</td><td>SIADH, ACTH; o mais agressivo</td></tr><tr><td>Grandes células</td><td>Qualquer</td><td>Indiferenciado, diagnóstico de exclusão</td><td>—</td></tr></table></div><ul class="pega"><li>Precursoras: metaplasia escamosa, displasia e carcinoma in situ (escamoso); hiperplasia adenomatosa atípica (adeno).</li></ul></div></section><section class="sys" id="sys-gi"><h2>🍽️ Tubo digestivo</h2><p class="sys-sub">TGI aulas 1 a 4 · somativa</p><div class="esq"><h3>Esôfago</h3><div class="tbw"><table class="tb "><tr><th></th><th>Mallory-Weiss</th><th>Boerhaave</th></tr><tr><td>Lesão</td><td>Laceração longitudinal da mucosa</td><td>Ruptura transmural</td></tr><tr><td>Clínica</td><td>Hematêmese após vômitos</td><td>Mediastinite, grave</td></tr></table></div><ol class="flow"><li>DRGE</li><li>Esofagite</li><li><b>Barrett</b>: metaplasia intestinal com células caliciformes</li><li>Displasia</li><li>Adenocarcinoma (terço distal)</li></ol><div class="tbw"><table class="tb "><tr><th></th><th>Carcinoma escamoso</th><th>Adenocarcinoma</th></tr><tr><td>Onde</td><td>Terço médio</td><td>Terço distal</td></tr><tr><td>Risco</td><td>Tabaco, álcool, bebida quente</td><td>Barrett, obesidade, refluxo</td></tr></table></div><ul class="pega"><li>Varizes: hipertensão portal abre a anastomose gástrica esquerda, veias da submucosa do terço distal.</li><li>Megaesôfago chagásico = acalasia secundária.</li></ul></div><div class="esq"><h3>Estômago</h3><div class="tbw"><table class="tb "><tr><th></th><th>Gastrite autoimune</th><th>Gastrite por H. pylori</th></tr><tr><td>Onde</td><td>Corpo e fundo</td><td>Antro</td></tr><tr><td>Mecanismo</td><td>Anticorpos contra célula parietal e fator intrínseco</td><td>Infecção, a mais comum</td></tr><tr><td>Consequência</td><td>Hipocloridria, falta de B12 (anemia perniciosa), gastrina alta, tumor carcinoide</td><td>Úlcera, adenocarcinoma, linfoma MALT</td></tr></table></div><div class="tbw"><table class="tb "><tr><th>Carcinoma gástrico (Lauren)</th><th>Intestinal</th><th>Difuso</th></tr><tr><td>Origem</td><td>Gastrite crônica, metaplasia</td><td>Mutação de CDH1 (caderina E)</td></tr><tr><td>Aspecto</td><td>Massa, glândulas</td><td>Células em anel de sinete, linite plástica</td></tr></table></div><ul class="pega"><li>Borrmann I a IV: polipoide, ulcerado de bordas nítidas, ulcerado infiltrativo, difuso.</li><li>Disseminação: Krukenberg (ovário), linfonodo de Virchow, nódulo da Irmã Maria José.</li></ul></div><div class="esq"><h3>Isquemia, apendicite e divertículos</h3><div class="tbw"><table class="tb "><tr><th>Isquemia</th><th>Camadas</th><th>Causa típica</th></tr><tr><td>Mucosa</td><td>Só a mucosa</td><td>Hipoperfusão (choque)</td></tr><tr><td>Mural</td><td>Mucosa e submucosa</td><td>Hipoperfusão</td></tr><tr><td>Transmural</td><td>Toda a parede (gangrena)</td><td>Oclusão arterial (êmbolo na mesentérica superior) ou venosa</td></tr></table></div><ul class="pega"><li>Zonas de divisor de águas (flexura esplênica) sofrem primeiro na hipoperfusão.</li><li>Apendicite: obstrução (fecalito) e neutrófilos na muscular própria fecham o diagnóstico.</li></ul><ol class="flow"><li>Dieta pobre em fibra</li><li>Pressão alta dentro do sigmoide</li><li>Herniação onde os vasa recta furam a parede</li><li><b>Pseudodivertículo</b> (sem muscular)</li><li>Diverticulite, sangramento, perfuração, fístula</li></ol></div><div class="esq"><h3>Doença inflamatória, pólipos e câncer</h3><div class="tbw"><table class="tb "><tr><th></th><th>Crohn</th><th>Retocolite ulcerativa</th></tr><tr><td>Onde</td><td>Boca ao ânus, íleo terminal; lesões salteadas</td><td>Reto, sobe contínua</td></tr><tr><td>Parede</td><td>Transmural</td><td>Mucosa e submucosa</td></tr><tr><td>Marca</td><td>Granuloma, fissuras, fístulas, "pedra de calçamento"</td><td>Abscesso de cripta, pseudopólipos</td></tr><tr><td>Câncer</td><td>Risco menor</td><td>Risco maior</td></tr></table></div><div class="tbw"><table class="tb "><tr><th>Pólipo</th><th>Risco</th></tr><tr><td>Hiperplásico (serrilhado)</td><td>Sem risco relevante</td></tr><tr><td>Adenoma tubular, tubuloviloso, viloso</td><td>Sobe com o tamanho (&gt; 2 cm), o componente viloso e a displasia de alto grau</td></tr><tr><td>Polipose adenomatosa familiar</td><td>Gene APC, centenas de pólipos, câncer quase certo</td></tr></table></div><div class="tbw"><table class="tb "><tr><th>Adenocarcinoma</th><th>Cólon direito</th><th>Cólon esquerdo</th></tr><tr><td>Forma</td><td>Exofítico</td><td>Anular</td></tr><tr><td>Clínica</td><td>Anemia, massa</td><td>Obstrução, mudança do hábito</td></tr></table></div><ul class="pega"><li>Duas vias: APC e beta-catenina (adenoma-carcinoma) e instabilidade de microssatélites (Lynch).</li></ul></div></section><section class="sys" id="sys-acc"><h2>🩸 Fígado, vias biliares e pâncreas</h2><p class="sys-sub">TGI aulas 5 e 6 · somativa</p><div class="esq"><h3>Circulação hepática</h3><div class="tbw"><table class="tb "><tr><th></th><th>Congestão passiva crônica</th><th>Budd-Chiari</th></tr><tr><td>Causa</td><td>IC direita</td><td>Trombose das veias hepáticas (policitemia, gravidez, anticoncepcional)</td></tr><tr><td>Marca</td><td>Fígado em noz-moscada, necrose centrolobular</td><td>Hepatomegalia dolorosa, ascite</td></tr></table></div></div><div class="esq"><h3>Cirrose e insuficiência hepática</h3><ol class="flow"><li>Agressão crônica (álcool, vírus)</li><li>Fibrose em septos</li><li>Nódulos de regeneração</li><li>Cirrose: hipertensão portal + insuficiência hepática</li></ol><div class="tbw"><table class="tb "><tr><th>Sinal</th><th>Por quê</th></tr><tr><td>Icterícia</td><td>Não conjuga nem excreta bilirrubina</td></tr><tr><td>Edema, ascite</td><td>Pouca albumina + hipertensão portal</td></tr><tr><td>Sangramento</td><td>Faltam fatores de coagulação</td></tr><tr><td><b>Encefalopatia</b>, flapping</td><td>Amônia não vira ureia</td></tr><tr><td>Aranhas vasculares, eritema palmar, ginecomastia</td><td>Hiperestrogenismo</td></tr><tr><td><b>Síndrome hepatorrenal</b></td><td>Vasodilatação sistêmica, RAA e simpático, vasoconstrição renal; rim sem lesão</td></tr></table></div><ul class="pega"><li>Esquistossomose: fibrose periportal de Symmers ("haste de cachimbo"), hipertensão pré-sinusoidal, função hepática preservada.</li></ul></div><div class="esq"><h3>Hepatites</h3><div class="tbw"><table class="tb "><tr><th>Vírus</th><th>Transmissão</th><th>Cronifica?</th><th>Marca</th></tr><tr><td>A</td><td>Fecal-oral</td><td>Nunca</td><td>Aguda, autolimitada</td></tr><tr><td>B</td><td>Sangue, sexo, vertical</td><td>Pouco no adulto, muito no recém-nascido</td><td>Hepatócitos em vidro fosco</td></tr><tr><td>C</td><td>Sangue</td><td>Na maioria</td><td>Esteatose, folículos linfoides</td></tr></table></div><div class="tbw"><table class="tb "><tr><th>Marcador da B</th><th>Significa</th></tr><tr><td>HBsAg</td><td>Infecção presente</td></tr><tr><td>Anti-HBc IgM</td><td>Infecção aguda</td></tr><tr><td>HBeAg</td><td>Replicação alta</td></tr><tr><td>Anti-HBs isolado</td><td>Vacina</td></tr><tr><td>Anti-HBs + anti-HBc IgG</td><td>Cura de infecção antiga</td></tr></table></div><ul class="pega"><li>Aguda: balonização, corpúsculos de Councilman, necrose em ponte. Fulminante: necrose maciça.</li><li>Álcool: esteatose, depois hepatite alcoólica (corpúsculos de Mallory, neutrófilos, fibrose perivenular), depois cirrose.</li></ul></div><div class="esq"><h3>Pâncreas, vesícula e tumor hepático (caem na somativa)</h3><ol class="flow"><li>Cálculo ou álcool</li><li>Obstrução e pressão alta no ducto</li><li>Edema intersticial e isquemia acinar</li><li>Enzimas ativadas dentro do pâncreas</li><li><b>Necrose gordurosa</b> e hemorragia (necro-hemorrágica)</li></ol><div class="tbw"><table class="tb "><tr><th></th><th>Marca</th></tr><tr><td>Colecistite aguda calculosa</td><td>Cálculo no cístico; inflamação química primeiro, infecção depois</td></tr><tr><td>Cálculos mais comuns</td><td>Colesterol</td></tr><tr><td>Hemangioma cavernoso</td><td>Tumor benigno mais comum do fígado; imagem típica; <b>não se biopsia</b></td></tr></table></div></div></section>
+</section><section class="pane" id="cair" hidden>
+  <h1 class="pane-title">⭐ O que vai cair · Raio-X da prova</h1>
+  <p class="lede">Contado nas provas do acervo: Parciais 78 a 82 (questões de prova das aulas) e Somativas 77 a 82 (181 questões). Clique num tema para abrir a questão no banco.</p>
+  <div class="box"><h3>🎯 Aposte: caíram em três ou mais somativas</h3><ul class="temas"><li><button class="tema" type="button" data-prova="82" data-q="17"><span class="freq hot">Caiu em 6 somativas</span><span class="tn">Doença diverticular</span><span class="pvs">S82 · S81 · S80 · S79 · S78 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="5"><span class="freq hot">Caiu em 5 somativas</span><span class="tn">Adenomas colônicos</span><span class="pvs">S82 · S81 · S80 · S78 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="13"><span class="freq hot">Caiu em 5 somativas</span><span class="tn">Budd-Chiari</span><span class="pvs">S82 · S81 · S80 · S79 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="19"><span class="freq hot">Caiu em 4 somativas</span><span class="tn">Adenocarcinoma colorretal</span><span class="pvs">S82 · S80 · S79 · S78</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="15"><span class="freq hot">Caiu em 4 somativas</span><span class="tn">Esôfago de barrett</span><span class="pvs">S82 · S81 · S80 · S79</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="10"><span class="freq hot">Caiu em 4 somativas</span><span class="tn">Gastrite autoimune</span><span class="pvs">S82 · S81 · S80 · S78</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="16"><span class="freq hot">Caiu em 4 somativas</span><span class="tn">Varizes esofágicas</span><span class="pvs">S82 · S79 · S78 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="6"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Carcinoma de grandes células</span><span class="pvs">S82 · S79 · S77</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="10"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Rcu × crohn</span><span class="pvs">S81 · S79 · S78</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="15"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Angina estável</span><span class="pvs">S81 · S78 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="8"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Carcinoma de células escamosas (pulmão)</span><span class="pvs">S82 · S79 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="14"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Esquistossomose hepatoesplênica compensada</span><span class="pvs">S82 · S80 · S77</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="26"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Isquemia mesentérica</span><span class="pvs">S81 · S80 · S79</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="19"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Polipose adenomatosa familiar</span><span class="pvs">S81 · S80 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="18"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Síndrome hepatorrenal</span><span class="pvs">S82 · S80 · S77</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="16"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Tep e infarto pulmonar</span><span class="pvs">S81 · S78 · S77</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="5"><span class="freq hot">Caiu em 3 somativas</span><span class="tn">Úlcera péptica</span><span class="pvs">S81 · S80 · S78</span></button></li></ul></div>
+  <div class="box"><h3>Voltaram em duas somativas</h3><ul class="temas"><li><button class="tema" type="button" data-prova="81" data-q="13"><span class="freq">Caiu em 2 somativas</span><span class="tn">Adenocarcinoma colônico (histologia)</span><span class="pvs">S81 · S77</span></button></li><li><button class="tema" type="button" data-prova="80" data-q="19"><span class="freq">Caiu em 2 somativas</span><span class="tn">Carcinoma de laringe glótico</span><span class="pvs">S80 · S78</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="22"><span class="freq">Caiu em 2 somativas</span><span class="tn">Cirrose — classificação/zonas</span><span class="pvs">S81 · S79</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="18"><span class="freq">Caiu em 2 somativas</span><span class="tn">Congestão hepática (ic direita)</span><span class="pvs">S81 · S78</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="28"><span class="freq">Caiu em 2 somativas</span><span class="tn">Crohn × rcu</span><span class="pvs">S82 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="31"><span class="freq">Caiu em 2 somativas</span><span class="tn">Dii — etiopatogênese</span><span class="pvs">S82 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="30"><span class="freq">Caiu em 2 somativas</span><span class="tn">Doença hepática alcoólica</span><span class="pvs">S82 · S78</span></button></li><li><button class="tema" type="button" data-prova="80" data-q="5"><span class="freq">Caiu em 2 somativas</span><span class="tn">Drge e hérnia de hiato</span><span class="pvs">S80 · S78</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="24"><span class="freq">Caiu em 2 somativas</span><span class="tn">Encefalopatia hepática</span><span class="pvs">S81 · S79</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="27"><span class="freq">Caiu em 2 somativas</span><span class="tn">Esofagite de refluxo — tríade</span><span class="pvs">S82 · S78</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="4"><span class="freq">Caiu em 2 somativas</span><span class="tn">Esquistossomose — fibrose periportal</span><span class="pvs">S82 · S77</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="31"><span class="freq">Caiu em 2 somativas</span><span class="tn">Fígado em noz-moscada</span><span class="pvs">S81 · S78</span></button></li><li><button class="tema" type="button" data-prova="80" data-q="2"><span class="freq">Caiu em 2 somativas</span><span class="tn">Gastrite por h. pylori</span><span class="pvs">S80 · S78</span></button></li><li><button class="tema" type="button" data-prova="81" data-q="29"><span class="freq">Caiu em 2 somativas</span><span class="tn">Hipertensão portal — classificação</span><span class="pvs">S81 · S79</span></button></li><li><button class="tema" type="button" data-prova="78" data-q="14"><span class="freq">Caiu em 2 somativas</span><span class="tn">Icterícia neonatal</span><span class="pvs">S78 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="1"><span class="freq">Caiu em 2 somativas</span><span class="tn">Metabolismo do álcool</span><span class="pvs">S82 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="23"><span class="freq">Caiu em 2 somativas</span><span class="tn">Sorologia hepatites b/c</span><span class="pvs">S82 · S77</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="24"><span class="freq">Caiu em 2 somativas</span><span class="tn">Tep</span><span class="pvs">S82 · S80</span></button></li><li><button class="tema" type="button" data-prova="82" data-q="9"><span class="freq">Caiu em 2 somativas</span><span class="tn">Tuberculose</span><span class="pvs">S82 · S80</span></button></li><li><button class="tema" type="button" data-prova="80" data-q="17"><span class="freq">Caiu em 2 somativas</span><span class="tn">Tumor de pancoast</span><span class="pvs">S80 · S78</span></button></li></ul></div>
+  <div class="box"><h3>Somativa: quantas questões por eixo</h3><div class="tbw"><table class="tbx"><tr><th>Eixo</th><th class="num">S82</th><th class="num">S81</th><th class="num">S80</th><th class="num">S79</th><th class="num">S78</th><th class="num">S77</th><th class="num">Total</th><th class="num">Média por prova</th></tr><tr><th>Esôfago</th><td class="num">4</td><td class="num">5</td><td class="num">4</td><td class="num">5</td><td class="num">5</td><td class="num">4</td><td class="num"><b>27</b></td><td class="num">4.5</td></tr><tr><th>Estômago</th><td class="num">4</td><td class="num">4</td><td class="num">4</td><td class="num">5</td><td class="num">5</td><td class="num">3</td><td class="num"><b>25</b></td><td class="num">4.2</td></tr><tr><th>Intestino</th><td class="num">8</td><td class="num">9</td><td class="num">7</td><td class="num">8</td><td class="num">7</td><td class="num">6</td><td class="num"><b>45</b></td><td class="num">7.5</td></tr><tr><th>Fígado e vias biliares</th><td class="num">7</td><td class="num">8</td><td class="num">4</td><td class="num">8</td><td class="num">9</td><td class="num">13</td><td class="num"><b>49</b></td><td class="num">8.2</td></tr><tr><th>Revisão (Cardio/Resp)</th><td class="num">7</td><td class="num">5</td><td class="num">11</td><td class="num">4</td><td class="num">4</td><td class="num">4</td><td class="num"><b>35</b></td><td class="num">5.8</td></tr></table></div>
+  <p class="lede">Na somativa, intestino e fígado somam mais da metade da prova; a revisão de cardio e pulmão volta todo semestre.</p></div>
+  <div class="box"><h3>Parcial: onde as provas mais bateram</h3><div class="tbw"><table class="tbx"><tr><th>Aula</th><th class="num">Questões</th><th></th><th>Segmentos que mais caíram</th></tr><tr><td><b>Ateroma e HAS</b></td><td class="num">16</td><td><span class="bar"><i style="width:53%"></i></span></td><td class="small">Aterosclerose: conceito, distribuição e fatores de risco (4); Cardiopatia hipertensiva (4); Patogênese: a hipótese da resposta à lesão (2)</td></tr><tr><td><b>Cardiopatia isquêmica</b></td><td class="num">30</td><td><span class="bar"><i style="width:100%"></i></span></td><td class="small">—</td></tr><tr><td><b>IC e Chagas</b></td><td class="num">21</td><td><span class="bar"><i style="width:70%"></i></span></td><td class="small">Doença de Chagas: fase crônica e forma cardíaca (8); Insuficiência cardíaca esquerda (6); Insuficiência cardíaca: conceito e hipertrofia (5)</td></tr><tr><td><b>Valvopatias</b></td><td class="num">19</td><td><span class="bar"><i style="width:63%"></i></span></td><td class="small">Febre reumática: clínica, diagnóstico e fase crônica (7); Endocardite infecciosa (7); Consequências hemodinâmicas e etiologias (4)</td></tr><tr><td><b>Circulação pulmonar</b></td><td class="num">15</td><td><span class="bar"><i style="width:50%"></i></span></td><td class="small">Tromboembolismo pulmonar (TEP) (5); Edema pulmonar não cardiogênico e dano alveolar difuso (5); Hipertensão pulmonar (3)</td></tr><tr><td><b>Obstrutivas</b></td><td class="num">13</td><td><span class="bar"><i style="width:43%"></i></span></td><td class="small">Enfisema pulmonar (6); Bronquite crônica (2); Bronquiectasia (2)</td></tr><tr><td><b>Infecções do pulmão</b></td><td class="num">6</td><td><span class="bar"><i style="width:20%"></i></span></td><td class="small">Tuberculose (4); Introdução: colonização, infecção e classificação (1); Pneumonia viral (pneumonia intersticial) (1)</td></tr><tr><td><b>Neoplasias de pulmão</b></td><td class="num">0</td><td><span class="bar"><i style="width:0%"></i></span></td><td class="small">—</td></tr></table></div></div>
+</section><section class="pane" id="minha" hidden>
+  <h1 class="pane-title">Minha revisão</h1>
+  <p class="lede">Feita com as suas respostas no banco de somativas (ficam salvas neste navegador). Clique numa questão para refazê-la.</p>
+  <div class="stat" id="mstat"></div>
+  <div class="box"><h3>Por eixo</h3><div class="tbw"><table class="tbx" id="meixo"></table></div></div>
+  <div class="box"><h3>As que você errou</h3><div id="merr"></div></div>
+  <div class="box"><h3>Minhas anotações</h3><textarea id="notas" placeholder="O que eu ainda confundo, o que revisar na véspera…"></textarea></div>
+</section></main>
+  </div>
+<script>
+const panes=[...document.querySelectorAll('.pane')];
+const navs=[...document.querySelectorAll('.nav-item')];
+function show(id){
+  panes.forEach(p=>p.hidden=(p.id!==id));
+  navs.forEach(n=>n.classList.toggle('active',n.dataset.target===id));
+  if(id==='minha')minha();
+  window.scrollTo(0,0);
+}
+navs.forEach(n=>n.addEventListener('click',e=>{e.preventDefault();show(n.dataset.target);}));
+document.querySelectorAll('.chipl').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const el=document.querySelector(a.getAttribute('href'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}));
+function banco(prova,q){try{window.parent.postMessage({type:'jumpToBanco',prova:String(prova),q:String(q)},'*');}catch(e){}}
+document.querySelectorAll('.tema').forEach(b=>b.addEventListener('click',()=>banco(b.dataset.prova,b.dataset.q)));
+const BANCO={"s82-q1": ["82", 1, "Fígado e vias biliares", "metabolismo do álcool"], "s82-q2": ["82", 2, "Esôfago", "mallory-weiss × boerhaave"], "s82-q3": ["82", 3, "Intestino", "apendicite aguda — quadro clínico"], "s82-q4": ["82", 4, "Fígado e vias biliares", "esquistossomose — fibrose periportal"], "s82-q5": ["82", 5, "Intestino", "adenomas colônicos"], "s82-q6": ["82", 6, "Revisão (Cardio/Resp)", "carcinoma de grandes células"], "s82-q7": ["82", 7, "Revisão (Cardio/Resp)", "pneumonias"], "s82-q8": ["82", 8, "Revisão (Cardio/Resp)", "carcinoma de células escamosas (pulmão)"], "s82-q9": ["82", 9, "Revisão (Cardio/Resp)", "tuberculose"], "s82-q10": ["82", 10, "Estômago", "gastrite autoimune"], "s82-q11": ["82", 11, "Estômago", "úlcera duodenal"], "s82-q12": ["82", 12, "Estômago", "anel de sinete / linite plástica"], "s82-q13": ["82", 13, "Fígado e vias biliares", "budd-chiari"], "s82-q14": ["82", 14, "Fígado e vias biliares", "esquistossomose hepatoesplênica compensada"], "s82-q15": ["82", 15, "Esôfago", "esôfago de barrett"], "s82-q16": ["82", 16, "Esôfago", "varizes esofágicas"], "s82-q17": ["82", 17, "Intestino", "doença diverticular"], "s82-q18": ["82", 18, "Fígado e vias biliares", "síndrome hepatorrenal"], "s82-q19": ["82", 19, "Intestino", "adenocarcinoma colorretal"], "s82-q20": ["82", 20, "Intestino", "infarto intestinal"], "s82-q21": ["82", 21, "Estômago", "h. pylori caga+ e câncer gástrico"], "s82-q22": ["82", 22, "Revisão (Cardio/Resp)", "carcinoma de grandes células"], "s82-q23": ["82", 23, "Fígado e vias biliares", "sorologia hepatites b/c"], "s82-q24": ["82", 24, "Revisão (Cardio/Resp)", "tep"], "s82-q25": ["82", 25, "Intestino", "apendicite × crohn"], "s82-q26": ["82", 26, "Revisão (Cardio/Resp)", "aterosclerose"], "s82-q27": ["82", 27, "Esôfago", "esofagite de refluxo — tríade"], "s82-q28": ["82", 28, "Intestino", "crohn × rcu"], "s82-q30": ["82", 30, "Fígado e vias biliares", "doença hepática alcoólica"], "s82-q31": ["82", 31, "Intestino", "dii — etiopatogênese"], "s81-q1": ["81", 1, "Intestino", "adenomas colônicos"], "s81-q2": ["81", 2, "Estômago", "h. pylori — mecanismo"], "s81-q3": ["81", 3, "Fígado e vias biliares", "esquistossomose — fibrose de symmers"], "s81-q4": ["81", 4, "Intestino", "celíaca, whipple, campylobacter"], "s81-q5": ["81", 5, "Estômago", "úlcera péptica"], "s81-q6": ["81", 6, "Esôfago", "esôfago de barrett"], "s81-q7": ["81", 7, "Revisão (Cardio/Resp)", "carcinoma de laringe"], "s81-q8": ["81", 8, "Estômago", "linite plástica / tipo difuso"], "s81-q9": ["81", 9, "Esôfago", "barreira antirrefluxo"], "s81-q10": ["81", 10, "Intestino", "rcu × crohn"], "s81-q11": ["81", 11, "Intestino", "rcu × crohn"], "s81-q12": ["81", 12, "Esôfago", "neoplasias do esôfago"], "s81-q13": ["81", 13, "Intestino", "adenocarcinoma colônico (histologia)"], "s81-q14": ["81", 14, "Esôfago", "esofagite de refluxo — histologia"], "s81-q15": ["81", 15, "Revisão (Cardio/Resp)", "angina estável"], "s81-q16": ["81", 16, "Revisão (Cardio/Resp)", "tep e infarto pulmonar"], "s81-q17": ["81", 17, "Intestino", "apendicite aguda"], "s81-q18": ["81", 18, "Fígado e vias biliares", "congestão hepática (ic direita)"], "s81-q19": ["81", 19, "Intestino", "polipose adenomatosa familiar"], "s81-q20": ["81", 20, "Revisão (Cardio/Resp)", "carcinomas pulmonares — perfis"], "s81-q21": ["81", 21, "Esôfago", "mallory-weiss × varizes"], "s81-q22": ["81", 22, "Fígado e vias biliares", "cirrose — classificação/zonas"], "s81-q23": ["81", 23, "Fígado e vias biliares", "budd-chiari"], "s81-q24": ["81", 24, "Fígado e vias biliares", "encefalopatia hepática"], "s81-q25": ["81", 25, "Fígado e vias biliares", "hepatites virais"], "s81-q26": ["81", 26, "Intestino", "isquemia mesentérica"], "s81-q27": ["81", 27, "Revisão (Cardio/Resp)", "tumores pulmonares central × periférico"], "s81-q28": ["81", 28, "Estômago", "gastrite autoimune"], "s81-q29": ["81", 29, "Fígado e vias biliares", "hipertensão portal — classificação"], "s81-q30": ["81", 30, "Intestino", "doença diverticular"], "s81-q31": ["81", 31, "Fígado e vias biliares", "fígado em noz-moscada"], "s80-q1": ["80", 1, "Estômago", "gastrite autoimune"], "s80-q2": ["80", 2, "Estômago", "gastrite por h. pylori"], "s80-q3": ["80", 3, "Estômago", "úlcera péptica"], "s80-q4": ["80", 4, "Estômago", "borrmann / lauren"], "s80-q5": ["80", 5, "Esôfago", "drge e hérnia de hiato"], "s80-q6": ["80", 6, "Esôfago", "esôfago de barrett"], "s80-q7": ["80", 7, "Esôfago", "cce do esôfago"], "s80-q8": ["80", 8, "Esôfago", "cce pouco diferenciado"], "s80-q9": ["80", 9, "Revisão (Cardio/Resp)", "aterosclerose / trombose"], "s80-q10": ["80", 10, "Revisão (Cardio/Resp)", "dpoc e hipertensão pulmonar"], "s80-q11": ["80", 11, "Revisão (Cardio/Resp)", "tuberculose"], "s80-q12": ["80", 12, "Revisão (Cardio/Resp)", "dpoc / bronquite crônica"], "s80-q13": ["80", 13, "Revisão (Cardio/Resp)", "pneumonia lobar"], "s80-q14": ["80", 14, "Revisão (Cardio/Resp)", "tep"], "s80-q15": ["80", 15, "Revisão (Cardio/Resp)", "tuberculose — bcg"], "s80-q16": ["80", 16, "Revisão (Cardio/Resp)", "deficiência de alfa-1-antitripsina"], "s80-q17": ["80", 17, "Revisão (Cardio/Resp)", "tumor de pancoast"], "s80-q18": ["80", 18, "Revisão (Cardio/Resp)", "carcinomas pulmonares — histologia"], "s80-q19": ["80", 19, "Revisão (Cardio/Resp)", "carcinoma de laringe glótico"], "s80-q20": ["80", 20, "Intestino", "doença de crohn"], "s80-q21": ["80", 21, "Intestino", "doença diverticular"], "s80-q22": ["80", 22, "Intestino", "adenocarcinoma colorretal"], "s80-q23": ["80", 23, "Intestino", "apendicite aguda — dor"], "s80-q24": ["80", 24, "Intestino", "isquemia mesentérica"], "s80-q25": ["80", 25, "Intestino", "polipose adenomatosa familiar"], "s80-q26": ["80", 26, "Intestino", "adenomas colônicos"], "s80-q27": ["80", 27, "Fígado e vias biliares", "cirrose e chc"], "s80-q28": ["80", 28, "Fígado e vias biliares", "síndrome hepatorrenal"], "s80-q29": ["80", 29, "Fígado e vias biliares", "budd-chiari"], "s80-q30": ["80", 30, "Fígado e vias biliares", "esquistossomose hepatoesplênica compensada"], "s79-q1": ["79", 1, "Fígado e vias biliares", "budd-chiari"], "s79-q2": ["79", 2, "Fígado e vias biliares", "encefalopatia hepática"], "s79-q3": ["79", 3, "Fígado e vias biliares", "hipertensão portal — classificação"], "s79-q4": ["79", 4, "Fígado e vias biliares", "cirrose — classificação/zonas"], "s79-q5": ["79", 5, "Fígado e vias biliares", "hepatite aguda medicamentosa"], "s79-q6": ["79", 6, "Fígado e vias biliares", "hepatites b e c"], "s79-q7": ["79", 7, "Fígado e vias biliares", "hepatite crônica viral"], "s79-q8": ["79", 8, "Fígado e vias biliares", "esquistossomose hepatoesplênica"], "s79-q9": ["79", 9, "Revisão (Cardio/Resp)", "cardiopatia hipertensiva / ic esquerda"], "s79-q10": ["79", 10, "Revisão (Cardio/Resp)", "cardiopatia hipertensiva / ic esquerda"], "s79-q11": ["79", 11, "Revisão (Cardio/Resp)", "carcinoma de células escamosas (pulmão)"], "s79-q12": ["79", 12, "Revisão (Cardio/Resp)", "carcinoma de grandes células"], "s79-q13": ["79", 13, "Esôfago", "esôfago de barrett"], "s79-q14": ["79", 14, "Esôfago", "drge — causas"], "s79-q15": ["79", 15, "Esôfago", "adenocarcinoma do esôfago"], "s79-q16": ["79", 16, "Esôfago", "varizes esofágicas (esquistossomose)"], "s79-q17": ["79", 17, "Esôfago", "varizes esofágicas"], "s79-q18": ["79", 18, "Estômago", "lauren intestinal e cepas de h. pylori"], "s79-q19": ["79", 19, "Estômago", "fatores de risco do adenocarcinoma gástrico"], "s79-q20": ["79", 20, "Estômago", "úlcera péptica — morfologia"], "s79-q21": ["79", 21, "Estômago", "gastrite por h. pylori — pangastrite"], "s79-q22": ["79", 22, "Estômago", "aines e mucosa gástrica"], "s79-q23": ["79", 23, "Intestino", "obstrução intestinal"], "s79-q24": ["79", 24, "Intestino", "adenocarcinoma colorretal"], "s79-q25": ["79", 25, "Intestino", "pólipos colônicos"], "s79-q26": ["79", 26, "Intestino", "isquemia mesentérica"], "s79-q27": ["79", 27, "Intestino", "rcu × crohn"], "s79-q28": ["79", 28, "Intestino", "doença diverticular"], "s79-q29": ["79", 29, "Intestino", "tumores do delgado"], "s79-q30": ["79", 30, "Intestino", "rcu"], "s78-q1": ["78", 1, "Revisão (Cardio/Resp)", "tumor de pancoast"], "s78-q2": ["78", 2, "Revisão (Cardio/Resp)", "carcinoma de laringe glótico"], "s78-q3": ["78", 3, "Revisão (Cardio/Resp)", "tep e infarto pulmonar"], "s78-q4": ["78", 4, "Revisão (Cardio/Resp)", "angina estável"], "s78-q5": ["78", 5, "Intestino", "adenocarcinoma colorretal"], "s78-q6": ["78", 6, "Intestino", "adenomas colônicos"], "s78-q7": ["78", 7, "Intestino", "rcu — complicações"], "s78-q8": ["78", 8, "Intestino", "rcu × crohn"], "s78-q9": ["78", 9, "Fígado e vias biliares", "sorologia hepatites a/b"], "s78-q10": ["78", 10, "Fígado e vias biliares", "insuficiência hepática aguda"], "s78-q11": ["78", 11, "Fígado e vias biliares", "hepatite fulminante — morfologia"], "s78-q12": ["78", 12, "Fígado e vias biliares", "doença hepática alcoólica"], "s78-q13": ["78", 13, "Fígado e vias biliares", "cirrose"], "s78-q14": ["78", 14, "Fígado e vias biliares", "icterícia neonatal"], "s78-q15": ["78", 15, "Esôfago", "mallory-weiss"], "s78-q16": ["78", 16, "Esôfago", "drge e hérnia de hiato"], "s78-q17": ["78", 17, "Esôfago", "varizes esofágicas"], "s78-q18": ["78", 18, "Esôfago", "drge — fatores que relaxam o eei"], "s78-q19": ["78", 19, "Estômago", "gastrite autoimune"], "s78-q20": ["78", 20, "Intestino", "apendicite aguda — patogênese"], "s78-q21": ["78", 21, "Intestino", "doença diverticular"], "s78-q22": ["78", 22, "Esôfago", "esofagite de refluxo — tríade"], "s78-q23": ["78", 23, "Intestino", "trombose venosa mesentérica"], "s78-q24": ["78", 24, "Estômago", "úlcera péptica"], "s78-q25": ["78", 25, "Estômago", "gastrite por h. pylori"], "s78-q26": ["78", 26, "Estômago", "linite plástica (borrmann iv)"], "s78-q27": ["78", 27, "Estômago", "lauren difuso"], "s78-q28": ["78", 28, "Fígado e vias biliares", "fígado em noz-moscada"], "s78-q29": ["78", 29, "Fígado e vias biliares", "congestão hepática (ic direita)"], "s78-q30": ["78", 30, "Fígado e vias biliares", "esquistossomose — forma crônica"], "s77-q1": ["77", 1, "Revisão (Cardio/Resp)", "angina estável"], "s77-q2": ["77", 2, "Revisão (Cardio/Resp)", "tep e infarto pulmonar"], "s77-q3": ["77", 3, "Estômago", "adenocarcinoma gástrico precoce"], "s77-q4": ["77", 4, "Estômago", "lauren intestinal — sequência de correa"], "s77-q5": ["77", 5, "Estômago", "h. pylori × autoimune"], "s77-q6": ["77", 6, "Fígado e vias biliares", "pancreatite aguda necro-hemorrágica"], "s77-q7": ["77", 7, "Fígado e vias biliares", "colecistite / pancreatite biliar"], "s77-q8": ["77", 8, "Fígado e vias biliares", "pancreatite aguda — patogênese"], "s77-q9": ["77", 9, "Fígado e vias biliares", "sorologia hepatites b/c"], "s77-q10": ["77", 10, "Fígado e vias biliares", "metabolismo do álcool"], "s77-q11": ["77", 11, "Fígado e vias biliares", "metabolismo da bilirrubina"], "s77-q12": ["77", 12, "Fígado e vias biliares", "síndrome hepatorrenal"], "s77-q13": ["77", 13, "Fígado e vias biliares", "carcinoma hepatocelular"], "s77-q14": ["77", 14, "Fígado e vias biliares", "esquistossomose hepatoesplênica compensada"], "s77-q15": ["77", 15, "Fígado e vias biliares", "esquistossomose — fibrose periportal"], "s77-q16": ["77", 16, "Esôfago", "varizes esofágicas"], "s77-q17": ["77", 17, "Fígado e vias biliares", "budd-chiari"], "s77-q18": ["77", 18, "Fígado e vias biliares", "icterícia neonatal"], "s77-q19": ["77", 19, "Fígado e vias biliares", "hemangioma hepático"], "s77-q20": ["77", 20, "Esôfago", "drge — fatores de risco"], "s77-q21": ["77", 21, "Esôfago", "adenocarcinoma do esôfago (histologia)"], "s77-q22": ["77", 22, "Esôfago", "esofagite de refluxo e barrett"], "s77-q23": ["77", 23, "Intestino", "adenocarcinoma colônico (histologia)"], "s77-q24": ["77", 24, "Intestino", "doença diverticular"], "s77-q25": ["77", 25, "Intestino", "polipose adenomatosa familiar"], "s77-q26": ["77", 26, "Intestino", "adenomas colônicos"], "s77-q27": ["77", 27, "Intestino", "crohn × rcu"], "s77-q28": ["77", 28, "Intestino", "dii — etiopatogênese"], "s77-q29": ["77", 29, "Revisão (Cardio/Resp)", "carcinoma de células escamosas (pulmão)"], "s77-q30": ["77", 30, "Revisão (Cardio/Resp)", "carcinoma de grandes células"]};
+const EIX=["Esôfago", "Estômago", "Intestino", "Fígado e vias biliares", "Revisão (Cardio/Resp)"];
+function escH(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function minha(){
+  let R={};try{R=JSON.parse(localStorage.getItem('pato-banco')||'{}')||{};}catch(e){}
+  const ids=Object.keys(R).filter(k=>BANCO[k]);
+  const ok=ids.filter(k=>R[k].ok).length,total=Object.keys(BANCO).length;
+  document.getElementById('mstat').innerHTML='<div><b>'+ids.length+'</b><span>de '+total+' respondidas</span></div><div><b>'+ok+'</b><span>acertos</span></div><div><b>'+(ids.length-ok)+'</b><span>para revisar</span></div><div><b>'+(ids.length?Math.round(100*ok/ids.length):0)+'%</b><span>de acerto</span></div>';
+  let t='<tr><th>Eixo</th><th class="num">Respondidas</th><th class="num">Acertos</th><th class="num">Faltam</th></tr>';
+  EIX.forEach(e=>{const all=Object.keys(BANCO).filter(k=>BANCO[k][2]===e),r=all.filter(k=>R[k]),a=r.filter(k=>R[k].ok);
+    t+='<tr><td>'+escH(e)+'</td><td class="num">'+r.length+'</td><td class="num">'+a.length+'</td><td class="num">'+(all.length-r.length)+'</td></tr>';});
+  document.getElementById('meixo').innerHTML=t;
+  const er=ids.filter(k=>!R[k].ok).sort((a,b)=>(R[b].t||0)-(R[a].t||0));
+  const box=document.getElementById('merr');
+  if(!er.length){box.innerHTML='<p class="vazio">'+(ids.length?'Nenhum erro até aqui. Continue pelo banco.':'Você ainda não respondeu questões do banco. Comece pelos temas do Raio-X.')+'</p>';return;}
+  box.innerHTML='<ul class="err">'+er.map(k=>{const b=BANCO[k];return '<li><button type="button" data-p="'+b[0]+'" data-q="'+b[1]+'"><b>Somativa '+b[0]+' · Questão '+b[1]+'</b><span>'+escH(b[2])+(b[3]?' · '+escH(b[3]):'')+'</span></button></li>';}).join('')+'</ul>';
+  box.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>banco(b.dataset.p,b.dataset.q)));
+}
+window.addEventListener('storage',e=>{if(e.key==='pato-banco'&&!document.getElementById('minha').hidden)minha();});
+const notas=document.getElementById('notas');
+try{notas.value=localStorage.getItem('pato-minha-notas')||'';}catch(e){}
+notas.addEventListener('input',()=>{try{localStorage.setItem('pato-minha-notas',notas.value);}catch(e){}});
+window.addEventListener('message',ev=>{const d=ev.data;if(d&&d.type==='gotoPane'&&document.getElementById(d.pane))show(d.pane);});
+const start=location.hash.replace('#','');
+show(panes.some(p=>p.id===start)?start:'capa');
+</script>
+<script>(function(){
+  // Ponte entre a aula (iframe) e a barra lateral do app. Não mexe no conteúdo nem na lógica de quiz.
+  var P = window.parent;
+  if (!P || P === window) return;
+  var root = document.documentElement;
+  root.classList.add('embedded');
+  var parts = (window.name || '').split('|');
+  var LEC = parts[1] || '';
+  var progress = {};
+
+  function setTheme(t){ root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); }
+  setTheme(parts[2] || 'dark');
+
+  function navEls(){ return Array.prototype.slice.call(document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]')); }
+  function keyOf(e){ return e.getAttribute('data-target') || e.getAttribute('data-view'); }
+  function labelOf(e){
+    var n = e.querySelector('.navlabel, .nav-num + span');
+    return (n ? n.textContent : e.textContent).replace(/\s+/g,' ').trim();
+  }
+  function activeKey(){
+    var a = navEls().filter(function(e){ return e.classList.contains('active'); })[0];
+    return a ? keyOf(a) : null;
+  }
+
+  // ----- botão "Concluir" no título de cada segmento -----
+  function paintDone(btn, key){
+    var on = !!progress[key];
+    if (btn.classList.contains('on') !== on) btn.classList.toggle('on', on);   // só mexe no DOM se mudou (evita laço do observer)
+    var lbl = btn.querySelector('.lbl'), txt = on ? 'Concluído' : 'Concluir';
+    if (lbl.textContent !== txt) lbl.textContent = txt;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var fin = document.querySelector('.cel-finish[data-key="' + key + '"]');
+    if (fin) paintFin(fin, on, key);
+  }
+
+  // ----- botão grande no fim do segmento -----
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+  function isSeg(key){ return /^(seg\d+|s\d+|parcial\d+)$/.test(key); }
+  function paintFin(b, on, key){
+    if (b.classList.contains('on') !== on) b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var txt = on ? (isSeg(key) ? 'Segmento concluído' : 'Estudado') + ' · tocar para desfazer'
+                 : (isSeg(key) ? 'Concluir segmento' : 'Marcar como estudado');
+    var s = b.lastChild; if (s.textContent !== txt) s.textContent = txt;
+  }
+  function ensureFin(scope, key){
+    if (!scope || !key || key === 'capa' || key === 'home') return;
+    var foot = scope.querySelector('.navfoot, .segnav');
+    if (!foot) return;
+    var box = scope.querySelector('.cel-fin');
+    if (box && box.getAttribute('data-key') === key && box.nextElementSibling === foot) return;
+    if (box) box.remove();
+    box = document.createElement('div'); box.className = 'cel-fin'; box.setAttribute('data-key', key);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cel-finish'; b.setAttribute('data-key', key);
+    b.innerHTML = CHECK + '<span></span>';
+    b.addEventListener('click', function(){
+      var top = document.querySelector('.done-t[data-key="' + key + '"]');
+      if (top) top.click();
+    });
+    box.appendChild(b);
+    foot.parentNode.insertBefore(box, foot);
+    paintFin(b, !!progress[key], key);
+  }
+  function attachDone(title, key){
+    if (!title || !key || key === 'capa' || key === 'home') return;
+    var old = title.querySelector('.done-t');
+    if (old && old.getAttribute('data-key') === key) { paintDone(old, key); return; }
+    if (old) old.remove();
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'done-t'; b.setAttribute('data-key', key);
+    b.innerHTML = '<span class="d"></span><span class="lbl">Concluir</span>';
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      progress[key] = !progress[key];
+      paintDone(b, key);
+      P.postMessage({type:'setProgress', lecture:LEC, target:key, done:!!progress[key]}, '*');
+    });
+    if (!title.classList.contains('has-done')) title.classList.add('has-done');
+    title.appendChild(b);
+    paintDone(b, key);
+  }
+  function decorate(){
+    // aulas estáticas: um .pane por segmento
+    document.querySelectorAll('.pane').forEach(function(p){
+      if (p.hidden) return;
+      attachDone(p.querySelector('.pane-title'), p.id);
+      ensureFin(p, p.id);
+    });
+    // aula 2: conteúdo montado por JS
+    var t = document.querySelector('h2.seg-title');
+    if (t) { attachDone(t, activeKey()); ensureFin(document.getElementById('content'), activeKey()); }
+  }
+
+  // ----- rodapé anterior/próximo (substitui a barra de navegação escondida) -----
+  function addNavFoot(){
+    var items = navEls();
+    if (!items.length || document.querySelector('.segnav')) return;
+    items.forEach(function(it, i){
+      var id = keyOf(it);
+      var pane = document.getElementById(id);
+      if (!pane || !pane.classList.contains('pane') || pane.querySelector('.navfoot')) return;
+      var prev = items[i-1], next = items[i+1];
+      var f = document.createElement('div'); f.className = 'navfoot';
+      function mk(target, txt, isNext){
+        var b = document.createElement('button'); b.type = 'button';
+        b.textContent = isNext ? txt + ' →' : '← ' + txt;
+        b.addEventListener('click', function(){ target.click(); });
+        return b;
+      }
+      if (prev) f.appendChild(mk(prev, labelOf(prev), false));
+      if (next) f.appendChild(mk(next, labelOf(next), true));
+      pane.appendChild(f);
+    });
+  }
+
+  // piscar o termo achado pela busca
+  function flashTerm(rootEl, term){
+    if (!rootEl || !term) return;
+    var low = term.toLowerCase(), w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentElement; if (!p || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue;
+      var k = n.data.toLowerCase().indexOf(low);
+      if (k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var q = sp.parentNode; if (!q) return; while (sp.firstChild) q.insertBefore(sp.firstChild, sp); q.removeChild(sp); q.normalize(); }, 2600);
+      return;
+    }
+  }
+
+  var last = null;
+  function reportActive(){
+    var k = activeKey();
+    if (k !== last) { last = k; P.postMessage({type:'segActive', lecture:LEC, key:k}, '*'); }
+    var off = (k && k !== 'capa' && k !== 'home' && !document.querySelector('.hero .tabs')) ? 'off' : 'on';
+    if (root.getAttribute('data-hero') !== off) root.setAttribute('data-hero', off);
+    decorate();
+  }
+  var mo = new MutationObserver(function(){ clearTimeout(mo._t); mo._t = setTimeout(reportActive, 30); });
+  mo.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class','hidden']});
+  var content = document.getElementById('content');
+  if (content) mo.observe(content, {childList:true});
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data;
+    if (!d || !d.type) return;
+    if (d.type === 'setTheme') setTheme(d.theme);
+    else if (d.type === 'goto') {
+      var el = navEls().filter(function(e){ return keyOf(e) === d.key; })[0];
+      if (el) el.click();
+    }
+    else if (d.type === 'gotoPane') {
+      if (document.getElementById('hl-pop')) return;   // aulas com marca-texto rosa tratam sozinhas
+      var pe = navEls().filter(function(e){ return keyOf(e) === d.pane; })[0];
+      if (pe) pe.click();
+      setTimeout(function(){ flashTerm(document.getElementById(d.pane) || document.getElementById('content') || document.body, d.term); }, 140);
+    }
+    else if (d.type === 'progressState' && d.lecture === LEC) {
+      progress = d.state || {};
+      document.querySelectorAll('.done-t').forEach(function(b){ paintDone(b, b.getAttribute('data-key')); });
+    }
+  });
+
+  function boot(){
+    addNavFoot();
+    reportActive();
+    P.postMessage({type:'bridgeReady', lecture:LEC}, '*');
+    P.postMessage({type:'requestProgress', lecture:LEC}, '*');
+  }
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', function(){ setTimeout(boot, 0); });
+})();
+</script>
+</body></html>

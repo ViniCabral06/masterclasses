@@ -34,7 +34,11 @@ def sem_foto_de_justificativa(s, pasta, aulas):
     if re.search(r'"question"\s*:\s*null|fac-simil', t, re.I):
         return False
     # nunca entregar a letra certa antes da resposta (aviso, rótulo ou botão da justificativa)
-    return not re.search(r'gabarito oficial [A-E]\b|gabarito \(letra [A-E]\)|\(letra [A-E]\) e a justificativa', t)
+    if re.search(r'"kind"\s*:\s*"note"[^{}]*Justificativa da quest', t):
+        return False  # justificativa solta no lugar da questão
+    return not re.search(r'gabarito oficial:? [A-E]\b(?!\))|gabarito \(letra [A-E]\)|\(letra [A-E]\) e a justificativa'
+                         r'|· gabarito [A-E]\b|· alternativa [A-E]"'
+                         r'|class="(?:pv-)?gab"[^>]*>\s*Gabarito:?\s*(?:<b>)?[A-E]\b|"gab"\s*:\s*"Gabarito:?\s*[A-E]\b', t, re.I)
 
 
 def origem_das_questoes(s, pasta, aulas):

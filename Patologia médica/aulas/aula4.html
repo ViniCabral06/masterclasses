@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-tone="cv" data-theme="dark">
-<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=2750aa6e"><script defer src="../../_tema/notas.js?v=41a060d3"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=365669b2"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><!--/vidro:cabeca-->
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=bf3bebc3"><script defer src="../../_tema/notas.js?v=41a060d3"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=365669b2"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><!--/vidro:cabeca-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Masterclass — Valvopatias</title>
@@ -286,6 +286,19 @@ mark.exam5 *{color:#ffe3a3}
 .cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
 
 .find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+details.desc{margin:16px 0 24px;border:none;border-radius:16px;background:var(--surface);overflow:hidden}
+details.desc summary{cursor:pointer;padding:14px 20px;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);list-style:none;display:flex;align-items:center;gap:10px;
+  transition:background-color .15s ease}
+details.desc summary::-webkit-details-marker{display:none}
+details.desc summary::before{content:"▸";font-size:12px;color:var(--faint);transition:transform .2s var(--ease-out)}
+details.desc[open] summary::before{transform:rotate(90deg)}
+details.desc[open] summary{border-bottom:1px solid var(--border)}
+@media (hover:hover) and (pointer:fine){details.desc summary:hover{background:var(--surface-2)}}
+.desc-body{padding:14px 20px 6px}
+.desc-body p{margin:0 0 12px}
+@media print{details.desc>*{display:block}}
+.desc-body{padding:14px 20px 6px}
+.desc-body p{margin:0 0 12px}
 </style><script>(function(){var p=(window.name||"").split("|");document.documentElement.setAttribute("data-theme",p[2]==="light"?"light":"dark")})();</script><style id="pv-css">
 .pv-box{margin:8px 0 22px}.pv-h{font-size:1.05rem;margin:0 0 12px}
 .pv-box>.q,.pv-box>.pv-som{margin-bottom:16px}
@@ -1102,8 +1115,8 @@ b) A dor articular (artralgia) é considerada um critério menor para o diagnós
 c) A presença de febre baixa é essencial para o diagnóstico.
 d) A faixa etária mais acometida é de 40 a 50 anos.
 e) O uso de corticosteroides está indicado na profilaxia da febre reumática.</p>
-<p><strong>Gabarito: B.</strong> A <strong>artralgia</strong> (dor articular isolada, sem sinais inflamatórios objetivos) é, de fato, classificada como <strong>critério menor</strong> nos critérios de Jones — exatamente a distinção trabalhada no Segmento 5, que separa a artralgia menor da poliartrite migratória maior. <strong>A</strong> está errada em dois pontos: a coreia de Sydenham é, sim, manifestação maior, mas está longe de ser "muito frequente na apresentação inicial" — ao contrário, é relativamente pouco comum e, quando presente, costuma surgir <strong>meses depois</strong> do episódio agudo, não como apresentação inicial em 80–90% dos casos. <strong>C</strong> transforma um critério menor (febre) em condição obrigatória, o que contraria a lógica combinatória dos próprios critérios de Jones. <strong>D</strong> erra a faixa etária: a aula é explícita — <strong>5 a 15 anos</strong>, não 40 a 50. <strong>E</strong> inverte o papel do corticoide: ele é usado no <strong>tratamento</strong> da cardite aguda estabelecida, e a <strong>profilaxia</strong> de novos surtos é feita com <strong>antibióticos</strong>, não com corticosteroides.</p>
-<aside class="note note-extra"><p>📌 <strong>Dica de prova:</strong> sempre que uma alternativa transformar um critério <strong>menor</strong> em algo "essencial" ou "obrigatório" para o diagnóstico, desconfie — os critérios de Jones existem justamente para permitir diagnóstico por <strong>combinações flexíveis</strong> (2 maiores, ou 1 maior + 2 menores), e nenhum critério isolado, maior ou menor, é indispensável por si só.</p></aside>
+<details class="desc"><summary>Ver gabarito comentado</summary><div class="desc-body"><p><strong>Gabarito: B.</strong> A <strong>artralgia</strong> (dor articular isolada, sem sinais inflamatórios objetivos) é, de fato, classificada como <strong>critério menor</strong> nos critérios de Jones — exatamente a distinção trabalhada no Segmento 5, que separa a artralgia menor da poliartrite migratória maior. <strong>A</strong> está errada em dois pontos: a coreia de Sydenham é, sim, manifestação maior, mas está longe de ser "muito frequente na apresentação inicial" — ao contrário, é relativamente pouco comum e, quando presente, costuma surgir <strong>meses depois</strong> do episódio agudo, não como apresentação inicial em 80–90% dos casos. <strong>C</strong> transforma um critério menor (febre) em condição obrigatória, o que contraria a lógica combinatória dos próprios critérios de Jones. <strong>D</strong> erra a faixa etária: a aula é explícita — <strong>5 a 15 anos</strong>, não 40 a 50. <strong>E</strong> inverte o papel do corticoide: ele é usado no <strong>tratamento</strong> da cardite aguda estabelecida, e a <strong>profilaxia</strong> de novos surtos é feita com <strong>antibióticos</strong>, não com corticosteroides.</p>
+<aside class="note note-extra"><p>📌 <strong>Dica de prova:</strong> sempre que uma alternativa transformar um critério <strong>menor</strong> em algo "essencial" ou "obrigatório" para o diagnóstico, desconfie — os critérios de Jones existem justamente para permitir diagnóstico por <strong>combinações flexíveis</strong> (2 maiores, ou 1 maior + 2 menores), e nenhum critério isolado, maior ou menor, é indispensável por si só.</p></aside></div></details>
 <hr /></div></section><section class="pane" id="quiz" hidden>
   <h1 class="pane-title">Quiz final — 18 questões</h1>
   <p class="lede">Responda todas e corrija de uma vez. As questões integram os sete segmentos e não repetem as de verificação.</p>
