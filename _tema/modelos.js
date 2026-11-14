@@ -394,6 +394,146 @@ function makeTissue(o = {}) {
   return g;
 }
 
+/* ======================= microscópio (patologia) =======================
+   Microscópio óptico binocular: base com fonte de luz e interruptor, braço curvo, macro e micrométrico
+   serrilhados, estágio com charriot (presilhas e botões X/Y) e lâmina corada em H&E, condensador com
+   diafragma, revólver com 4 objetivas coloridas, cabeça binocular inclinada e oculares com anel rosa.
+   Em volta flutuam células (rosa/roxo). Mouse: acompanha de leve. Clique: o revólver gira para a
+   próxima objetiva, a luz pisca e a lâmina desliza no charriot. */
+function makeMicroscope(o = {}) {
+  const cheap = !!o.cheap, g = new THREE.Group(), items = [];
+  const COR = COL.pato, SEG = cheap ? 18 : 32;
+  const corpo = new THREE.MeshPhysicalMaterial({ color: 0x5d6b7a, roughness: .38, metalness: .35, clearcoat: cheap ? 0 : .8, envMapIntensity: .7 });
+  const claro = new THREE.MeshPhysicalMaterial({ color: 0xc9d2db, roughness: .3, metalness: .2, clearcoat: cheap ? 0 : .8, envMapIntensity: .7 });
+  const escuro = new THREE.MeshStandardMaterial({ color: 0x1d2228, roughness: .45, metalness: .5 });
+  const borracha = new THREE.MeshStandardMaterial({ color: 0x111316, roughness: .85 });
+  const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: .7, roughness: .45, envMapIntensity: .5 });
+  const acento = new THREE.MeshStandardMaterial({ color: COR, emissive: COR, emissiveIntensity: .08, roughness: .5 });
+  const vidro = glassMat(0xffffff, cheap, { thickness: .3 });
+  const box = (mat, w, h, d, p, par = mic) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); m.position.set(...p); par.add(m); return m; };
+  const cil = (mat, r1, r2, h, p, par = mic, seg = SEG) => { const m = new THREE.Mesh(new THREE.CylinderGeometry(r1, r2, h, seg), mat); m.position.set(...p); par.add(m); return m; };
+  const rbox = (mat, w, h, d, r, p, par = mic) => {   // caixa de cantos arredondados (extrusão)
+    const s = new THREE.Shape(), x = -w / 2, y = -d / 2;
+    s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r); s.lineTo(x + w, y + d - r); s.quadraticCurveTo(x + w, y + d, x + w - r, y + d);
+    s.lineTo(x + r, y + d); s.quadraticCurveTo(x, y + d, x, y + d - r); s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
+    const geo = new THREE.ExtrudeGeometry(s, { depth: h, bevelEnabled: !cheap, bevelSize: .02, bevelThickness: .02, bevelSegments: 2, curveSegments: 6 });
+    geo.rotateX(Math.PI / 2); geo.translate(0, h / 2, 0);
+    const m = new THREE.Mesh(geo, mat); m.position.set(...p); par.add(m); return m;
+  };
+  const botao = (r, w, p, serr, par = mic) => {   // botão lateral serrilhado
+    const b = new THREE.Group(); b.position.set(...p); par.add(b);
+    const c = cil(escuro, r, r, w, [0, 0, 0], b); c.rotation.z = Math.PI / 2;
+    if (serr) for (let i = 0; i < 18; i++) { const a = i / 18 * Math.PI * 2; const d = box(borracha, w * .9, .025, .025, [0, Math.cos(a) * r, Math.sin(a) * r], b); d.rotation.x = a; }
+    return b;
+  };
+  const mic = new THREE.Group();
+  // base com pés, fonte de luz e interruptor
+  rbox(corpo, 1.7, .26, 1.3, .2, [0, -1.5, .1]);
+  box(acento, 1.72, .025, 1.32, [0, -1.37, .1]);
+  for (const x of [-.65, .65]) for (const z of [-.4, .6]) cil(borracha, .06, .07, .05, [x, -1.6, z]);
+  const luzMat = new THREE.MeshStandardMaterial({ color: 0xfff1d6, emissive: 0xfff1d6, emissiveIntensity: .4 });
+  cil(metal, .17, .17, .04, [0, -1.36, .28]); cil(luzMat, .13, .13, .05, [0, -1.34, .28]);
+  const lente = new THREE.Mesh(new THREE.SphereGeometry(.12, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), vidro); lente.position.set(0, -1.33, .28); lente.scale.y = .4; mic.add(lente);
+  const brilho = cil(acento, .05, .05, .06, [.68, -1.46, .45]); brilho.rotation.z = Math.PI / 2;   // interruptor
+  const dimmer = botao(.1, .08, [-.8, -1.46, .1], true);
+  // cabo
+  mic.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([[0, -1.5, -.5], [0, -1.6, -.9], [.3, -1.62, -1.3], [.9, -1.62, -1.4]].map(p => new THREE.Vector3(...p))), 20, .025, 6), borracha));
+  // braço curvo
+  const curva = new THREE.CatmullRomCurve3([[0, -1.4, -.38], [0, -.5, -.55], [0, .3, -.5], [0, .95, -.18]].map(p => new THREE.Vector3(...p)));
+  mic.add(new THREE.Mesh(new THREE.TubeGeometry(curva, 36, .25, 18), corpo));
+  box(claro, .16, 1.2, .06, [0, -.2, -.3]);   // trilho de foco
+  // macro e micrométrico, dos dois lados
+  const focos = [];
+  for (const L of [-1, 1]) { focos.push(botao(.2, .1, [L * .26, -.68, -.48], true)); focos.push(botao(.11, .09, [L * .36, -.68, -.48], true)); cil(metal, .035, .035, .04, [L * .42, -.68, -.48]).rotation.z = Math.PI / 2; }
+  // estágio com charriot e lâmina
+  const estagio = new THREE.Group(); estagio.position.set(0, -.55, .22); mic.add(estagio);
+  rbox(escuro, 1.12, .1, .9, .06, [0, 0, 0], estagio);
+  const furo = new THREE.Mesh(new THREE.CircleGeometry(.07, 24), luzMat); furo.rotation.x = -Math.PI / 2; furo.position.set(0, .041, .03); estagio.add(furo);
+  const charriot = new THREE.Group(); charriot.position.y = .045; estagio.add(charriot);
+  box(metal, .62, .025, .06, [-.02, 0, -.15], charriot); box(metal, .06, .025, .3, [.3, 0, 0], charriot);
+  const braco = box(metal, .04, .03, .16, [-.36, .005, .03], charriot); braco.rotation.y = .4;
+  box(vidro, .72, .018, .25, [0, .01, .03], charriot);
+  const amostraMat = new THREE.MeshBasicMaterial({ color: 0xff7fbf, transparent: true, opacity: .9 });
+  const amostra = new THREE.Mesh(new THREE.CircleGeometry(.09, 24), amostraMat); amostra.rotation.x = -Math.PI / 2; amostra.position.set(0, .021, .03); charriot.add(amostra);
+  const lamin = new THREE.Mesh(new THREE.PlaneGeometry(.12, .2), new THREE.MeshBasicMaterial({ color: 0xf2f2f2 })); lamin.rotation.x = -Math.PI / 2; lamin.position.set(-.28, .021, .03); charriot.add(lamin);
+  for (const L of [-1, 1]) { const c = box(metal, .2, .015, .04, [L * .2, .03, .14], charriot); c.rotation.y = L * .25; }
+  for (const [y, r] of [[-.1, .06], [-.2, .05]]) { const b = botao(r, .07, [.52, y, .3], true, estagio); }
+  // condensador com diafragma
+  cil(claro, .12, .1, .16, [0, -.72, .25]); cil(escuro, .14, .14, .03, [0, -.82, .25]);
+  const alav = box(acento, .2, .015, .02, [.15, -.82, .25]);
+  // feixe
+  const feixeMat = new THREE.MeshBasicMaterial({ color: 0xfff3e0, transparent: true, opacity: .25, blending: THREE.AdditiveBlending, depthWrite: false });
+  cil(feixeMat, .06, .12, .48, [0, -1.08, .27], mic, 20);
+  // cabeça: corpo, revólver, cabeça binocular
+  const cabeca = new THREE.Group(); cabeca.position.set(0, .55, .1); mic.add(cabeca);
+  rbox(corpo, .56, .46, .62, .1, [0, .35, -.12], cabeca);
+  box(acento, .57, .02, .63, [0, .13, -.12], cabeca);
+  const rev = new THREE.Group(); rev.position.set(0, .1, .15); cabeca.add(rev);
+  cil(metal, .22, .27, .12, [0, 0, 0], rev, 40);
+  const cores = [0xff4d6d, 0xffd84d, 0x4dd47a, 0x4da6ff], objs = [];
+  for (let i = 0; i < 4; i++) {
+    const a = i / 4 * Math.PI * 2, ob = new THREE.Group();
+    ob.position.set(Math.cos(a) * .14, -.06, Math.sin(a) * .14); ob.rotation.set(Math.sin(a) * .28, 0, -Math.cos(a) * .28);
+    cil(metal, .07, .055, .22 + i * .04, [0, -.14 - i * .02, 0], ob, 20);
+    cil(new THREE.MeshStandardMaterial({ color: cores[i], roughness: .4 }), .073, .073, .028, [0, -.08, 0], ob, 20);
+    cil(escuro, .045, .03, .06, [0, -.28 - i * .04, 0], ob, 16);
+    rev.add(ob); objs.push(ob);
+  }
+  // cabeça binocular inclinada
+  const bino = new THREE.Group(); bino.position.set(0, .62, .02); bino.rotation.x = -.55; cabeca.add(bino);
+  rbox(claro, .5, .22, .3, .08, [0, 0, 0], bino);
+  cil(metal, .1, .1, .06, [0, -.14, 0], bino);
+  const oculares = [];
+  for (const L of [-1, 1]) {
+    const oc = new THREE.Group(); oc.position.set(L * .13, .1, .12); bino.add(oc);
+    cil(corpo, .07, .08, .34, [0, .17, 0], oc);
+    cil(escuro, .065, .065, .14, [0, .4, 0], oc);
+    const an = new THREE.Mesh(new THREE.TorusGeometry(.066, .014, 8, 24), acento); an.rotation.x = Math.PI / 2; an.position.y = .47; oc.add(an);
+    cil(borracha, .075, .07, .05, [0, .5, 0], oc);
+    oculares.push(oc);
+  }
+  mic.scale.setScalar(1.3);
+  g.add(mic);
+  // células H&E flutuando
+  const cyto = new THREE.MeshStandardMaterial({ color: 0xff9fcf, roughness: .5, transparent: true, opacity: .85 });
+  const nucM = new THREE.MeshStandardMaterial({ color: 0x5b2a8c, roughness: .45 });
+  const cg = new THREE.SphereGeometry(.2, cheap ? 12 : 20, cheap ? 10 : 16), ng = new THREE.SphereGeometry(.08, 12, 10);
+  for (let i = 0; i < (cheap ? 9 : 14); i++) {
+    const m = new THREE.Mesh(cg, cyto), n = new THREE.Mesh(ng, nucM); n.position.set(.04, 0, .1); m.add(n);
+    m.scale.set(1, 1, .6).multiplyScalar(.7 + Math.random() * .6);
+    const r = 2.3 + Math.random() * 1.3, a = Math.random() * Math.PI * 2;
+    m.userData = { home: new THREE.Vector3(Math.cos(a) * r, (Math.random() - .5) * 4, Math.sin(a) * r * .5 - .6), off: V(), vel: V(), w: new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5), ph: Math.random() * 6 };
+    g.add(m); items.push(m);
+  }
+  const ck = {}, rv = S(0), ry = S(-1.1), rx = S(0), sx = S(0); let alvoRev = 0, flash = 0, alvoX = 0;
+  g.userData.offset = new THREE.Vector3(1.3, 0, 0);
+  g.userData.tick = (t, dt, I) => {
+    const P = localPointer(g, I), burst = clicked(ck, I);
+    if (burst) { alvoRev += Math.PI / 2; flash = 1; alvoX = alvoX ? 0 : .12; }
+    flash = Math.max(0, flash - dt * 1.5);
+    rev.rotation.y = spring(rv, alvoRev, 40, 9, dt);
+    charriot.position.x = spring(sx, alvoX, 20, 7, dt);
+    mic.rotation.y = spring(ry, -1.1 + Math.sin(t * .3) * .3 + (P ? THREE.MathUtils.clamp(P.x * .12, -.4, .4) : 0), 10, 5, dt);
+    mic.rotation.x = spring(rx, P ? THREE.MathUtils.clamp(-P.y * .05, -.15, .15) : 0, 10, 5, dt);
+    focos.forEach((f, i) => { f.rotation.x = t * (i % 2 ? 1.4 : .6); });
+    dimmer.rotation.x = Math.sin(t * .5) * .8;
+    alav.rotation.y = Math.sin(t * .8) * .5;
+    feixeMat.opacity = .06 + Math.sin(t * 3) * .02 + flash * .25;
+    luzMat.emissiveIntensity = .4 + flash * .8;
+    amostraMat.color.setRGB(1, .5 + flash * .4, .75 + flash * .2);
+    items.forEach(m => {
+      const u = m.userData, p = _b.copy(u.home).add(u.off);
+      p.y += Math.sin(t + u.ph) * .18;
+      if (P) { _c.subVectors(p, P); const d = _c.length(); if (d < 1.6) u.vel.addScaledVector(_c.normalize(), (1 - d / 1.6) * 30 * dt); if (burst && d < 3.5) u.vel.addScaledVector(_c.normalize(), 8 * (1 - d / 3.5)); }
+      if (I && I.sv) u.vel.y += I.sv * dt * 2.5;
+      u.vel.addScaledVector(u.off, -9 * dt); u.vel.multiplyScalar(Math.exp(-2.6 * dt)); u.off.addScaledVector(u.vel, dt);
+      m.position.copy(p); m.rotation.x += u.w.x * dt; m.rotation.y += u.w.y * dt;
+    });
+    mic.position.y = Math.sin(t * 1.1) * .08;
+  };
+  return g;
+}
+
 /* ======================= vacina (medicina preventiva) =======================
    Seringa de vidro com a dose âmbar, frascos e anticorpos (Y) flutuando em volta.
    Mouse perto: o êmbolo desce e a vacina sai pela agulha em gotas.
@@ -1367,6 +1507,6 @@ function makeLamp(o = {}) {
   return root;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeVaccine, makeHandshake, makeDialogo, makeBook, makeRaiox, makeFrog, makeHeart, makeLamp };
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeMicroscope, makeVaccine, makeHandshake, makeDialogo, makeBook, makeRaiox, makeFrog, makeHeart, makeLamp };
 };
 })();
