@@ -17,11 +17,52 @@ ROOT = Path(__file__).resolve().parent
 def tem(*pads):
     return lambda s, pasta, aulas: any(re.search(p, s + aulas, re.I | re.S) for p in pads)
 
+def pele_de_vidro(s, pasta, aulas):
+    """O vidro.css precisa ter a pele deste master: barra lateral com backdrop-filter (é onde o
+    liquido.js põe a lente). Sem isso o master fica com barra sólida, fora do liquid glass."""
+    k = CHAVE.get(pasta.name)
+    if not k:
+        return True
+    css = (ROOT / '_tema' / 'vidro.css').read_text(encoding='utf-8')
+    return any('"%s"' % k in sel and 'backdrop-filter' in corpo
+               for sel, corpo in re.findall(r'([^{}]+)\{([^{}]*)\}', css))
+
+
+def sem_foto_de_justificativa(s, pasta, aulas):
+    """Prova que chegou só como justificativa vira questão reconstruída, nunca foto da justificativa."""
+    return not re.search(r'"question"\s*:\s*null|fac-simil', s + aulas, re.I)
+
+
+def origem_das_questoes(s, pasta, aulas):
+    t = s + aulas
+    prova = re.search(r'Das provas|Questão de prova|pv-box|seg-pv', t, re.I)
+    autoral = re.search(r'autora', t, re.I)
+    reconstr = re.search(r'reconstru', t, re.I) or not re.search(r'justificativa', t, re.I)
+    return bool(prova and autoral and reconstr)
+
+
+def fim_do_master(s, pasta, aulas):
+    t = s + aulas
+    return all(re.search(p, t, re.I) for p in (r'Revis[aã]o final', r'O que vai cair|Raio-X da prova',
+                                                 r'Simulad', r'Minha revis[aã]o'))
+
+
 ITENS = [
     ('Tema de vidro aplicado', tem(r'<!--vidro:cabeca-->|<!--vidro:'),
      'rode python publicar.py --local (o script põe o bloco do tema)'),
     ('Liquid glass (liquido.js)', tem(r'liquido\.js'),
      'rode python publicar.py --local: o script inclui o _tema/liquido.js; peça flutuante nova entra em SEL nesse arquivo'),
+    ('Pele de liquid glass no tema', pele_de_vidro,
+     'acrescente a pele do master no _tema/vidro.css (cor em --vg-acc e barra lateral/barra do celular com backdrop-filter); '
+     'veja o bloco "MASTERS NOVOS" ou o da Microbiologia'),
+    ('Provas como questões, não fotos', sem_foto_de_justificativa,
+     'prova que veio só com justificativa vira questão reconstruída (enunciado e alternativas imaginados, gabarito e '
+     'justificativa oficiais), como em Microbiologia e Português; foto da justificativa não conta como questão'),
+    ('Origem de cada questão marcada', origem_das_questoes,
+     'cada questão diz de onde veio: "Das provas" (texto original), "reconstruída da justificativa" ou "✍️ autoral"'),
+    ('Seções finais (revisão final, o que vai cair, simulados, minha revisão)', fim_do_master,
+     'feche o master como a Microbiologia: Revisão final (revisão em 1 hora com esquemas), O que vai cair, '
+     'Simulados com as provas anteriores e Minha revisão'),
     ('Botão de tema claro/escuro', tem(r'data-act="theme"|id="btnTheme"|\bthemebtn\b'),
      'o botão precisa de data-act="theme", id="btnTheme" ou class="themebtn" para a lâmpada achar'),
     ('Texto dentro de <main>', tem(r'<main\b|id="main"|id="view"|class="main\b'),
@@ -49,7 +90,8 @@ ITENS = [
 # master que não precisa de algum item, com o motivo (aparece no relatório)
 DISPENSA = {
     'TH4_Masterclass_OSCE.html': ({'Blocos parcial / somativa', 'Questões só de prova por capítulo', 'Aviso "nunca caiu"',
-                                   'Página "O que mais cai"'}, 'prova prática (OSCE), sem provas escritas'),
+                                   'Página "O que mais cai"',
+                                   'Origem de cada questão marcada', 'Seções finais (revisão final, o que vai cair, simulados, minha revisão)'}, 'prova prática (OSCE), sem provas escritas'),
 }
 
 
@@ -61,6 +103,20 @@ def aulas_de(pasta):
 def masters():
     s = (ROOT / 'index.html').read_text(encoding='utf-8')
     return [ROOT / h for h in re.findall(r'\bhref:"([^"]+\.html)"', s)]
+
+
+def _chaves():
+    s = (ROOT / 'index.html').read_text(encoding='utf-8')
+    bloco = s[s.index('const SUBJECTS'):]
+    out = {}
+    for k, corpo in re.findall(r'(\w+)\s*:\s*\{(.*?)\n\s*\}', bloco, re.S):
+        h = re.search(r'href\s*:\s*"([^"]+)"', corpo)
+        if h and '/' in h.group(1):
+            out.setdefault(h.group(1).split('/')[0], k)
+    return out
+
+
+CHAVE = _chaves()
 
 
 def conferir(f):
@@ -86,7 +142,7 @@ def main(args):
         for r, o in faltam:
             print('   -', r + ':', o)
     if total:
-        print('\n%d pendência(s). Modelos: Farmacologia (questões, blocos, boas-vindas), Humanização/Preventiva (questões de prova), Patologia (aulas separadas).' % total)
+        print('\n%d pendência(s). Modelo principal: Microbiologia (seções finais, questões reconstruídas das justificativas, origem de cada questão). Também: Farmacologia (blocos, boas-vindas), Patologia (aulas separadas).' % total)
     return total
 
 

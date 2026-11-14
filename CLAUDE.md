@@ -44,11 +44,25 @@ Responda sempre em português (Brasil).
    - blocos parcial / somativa / pós-somativa;
    - em cada capítulo, só questões de prova, ou o aviso "nunca caiu" mais as autorais recolhidas;
    - página "O que mais cai";
-   - liquid glass (`_tema/liquido.js`);
+   - liquid glass (`_tema/liquido.js`) **e** a pele do master no `_tema/vidro.css` (barra lateral de vidro);
+   - provas como questões (nada de foto de justificativa), cada questão com a origem marcada;
+   - seções finais: revisão final, o que vai cair, simulados, minha revisão;
    - memes (`<pasta>/_img/memes.json`, ~60, revisados);
    - crédito "Vinícius e Matheus".
 
    Corrija tudo antes de dar o master por pronto. Se um item não se aplica (ex.: TH IV é prova prática), ponha o master em `DISPENSA` no `conferir.py`, com o motivo. Item novo no padrão entra em `ITENS` no `conferir.py` **e** na seção L da skill.
+
+8. **Regra: Modelo: Microbiologia.** Todo master segue o que foi feito no de Microbiologia, seja do Vinícius ou do Matheus:
+   - **Liquid glass de verdade.** O `liquido.js` só põe a lente onde o tema já põe vidro. Master novo precisa da sua pele no `_tema/vidro.css` (cor da matéria em `--vg-acc`, barra lateral e barra do celular com `backdrop-filter`); veja o bloco "MASTERS NOVOS". Sem ela a barra fica sólida, fora do tema.
+   - **Questões, não fotos.** Prova que chegou só como justificativa de gabarito vira **questão reconstruída**: enunciado e alternativas imaginados no padrão da prova, gabarito na mesma letra e justificativa oficial embaixo. Foto ou recorte da justificativa não conta como questão e não entra no master (o OCR serve de matéria-prima).
+   - **Origem de cada questão marcada**, sempre visível:
+     - `📝 Das provas`: texto original da prova;
+     - `📝 Questão de prova · reconstruída da justificativa`: com o aviso "Enunciado e alternativas reconstruídos a partir da justificativa oficial; o gabarito é o oficial";
+     - `✍️ Autoral`: feita por nós, num bloco recolhível, nunca misturada com as de prova.
+   - **Se o tema caiu na prova**: o capítulo diz quantas vezes caiu (grifo de frequência, "Caiu em N provas"); se nunca caiu, o aviso "nunca caiu" antes das autorais.
+   - **Cada aula** fecha com quiz, "⭐ O que mais é cobrado" e Arena.
+   - **Seções finais**, como em Microbiologia: Revisão final (revisão em 1 hora **com esquemas**: tabelas, fluxogramas, comparações), O que vai cair, Simulados (com as provas anteriores em questões), Raio-X da prova e Minha revisão.
+   - **Sempre avise o que falta.** Pode adicionar ou publicar um master incompleto se o usuário pedir, mas diga com todas as letras o que ainda falta ("ainda falta: questões reconstruídas da Somativa 81; revisão final sem esquemas"). Nunca dê como pronto um master com pendência no `conferir.py`.
 
 ## Onde fica cada coisa
 

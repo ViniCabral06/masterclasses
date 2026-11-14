@@ -395,14 +395,16 @@ mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8
   .mcards{grid-template-columns:1fr}
   .q{padding:18px 16px;border-radius:18px}
 }
+.tbw{overflow-x:auto;max-width:100%}.fluxo{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:10px 0}.fluxo span{flex:1 1 120px;padding:10px 12px;border-radius:14px;background:color-mix(in srgb,var(--accent) 14%,transparent);font-size:14px;line-height:1.35}.fluxo i{align-self:center;font-style:normal;opacity:.6}.chave{font-size:15px;padding:10px 12px;border-left:3px solid var(--accent);margin:6px 0 12px}.raio{display:inline-block;vertical-align:middle;width:80px;height:8px;border-radius:9px;background:linear-gradient(90deg,var(--accent) var(--p),color-mix(in srgb,currentColor 14%,transparent) 0)}.muted{color:var(--muted)}
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+
 
 
 
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="port";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../_tema/vidro.css?v=cb5b8acf">
+<link rel="stylesheet" href="../_tema/vidro.css?v=2750aa6e">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script defer src="../_tema/modelos.js?v=c78e6277"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=1fbc0ceb"></script><script defer src="../_tema/notas.js?v=41a060d3"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=365669b2"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script>
 <!--/vidro:cabeca-->
@@ -441,6 +443,7 @@ mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8
 <div id="vidro-load" style="--vl:#ff8a5b" role="status" aria-label="Carregando Português Aplicado à Saúde II"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 16h5"/></svg></div><div class="vl-t">Português Aplicado à Saúde II</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
 
 
 
@@ -1087,7 +1090,7 @@ function nav(){
   h+='<div class="grp">Treino</div>';
   [['sim','⏱️','Simulado (prova)'],['quiz','🧠','Quiz final · 15'],['arena','🎯','Arena']].forEach(x=>h+='<button class="nv'+(cur.v===x[0]?' on':'')+'" data-v="'+x[0]+'"><span class="n">'+x[1]+'</span><span class="t">'+x[2]+'</span></button>');
   h+='<div class="grp">Revisão final</div>';
-  [['rev','🔁','Pegadinhas · checklist'],['freq','📊','Frequência na prova'],['az','🔤','Termos A–Z'],['meu','📌','Minha revisão'],['docs','📑','Documentos lado a lado']].forEach(x=>h+='<button class="nv'+(cur.v===x[0]?' on':'')+'" data-v="'+x[0]+'"><span class="n">'+x[1]+'</span><span class="t">'+x[2]+'</span></button>');
+  [['rfin','🧭','Revisão em 1 hora'],['cair','🎯','O que vai cair · Raio-X da prova'],['rev','🔁','Pegadinhas · checklist'],['freq','📊','Frequência na prova'],['az','🔤','Termos A–Z'],['meu','📌','Minha revisão'],['docs','📑','Documentos lado a lado']].forEach(x=>h+='<button class="nv'+(cur.v===x[0]?' on':'')+'" data-v="'+x[0]+'"><span class="n">'+x[1]+'</span><span class="t">'+x[2]+'</span></button>');
   h+='<button class="nv" id="zerar" style="margin-top:12px"><span class="n">↺</span><span class="t">Zerar respostas</span></button>';
   $('#nav').innerHTML=h;
   $$('.nv[data-v]').forEach(b=>b.onclick=()=>go({v:b.dataset.v,id:b.dataset.id,tab:'aula',seg:0}));
@@ -1112,7 +1115,7 @@ function rHome(vw){
 function go(c){cur=c;$('#app').classList.remove('open');const m=c.v==='mod'?MODS.find(x=>x.id===c.id):null;document.documentElement.style.setProperty('--h',m?m.hue:215);nav();render();window.scrollTo({top:0})}
 function render(){
  main.innerHTML='<div class="view" id="vw"></div>';const vw=$('#vw');
- ({home:rHome,mod:rMod,sim:rSim,quiz:rQuiz,arena:rArena,rev:rRev,freq:rFreq,meu:rMeu,docs:rDocs,az:rAz}[cur.v])(vw);applyHL(vw);
+ ({home:rHome,mod:rMod,sim:rSim,quiz:rQuiz,arena:rArena,rev:rRev,rfin:rFin,cair:rCair,freq:rFreq,meu:rMeu,docs:rDocs,az:rAz}[cur.v])(vw);applyHL(vw);
  $$('img[data-img]',vw).forEach(i=>{i.src=IMGS[i.dataset.img]||''});
  $$('mark[data-j]',vw).forEach(mk=>{const js=mk.dataset.j.split(',');const tx='Caiu na Somativa 81 · justificativa'+(js.length>1?'s ':' ')+js.join(', ')+' · clique para ver';
   mk.onmouseenter=e=>{const t=$('#tip');t.textContent=tx;t.classList.add('on');const r=mk.getBoundingClientRect();t.style.left=Math.min(r.left,innerWidth-280)+'px';t.style.top=Math.max(8,r.top-48)+'px'};mk.onmouseleave=()=>$('#tip').classList.remove('on');
@@ -1221,6 +1224,34 @@ function rRev(vw){
  $$('#pg .cbtn').forEach(b=>b.onclick=()=>{const p=PEG[+b.dataset.i],ok=(b.dataset.v==='1')===p[1];const e=b.closest('.q').querySelector('.exp');e.classList.add('on');e.innerHTML='<b>'+(ok?'✔ ':'✘ ')+'É '+(p[1]?'VERDADEIRO':'FALSO')+'.</b> '+p[2]});
  MODS.forEach(m=>{$('#ck').insertAdjacentHTML('beforeend','<p style="margin:10px 0 2px"><b>'+m.n+' · '+m.nome+'</b></p>'+m.mais.check.map((c,i)=>{const id=m.id+i;return '<label class="chk"><input type="checkbox" data-c="'+id+'"'+(S.chk[id]?' checked':'')+'><span>'+c+'</span></label>'}).join(''))});
  $$('[data-c]',vw).forEach(c=>c.onchange=()=>{S.chk[c.dataset.c]=c.checked;save()});
+}
+function rFin(vw){
+ const tb=(h,rows)=>'<div class="tbw"><table><tr>'+h.map(x=>'<th>'+x+'</th>').join('')+'</tr>'+rows.map(r=>'<tr>'+r.map((c,i)=>'<td>'+(i?c:'<b>'+c+'</b>')+'</td>').join('')+'</tr>').join('')+'</table></div>';
+ const fl=a=>'<div class="fluxo">'+a.map(x=>'<span>'+x+'</span>').join('<i>→</i>')+'</div>';
+ vw.innerHTML='<div class="crumb">Revisão final</div><h1 class="title">Revisão em 1 hora</h1><p class="obj">Um esquema por aula, mais as comparações que a prova mais confunde. Refaça cada um de memória; depois confira em '+'“O que vai cair”.</p>'+
+ '<div class="card"><h3>Qual documento é qual</h3>'+tb(['Documento','Para que serve','Quem faz','Pegadinha'],[
+  ['Prontuário','Registro único, legal, sigiloso e científico de toda a assistência','Toda a equipe, com data, hora, assinatura e CRM','Descarte só com comissão e 20 anos do último registro (Lei 13.787/2018)'],
+  ['Atestado','Afirma um fato médico e sua consequência (ex.: afastamento)','Médico','CID só com autorização do paciente; nome, documento e data são obrigatórios'],
+  ['Declaração de comparecimento','Prova que a pessoa esteve na consulta','Médico ou serviço','Não afirma condição clínica: não é atestado'],
+  ['Laudo','Descreve os achados de um exame e conclui','Médico com CRM (Res. CFM 2.235/2019)','Linguagem técnica; explicar ao paciente'],
+  ['Prescrição','Documenta a decisão terapêutica','Médico','Sem “não autorizo a substituição”, a troca é tácita'],
+  ['Sumário de alta','Transição do cuidado ao fim da internação','Médico assistente','Modelo da Portaria 701/2022; reduz reinternação'],
+  ['Atestado de óbito','Declara a morte e suas causas','Médico (ato médico)','Certidão é do cartório, feita a partir do atestado']])+'</div>'+
+ '<div class="card"><h3>Partes da prescrição, na ordem</h3>'+fl(['<b>Cabeçalho</b><br>clínica e médico','<b>Superinscrição</b><br>paciente e via de uso','<b>Inscrição</b><br>fármaco, forma, concentração','<b>Subscrição</b><br>quantidade total','<b>Adscrição</b><br>como usar'])+'<p class="muted">Faltou a subscrição: dificulta dispensação e controle. Letramento em saúde é o tema nº 1 da prova: linguagem simples, recurso visual e confirmar se o paciente entendeu.</p></div>'+
+ '<div class="card"><h3>Atestado de óbito · Bloco V, Parte I</h3>'+fl(['<b>a</b><br>causa direta (a que matou)','<b>b</b><br>devida a…','<b>c</b><br>devida a…','<b>d</b><br>causa básica (última linha preenchida)'])+'<p class="muted">Nunca PCR ou “falência múltipla” como causa. Três vias: branca, amarela e rosa. 59 variáveis em 9 blocos.</p></div>'+
+ '<div class="card"><h3>Anamnese em três tempos</h3>'+fl(['<b>Início</b><br>acolhimento e vínculo','<b>Meio</b><br>compreender o problema','<b>Fim</b><br>manejo e próximos passos'])+'</div>'+
+ MODS.map(m=>'<div class="card"><h3>'+(EMO[m.id]||m.n)+' Aula '+m.n+' · '+m.nome+'</h3><p class="chave">'+m.mais.chave+'</p>'+tb(['Ponto','O que a prova quer'],m.mais.tab)+'</div>').join('');
+}
+function rCair(vw){
+ const peso=MODS.map(m=>({m,n:PROVA.filter(q=>q.m===m.id).length})),tot=PROVA.length||1;
+ const af=PROVA.filter(q=>/\nI\./.test(q.q)).length,caso=PROVA.filter(q=>q.q.length>220&&!/\nI\./.test(q.q)).length;
+ const nivel=n=>n>=5?'<span class="pill hot">Certeza</span>':n>=4?'<span class="pill hot">Muito provável</span>':n>=3?'<span class="pill">Provável</span>':'<span class="pill">Pode cair</span>';
+ vw.innerHTML='<div class="crumb">Revisão final</div><h1 class="title">O que vai cair</h1><div class="warn">Baseado nas '+PROVA.length+' questões da Somativa 81 (reconstruídas das justificativas, gabarito oficial). É tendência do banco, não garantia: a somativa cobra o semestre inteiro.</div>'+
+ '<div class="card"><h3>Raio-X da prova</h3><p>Múltipla escolha, A a D. '+af+' questões de afirmativas (I, II, III), '+caso+' com caso ou cena longa, o resto direto. Peso de cada aula:</p><table><tr><th>Aula</th><th>Questões</th><th>Peso</th></tr>'+
+ peso.map(p=>'<tr><td><b>'+p.m.n+'. '+p.m.nome+'</b></td><td>'+p.n+'</td><td><span class="raio" style="--p:'+Math.round(p.n/tot*100)+'%"></span> '+Math.round(p.n/tot*100)+'%</td></tr>').join('')+'</table></div>'+
+ '<div class="card"><h3>Temas em ordem de chance</h3><table><tr><th>Tema</th><th>Questões</th><th>Chance</th></tr>'+FREQ.slice().sort((a,b)=>b[1].length-a[1].length).map(f=>'<tr><td><b>'+f[0]+'</b><br><span style="font-size:12.5px;color:var(--muted)">'+f[2]+'</span></td><td>'+f[1].map(n=>'<button class="cbtn ghost qn" data-q="'+n+'">Q'+n+'</button>').join(' ')+'</td><td>'+nivel(f[1].length)+'</td></tr>').join('')+'</table></div>'+
+ '<div class="card"><h3>Como a banca pergunta</h3><ul><li><b>Itens obrigatórios:</b> o que deve constar no atestado, na prescrição, no laudo e no sumário de alta.</li><li><b>Lei e resolução certas:</b> CFM 1.638/2002 (prontuário), 2.381/2024 (atestado), 2.235/2019 (laudo), Lei 13.787/2018 (descarte), Portaria 701/2022 (sumário).</li><li><b>Analisar um documento:</b> receita, prontuário ou atestado com erro, e qual é o erro.</li><li><b>Comunicação e letramento:</b> linguagem simples, vínculo e adesão.</li></ul><div class="rowb"><button class="cbtn" id="irsim">Fazer o simulado da Somativa 81</button></div></div>';
+ $$('.qn',vw).forEach(b=>b.onclick=()=>go({v:'sim',id:null,focus:+b.dataset.q}));$('#irsim').onclick=()=>go({v:'sim'});
 }
 function rFreq(vw){
  vw.innerHTML='<h1 class="title">Frequência na Somativa 81</h1><div class="warn">Contagem baseada nas 30 justificativas disponíveis. É tendência estatística do banco, não garantia. Nenhuma justificativa se repetiu idêntica; os temas se repetem com redações diferentes.</div><div class="card"><table><tr><th>Tema</th><th>Justificativas</th><th>Nº</th></tr>'+FREQ.slice().sort((a,b)=>b[1].length-a[1].length).map(f=>'<tr><td><b>'+f[0]+'</b><br><span style="font-size:12.5px;color:var(--muted)">'+f[2]+'</span></td><td>'+f[1].join(', ')+'</td><td><span class="pill hot">'+f[1].length+'</span></td></tr>').join('')+'</table></div><div class="card"><h3>Por onde começar se o tempo for curto</h3><ol><li>Letramento / linguagem simples / adesão (prescrição e consulta)</li><li>Atestado: itens obrigatórios, CID, falsidade</li><li>Prontuário: descarte, abreviações, registro</li><li>Anamnese: vínculo, habilidades, hábitos</li><li>Sumário de alta e atestado de óbito (blocos, vias, causa direta)</li></ol></div>';
