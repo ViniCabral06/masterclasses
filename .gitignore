@@ -11,6 +11,9 @@
 !LEIAME.md
 !CLAUDE.md
 !_tema/**
+!AGENTS.md
+!.claude/
+!.claude/skills/**
 _site/
 _cache_otimizado/
 _originais/
