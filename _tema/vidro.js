@@ -33,7 +33,7 @@ const setFxLabel = () => { const sw = document.getElementById('vp-fx'); if (sw) 
 /* preferências de aparência (valem para todos os masters): fundo liso ou degradê e cor de destaque */
 const lerTexto = (k) => { const v = store.get(k, null); return typeof v === 'string' ? v : null; };
 function aplicarPrefs() {
-  html.classList.toggle('vg-liso', lerTexto('vidro-fundo') === 'liso');
+  const f = lerTexto('vidro-fundo'); html.classList.toggle('vg-liso', f === 'liso' || f === 'creme'); html.classList.toggle('vg-creme', f === 'creme');
   const c = lerTexto('vidro-cor'), ok = c && /^#[0-9a-f]{6}$/i.test(c);
   if (ok) {
     const n = parseInt(c.slice(1), 16), lum = (.299 * (n >> 16) + .587 * (n >> 8 & 255) + .114 * (n & 255)) / 255;
@@ -152,16 +152,17 @@ const painel = document.createElement('div'); painel.id = 'vidro-pers'; painel.h
 painel.setAttribute('role', 'dialog'); painel.setAttribute('aria-label', 'Personalização');
 painel.innerHTML = `<div class="vp-top"><b>Personalização</b><button type="button" class="vp-x" aria-label="Fechar">✕</button></div>
   <div class="vp-sec" data-sec="tema"><span class="vp-l">Tema</span><div class="vp-seg" role="group" aria-label="Tema"><button type="button" data-tema="light">☀ Claro</button><button type="button" data-tema="dark">☾ Escuro</button></div></div>
-  <div class="vp-sec"><span class="vp-l">Fundo</span><div class="vp-fundos"><button type="button" data-fundo="grad"><i class="vp-pv grad"></i>Degradê</button><button type="button" data-fundo="liso"><i class="vp-pv liso"></i>Liso</button></div></div>
+  <div class="vp-sec"><span class="vp-l">Fundo</span><div class="vp-fundos"><button type="button" data-fundo="grad"><i class="vp-pv grad"></i>Degradê</button><button type="button" data-fundo="liso"><i class="vp-pv liso"></i>Liso</button><button type="button" data-fundo="creme" class="vp-claro"><i class="vp-pv creme"></i>Creme</button></div></div>
   <div class="vp-sec"><span class="vp-l">Cor de destaque</span><div class="vp-cores">${CORES.map(([c, n]) => `<button type="button" data-cor="${c}" title="${n}" aria-label="${n}"${c ? ` style="--c:${c}"` : ''}></button>`).join('')}</div></div>
   <div class="vp-sec vp-linha"><span><span class="vp-l">Efeitos 3D</span><small>Fundo animado. Desligado economiza bateria.</small></span><button type="button" id="vp-fx" class="vp-sw" role="switch" aria-label="Efeitos 3D"></button></div>`;
 document.body.append(painel);
 const temaBtnQualquer = () => themeBtn() || document.querySelector(THEME_SEL);
 function pintarPainel() {
-  const luz = html.dataset.theme === 'light', liso = html.classList.contains('vg-liso'), cor = html.dataset.vgcor || '';
+  const luz = html.dataset.theme === 'light', cor = html.dataset.vgcor || '';
+  const fundo = !html.classList.contains('vg-liso') ? 'grad' : (luz && html.classList.contains('vg-creme') ? 'creme' : 'liso');
   painel.querySelector('[data-sec="tema"]').hidden = !temaBtnQualquer();
   painel.querySelectorAll('[data-tema]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.tema === 'light') === luz)));
-  painel.querySelectorAll('[data-fundo]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.fundo === 'liso') === liso)));
+  painel.querySelectorAll('[data-fundo]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.fundo === fundo)));
   painel.querySelectorAll('[data-cor]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cor.toLowerCase() === cor.toLowerCase())));
   setFxLabel();
 }

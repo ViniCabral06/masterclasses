@@ -3,7 +3,7 @@
   var h = document.documentElement; if (!h.classList.contains('vidro-aula')) return;
   function ler(k) { try { var v = JSON.parse(localStorage.getItem(k)); return typeof v === 'string' ? v : null; } catch (_) { return null; } }
   function aplicar() {
-    h.classList.toggle('vg-liso', ler('vidro-fundo') === 'liso');
+    var f = ler('vidro-fundo'); h.classList.toggle('vg-liso', f === 'liso' || f === 'creme'); h.classList.toggle('vg-creme', f === 'creme');
     var c = ler('vidro-cor');
     if (c && /^#[0-9a-f]{6}$/i.test(c)) {
       var n = parseInt(c.slice(1), 16), lum = (.299 * (n >> 16) + .587 * (n >> 8 & 255) + .114 * (n & 255)) / 255;
