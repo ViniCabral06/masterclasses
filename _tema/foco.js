@@ -27,7 +27,7 @@
     }),
   };
   const AD = {
-    huma: caderno, prev: caderno, img: caderno,
+    huma: caderno, prev: caderno, img: caderno, lab: caderno,
     micro: {
       nav: () => D.getElementById('nav'),
       aulas: () => [...D.querySelectorAll('#nav .grp[data-g]')].map(el => ({ el, key: el.dataset.g, head: el.querySelector('.gh'), cur: el.classList.contains('cur') })),

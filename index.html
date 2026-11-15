@@ -30,6 +30,7 @@
   --huma:#5aa9ff;
   --port:#ff8a5b;
   --img:#9fd3ff;
+  --lab:#4fe0cf;
   --accent:var(--hub);
   --glass:rgba(255,255,255,.055);
   --glass-hi:rgba(255,255,255,.11);
@@ -51,6 +52,7 @@ body[data-accent="pato"]{--accent:var(--pato)}
 body[data-accent="prev"]{--accent:var(--prev)}
 body[data-accent="huma"]{--accent:var(--huma)}
 body[data-accent="img"]{--accent:var(--img)}
+body[data-accent="lab"]{--accent:var(--lab)}
 body[data-accent="port"]{--accent:var(--port)}
 button,a{font:inherit;color:inherit}
 a{text-decoration:none}
@@ -282,13 +284,14 @@ main{position:relative;z-index:10;height:100%}
 .card[data-k="prev"]{--tint:var(--prev)}
 .card[data-k="huma"]{--tint:var(--huma)}
 .card[data-k="img"]{--tint:var(--img)}
+.card[data-k="lab"]{--tint:var(--lab)}
 .card[data-k="port"]{--tint:var(--port)}
 .extra{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:7px 13px 7px 9px;border-radius:999px;background:color-mix(in srgb,var(--th4) 18%,transparent);color:var(--th4);transition:background .3s,transform .4s var(--spring)}
 .extra:hover{background:color-mix(in srgb,var(--th4) 32%,transparent);transform:scale(1.04)}
 .extra svg{width:18px;height:18px}
 
 .specimen{position:relative;height:min(68vh,640px);display:flex;align-items:flex-end;justify-content:flex-end;pointer-events:none}
-.readout{--r:22px;padding:16px 20px;min-width:260px;pointer-events:auto}
+.readout{--r:22px;padding:16px 20px;min-width:260px;pointer-events:auto;position:fixed;right:var(--gutter,32px);bottom:28px;z-index:5}
 .readout b{display:block;font-family:var(--display);font-size:22px;letter-spacing:-.02em}
 .readout small{color:var(--ink-2);font-size:14px}
 .ecg{display:block;width:100%;height:40px;margin-top:8px}
@@ -533,6 +536,14 @@ const SUBJECTS = {
     readout:["Propedêutica de Imagem","13 aulas · provas 77 a 81"],
     icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 6v12M8 8c-2 1-2 3-2 5M16 8c2 1 2 3 2 5M8 11c-1.5.5-1.5 2-1.5 3M16 11c1.5.5 1.5 2 1.5 3"/>'
   },
+  lab:{
+    name:"Propedêutica Laboratorial",
+    href:"Propedêutica laboratorial/Propedeutica_Laboratorial_Masterclass.html",
+    desc:"Do raciocínio clínico ao laudo: acurácia, hemograma e anemias, função renal, dislipidemias, função hepática e hepatites, microbiologia e hiperglicemias, com as questões de laboratório das provas.",
+    tags:["Acurácia e pré-analítica","Hemograma e anemias","Função renal","Dislipidemias","Função hepática","Hepatites","Microbiologia","Hiperglicemias"],
+    readout:["Propedêutica Laboratorial","11 aulas · parcial e somativa"],
+    icon:'<path d="M9 3h6M10 3v6L5 19a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-10V3"/><path d="M8 15h8"/>'
+  },
   port:{
     name:"Português Aplicado à Saúde II",
     href:"Português/LPII_Masterclass.html",
@@ -753,7 +764,7 @@ const {createStage} = window.VidroPalco(THREE, COL);
 const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30, start:false} : {dust:1000, dpr:1.5, start:false});
 // se o aparelho sofrer, a primeira coisa a sair é a refração líquida (o efeito mais caro da página)
 W.onDegrade = () => { document.documentElement.classList.remove('refract'); window.Liquido && Liquido.off(); };
-const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeMicroscope(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook(), img:makeRaiox()};
+const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeMicroscope(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook(), img:makeRaiox(), lab:makeMicroscope()};
 /* modo leve automático: mede os quadros com tudo ligado; se não passa de ~30 fps
    (ex.: navegador sem placa de vídeo), desliga o 3D, a refração e o desfoque, e lembra disso */
 setTimeout(function medir(){

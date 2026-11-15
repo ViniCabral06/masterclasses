@@ -29,6 +29,7 @@
 :root[data-vidro="huma"]{--vg-acc:#5aa9ff;--vg-acc-ink:#a8d0ff;--vg-on-acc:#04162b}
 :root[data-vidro="port"]{--vg-acc:#ff8a5b;--vg-acc-ink:#ffb898;--vg-on-acc:#2a0d02}
 :root[data-vidro="img"]{--vg-acc:#9fd3ff;--vg-acc-ink:#cfe9ff;--vg-on-acc:#04182a}
+:root[data-vidro="lab"]{--vg-acc:#4fe0cf;--vg-acc-ink:#a6f2ea;--vg-on-acc:#02201d}
 
 /* tema claro: vidro fosco sobre névoa clara */
 :root[data-vidro][data-theme="light"]{
@@ -50,6 +51,7 @@
 :root[data-vidro="huma"][data-theme="light"]{--vg-acc-ink:#1f5fae}
 :root[data-vidro="port"][data-theme="light"]{--vg-acc-ink:#b9441a}
 :root[data-vidro="img"][data-theme="light"]{--vg-acc-ink:#2a6b9c}
+:root[data-vidro="lab"][data-theme="light"]{--vg-acc-ink:#0b7d76}
 :root[data-vidro][data-theme="light"] #vidro-bg .au{opacity:.3}
 
 html[data-vidro]{background:var(--vg-ground)!important}
@@ -156,7 +158,7 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
 /* ===================================================== MASTERS NOVOS (Preventiva, Humanização, Português)
    Mesmo molde de "caderno interativo": as cores do master viram as do vidro, e a barra lateral e a barra do
    celular viram vidro (é onde o liquido.js põe a lente). Caixas de conteúdo ficam sem desfoque (desempenho). */
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]),:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"])[data-theme="dark"],:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"])[data-theme="light"]{
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]),:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"])[data-theme="dark"],:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"])[data-theme="light"]{
   --ground:transparent; --surface:var(--vg-glass); --surface-2:var(--vg-glass2); --raised:var(--vg-glass3);
   --border:var(--vg-edge); --rule:var(--vg-rule); --control:var(--vg-control);
   --ink:var(--vg-ink); --ink-2:var(--vg-ink2); --muted:var(--vg-muted); --faint:var(--vg-faint);
@@ -164,20 +166,20 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
   --paper-ink:var(--vg-ink); --paper-2:var(--vg-glass); --tint:transparent;
   --serif:var(--vg-display); --sans:var(--vg-text);
 }
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"]),:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"])[data-theme]{--accent-ink:var(--vg-acc-ink);--on-ink:var(--vg-on-acc)}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"]),:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"])[data-theme]{--accent-ink:var(--vg-acc-ink);--on-ink:var(--vg-on-acc)}
 :root[data-vidro="port"],:root[data-vidro="port"][data-theme]{--accent-ink:var(--vg-on-acc);--on-ink:var(--vg-on-acc)}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) .paper :is(button[data-check],button[data-exam-check],button[data-start],#submit-sim){background:var(--vg-acc);color:var(--vg-on-acc);border-color:transparent}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) :is(main,.main,#main){background:transparent!important}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) :is(.sidebar,#side){background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) :is(header.top,.mtop){background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) :is(.it.active,.nv.on,.grp.single.on>.grp-h){background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)!important;color:var(--vg-ink)!important}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) :is(.it,.nv,.grp-h):hover{background:var(--vg-hov)}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) :is(.quiz-item,.q,.card){border-color:transparent!important;border-radius:22px;box-shadow:var(--vg-shadow)}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) :is(.option,.opt){border-radius:14px}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) :is(h1,h2,.h-page){font-family:var(--vg-display);font-weight:400;letter-spacing:-.01em}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) :is(.btn,.cel-finish,button.primary){border-radius:999px}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) .cel-ov{background:rgba(4,7,11,.55)!important}
-:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"]) img.magnify{border-radius:14px}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) .paper :is(button[data-check],button[data-exam-check],button[data-start],#submit-sim){background:var(--vg-acc);color:var(--vg-on-acc);border-color:transparent}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(main,.main,#main){background:transparent!important}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(.sidebar,#side){background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(header.top,.mtop){background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(.it.active,.nv.on,.grp.single.on>.grp-h){background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)!important;color:var(--vg-ink)!important}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(.it,.nv,.grp-h):hover{background:var(--vg-hov)}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(.quiz-item,.q,.card){border-color:transparent!important;border-radius:22px;box-shadow:var(--vg-shadow)}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(.option,.opt){border-radius:14px}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(h1,h2,.h-page){font-family:var(--vg-display);font-weight:400;letter-spacing:-.01em}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(.btn,.cel-finish,button.primary){border-radius:999px}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) .cel-ov{background:rgba(4,7,11,.55)!important}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) img.magnify{border-radius:14px}
 
 /* ===================================================== monitor cardíaco (TH IV) */
 #vidro-heart{--vg-ink:#eef4f6;--vg-ink2:rgba(238,244,246,.78);--vg-muted:rgba(238,244,246,.58);position:fixed;right:16px;bottom:68px;z-index:95;width:236px;border-radius:26px;overflow:hidden;color:var(--vg-ink);font-family:var(--vg-text);
@@ -373,13 +375,13 @@ mark.vg-nota.vg-fim::after{content:"💬";font-size:.72em;margin-left:3px;vertic
 /* Medicina Preventiva e Humanização: mesmo cabeçalho da barra lateral que a Patologia
    (aqui a barra fechada é marcada com body.sb-collapsed) */
 @media (min-width:901px){
-  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"]) body:not(.sb-collapsed) .sb-head{flex-wrap:wrap;row-gap:12px}
-  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"]) body:not(.sb-collapsed) .sb-head .t{flex:1 1 100%}
-  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"]) body:not(.sb-collapsed) .sb-btns{flex:1 1 100%;display:flex;align-items:center;gap:8px;padding-left:38px}
-  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"]) body:not(.sb-collapsed) #sbCollapse{margin-left:auto}
-  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"]) body.sb-collapsed .sb-head{flex-direction:column;align-items:center;padding:14px 0 10px}
-  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"]) body.sb-collapsed .sb-head .t{display:none}
-  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"]) body.sb-collapsed .sb-btns{display:flex;flex-direction:column;align-items:center;gap:6px}
+  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"]) body:not(.sb-collapsed) .sb-head{flex-wrap:wrap;row-gap:12px}
+  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"]) body:not(.sb-collapsed) .sb-head .t{flex:1 1 100%}
+  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"]) body:not(.sb-collapsed) .sb-btns{flex:1 1 100%;display:flex;align-items:center;gap:8px;padding-left:38px}
+  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"]) body:not(.sb-collapsed) #sbCollapse{margin-left:auto}
+  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"]) body.sb-collapsed .sb-head{flex-direction:column;align-items:center;padding:14px 0 10px}
+  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"]) body.sb-collapsed .sb-head .t{display:none}
+  :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"]) body.sb-collapsed .sb-btns{display:flex;flex-direction:column;align-items:center;gap:6px}
 }
 
 /* Microbiologia: a página do segmento (.page > .card) ganha o vidro do tema, então precisa de respiro
