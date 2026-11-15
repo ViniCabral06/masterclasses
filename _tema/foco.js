@@ -61,7 +61,7 @@
       }); },
     },
     pato: { // shell com as aulas em iframes; o título de sistema (Cardiovascular, TGI...) anda junto com a 1ª aula dele.
-      // Ordem do curso (TABS): Neoplasias de pulmão (aula8, no bloco "Só na prática") vem logo depois de Resp 3.
+      // Ordem do curso (TABS): Neoplasias de pulmão (aula8) vem logo depois de Resp 3.
       grps: () => { const F = window.VG_FOCO || {}, T = typeof TABS !== 'undefined' ? TABS.map(x => x.key) : [], o = k => { const i = T.indexOf(k); return i < 0 ? 999 : i; };
         return [...D.querySelectorAll('#tabbtns .grp[data-key]')].filter(el => F[el.dataset.key]).sort((a, b) => o(a.dataset.key) - o(b.dataset.key)); },
       nav: () => D.getElementById('tabbtns'),
@@ -85,6 +85,8 @@
   /* ---------- configuração ---------- */
   const CK = 'vg-foco:' + K;
   const cfg = Object.assign({ modo: 'todos', div: true, corte: null, recolher: true, open: {} }, LS(CK) || {});
+  const SEM_FEITAS = new Proxy({}, { get: () => 1 }); // o grupo "Já estudadas" saiu de todos os masters (pedido do Matheus)
+  if (SEM_FEITAS[K]) cfg.recolher = false;
   const salva = () => { try { localStorage.setItem(CK, JSON.stringify(cfg)); } catch (e) {} };
   const CORTE0 = { huma: 4, prev: 5, img: 7, micro: 3, farmaco: 3, port: 4, pato: 7 }; // divisão que o master já usava
 
@@ -104,6 +106,15 @@ html.vgf-on .vgf-nav .vgf-x,html.vgf-on .vgf-nav .grp.vgf-x{display:none!importa
 .vgf-h>span:nth-child(2){white-space:nowrap}
 .vgf-h .n{margin-left:auto;text-align:right;font-weight:500;text-transform:none;letter-spacing:0;opacity:.8}
 .vgf-h:focus-visible{outline:2px solid var(--vg-acc,#5aa9ff)}
+/* barra recolhida (cada master marca de um jeito: .sidebar.collapsed, body.sb-collapsed, body.collapsed) */
+:is(.collapsed,.sb-collapsed,.sb-off) .vgf-panel{display:none!important}
+:is(.collapsed,.sb-collapsed,.sb-off) .vgf-h{justify-content:center;padding:6px 0;margin:6px 0 2px}
+:is(.collapsed,.sb-collapsed,.sb-off) .vgf-h>span:not(.c){display:none!important}
+@media (max-width:900px){ /* no celular a barra abre inteira por cima: nada recolhido */
+  :is(.collapsed,.sb-collapsed,.sb-off) .vgf-panel{display:block!important}
+  :is(.collapsed,.sb-collapsed,.sb-off) .vgf-h{justify-content:flex-start;padding:7px 10px;margin:10px 0 4px}
+  :is(.collapsed,.sb-collapsed,.sb-off) .vgf-h>span:not(.c){display:inline!important}
+}
 .vgf-panel{margin:4px 8px 10px;border-radius:14px;background:var(--vg-glass,rgba(127,127,127,.08));font:400 13px/1.4 var(--vg-text,system-ui,sans-serif);color:var(--ink,inherit)}
 .vgf-panel>summary{list-style:none;cursor:pointer;padding:9px 12px;font-weight:600;display:flex;gap:8px;align-items:center}
 .vgf-panel>summary::-webkit-details-marker{display:none}
@@ -144,7 +155,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       painel.addEventListener('change', e => {
         const t = e.target;
         if (t.name === 'div') cfg.div = t.checked;
-        if (t.name === 'rec') cfg.recolher = t.checked;
+        if (t.name === 'rec') cfg.recolher = t.checked && !SEM_FEITAS[K];
         if (t.name === 'corte') cfg.corte = +t.value;
         salva(); aplica();
       });
@@ -162,7 +173,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       (!totP ? '<div class="nota">Este master só tem somativas no acervo.</div>' : '') +
       '<label><input type="checkbox" name="div"' + (cfg.div ? ' checked' : '') + '> Dividir as aulas pela parcial</label>' +
       (cfg.div ? '<label class="corte">A parcial da minha turma vai até a <select name="corte">' + info.map((a, i) => '<option value="' + (i + 1) + '"' + (i + 1 === corte ? ' selected' : '') + '>' + esc(a.rot || a.nome || ('aula ' + (i + 1))) + '</option>').join('') + '</select></label>' : '') +
-      '<label><input type="checkbox" name="rec"' + (cfg.recolher ? ' checked' : '') + '> Recolher as aulas já estudadas</label></div>';
+      (SEM_FEITAS[K] ? '' : '<label><input type="checkbox" name="rec"' + (cfg.recolher ? ' checked' : '') + '> Recolher as aulas já estudadas</label>') + '</div>';
     if (painel.dataset.k !== h) { const o = painel.open; painel.innerHTML = h; painel.open = o; painel.dataset.k = h; }
   }
   const esc = s => String(s).replace(/[<>&"]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
@@ -250,8 +261,21 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
     } finally { ocupado = false; observa(nav); }
   }
   const curKey = aulas => { const c = aulas.find(a => a.cur); return c ? c.key : ''; };
+  const rolador = nav => { for (let e = nav; e && e !== D.body; e = e.parentElement) { const o = getComputedStyle(e).overflowY; if ((o === 'auto' || o === 'scroll') && e.scrollHeight > e.clientHeight + 1) return e; } return null; };
+  let memo = null; // { top, t }: rolagem da barra no momento do clique/tecla dentro dela
+  const lembra = e => { const nav = A.nav(); if (!nav || !nav.contains(e.target)) return; const r = rolador(nav); if (r) memo = { top: r.scrollTop, t: Date.now() }; };
+  D.addEventListener('pointerdown', lembra, true);
+  D.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') lembra(e); }, true);
+  function arrumaRolagem(nav) {
+    const r = rolador(nav); if (!r) return;
+    if (memo && Date.now() - memo.t < 1500) r.scrollTop = memo.top;
+    const at = nav.querySelector('.it.active,.it.on,.it.cur,.sb.on,.it[aria-current="page"],.it[aria-current="true"]');
+    if (!at || !at.getClientRects().length) return;
+    const a = at.getBoundingClientRect(), b = r.getBoundingClientRect();
+    if (a.top < b.top + 4) r.scrollTop -= b.top + 4 - a.top; else if (a.bottom > b.bottom - 4) r.scrollTop += a.bottom - (b.bottom - 4);
+  }
   function observa(nav) {
-    if (!obs) obs = new MutationObserver(() => { if (!ocupado && !raf) raf = requestAnimationFrame(aplica); });
+    if (!obs) obs = new MutationObserver(() => { if (!ocupado && !raf) raf = requestAnimationFrame(() => { aplica(); const nav = A.nav(); if (nav) arrumaRolagem(nav); }); });
     obs.observe(nav, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
   }
   D.addEventListener('click', e => {
