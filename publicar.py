@@ -11,6 +11,7 @@ As matérias vêm da lista SUBJECTS do index.html (name, href e, se tiver, game)
 Para incluir uma matéria nova, acrescente uma entrada lá e rode este script. Veja LEIAME.md.
 """
 import os, re, sys, shutil, subprocess, json, base64, hashlib, io
+import html as html_mod
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -277,6 +278,75 @@ def atualizar_aulas(m):
         print(f"  {pasta.parent.name}/aulas: tema atualizado em {n} aula(s)")
 
 
+FOCO_INI, FOCO_FIM = "<!--vidro:foco-->", "<!--/vidro:foco-->"
+FOCO_Q = re.compile(r"(Parcial|Somativa)\s*(\d+)\D{0,6}?Quest[aã]o\s*(Aberta\s*)?(\d+)", re.I)
+FOCO_PULA = {"capa", "home", "apendice", "quiz", "arena"}
+
+
+def _questoes_de_prova(doc):
+    """{segmento: (título, {questões de prova})} de uma aula separada. Uma questão é (P|S, número da prova,
+    número da questão), tirada do rótulo de origem ("Parcial 82 — Questão 16", "Somativa 79 · Questão 9 ·
+    reconstruída da justificativa"); autorais e adaptadas não contam."""
+    def chave(rot):
+        rot = html_mod.unescape(re.sub(r"<[^>]+>", "", rot))
+        if re.search(r"autoral|estilo das provas|adaptad", rot, re.I):
+            return None
+        q = FOCO_Q.search(rot)
+        return (q.group(1)[0].upper(), q.group(2), ("A" if q.group(3) else "") + q.group(4)) if q else None
+    segs = {}
+    dj = re.search(r'<script id="app-data"[^>]*>(.*?)</script>', doc, re.S)
+    if dj:  # aula montada por JSON (ex.: Patologia, aula 2)
+        for sg in json.loads(dj.group(1)).get("segments", []):
+            segs[sg["id"]] = (sg.get("title", ""), {chave(q.get("sourceLabel", "")) for q in (sg.get("pv") or []) if q.get("pvReal")} - {None})
+    else:
+        for p in re.finditer(r'<section class="pane" id="([\w-]+)"[^>]*>(.*?)</section>', doc, re.S):
+            t = re.search(r"<h[12][^>]*>(.*?)</h[12]>", p.group(2), re.S)
+            ks = {chave(x) for x in re.findall(r'class="q-source[^"]*"[^>]*>(.*?)</span>', p.group(2), re.S)} - {None}
+            segs[p.group(1)] = (re.sub(r"<[^>]+>", "", t.group(1)) if t else "", ks)
+    return segs
+
+
+def foco_das_aulas(m):
+    """Master com as aulas em aulas/ (Patologia): conta as questões de prova de cada segmento e grava em
+    window.VG_FOCO, no bloco vidro:foco do master. O _tema/foco.js usa isso para grifar aulas e segmentos
+    na barra lateral (o master não enxerga o texto das aulas, que abrem em iframes). Páginas que só repetem
+    questões (O que mais cai, quiz, apêndice) não ganham grifo próprio, mas entram no total da aula."""
+    src = ROOT / m["arquivo"]
+    pasta = src.parent / "aulas"
+    if not pasta.is_dir() or not src.exists():
+        return
+    with open(src, encoding="utf-8", newline="") as f:
+        s = f.read()
+    nav, tabs = re.search(r"^const NAV = (\{.*\});\s*$", s, re.M), re.search(r"^const TABS = (\[.*\]);\s*$", s, re.M)
+    if not (nav and tabs):
+        return
+    nav, tabs = json.loads(nav.group(1)), json.loads(tabs.group(1))
+    dados = {}
+    for t in tabs:
+        k, arq = t["key"], pasta / f"{t['key']}.html"
+        if t.get("group") == "sim" or k not in nav or not arq.exists():
+            continue
+        titulos = {i["k"]: i.get("t", "") for i in nav[k]}
+        todas, conta = set(), {}
+        for sid, (tit, ks) in _questoes_de_prova(arq.read_text(encoding="utf-8")).items():
+            if sid in FOCO_PULA:
+                continue
+            todas |= ks
+            if sid in titulos and ks and not re.search(r"mais cai", tit + " " + titulos[sid], re.I):
+                conta[sid] = [sum(x[0] == "P" for x in ks), sum(x[0] == "S" for x in ks)]
+        dados[k] = {"p": sum(x[0] == "P" for x in todas), "s": sum(x[0] == "S" for x in todas), "segs": conta}
+    bloco = f"{FOCO_INI}<script>window.VG_FOCO={json.dumps(dados, ensure_ascii=False, separators=(',', ':'))};</script>{FOCO_FIM}"
+    if FOCO_INI in s:
+        t = re.sub(re.escape(FOCO_INI) + r".*?" + re.escape(FOCO_FIM), lambda _: bloco, s, count=1, flags=re.S)
+    else:
+        i = s.rfind("</body>")
+        t = s[:i] + bloco + "\n" + s[i:] if i >= 0 else s
+    if t != s:
+        with open(src, "w", encoding="utf-8", newline="") as f:
+            f.write(t)
+        print(f"  {m['arquivo']}: frequência das provas por segmento atualizada (Foco de estudo)")
+
+
 def otimizar_fonte(m):
     """Tira as imagens embutidas do master (vão para _img/ ao lado). O original fica em _originais/."""
     src = ROOT / m["arquivo"]
@@ -352,6 +422,7 @@ def main():
         print("Pronto (sem publicar)."); return
     for m in ms:
         otimizar_fonte(m)
+        foco_das_aulas(m)
     versionar_hub()
     (ROOT / ".nojekyll").touch()
     # compara cada master com o padrão do site (skill masterclass-medica, seção L); só avisa, não impede

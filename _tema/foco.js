@@ -6,7 +6,8 @@
    - Aulas já estudadas (todos os segmentos concluídos) vão para um grupo recolhido, para a barra ficar curta.
    Tudo pode ser desligado, e fica salvo no navegador, por master (localStorage "vg-foco:<chave>").
    O script lê o DOM e os dados de cada master sem mexer no código dele: cada master tem um adaptador em AD.
-   Patologia (dividida por sistema) e TH IV (prova prática) ficam de fora de propósito. */
+   Patologia: as aulas ficam em aulas/ (iframes), então a frequência de cada segmento vem de window.VG_FOCO,
+   que o publicar.py conta nas aulas e grava no master (bloco vidro:foco). TH IV (prova prática) fica de fora. */
 (function () {
   const D = document, html = D.documentElement, K = html.dataset.vidro || '';
   if (window.__vgFoco) return; window.__vgFoco = true;
@@ -59,6 +60,25 @@
         return { key: m.id, nome: 'Aula ' + m.n, done: m.segs.every((_, i) => dn[m.id + ':' + i]), segs, sAula: PROVA.filter(q => q.m === m.id).length };
       }); },
     },
+    pato: { // shell com as aulas em iframes; o título de sistema (Cardiovascular, TGI...) anda junto com a 1ª aula dele.
+      // Ordem do curso (TABS): Neoplasias de pulmão (aula8, no bloco "Só na prática") vem logo depois de Resp 3.
+      grps: () => { const F = window.VG_FOCO || {}, T = typeof TABS !== 'undefined' ? TABS.map(x => x.key) : [], o = k => { const i = T.indexOf(k); return i < 0 ? 999 : i; };
+        return [...D.querySelectorAll('#tabbtns .grp[data-key]')].filter(el => F[el.dataset.key]).sort((a, b) => o(a.dataset.key) - o(b.dataset.key)); },
+      nav: () => D.getElementById('tabbtns'),
+      aulas: () => AD.pato.grps().map(el => {
+        const p = el.previousElementSibling;
+        return { el, key: el.dataset.key, head: el.querySelector('.grp-h'), cur: el.classList.contains('on'), pre: p && p.classList.contains('sb-sec') ? [p] : [] };
+      }),
+      segs: a => [...a.el.querySelectorAll('.it[data-seg]')].map(el => ({ el, key: el.dataset.seg })),
+      dados: () => { const F = window.VG_FOCO || {}, AB = { Cardiovascular: 'Cardio', 'Respiratório': 'Resp' };
+        return AD.pato.grps().map(el => {
+          const k = el.dataset.key, f = F[k], t = (typeof TABS !== 'undefined' ? TABS : []).find(x => x.key === k) || {};
+          const [sis, n] = String(t.label || k).split(/\s*—\s*/), nome = (AB[sis] || sis) + ' ' + String(n || '').replace(/\D/g, '');
+          const segs = {}; Object.entries(f.segs || {}).forEach(([s, v]) => { segs[s] = { p: v[0], s: v[1] }; });
+          const ins = [...el.querySelectorAll('.it input')];
+          return { key: k, nome, rot: nome + (t.short ? ' · ' + t.short : ''), done: ins.length > 0 && ins.every(i => i.checked), segs, pAula: f.p, sAula: f.s };
+        }); },
+    },
   };
   const A = AD[K]; if (!A) return;
 
@@ -66,7 +86,7 @@
   const CK = 'vg-foco:' + K;
   const cfg = Object.assign({ modo: 'todos', div: true, corte: null, recolher: true, open: {} }, LS(CK) || {});
   const salva = () => { try { localStorage.setItem(CK, JSON.stringify(cfg)); } catch (e) {} };
-  const CORTE0 = { huma: 4, prev: 5, img: 7, micro: 3, farmaco: 3, port: 4 }; // divisão que o master já usava
+  const CORTE0 = { huma: 4, prev: 5, img: 7, micro: 3, farmaco: 3, port: 4, pato: 7 }; // divisão que o master já usava
 
   /* ---------- estilo ---------- */
   const st = D.createElement('style'); st.id = 'vg-foco-css';
@@ -100,6 +120,7 @@ html.vgf-on .vgf-nav .vgf-x,html.vgf-on .vgf-nav .grp.vgf-x{display:none!importa
 .vgf-b label{display:flex;gap:8px;align-items:center;cursor:pointer}
 .vgf-b select{font:inherit;color:inherit;background:var(--vg-control,rgba(127,127,127,.14));border:0;border-radius:8px;padding:4px 6px;max-width:100%}
 .vgf-b select option{color:#111}
+.vgf-b label.corte{display:block}.vgf-b label.corte select{display:block;width:100%;margin-top:5px}
 .vgf-b .nota{font-size:12px;color:var(--muted,#8a94a3)}
 :root{--vgf1:#3fb950;--vgf2:#e3b341;--vgf3:#f0883e;--vgf4:#f85149;--vgf5:#0b0b0b}
 .vgf-leg i.g1{background:var(--vgf1)}.vgf-leg i.g2{background:var(--vgf2)}.vgf-leg i.g3{background:var(--vgf3)}.vgf-leg i.g4{background:var(--vgf4)}.vgf-leg i.g5{background:var(--vgf5);box-shadow:0 0 0 1px rgba(255,255,255,.45)}
@@ -140,7 +161,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       (cfg.modo !== 'off' ? '<div class="vgf-leg">cai pouco <i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i><i class="g5"></i> cai sempre</div>' : '') +
       (!totP ? '<div class="nota">Este master só tem somativas no acervo.</div>' : '') +
       '<label><input type="checkbox" name="div"' + (cfg.div ? ' checked' : '') + '> Dividir as aulas pela parcial</label>' +
-      (cfg.div ? '<label>A parcial da minha turma vai até a <select name="corte">' + info.map((a, i) => '<option value="' + (i + 1) + '"' + (i + 1 === corte ? ' selected' : '') + '>' + esc(a.nome || ('aula ' + (i + 1))) + '</option>').join('') + '</select></label>' : '') +
+      (cfg.div ? '<label class="corte">A parcial da minha turma vai até a <select name="corte">' + info.map((a, i) => '<option value="' + (i + 1) + '"' + (i + 1 === corte ? ' selected' : '') + '>' + esc(a.rot || a.nome || ('aula ' + (i + 1))) + '</option>').join('') + '</select></label>' : '') +
       '<label><input type="checkbox" name="rec"' + (cfg.recolher ? ' checked' : '') + '> Recolher as aulas já estudadas</label></div>';
     if (painel.dataset.k !== h) { const o = painel.open; painel.innerHTML = h; painel.open = o; painel.dataset.k = h; }
   }
@@ -164,13 +185,16 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
     try {
       const porKey = Object.fromEntries(info.map(a => [a.key, a]));
       aulas = aulas.filter(a => porKey[a.key]); // grupos que não são aula (revisão, simulados) ficam onde estão
-      totP = info.reduce((t, a) => t + Object.values(a.segs).reduce((u, s) => u + s.p, 0), 0);
-      totS = info.reduce((t, a) => t + (a.sAula != null ? a.sAula : Object.values(a.segs).reduce((u, s) => u + s.s, 0)), 0);
+      const somaP = i => i.pAula != null ? i.pAula : Object.values(i.segs).reduce((u, s) => u + s.p, 0);
+      const somaS = i => i.sAula != null ? i.sAula : Object.values(i.segs).reduce((u, s) => u + s.s, 0);
+      totP = info.reduce((t, a) => t + somaP(a), 0);
+      totS = info.reduce((t, a) => t + somaS(a), 0);
       if ((cfg.modo === 'parciais' && !totP) || (cfg.modo === 'somativas' && !totS)) cfg.modo = 'todos';
       montaPainel(nav); pintaPainel();
 
       /* grifos */
-      const vA = a => { const i = porKey[a.key]; if (!i) return 0; if (a.key && i.sAula != null && cfg.modo !== 'parciais') return (cfg.modo === 'todos' ? Object.values(i.segs).reduce((u, s) => u + s.p, 0) : 0) + i.sAula; return Object.values(i.segs).reduce((u, s) => u + val(s), 0); };
+      // total da aula: questões únicas (pAula/sAula, quando o adaptador sabe) ou a soma dos segmentos
+      const vA = a => { const i = porKey[a.key]; if (!i) return 0; return cfg.modo === 'parciais' ? somaP(i) : cfg.modo === 'somativas' ? somaS(i) : somaP(i) + somaS(i); };
       const maxA = Math.max(0, ...aulas.map(vA));
       const maxS = Math.max(0, ...info.flatMap(i => Object.values(i.segs).map(val)));
       const nomeM = { todos: 'nas provas', parciais: 'nas parciais', somativas: 'nas somativas' }[cfg.modo];
@@ -188,7 +212,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       const flat = []; [...nav.children].forEach(c => { if (c.classList.contains('sb-bloco-c')) flat.push(...c.children); else flat.push(c); });
       flat.forEach(c => { c.style.order = ''; c.classList.remove('vgf-x'); });
       if (!liga) { ocupado = false; observa(nav); return; }
-      const ehAula = new Map(); aulas.forEach((a, idx) => { ehAula.set(a.el, { a, idx }); (a.extra || []).forEach(x => ehAula.set(x, { a, idx, extra: true })); });
+      const ehAula = new Map(); aulas.forEach((a, idx) => { ehAula.set(a.el, { a, idx }); [...(a.pre || []), ...(a.extra || [])].forEach(x => ehAula.set(x, { a, idx, extra: true })); });
       const primeira = flat.findIndex(c => ehAula.has(c));
       const antes = flat.slice(0, primeira).filter(c => !ehAula.has(c));
       const depois = flat.slice(primeira).filter(c => !ehAula.has(c));
@@ -201,7 +225,9 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
         const faixa = (ini, fim) => {
           const a = nomeDe(aulas[ini]), b = nomeDe(aulas[fim]); if (ini === fim) return a;
           const x = (a.match(/\d+/) || [])[0], y = (b.match(/\d+(?!.*\d)/) || [])[0];
-          return x && y ? 'Aulas ' + x + ' a ' + y : a + ' a ' + b.replace(/^Aula\s*/i, 'aula ');
+          const pa = a.replace(/\s*\d.*$/, ''), pb = b.replace(/\s*\d.*$/, ''); // "Aula", "Cardio", "TGI"...
+          if (x && y && pa === pb) return (/^aula$/i.test(pa) ? 'Aulas' : pa) + ' ' + x + ' a ' + y;
+          return a + ' a ' + b.replace(/^Aula\s*/i, 'aula ');
         };
         grupos.push({ id: 'parcial', t: 'Até a parcial', n: faixa(0, corte - 1), a: g1 });
         if (corte < aulas.length) grupos.push({ id: 'depois', t: 'Depois da parcial', n: faixa(corte, aulas.length - 1), a: g2 });
@@ -217,7 +243,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
           h.setAttribute('aria-expanded', ab); h.innerHTML = '<span class="c">▶</span><span>' + esc(g.t) + '</span><span class="n">' + esc(g.n || '') + '</span>';
           h.style.order = ++o; nav.appendChild(h);
         }
-        g.a.forEach(a => { [a.el, ...(a.extra || [])].forEach(x => { x.style.order = ++o; x.classList.toggle('vgf-x', !ab); }); });
+        g.a.forEach(a => { [...(a.pre || []), a.el, ...(a.extra || [])].forEach(x => { x.style.order = ++o; x.classList.toggle('vgf-x', !ab); }); });
       });
       cfg.openAula = curKey(aulas);
       depois.forEach(c => { c.style.order = ++o; });
