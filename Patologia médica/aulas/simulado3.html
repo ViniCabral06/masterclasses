@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="pt-BR" data-tone="prova" data-theme="dark">
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=a4e1fe41"><script defer src="../../_tema/notas.js?v=41a060d3"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=365669b2"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><!--/vidro:cabeca-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulado somativa — monitores · Patologia Médica I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet"><style>/* ===== Visual "Farmacologia" aplicado às aulas de Patologia ===== */
+:root{
+  --ground:#ffffff; --surface:#f5f6f4; --surface-2:#eceeeb; --raised:#ffffff;
+  --border:#e4e6e2; --rule:#eff0ed; --control:#d6d9d4;
+  --ink:#1f201d; --ink-2:#3a3c37; --muted:#676964; --faint:#9a9c96;
+  --accent:#1b6e66; --accent-ink:#0f4d47; --accent-soft:#e3f0ed;
+  --tone:var(--accent);
+  --ok:#2e7d32; --ok-bg:#e6f4e7; --ok-line:#b9dcbb;
+  --bad:#b42318; --bad-bg:#fdecea; --bad-line:#f2c1bb;
+  --warn:#b26a00; --warn-bg:#f8ecd2; --warn-ink:#7a5200;
+  --on-ink:#fff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121413; --surface:#1a1d1b; --surface-2:#242826; --raised:#1f2320;
+  --border:#2c312e; --rule:#222624; --control:#3d4440;
+  --ink:#e6e9e4; --ink-2:#c3c8c1; --muted:#9aa09a; --faint:#6f766f;
+  --accent:#5fc4ae; --accent-ink:#93e0cd; --accent-soft:#17332d;
+  --ok:#62c27a; --ok-bg:#15281a; --ok-line:#2b5233;
+  --bad:#f07a6c; --bad-bg:#2d1714; --bad-line:#5c2b25;
+  --warn-bg:#33290f; --warn-ink:#f0cf86;
+  --on-ink:#121413;
+}
+/* cada grupo de aulas tem a sua cor, só no que orienta */
+:root[data-tone="cv"]{--tone:#a3263a}
+:root[data-tone="resp"]{--tone:#1f6f8b}
+:root[data-tone="prova"]{--tone:#6b4c8a}
+:root[data-tone="sim"]{--tone:#1b6e66}
+:root[data-tone="gi"]{--tone:#2e7d4f}
+:root[data-tone="acc"]{--tone:#9a5a00}
+:root[data-theme="dark"][data-tone="cv"]{--tone:#ec8a98}
+:root[data-theme="dark"][data-tone="resp"]{--tone:#7cc2dc}
+:root[data-theme="dark"][data-tone="prova"]{--tone:#bca0d8}
+:root[data-theme="dark"][data-tone="sim"]{--tone:#5fc4ae}
+:root[data-theme="dark"][data-tone="gi"]{--tone:#6fbf8e}
+:root[data-theme="dark"][data-tone="acc"]{--tone:#e0b06a}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{background:var(--ground)!important;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:inherit;color:inherit}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- cabeçalho da aula (era "hero") ---------- */
+.hero{background:transparent;color:var(--ink);padding:40px clamp(16px,5vw,72px) 0}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;padding-bottom:28px;border-bottom:1px solid var(--border);
+  margin-bottom:32px}
+.hero h1{order:1;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0;font-weight:400;
+  letter-spacing:-.015em;color:var(--ink);max-width:none;text-wrap:balance}
+.tag{order:2;display:block;align-self:flex-start;background:transparent;color:var(--tone);font-family:var(--sans);font-size:14px;
+  font-weight:500;letter-spacing:0;padding:0;border-radius:0;margin:12px 0 0}
+.hero p{order:3;margin:14px 0 0;color:var(--muted);font-family:var(--sans);font-size:14.5px;line-height:1.6;max-width:68ch}
+.strip{order:4;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:22px;overflow:hidden;border-radius:0}
+.strip img{width:100%;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--border);filter:none;opacity:.92}
+:root[data-theme="dark"] .strip img{filter:brightness(.9)}
+@media (max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}.strip img:nth-child(n+4){display:none}}
+
+/* ---------- layout (a navegação agora vive na barra lateral do app) ---------- */
+.shell{display:block;max-width:none;margin:0;padding:0 clamp(16px,5vw,72px) 96px}
+nav.rail{display:none}
+main{display:block;max-width:920px;margin:0 auto;padding:0;background:transparent;border-radius:0;box-shadow:none}
+.pane{display:block;animation:rise .35s var(--ease-out) both;scroll-margin-top:100vh}
+/* o cabeçalho grande só aparece na capa da aula; nos segmentos o título do próprio segmento assume */
+html[data-hero="off"] header.hero{display:none}
+html[data-hero="off"] .shell{padding-top:40px}
+.pane[hidden]{display:none}
+
+.pane-title{position:relative;font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin:0 0 28px;
+  padding:0 0 22px;font-weight:400;letter-spacing:-.012em;color:var(--ink);border-bottom:1px solid var(--border);text-wrap:balance}
+.pane-title.has-done{padding-right:150px}
+
+/* ---------- leitura ---------- */
+.prose,.intro{max-width:none}
+.prose p,.intro p,.prose li,.intro li{font-size:17px;line-height:1.7;color:var(--ink)}
+.prose p,.intro p{margin:0 0 18px;max-width:70ch}
+.prose ul,.prose ol,.intro ul,.intro ol{padding-left:22px;margin:0 0 20px;max-width:70ch}
+.prose li,.intro li{margin-bottom:8px}
+.prose li::marker,.intro li::marker{color:var(--faint)}
+.prose h2,.intro h2{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:56px 0 16px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+.intro h2:first-child{margin-top:0}
+.prose h3,.intro h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.prose strong,.intro strong,.prose b,.intro b{font-weight:600;color:var(--ink)}
+.prose hr,.intro hr{border:0;border-top:1px solid var(--border);margin:36px 0}
+.prose em,.intro em{color:inherit}
+table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;font-family:var(--sans)}
+th{background:transparent;color:var(--muted);text-align:left;padding:10px 14px 10px 0;font-weight:500;font-size:13.5px;
+  border-bottom:1px solid var(--control);vertical-align:bottom}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;text-align:left;
+  font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+@media (max-width:700px){table{display:block;overflow-x:auto}}
+
+.fig{margin:28px auto;max-width:100%;text-align:center}
+.fig img{display:inline-block;max-width:100%;width:auto;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff;
+  cursor:zoom-in;transition:transform .2s var(--ease-out)}
+:root[data-theme="dark"] .fig img{border-color:var(--border);filter:brightness(.94)}
+.fig figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;
+  max-width:68ch;padding:0;border:0}
+
+/* ---------- painéis (notas) ---------- */
+.note{border-radius:18px;padding:18px 22px;margin:24px 0;font-size:16px;line-height:1.68;border:none;position:relative;
+  background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:16px;line-height:1.68;max-width:none}
+.note p + p{margin-top:10px}
+.note-extra{background:#f2f2f8}.note-extra>p>strong:first-child{color:#4b4790}
+.note-fix{background:#fbf0ea}.note-fix>p>strong:first-child{color:#9a4a1f}
+.note-link{background:#edf3f8}.note-link>p>strong:first-child{color:#2d5f8f}
+:root[data-theme="dark"] .note-extra{background:#1d1d2a}:root[data-theme="dark"] .note-extra>p>strong:first-child{color:#aaa6ea}
+:root[data-theme="dark"] .note-fix{background:#2a1c15}:root[data-theme="dark"] .note-fix>p>strong:first-child{color:#ec9f73}
+:root[data-theme="dark"] .note-link{background:#17212b}:root[data-theme="dark"] .note-link>p>strong:first-child{color:#8dbbe6}
+.note + ol,.note + ul{margin-top:-6px}
+
+/* ---------- grifos de frequência em prova ---------- */
+mark.exam1,mark.exam2,mark.exam3,mark.exam4,mark.exam5,mark.hot{padding:1px 3px;border-radius:4px;cursor:help;color:inherit;font-weight:inherit;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1{background:#d8f3e3}
+mark.exam2{background:#fdf0bf}
+mark.exam3,mark.hot{background:#fcd9a8}
+mark.exam4{background:#f8bfb5}
+mark.exam5{background:#1c2331;color:#ffe3a3}
+mark.exam5 *{color:#ffe3a3}
+:root[data-theme="dark"] mark.exam1,:root[data-theme="dark"] mark.exam2,:root[data-theme="dark"] mark.exam3,
+:root[data-theme="dark"] mark.exam4,:root[data-theme="dark"] mark.hot,
+:root[data-theme="dark"] mark.exam1 *,:root[data-theme="dark"] mark.exam2 *,:root[data-theme="dark"] mark.exam3 *,
+:root[data-theme="dark"] mark.exam4 *,:root[data-theme="dark"] mark.hot *{color:#1b2230!important}
+:root[data-theme="dark"] mark.exam5{box-shadow:inset 0 0 0 1px #4a5568}
+.examcard{margin:24px 0;padding:18px 22px;border:none;background:#f8f3e1;border-radius:18px}
+.examcard h4{margin:0 0 8px;font-size:14px;color:#765800;font-family:var(--sans);letter-spacing:0;font-weight:600}
+.examcard p{font-size:15px!important;max-width:none!important}
+:root[data-theme="dark"] .examcard{background:#26220f}:root[data-theme="dark"] .examcard h4{color:#e3c25c}
+.exam-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin:14px 0}
+.exam-legend span{padding:3px 9px;border-radius:999px;font-weight:500}
+:root[data-theme="dark"] .exam-legend span[style*="#111111"]{box-shadow:inset 0 0 0 1px #4a5568}
+.q-source{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;
+  font-family:var(--sans);text-transform:none}
+.q-source.real{background:var(--ok-bg);color:var(--ok)}
+.q-source.adapted{background:var(--warn-bg);color:var(--warn-ink)}
+.q-source.original{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- quiz ---------- */
+.qzone{margin-top:72px;padding-top:0;border-top:none;max-width:none}
+.qzone-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:0 0 12px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em}
+.lede{font-family:var(--sans);font-size:14.5px;color:var(--muted);max-width:68ch;line-height:1.6;margin:0 0 24px}
+.q{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.q-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.q-head>.q-source{order:2;margin-top:3px}
+.q-num{order:1;flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:999px;background:var(--ink);color:var(--on-ink);
+  font-family:var(--sans);font-weight:500;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;margin:0}
+.q-stem{order:3;flex:1 0 100%;min-width:0}
+.q-stem p{margin:0 0 12px;font-size:16.5px;line-height:1.65;color:var(--ink);max-width:none}
+.q-stem .fig{margin:8px 0 16px}
+.q-stem .fig img{max-height:420px}
+.opts{display:flex;flex-direction:column;gap:0;margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  color:var(--ink);transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.opt:active{transform:scale(.995)}
+.opt-letter{flex:none;width:26px;height:26px;min-width:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.opt-text{flex:1;min-width:0;padding-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.opt.is-correct{border-color:var(--ok-line);background:var(--ok-bg);box-shadow:none}
+.opt.is-correct .opt-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-wrong{border-color:var(--bad-line);background:var(--bad-bg);box-shadow:none}
+.opt.is-wrong .opt-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .opt.is-correct .opt-letter,:root[data-theme="dark"] .opt.is-wrong .opt-letter{color:#0d1110}
+.q.done .opt{cursor:default}
+.q.done .opt:active{transform:none}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--control)}:root[data-theme="dark"] .opt:hover{border-color:#4a524d}}
+.q-actions{display:flex;gap:8px;align-items:center;margin:14px 0 0;flex-wrap:wrap}
+.btn-reveal,.btn-grade,.btn-reset{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;
+  cursor:pointer;background:var(--ink);color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn-reveal:active,.btn-grade:active,.btn-reset:active{transform:scale(.97)}
+.btn-reveal{background:var(--surface-2);color:var(--ink)}
+.btn-reset{background:var(--surface-2);color:var(--ink)}
+.btn-grade{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn-grade{color:#0d1110}
+.btn-reveal[hidden],.btn-grade[hidden],.btn-reset[hidden]{display:none}
+.q-why{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:15px;line-height:1.6}
+.q-why[hidden]{display:none}
+.q-why p{margin:0 0 10px;font-size:15px;line-height:1.6;max-width:none}
+.q-why p:last-child{margin:0}
+.q-why:has(.q-verdict.ok){background:var(--ok-bg)}
+.q-why:has(.q-verdict.no){background:var(--bad-bg)}
+.q-verdict{font-family:var(--sans);font-weight:600}
+.q-verdict.ok{color:var(--ok)}.q-verdict.no{color:var(--bad)}
+.q-why hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+.q-open textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;
+  background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+.q-open textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.scorebar{position:sticky;top:12px;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--surface);
+  border:1px solid var(--border);border-radius:22px;padding:14px 20px;margin:22px 0 16px;font-family:var(--sans);font-size:15px}
+#scoretext{flex:1 1 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.closing{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ---------- ampliar imagem ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(18,20,18,.82);display:none;place-items:center;z-index:900;padding:30px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:12px;background:#fff}
+.lightbox figcaption{color:#e6e9e4;font-family:var(--sans);font-size:14.5px;margin-top:14px;max-width:70ch;text-align:center;line-height:1.5}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-family:var(--sans);
+  font-size:14px;font-weight:500;border-radius:999px;height:38px;padding:0 18px;cursor:pointer}
+
+/* ---------- dica "caiu em prova" ---------- */
+#mc-tooltip{background:#2b302d!important;color:#eef0ec!important;border:none!important;border-radius:12px!important;padding:12px 14px!important;
+  font-family:var(--sans)!important;font-size:13px!important;line-height:1.5!important;box-shadow:0 12px 32px rgba(20,22,20,.28)!important}
+#mc-tooltip div{color:#c3c8c1!important;font-size:12px!important;letter-spacing:0!important;font-weight:600}
+#mc-tooltip .mc-chip{background:#3b413d!important;color:#eef0ec!important;border:none!important;border-radius:999px!important;padding:3px 10px!important;
+  font-size:12px!important}
+#mc-tooltip .mc-chip:hover{background:var(--accent)!important;color:#0d1110!important}
+
+/* ---------- concluir (vem da barra lateral do app) ---------- */
+.done-t{position:absolute;top:6px;right:0;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);height:38px;padding:0 16px 0 12px;border-radius:999px;cursor:pointer;background:var(--surface);border:none;user-select:none;
+  letter-spacing:0;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.done-t:active{transform:scale(.97)}
+.done-t .d{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--control);background:var(--raised);
+  transition:background-color .2s ease,border-color .2s ease}
+.done-t.on{color:var(--ok);background:var(--ok-bg)}
+.done-t.on .d{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px var(--ok-bg)}
+@media (max-width:700px){.done-t{position:static;margin-top:14px}.pane-title.has-done{padding-right:0}}
+
+@media (max-width:900px){
+  .hero{padding:24px 16px 0}
+  .shell{padding:0 16px 72px}
+  .q{padding:18px 16px;border-radius:18px}
+  .note{padding:16px 18px}
+  .prose p,.intro p,.prose li,.intro li{font-size:16.5px}
+  .prose h2,.intro h2{font-size:27px;margin-top:44px}
+  .opts{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  .hero,.scorebar,.q-actions,.strip,.done-t{display:none}
+  body{background:#fff!important;color:#000}
+  .pane[hidden],.q-why[hidden]{display:block!important}
+  .q,.fig{break-inside:avoid}
+}
+
+/* ---------- anterior / próximo ---------- */
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{border:none;background:var(--surface);border-radius:16px;padding:14px 18px;font-family:var(--sans);font-size:14.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);max-width:48%;text-align:left;line-height:1.4;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.navfoot button:last-child{text-align:right;margin-left:auto}
+.navfoot button:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.navfoot button:hover{background:var(--surface-2)}}
+
+/* ---------- botão grande de concluir, no fim do segmento ---------- */
+.cel-fin{display:flex;justify-content:center;margin:34px 0 8px}
+.cel-finish{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+  font:500 16px/1 var(--sans);cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+:root[data-theme="dark"] .cel-finish{color:#0d1110}
+.cel-finish:active{transform:scale(.97)}
+.cel-finish svg{width:20px;height:20px}
+.cel-finish svg circle{fill:none;stroke:currentColor;stroke-width:2;opacity:.55}
+.cel-finish svg path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s var(--ease-out)}
+.cel-finish.on{background:var(--ok-bg);color:var(--ok)}
+:root[data-theme="dark"] .cel-finish.on{color:var(--ok)}
+.cel-finish.on svg path{stroke-dashoffset:0}
+@media (hover:hover) and (pointer:fine){.cel-finish:not(.on):hover{transform:translateY(-1px)}}
+@media (max-width:600px){.cel-finish{width:100%}}
+.cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
+
+.find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+
+/* ===== Simulados 1 e 2: markup gerado por JS ===== */
+.hero-in{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.hero p{max-width:68ch}
+.tabs{display:flex;gap:6px;max-width:920px;margin:22px auto 0;padding:0 0 24px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.tabbtn{border:none;background:var(--surface);border-radius:999px;height:34px;padding:0 16px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  cursor:pointer;color:var(--ink-2);position:static;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.tabbtn:active{transform:scale(.97)}
+.tabbtn.active{background:var(--ink);color:var(--on-ink)}
+main.shell{padding-top:32px}
+h2.block-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:48px 0 16px;font-weight:400;color:var(--ink);
+  letter-spacing:-.01em;padding:0;border:0}
+h2.block-title:first-of-type{margin-top:0}
+.block-sub{font-family:var(--sans);font-size:14.5px;color:var(--muted);margin:-4px 0 22px;max-width:68ch}
+#scoretext .n{font-variant-numeric:tabular-nums}
+.btn{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;cursor:pointer;background:var(--ink);
+  color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn:active:not(:disabled){transform:scale(.97)}
+.btn:disabled{opacity:.3;cursor:not-allowed;background:var(--ink)}
+.btn-outline{background:var(--surface-2);color:var(--ink)}
+.btn-sm{height:34px;padding:0 14px;font-size:13.5px}
+.q-stem .vg{margin:0 0 12px;white-space:pre-line;font-size:16.5px;line-height:1.65}
+.q-stem .cmd{margin:0 0 14px;font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink-2);white-space:pre-line}
+.opt.selected{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt.selected .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.q.locked .opt{cursor:default}
+.opt-just{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--ink-2);margin:-2px 0 12px 38px;padding:0}
+.opt-just.j-correct{color:var(--ok)}
+.opt-just.j-wrong{color:var(--bad)}
+.q-actions{margin-top:14px}
+.hint{font-family:var(--sans);font-size:13px;color:var(--faint)}
+.d{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.d-itens{margin:10px 0 16px;padding-left:0;list-style:none}
+.d-itens li{font-family:var(--sans);font-size:14.5px;color:var(--ink-2);margin-bottom:8px;line-height:1.55}
+textarea.d-answer{width:100%;min-height:110px;font-family:var(--sans);font-size:15.5px;line-height:1.55;padding:12px 14px;border:1px solid var(--border);
+  border-radius:14px;resize:vertical;color:var(--ink);background:var(--raised);outline:none}
+textarea.d-answer:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.char-row{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px;font-family:var(--sans);font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.char-row.near-limit{color:var(--warn)}
+.char-row.at-limit{color:var(--bad);font-weight:600}
+.gabarito{margin-top:14px;padding:16px 18px;background:#e9f3f0;border-radius:16px;font-family:var(--sans);font-size:15px;line-height:1.65;white-space:pre-line;
+  color:var(--ink)}
+:root[data-theme="dark"] .gabarito{background:#142824}
+.gabarito-pts{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:10px}
+.closing{font-family:var(--sans);font-size:13px;color:var(--muted);text-align:left;line-height:1.6}
+@media (max-width:700px){.scorebar{flex-direction:column;align-items:stretch}#scoretext{text-align:center}}
+</style>
+<style>
+.mon-aviso{max-width:920px;margin:22px auto 0;padding:14px 18px;border-radius:16px;background:var(--warn-bg);color:var(--warn-ink);font-size:14.5px;line-height:1.55}
+.mon-aviso b{color:inherit}
+.mon-tema{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;background:var(--accent-soft);color:var(--accent-ink);order:2;margin-top:3px}
+.mon-fonte{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;background:var(--surface-2);color:var(--muted);order:2;margin-top:3px}
+.q-stem p.af{margin:0 0 8px;padding-left:14px;border-left:3px solid var(--border);font-size:15.5px}
+.mon-wait{font-size:14px;color:var(--muted)}
+.mon-bar{max-width:920px;margin:18px auto 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between;font-size:14.5px;color:var(--muted)}
+.mon-bar b{color:var(--ink)}
+.mon-grupo{max-width:920px;margin:26px auto 10px;font-family:var(--serif);font-size:26px;font-weight:400;color:var(--ink)}
+.q-why .com{margin-top:6px}
+.q-why .com-alt{margin:6px 0 12px;padding-left:18px}
+.q-why .com-alt li{margin:0 0 8px;line-height:1.55}
+.q-why .com-alt li.ok b{color:var(--ok)}
+.q-why .com a{color:var(--accent-ink);text-decoration:underline}
+.q-why .q-verdict.ok{color:var(--ok);font-weight:600}
+.q-why .q-verdict.no{color:var(--bad);font-weight:600}
+</style>
+</head>
+<body><div class="hero">
+  <div class="hero-in">
+    <span class="tag">SIMULADO SOMATIVA · MONITORES</span>
+    <h1>Simulado somativa — monitores</h1>
+    <p>Questionário da Segunda Avaliação Teórica feito pelos monitores de Patologia Médica I para revisão: 28 questões objetivas,
+    de neoplasias de pulmão até fígado. Responda à vontade; as suas marcações ficam salvas neste navegador.</p>
+  </div>
+</div>
+<main class="shell">
+  <div class="mon-aviso" id="mon-aviso"></div>
+  <div class="mon-bar"><span id="mon-cont"></span><button class="btn-reset" type="button" id="mon-zerar">↺ Zerar respostas</button></div>
+  <div id="mon-lista"></div>
+  <p class="closing">Questões elaboradas pelos monitores de Patologia Médica I · Faculdade Ciências Médicas de Minas Gerais</p>
+</main>
+<script id="sim-data" type="application/json">{"q": [{"tema": "Neoplasias de pulmão", "txt": ["Homem, 63 anos, tabagista de 50 maços-ano, procura atendimento por tosse persistente, hemoptise e emagrecimento. Exames laboratoriais: cálcio sérico de 13,2 mg/dL e PTH intacto suprimido. A TC de tórax mostra massa de 6 cm junto ao brônquio lobar superior direito, com área central de cavitação. A broncoscopia evidencia lesão vegetante endobrônquica. A biópsia revela ninhos de células poligonais com citoplasma eosinofílico, pontes intercelulares, ceratinização individual e pérolas córneas. Imuno-histoquímica: p40 positivo e TTF-1 negativo.", "Sobre o caso, assinale a alternativa CORRETA:"], "op": ["A lesão precursora desse tumor é a hiperplasia adenomatosa atípica, que evolui para carcinoma in situ e invasor.", "A mutação do gene supressor TP53 está presente em cerca de 90% dos casos desse tipo histológico.", "Comparado ao adenocarcinoma, esse tumor apresenta metástases mais frequentes e disseminação hematogênica precoce.", "Esse tumor é precedido pela sequência metaplasia escamosa, displasia e carcinoma in situ, e metastatiza primeiro para linfonodos regionais."]}, {"tema": "Neoplasias de pulmão", "txt": ["Mulher, 52 anos, nunca fumou, realiza TC de tórax por outro motivo, que mostra nódulo periférico de 3,0 cm no lobo superior esquerdo, com halo em vidro fosco. Foi submetida a lobectomia. À microscopia, na periferia da lesão há células colunares atípicas revestindo septos alveolares preservados, sem invasão. No centro, glândulas irregulares infiltram estroma desmoplásico, com componente invasivo de 2,2 cm e muco intraluminal. Imuno-histoquímica: TTF-1 positivo e p40 negativo.", "Sobre o caso, assinale a alternativa CORRETA:"], "op": ["A lesão precursora desse tumor é a metaplasia escamosa, que evolui para displasia e carcinoma in situ.", "O componente periférico corresponde ao padrão lepídico, e o tumor deriva de células claviformes ou pneumócitos tipo II.", "O componente periférico corresponde ao carcinoma bronquíolo-alveolar, nomenclatura mantida pela classificação da OMS 2021.", "Comparado ao carcinoma de células escamosas, esse tipo histológico apresenta metástases menos frequentes e melhor prognóstico."]}, {"tema": "Neoplasias de pulmão", "txt": ["Um homem de 68 anos, tabagista de longa data, procura atendimento médico devido à tosse persistente, perda ponderal significativa e episódios recorrentes de confusão mental. Durante a investigação, exames laboratoriais evidenciam hiponatremia, e a tomografia computadorizada de tórax identifica uma massa pulmonar de localização central, com infiltração de estruturas hilares. A biópsia da lesão demonstra uma neoplasia maligna constituída por células pequenas e pouco coesas, com núcleos hipercromáticos, escasso citoplasma e áreas de disposição celular em pseudorrosetas. A análise imuno-histoquímica evidencia positividade para cromogranina, sinaptofisina e CD56.", "Considerando os achados clínicos, morfológicos e imuno-histoquímicos, assinale a alternativa que apresenta a interpretação CORRETA do caso:"], "op": ["A neoplasia apresenta diferenciação epitelial escamosa, sendo caracterizada pela expressão de P40 e P63, além da formação de pérolas córneas. Sua localização central e associação com tabagismo justificam o quadro clínico apresentado.", "Os achados são compatíveis com uma neoplasia de diferenciação neuroendócrina, fortemente associada ao tabagismo, que apresenta elevada agressividade, tendência à disseminação metastática precoce e possibilidade de manifestações paraneoplásicas decorrentes da produção ectópica de hormônios, como o ADH.", "Trata-se de uma neoplasia pulmonar indiferenciada de grandes células, cuja localização periférica e morfologia caracterizada por células volumosas justificam a expressão dos marcadores neuroendócrinos e o desenvolvimento de hiponatremia.", "A neoplasia apresenta características de adenocarcinoma pulmonar, cuja diferenciação glandular pode estar associada à expressão de TTF-1 e à produção de mucina. A hiponatremia constitui uma manifestação paraneoplásica típica desse subtipo histológico."]}, {"tema": "Neoplasias de pulmão", "txt": ["Um homem de 63 anos, com histórico de tabagismo de longa duração, procura atendimento médico devido à dor torácica progressiva e perda de peso não intencional. A tomografia computadorizada evidencia uma grande massa pulmonar localizada na região periférica, próxima à pleura. A biópsia revela uma neoplasia maligna indiferenciada, constituída por células volumosas, com núcleos centrais evidentes, nucléolos proeminentes, citoplasma abundante e membranas celulares bem definidas. Observam-se ainda áreas de necrose e hemorragia no tecido tumoral.", "Considerando as características clínicas e histopatológicas apresentadas, assinale a alternativa CORRETA:"], "op": ["O carcinoma de grandes células é uma neoplasia geralmente central, associada à infiltração hilar, composta por células pequenas com pouco citoplasma e frequentemente relacionada à produção ectópica de hormônios.", "O carcinoma de grandes células apresenta diferenciação escamosa evidente, com formação de pérolas córneas e pontes intercelulares, sendo considerado o carcinoma pulmonar de melhor prognóstico.", "O carcinoma de grandes células é uma neoplasia periférica e indiferenciada, caracterizada por células volumosas, com núcleos proeminentes e citoplasma abundante, apresentando comportamento agressivo e possibilidade de metástases.", "O carcinoma de grandes células é caracterizado pela diferenciação glandular, com formação de estruturas acinares ou papilíferas e produção de mucina, sendo frequentemente localizado na periferia pulmonar."]}, {"tema": "Esôfago", "txt": ["Uma paciente de 48 anos comparece à consulta relatando episódios frequentes de pirose e regurgitação ácida há cerca de dois anos, além de queixas recentes de rouquidão matinal, tosse seca crônica e aumento no número de cáries dentárias. A hipótese diagnóstica principal é Doença do Refluxo Gastroesofágico (DRGE), cuja fisiopatologia envolve o relaxamento transitório do esfíncter esofágico inferior (EEI).", "Para confirmar o diagnóstico da DRGE por meio do exame considerado padrão-ouro e para investigar possíveis lesões na mucosa do terço distal do esôfago (como esofagite ou esôfago de Barrett), quais exames devem ser solicitados, respectivamente?"], "op": ["Endoscopia Digestiva Alta (EDA) e Impedâncio-pHmetria esofágica.", "Manometria esofágica e Endoscopia Digestiva Alta (EDA).", "Impedâncio-pHmetria esofágica e Endoscopia Digestiva Alta (EDA).", "Radiografia contrastada de esôfago e Impedâncio-pHmetria esofágica."]}, {"tema": "Esôfago", "txt": ["Um paciente de 62 anos, com histórico de obesidade e doença do refluxo gastroesofágico crônica, procura atendimento médico por apresentar disfagia progressiva nos últimos meses. Após a realização de endoscopia digestiva alta e biópsia de uma lesão localizada no terço inferior do esôfago, próximo à junção esofagogástrica (JEG), o laudo anatomopatológico confirma uma neoplasia maligna originada a partir de uma área de Epitélio de Barrett.", "Com base nas características clínicas, anatômicas e histopatológicas descritas, qual é o diagnóstico deste paciente e qual a origem tecidual da neoplasia esofágica maligna mais frequente no mundo?"], "op": ["Carcinoma de células escamosas; originado a partir do Epitélio de Barrett.", "Adenocarcinoma; originado a partir do epitélio habitual do esôfago.", "Adenocarcinoma; originado também a partir do Epitélio de Barrett.", "Carcinoma de células escamosas; originado a partir do epitélio habitual do esôfago."]}, {"tema": "Esôfago", "txt": ["Homem, 52 anos, com histórico de etilismo crônico, procura o pronto-socorro após apresentar episódios de hematêmese. Relata que, após ingerir grande quantidade de bebida alcoólica, apresentou náuseas intensas e múltiplos episódios de vômitos, inicialmente sem sangue. Após sucessivos esforços para vomitar, passou a apresentar sangue vermelho vivo no conteúdo eliminado. Ao exame físico, encontra-se hemodinamicamente estável, sem sinais de irritação peritoneal. A endoscopia digestiva alta evidencia lacerações lineares e longitudinais da mucosa esofágica, próximas à junção gastroesofágica, sem evidências de varizes esofágicas.", "Com base no quadro clínico apresentado, assinale a alternativa CORRETA:"], "op": ["O paciente apresenta varizes esofágicas, cuja formação está associada à hipertensão portal, frequentemente decorrente de cirrose hepática. O sangramento ocorre devido à ruptura de vasos dilatados e congestos, sendo caracteristicamente precedido por vômitos repetitivos.", "O quadro é compatível com a síndrome de Mallory-Weiss, caracterizada por lacerações longitudinais da mucosa próximas à junção gastroesofágica, decorrentes do aumento súbito da pressão durante esforços repetidos de vômito, geralmente com sangramento autolimitado.", "A principal hipótese diagnóstica é a síndrome de Boerhaave, caracterizada por ruptura transmural do esôfago após episódios intensos de vômitos, sendo habitual a apresentação com sangramento leve e resolução espontânea.", "O quadro sugere varizes esofágicas secundárias à hipertensão portal, caracterizadas por dilatações permanentes das veias submucosas. A ausência de serosa no esôfago favorece sua formação e constitui o principal mecanismo responsável pelo sangramento."]}, {"tema": "Esôfago", "txt": ["Paciente do sexo masculino, 68 anos, tabagista e etilista crônico, procura atendimento médico devido à dificuldade progressiva para deglutir, inicialmente alimentos sólidos e, posteriormente, líquidos, associada à perda ponderal significativa nos últimos cinco meses. A endoscopia digestiva alta evidencia uma lesão ulceroinfiltrativa no terço médio do esôfago, cuja biópsia confirma carcinoma espinocelular. Durante o estadiamento, os exames de imagem demonstram extensão tumoral para estruturas mediastinais adjacentes, incluindo a parede da traqueia, além de comprometimento linfonodal regional.", "Considerando as características anatômicas do esôfago e o comportamento das neoplasias no órgão, assinale a alternativa correta:"], "op": ["A localização da neoplasia no terço médio do esôfago constitui o principal fator responsável por sua agressividade, uma vez que essa região apresenta maior suscetibilidade à invasão tumoral do que os demais segmentos esofágicos.", "O comportamento invasivo da neoplasia está relacionado ao predomínio do adenocarcinoma nesse segmento esofágico, tipo histológico caracterizado por crescimento acelerado e disseminação precoce para estruturas vizinhas.", "A disseminação tumoral está diretamente relacionada à metaplasia intestinal do epitélio esofágico, conhecida como esôfago de Barrett, condição que constitui o principal fator predisponente ao carcinoma espinocelular.", "A ausência de revestimento seroso na maior parte do esôfago favorece a propagação das neoplasias malignas para os tecidos e órgãos adjacentes, contribuindo para a invasão precoce de estruturas mediastinais."]}, {"tema": "Estômago", "txt": ["Mulher de 58 anos, com fadiga progressiva, parestesias em “bota e luva” e glossite. O hemograma mostra Hb 8,5 g/dL, VCM 112 fL e neutrófilos hipersegmentados. A EDA revela mucosa do corpo e do fundo fina, com perda do pregueamento habitual, e antro de aspecto preservado.", "Com relação à fisiopatologia desse quadro, assinale a alternativa correta."], "op": ["Os autoanticorpos destroem a mucosa antral, reduzindo o número de células G e causando hipocloridria e hipogastrinemia.", "Há destruição seletiva das células principais e mucossecretoras do corpo gástrico. A deficiência de vitamina B12 decorre da redução da acidez necessária para liberá-la dos alimentos.", "Ocorre hipercloridria por hiperplasia de células G antrais. A anemia é secundária à má absorção de ferro em meio alcalino.", "Há perda de células parietais na mucosa oxíntica, com hipocloridria ou acloridria e hipergastrinemia secundária à hiperplasia de células G do antro poupado. A perda do fator intrínseco causa má absorção de B12 no íleo terminal e anemia megaloblástica."]}, {"tema": "Estômago", "txt": ["Homem de 42 anos, com epigastralgia que gera despertar noturno e melhora com alimentação. A EDA mostra úlcera na primeira porção do duodeno e gastrite crônica ativa predominantemente antral. O teste rápido da urease é positivo.", "Qual das alternativas explica melhor o mecanismo da úlcera duodenal nesse padrão de gastrite?"], "op": ["A pangastrite atrófica, com perda de células parietais, causa hipocloridria e favorece a colonização bacteriana do duodeno.", "A urease gera amônia, que eleva o pH do microambiente antral. Somada à inflamação, que prejudica o controle inibitório da gastrina, gera hipergastrinemia. O estímulo crônico às células parietais causa hipercloridria, e a sobrecarga ácida duodenal leva à metaplasia gástrica, que é colonizada pela bactéria e ulcera.", "As cepas CagA+ invadem as células parietais e estimulam diretamente a bomba de prótons, aumentando a secreção ácida.", "A amônia gerada pela urease eleva o pH antral e inibe as células G, reduzindo a gastrina e a acidez, o que explica a lesão duodenal pela ação direta de VacA."]}, {"tema": "Estômago", "txt": ["Dois pacientes têm teste da urease positivo. O paciente 1 tem úlcera no bulbo duodenal. O paciente 2 tem úlcera na pequena curvatura, junto à incisura angular, em mucosa com gastrite crônica atrófica.", "Assinale a alternativa correta."], "op": ["No paciente 1, predomina o aumento da agressão ácido-péptica. No paciente 2, predomina a falha da defesa da mucosa, e a biópsia das bordas é indicada para excluir adenocarcinoma ulcerado.", "Em ambos os pacientes, a hipergastrinemia mantém a secreção ácida elevada, e a diferença entre as úlceras está apenas na localização.", "No paciente 1, predomina o aumento da agressão ácida, e o risco de malignização é maior que no paciente 2, que exige apenas controle da acidez.", "No paciente 2, a falha da defesa decorre de hipocloridria, que permite a colonização do estômago por bactérias. No paciente 1, a hipercloridria protege o duodeno por reduzir a inflamação antral."]}, {"tema": "Estômago", "txt": ["Sobre a carcinogênese gástrica associada ao H. pylori, assinale a alternativa correta."], "op": ["O carcinoma tipo difuso de Lauren é o desfecho típico da cascata, precedido por metaplasia intestinal e displasia.", "A metaplasia intestinal completa (tipo I), com células caliciformes, orla em escova e células de Paneth, confere maior risco de câncer do que a incompleta (tipo II).", "A cascata evolui de gastrite crônica para atrofia, metaplasia intestinal e displasia até o adenocarcinoma tipo intestinal. Atrofia e metaplasia são condições pré-cancerosas, enquanto a displasia é lesão pré-cancerosa. A metaplasia incompleta (tipo II) associa-se a maior risco.", "A gastrite antral isolada com hipercloridria é o cenário de maior risco para a cascata de Correa."]}, {"tema": "Intestino I", "txt": ["Homem de 73 anos, hipertenso e cardiopata, com cólicas abdominais pós-prandiais recorrentes que melhoravam espontaneamente. Chega ao PS com dor periumbilical súbita e intensa, diarreia sanguinolenta, PA 90x60 mmHg, FC 110 bpm, abdome distendido com defesa e RHA abolidos.", "Qual é o diagnóstico mais provável e sua causa base?"], "op": ["Diverticulite aguda do sigmoide por fecalito.", "Infarto intestinal transmural por trombose da artéria mesentérica superior sobre placa aterosclerótica.", "Infarto de mucosa por baixa perfusão decorrente de choque hipovolêmico.", "Apendicite aguda com perfuração e peritonite."]}, {"tema": "Intestino I", "txt": ["Sobre a morfologia do infarto intestinal transmural, assinale a correta:"], "op": ["É um infarto pálido (anêmico), com necrose de coagulação e parede de aspecto esbranquiçado.", "O limite pouco definido entre o segmento viável e o necrótico sugere obstrução arterial.", "A parede é edemaciada, congesta e vinhosa a enegrecida, com sangue na luz, caracterizando infarto vermelho (hemorrágico).", "Em geral poupa o jejuno distal e o íleo, acometendo preferencialmente o duodeno."]}, {"tema": "Intestino I", "txt": ["Menina de 7 anos com hiporexia, febre alta e dor abdominal. Ao exame, RHA preservados e dor à descompressão em fossa ilíaca direita.", "Sobre a patogênese da condição, assinale a sequência correta:"], "op": ["Obstrução da luz → retenção de muco → proliferação bacteriana e distensão da parede → aumento da pressão intraluminal → compressão venosa → isquemia → resposta inflamatória", "Isquemia arterial primária → necrose da mucosa → obstrução secundária da luz → peritonite", "Aumento da pressão intraluminal → herniação da mucosa → obstrução → inflamação", "Proliferação bacteriana → obstrução da luz → redução da pressão intraluminal → necrose"]}, {"tema": "Intestino I", "txt": ["Homem de 61 anos, hipertenso, com dor em cólica em fossa ilíaca esquerda, febre, PCR elevado, leucocitose com desvio à esquerda e sinais de irritação peritoneal. A TC confirma o diagnóstico.", "Sobre a doença de base, assinale a correta:"], "op": ["Os divertículos são verdadeiros, pois contêm todas as camadas da parede intestinal.", "Localizam-se preferencialmente no ceco e no cólon ascendente.", "Os divertículos são pseudodivertículos (mucosa e submucosa) que herniam por pontos de fraqueza da camada muscular, como a inserção dos vasos mesentéricos, favorecidos por aumento da pressão intraluminal e dieta pobre em fibras.", "A maioria dos pacientes é sintomática, e a complicação mais comum é a neoplasia maligna."]}, {"tema": "Intestino II", "txt": ["As Doenças Inflamatórias Intestinais (DIIs) são condições idiopáticas e crônicas do trato gastrointestinal, que geralmente cursam com diarreia mucossanguinolenta prolongada, dor abdominal e perda de peso não intencional.", "Sobre as DIIs, assinale a alternativa CORRETA:"], "op": ["A Retocolite Ulcerativa caracteriza-se por inflamação transmural, com formação de úlceras rasas e de base alargada.", "A Doença de Crohn geralmente apresenta lesões \"salteadas\" e pode ser rastreada laboratorialmente pelo p-ANCA.", "A Retocolite Ulcerativa é comumente causada por uma dieta pobre em fibras, a qual predispõe a constipação e a consequente inflamação crônica.", "A Doença de Crohn pode cursar com processo de reparação com estenoses, podendo afetar qualquer segmento do trato gastrointestinal."]}, {"tema": "Intestino II", "txt": ["Sobre as lesões intestinais hiperplásicas e neoplásicas, assinale a alternativa CORRETA:"], "op": ["Os adenomas caracterizam-se pela proliferação de células epiteliais com diferentes graus de atipias, tendo os adenomas tubulares maior risco de evolução para adenocarcinoma colônico do que os vilosos.", "Os pólipos hiperplásicos são mais comuns no cólon direito e aumentam o risco de câncer colorretal em 5x.", "A Polipose Adenomatosa Familial na forma clássica é caracterizada pela presença de 100 ou mais pólipos adenomatosos, sobretudo no cólon esquerdo. Na ausência de tratamento, o risco de evolução para câncer colorretal é de 100%.", "Os adenomas são as lesões neoplásicas benignas mais comuns do cólon e do reto. Geralmente, os adenomas tubulares são maiores do que os adenomas vilosos, motivo pelo qual apresentam maior probabilidade de evolução para adenocarcinoma colônico."]}, {"tema": "Intestino II", "txt": ["Homem, 43 anos, apresenta anemia e hematoquezia há 2 semanas. Foi submetido à colonoscopia, que evidenciou uma massa ulcerada e de padrão infiltrativo no cólon ascendente, medindo 5,0 x 4,5 cm em área. Não foram detectadas outras lesões.", "Acerca do caso clínico, assinale a alternativa INCORRETA:"], "op": ["A principal hipótese diagnóstica é adenocarcinoma colônico invasivo.", "A biópsia está indicada para a determinação do diagnóstico histopatológico definitivo.", "Devido à idade do paciente (43 anos), ele deve ser investigado para polipose adenomatosa familial.", "O tamanho da lesão não é um critério definidor do prognóstico e do estadiamento do paciente."]}, {"tema": "Intestino II", "txt": ["Sobre a patogênese do adenocarcinoma colônico, assinale a alternativa CORRETA:"], "op": ["A maioria dos adenocarcinomas colônicos ocorre por meio do mecanismo da via mutadora.", "A síndrome de Lynch é a forma sindrômica de câncer de cólon mais comum e sua patogênese se enquadra no mecanismo da via supressora.", "A via supressora é responsável pela maior parte dos adenocarcinomas colônicos e seu mecanismo de proliferação celular desordenada se dá por meio de mutações na via APC/Beta-catenina.", "A via mutadora ocorre por meio da via de instabilidade de microssatélites, na qual há mutação dos genes de reparo de DNA (MSH2 e MLH1), relacionada a pacientes com história de polipose prévia."]}, {"tema": "Fígado I", "txt": ["Homem de 68 anos, com insuficiência cardíaca direita descompensada, apresenta piora do edema de membros inferiores, turgência jugular e dor no hipocôndrio direito. Ao exame, o fígado está aumentado e doloroso à palpação.", "Sobre o mecanismo e as alterações morfológicas hepáticas esperadas nesse paciente, assinale a alternativa CORRETA:"], "op": ["A hepatomegalia dolorosa decorre do represamento de sangue no fígado. Nesse paciente, o mecanismo mais provável é a obstrução trombótica das veias hepáticas, que dificulta a drenagem em direção à veia cava inferior.", "A elevação da pressão venosa se transmite da veia cava inferior às veias hepáticas, produzindo congestão das veias centrolobulares e dos sinusoides adjacentes. Esse predomínio na zona 3 contribui para o aspecto macroscópico em noz-moscada.", "A pressão venosa elevada dificulta a drenagem pelas veias hepáticas. Como o sangue chega aos sinusoides pelos ramos portais, o represamento é mais intenso na zona 1, ao redor dos espaços-porta.", "O fígado cardíaco e a síndrome de Budd-Chiari podem apresentar alterações morfológicas semelhantes, pois ambos comprometem a drenagem venosa hepática. No entanto, a congestão costuma ser mais intensa no fígado cardíaco, em que a pressão venosa elevada se transmite da veia cava inferior às veias hepáticas."]}, {"tema": "Fígado I", "txt": ["Homem de 57 anos, com história de consumo crônico de álcool, é internado por hematêmese. A endoscopia digestiva alta identifica varizes esofágicas, e a ultrassonografia mostra esplenomegalia e fígado com superfície irregular e nodular.", "Sobre a relação entre as alterações estruturais do fígado e a hipertensão portal nesse paciente, assinale a alternativa CORRETA:"], "op": ["A fibrose alarga os espaços-porta e aumenta a resistência à passagem do sangue antes que ele chegue aos sinusoides. A arquitetura lobular permanece preservada, caracterizando hipertensão portal pré-sinusoidal.", "Os nódulos regenerativos são circundados por septos fibrosos, que desorganizam a arquitetura hepática. A hipertensão portal é pós-hepática, pois resulta principalmente do aumento da pressão nas veias hepáticas, que se transmite de forma retrógrada aos sinusoides.", "Os septos fibrosos delimitam nódulos de hepatócitos em regeneração e distorcem a arquitetura lobular. A fibrose e os nódulos comprimem os sinusoides, aumentando a resistência ao fluxo sanguíneo intra-hepático e contribuindo para a hipertensão portal sinusoidal.", "A hipertensão portal favorece a abertura de vias venosas colaterais, pelas quais parte do sangue intestinal chega à circulação sistêmica sem passar pelo fígado. Ao diminuir a quantidade de amônia que o fígado precisa metabolizar, esse desvio reduz o risco de encefalopatia hepática."]}, {"tema": "Fígado I", "txt": ["Homem de 58 anos, com hepatopatia crônica, procura atendimento por aumento progressivo do volume abdominal e aparecimento de equimoses após pequenos traumas. Ao exame, observam-se veias dilatadas ao redor do umbigo e aranhas vasculares no tórax. A ultrassonografia confirma ascite e esplenomegalia, e os exames laboratoriais mostram hipoalbuminemia.", "Sobre a relação entre esses achados, a hipertensão portal e a insuficiência hepática, analise as afirmativas:", "I. A esplenomegalia e a dilatação das veias ao redor do umbigo resultam de efeitos distintos da hipertensão portal: congestão venosa do baço e abertura de vias colaterais portossistêmicas, respectivamente.", "II. O hiperesplenismo pode favorecer sangramentos pela redução do número de plaquetas. Se também houver redução dos fatores de coagulação, ela decorre da hipertensão portal pelo mesmo mecanismo de sequestro esplênico.", "III. A ascite pode resultar da associação entre o aumento da pressão hidrostática pela hipertensão portal e a redução da pressão oncótica plasmática pela menor síntese hepática de albumina.", "IV. As aranhas vasculares e as veias dilatadas ao redor do umbigo têm a mesma origem: a abertura de vias colaterais que desviam o sangue da circulação porta para a circulação sistêmica.", "Assinale a alternativa CORRETA:"], "op": ["Apenas II e III estão corretas.", "Apenas I e III estão corretas.", "Apenas I e IV estão corretas.", "Apenas I, II e III estão corretas."]}, {"tema": "Fígado I", "txt": ["Homem de 24 anos procura atendimento por aumento progressivo do volume abdominal. Ao exame, apresenta hepatoesplenomegalia, sem icterícia. A biópsia hepática mostra ovos de Schistosoma mansoni em espaços-porta alargados por fibrose.", "Sobre a patogênese e a evolução da esquistossomose hepática, assinale a alternativa CORRETA:"], "op": ["Os ovos chegam ao fígado pela circulação porta e ficam retidos em pequenos ramos venosos. A reação granulomatosa ao redor deles estimula a deposição de colágeno e o alargamento dos espaços-porta. Com a progressão da fibrose, a arquitetura lobular se reorganiza em nódulos regenerativos.", "Os ovos podem atravessar a parede dos ramos da veia porta e se alojar no tecido conjuntivo portal. Esse achado é denominado pileflebite, enquanto a reação aos ovos que permanecem no interior dos ramos venosos é chamada de peripileflebite.", "Na forma hepatoesplênica compensada, há hipertensão portal com função hepática preservada. Na forma descompensada, soma-se a insuficiência hepática, cujo aparecimento costuma estar associado a outra agressão ao fígado, como hepatite viral ou consumo crônico de álcool.", "A forma hepatoesplênica pode levar anos para se manifestar. Em áreas endêmicas, o risco de evoluir para essa forma está mais ligado ao tempo desde a primeira infecção do que à carga parasitária acumulada com as reinfecções."]}, {"tema": "Fígado II", "txt": ["Um paciente masculino, de 32 anos, comparece ao ambulatório médico trazendo exames laboratoriais de rotina que revelam elevação persistente de aminotransferases (TGO e TGP) há cerca de 7 meses. Na anamnese, relata histórico de comportamento sexual de risco no último ano. O perfil sorológico atual revela o seguinte padrão:", "HBsAg: reativo · HBeAg: não reativo · Anti-HBe: reativo · Anti-HBc Total (IgG): reativo · Anti-HBc IgM: não reativo · Anti-HBs: não reativo", "Diante do diagnóstico estabelecido, o paciente foi submetido a uma biópsia hepática para avaliação de atividade inflamatória e estadiamento estrutural.", "Considerando a correlação clínico-patológica, o perfil laboratorial e as alterações morfológicas descritas no material de referência da instituição, assinale a alternativa correta:"], "op": ["O perfil indica hepatite aguda em resolução, sendo esperado na microscopia infiltrado mononuclear perivenular e necrose lobular focal, cursando sem hepatite de interface.", "O quadro é de hepatite crônica por vírus B com baixa replicação; a presença de necrose \"em saca-bocados\" (hepatite de interface) indica atividade inflamatória e progressão da doença.", "A biópsia revelará achados típicos de hepatite C crônica, caracterizados por macroesteatose hepatocitária acentuada e infiltrado inflamatório predominantemente neutrofílico nos espaços porta.", "A presença de pontes de necrose confluente conectando os espaços porta às veias centrolobulares estabelece o diagnóstico histopatológico definitivo de cirrose micronodular."]}, {"tema": "Fígado II", "txt": ["Um homem de 52 anos, etilista pesado há 20 anos, apresenta-se com hepatomegalia difusa e alteração laboratorial de enzimas hepáticas. Uma biópsia hepática é indicada para avaliar o dano tecidual e correlacionar os achados com o espectro evolutivo da Doença Hepática Alcoólica (DHA): esteatose, esteato-hepatite e esteatofibrose.", "Considerando as características morfológicas e fisiopatológicas desses três estágios, assinale a alternativa correta:"], "op": ["A esteatose alcoólica caracteriza-se por um acúmulo lipídico predominantemente microvesicular, irreversível e com início obrigatório nos espaços porta (Zona 1).", "Na esteato-hepatite, os corpúsculos de Mallory-Denk são identificados na microscopia como inclusões nucleares originadas a partir do colapso de neutrófilos.", "A transição para esteatofibrose envolve a deposição pericelular de colágeno no espaço de Disse pelas células estreladas, gerando o padrão em \"tela de galinheiro\" na Zona 3.", "A cirrose, desfecho terminal da esteatofibrose, é definida patologicamente por cicatrizes fibrosas focais e localizadas que preservam a arquitetura lobular original."]}, {"tema": "Fígado II", "txt": ["Uma mulher de 42 anos, obesa, sedentária e portadora de diabetes mellitus tipo 2, é encaminhada ao gastroenterologista devido a um achado ultrassonográfico de infiltração gordurosa hepática associado à elevação persistente de transaminases. A paciente nega veementemente o consumo de bebidas alcoólicas (ingestão menor que 20 g/semana). Uma biópsia hepática confirma o diagnóstico de Esteato-hepatite Não Alcoólica (NASH).", "Considerando os mecanismos fisiopatológicos da teoria dos \"múltiplos golpes\" e os achados histológicos que diferenciam a NASH da Doença Hepática Alcoólica (DHA), assinale a alternativa correta:"], "op": ["O \"primeiro golpe\" da patogênese é caracterizado pelo estresse oxidativo lipotóxico e pela liberação de citocinas inflamatórias, desencadeando a necrose celular.", "No exame microscópico da NASH, observa-se maior contingente de células inflamatórias mononucleares, fibrose portal mais proeminente e corpúsculos de Mallory-Denk menos frequentes do que na forma alcoólica.", "O \"segundo golpe\" da doença consiste no acúmulo inicial de ácidos graxos livres induzido pela resistência insulínica, resultando no quadro histológico de esteatose isolada.", "O \"terceiro golpe\" na evolução da NASH envolve a ativação primária das células de Kupffer para a síntese massiva de corpúsculos de Mallory-Denk hipertrofiados."]}, {"tema": "Fígado II", "txt": ["Um homem de 54 anos, assintomático, procura a UBS para avaliação de rotina. Relata transfusão sanguínea na década de 1980, após acidente automobilístico. O exame físico não mostra alterações. Em três dosagens ao longo de 8 meses, TGO e TGP estavam discretamente elevadas. O teste rápido para HCV realizado na unidade foi reagente.", "Considerando o comportamento do vírus, o significado dos marcadores sorológicos e as alterações morfológicas descritas no material de referência da instituição, assinale a alternativa correta:"], "op": ["O anti-HCV indica contato com o vírus, mas não confere imunidade nem distingue infecção ativa de resolvida; a confirmação exige HCV-RNA, e o tratamento com antivirais de ação direta visa à cura sem impedir uma nova infecção.", "O anti-HCV reagente é equivalente ao anti-HBs da hepatite B, indicando resolução da infecção com imunidade, de modo que o paciente pode ser tranquilizado e dispensado de seguimento.", "A hepatite C aguda costuma ser sintomática e raramente cronifica, de modo que a ausência de sintomas torna improvável a infecção crônica neste paciente.", "Na biópsia, o aspecto de hepatócitos em “vidro fosco” é o achado particular da hepatite C crônica, enquanto a esteatose e os agregados linfoides portais são particularidades da hepatite B crônica."]}], "gab": ["BD", "B", "B", "C", "C", "B", "B", "D", "D", "B", "A", "C", "B", "C", "A", "C", "D", "C", "C", "C", "B", "C", "B", "C", "B", "C", "B", "A"], "com": ["O diagnóstico é carcinoma escamoso pulmonar: localização central, cavitação, pérolas córneas, pontes intercelulares e p40 positivo. A hipercalcemia com PTH suprimido sugere produção tumoral de PTHrP.\n* A — Incorreta: a hiperplasia adenomatosa atípica integra a sequência precursora de determinados adenocarcinomas pulmonares, não do carcinoma escamoso.\n* B — Correta/defensável: alterações de TP53 são extremamente frequentes nesse tumor. O NCI informa alterações em aproximadamente 90% das amostras estudadas pelo TCGA. Portanto, não é adequado considerar essa alternativa falsa apenas pelo percentual. [Fonte: NCI/TCGA](https://www.cancer.gov/about-nci/organization/dcb/research-programs/past-programs/tcga-cancers-selected-for-study).\n* C — Incorreta: na comparação didática clássica, o adenocarcinoma apresenta maior tendência à disseminação hematogênica precoce. O carcinoma escamoso costuma apresentar importante crescimento local e disseminação linfonodal.\n* D — Correta, com ressalva: descreve a sequência clássica metaplasia escamosa → displasia → carcinoma in situ → carcinoma invasivo, com disseminação inicialmente regional frequente. Entretanto, “metastatiza primeiro” não deve ser entendido como regra absoluta.\nComentário: D pode ser a resposta pretendida pelo elaborador, mas B também tem sustentação científica; a questão merece revisão.", "O quadro corresponde a adenocarcinoma pulmonar invasivo com componente lepídico.\n* A — Incorreta: metaplasia escamosa, displasia e carcinoma in situ constituem a sequência associada ao carcinoma escamoso.\n* B — Correta: crescimento de células neoplásicas sobre septos alveolares preservados caracteriza o padrão lepídico. A diferenciação desse grupo tumoral se relaciona a pneumócitos tipo II e células club, também chamadas claviformes.\n* C — Incorreta: “carcinoma bronquíolo-alveolar” é uma nomenclatura antiga, abandonada por reunir tumores com comportamentos diferentes. Atualmente, distinguem-se adenocarcinoma in situ, minimamente invasivo e invasivo com componente lepídico.\n* D — Incorreta: não se pode atribuir menor frequência de metástases e melhor prognóstico ao adenocarcinoma de maneira geral. Estádio, padrão histológico e características moleculares são determinantes.\nComentário: o componente invasivo de 2,2 cm exclui adenocarcinoma in situ e minimamente invasivo; neste último, a invasão deve medir no máximo 5 mm, além de outros critérios.", "O diagnóstico é carcinoma pulmonar de pequenas células, uma neoplasia neuroendócrina de alto grau.\n* A — Incorreta: pérolas córneas e expressão de p40/p63 favorecem diferenciação escamosa, incompatível com a morfologia descrita.\n* B — Correta: o carcinoma de pequenas células tem forte associação com tabagismo, comportamento agressivo e disseminação precoce. Pode produzir ADH ectópico, causando síndrome da secreção inapropriada de ADH, hiponatremia e alterações neurológicas.\n* C — Incorreta: o enunciado descreve células pequenas com citoplasma escasso, e não células volumosas. Além disso, carcinoma indiferenciado de grandes células e carcinoma neuroendócrino de grandes células são entidades distintas.\n* D — Incorreta: não há diferenciação glandular nem produção de mucina descritas. A associação clássica entre produção ectópica de ADH e câncer pulmonar é com o carcinoma de pequenas células.", "* A — Incorreta: descreve características do carcinoma de pequenas células, especialmente células pequenas, pouco citoplasma e associação com síndromes endócrinas.\n* B — Incorreta: pérolas córneas e pontes intercelulares indicam carcinoma escamoso. Também é falsa a afirmação de que o carcinoma de grandes células teria o melhor prognóstico.\n* C — Correta: corresponde à descrição clássica de carcinoma de grandes células: tumor indiferenciado, frequentemente periférico, com células volumosas, nucléolos evidentes e comportamento agressivo.\n* D — Incorreta: formação glandular e produção de mucina favorecem adenocarcinoma.\nRessalva: atualmente, carcinoma de grandes células é um diagnóstico de exclusão, após investigação de diferenciação glandular, escamosa e neuroendócrina. Uma pequena biópsia pode ser insuficiente para estabelecê-lo definitivamente.", "* A — Incorreta: inverte as finalidades. A endoscopia avalia diretamente a mucosa; a impedâncio-pHmetria caracteriza episódios de refluxo.\n* B — Incorreta: a manometria avalia motilidade e funcionamento dos esfíncteres, sendo útil na investigação de distúrbios motores e no planejamento de procedimentos. Não confirma isoladamente DRGE.\n* C — Correta: a impedâncio-pHmetria permite avaliar refluxos ácidos e não ácidos e sua relação com sintomas. A EDA identifica esofagite e alterações sugestivas de Barrett, permitindo biópsias.\n* D — Incorreta: o exame contrastado pode demonstrar alterações anatômicas, mas não é o exame de referência para confirmar DRGE; a impedâncio-pHmetria não visualiza lesões da mucosa.\nRessalva: chamar a impedâncio-pHmetria de único “padrão-ouro” simplifica o assunto. A escolha entre pHmetria, impedâncio-pHmetria e endoscopia depende do contexto clínico e de a DRGE já estar ou não comprovada. [Fonte: diretriz do ACG](https://pmc.ncbi.nlm.nih.gov/articles/PMC8754510).", "A questão pergunta duas coisas diferentes: o diagnóstico do paciente e a origem do câncer esofágico mais frequente mundialmente.\n* A — Incorreta: o tumor associado ao esôfago de Barrett é o adenocarcinoma. O carcinoma escamoso não se origina habitualmente do epitélio de Barrett.\n* B — Correta: o paciente apresenta adenocarcinoma associado ao Barrett. Já o carcinoma esofágico predominante mundialmente é o escamoso, originado do epitélio pavimentoso estratificado habitual.\n* C — Incorreta: acerta o diagnóstico do paciente, mas atribui ao Barrett a origem do tipo histológico mais frequente no mundo.\n* D — Incorreta: acerta a origem do carcinoma escamoso, mas erra o diagnóstico do caso.", "* A — Incorreta: a endoscopia excluiu varizes. Além disso, sangramento varicoso não depende de vômitos repetidos prévios.\n* B — Correta: Mallory-Weiss corresponde a lacerações longitudinais da mucosa próximas à junção gastroesofágica após esforços de vômito. O sangramento frequentemente é autolimitado, embora possa ser importante.\n* C — Incorreta: Boerhaave é ruptura transmural, com risco de mediastinite, sepse e instabilidade. Não costuma ser uma lesão leve de resolução espontânea.\n* D — Incorreta: varizes decorrem de hipertensão portal e formação de circulação colateral. A ausência de serosa não é seu mecanismo de formação.", "* A — Incorreta: a localização no terço médio, isoladamente, não explica a agressividade. A anatomia da parede, a drenagem linfática e o estágio tumoral são relevantes.\n* B — Incorreta: a biópsia demonstrou carcinoma escamoso. O adenocarcinoma está mais associado ao esôfago distal e à junção esofagogástrica.\n* C — Incorreta: Barrett predispõe principalmente ao adenocarcinoma, não ao carcinoma escamoso.\n* D — Correta: a ausência de serosa na maior parte do esôfago facilita a extensão tumoral aos tecidos próximos, incluindo estruturas mediastinais, como a traqueia.", "O quadro é de gastrite atrófica autoimune com anemia perniciosa.\n* A — Incorreta: o alvo predominante é a mucosa oxíntica do corpo e fundo. O antro geralmente é poupado, e a gastrina aumenta.\n* B — Incorreta: o mecanismo central envolve perda de células parietais e deficiência de fator intrínseco. A redução da acidez pode prejudicar a liberação da B12 dos alimentos, mas não explica sozinha a anemia perniciosa.\n* C — Incorreta: ocorre hipocloridria ou acloridria, não hipercloridria. Macrocitose, neutrófilos hipersegmentados e sintomas neurológicos apontam para deficiência de B12.\n* D — Correta: a destruição de células parietais reduz ácido e fator intrínseco. A menor acidez aumenta o estímulo à secreção de gastrina, enquanto a falta de fator intrínseco compromete a absorção de B12 no íleo terminal.", "* A — Incorreta: pangastrite atrófica com perda de células parietais e hipocloridria não é o padrão descrito. Aqui há gastrite predominantemente antral associada à úlcera duodenal.\n* B — Correta: a infecção antral por H. pylori compromete a regulação inibitória da gastrina, especialmente pela redução da somatostatina das células D. Com o corpo gástrico preservado, aumenta a secreção ácida. A sobrecarga ácida favorece metaplasia gástrica duodenal, colonização bacteriana e inflamação.\n* C — Incorreta: a bactéria não causa esse processo por invasão das células parietais e estímulo direto da bomba de prótons. CagA atua sobre sinalização celular e inflamação.\n* D — Incorreta: inverte o efeito predominante: nesse padrão, há aumento de gastrina e da carga ácida, não sua redução. VacA não explica isoladamente a úlcera.", "* A — Correta: na úlcera duodenal, destaca-se a agressão ácido-péptica aumentada. Na úlcera gástrica associada à gastrite atrófica, predomina a deficiência de defesa mucosa. Uma lesão gástrica ulcerada deve ser biopsiada para excluir câncer.\n* B — Incorreta: a secreção ácida não precisa estar elevada nos dois pacientes. Na gastrite atrófica, pode estar reduzida.\n* C — Incorreta: úlceras duodenais são raramente malignas. A preocupação com adenocarcinoma ulcerado é particularmente importante nas úlceras gástricas.\n* D — Incorreta: a falha da defesa não decorre simplesmente da hipocloridria. Além disso, excesso de ácido agride o duodeno; não o protege.\nComentário: biopsiar uma úlcera gástrica busca principalmente identificar um câncer que se apresenta como úlcera, e não presumir que toda úlcera benigna irá se transformar em câncer.", "* A — Incorreta: a cascata de Correa está relacionada principalmente ao adenocarcinoma gástrico do tipo intestinal, não ao difuso.\n* B — Incorreta: a metaplasia incompleta apresenta maior associação com câncer do que a completa.\n* C — Correta: a sequência clássica é gastrite crônica → atrofia → metaplasia intestinal → displasia → adenocarcinoma intestinal. A displasia já representa alteração epitelial neoplásica pré-invasiva.\n* D — Incorreta: o cenário de maior preocupação é a gastrite atrófica extensa, especialmente com comprometimento do corpo e metaplasia. A gastrite antral com hipersecreção ácida se associa mais à úlcera duodenal.\nComentário: a metaplasia incompleta inclui subtipos II e III; a alternativa apresenta uma simplificação ao mencionar apenas o tipo II.", "* A — Incorreta: diverticulite sigmoide costuma causar dor predominante em fossa ilíaca esquerda e não explica bem a história de dor pós-prandial recorrente seguida de isquemia grave.\n* B — Correta: a dor pós-prandial prévia sugere isquemia mesentérica crônica aterosclerótica. A deterioração súbita é compatível com trombose sobre placa, levando a infarto transmural.\n* C — Incorreta: hipoperfusão pode provocar isquemia intestinal, mas a hipótese de lesão restrita à mucosa não explica tão bem defesa abdominal e íleo, que sugerem comprometimento avançado.\n* D — Incorreta: a história vascular, o padrão da dor e a diarreia sanguinolenta favorecem isquemia mesentérica.\nRessalva: a alternativa B é a mais provável, mas a diferenciação definitiva entre trombose, embolia e isquemia não oclusiva exige investigação, especialmente angiotomografia.", "* A — Incorreta: o infarto intestinal é tipicamente hemorrágico, e não pálido, devido às características da vascularização e ao extravasamento sanguíneo no tecido lesado.\n* B — Incorreta: a oclusão arterial costuma produzir delimitação relativamente nítida do território acometido. Uma transição pouco definida não é característica que a identifique.\n* C — Correta: edema, congestão, coloração vinhosa ou enegrecida e sangue na luz são achados compatíveis com infarto vermelho transmural.\n* D — Incorreta: a artéria mesentérica superior irriga grande parte do intestino delgado, incluindo jejuno e íleo. O duodeno possui circulação colateral relativamente rica e não é o segmento preferencialmente acometido.", "O quadro sugere apendicite aguda.\n* A — Correta: descreve a sequência clássica: obstrução, retenção de secreções, distensão e proliferação bacteriana, aumento de pressão, comprometimento do retorno venoso, isquemia e inflamação.\n* B — Incorreta: isquemia arterial primária não é o mecanismo inicial clássico da apendicite.\n* C — Incorreta: herniação da mucosa por aumento de pressão se aproxima do mecanismo de formação de divertículos, não de apendicite.\n* D — Incorreta: a obstrução provoca aumento, não redução, da pressão intraluminal.\nComentário: em crianças, hiperplasia linfoide pode causar obstrução. Nem todos os casos de apendicite apresentam obstrução demonstrável, mas A representa o modelo clássico cobrado.", "O quadro é de diverticulite sobre doença diverticular colônica.\n* A — Incorreta: os divertículos colônicos adquiridos habituais são falsos: não contêm todas as camadas da parede.\n* B — Incorreta: no padrão mais comum em populações ocidentais, predominam no sigmoide. Existem variações geográficas, com maior frequência de doença à direita em algumas populações.\n* C — Correta: são herniações de mucosa e submucosa através de pontos frágeis da muscular própria, especialmente onde penetram vasos. O aumento da pressão intraluminal integra a explicação clássica.\n* D — Incorreta: grande parte dos pacientes com diverticulose é assintomática. Entre as complicações estão diverticulite, hemorragia, abscessos, fístulas e perfuração; neoplasia não é sua complicação típica.\nRessalva: a associação com dieta pobre em fibras é uma explicação tradicional, mas a patogênese é multifatorial e não se resume ao consumo de fibras.", "* A — Incorreta: a retocolite ulcerativa acomete predominantemente mucosa e submucosa. Inflamação transmural é característica da doença de Crohn.\n* B — Incorreta: lesões salteadas são típicas de Crohn, mas p-ANCA se associa mais à retocolite ulcerativa. Esses anticorpos não funcionam como testes isolados de rastreamento ou confirmação.\n* C — Incorreta: retocolite ulcerativa é uma doença inflamatória imunomediada e multifatorial; não resulta simplesmente de constipação por falta de fibras.\n* D — Correta: Crohn pode acometer qualquer segmento da boca ao ânus. Inflamação transmural e reparação fibrótica podem causar estenoses e obstrução.", "* A — Incorreta: adenomas apresentam displasia, mas o componente viloso se associa a maior risco de neoplasia avançada. Tamanho e grau de displasia também são importantes.\n* B — Incorreta: pólipos hiperplásicos pequenos são comuns no reto e sigmoide e geralmente não conferem aumento relevante de risco. Não devem ser confundidos com lesões serrilhadas sésseis, frequentemente proximais.\n* C — Correta no sentido esperado: a polipose adenomatosa familiar clássica apresenta centenas a milhares de adenomas, e o risco de câncer colorretal sem tratamento aproxima-se de 100%.\n* D — Incorreta: adenomas tubulares não são, em geral, maiores ou mais perigosos que os vilosos. A alternativa inverte a relação clássica de risco.\nRessalva: “sobretudo no cólon esquerdo” não é critério definidor da forma clássica, que pode acometer todo o cólon e reto.", "* A — Correta: uma massa colônica ulcerada e infiltrativa, associada a sangramento e anemia, tem adenocarcinoma invasivo como hipótese principal.\n* B — Correta: é necessária avaliação histopatológica para confirmar a natureza da lesão.\n* C — Incorreta na lógica provável da questão, mas contestável: a idade jovem indica investigação de predisposição hereditária, porém a ausência de múltiplos pólipos não sugere especificamente PAF clássica. Câncer proximal em paciente jovem sem polipose chama atenção para síndrome de Lynch.\n* D — Correta quanto ao estadiamento: o diâmetro não define a categoria T do câncer de cólon. Importam a profundidade de invasão, os linfonodos e as metástases. Entretanto, dizer que o tamanho não tem nenhuma relação prognóstica seria excessivo.\nRessalva importante: diretrizes recomendam investigação genética germinativa em câncer colorretal diagnosticado antes dos 50 anos, podendo incluir genes de polipose. Portanto, a frase “deve ser investigado para PAF” não é inequivocamente falsa se entendida como parte de uma investigação ampla. A questão merece revisão. [Fonte: diretrizes DIRECt](https://pmc.ncbi.nlm.nih.gov/articles/PMC11207185/).", "* A — Incorreta: a maioria dos adenocarcinomas colorretais se relaciona à via de instabilidade cromossômica, tradicionalmente chamada de via supressora.\n* B — Incorreta: Lynch é a síndrome hereditária de câncer colorretal mais comum, mas está relacionada à deficiência de reparo de erros de pareamento do DNA e à instabilidade de microssatélites.\n* C — Correta: alterações em APC desregulam a via Wnt/β-catenina, favorecendo proliferação. Outros eventos, como alterações em KRAS e TP53, participam da progressão adenoma–carcinoma.\n* D — Incorreta: acerta a associação entre reparo do DNA e microssatélites, mas erra ao vincular essa via necessariamente à polipose prévia. Lynch é classicamente uma síndrome sem polipose exuberante; a deficiência de reparo também pode ocorrer por mecanismos epigenéticos esporádicos.", "* A — Incorreta: o contexto indica congestão passiva por insuficiência cardíaca direita. Obstrução trombótica das veias hepáticas sugere síndrome de Budd-Chiari.\n* B — Correta: a pressão venosa elevada é transmitida às veias hepáticas e centrolobulares, causando congestão predominante na zona 3 e aspecto de fígado em noz-moscada.\n* C — Incorreta: a região mais afetada pela dificuldade de drenagem é a centrolobular, próxima à saída venosa, e não a zona 1 periportal.\n* D — Incorreta: os dois processos podem ter morfologia semelhante, mas não há fundamento para afirmar que a congestão costuma ser mais intensa no fígado cardíaco. Budd-Chiari pode causar congestão e necrose muito acentuadas.", "* A — Incorreta: descreve melhor um processo de hipertensão portal pré-sinusoidal com arquitetura preservada, como a fibrose esquistossomótica. A cirrose distorce a arquitetura.\n* B — Incorreta: a descrição dos nódulos e septos está correta, mas a classificação é errada: a hipertensão portal da cirrose é intra-hepática, predominantemente sinusoidal.\n* C — Correta: fibrose e nódulos regenerativos alteram a organização vascular e aumentam a resistência ao fluxo intra-hepático. Há também componente dinâmico de vasoconstrição.\n* D — Incorreta: os desvios portossistêmicos aumentam a chegada de amônia e outras substâncias à circulação sistêmica sem depuração hepática, favorecendo encefalopatia.", "As afirmativas I e III são verdadeiras; II e IV são falsas.\n* A — Incorreta: inclui II. A trombocitopenia pode resultar de hiperesplenismo, mas a redução de fatores de coagulação se relaciona principalmente à menor síntese hepática, não ao mesmo mecanismo de sequestro.\n* B — Correta: I distingue corretamente congestão esplênica e circulação colateral; III reconhece o papel da hipertensão portal e da hipoalbuminemia na ascite.\n* C — Incorreta: IV é falsa. Aranhas vasculares são dilatações de pequenos vasos associadas a alterações hormonais e vasodilatadoras da hepatopatia, não colaterais portossistêmicas.\n* D — Incorreta: acrescenta II às duas afirmativas verdadeiras.\nComentário: a ascite também envolve vasodilatação esplâncnica e retenção renal de sódio e água; não depende apenas das pressões hidrostática e oncótica.", "* A — Incorreta: a chegada dos ovos e a reação granulomatosa estão corretamente descritas. O erro é afirmar que a fibrose evolui tipicamente para nódulos regenerativos: a esquistossomose causa fibrose periportal, com preservação relativa da arquitetura lobular.\n* B — Incorreta: inverte os conceitos. Pileflebite refere-se à inflamação da veia porta ou de seus ramos; peripileflebite envolve o tecido ao redor desses vasos.\n* C — Correta: a forma hepatoesplênica compensada pode produzir hipertensão portal importante com função hepatocelular preservada. Insuficiência hepática deve levantar a possibilidade de agressões associadas, embora a descompensação seja multifatorial.\n* D — Incorreta: tempo de infecção importa, mas intensidade da infecção, reinfecções, carga de ovos e resposta do hospedeiro também são fundamentais; não cabe privilegiar apenas o tempo desde a primeira infecção.\nA fibrose periportal esquistossomótica não deve ser confundida com a reorganização nodular da cirrose. [Fonte: estudo histopatológico da esquistossomose hepatoesplênica](https://pubmed.ncbi.nlm.nih.gov/1568752/).", "* A — Incorreta: o conjunto favorece infecção crônica por HBV, não hepatite aguda em resolução. Além disso, a presença ou ausência de hepatite de interface não permite essa separação absoluta.\n* B — Parcialmente correta: hepatite crônica B é a interpretação provável, e hepatite de interface indica atividade necroinflamatória. O erro é concluir “baixa replicação” apenas porque HBeAg é negativo e anti-HBe é positivo. Há hepatite B HBeAg-negativa com replicação elevada, inclusive associada a variantes pré-core/core promoter. É necessário medir HBV-DNA. [Fonte: diretriz AASLD/IDSA](https://doi.org/10.1097/HEP.0000000000001549).\n* C — Incorreta: a sorologia apresentada é de HBV, não de HCV. Na hepatite C, são frequentes infiltrado mononuclear e agregados linfoides portais; predomínio neutrofílico não é o padrão típico.\n* D — Incorreta: necrose em pontes não estabelece cirrose. Cirrose exige fibrose com reorganização arquitetural e formação de nódulos regenerativos.\nComentário: a cronicidade deve ser documentada, classicamente pela persistência de HBsAg por pelo menos seis meses. Sete meses de aminotransferases elevadas favorecem a hipótese, mas não documentam, isoladamente, a duração do HBsAg.", "* A — Incorreta: a esteatose alcoólica é predominantemente macrovesicular, frequentemente começa na zona 3 e pode regredir com a retirada da agressão.\n* B — Incorreta: corpúsculos de Mallory-Denk são inclusões citoplasmáticas de hepatócitos, constituídas por agregados de proteínas, especialmente filamentos de queratina. Não são nucleares nem derivados de neutrófilos.\n* C — Correta: células estreladas ativadas depositam matriz no espaço de Disse, produzindo fibrose perissinusoidal e pericelular, com padrão em “tela de galinheiro”, inicialmente mais evidente na zona 3.\n* D — Incorreta: cirrose é um processo difuso de fibrose e formação de nódulos regenerativos que distorce a arquitetura, não um conjunto de cicatrizes focais que a preserva.\nEsses padrões morfológicos integram a avaliação da esteato-hepatite. [Fonte: AASLD — patologia da esteato-hepatite](https://www.aasld.org/liver-fellow-network/core-series/pathology-pearls/liver-pathology-steatohepatitis).", "* A — Incorreta: no modelo sequencial clássico, o evento inicial é o acúmulo de gordura relacionado à resistência insulínica e ao desequilíbrio do metabolismo lipídico. Estresse oxidativo e inflamação participam da lesão subsequente.\n* B — Correta como comparação didática, com limites: menor destaque de neutrófilos e menor frequência de corpúsculos de Mallory-Denk podem favorecer esteato-hepatite metabólica em relação à alcoólica. Contudo, fibrose portal mais proeminente não é uma regra diagnóstica; em adultos, a fibrose frequentemente começa na zona 3, e existe grande sobreposição entre as duas doenças.\n* C — Incorreta: o acúmulo inicial de gordura relacionado à resistência insulínica corresponde ao “primeiro golpe” do modelo antigo, não ao segundo.\n* D — Incorreta: células de Kupffer participam da resposta inflamatória, mas não produzem corpúsculos de Mallory-Denk; esses agregados se formam nos hepatócitos.\nComentário: a teoria atual de múltiplas agressões não pressupõe uma sequência rígida de primeiro, segundo e terceiro golpes. A histologia isolada também não define com segurança a etiologia alcoólica ou metabólica; a história clínica é indispensável. [Fonte: AASLD](https://www.aasld.org/liver-fellow-network/core-series/pathology-pearls/liver-pathology-steatohepatitis).", "* A — Correta: anti-HCV reagente indica contato prévio, mas não distingue infecção ativa de resolvida. A detecção de HCV-RNA confirma infecção atual. Antivirais de ação direta podem curar a infecção, mas não impedem reinfecção. [Fonte: CDC](https://www.cdc.gov/std/treatment-guidelines/hcv.htm).\n* B — Incorreta: anti-HCV não é equivalente ao anti-HBs. Pode persistir após cura e não representa imunidade protetora.\n* C — Incorreta: a hepatite C aguda frequentemente é assintomática, e a evolução para infecção crônica é comum. Ausência de sintomas não exclui doença persistente.\n* D — Incorreta: inverte os achados. Hepatócitos em vidro fosco são classicamente associados ao HBV, por acúmulo de HBsAg. Agregados linfoides portais e esteatose são achados associados ao HCV, embora não exclusivos."], "nota": ["questão ambígua: as duas são defensáveis", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "gabarito esperado; a questão pede a INCORRETA", null, null, null, null, null, "gabarito esperado; nenhuma alternativa é integralmente correta", null, "gabarito esperado; com ressalva", null]}</script>
+<script>
+(function(){
+  "use strict";
+  var D = JSON.parse(document.getElementById('sim-data').textContent), L = ['A','B','C','D'];
+  var CHAVE = 'pato-sim-monitores-v1', st = {};
+  try { st = JSON.parse(localStorage.getItem(CHAVE) || '{}') || {}; } catch (e) { st = {}; }
+  function salva(){ try { localStorage.setItem(CHAVE, JSON.stringify(st)); } catch (e) {} }
+  var temGab = D.gab.some(function(g){ return !!g; });
+  document.getElementById('mon-aviso').innerHTML = temGab
+    ? '<b>Gabarito comentado disponível.</b> Marque a sua resposta e toque em "Ver resposta" para conferir e ler o comentário de cada alternativa. Algumas questões estão marcadas como ambíguas no próprio comentário.'
+    : '<b>Gabarito ainda não liberado.</b> Os monitores vão corrigir as questões na reunião on-line com cada turma. Por enquanto, marque as suas respostas: elas ficam salvas e, quando o gabarito comentado chegar, dá para conferir aqui mesmo.';
+  var lista = document.getElementById('mon-lista'), ult = null;
+  function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function certa(i, k){ return !!D.gab[i] && D.gab[i].indexOf(L[k]) >= 0; }
+  function texto(alvo, t){   // texto com links no formato [rótulo](https://...)
+    var re = /\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g, ult = 0, m;
+    while ((m = re.exec(t))) {
+      if (m.index > ult) alvo.appendChild(document.createTextNode(t.slice(ult, m.index)));
+      var a = el('a', '', m[1]); a.href = m[2]; a.target = '_blank'; a.rel = 'noopener noreferrer'; alvo.appendChild(a); ult = re.lastIndex;
+    }
+    if (ult < t.length) alvo.appendChild(document.createTextNode(t.slice(ult)));
+  }
+  function conta(){
+    var n = 0, ok = 0, vis = 0;
+    D.q.forEach(function(q, i){ var s = st[i] || {}; if (s.sel != null) n++; if (s.ver && D.gab[i]) { vis++; if (certa(i, s.sel)) ok++; } });
+    document.getElementById('mon-cont').innerHTML = 'Respondidas: <b>' + n + '</b> de ' + D.q.length + (temGab ? ' · Acertos: <b>' + ok + '</b> de ' + vis + ' conferidas' : '');
+  }
+  function monta(i){
+    var q = D.q[i], s = st[i] || (st[i] = {}), g = D.gab[i];
+    var art = el('article', 'q' + (s.ver && g ? ' done' : '')); art.id = 'mq' + (i + 1);
+    var h = el('header', 'q-head');
+    h.appendChild(el('span', 'q-num', String(i + 1)));
+    h.appendChild(el('span', 'mon-fonte', '👥 Monitores'));
+    h.appendChild(el('span', 'mon-tema', q.tema));
+    var stem = el('div', 'q-stem');
+    q.txt.forEach(function(p){ stem.appendChild(el('p', /^(I|II|III|IV)\. /.test(p) ? 'af' : '', p)); });
+    h.appendChild(stem); art.appendChild(h);
+    var ops = el('div', 'opts'); ops.setAttribute('role', 'group'); ops.setAttribute('aria-label', 'Alternativas da questão ' + (i + 1));
+    q.op.forEach(function(t, k){
+      var b = el('button', 'opt'); b.type = 'button'; b.setAttribute('aria-pressed', s.sel === k ? 'true' : 'false');
+      if (s.ver && g) { if (g.indexOf(L[k]) >= 0) b.classList.add('is-correct'); else if (s.sel === k) b.classList.add('is-wrong'); }
+      b.appendChild(el('span', 'opt-letter', L[k])); b.appendChild(el('span', 'opt-text', t));
+      b.addEventListener('click', function(){ if (s.ver && g) return; s.sel = (s.sel === k ? null : k); salva(); refaz(i); conta(); });
+      ops.appendChild(b);
+    });
+    art.appendChild(ops);
+    var ac = el('div', 'q-actions');
+    if (g) {
+      var vb = el('button', 'btn-reveal', s.ver ? 'Esconder resposta' : 'Ver resposta'); vb.type = 'button';
+      vb.addEventListener('click', function(){ s.ver = !s.ver; salva(); refaz(i); conta(); });
+      ac.appendChild(vb);
+    } else ac.appendChild(el('span', 'mon-wait', s.sel != null ? 'Resposta marcada: ' + L[s.sel] + ' · aguardando o gabarito dos monitores' : 'Aguardando o gabarito dos monitores'));
+    art.appendChild(ac);
+    if (s.ver && g) {
+      var w = el('div', 'q-why'), gt = g.split('').join(' e '), nt = D.nota[i] ? ' (' + D.nota[i] + ')' : '';
+      w.appendChild(el('p', 'q-verdict ' + (s.sel == null ? '' : certa(i, s.sel) ? 'ok' : 'no'),
+        (s.sel == null ? '' : certa(i, s.sel) ? 'Você acertou. ' : 'Você marcou ' + L[s.sel] + '. ') + 'Gabarito: ' + gt + nt));
+      if (D.com[i]) {
+        var c = el('div', 'com'), ul = null;
+        String(D.com[i]).split(/\n+/).forEach(function(p){
+          var b = /^\* ([A-D]) — (.*)$/.exec(p);
+          if (b) { if (!ul) { ul = el('ul', 'com-alt'); c.appendChild(ul); } var li = el('li', g.indexOf(b[1]) >= 0 ? 'ok' : ''); li.appendChild(el('b', '', b[1] + ' — ')); texto(li, b[2]); ul.appendChild(li); }
+          else { ul = null; var pp = el('p'); var r = /^(Comentário|Ressalva(?: importante)?):\s*(.*)$/.exec(p); if (r) { pp.appendChild(el('b', '', r[1] + ': ')); texto(pp, r[2]); } else texto(pp, p); c.appendChild(pp); }
+        });
+        w.appendChild(c);
+      }
+      art.appendChild(w);
+    }
+    return art;
+  }
+  function refaz(i){ var v = document.getElementById('mq' + (i + 1)); v.parentNode.replaceChild(monta(i), v); }
+  D.q.forEach(function(q, i){
+    if (q.tema !== ult) { lista.appendChild(el('h2', 'mon-grupo', q.tema)); ult = q.tema; }
+    lista.appendChild(monta(i));
+  });
+  conta();
+  document.getElementById('mon-zerar').addEventListener('click', function(){
+    if (!confirm('Apagar todas as suas respostas deste simulado?')) return;
+    st = {}; salva(); D.q.forEach(function(q, i){ refaz(i); }); conta();
+  });
+})();
+</script>
+<script>(function(){
+  // Ponte entre a aula (iframe) e a barra lateral do app. Não mexe no conteúdo nem na lógica de quiz.
+  var P = window.parent;
+  if (!P || P === window) return;
+  var root = document.documentElement;
+  root.classList.add('embedded');
+  var parts = (window.name || '').split('|');
+  var LEC = parts[1] || '';
+  var progress = {};
+
+  function setTheme(t){ root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); }
+  setTheme(parts[2] || 'dark');
+
+  function navEls(){ return Array.prototype.slice.call(document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]')); }
+  function keyOf(e){ return e.getAttribute('data-target') || e.getAttribute('data-view'); }
+  function labelOf(e){
+    var n = e.querySelector('.navlabel, .nav-num + span');
+    return (n ? n.textContent : e.textContent).replace(/\s+/g,' ').trim();
+  }
+  function activeKey(){
+    var a = navEls().filter(function(e){ return e.classList.contains('active'); })[0];
+    return a ? keyOf(a) : null;
+  }
+
+  // ----- botão "Concluir" no título de cada segmento -----
+  function paintDone(btn, key){
+    var on = !!progress[key];
+    if (btn.classList.contains('on') !== on) btn.classList.toggle('on', on);   // só mexe no DOM se mudou (evita laço do observer)
+    var lbl = btn.querySelector('.lbl'), txt = on ? 'Concluído' : 'Concluir';
+    if (lbl.textContent !== txt) lbl.textContent = txt;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var fin = document.querySelector('.cel-finish[data-key="' + key + '"]');
+    if (fin) paintFin(fin, on, key);
+  }
+
+  // ----- botão grande no fim do segmento -----
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+  function isSeg(key){ return /^(seg\d+|s\d+|parcial\d+)$/.test(key); }
+  function paintFin(b, on, key){
+    if (b.classList.contains('on') !== on) b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var txt = on ? (isSeg(key) ? 'Segmento concluído' : 'Estudado') + ' · tocar para desfazer'
+                 : (isSeg(key) ? 'Concluir segmento' : 'Marcar como estudado');
+    var s = b.lastChild; if (s.textContent !== txt) s.textContent = txt;
+  }
+  function ensureFin(scope, key){
+    if (!scope || !key || key === 'capa' || key === 'home') return;
+    var foot = scope.querySelector('.navfoot, .segnav');
+    if (!foot) return;
+    var box = scope.querySelector('.cel-fin');
+    if (box && box.getAttribute('data-key') === key && box.nextElementSibling === foot) return;
+    if (box) box.remove();
+    box = document.createElement('div'); box.className = 'cel-fin'; box.setAttribute('data-key', key);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cel-finish'; b.setAttribute('data-key', key);
+    b.innerHTML = CHECK + '<span></span>';
+    b.addEventListener('click', function(){
+      var top = document.querySelector('.done-t[data-key="' + key + '"]');
+      if (top) top.click();
+    });
+    box.appendChild(b);
+    foot.parentNode.insertBefore(box, foot);
+    paintFin(b, !!progress[key], key);
+  }
+  function attachDone(title, key){
+    if (!title || !key || key === 'capa' || key === 'home') return;
+    var old = title.querySelector('.done-t');
+    if (old && old.getAttribute('data-key') === key) { paintDone(old, key); return; }
+    if (old) old.remove();
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'done-t'; b.setAttribute('data-key', key);
+    b.innerHTML = '<span class="d"></span><span class="lbl">Concluir</span>';
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      progress[key] = !progress[key];
+      paintDone(b, key);
+      P.postMessage({type:'setProgress', lecture:LEC, target:key, done:!!progress[key]}, '*');
+    });
+    if (!title.classList.contains('has-done')) title.classList.add('has-done');
+    title.appendChild(b);
+    paintDone(b, key);
+  }
+  function decorate(){
+    // aulas estáticas: um .pane por segmento
+    document.querySelectorAll('.pane').forEach(function(p){
+      if (p.hidden) return;
+      attachDone(p.querySelector('.pane-title'), p.id);
+      ensureFin(p, p.id);
+    });
+    // aula 2: conteúdo montado por JS
+    var t = document.querySelector('h2.seg-title');
+    if (t) { attachDone(t, activeKey()); ensureFin(document.getElementById('content'), activeKey()); }
+  }
+
+  // ----- rodapé anterior/próximo (substitui a barra de navegação escondida) -----
+  function addNavFoot(){
+    var items = navEls();
+    if (!items.length || document.querySelector('.segnav')) return;
+    items.forEach(function(it, i){
+      var id = keyOf(it);
+      var pane = document.getElementById(id);
+      if (!pane || !pane.classList.contains('pane') || pane.querySelector('.navfoot')) return;
+      var prev = items[i-1], next = items[i+1];
+      var f = document.createElement('div'); f.className = 'navfoot';
+      function mk(target, txt, isNext){
+        var b = document.createElement('button'); b.type = 'button';
+        b.textContent = isNext ? txt + ' →' : '← ' + txt;
+        b.addEventListener('click', function(){ target.click(); });
+        return b;
+      }
+      if (prev) f.appendChild(mk(prev, labelOf(prev), false));
+      if (next) f.appendChild(mk(next, labelOf(next), true));
+      pane.appendChild(f);
+    });
+  }
+
+  // piscar o termo achado pela busca
+  function flashTerm(rootEl, term){
+    if (!rootEl || !term) return;
+    var low = term.toLowerCase(), w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentElement; if (!p || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue;
+      var k = n.data.toLowerCase().indexOf(low);
+      if (k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var q = sp.parentNode; if (!q) return; while (sp.firstChild) q.insertBefore(sp.firstChild, sp); q.removeChild(sp); q.normalize(); }, 2600);
+      return;
+    }
+  }
+
+  var last = null;
+  function reportActive(){
+    var k = activeKey();
+    if (k !== last) { last = k; P.postMessage({type:'segActive', lecture:LEC, key:k}, '*'); }
+    var off = (k && k !== 'capa' && k !== 'home' && !document.querySelector('.hero .tabs')) ? 'off' : 'on';
+    if (root.getAttribute('data-hero') !== off) root.setAttribute('data-hero', off);
+    decorate();
+  }
+  var mo = new MutationObserver(function(){ clearTimeout(mo._t); mo._t = setTimeout(reportActive, 30); });
+  mo.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class','hidden']});
+  var content = document.getElementById('content');
+  if (content) mo.observe(content, {childList:true});
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data;
+    if (!d || !d.type) return;
+    if (d.type === 'setTheme') setTheme(d.theme);
+    else if (d.type === 'goto') {
+      var el = navEls().filter(function(e){ return keyOf(e) === d.key; })[0];
+      if (el) el.click();
+    }
+    else if (d.type === 'gotoPane') {
+      if (document.getElementById('hl-pop')) return;   // aulas com marca-texto rosa tratam sozinhas
+      var pe = navEls().filter(function(e){ return keyOf(e) === d.pane; })[0];
+      if (pe) pe.click();
+      setTimeout(function(){ flashTerm(document.getElementById(d.pane) || document.getElementById('content') || document.body, d.term); }, 140);
+    }
+    else if (d.type === 'progressState' && d.lecture === LEC) {
+      progress = d.state || {};
+      document.querySelectorAll('.done-t').forEach(function(b){ paintDone(b, b.getAttribute('data-key')); });
+    }
+  });
+
+  function boot(){
+    addNavFoot();
+    reportActive();
+    P.postMessage({type:'bridgeReady', lecture:LEC}, '*');
+    P.postMessage({type:'requestProgress', lecture:LEC}, '*');
+  }
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', function(){ setTimeout(boot, 0); });
+})();
+</script>
+</body>
+</html>
