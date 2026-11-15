@@ -225,7 +225,8 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       });
       const liga = cfg.div || cfg.recolher;
       html.classList.toggle('vgf-on', liga); nav.classList.toggle('vgf-nav', liga);
-      const flat = []; [...nav.children].forEach(c => { if (c.classList.contains('sb-bloco-c')) flat.push(...c.children); else flat.push(c); });
+      // os cabeçalhos reaproveitados (.vgf-h) não entram na lista: a ordem deles é dada abaixo, junto do grupo
+      const flat = []; [...nav.children].forEach(c => { if (c.classList.contains('vgf-h')) return; if (c.classList.contains('sb-bloco-c')) flat.push(...c.children); else flat.push(c); });
       flat.forEach(c => { c.style.order = ''; c.classList.remove('vgf-x'); });
       if (!liga) { headers.forEach(h => h.remove()); return; }
       const ehAula = new Map(); aulas.forEach((a, idx) => { ehAula.set(a.el, { a, idx }); [...(a.pre || []), ...(a.extra || [])].forEach(x => ehAula.set(x, { a, idx, extra: true })); });
