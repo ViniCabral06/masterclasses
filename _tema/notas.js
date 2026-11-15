@@ -19,7 +19,7 @@
 
   // raiz do conteúdo: onde o texto da aula mora (cai no body se o master não tiver <main>)
   const raiz = () => D.querySelector('main, #main, #view, .main') || D.body;
-  const FORA = 'input,textarea,button,select,script,style,nav,aside,.sidebar,#sidebar,#side,.sb,.top,#top,.mbar,.tip,#tip,#hlbtn,.hlbtn,.vg-n-ui,#vidro-fx,#vidro-home,#vidro-load,[contenteditable]';
+  const FORA = 'input,textarea,button,select,script,style,nav,aside,.sidebar,#sidebar,#side,.sb,.top,#top,.mbar,.tip,#tip,#hlbtn,.hlbtn,.vg-n-ui,#vidro-fx,#vidro-pers,#vidro-home,#vidro-load,[contenteditable]';
 
   /* ---------- texto <-> posição ---------- */
   function textNodes(root) {

@@ -1,3 +1,17 @@
+/* aulas abertas dentro do master (não carregam o vidro.js): seguem o fundo e a cor escolhidos em Personalização */
+(function () {
+  var h = document.documentElement; if (!h.classList.contains('vidro-aula')) return;
+  function ler(k) { try { var v = JSON.parse(localStorage.getItem(k)); return typeof v === 'string' ? v : null; } catch (_) { return null; } }
+  function aplicar() {
+    h.classList.toggle('vg-liso', ler('vidro-fundo') === 'liso');
+    var c = ler('vidro-cor');
+    if (c && /^#[0-9a-f]{6}$/i.test(c)) {
+      var n = parseInt(c.slice(1), 16), lum = (.299 * (n >> 16) + .587 * (n >> 8 & 255) + .114 * (n & 255)) / 255;
+      h.style.setProperty('--vgc', c); h.style.setProperty('--vgc-on', lum > .6 ? '#10151b' : '#ffffff'); h.dataset.vgcor = c;
+    } else { h.style.removeProperty('--vgc'); h.style.removeProperty('--vgc-on'); delete h.dataset.vgcor; }
+  }
+  aplicar(); addEventListener('storage', function (e) { if (!e.key || e.key.indexOf('vidro-') === 0) aplicar(); });
+})();
 /* Extras de todas as masterclasses (o publicar.py inclui este arquivo, também nas aulas separadas).
 
    1. Ampliar imagem: clicar numa figura do conteúdo (segmento, "O que mais é cobrado", questão) abre a

@@ -27,7 +27,20 @@ bg.innerHTML = '<div class="au a"></div><div class="au b"></div><div class="au c
 document.body.prepend(bg);
 
 const fx = document.createElement('button'); fx.id = 'vidro-fx'; fx.type = 'button';
-const setFxLabel = () => { const calm = html.classList.contains('vidro-calmo'); fx.innerHTML = `<i></i>${calm ? 'Efeitos desligados' : 'Efeitos 3D'}`; fx.title = calm ? 'Ligar o fundo 3D' : 'Desligar o fundo 3D (economiza bateria)'; };
+fx.setAttribute('aria-haspopup', 'dialog'); fx.setAttribute('aria-expanded', 'false');
+fx.innerHTML = '<i></i>Personalização'; fx.title = 'Personalização: tema, fundo, cor e efeitos';
+const setFxLabel = () => { const sw = document.getElementById('vp-fx'); if (sw) sw.setAttribute('aria-checked', String(!html.classList.contains('vidro-calmo'))); };
+/* preferências de aparência (valem para todos os masters): fundo liso ou degradê e cor de destaque */
+const lerTexto = (k) => { const v = store.get(k, null); return typeof v === 'string' ? v : null; };
+function aplicarPrefs() {
+  html.classList.toggle('vg-liso', lerTexto('vidro-fundo') === 'liso');
+  const c = lerTexto('vidro-cor'), ok = c && /^#[0-9a-f]{6}$/i.test(c);
+  if (ok) {
+    const n = parseInt(c.slice(1), 16), lum = (.299 * (n >> 16) + .587 * (n >> 8 & 255) + .114 * (n & 255)) / 255;
+    html.style.setProperty('--vgc', c); html.style.setProperty('--vgc-on', lum > .6 ? '#10151b' : '#ffffff'); html.dataset.vgcor = c;
+  } else { html.style.removeProperty('--vgc'); html.style.removeProperty('--vgc-on'); delete html.dataset.vgcor; }
+}
+aplicarPrefs();
 // aparelho modesto (celular, poucos núcleos ou pouca memória): começa sem o fundo 3D, a menos que a pessoa tenha ligado
 const fraco = matchMedia('(pointer:coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4;
 if (store.get('vidro-calmo', fraco)) html.classList.add('vidro-calmo');
@@ -132,13 +145,51 @@ async function montarBg() {
     let tm = 0; addEventListener('scroll', () => { if (Math.abs(stage.I.sv || 0) < 4) return; bg.classList.add('lendo'); clearTimeout(tm); tm = setTimeout(() => bg.classList.remove('lendo'), 700); }, { passive: true, capture: true });
   } catch (e) { console.warn('[vidro] fundo 3D indisponível', e); }
 }
-fx.addEventListener('click', () => {
-  const calm = !html.classList.contains('vidro-calmo');
-  html.classList.toggle('vidro-calmo', calm); store.set('vidro-calmo', calm); setFxLabel();
+/* ---------- painel de personalização ---------- */
+const CORES = [['', 'Cor da matéria'], ['#4f8cff', 'Azul'], ['#2fd4e6', 'Ciano'], ['#3ddc84', 'Verde'], ['#a5e04a', 'Lima'], ['#ffc93c', 'Amarelo'],
+  ['#ff8a3d', 'Laranja'], ['#ff5a5f', 'Vermelho'], ['#ff6fb5', 'Rosa'], ['#9a5bff', 'Roxo'], ['#9aa7b4', 'Cinza']];
+const painel = document.createElement('div'); painel.id = 'vidro-pers'; painel.hidden = true; painel.setAttribute('data-liquido', '');
+painel.setAttribute('role', 'dialog'); painel.setAttribute('aria-label', 'Personalização');
+painel.innerHTML = `<div class="vp-top"><b>Personalização</b><button type="button" class="vp-x" aria-label="Fechar">✕</button></div>
+  <div class="vp-sec" data-sec="tema"><span class="vp-l">Tema</span><div class="vp-seg" role="group" aria-label="Tema"><button type="button" data-tema="light">☀ Claro</button><button type="button" data-tema="dark">☾ Escuro</button></div></div>
+  <div class="vp-sec"><span class="vp-l">Fundo</span><div class="vp-fundos"><button type="button" data-fundo="grad"><i class="vp-pv grad"></i>Degradê</button><button type="button" data-fundo="liso"><i class="vp-pv liso"></i>Liso</button></div></div>
+  <div class="vp-sec"><span class="vp-l">Cor de destaque</span><div class="vp-cores">${CORES.map(([c, n]) => `<button type="button" data-cor="${c}" title="${n}" aria-label="${n}"${c ? ` style="--c:${c}"` : ''}></button>`).join('')}</div></div>
+  <div class="vp-sec vp-linha"><span><span class="vp-l">Efeitos 3D</span><small>Fundo animado. Desligado economiza bateria.</small></span><button type="button" id="vp-fx" class="vp-sw" role="switch" aria-label="Efeitos 3D"></button></div>`;
+document.body.append(painel);
+const temaBtnQualquer = () => themeBtn() || document.querySelector(THEME_SEL);
+function pintarPainel() {
+  const luz = html.dataset.theme === 'light', liso = html.classList.contains('vg-liso'), cor = html.dataset.vgcor || '';
+  painel.querySelector('[data-sec="tema"]').hidden = !temaBtnQualquer();
+  painel.querySelectorAll('[data-tema]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.tema === 'light') === luz)));
+  painel.querySelectorAll('[data-fundo]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.fundo === 'liso') === liso)));
+  painel.querySelectorAll('[data-cor]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cor.toLowerCase() === cor.toLowerCase())));
+  setFxLabel();
+}
+function abrirPainel(abre) {
+  painel.hidden = !abre; fx.setAttribute('aria-expanded', String(abre));
+  if (abre) { pintarPainel(); window.dispatchEvent(new Event('resize')); }
+}
+fx.addEventListener('click', () => abrirPainel(painel.hidden));
+document.addEventListener('pointerdown', e => { if (!painel.hidden && !painel.contains(e.target) && !fx.contains(e.target) && !(e.target.closest && e.target.closest('#vidro-lamp'))) abrirPainel(false); }, true);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !painel.hidden) { abrirPainel(false); fx.focus(); } });
+new MutationObserver(() => { if (!painel.hidden) pintarPainel(); }).observe(html, { attributes: true, attributeFilter: ['data-theme'] });
+// outra aba ou a aula aberta dentro do master: acompanha a mudança
+addEventListener('storage', e => { if (!e.key || !e.key.startsWith('vidro-')) return; aplicarPrefs(); if (e.key === 'vidro-calmo') setCalmo(store.get('vidro-calmo', false), true); if (!painel.hidden) pintarPainel(); });
+painel.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.classList.contains('vp-x')) { abrirPainel(false); fx.focus(); return; }
+  if (b.dataset.tema) { if ((b.dataset.tema === 'light') !== (html.dataset.theme === 'light')) { const t = temaBtnQualquer(); if (t) t.click(); } return; }
+  if (b.dataset.fundo) { store.set('vidro-fundo', b.dataset.fundo); aplicarPrefs(); pintarPainel(); return; }
+  if (b.dataset.cor != null && b.hasAttribute('data-cor')) { store.set('vidro-cor', b.dataset.cor || null); aplicarPrefs(); pintarPainel(); return; }
+  if (b.id === 'vp-fx') setCalmo(!html.classList.contains('vidro-calmo'));
+});
+function setCalmo(calm, semSalvar) {
+  if (calm === html.classList.contains('vidro-calmo')) return;
+  html.classList.toggle('vidro-calmo', calm); if (!semSalvar) store.set('vidro-calmo', calm); setFxLabel();
   // ligou os efeitos na mão: volta o visual completo e o PC é medido de novo
   if (!calm) { store.set('vidro-lento', false); html.classList.remove('vidro-semgpu'); if (!fraco) html.classList.remove('vidro-leve'); setTimeout(medirPC, 3000); }
   if (stage) stage.running = !calm; else if (!calm) startBg();
-});
+}
 
 /* ---------- monitor cardíaco (TH IV) ---------- */
 async function heartMonitor() {
