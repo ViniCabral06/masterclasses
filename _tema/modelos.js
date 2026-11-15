@@ -4,7 +4,7 @@
 (function () {
 window.VidroModelos = function (THREE) {
 
-const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3, pato: 0xff6fb5, prev: 0xffb547, huma: 0x5aa9ff, port: 0xff8a5b, img: 0x9fd3ff };
+const COL = { hub: 0x4ff3ff, farmaco: 0xff4d6d, micro: 0x9a5bff, th4: 0x38f5a3, pato: 0xff6fb5, prev: 0xffb547, huma: 0x5aa9ff, port: 0xff8a5b, img: 0x9fd3ff, lab: 0x4fe0cf };
 const V = () => new THREE.Vector3();
 const _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _s = new THREE.Vector3(1, 1, 1), _up = new THREE.Vector3(0, 1, 0);
 const _a = V(), _b = V(), _c = V(), _d = V();
@@ -1507,6 +1507,127 @@ function makeLamp(o = {}) {
   return root;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeMicroscope, makeVaccine, makeHandshake, makeDialogo, makeBook, makeRaiox, makeFrog, makeHeart, makeLamp };
+/* ======================= tubo de coleta (propedêutica laboratorial) =======================
+   Tubo a vácuo de vidro com tampa de borracha roxa (EDTA), etiqueta e sangue dentro. Em volta flutuam
+   hemácias (discos bicôncavos) e tubos menores nas cores da ordem de coleta (azul, vermelho, amarelo,
+   verde, roxo, cinza). Mouse perto: o tubo inclina e o sangue balança; as peças se afastam.
+   Clique: o tubo faz a homogeneização (inversão suave, como se faz com o EDTA) e solta hemácias. */
+function makeTubo(o = {}) {
+  const cheap = !!o.cheap, g = new THREE.Group(), items = [];
+  const LAB = COL.lab || 0x4fe0cf;
+  const CAPS = [0x3d7dff, 0xe0333c, 0xf2c230, 0x2fb36a, 0x9a5bff, 0x8c949e];
+  const blood = new THREE.MeshPhysicalMaterial({ color: 0x9e0f1f, emissive: 0x5a0610, emissiveIntensity: .35, roughness: .18, clearcoat: 1 });
+  const rbcMat = new THREE.MeshStandardMaterial({ color: 0xd42a3a, emissive: 0x6d0a14, emissiveIntensity: .3, roughness: .35 });
+  const labelMat = new THREE.MeshStandardMaterial({ color: 0xf6f8fb, roughness: .55, side: THREE.DoubleSide });
+  const lineMat = new THREE.MeshStandardMaterial({ color: LAB, emissive: LAB, emissiveIntensity: .5, roughness: .4 });
+  const barMat = new THREE.MeshStandardMaterial({ color: 0x1a1f26, roughness: .6 });
+  const glass = glassMat(0xffffff, cheap, { thickness: .35, side: THREE.DoubleSide });
+
+  /* hemácia: toro achatado com centro fino (disco bicôncavo) */
+  const rbcGeo = new THREE.TorusGeometry(.16, .085, 12, 28);
+  const rbcCore = new THREE.CylinderGeometry(.13, .13, .05, 24);
+  function hemacia() { const h = new THREE.Group(); h.add(new THREE.Mesh(rbcGeo, rbcMat)); const c = new THREE.Mesh(rbcCore, rbcMat); c.rotation.x = Math.PI / 2; h.add(c); return h; }
+  /* tubinho com tampa colorida */
+  const miniGeo = new THREE.CylinderGeometry(.13, .13, .62, 20, 1, true), miniBot = new THREE.SphereGeometry(.13, 18, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+  const miniCap = new THREE.CylinderGeometry(.16, .16, .16, 20), miniFill = new THREE.CylinderGeometry(.11, .11, .34, 18);
+  function tubinho(cor) {
+    const t = new THREE.Group();
+    t.add(new THREE.Mesh(miniGeo, glass));
+    const b = new THREE.Mesh(miniBot, glass); b.position.y = -.31; t.add(b);
+    const c = new THREE.Mesh(miniCap, new THREE.MeshStandardMaterial({ color: cor, emissive: cor, emissiveIntensity: .25, roughness: .45 })); c.position.y = .38; t.add(c);
+    const f = new THREE.Mesh(miniFill, blood); f.position.y = -.12; t.add(f);
+    return t;
+  }
+  for (let i = 0; i < 18; i++) {
+    const m = i % 3 === 2 ? tubinho(CAPS[(i / 3 | 0) % CAPS.length]) : hemacia();
+    const r = 1.7 + Math.random() * 1.6, a = Math.random() * Math.PI * 2, y = (Math.random() - .5) * 4;
+    m.userData = { home: new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r * .8), off: V(), vel: V(), w: new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5).multiplyScalar(1.2), ph: Math.random() * 6 };
+    m.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6); g.add(m); items.push(m);
+  }
+
+  /* tubo principal: eixo em y */
+  const hero = new THREE.Group();
+  const H = 2.6, R = .42;
+  hero.add(new THREE.Mesh(new THREE.CylinderGeometry(R, R, H, 48, 1, true), glass));
+  const fundo = new THREE.Mesh(new THREE.SphereGeometry(R, 40, 20, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), glass); fundo.position.y = -H / 2; hero.add(fundo);
+  // tampa de borracha (EDTA = roxa), com aro e topo afundado
+  const capMat = new THREE.MeshPhysicalMaterial({ color: 0x9a5bff, emissive: 0x4a1fa0, emissiveIntensity: .3, roughness: .4, clearcoat: .6 });
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(R + .07, R + .07, .5, 48), capMat); cap.position.y = H / 2 + .18; hero.add(cap);
+  const aro = new THREE.Mesh(new THREE.TorusGeometry(R + .07, .045, 12, 48), capMat); aro.rotation.x = Math.PI / 2; aro.position.y = H / 2 + .43; hero.add(aro);
+  const topo = new THREE.Mesh(new THREE.CylinderGeometry(R - .05, R - .05, .04, 40), new THREE.MeshStandardMaterial({ color: 0x5b2fb0, roughness: .6 })); topo.position.y = H / 2 + .42; hero.add(topo);
+  // etiqueta (meia volta) com faixas de código de barras
+  const label = new THREE.Mesh(new THREE.CylinderGeometry(R + .006, R + .006, 1.1, 40, 1, true, -Math.PI * .45, Math.PI * .9), labelMat); label.position.y = .15; hero.add(label);
+  for (let i = 0; i < 11; i++) {
+    const bar = new THREE.Mesh(new THREE.BoxGeometry(i % 3 ? .018 : .034, .32, .01), barMat);
+    const ang = -.5 + i * .1; bar.position.set(Math.sin(ang) * (R + .015), .38, Math.cos(ang) * (R + .015)); bar.rotation.y = ang; hero.add(bar);
+  }
+  const faixa = new THREE.Mesh(new THREE.BoxGeometry(.5, .05, .01), lineMat); faixa.position.set(0, -.05, R + .016); hero.add(faixa);
+  const faixa2 = faixa.clone(); faixa2.scale.x = .6; faixa2.position.y = -.17; hero.add(faixa2);
+  // sangue: coluna com base no fundo + superfície que procura ficar de nível (balanço)
+  const liq = new THREE.Group(); liq.position.y = -H / 2; hero.add(liq);
+  const LV = 1.7;
+  const col = new THREE.Mesh(new THREE.CylinderGeometry(R - .03, R - .03, LV, 40), blood); col.position.y = LV / 2; liq.add(col);
+  liq.add(new THREE.Mesh(new THREE.SphereGeometry(R - .03, 32, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), blood));
+  const supWrap = new THREE.Group(); supWrap.position.y = LV; liq.add(supWrap);
+  const sup = new THREE.Mesh(new THREE.CircleGeometry(R - .03, 40), new THREE.MeshPhysicalMaterial({ color: 0xc81b2e, emissive: 0x7a0a18, emissiveIntensity: .45, roughness: .1, clearcoat: 1, side: THREE.DoubleSide }));
+  sup.rotation.x = -Math.PI / 2; supWrap.add(sup);
+  hero.scale.setScalar(.78); hero.rotation.z = -.35; g.add(hero);
+
+  /* hemácias que saltam no clique */
+  const DN = 40, drops = new THREE.InstancedMesh(new THREE.TorusGeometry(.07, .035, 8, 16), rbcMat, DN);
+  drops.instanceMatrix.setUsage(THREE.DynamicDrawUsage); g.add(drops);
+  const dp = [], dv = [], dr = [], dl = new Float32Array(DN); for (let i = 0; i < DN; i++) { dp.push(V()); dv.push(V()); dr.push(V()); }
+  const eul = new THREE.Euler();
+  let nd = 0;
+  const solta = n => {
+    hero.updateMatrix();
+    const top = _a.set(0, H / 2 + .5, 0).applyMatrix4(hero.matrix);
+    for (let k = 0; k < n; k++) {
+      const i = nd = (nd + 1) % DN;
+      dp[i].copy(top); dv[i].set((Math.random() - .5) * 2.4, 1.5 + Math.random() * 2, (Math.random() - .5) * 2.4); dr[i].set(Math.random() * 6, Math.random() * 6, Math.random() * 6); dl[i] = 1;
+    }
+  };
+
+  const tiltZ = S(-.35), tiltX = S(), slosh = S(), flip = S(), ck = {};
+  let alvoFlip = 0;
+  g.userData.offset = new THREE.Vector3(.3, .2, 0);
+  g.userData.tick = (t, dt, I) => {
+    g.rotation.y = Math.sin(t * .25) * .35;
+    const P = localPointer(g, I), burst = clicked(ck, I);
+    items.forEach(m => {
+      const u = m.userData, p = _b.copy(u.home).add(u.off);
+      p.y += Math.sin(t + u.ph) * .18;
+      if (P) {
+        _c.subVectors(p, P); const d = _c.length();
+        if (d < 1.6) { const n = _c.normalize(); u.vel.addScaledVector(n, (1 - d / 1.6) * 34 * dt); u.w.addScaledVector(new THREE.Vector3(n.y, -n.x, n.z), (1 - d / 1.6) * 14 * dt); }
+        if (burst && d < 3.5) { u.vel.addScaledVector(_c.normalize(), 9 * (1 - d / 3.5)); u.w.multiplyScalar(4); }
+      }
+      if (I && I.sv) { u.vel.y += I.sv * (.7 + Math.abs(u.w.z) * .3) * dt * 3.2; u.vel.x += I.sv * Math.sin(u.w.y * 9) * dt; }
+      u.vel.addScaledVector(u.off, -9 * dt); u.vel.multiplyScalar(Math.exp(-2.6 * dt)); u.off.addScaledVector(u.vel, dt);
+      u.w.multiplyScalar(Math.exp(-.6 * dt)); if (u.w.length() < .5) u.w.setLength(.5);
+      m.position.copy(p); m.rotation.x += u.w.x * dt; m.rotation.y += u.w.y * dt; m.rotation.z += u.w.z * dt;
+    });
+    // clique: homogeneização (uma inversão completa e volta) + hemácias
+    if (burst) { alvoFlip += Math.PI * 2; solta(24); }
+    const fz = spring(flip, alvoFlip, 14, 5.5, dt);
+    const tz = spring(tiltZ, P ? -.35 + THREE.MathUtils.clamp(-P.x * .18, -.5, .5) : -.35 + Math.sin(t * .7) * .08, 18, 4, dt);
+    hero.rotation.z = tz + fz;
+    hero.rotation.x = spring(tiltX, P ? THREE.MathUtils.clamp(P.y * .12, -.4, .4) : 0, 18, 4, dt);
+    hero.position.y = Math.sin(t * 1.1) * .12;
+    // a superfície do sangue gira ao contrário da inclinação, com atraso (balanço)
+    supWrap.rotation.z = spring(slosh, THREE.MathUtils.clamp(-(tz + Math.sin(fz) * .6), -.5, .5), 22, 3.2, dt) * .9;
+    for (let i = 0; i < DN; i++) {
+      if (dl[i] > 0) {
+        dl[i] -= dt * .7; dv[i].y -= 3.5 * dt; dv[i].multiplyScalar(Math.exp(-.7 * dt)); dp[i].addScaledVector(dv[i], dt); dr[i].x += dt * 3; dr[i].y += dt * 2;
+        _m.compose(dp[i], _q.setFromEuler(eul.set(dr[i].x, dr[i].y, dr[i].z)), _s.setScalar(Math.max(.0001, dl[i] * 1.4)));
+      } else _m.compose(dp[i], _q.identity(), _s.setScalar(.0001));
+      drops.setMatrixAt(i, _m);
+    }
+    _s.set(1, 1, 1); drops.instanceMatrix.needsUpdate = true;
+  };
+  return g;
+}
+
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeMicroscope, makeVaccine, makeHandshake, makeDialogo, makeBook, makeRaiox, makeTubo, makeFrog, makeHeart, makeLamp };
 };
 })();
