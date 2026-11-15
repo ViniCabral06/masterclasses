@@ -373,7 +373,7 @@ def otimizar_fonte(m):
 
 
 def arquivos_do_site(ms):
-    fixos = [".gitignore", ".nojekyll", "index.html", "publicar.py", "conferir.py", "LEIAME.md", "CLAUDE.md", "_tema"]
+    fixos = [".gitignore", ".nojekyll", "index.html", "publicar.py", "conferir.py", "LEIAME.md", "CLAUDE.md", "AGENTS.md", ".claude/skills", "_tema"]
     out = [f for f in fixos if (ROOT / f).exists()]
     for m in ms:
         src = ROOT / m["arquivo"]
