@@ -217,12 +217,16 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       });
 
       /* divisão e recolhidas */
-      nav.querySelectorAll(':scope > .vgf-h').forEach(x => x.remove());
+      // Farmacologia mantém o mesmo botão durante a atualização para não interromper o toque.
+      const headers = new Map();
+      nav.querySelectorAll(':scope > .vgf-h').forEach(h => {
+        if (K === 'farmaco') headers.set(h.dataset.g, h); else h.remove();
+      });
       const liga = cfg.div || cfg.recolher;
       html.classList.toggle('vgf-on', liga); nav.classList.toggle('vgf-nav', liga);
       const flat = []; [...nav.children].forEach(c => { if (c.classList.contains('sb-bloco-c')) flat.push(...c.children); else flat.push(c); });
       flat.forEach(c => { c.style.order = ''; c.classList.remove('vgf-x'); });
-      if (!liga) { ocupado = false; observa(nav); return; }
+      if (!liga) { headers.forEach(h => h.remove()); return; }
       const ehAula = new Map(); aulas.forEach((a, idx) => { ehAula.set(a.el, { a, idx }); [...(a.pre || []), ...(a.extra || [])].forEach(x => ehAula.set(x, { a, idx, extra: true })); });
       const primeira = flat.findIndex(c => ehAula.has(c));
       const antes = flat.slice(0, primeira).filter(c => !ehAula.has(c));
@@ -250,12 +254,17 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
         let ab = g.t == null ? true : (cfg.open[g.id] != null ? cfg.open[g.id] : (g.id !== 'feitas' && temCur));
         if (temCur && g.id !== 'feitas' && cfg.openAula !== curKey(aulas)) { ab = true; }
         if (g.t != null) {
-          const h = D.createElement('button'); h.type = 'button'; h.className = 'vgf-h'; h.dataset.g = g.id;
-          h.setAttribute('aria-expanded', ab); h.innerHTML = '<span class="c">▶</span><span>' + esc(g.t) + '</span><span class="n">' + esc(g.n || '') + '</span>';
-          h.style.order = ++o; nav.appendChild(h);
+          const anterior = headers.get(g.id);
+          headers.delete(g.id);
+          const h = anterior || D.createElement('button');
+          if (!anterior) { h.type = 'button'; h.className = 'vgf-h'; h.dataset.g = g.id; }
+          h.setAttribute('aria-expanded', ab); const rotulo = '<span class="c">▶</span><span>' + esc(g.t) + '</span><span class="n">' + esc(g.n || '') + '</span>';
+          if (h.dataset.rotulo !== rotulo) { h.innerHTML = rotulo; h.dataset.rotulo = rotulo; }
+          h.style.order = ++o; if (!anterior) nav.appendChild(h);
         }
         g.a.forEach(a => { [...(a.pre || []), a.el, ...(a.extra || [])].forEach(x => { x.style.order = ++o; x.classList.toggle('vgf-x', !ab); }); });
       });
+      headers.forEach(h => h.remove());
       cfg.openAula = curKey(aulas);
       depois.forEach(c => { c.style.order = ++o; });
     } finally { ocupado = false; observa(nav); }
@@ -275,7 +284,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
     if (a.top < b.top + 4) r.scrollTop -= b.top + 4 - a.top; else if (a.bottom > b.bottom - 4) r.scrollTop += a.bottom - (b.bottom - 4);
   }
   function observa(nav) {
-    if (!obs) obs = new MutationObserver(() => { if (!ocupado && !raf) raf = requestAnimationFrame(() => { aplica(); const nav = A.nav(); if (nav) arrumaRolagem(nav); }); });
+    if (!obs) obs = new MutationObserver(() => { if (!ocupado && !raf) raf = requestAnimationFrame(() => { aplica(); const nav = A.nav(); if (nav && K !== 'farmaco') arrumaRolagem(nav); }); });
     obs.observe(nav, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
   }
   D.addEventListener('click', e => {
