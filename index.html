@@ -292,6 +292,32 @@ main{position:relative;z-index:10;height:100%}
 
 .specimen{position:relative;height:min(68vh,640px);display:flex;align-items:flex-end;justify-content:flex-end;pointer-events:none}
 .readout{--r:22px;padding:16px 20px;min-width:260px;pointer-events:auto;position:fixed;right:var(--gutter,32px);bottom:28px;z-index:5}
+.card[data-k="prop"]{--tint:var(--img)}
+#prop-dlg{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;background:rgba(4,6,10,.55);opacity:0;transition:opacity .22s ease}
+#prop-dlg[hidden]{display:none}
+#prop-dlg.on{opacity:1}
+.prop-box{--r:28px;position:relative;width:min(760px,100%);max-height:calc(100svh - 40px);overflow:auto;padding:28px;transform:translateY(14px) scale(.97);transition:transform .28s cubic-bezier(.2,.8,.2,1);
+  -webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3)}
+#prop-dlg.on .prop-box{transform:none}
+.prop-box h3{margin:0;font-family:var(--display);font-size:clamp(26px,4vw,36px);letter-spacing:-.03em}
+.prop-sub{margin:4px 0 20px;color:var(--ink-2)}
+.prop-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:inherit;font-size:22px;line-height:1;cursor:pointer}
+.prop-x:hover{background:rgba(255,255,255,.14)}
+.prop-ops{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.prop-op{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;padding:20px;border-radius:20px;cursor:pointer;color:inherit;font:inherit;
+  border:1px solid color-mix(in srgb,var(--tint) 35%,transparent);background:color-mix(in srgb,var(--tint) 10%,rgba(255,255,255,.03));
+  transition:transform .18s ease,background-color .18s ease,border-color .18s ease}
+.prop-op:hover,.prop-op:focus-visible{transform:translateY(-3px);background:color-mix(in srgb,var(--tint) 20%,rgba(255,255,255,.04));border-color:var(--tint);outline:none}
+.prop-op:active{transform:scale(.98)}
+.prop-op .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--tint) 22%,transparent);color:var(--tint)}
+.prop-op .ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.prop-op b{font-family:var(--display);font-size:24px;letter-spacing:-.02em}
+.prop-op small{color:var(--ink-2);font-size:14px}
+.prop-op .tags{display:flex;flex-wrap:wrap;gap:6px}
+.prop-op .tags span{font-size:12.5px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.07)}
+.prop-op .abrir{margin-top:auto;padding-top:8px;font-weight:600;color:var(--tint)}
+@media (max-width:640px){.prop-ops{grid-template-columns:1fr}.prop-box{padding:22px 18px}}
+@media (prefers-reduced-motion:reduce){#prop-dlg,.prop-box,.prop-op{transition:none}}
 .readout b{display:block;font-family:var(--display);font-size:22px;letter-spacing:-.02em}
 .readout small{color:var(--ink-2);font-size:14px}
 .ecg{display:block;width:100%;height:40px;margin-top:8px}
@@ -595,8 +621,16 @@ document.getElementById('n-mat').textContent = N_MAT;
 document.getElementById('n-aul').textContent = N_AUL;
 
 const cards = document.getElementById('cards');
-cards.innerHTML = Object.entries(SUBJECTS).map(([k,s],i)=>`
-  <div class="card glass in" style="--i:${i+2}" data-k="${k}" role="link" tabindex="0" aria-label="Abrir masterclass de ${s.name}">
+/* Propedêutica: um cartão só no período; o clique abre a janela para escolher Imagem ou Laboratorial */
+const GRUPO = {prop:{name:"Propedêutica", de:["img","lab"],
+  desc:"Imagem e Laboratorial num lugar só: do raio X, TC e ultrassom ao hemograma, função renal e hepática. Clique para escolher a masterclass.",
+  tags:["Propedêutica de Imagem","Propedêutica Laboratorial"],
+  readout:["Propedêutica","Imagem e Laboratorial · 2 masterclasses"],
+  icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 6v12M8 8c-2 1-2 3-2 5M16 8c2 1 2 3 2 5"/>'}};
+const LISTA = []; { const dentro = new Set(GRUPO.prop.de); let posto = false;
+  for (const [k,s] of Object.entries(SUBJECTS)) { if (!dentro.has(k)) LISTA.push([k,s]); else if (!posto) { LISTA.push(['prop',GRUPO.prop]); posto = true; } } }
+cards.innerHTML = LISTA.map(([k,s],i)=>`
+  <div class="card glass in" style="--i:${i+2}" data-k="${k}" role="${GRUPO[k]?'button':'link'}" tabindex="0" aria-label="${GRUPO[k]?'Escolher entre Propedêutica de Imagem e Laboratorial':'Abrir masterclass de '+s.name}"${GRUPO[k]?' aria-haspopup="dialog"':''}>
     <span class="ico"><svg viewBox="0 0 24 24">${s.icon}</svg></span>
     <span>
       <h3>${s.name}</h3>
@@ -606,6 +640,38 @@ cards.innerHTML = Object.entries(SUBJECTS).map(([k,s],i)=>`
     </span>
     <span class="go" aria-hidden="true">→</span>
   </div>`).join('');
+
+/* janela "Propedêutica": Imagem ou Laboratorial */
+document.body.insertAdjacentHTML('beforeend', `<div id="prop-dlg" hidden>
+  <div class="prop-box glass" data-liquido role="dialog" aria-modal="true" aria-labelledby="prop-t">
+    <button class="prop-x" type="button" aria-label="Fechar">×</button>
+    <h3 id="prop-t">Propedêutica</h3>
+    <p class="prop-sub">Qual masterclass você quer abrir?</p>
+    <div class="prop-ops">${GRUPO.prop.de.map(k=>{const s=SUBJECTS[k];return `
+      <button class="prop-op" type="button" data-k="${k}" style="--tint:var(--${k})">
+        <span class="ico"><svg viewBox="0 0 24 24">${s.icon}</svg></span>
+        <b>${s.name.replace('Propedêutica ','').replace(/^de /,'')}</b>
+        <small>${s.readout[1]}</small>
+        <span class="tags">${s.tags.slice(0,4).map(t=>`<span>${t}</span>`).join('')}</span>
+        <span class="abrir">Abrir masterclass →</span>
+      </button>`}).join('')}</div>
+  </div></div>`);
+const propDlg = document.getElementById('prop-dlg'); let propVolta = null;
+function abrirProp(){ propVolta = document.activeElement; propDlg.hidden = false; requestAnimationFrame(()=>propDlg.classList.add('on')); propDlg.querySelector('.prop-op').focus({preventScroll:true}); }
+function fecharProp(){ if (propDlg.hidden) return; propDlg.classList.remove('on'); setTimeout(()=>{propDlg.hidden = true}, 220); if (propVolta && propVolta.focus) propVolta.focus({preventScroll:true}); }
+propDlg.addEventListener('click', e=>{
+  e.stopPropagation();
+  const o = e.target.closest('.prop-op'); if (o) { openSubject(o.dataset.k); setTimeout(fecharProp, 900); return; }
+  if (e.target === propDlg || e.target.closest('.prop-x')) fecharProp();
+});
+propDlg.addEventListener('pointerover', e=>{ const o = e.target.closest('.prop-op'); if (o) focusSubject(o.dataset.k); });
+propDlg.addEventListener('focusin', e=>{ const o = e.target.closest('.prop-op'); if (o) focusSubject(o.dataset.k); });
+addEventListener('keydown', e=>{
+  if (propDlg.hidden) return;
+  if (e.key === 'Escape') { e.stopImmediatePropagation(); fecharProp(); }
+  else if (e.key === 'Tab') { const f = [...propDlg.querySelectorAll('button')], i = f.indexOf(document.activeElement); e.preventDefault(); f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus(); }
+}, true);
+addEventListener('pageshow', ()=>{ propDlg.classList.remove('on'); propDlg.hidden = true; });
 
 /* ---------- roteamento por etapas ---------- */
 const STAGES = {home:'s-home',periodos:'s-periodos',p4:'s-p4'};
@@ -636,17 +702,18 @@ document.addEventListener('click',e=>{
   const sc=e.target.closest('[data-scroll]'); if(sc){document.getElementById(sc.dataset.scroll).scrollIntoView({behavior:'smooth'});return}
   const o=e.target.closest('[data-open]'); if(o){openSubject(o.dataset.open);return}
   const g=e.target.closest('[data-game]'); if(g){e.preventDefault();open(SUBJECTS.th4,'Corredor da OSCE',g.getAttribute('href'));return}
-  const c=e.target.closest('.card'); if(c) openSubject(c.dataset.k);
+  const c=e.target.closest('.card'); if(c){ if(GRUPO[c.dataset.k]) abrirProp(); else openSubject(c.dataset.k); }
 });
-cards.addEventListener('keydown',e=>{const c=e.target.closest('.card');if(c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openSubject(c.dataset.k)}});
+cards.addEventListener('keydown',e=>{const c=e.target.closest('.card');if(c&&(e.key==='Enter'||e.key===' ')){e.preventDefault(); if(GRUPO[c.dataset.k]) abrirProp(); else openSubject(c.dataset.k)}});
 addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(current==='p4')show('periodos'); else if(current==='periodos')show('home'); }});
 
 const roT=document.getElementById('ro-t'), roS=document.getElementById('ro-s');
 function focusSubject(k){
-  cards.querySelectorAll('.card').forEach(c=>c.classList.toggle('hot',c.dataset.k===k));
+  const g = GRUPO[k]; if (g) k = g.de[0];
+  cards.querySelectorAll('.card').forEach(c=>c.classList.toggle('hot', c.dataset.k===k || !!(GRUPO[c.dataset.k] && GRUPO[c.dataset.k].de.includes(k))));
   document.body.dataset.accent=k||'hub';
   HUB.setScene(k||'helix');
-  if(k){roT.textContent=SUBJECTS[k].readout[0];roS.textContent=SUBJECTS[k].readout[1];}
+  if(k){const r=(g||SUBJECTS[k]).readout; roT.textContent=r[0];roS.textContent=r[1];}
 }
 cards.addEventListener('pointerover',e=>{const c=e.target.closest('.card');if(c)focusSubject(c.dataset.k)});
 cards.addEventListener('focusin',e=>{const c=e.target.closest('.card');if(c)focusSubject(c.dataset.k)});
