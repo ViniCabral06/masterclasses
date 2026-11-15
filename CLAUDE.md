@@ -72,7 +72,7 @@ Responda sempre em português (Brasil).
 | `index.html` | Hub: períodos, matérias, fundo 3D. |
 | `_tema/` | Tema de vidro compartilhado pelos masters. |
 | `_tema/vidro.css` | Visual dos masters: claro/escuro, caixas de vidro grosso, celular e tablet. |
-| `_tema/vidro.js` | Fundo 3D, lâmpada de cordinha do tema, monitor cardíaco (TH IV) e o botão "Personalização" (canto de baixo): tema claro/escuro, fundo degradê ou liso (`#121413` no escuro; `#f7f8f7` ou creme `#fffaef` no claro), cor de destaque e liga/desliga dos efeitos 3D. Fica salvo para todos os masters em `vidro-fundo`, `vidro-cor` e `vidro-calmo`; as aulas em `aulas/` seguem pelo `extras.js`. |
+| `_tema/vidro.js` | Fundo 3D, lâmpada de cordinha do tema, monitor cardíaco (TH IV) e o botão "Personalização" (canto de baixo): tema claro/escuro, fundo degradê ou liso (clicar em Liso abre a escolha do tom: `#121413` ou `#000` no escuro; `#f7f8f7` ou creme `#fffaef` no claro), cor de destaque e liga/desliga dos efeitos 3D. Fica salvo para todos os masters em `vidro-fundo`, `vidro-cor` e `vidro-calmo`; as aulas em `aulas/` seguem pelo `extras.js`. |
 | `_tema/modelos.js` | Modelos 3D. |
 | `_tema/palco.js` | Palco 3D, com qualidade adaptativa. |
 | `_tema/liquido.js` | Liquid glass real: refração do fundo na borda do vidro, com leve aumento (lente). Ver "Liquid glass". |

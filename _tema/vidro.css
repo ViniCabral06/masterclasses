@@ -84,6 +84,7 @@ html.vidro-calmo #vidro-bg .au{animation:none}
 html.vidro-calmo #vidro-fx i{background:rgba(255,255,255,.35);box-shadow:none}
 /* personalização: fundo liso (preto suave no escuro; branco suave ou creme no claro) e cor de destaque escolhida pela pessoa */
 html.vg-liso[data-vidro]{--vg-ground:#121413}
+html.vg-liso.vg-puro[data-vidro]:not([data-theme="light"]){--vg-ground:#000}
 html.vg-liso.vg-creme[data-vidro][data-theme="light"]{--vg-ground:#fffaef;--vg-side:rgba(250,244,231,.86);--vg-bar:rgba(250,244,231,.9);--vg-btn:rgba(245,238,223,.92);--vg-btnh:rgba(238,230,212,.96)}
 html.vg-liso[data-vidro][data-theme="light"]{--vg-ground:#f7f8f7;--vg-glass:rgba(11,16,21,.035);--vg-glass2:rgba(11,16,21,.055);--vg-glass3:rgba(11,16,21,.08);
   --vg-side:rgba(246,247,249,.82);--vg-bar:rgba(246,247,249,.86);--vg-btn:rgba(240,242,245,.9);--vg-btnh:rgba(230,233,238,.96)}
@@ -113,16 +114,23 @@ html.vidro-leve #vidro-pers{background:color-mix(in srgb,var(--vg-ground) 97%,va
 #vidro-pers .vp-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:999px;background:var(--vg-hov);box-shadow:inset 0 0 0 1px var(--vg-edge)}
 #vidro-pers .vp-seg button{height:36px;border-radius:999px;background:transparent;font-weight:600}
 #vidro-pers .vp-seg button[aria-pressed="true"]{background:var(--vg-acc);color:var(--vg-on-acc)}
-#vidro-pers .vp-fundos{display:flex;gap:8px}
+#vidro-pers .vp-fundos{display:flex;gap:8px;position:relative}
 #vidro-pers .vp-fundos button{flex:1 1 0;min-width:0}
-:root:not([data-theme="light"]) #vidro-pers .vp-claro{display:none}
-#vidro-pers .vp-pv.creme{background:#fffaef}
+#vidro-pers .vp-fundos .vp-tons{position:absolute;right:0;top:calc(100% + 6px);z-index:2;width:calc(50% - 4px);display:grid;gap:4px;padding:6px;border-radius:14px;
+  background:color-mix(in srgb,var(--vg-ground) 92%,var(--vg-ink));box-shadow:0 0 0 1px var(--vg-edge),0 14px 30px -12px rgba(0,0,0,.55)}
+#vidro-pers .vp-fundos .vp-tons[hidden]{display:none}
+#vidro-pers .vp-fundos .vp-tons button{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:9px;background:transparent;box-shadow:none;font-weight:600;font-size:12.5px;text-align:left;min-height:36px}
+#vidro-pers .vp-fundos .vp-tons button:hover{background:var(--vg-hov)}
+#vidro-pers .vp-fundos .vp-tons button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--vg-acc)}
+#vidro-pers .vp-tons i{flex:none;width:20px;height:20px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(128,128,128,.55)}
 #vidro-pers .vp-fundos button{display:grid;gap:6px;padding:6px 6px 8px;border-radius:14px;background:var(--vg-hov);font-weight:600;text-align:center;box-shadow:inset 0 0 0 1px var(--vg-edge)}
 #vidro-pers .vp-fundos button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--vg-acc)}
 #vidro-pers .vp-pv{display:block;height:46px;border-radius:9px;box-shadow:inset 0 0 0 1px var(--vg-edge)}
 #vidro-pers .vp-pv.liso{background:#121413}
+html.vg-puro #vidro-pers .vp-pv.liso{background:#000}
 #vidro-pers .vp-pv.grad{background:radial-gradient(circle at 12% 10%,color-mix(in srgb,var(--vg-acc) 60%,transparent),transparent 60%),radial-gradient(circle at 92% 95%,rgba(79,243,255,.5),transparent 60%),#04070b}
 :root[data-theme="light"] #vidro-pers .vp-pv.liso{background:#f7f8f7}
+:root[data-theme="light"].vg-creme #vidro-pers .vp-pv.liso{background:#fffaef}
 :root[data-theme="light"] #vidro-pers .vp-pv.grad{background:radial-gradient(circle at 12% 10%,color-mix(in srgb,var(--vg-acc) 40%,transparent),transparent 60%),radial-gradient(circle at 92% 95%,rgba(79,243,255,.4),transparent 60%),#e7ecf1}
 #vidro-pers .vp-cores{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
 #vidro-pers .vp-cores button{aspect-ratio:1;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);position:relative;min-width:0}
