@@ -192,6 +192,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
     const nav = A.nav(); if (!nav) return;
     let aulas; try { aulas = A.aulas(); info = A.dados(); } catch (e) { return; }
     if (!aulas.length || !info.length) return;
+    const scrollAntes = K === 'farmaco' ? nav.scrollTop : null;
     ocupado = true; if (obs) obs.disconnect();
     try {
       const porKey = Object.fromEntries(info.map(a => [a.key, a]));
@@ -267,7 +268,11 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       headers.forEach(h => h.remove());
       cfg.openAula = curKey(aulas);
       depois.forEach(c => { c.style.order = ++o; });
-    } finally { ocupado = false; observa(nav); }
+    } finally {
+      if (scrollAntes !== null) nav.scrollTop = scrollAntes;
+      ocupado = false;
+      observa(nav);
+    }
   }
   const curKey = aulas => { const c = aulas.find(a => a.cur); return c ? c.key : ''; };
   const rolador = nav => { for (let e = nav; e && e !== D.body; e = e.parentElement) { const o = getComputedStyle(e).overflowY; if ((o === 'auto' || o === 'scroll') && e.scrollHeight > e.clientHeight + 1) return e; } return null; };
@@ -290,7 +295,10 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
   D.addEventListener('click', e => {
     const h = e.target.closest('.vgf-h'); if (!h) return;
     e.preventDefault(); e.stopPropagation();
+    const nav = A.nav();
+    const topo = K === 'farmaco' ? h.getBoundingClientRect().top : null;
     cfg.open[h.dataset.g] = h.getAttribute('aria-expanded') !== 'true'; salva(); aplica();
+    if (topo !== null && h.isConnected) nav.scrollTop += h.getBoundingClientRect().top - topo;
   }, true);
   /* concluir um segmento muda "já estudadas": reaplica quando o estado salvo muda */
   addEventListener('storage', () => aplica());
