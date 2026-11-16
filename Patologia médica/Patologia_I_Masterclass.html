@@ -74,7 +74,7 @@ button{font-family:inherit;color:inherit}
 .sb-sec{font-size:12px;font-weight:500;color:var(--faint);padding:16px 20px 4px}
 .sb-sec:first-child{padding-top:10px}
 .grp{padding:0 8px}
-.grp-h{display:flex;align-items:center;gap:10px;padding:8px 10px 8px 12px;cursor:pointer;user-select:none;border-radius:10px;min-height:38px;border:none;background:transparent;width:100%;text-align:left;
+.grp-h{display:flex;align-items:center;gap:10px;padding:8px 10px 8px 12px;cursor:pointer;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent;border-radius:10px;min-height:38px;border:none;background:transparent;width:100%;text-align:left;
   transition:background-color .15s ease}
 .grp-h .em{font-size:15px;width:20px;text-align:center;flex:none;filter:saturate(.7)}
 .grp-h .lbl{font-size:14px;font-weight:500;color:var(--ink);flex:1;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
@@ -509,6 +509,23 @@ navEl.addEventListener('click', ev => {
   if (it) { openSegment(it.dataset.key, it.dataset.seg); closeDrawer(); return; }
   const gh = ev.target.closest('.grp-h');
   if (gh) {
+    if (Date.now() - toqueGrp < 700) return;   // o toque já abriu/fechou (pointerup)
+    alternaGrp(gh);
+  }
+});
+/* tablet/celular: o toque no cabeçalho da aula age no pointerup, sem depender do click (o Safari do iPad às vezes não o dispara) */
+let toqueGrp = 0, toqueIni = null;
+navEl.addEventListener('pointerdown', ev => { toqueIni = ev.pointerType === 'mouse' ? null : { x: ev.clientX, y: ev.clientY, h: ev.target.closest('.grp-h') }; });
+navEl.addEventListener('pointercancel', () => { toqueIni = null; });
+navEl.addEventListener('pointerup', ev => {
+  const t = toqueIni; toqueIni = null;
+  if (!t || !t.h || ev.pointerType === 'mouse') return;
+  if (Math.abs(ev.clientX - t.x) > 10 || Math.abs(ev.clientY - t.y) > 10) return;   // foi rolagem
+  const gh = ev.target.closest('.grp-h'); if (gh !== t.h) return;
+  toqueGrp = Date.now(); alternaGrp(gh);
+});
+function alternaGrp(gh){
+  {
     const key = gh.dataset.key;
     const hasItems = (NAV[key] || []).length > 0;
     if (!hasItems) closeDrawer();
@@ -520,7 +537,7 @@ navEl.addEventListener('click', ev => {
       renderNav();
     }
   }
-});
+}
 
 /* ---------- aulas em iframes (blob) ---------- */
 function b64ToBlobUrl(b64){
