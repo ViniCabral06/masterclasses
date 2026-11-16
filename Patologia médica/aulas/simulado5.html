@@ -437,7 +437,6 @@ textarea.d-answer:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--ac
     var h = el('header', 'q-head');
     h.appendChild(el('span', 'q-num', String(i + 1)));
     h.appendChild(el('span', 'mon-fonte', '✍️ Simulado'));
-    h.appendChild(el('span', 'mon-tema', q.tema));
     var stem = el('div', 'q-stem');
     q.txt.forEach(function(p){ stem.appendChild(el('p', /^(I|II|III|IV)\. /.test(p) ? 'af' : '', p)); });
     h.appendChild(stem); art.appendChild(h);
@@ -490,7 +489,7 @@ textarea.d-answer:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--ac
   }
   function refaz(i){ var v = document.getElementById('mq' + (i + 1)); v.parentNode.replaceChild(monta(i), v); }
   D.q.forEach(function(q, i){
-    if (q.tema !== ult) { lista.appendChild(el('h2', 'mon-grupo', q.tema)); ult = q.tema; }
+
     lista.appendChild(monta(i));
   });
   conta();
