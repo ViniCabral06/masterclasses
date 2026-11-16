@@ -409,7 +409,7 @@ mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="port";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../_tema/vidro.css?v=ce07521d">
+<link rel="stylesheet" href="../_tema/vidro.css?v=996cf227">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=4f9f9423"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/foco.js?v=80e61aad"></script>
 <!--/vidro:cabeca-->
@@ -1240,10 +1240,76 @@ function rRev(vw){
  MODS.forEach(m=>{$('#ck').insertAdjacentHTML('beforeend','<p style="margin:10px 0 2px"><b>'+m.n+' · '+m.nome+'</b></p>'+m.mais.check.map((c,i)=>{const id=m.id+i;return '<label class="chk"><input type="checkbox" data-c="'+id+'"'+(S.chk[id]?' checked':'')+'><span>'+c+'</span></label>'}).join(''))});
  $$('[data-c]',vw).forEach(c=>c.onchange=()=>{S.chk[c.dataset.c]=c.checked;save()});
 }
+/*rvk-port:ini*/
+function rvkPort(){
+ const mem='<button type="button" class="rk-mem" onclick="var c=this.parentNode;c.classList.toggle(\'rk-oculto\');this.textContent=c.classList.contains(\'rk-oculto\')?\'👀 Mostrar de novo\':\'🙈 Refazer de memória\'">🙈 Refazer de memória</button>';
+ const tot=PROVA.length||1;
+ const mapa=MODS.map(m=>{const n=PROVA.filter(q=>q.m===m.id).length;const partes=String(m.mais.chave).split('→').map(s=>s.trim()).filter(Boolean);
+  return '<div class="rk-c"><span class="rk-peso" title="Questões da Somativa 81 sobre esta aula">'+n+' na S81</span><h3><small>Aula '+m.n+'</small>'+(EMO[m.id]||'')+' '+m.nome+'</h3>'+(partes.length>1?'<div class="rk-flow rk-v">'+partes.map(p=>'<div>'+p+'</div>').join('')+'</div>':'<p style="margin:6px 0 0;font-size:.92rem;line-height:1.45">'+m.mais.chave+'</p>')+'<a class="rk-go" data-rkmod="'+m.id+'">Abrir aula →</a></div>'}).join('');
+ const mx=Math.max(...FREQ.map(f=>f[1].length));
+ const freq=FREQ.map(f=>'<div style="margin:9px 0"><div style="display:flex;justify-content:space-between;gap:10px;font-size:.9rem"><span>'+f[0]+'</span><b style="white-space:nowrap">'+f[1].length+' quest.</b></div><div style="height:9px;border-radius:9px;margin-top:5px;background:color-mix(in srgb,currentColor 12%,transparent);overflow:hidden"><i style="display:block;height:100%;width:'+Math.round(f[1].length/mx*100)+'%;border-radius:9px;background:linear-gradient(90deg,var(--vg-acc),color-mix(in srgb,var(--vg-acc) 55%,#fff))"></i></div></div>').join('');
+ const peg=PEG.filter(p=>!p[1]).map(p=>'<tr><td>'+p[0]+'</td><td>'+p[2]+'</td></tr>').join('');
+ return `<div class="rvk">
+<div class="rk-sec"><h2>🗺️ A matéria em 1 minuto</h2><p>Cada aula em uma cadeia de causa e efeito. O selo mostra quantas questões da Somativa 81 saíram dela.</p></div>
+<div class="rk-grid">${mapa}</div>
+
+<div class="rk-sec"><h2>📊 Raio-X da Somativa 81</h2><p>Quantas questões cada tema rendeu. Letramento em saúde é o campeão.</p></div>
+<div class="rk-c">${freq}</div>
+
+<div class="rk-sec"><h2>🧩 Esquemas para refazer de memória</h2><p>Leia, aperte “Refazer de memória” e tente dizer cada caixa antes de mostrar de novo.</p></div>
+<div class="rk-grid">
+<div class="rk-c rk-wide"><h3><small>Aulas 3 a 8</small>Qual documento a situação pede?</h3>
+<div class="rk-tree">
+<div><span>Registrar toda a assistência, com continuidade</span><span><b>Prontuário</b> (equipe toda, data, hora, assinatura, CRM)</span></div>
+<div><span>Afirmar um fato médico e a consequência (afastamento)</span><span><b>Atestado</b></span></div>
+<div><span>Provar só que a pessoa esteve na consulta</span><span><b>Declaração de comparecimento</b> (sem condição clínica)</span></div>
+<div><span>Descrever achados de um exame e concluir</span><span><b>Laudo</b> (médico com CRM)</span></div>
+<div><span>Documentar a decisão terapêutica</span><span><b>Prescrição</b></span></div>
+<div><span>Passar o cuidado adiante ao fim da internação</span><span><b>Sumário de alta</b> (médico assistente)</span></div>
+<div><span>Declarar a morte e a cadeia de causas</span><span><b>Atestado de óbito</b> (a certidão é do cartório)</span></div>
+</div>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 1</small>Comunicação: ponte ou muro</h3>
+<div class="rk-vs"><div class="ok"><b>Ponte</b>Empatia, linguagem do paciente, escuta sem interromper, perguntas abertas e fechadas equilibradas, fechamento com próximos passos.</div><div class="no"><b>Muro</b>Jargão, postura distante, só perguntas fechadas, encerrar sem checar dúvidas.</div></div>
+<div class="rk-flow"><div>Vínculo</div><div>Anamnese fiel</div><div>Diagnóstico preciso</div><div>Adesão</div></div>${mem}</div>
+
+<div class="rk-c"><h3><small>Tema nº 1 da prova</small>Letramento em saúde</h3>
+<div class="rk-flow"><div><b>Linguagem simples</b>sem jargão</div><div><b>Recurso visual</b>tabela de horários, desenho</div><div><b>Poucas mensagens</b>o essencial primeiro</div><div><b>Confirmar</b>“me explica como vai tomar?”</div></div>
+<p style="margin:10px 0 0;font-size:.88rem;opacity:.8">Caiu em 5 justificativas da S81, com redações diferentes. Se a alternativa fala em adaptar a linguagem e confirmar o entendimento, desconfie que é a certa.</p>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 4</small>CID no atestado: pode?</h3>
+<div class="rk-tree">
+<div><span>Paciente pediu</span><span>pode, registrando a autorização</span></div>
+<div><span>Dever legal</span><span>pode (ex.: notificação obrigatória)</span></div>
+<div><span>Justa causa</span><span>pode</span></div>
+<div><span>Nenhum dos três</span><span>não pode: sigilo é a regra</span></div>
+</div>
+<p style="margin:10px 0 0;font-size:.88rem;opacity:.8">Obrigatórios: nome, documento e data. Endereço não. Empresa não pode recusar atestado verídico.</p>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 3 · Lei 13.787/2018</small>Vida do prontuário</h3>
+<div class="rk-flow"><div><b>Registro</b>data, hora, assinatura, CRM, sem abreviação</div><div><b>Digitalização</b>com certificação</div><div><b>20 anos</b>do último registro</div><div><b>Comissão permanente</b>analisa</div><div><b>Eliminação</b></div></div>
+<p style="margin:10px 0 0;font-size:.88rem;opacity:.8">Autorização do paciente não basta para descartar. Negar acesso ao próprio prontuário é vedado (art. 88), salvo risco.</p>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 6</small>Receita: o que muda</h3>
+<div class="rk-quad"><div style="--q:#e0b23a"><b>Receita A (amarela)</b>entorpecentes, validade de 30 dias</div><div style="--q:#4da3ff"><b>Receita B (azul)</b>psicotrópicos</div><div style="--q:#3ccf8e"><b>Genérico</b>médico não é obrigado a prescrever</div><div style="--q:#ff8a4d"><b>Substituição</b>sem “não autorizo”, a troca é tácita</div></div>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 8</small>Atestado de óbito em números</h3>
+<div class="rk-quad"><div><b>3 vias</b>branca, amarela e rosa (azul não existe)</div><div><b>9 blocos, 59 variáveis</b>caneta azul ou preta, letra de forma, sem rasura</div><div><b>Bloco V</b>causas: a = direta, última linha = básica</div><div><b>Bloco IX</b>sem médico: cartório + 2 testemunhas</div></div>
+<p style="margin:10px 0 0;font-size:.88rem;opacity:.8">PCR e “falência múltipla” são modo de morrer, não causa. Bloco VII: causas externas.</p>${mem}</div>
+</div>
+
+<div class="rk-sec"><h2>⚠️ Pegadinhas: o errado e o certo</h2><p>Afirmações falsas que a prova usa como distratores, com a correção.</p></div>
+<div class="rk-c"><div class="rk-tw"><table class="rk-peg"><thead><tr><th style="display:none"></th><th>A pegadinha</th><th>O certo</th></tr></thead><tbody>${peg.replace(/<tr><td>/g,'<tr><td style="display:none"></td><td>')}</tbody></table></div></div>
+
+<div class="rk-sec"><h2>📋 Por documento: tabelas completas</h2><p>As fichas detalhadas de cada aula seguem abaixo.</p></div>
+</div>`;
+}
+/*rvk-port:fim*/
 function rFin(vw){
  const tb=(h,rows)=>'<div class="tbw"><table><tr>'+h.map(x=>'<th>'+x+'</th>').join('')+'</tr>'+rows.map(r=>'<tr>'+r.map((c,i)=>'<td>'+(i?c:'<b>'+c+'</b>')+'</td>').join('')+'</tr>').join('')+'</table></div>';
  const fl=a=>'<div class="fluxo">'+a.map(x=>'<span>'+x+'</span>').join('<i>→</i>')+'</div>';
  vw.innerHTML='<div class="crumb">Revisão final</div><h1 class="title">Revisão em 1 hora</h1><p class="obj">Um esquema por aula, mais as comparações que a prova mais confunde. Refaça cada um de memória; depois confira em '+'“O que vai cair”.</p>'+
+ rvkPort()+
  '<div class="card"><h3>Qual documento é qual</h3>'+tb(['Documento','Para que serve','Quem faz','Pegadinha'],[
   ['Prontuário','Registro único, legal, sigiloso e científico de toda a assistência','Toda a equipe, com data, hora, assinatura e CRM','Descarte só com comissão e 20 anos do último registro (Lei 13.787/2018)'],
   ['Atestado','Afirma um fato médico e sua consequência (ex.: afastamento)','Médico','CID só com autorização do paciente; nome, documento e data são obrigatórios'],
@@ -1256,6 +1322,7 @@ function rFin(vw){
  '<div class="card"><h3>Atestado de óbito · Bloco V, Parte I</h3>'+fl(['<b>a</b><br>causa direta (a que matou)','<b>b</b><br>devida a…','<b>c</b><br>devida a…','<b>d</b><br>causa básica (última linha preenchida)'])+'<p class="muted">Nunca PCR ou “falência múltipla” como causa. Três vias: branca, amarela e rosa. 59 variáveis em 9 blocos.</p></div>'+
  '<div class="card"><h3>Anamnese em três tempos</h3>'+fl(['<b>Início</b><br>acolhimento e vínculo','<b>Meio</b><br>compreender o problema','<b>Fim</b><br>manejo e próximos passos'])+'</div>'+
  MODS.map(m=>'<div class="card"><h3>'+(EMO[m.id]||m.n)+' Aula '+m.n+' · '+m.nome+'</h3><p class="chave">'+m.mais.chave+'</p>'+tb(['Ponto','O que a prova quer'],m.mais.tab)+'</div>').join('');
+ $$('[data-rkmod]',vw).forEach(a=>a.onclick=()=>go({v:'mod',id:a.dataset.rkmod,tab:'aula',seg:0}));
 }
 function rCair(vw){
  const peso=MODS.map(m=>({m,n:PROVA.filter(q=>q.m===m.id).length})),tot=PROVA.length||1;

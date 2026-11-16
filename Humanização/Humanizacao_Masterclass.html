@@ -465,7 +465,7 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="huma";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../_tema/vidro.css?v=ce07521d">
+<link rel="stylesheet" href="../_tema/vidro.css?v=996cf227">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=4f9f9423"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/foco.js?v=80e61aad"></script>
 <!--/vidro:cabeca-->
@@ -877,12 +877,141 @@ const ESQUEMAS='<section class="section"><h2>Esquemas para a revisão em 1 hora<
 '<h3>Acolhimento, vínculo e responsabilização</h3><div class="flow"><span><b>Acolhimento</b><br>reconhecer a necessidade legítima de quem chega</span> → <span><b>Vínculo</b><br>relação de confiança e pactuação</span> → <span><b>Responsabilização</b><br>cuidar do caso até o fim, articulando a rede</span></div>'+
 '<h3>Equipe</h3><div class="table"><table><thead><tr><th>Multiprofissional</th><th>Interprofissional</th></tr></thead><tbody><tr><td>Saberes justapostos, cada um no seu, sem conversa</td><td>Comunicação, reuniões, plano de cuidado compartilhado</td></tr></tbody></table></div><p class="muted">Fono: deglutição e fala. Fisio: reabilitação motora. TO: atividades funcionais. Enfermagem: curativo. Registro no prontuário evita erro de horário.</p>'+
 '<h3>Ênfase biomédica x biopsicossocial</h3><div class="table"><table><thead><tr><th>Biomédica</th><th>Biopsicossocial</th></tr></thead><tbody><tr><td>Fatos biológicos, densidade tecnológica, acesso quantitativo, centrada no médico</td><td>Subjetividade, comunicação, acesso qualitativo, centrada na pessoa</td></tr></tbody></table></div></section>';
-function review(){
+/*rvk-huma:ini*/
+const RVK_MAPA={
+ a02:['Doença (disease) é a biologia; adoecimento (illness) é a experiência da pessoa.','Acolhimento é postura de todo o serviço, não um setor de triagem.','Integralidade tem 3 sentidos; tecnologias leves, leve-duras e duras.'],
+ a03:['3 princípios: transversalidade, indissociabilidade atenção-gestão, protagonismo/autonomia.','Diretrizes: acolhimento, cogestão, ambiência, clínica ampliada, valorização do trabalhador, direitos do usuário.','PTS: diagnóstico ampliado, metas pactuadas, responsáveis, reavaliação.'],
+ a04:['Emissor, mensagem, canal, receptor, código, contexto e feedback.','Ruído: jargão, barulho, letra ilegível, ansiedade.','Teach-back: a pessoa explica com as próprias palavras.'],
+ a05:['Pergunta aberta, depois fechadas, depois resumo e checagem.','Explore ideias, preocupações, expectativas e impacto.','Paciente capaz decide quem participa e o que se compartilha.'],
+ a06:['Multi = lado a lado; inter = decidem juntos com meta comum.','SBAR na passagem de caso.','Circuito fechado: quem recebe repete, quem enviou confirma.'],
+ a07:['Observação, sentimento, necessidade, pedido (nessa ordem).','“Você é irresponsável” é avaliação, não observação.','Pedido que gera culpa ou ameaça virou exigência.'],
+ a08:['Paliativo começa cedo, junto ao tratamento da doença.','Dor total: física, psicológica, social e espiritual.','Ortotanásia é o objetivo; distanásia, eutanásia e mistanásia se opõem.'],
+ a09:['SPIKES: Setting, Perception, Invitation, Knowledge, Emotions, Strategy/Summary.','Perguntar o que já sabe e quanto quer saber antes de informar.','Informação em partes, linguagem simples, espaço para a emoção.']
+};
+function rvkHuma(){
+ const mem='<button type="button" class="rk-mem" onclick="var c=this.parentNode;c.classList.toggle(\'rk-oculto\');this.textContent=c.classList.contains(\'rk-oculto\')?\'👀 Mostrar de novo\':\'🙈 Refazer de memória\'">🙈 Refazer de memória</button>';
+ const peso=l=>{const ex=new Set();l.sections.forEach(s=>sectionRefs(s).forEach(r=>ex.add(r.exam)));return ex.size};
+ const tot=data.exams.length;
+ const mapa=data.lessons.map(l=>'<div class="rk-c"><span class="rk-peso" title="Em quantas avaliações do acervo esta aula caiu">'+peso(l)+'/'+tot+' provas</span><h3><small>Aula '+l.number+'</small>'+esc(l.title)+'</h3><ul>'+(RVK_MAPA[l.id]||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><a class="rk-go" href="'+route(l.id)+'">Abrir aula →</a></div>').join('');
  const ranked=data.lessons.flatMap(l=>l.sections.map(s=>[l,s,sectionRefs(s)])).sort((a,b)=>new Set(b[2].map(x=>x.exam)).size-new Set(a[2].map(x=>x.exam)).size||b[2].length-a[2].length);
- return hero('Revisão em 1 hora','Revisão final','Os esquemas abaixo resumem o que as provas cobram. Refaça cada um de memória e confira a recorrência no fim.')+
- '<section class="section"><h2>Relações para refazer de memória</h2>'+data.lessons.map(l=>'<div class="panel"><h3>'+esc(l.title)+'</h3><p>'+esc(l.review)+'</p>'+link(l.id,'Abrir aula')+'</div>').join('')+'</section>'+
- '<section class="section"><h2>Recorrência no acervo</h2><p>Cada avaliação conta uma vez por tema. Referências adicionais aparecem para conferência.</p><div class="table"><table><thead><tr><th>Tema</th><th>Avaliações</th><th>Onde conferir</th></tr></thead><tbody>'+ranked.map(([l,s,rs])=>'<tr><td>'+link(l.id,s.title,s.id)+'</td><td>'+new Set(rs.map(x=>x.exam)).size+'/'+data.exams.length+'</td><td><div class="sources">'+rs.map(target).join('')+'</div></td></tr>').join('')+'</tbody></table></div></section>'+
- ESQUEMAS+'<section class="section"><h2>Prática de revisão</h2>'+link('cair','O que vai cair')+' '+link('somativas','Questões das somativas')+' '+link('treino','Questões autorais ✍️')+'</section>';
+ return `<div class="rvk">
+<div class="rk-sec"><h2>🗺️ A matéria em 1 minuto</h2><p>Uma ficha por aula, com o que sustenta as questões. O selo mostra em quantas das ${tot} avaliações do acervo a aula caiu.</p></div>
+<div class="rk-grid">${mapa}</div>
+
+<div class="rk-sec"><h2>🧩 Esquemas para refazer de memória</h2><p>Leia, aperte “Refazer de memória” e tente dizer cada caixa antes de mostrar de novo.</p></div>
+<div class="rk-grid">
+<div class="rk-c rk-wide"><h3><small>Aula 2</small>O encontro clínico: dois olhares sobre a mesma pessoa</h3>
+<div class="rk-quad"><div style="--q:#4da3ff"><b>Doença (disease)</b>Alteração biológica: o que o exame mostra.</div><div style="--q:#ff8a4d"><b>Adoecimento (illness)</b>A experiência vivida: medo, perdas, rotina, sentido.</div></div>
+<div class="rk-tw"><table><thead><tr><th>Ênfase biomédica</th><th>Ênfase biopsicossocial</th></tr></thead><tbody><tr><td>Fatos biológicos, densidade tecnológica, acesso quantitativo, centrada no médico.</td><td>Subjetividade, comunicação, acesso qualitativo, centrada na pessoa. Amplia o biomédico, não o abandona.</td></tr></tbody></table></div>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 2</small>Do acolhimento à responsabilização</h3>
+<div class="rk-flow"><div><b>Acolhimento</b>escuta, risco e vulnerabilidade de quem chega</div><div><b>Vínculo</b>continuidade e confiança</div><div><b>Responsabilização</b>acompanhar o percurso, articular a rede</div></div>
+<p style="margin:10px 0 0;font-size:.9rem;opacity:.85"><b>Encaminhamento responsável:</b> explica o motivo, combina o próximo passo e prevê retorno se piorar ou se o acesso falhar.</p>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 2 · Merhy</small>Tecnologias do cuidado</h3>
+<div class="rk-quad"><div style="--q:#3ccf8e"><b>Leves</b>Relações: escuta, acolhimento, vínculo.</div><div style="--q:#e0b23a"><b>Leve-duras</b>Saberes estruturados: clínica, protocolos, epidemiologia.</div><div style="--q:#ff6a55"><b>Duras</b>Equipamentos, exames, normas.</div><div style="--q:#8b84ff"><b>Na prova</b>Um plano de cuidado usa as três ao mesmo tempo.</div></div>${mem}</div>
+
+<div class="rk-c rk-wide"><h3><small>Aula 2 · Mattos</small>Os três sentidos da integralidade</h3>
+<div class="rk-tw"><table><thead><tr><th>Sentido</th><th>O que significa</th><th>Exemplo que cai</th></tr></thead><tbody>
+<tr><td>Traço da boa prática</td><td>Ver necessidades além da queixa inicial.</td><td>Olhar o paciente inteiro, não só o sintoma.</td></tr>
+<tr><td>Organização dos serviços</td><td>Articular promoção, prevenção, assistência e reabilitação.</td><td>Demanda programada + espontânea; teleconsulta para definir conduta.</td></tr>
+<tr><td>Resposta governamental</td><td>Políticas para problemas ou grupos específicos.</td><td>Saúde da mulher, população LGBT, população de rua.</td></tr>
+</tbody></table></div></div>
+
+<div class="rk-c rk-wide"><h3><small>Aula 3</small>Política Nacional de Humanização (HumanizaSUS)</h3>
+<div class="rk-quad"><div><b>1. Transversalidade</b>Aumentar a comunicação entre grupos e saberes.</div><div><b>2. Indissociabilidade</b>Atenção e gestão andam juntas: a organização do trabalho muda o cuidado.</div><div><b>3. Protagonismo, corresponsabilidade e autonomia</b>Usuário e trabalhador decidem juntos.</div><div style="--q:#3fcfae"><b>Diretrizes</b>Acolhimento · cogestão · ambiência · clínica ampliada · valorização do trabalhador · defesa dos direitos do usuário.</div></div>
+<h3 style="font-size:1.05rem;margin:16px 0 4px">Como a prova disfarça cada um</h3>
+<div class="rk-tree">
+<div><span>Paciente escolhe o tratamento junto com a equipe</span><span>protagonismo e autonomia</span></div>
+<div><span>Grupo de trabalho com usuários e trabalhadores</span><span>cogestão</span></div>
+<div><span>Humanização discutida em todas as reuniões e setores</span><span>transversalidade</span></div>
+<div><span>Conforto, privacidade e relações no espaço do serviço</span><span>ambiência (não é só obra)</span></div>
+<div><span>Olhar biológico + psíquico + social, saberes integrados</span><span>clínica ampliada</span></div>
+</div>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 3</small>Projeto Terapêutico Singular (PTS)</h3>
+<div class="rk-flow"><div><b>Diagnóstico ampliado</b>riscos, vulnerabilidades, desejos</div><div><b>Metas pactuadas</b>curto, médio e longo prazo</div><div><b>Responsáveis</b>quem faz o quê</div><div><b>Reavaliação</b>data marcada</div></div>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 3</small>Equidade</h3>
+<div class="rk-tree">
+<div><span>Barreira desigual de acesso</span><span>resposta desigual para igualar</span></div>
+<div><span>Pessoa trans</span><span>respeitar o nome social</span></div>
+<div><span>Pessoa com deficiência</span><span>comunicação acessível</span></div>
+<div><span>Situação de rua</span><span>cuidado articulado no território</span></div>
+</div><p style="margin:10px 0 0;font-size:.88rem;opacity:.8">Na prova: ache o mecanismo que bloqueia o acesso e escolha a resposta que o remove.</p>${mem}</div>
+
+<div class="rk-c rk-wide"><h3><small>Aula 4</small>Processo de comunicação</h3>
+<div class="rk-flow"><div><b>Emissor</b>codifica</div><div><b>Mensagem + canal</b>voz, papel, celular</div><div><b>Receptor</b>decodifica com o repertório dele</div><div><b>Feedback</b>teach-back: “me conta como vai tomar”</div></div>
+<div class="rk-tw"><table><thead><tr><th>Verbal oral</th><th>Verbal escrita</th><th>Não verbal</th><th>Ruído</th></tr></thead><tbody><tr><td>A fala</td><td>Prescrição, prontuário, laudo, e-mail</td><td>Tom, ritmo, pausas, expressão, postura, toque, silêncio</td><td>Jargão, barulho, letra ilegível, instrução contraditória, ansiedade</td></tr></tbody></table></div>
+<p style="margin:10px 0 0;font-size:.88rem;opacity:.8">“Entendi” com olhar perdido: o não verbal contradiz o verbal. Verifique com uma pergunta, não suponha.</p>${mem}</div>
+
+<div class="rk-c"><h3><small>Aulas 4 e 5</small>Roteiro da entrevista</h3>
+<div class="rk-flow"><div><b>Pergunta aberta</b>e agenda compartilhada</div><div><b>Explorar</b>ideias, preocupações, expectativas, impacto</div><div><b>Perguntas fechadas</b>para detalhar</div><div><b>Resumo + checagem</b>e plano pactuado</div></div>${mem}</div>
+
+<div class="rk-c"><h3><small>Aula 5</small>Família, autonomia e sigilo</h3>
+<div class="rk-tree">
+<div><span>Paciente capaz</span><span>ele decide quem participa e o que se conta</span></div>
+<div><span>Acompanhante fala mais</span><span>dirija-se ao paciente mesmo assim</span></div>
+<div><span>Assunto sensível</span><span>ofereça conversa a sós</span></div>
+<div><span>Encontro difícil</span><span>reconheça a emoção, peça exemplos, negocie meta possível</span></div>
+<div><span>Fechamento</span><span>checar compreensão, dividir tarefas, canal de retorno</span></div>
+</div>${mem}</div>
+
+<div class="rk-c rk-wide"><h3><small>Aula 6</small>Equipe e segurança</h3>
+<div class="rk-vs"><div class="no"><b>Multiprofissional</b>Profissões lado a lado, cada uma no seu; em paralelo podem sair condutas incompatíveis.</div><div class="ok"><b>Interprofissional</b>Trocam informação, decidem juntas, plano com necessidade, objetivo, responsável e prazo.</div></div>
+<div class="rk-tw"><table><thead><tr><th>SBAR</th><th>O que dizer na passagem de caso</th></tr></thead><tbody>
+<tr><td>S · Situação</td><td>O que está acontecendo agora.</td></tr><tr><td>B · Histórico</td><td>Contexto clínico relevante.</td></tr><tr><td>A · Avaliação</td><td>O que eu acho que é.</td></tr><tr><td>R · Recomendação</td><td>O que precisa ser feito, por quem e quando.</td></tr></tbody></table></div>
+<div class="rk-flow"><div><b>Envia</b>mensagem crítica</div><div><b>Recebe e repete</b>em voz alta</div><div><b>Confirma ou corrige</b>circuito fechado</div></div>
+<p style="margin:10px 0 0;font-size:.88rem;opacity:.8">Prontuário guarda a informação, mas urgência exige comunicação na hora. Fono: deglutição e fala · Fisio: reabilitação motora · TO: atividades funcionais.</p>${mem}</div>
+
+<div class="rk-c rk-wide"><h3><small>Aula 7</small>Comunicação não violenta: 4 passos, nesta ordem</h3>
+<div class="rk-flow"><div><b>Observação</b>fato verificável, sem julgar</div><div><b>Sentimento</b>o que eu sinto</div><div><b>Necessidade</b>o que está em jogo</div><div><b>Pedido</b>concreto, possível, positivo</div></div>
+<div class="rk-vs"><div class="no"><b>Fere a CNV</b>“Você é irresponsável” (avaliação) · “Sinto-me ignorado” (interpreta a intenção do outro) · pedido que gera culpa ou ameaça (exigência).</div><div class="ok"><b>CNV</b>“Você chegou 30 min depois do combinado” · “Fico preocupado” · “Preciso de previsibilidade” · “Você pode avisar se for atrasar?”</div></div>${mem}</div>
+
+<div class="rk-c rk-wide"><h3><small>Aula 8</small>Cuidados paliativos</h3>
+<div class="rk-quad"><div style="--q:#ff6a55"><b>Físico</b>dor e sintomas</div><div style="--q:#8b84ff"><b>Psicológico</b>medo, ansiedade, luto</div><div style="--q:#e0b23a"><b>Social</b>família, trabalho, dinheiro</div><div style="--q:#3fcfae"><b>Espiritual</b>sentido, fé, legado</div></div>
+<p style="margin:8px 0 0;font-size:.88rem;opacity:.8">Juntos formam a <b>dor total</b>. Paliativo começa no diagnóstico de doença que ameaça a vida, junto com o tratamento, com equipe e apoio à família.</p>
+<div class="rk-tw"><table><thead><tr><th>Termo</th><th>O que é</th><th>Paliativo</th></tr></thead><tbody>
+<tr><td>Ortotanásia</td><td>Morte no tempo certo, sem prolongar nem abreviar, com conforto.</td><td>É o objetivo</td></tr>
+<tr><td>Distanásia</td><td>Prolongar o morrer com intervenção desproporcional (obstinação).</td><td>Se opõe</td></tr>
+<tr><td>Eutanásia</td><td>Ação intencional para causar a morte.</td><td>Se opõe</td></tr>
+<tr><td>Mistanásia</td><td>Morte evitável por falta de assistência.</td><td>Se opõe</td></tr></tbody></table></div>
+<div class="rk-quad"><div><b>Autonomia</b>a vontade da pessoa capaz</div><div><b>Beneficência</b>fazer o bem</div><div><b>Não maleficência</b>não causar dano</div><div><b>Justiça</b>distribuir com equidade</div></div>${mem}</div>
+
+<div class="rk-c rk-wide"><h3><small>Aula 9</small>SPIKES: más notícias</h3>
+<div class="rk-flow"><div><b>S · Setting</b>local reservado, sentar, tempo</div><div><b>P · Perception</b>o que já sabe?</div><div><b>I · Invitation</b>quanto quer saber?</div><div><b>K · Knowledge</b>em partes, sem jargão</div><div><b>E · Emotions</b>nomear e acolher, silêncio</div><div><b>S · Strategy/Summary</b>plano junto e resumo</div></div>
+<div class="rk-tw"><table class="rk-peg"><thead><tr><th>Etapa</th><th>Falha típica na prova</th><th>O certo</th></tr></thead><tbody>
+<tr><td>Setting</td><td>Notícia no corredor, em pé, com pressa.</td><td>Sala reservada, sentado, acompanhante autorizado.</td></tr>
+<tr><td>Perception</td><td>Começa explicando sem perguntar.</td><td>“O que você já entendeu até aqui?”</td></tr>
+<tr><td>Invitation</td><td>Despeja todos os detalhes.</td><td>Pergunta quanto a pessoa quer saber agora.</td></tr>
+<tr><td>Knowledge</td><td>Termos técnicos, tudo de uma vez.</td><td>Aviso prévio, partes pequenas, checar compreensão.</td></tr>
+<tr><td>Emotions</td><td>Minimiza ou muda de assunto.</td><td>Reconhece a reação e dá espaço ao silêncio.</td></tr>
+<tr><td>Strategy</td><td>Encerra sem plano.</td><td>Resume e combina os próximos passos.</td></tr></tbody></table></div>${mem}</div>
+</div>
+
+<div class="rk-sec"><h2>⚠️ Pegadinhas: o errado e o certo</h2><p>As alternativas erradas que mais aparecem nas provas.</p></div>
+<div class="rk-c"><div class="rk-tw"><table class="rk-peg"><thead><tr><th>Tema</th><th>A pegadinha</th><th>O certo</th></tr></thead><tbody>
+<tr><td>Acolhimento</td><td>É um setor ou a triagem da recepção.</td><td>É postura de todo o serviço, em todo encontro.</td></tr>
+<tr><td>Cuidado centrado na pessoa</td><td>Dispensa o raciocínio diagnóstico.</td><td>Integra doença e adoecimento, sem perder precisão.</td></tr>
+<tr><td>Ambiência</td><td>É só reforma do espaço físico.</td><td>Inclui conforto, privacidade, relações e organização do trabalho.</td></tr>
+<tr><td>Integralidade</td><td>Só um traço da boa medicina.</td><td>Também organização dos serviços e resposta governamental.</td></tr>
+<tr><td>Comunicação</td><td>Orientação correta garante entendimento.</td><td>Pode falhar por ruído; confirme com teach-back.</td></tr>
+<tr><td>Entrevista</td><td>Só perguntas fechadas, sem resumo.</td><td>Aberta → fechadas → resumo e checagem.</td></tr>
+<tr><td>Família</td><td>A família decide pelo paciente capaz.</td><td>A família ajuda; a decisão é do paciente.</td></tr>
+<tr><td>Equipe</td><td>Multiprofissional = interprofissional.</td><td>Inter exige troca, decisão conjunta e meta comum.</td></tr>
+<tr><td>CNV</td><td>Expressar julgamento com calma é CNV.</td><td>Observação sem avaliação, e pedido sem ameaça.</td></tr>
+<tr><td>Paliativos</td><td>Só quando não há mais tratamento.</td><td>Desde o diagnóstico, junto ao tratamento.</td></tr>
+<tr><td>Más notícias</td><td>Informar tudo logo e perguntar a emoção no fim.</td><td>Perceber, convidar, informar em partes, acolher.</td></tr>
+</tbody></table></div></div>
+
+<div class="rk-sec"><h2>📊 Recorrência no acervo</h2><p>Cada avaliação conta uma vez por tema. Abra para ver onde conferir.</p></div>
+<details class="rk-c"><summary>Ver a tabela de recorrência por tema</summary><div class="rk-tw"><table><thead><tr><th>Tema</th><th>Avaliações</th><th>Onde conferir</th></tr></thead><tbody>${ranked.map(([l,s,rs])=>'<tr><td>'+link(l.id,s.title,s.id)+'</td><td>'+new Set(rs.map(x=>x.exam)).size+'/'+tot+'</td><td><div class="sources">'+rs.map(target).join('')+'</div></td></tr>').join('')}</tbody></table></div></details>
+</div>`;
+}
+/*rvk-huma:fim*/
+function review(){
+ return hero('Revisão em 1 hora','Revisão final','Mapa da matéria, esquemas para refazer de memória, as pegadinhas mais cobradas e a recorrência de cada tema.')+
+ rvkHuma()+'<section class="section"><h2>Prática de revisão</h2>'+link('cair','O que vai cair')+' '+link('somativas','Questões das somativas')+' '+link('treino','Questões autorais ✍️')+'</section>';
 }
 function myReview(){
  const pending=allQ.filter(q=>state.missed[q.id]||state.answers[q.id]==null||state.answers[q.id]!==q.answer);

@@ -253,7 +253,7 @@ def bloco_aula(m, rel):
     """Tema de vidro dentro das aulas (iframes): fundo transparente para o 3D do master aparecer atrás."""
     k = json.dumps(m["k"])
     return (f"{H_INI}<script>document.documentElement.dataset.vidro={k};document.documentElement.classList.add('vidro-aula','vidro-ready')</script>"
-            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\"><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script>{H_FIM}")
+            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\"><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script defer src=\"{rel}/siglas.js?v={ver('siglas.js')}\"></script>{H_FIM}")
 
 
 def atualizar_aulas(m):
