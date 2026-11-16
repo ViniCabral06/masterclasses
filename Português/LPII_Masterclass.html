@@ -407,12 +407,13 @@ mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8
 
 
 
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="port";(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=48e0b8b6">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=4f9f9423"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=c1c7efad"></script><script defer src="../_tema/foco.js?v=80e61aad"></script>
+<script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=4f9f9423"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=c1c7efad"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/foco.js?v=80e61aad"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -449,6 +450,8 @@ mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8
 <div id="vidro-load" style="--vl:#ff8a5b" role="status" aria-label="Carregando Português Aplicado à Saúde II"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 16h5"/></svg></div><div class="vl-t">Português Aplicado à Saúde II</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
+
 
 
 
@@ -1108,7 +1111,7 @@ function nav(){
   h+='<div class="grp">Treino</div>';
   [['sim','⏱️','Simulado (prova)'],['quiz','🧠','Quiz final · 15'],['arena','🎯','Arena']].forEach(x=>h+='<button class="nv'+(cur.v===x[0]?' on':'')+'" data-v="'+x[0]+'"><span class="n">'+x[1]+'</span><span class="t">'+x[2]+'</span></button>');
   h+='<div class="grp">Revisão final</div>';
-  [['rfin','🧭','Revisão em 1 hora'],['cair','🎯','O que vai cair · Raio-X da prova'],['rev','🔁','Pegadinhas · checklist'],['freq','📊','Frequência na prova'],['az','🔤','Termos A–Z'],['meu','📌','Minha revisão'],['docs','📑','Documentos lado a lado']].forEach(x=>h+='<button class="nv'+(cur.v===x[0]?' on':'')+'" data-v="'+x[0]+'"><span class="n">'+x[1]+'</span><span class="t">'+x[2]+'</span></button>');
+  [['rfin','🧭','Revisão em 1 hora'],['flash','🃏','Flashcards'],['cair','🎯','O que vai cair · Raio-X da prova'],['rev','🔁','Pegadinhas · checklist'],['freq','📊','Frequência na prova'],['az','🔤','Termos A–Z'],['meu','📌','Minha revisão'],['docs','📑','Documentos lado a lado']].forEach(x=>h+='<button class="nv'+(cur.v===x[0]?' on':'')+'" data-v="'+x[0]+'"><span class="n">'+x[1]+'</span><span class="t">'+x[2]+'</span></button>');
   h+='<button class="nv" id="zerar" style="margin-top:12px"><span class="n">↺</span><span class="t">Zerar respostas</span></button>';
   $('#nav').innerHTML=h;
   $$('.nv[data-v]').forEach(b=>b.onclick=()=>go({v:b.dataset.v,id:b.dataset.id,tab:'aula',seg:0}));
@@ -1133,7 +1136,7 @@ function rHome(vw){
 function go(c){cur=c;$('#app').classList.remove('open');const m=c.v==='mod'?MODS.find(x=>x.id===c.id):null;document.documentElement.style.setProperty('--h',m?m.hue:215);nav();render();window.scrollTo({top:0})}
 function render(){
  main.innerHTML='<div class="view" id="vw"></div>';const vw=$('#vw');
- ({home:rHome,mod:rMod,sim:rSim,quiz:rQuiz,arena:rArena,rev:rRev,rfin:rFin,cair:rCair,freq:rFreq,meu:rMeu,docs:rDocs,az:rAz}[cur.v])(vw);applyHL(vw);
+ ({home:rHome,mod:rMod,sim:rSim,quiz:rQuiz,arena:rArena,rev:rRev,rfin:rFin,flash:rFlash,cair:rCair,freq:rFreq,meu:rMeu,docs:rDocs,az:rAz}[cur.v])(vw);applyHL(vw);
  $$('img[data-img]',vw).forEach(i=>{i.src=IMGS[i.dataset.img]||''});
  $$('mark[data-j]',vw).forEach(mk=>{const js=mk.dataset.j.split(',');const tx='Caiu na Somativa 81 · justificativa'+(js.length>1?'s ':' ')+js.join(', ')+' · clique para ver';
   mk.onmouseenter=e=>{const t=$('#tip');t.textContent=tx;t.classList.add('on');const r=mk.getBoundingClientRect();t.style.left=Math.min(r.left,innerWidth-280)+'px';t.style.top=Math.max(8,r.top-48)+'px'};mk.onmouseleave=()=>$('#tip').classList.remove('on');
@@ -1223,6 +1226,8 @@ function rArena(vw){
    if(ok){seq++;if(seq>rec)rec=seq;addXP(5,'carta certa')}else seq=0;S.seq=seq;S.rec=rec;save();$('#sq1').textContent=seq;$('#rc').textContent=rec;
    $('#cd').insertAdjacentHTML('beforeend','<div class="rowb"><button class="cbtn" id="nc">Próxima carta</button></div>');$('#nc').onclick=()=>{i=(i+1+Math.floor(Math.random()*(CARDS.length-1)))%CARDS.length;draw()}})};draw();
 }
+/* --- flashcards (motor em _tema/flashcards.js, cartas em _tema/flash/port.txt) --- */
+function rFlash(vw){ vw.innerHTML='<div class="crumb">Revisão final</div><div data-vg-flash="port"></div>'; if(window.VGFlash)VGFlash.montarTudo(); }
 /* --- revisão --- */
 function rRev(vw){
  vw.innerHTML='<h1 class="title">Revisão final</h1><div class="card"><h3>Pegadinhas clássicas (V/F)</h3><div id="pg"></div></div><div class="card"><h3>Checklist final</h3><div id="ck"></div></div>';

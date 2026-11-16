@@ -1,0 +1,89 @@
+@titulo Flashcards · Humanização
+@sub Tudo da revisão final em cartas, aula por aula, mais as pegadinhas que as provas repetem. Toque para virar, marque se sabia; as que você errar voltam em "Só as que errei".
+
+# a02 | 🤝 Aula 2 · Humanização e integralidade
+Doença (disease) × adoecimento (illness)? :: **Doença:** a alteração biológica, o que o exame mostra.\n**Adoecimento:** a experiência vivida — medo, perdas, rotina, sentido. :: Caiu em 6/6 provas
+Ênfase biomédica × biopsicossocial? :: **Biomédica:** fatos biológicos, densidade tecnológica, acesso quantitativo, centrada no médico.\n**Biopsicossocial:** subjetividade, comunicação, acesso qualitativo, centrada na pessoa. **Amplia** o biomédico, não o abandona.
+O que é acolhimento? :: **Postura de todo o serviço**, em todo encontro: escuta, risco e vulnerabilidade de quem chega. **Não** é um setor nem a triagem da recepção.
+Qual é a cadeia acolhimento → vínculo → responsabilização? :: **Acolhimento:** escuta, risco e vulnerabilidade.\n**Vínculo:** continuidade e confiança.\n**Responsabilização:** acompanhar o percurso e articular a rede.
+O que é encaminhamento responsável? :: Explica o **motivo**, combina o **próximo passo** e prevê **retorno** se piorar ou se o acesso falhar.
+Tecnologias do cuidado de Merhy: leves, leve-duras e duras? :: **Leves:** relações — escuta, acolhimento, vínculo.\n**Leve-duras:** saberes estruturados — clínica, protocolos, epidemiologia.\n**Duras:** equipamentos, exames, normas.
+Um plano de cuidado usa qual tecnologia de Merhy? :: As **três ao mesmo tempo**.
+Os três sentidos da integralidade (Mattos)? :: 1. **Traço da boa prática:** ver necessidades além da queixa.\n2. **Organização dos serviços:** articular promoção, prevenção, assistência e reabilitação.\n3. **Resposta governamental:** políticas para problemas ou grupos específicos.
+Exemplo de integralidade como organização dos serviços? :: Juntar **demanda programada + espontânea**; teleconsulta para definir conduta.
+Exemplo de integralidade como resposta governamental? :: Políticas de **saúde da mulher**, da **população LGBT**, da **população de rua**.
+
+# a03 | 🏛️ Aula 3 · PNH e políticas
+Os 3 princípios da PNH (HumanizaSUS)? :: 1. **Transversalidade** — mais comunicação entre grupos e saberes.\n2. **Indissociabilidade entre atenção e gestão.**\n3. **Protagonismo, corresponsabilidade e autonomia.** :: Caiu em 6/6 provas
+As diretrizes da PNH? :: **Acolhimento · cogestão · ambiência · clínica ampliada · valorização do trabalhador · defesa dos direitos do usuário.**
+"O paciente escolhe o tratamento junto com a equipe" é qual item da PNH? :: **Protagonismo e autonomia.**
+"Grupo de trabalho com usuários e trabalhadores" é qual item da PNH? :: **Cogestão.**
+"Humanização discutida em todas as reuniões e setores" é qual item da PNH? :: **Transversalidade.**
+"Conforto, privacidade e relações no espaço do serviço" é qual item da PNH? :: **Ambiência** — e não é só obra.
+"Olhar biológico + psíquico + social, saberes integrados" é qual item da PNH? :: **Clínica ampliada.**
+Indissociabilidade entre atenção e gestão quer dizer o quê? :: A **organização do trabalho muda o cuidado**: atenção e gestão andam juntas.
+As 4 partes do Projeto Terapêutico Singular (PTS)? :: **Diagnóstico ampliado** (riscos, vulnerabilidades, desejos) → **metas pactuadas** (curto, médio e longo prazo) → **responsáveis** (quem faz o quê) → **reavaliação** (data marcada).
+O que é equidade na prática? :: **Resposta desigual para igualar** uma barreira desigual de acesso. Na prova: ache o mecanismo que bloqueia o acesso e escolha a resposta que o remove.
+Equidade: pessoa trans, pessoa com deficiência e situação de rua? :: **Trans:** respeitar o **nome social**.\n**Deficiência:** comunicação **acessível**.\n**Situação de rua:** cuidado articulado no **território**.
+
+# a04 | 💬 Aula 4 · Comunicação
+Os elementos do processo de comunicação? :: **Emissor** (codifica) → **mensagem + canal** (voz, papel, celular) → **receptor** (decodifica com o repertório dele) → **feedback**. Mais **código** e **contexto**. :: Caiu em 6/6 provas
+O que é teach-back? :: Pedir que a pessoa **explique com as próprias palavras** ("me conta como vai tomar").
+Comunicação verbal oral, verbal escrita e não verbal: exemplos? :: **Oral:** a fala.\n**Escrita:** prescrição, prontuário, laudo, e-mail.\n**Não verbal:** tom, ritmo, pausas, expressão, postura, toque, silêncio.
+Exemplos de ruído na comunicação? :: **Jargão, barulho, letra ilegível, instrução contraditória, ansiedade.**
+O paciente diz "entendi" com o olhar perdido. O que fazer? :: O não verbal **contradiz** o verbal: **verifique com uma pergunta**, não suponha.
+Orientação correta garante entendimento? :: **Não.** Pode falhar por ruído; confirme com **teach-back**.
+
+# a05 | 👨‍👩‍👧 Aula 5 · Paciente, acompanhante e família
+Qual é o roteiro da entrevista? :: **Pergunta aberta** e agenda compartilhada → **explorar** → **perguntas fechadas** para detalhar → **resumo + checagem** e plano pactuado. :: Caiu em 6/6 provas
+O que explorar na entrevista (os 4 itens)? :: **Ideias, preocupações, expectativas e impacto** na vida.
+Paciente capaz: quem decide quem participa e o que se conta? :: **O próprio paciente.** A família ajuda; a decisão é dele.
+O acompanhante fala mais que o paciente. O que fazer? :: **Dirigir-se ao paciente** mesmo assim.
+Assunto sensível com a família presente? :: **Ofereça conversa a sós.**
+Encontro difícil: o que fazer? :: **Reconheça a emoção**, peça exemplos, negocie uma meta possível.
+Como fechar o encontro com paciente e família? :: **Checar compreensão**, dividir tarefas e deixar um **canal de retorno**.
+
+# a06 | 🧑‍⚕️ Aula 6 · Comunicação interprofissional
+Multiprofissional × interprofissional? :: **Multi:** profissões lado a lado, cada uma no seu; em paralelo podem sair condutas incompatíveis.\n**Inter:** trocam informação, **decidem juntas**, plano com necessidade, objetivo, responsável e prazo — **meta comum**. :: Caiu em 2/6 provas
+O que é o SBAR? :: **S**ituação (o que acontece agora) · **B**ackground/histórico (contexto relevante) · **A**valiação (o que eu acho que é) · **R**ecomendação (o que fazer, por quem e quando). Usado na **passagem de caso**.
+O que é comunicação em circuito fechado? :: Quem envia dá a mensagem crítica → **quem recebe repete em voz alta** → quem enviou **confirma ou corrige**.
+O prontuário basta para comunicar uma urgência? :: **Não.** Guarda a informação, mas urgência exige **comunicação na hora**.
+Fono, fisio e TO cuidam de quê? :: **Fono:** deglutição e fala.\n**Fisio:** reabilitação motora.\n**TO:** atividades funcionais.
+
+# a07 | 🕊️ Aula 7 · Comunicação não violenta
+Os 4 passos da CNV, na ordem? :: **Observação** (fato verificável, sem julgar) → **sentimento** (o que eu sinto) → **necessidade** (o que está em jogo) → **pedido** (concreto, possível, positivo). :: Caiu em 2/6 provas
+"Você é irresponsável" é observação? :: **Não.** É **avaliação**. Observação seria: "Você chegou 30 min depois do combinado".
+"Sinto-me ignorado" é um sentimento na CNV? :: **Não.** **Interpreta a intenção do outro**. Sentimento seria: "Fico preocupado".
+Quando um pedido vira exigência? :: Quando **gera culpa ou ameaça**.
+Dê um exemplo dos 4 passos da CNV. :: "Você chegou **30 min depois** do combinado" · "**Fico preocupado**" · "**Preciso de previsibilidade**" · "**Você pode avisar** se for atrasar?"
+Expressar um julgamento com calma é CNV? :: **Não.** CNV é observação sem avaliação e pedido sem ameaça.
+
+# a08 | 🌿 Aula 8 · Cuidados paliativos
+Quando começam os cuidados paliativos? :: **No diagnóstico** de doença que ameaça a vida, **junto ao tratamento** da doença, com equipe e apoio à família. **Não** só quando não há mais tratamento. :: Caiu em 2/6 provas
+O que é dor total? :: Dor **física** (dor e sintomas), **psicológica** (medo, ansiedade, luto), **social** (família, trabalho, dinheiro) e **espiritual** (sentido, fé, legado).
+Ortotanásia? :: Morte **no tempo certo**, sem prolongar nem abreviar, com conforto. É o **objetivo** do paliativo.
+Distanásia? :: **Prolongar o morrer** com intervenção desproporcional (obstinação terapêutica). Se opõe ao paliativo.
+Eutanásia? :: **Ação intencional para causar a morte.** Se opõe ao paliativo.
+Mistanásia? :: Morte **evitável por falta de assistência**. Se opõe ao paliativo.
+Os 4 princípios da bioética? :: **Autonomia** (vontade da pessoa capaz) · **beneficência** (fazer o bem) · **não maleficência** (não causar dano) · **justiça** (equidade).
+
+# a09 | 📣 Aula 9 · Más notícias
+O que significa SPIKES? :: **S**etting · **P**erception · **I**nvitation · **K**nowledge · **E**motions · **S**trategy/Summary. :: Caiu em 2/6 provas
+SPIKES — Setting: falha típica e o certo? :: **Falha:** notícia no corredor, em pé, com pressa.\n**Certo:** sala reservada, **sentado**, acompanhante autorizado, tempo.
+SPIKES — Perception: falha típica e o certo? :: **Falha:** começa explicando sem perguntar.\n**Certo:** "O que você **já entendeu** até aqui?"
+SPIKES — Invitation: falha típica e o certo? :: **Falha:** despeja todos os detalhes.\n**Certo:** pergunta **quanto a pessoa quer saber** agora.
+SPIKES — Knowledge: falha típica e o certo? :: **Falha:** termos técnicos, tudo de uma vez.\n**Certo:** aviso prévio, **partes pequenas**, sem jargão, checar compreensão.
+SPIKES — Emotions: falha típica e o certo? :: **Falha:** minimiza ou muda de assunto.\n**Certo:** nomeia e **acolhe a reação**, dá espaço ao **silêncio**.
+SPIKES — Strategy/Summary: falha típica e o certo? :: **Falha:** encerra sem plano.\n**Certo:** **resume** e combina os próximos passos **junto**.
+Más notícias: informar tudo logo e perguntar a emoção no fim? :: **Não.** Perceber → convidar → informar **em partes** → acolher.
+
+# pega | ⚠️ Pegadinhas
+Acolhimento é um setor ou a triagem da recepção? :: **Não.** É postura de **todo o serviço**, em todo encontro.
+Cuidado centrado na pessoa dispensa o raciocínio diagnóstico? :: **Não.** Integra doença e adoecimento, **sem perder precisão**.
+Ambiência é só a reforma do espaço físico? :: **Não.** Inclui **conforto, privacidade, relações** e organização do trabalho.
+Integralidade é só um traço da boa medicina? :: **Não.** Também é **organização dos serviços** e **resposta governamental**.
+Entrevista boa usa só perguntas fechadas, sem resumo? :: **Não.** Aberta → fechadas → **resumo e checagem**.
+A família decide pelo paciente capaz? :: **Não.** A família ajuda; a decisão é **do paciente**.
+Multiprofissional é o mesmo que interprofissional? :: **Não.** Inter exige **troca, decisão conjunta e meta comum**.
+Cuidado paliativo é só quando não há mais tratamento? :: **Não.** Desde o **diagnóstico**, junto ao tratamento.
+Quais aulas caíram em todas as 6 provas do acervo? :: **Aulas 2 a 5:** humanização e integralidade, PNH, introdução à comunicação e comunicação com paciente e família. As aulas 6 a 9 caíram em 2 de 6.

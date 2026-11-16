@@ -125,7 +125,7 @@ def bloco_cabeca(m, rel):
            "window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();")
     forcar = "<script>document.documentElement.dataset.vidro=%s;%s</script>" % (json.dumps(k), pos)
     return (f"{H_INI}\n{forcar}\n{FONTES}\n<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\">\n{IMPORTMAP}\n"
-            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/foco.js?v={ver('foco.js')}\"></script>\n{H_FIM}")
+            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/flashcards.js?v={ver('flashcards.js')}\"></script><script defer src=\"{rel}/foco.js?v={ver('foco.js')}\"></script>\n{H_FIM}")
 
 
 def bloco_corpo(m):
@@ -253,7 +253,7 @@ def bloco_aula(m, rel):
     """Tema de vidro dentro das aulas (iframes): fundo transparente para o 3D do master aparecer atrás."""
     k = json.dumps(m["k"])
     return (f"{H_INI}<script>document.documentElement.dataset.vidro={k};document.documentElement.classList.add('vidro-aula','vidro-ready')</script>"
-            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\"><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/siglas.js?v={ver('siglas.js')}\"></script>{H_FIM}")
+            f"<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\"><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/flashcards.js?v={ver('flashcards.js')}\"></script><script defer src=\"{rel}/siglas.js?v={ver('siglas.js')}\"></script>{H_FIM}")
 
 
 def atualizar_aulas(m):
