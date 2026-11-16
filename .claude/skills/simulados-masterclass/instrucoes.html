@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Instruções Padrão para Criação de Simulados Interativos</title>
+<style>
+@page{size:A4;margin:16mm 17mm}
+*{box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;line-height:1.55;color:#222;margin:0}
+h1{font-size:19pt;line-height:1.2;color:#8b2a2a;margin:0 0 6pt}
+.sub{color:#666;margin:0 0 12pt;padding-bottom:12pt;border-bottom:1px solid #ddd}
+h2{font-size:14pt;color:#8b2a2a;margin:18pt 0 6pt;break-after:avoid}
+h3{font-size:11pt;margin:12pt 0 4pt;break-after:avoid}
+p{margin:0 0 7pt}
+ul,ol{margin:0 0 8pt;padding-left:18pt}
+li{margin:0 0 3pt}
+table{width:100%;border-collapse:collapse;margin:6pt 0 10pt;font-size:10pt;break-inside:avoid}
+th,td{border:1px solid #ddd;padding:5pt 8pt;text-align:left;vertical-align:top}
+th{background:#f4eeee;font-weight:bold}
+.box{border:1px solid #ddd;border-left:3pt solid #8b2a2a;background:#faf7f7;padding:8pt 11pt;margin:6pt 0 10pt;break-inside:avoid}
+.box p:last-child,.box ul:last-child{margin-bottom:0}
+.novo{display:inline-block;font-size:8.5pt;font-weight:bold;color:#fff;background:#8b2a2a;border-radius:3pt;padding:0 5pt;margin-left:5pt;vertical-align:middle}
+.chk{list-style:none;padding-left:0}
+.chk li::before{content:"☐  "}
+code{font-family:Consolas,monospace;font-size:9.5pt;background:#f2f2f2;padding:0 3pt;border-radius:2pt}
+.rodape{margin-top:18pt;padding-top:8pt;border-top:1px solid #ddd;color:#666;font-size:9pt}
+</style>
+</head>
+<body>
+
+<h1>Instruções Padrão para Criação de Simulados Interativos</h1>
+<p class="sub">Guia de referência para pedir simulados de prova de forma rápida, sem precisar reexplicar tudo. Vale para qualquer disciplina: em cada pedido, analise <b>a matéria solicitada</b> — a masterclass dela, as provas antigas e as justificativas oficiais — e adapte o simulado ao padrão daquele professor. Todo simulado entra no site pelo <b>simulado padrão</b> (seção 9), igual em todas as matérias.</p>
+
+<h2>0. Papel e objetivo</h2>
+<p>Atue como especialista em psicometria e educação médica. O objetivo é gerar simulados para estudantes de medicina que reproduzam com fidelidade o estilo exato das provas da disciplina: <b>o estudante não deve conseguir distinguir uma questão do simulado de uma questão real da prova</b>. O simulado é adaptativo: a cada rodada, os temas em que o estudante mais erra aparecem com mais frequência (seção 8).</p>
+
+<h2>1. Composição padrão do simulado</h2>
+<p>Ao ouvir o tipo de prova no pedido, use sempre esta composição, sem precisar perguntar:</p>
+<table>
+<tr><th>Pedido</th><th>Questões fechadas (ABCD)</th><th>Questões dissertativas</th><th>Tempo</th></tr>
+<tr><td><b>Somativa</b></td><td>30</td><td>—</td><td>90 min</td></tr>
+<tr><td><b>Parcial</b></td><td>21</td><td>3, cada uma com o gabarito sugerido (“resposta ideal”)</td><td>72 min</td></tr>
+</table>
+<ul>
+<li>Questões fechadas sempre com <b>4 alternativas (A, B, C, D)</b> e uma única correta.</li>
+<li>Dissertativas com limite de 500 caracteres (contando espaços e pontuação), salvo se o pedido disser outro valor.</li>
+<li>O tempo é sempre <b>3 minutos por questão</b>, contado pelo próprio site; não se define tempo à mão.</li>
+<li>Se o pedido trouxer outro número de questões, vale o número do pedido.</li>
+</ul>
+
+<h2>2. Fontes do simulado</h2>
+<p>O simulado se baseia em três fontes, todas da matéria solicitada:</p>
+<ol>
+<li><b>A masterclass da matéria</b> (o master no site / na pasta da matéria). É a base de conteúdo: capítulos, “O que mais cai”, Raio-X da prova, revisão final, grifos de frequência (“Caiu em N provas”), pegadinhas e valores de referência. Não é preciso anexar resumo à parte — o material da masterclass já é o resumo.</li>
+<li><b>As provas antigas</b> da disciplina (muitas já estão dentro da masterclass, na aba de simulados e nos capítulos). Podem ser 5, menos, ou nenhuma.</li>
+<li><b>As justificativas oficiais</b> das somativas que não foram liberadas, que viram questões reconstruídas (seção 11).</li>
+</ol>
+<h3>O que mandar no pedido</h3>
+<div class="box"><p><b>Modelo de pedido:</b> “Simulado de [matéria] — [somativa | parcial]. Base: masterclass de [matéria]. Nível: [básico | intermediário | avançado — padrão: o da prova real].”</p></div>
+<p>Anexe só o que não estiver na masterclass: provas ou justificativas novas, a delimitação da matéria (quais aulas entram) e, a partir da 2ª rodada, o resultado copiado pelo botão <b>“Copiar resultado”</b> da tela de nota do simulado anterior.</p>
+
+<h2>3. Fase 0 — Leitura e mapeamento (obrigatória, antes de qualquer questão)</h2>
+<h3>3.1 Da masterclass, extrair</h3>
+<ul>
+<li>Todos os tópicos da matéria da prova, com o peso de cada um nas provas reais (grifo de frequência, “O que mais cai”, Raio-X).</li>
+<li>Valores de referência, achados típicos, pegadinhas e pontos de atenção sinalizados.</li>
+<li>Conceitos marcados como extra/literatura ou “conferir”, se houver — usar com cuidado e sem contradizer o conteúdo das aulas.</li>
+</ul>
+<h3>3.2 Das provas antigas e justificativas, medir</h3>
+<ul>
+<li>Número médio de linhas do enunciado e de cada alternativa.</li>
+<li>Estrutura do comando de resposta (“é CORRETO afirmar:”, “assinale a alternativa correta:”, etc.).</li>
+<li>Vocabulário clínico predominante e nível de tecnicidade.</li>
+<li>Tipo de raciocínio exigido (caso clínico, valor de referência, mecanismo, conduta, interpretação de achado) e formatos usados (seção 5).</li>
+<li>Nível de dificuldade médio e padrão dos distratores (que confusões o professor explora).</li>
+</ul>
+<p>Essas métricas são <b>molde rígido</b> para todas as questões novas.</p>
+<h3>3.3 Mostrar antes de gerar</h3>
+<p>Exiba o banco de desempenho (seção 8) com os temas da matéria e a divisão das questões entre eles, e aguarde a confirmação antes de montar o simulado.</p>
+
+<h2>4. Regras de uso do conteúdo-fonte</h2>
+<ul>
+<li>Toda questão precisa estar respaldada pelo conteúdo da masterclass (ou da prova/justificativa de onde veio).</li>
+<li>Pode reaproveitar questões das provas antigas reais — incluindo as reconstruídas a partir das justificativas —, misturadas com questões novas.</li>
+<li><b>Nunca copiar as questões autorais da masterclass</b> (quiz, Arena, ✍️ autorais): o simulado precisa de questões que o estudante ainda não viu.</li>
+<li>Questões novas devem ser formuladas <b>como se fosse o professor pensando</b>: partir de um achado, mecanismo, correlação clínica ou temporal e construir uma vinheta original — não uma cópia disfarçada de material existente.</li>
+<li>O grifo de frequência é guia de prioridade, não filtro exclusivo — temas de baixa recorrência também podem entrar.</li>
+<li>Desconsiderar sempre questões bônus ou de assuntos fora da matéria da prova em questão.</li>
+</ul>
+
+<h2>5. Estilo das questões</h2>
+<ul>
+<li><b>Enunciado:</b> replica o número de linhas e a estrutura das provas reais.</li>
+<li><b>Comando de resposta:</b> 1 linha, no mesmo formato das provas reais.</li>
+<li><b>Alternativas:</b> sem listas, tabelas ou mecanismos detalhados dentro delas; tamanho e densidade das alternativas reais.</li>
+<li>Tom, vocabulário e estrutura sintática idênticos aos das provas reais.</li>
+</ul>
+<p><b>Formatos a variar</b>, na proporção em que o professor da matéria usa:</p>
+<ul>
+<li><b>ABCD clássico:</b> vinheta clínica + uma alternativa correta.</li>
+<li><b>Afirmativas em algarismos romanos</b> (I, II, III, IV...) julgadas como V/F em sequência, ou “são corretas as afirmativas...”.</li>
+<li><b>Sequência cronológica/temporal</b> de eventos, a ser ordenada.</li>
+<li><b>Correlação/associação</b> (ligar item numerado a uma letra/categoria).</li>
+<li><b>Caso clínico compartilhado:</b> um mesmo caso gerando de 2 a 4 questões seguidas, cada uma com um ângulo diferente (diagnóstico, mecanismo, achado, complicação, conduta).</li>
+<li><b>Achados descritos em texto</b> (exame físico, exames complementares, microscopia, necropsia) sem imagem — a menos que a prova real costume trazer imagem.</li>
+</ul>
+
+<h2>6. Controle anti-padrão (regra absoluta)</h2>
+<h3>6.1 Comprimento</h3>
+<ul>
+<li>As 4 alternativas de cada questão têm comprimento médio e uniforme, indistinguível entre si.</li>
+<li>Nem a correta nem as erradas podem ser a mais curta ou a mais longa de forma visível.</li>
+<li>Se uma alternativa ficou maior ou menor que as demais, reescreva antes de entregar.</li>
+</ul>
+<h3>6.2 Estilo</h3>
+<ul>
+<li>Mesma estrutura sintática, mesmo nível de especificidade e tecnicidade, mesmo tempo verbal e pessoa gramatical em todas as alternativas.</li>
+<li>Nunca repetir termos-chave do enunciado apenas na alternativa correta.</li>
+<li>Os distratores exploram as pegadinhas e confusões mapeadas nas provas reais e na masterclass, e soam tão plausíveis quanto a correta para quem não domina o conteúdo.</li>
+<li>Cada distrator é um erro conceitual real — e claramente errado para quem sabe: nunca duas alternativas defensáveis.</li>
+</ul>
+<h3>6.3 Posição do gabarito</h3>
+<ul>
+<li>A resposta certa é distribuída de forma equilibrada entre A, B, C e D ao longo do simulado, sem padrão de posição, mudando só a ordem das alternativas e nunca o conteúdo.</li>
+<li>Exceção: questões reconstruídas de justificativa mantêm a letra do gabarito oficial (seção 11).</li>
+</ul>
+
+<h2>7. Ordem das questões no simulado</h2>
+<ul>
+<li>As questões vêm <b>embaralhadas</b>, misturando os grandes temas ao longo de todo o simulado — nunca agrupadas por assunto, pois isso induz o raciocínio antes de ler o enunciado.</li>
+<li>Exceção: um caso clínico compartilhado (2 a 4 questões) fica sempre junto e na ordem correta — o embaralhamento é feito por blocos (questão avulsa = bloco de 1; caso compartilhado = um bloco só).</li>
+<li>Vale tanto para as questões objetivas quanto para as dissertativas.</li>
+<li><b>O tema nunca aparece antes da questão.</b> Cada questão guarda o seu tema, mas o site só o mostra depois de entregue.</li>
+</ul>
+
+<h2>8. Banco de desempenho (simulado adaptativo)</h2>
+<p>O banco lista os temas da matéria e acompanha o desempenho do estudante de uma rodada para a outra. Na primeira rodada, parte da incidência nas provas (masterclass); nas seguintes, do resultado da rodada anterior.</p>
+<table>
+<tr><th>#</th><th>Tema</th><th>Feitas</th><th>Acertos</th><th>Erros</th><th>% erro</th><th>Peso</th></tr>
+<tr><td>1</td><td>[tema extraído da masterclass]</td><td>0</td><td>0</td><td>0</td><td>—</td><td>Normal</td></tr>
+<tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+</table>
+<table>
+<tr><th>Peso</th><th>% de erro no tema</th><th>Frequência no próximo simulado</th></tr>
+<tr><td>Normal</td><td>0–30%</td><td>1×</td></tr>
+<tr><td>Alto</td><td>31–60%</td><td>2×</td></tr>
+<tr><td>Prioritário</td><td>&gt; 60%</td><td>3×</td></tr>
+</table>
+<ul>
+<li>A divisão das questões combina o peso de desempenho com a incidência do tema nas provas, sempre dentro do total da seção 1.</li>
+<li>O resultado de cada rodada vem do botão <b>“Copiar resultado”</b> da tela de nota (seção 9.5): ele copia, por tema, feitas, acertos, erros e % de erro, pronto para colar no pedido seguinte.</li>
+<li>Ao receber o resultado de uma rodada: atualizar acertos, erros e % de erro de cada tema, recalcular os pesos e <b>exibir o banco atualizado</b> antes de gerar a próxima.</li>
+<li>Para isso funcionar, <b>toda questão precisa do seu tema</b>, com o mesmo nome usado no banco.</li>
+</ul>
+
+<h2>9. Formato de entrega: o simulado padrão do site <span class="novo">NOVO PADRÃO</span></h2>
+<p>O simulado não é mais uma página feita à parte. Ele entra na <b>aba “Simulados” da masterclass da matéria</b> e roda no <b>simulado padrão do site</b> (<code>_tema/simulado.js</code>), que é o mesmo em todas as disciplinas. Quem cria o simulado entrega as questões; a tela de escolha, o cronômetro, a nota e a correção já existem.</p>
+<div class="box"><p><b>Regra:</b> nunca criar tela de início, cronômetro, placar, grade ou correção próprios. Se o simulado precisar de algo que o padrão não faz, a mudança é feita no padrão, para valer em todas as matérias.</p></div>
+
+<h3>9.1 A aba “Simulados” de cada matéria</h3>
+<ul>
+<li><b>Provas anteriores:</b> cada prova antiga inteira é um simulado (Parcial 80, Somativa 81...), na ordem em que caiu. Somativa que chegou só como justificativa entra com as questões reconstruídas (seção 11).</li>
+<li><b>Simulados:</b> abaixo, os simulados feitos por nós. O simulado novo entra aqui, com nome, uma linha de descrição e o número de questões.</li>
+<li>Cada cartão mostra o total de questões, o tempo e a última nota de quem já fez.</li>
+<li>Em Patologia e Farmacologia, cada simulado é um item da barra lateral, com a mesma tela de escolha ao abrir.</li>
+</ul>
+
+<h3>9.2 Antes de começar: “Como você quer fazer?”</h3>
+<p>Ao abrir qualquer simulado, a pessoa escolhe duas coisas. O cronômetro só começa depois da escolha.</p>
+<table>
+<tr><th>Escolha</th><th>Opção</th><th>O que acontece</th></tr>
+<tr><td rowspan="2"><b>Entrega</b></td><td>Simular a prova</td><td>Responde tudo sem ver o gabarito e entrega a prova inteira. Nota e correção comentada vêm de uma vez.</td></tr>
+<tr><td>Entregar por questão</td><td>Marca a alternativa e entrega a questão. Na hora aparece se acertou e o comentário. A questão entregue não muda mais. No fim ainda sai a nota.</td></tr>
+<tr><td rowspan="2"><b>Questões na tela</b></td><td>Prova inteira na página</td><td>Todas as questões em sequência, rolando a página.</td></tr>
+<tr><td>Uma questão por vez</td><td>Uma questão na tela, com Anterior, Próxima e a grade numerada.</td></tr>
+</table>
+<p>A escolha fica lembrada para a próxima vez.</p>
+
+<h3>9.3 Durante o simulado</h3>
+<ul>
+<li><b>Cronômetro de 3 minutos por questão</b>, fixo no topo. Se o tempo acabar, o simulado não trava: o tempo estourado fica visível.</li>
+<li>Clicar numa alternativa <b>apenas seleciona</b> — não revela se está certa ou errada.</li>
+<li>“Marcar para revisar” e “Limpar resposta” em cada questão.</li>
+<li>Grade numerada com o que já foi respondido, o que está marcado para revisar e, na entrega por questão, o que foi acertado e errado.</li>
+<li>Contador de respondidas, botão de entregar e botão de abandonar.</li>
+<li>Se a pessoa sair no meio, o simulado <b>continua de onde parou</b>, com o tempo correndo.</li>
+</ul>
+
+<h3>9.4 Questões dissertativas (parcial)</h3>
+<ul>
+<li>Campo de texto livre por questão, com contador ao vivo no formato “247/500”.</li>
+<li>A <b>resposta ideal</b> só aparece depois de entregar (a questão ou a prova), ao lado do que a pessoa escreveu, para comparação manual.</li>
+<li>Não há correção automática: as dissertativas ficam fora da nota, e a tela de resultado avisa.</li>
+</ul>
+
+<h3>9.5 Resultado</h3>
+<ul>
+<li>Nota em porcentagem, acertos, questões em branco e tempo usado.</li>
+<li><b>Desempenho por tema</b>, do pior para o melhor, e o botão <b>“Copiar resultado”</b> (seção 8).</li>
+<li><b>Correção comentada</b> de todas as questões (seção 10), cada uma com a origem e o tema.</li>
+<li>“Refazer” e volta à lista de simulados.</li>
+</ul>
+
+<h3>9.6 O que entregar para cada questão</h3>
+<table>
+<tr><th>Campo</th><th>Conteúdo</th></tr>
+<tr><td>Identificador</td><td>Único e estável (ex.: <code>sim3-q07</code>); é por ele que o site guarda erros e acertos.</td></tr>
+<tr><td>Origem</td><td>Uma das três marcações da seção 11.3.</td></tr>
+<tr><td>Enunciado</td><td>Vinheta e comando de resposta.</td></tr>
+<tr><td>Alternativas</td><td>As 4, na ordem A, B, C, D. Dissertativa: nenhuma.</td></tr>
+<tr><td>Gabarito</td><td>A alternativa certa. Dissertativa: sem gabarito.</td></tr>
+<tr><td>Comentário</td><td>O gabarito comentado da seção 10. Dissertativa: a resposta ideal.</td></tr>
+<tr><td>Tema</td><td>O tema do banco de desempenho (seção 8), com o mesmo nome em todas as questões do tema.</td></tr>
+</table>
+<p>Do simulado: nome curto, uma linha de descrição e de que prova é (somativa ou parcial).</p>
+
+<h2>10. Gabarito comentado</h2>
+<p>Depois de entregar (a questão, no modo por questão, ou a prova inteira), <b>todas as alternativas aparecem justificadas, uma a uma</b> — a certa com o porquê de estar certa e cada errada com o porquê de estar errada. Nenhuma alternativa fica sem explicação.</p>
+<div class="box">
+<p><b>A (certa)</b> — justificativa de por que está certa.<br>
+<b>B (errada)</b> — justificativa de por que está errada.<br>
+<b>C (errada)</b> — justificativa de por que está errada.<br>
+<b>D (errada)</b> — justificativa de por que está errada.</p>
+<p>📄 <b>Justificativa oficial</b> (só em questões de prova): texto do professor, na íntegra.<br>
+📚 <b>Na masterclass:</b> capítulo onde o tema está explicado.</p>
+</div>
+<ul>
+<li>A posição de “(certa)” segue a letra do gabarito; as alternativas aparecem sempre na ordem A, B, C, D.</li>
+<li>Cada justificativa é direta (2 a 4 linhas) e traz a regra clínica central. Na errada, aponte o trecho exato que a torna falsa e o que seria o correto.</li>
+<li>Em afirmativas (I, II, III), justifique também cada afirmativa como verdadeira ou falsa.</li>
+<li>Nas questões de prova, a justificativa oficial vem embaixo, fiel ao original e separada do nosso comentário.</li>
+</ul>
+
+<h2>11. Questões reconstruídas a partir das justificativas das somativas</h2>
+<p>Muitas vezes a somativa não é liberada: chega só o gabarito comentado (a justificativa oficial de cada questão), sem enunciado e sem alternativas. Essa justificativa <b>não entra no simulado como foto, recorte ou texto solto</b> — ela é matéria-prima para reconstruir a questão original, no estilo do professor da matéria solicitada.</p>
+<h3>11.1 O que é preciso</h3>
+<ul>
+<li>As justificativas (PDF, foto ou texto; se for foto, o texto é extraído e conferido antes de usar).</li>
+<li>Qual prova é (ex.: “Somativa 81”) e o número de cada questão, para marcar a origem.</li>
+<li>A letra do gabarito oficial, quando não aparece na própria justificativa.</li>
+<li>Questões anuladas ou alteradas pelo professor, se houver.</li>
+<li>Se a masterclass já tiver essas questões reconstruídas, use a mesma versão — nunca duas reconstruções diferentes da mesma questão de prova.</li>
+</ul>
+<h3>11.2 Passo a passo da reconstrução</h3>
+<ol>
+<li><b>Extrair</b> o que a justificativa entrega: o tema, o que torna a resposta certa correta e, quando ela comenta, por que as outras estão erradas.</li>
+<li><b>Descobrir o formato original</b> pelas pistas: “a afirmativa III está incorreta porque...” → algarismos romanos; “a sequência correta é...” → ordenação; “o paciente apresenta...” → vinheta; “1-C, 2-A...” → associação. Justificativas seguidas sobre o mesmo paciente → caso compartilhado, reconstruído como um bloco só.</li>
+<li><b>Reconstruir o enunciado</b> no padrão medido na Fase 0. Todo dado citado na justificativa entra no enunciado; nada pode contradizê-la. O que ela não diz pode ser completado com o conteúdo da masterclass, de forma plausível.</li>
+<li><b>Escrever a alternativa correta</b> reformulando exatamente o que a justificativa afirma — sem acrescentar o que ela não sustenta.</li>
+<li><b>Escrever as erradas:</b> a partir dos erros que a justificativa aponta; se ela só explica a certa, a partir das confusões típicas do tema (diagnóstico diferencial próximo, mecanismo vizinho, inversão temporal, troca de causa e consequência, exceção da regra).</li>
+<li><b>Manter a letra do gabarito oficial</b> e aplicar o controle anti-padrão de comprimento e estilo (seção 6).</li>
+<li><b>Montar o gabarito comentado</b> completo (seção 10), com a justificativa oficial embaixo.</li>
+</ol>
+<p>Toda justificativa nova que chegar vira questão reconstruída e entra em dois lugares: no capítulo do tema dela e na prova correspondente, em “Provas anteriores” (seção 9.1).</p>
+<h3>11.3 Marcação de origem (sempre visível)</h3>
+<ul>
+<li><b>📝 Das provas</b> — texto original da prova.</li>
+<li><b>📝 Questão de prova · reconstruída da justificativa · Somativa X, questão Y</b> — com o aviso: “Enunciado e alternativas reconstruídos a partir da justificativa oficial; o gabarito é o oficial.”</li>
+<li><b>✍️ Nova</b> — questão inédita, feita para o simulado.</li>
+</ul>
+<h3>11.4 Nunca entregar a resposta antes da hora</h3>
+<ul>
+<li>Nada de letra do gabarito no rótulo, no título, no aviso de origem ou no texto do botão.</li>
+<li>A justificativa oficial entrega a resposta, então só aparece depois de a questão ser entregue.</li>
+<li>O enunciado reconstruído não pode copiar frases da justificativa que denunciem a alternativa certa.</li>
+</ul>
+<h3>11.5 Fidelidade e limites</h3>
+<ul>
+<li><b>Não mudar o gabarito</b>, mesmo que pareça discutível. Se a justificativa parecer errada, ambígua ou desatualizada, avise no chat e, se for o caso, acrescente uma nota identificada como comentário nosso.</li>
+<li>Se a justificativa for curta demais para reconstruir com segurança (ex.: “Resposta C, conforme aula 4”), não invente uma questão de prova: avise e liste como pendência. Para cobrir o tema, faça uma questão marcada como ✍️ Nova.</li>
+<li>Questões anuladas ficam de fora, ou entram com o aviso de anulada.</li>
+<li>Dissertativas: o espelho de correção vira a “resposta ideal”, e o enunciado é reconstruído do mesmo jeito.</li>
+</ul>
+<h3>11.6 Exemplo ilustrativo (genérico)</h3>
+<div class="box">
+<p><b>Justificativa recebida:</b> “Questão 12 — gabarito B. A afirmativa I está correta, pois [conceito X]. A II está incorreta: [mecanismo Y] ocorre na fase tardia, não na inicial. A III está correta: [achado Z].”</p>
+<p><b>Leitura:</b> algarismos romanos; I e III verdadeiras, II falsa por inversão temporal; gabarito B.</p>
+<p><b>Reconstrução:</b> enunciado no estilo do professor, com as afirmativas I (conceito X), II (mecanismo Y descrito como inicial) e III (achado Z), seguido de “São corretas: A) I e II · B) I e III · C) II e III · D) I, II e III”. “I e III” fica na letra B, como no gabarito oficial.</p>
+<p><b>Gabarito comentado (após entregar):</b><br>
+A (errada) — inclui a II, que é falsa: [mecanismo Y] ocorre na fase tardia, não na inicial.<br>
+B (certa) — I e III são verdadeiras: [conceito X] e [achado Z] estão corretos, e a II é a única falsa.<br>
+C (errada) — inclui a II, que é falsa, e deixa de fora a I, que é verdadeira.<br>
+D (errada) — considera todas corretas, mas a II é falsa pela inversão temporal.<br>
+Afirmativas: I — verdadeira ([conceito X]); II — falsa ([mecanismo Y] é tardio); III — verdadeira ([achado Z]).<br>
+📄 Justificativa oficial: texto do professor, na íntegra. · 📚 Na masterclass: capítulo do tema.</p>
+</div>
+
+<h2>12. Checklist antes de entregar</h2>
+<h3>Em cada questão</h3>
+<ul class="chk">
+<li>O enunciado replica o número de linhas, o comando e o estilo das provas reais da matéria?</li>
+<li>As 4 alternativas têm comprimento e estilo uniformes — a correta é indistinguível das erradas?</li>
+<li>Cada distrator é um erro conceitual real, de preferência uma pegadinha mapeada nas provas?</li>
+<li>Só uma alternativa é defensável?</li>
+<li>O conteúdo está respaldado pela masterclass (ou pela prova/justificativa de origem)?</li>
+<li>Nenhum padrão de posição, comprimento ou linguagem permite achar a correta sem saber o conteúdo?</li>
+<li>Todas as alternativas justificadas — a certa e cada uma das erradas?</li>
+<li>Origem marcada, tema preenchido e nenhuma pista do gabarito antes de entregar?</li>
+</ul>
+<h3>No simulado inteiro</h3>
+<ul class="chk">
+<li>Composição certa: somativa = 30 fechadas; parcial = 21 fechadas + 3 dissertativas com resposta ideal.</li>
+<li>Gabarito distribuído entre A, B, C e D sem padrão (exceto letras oficiais das reconstruídas).</li>
+<li>Questões embaralhadas por blocos; casos compartilhados juntos.</li>
+<li>Temas divididos conforme o banco de desempenho confirmado.</li>
+<li>Pendências (justificativas insuficientes, gabaritos discutíveis) avisadas no chat.</li>
+</ul>
+<h3>No site</h3>
+<ul class="chk">
+<li>O simulado aparece na aba “Simulados” da matéria e abre com a tela “Como você quer fazer?”.</li>
+<li>Nenhuma tela, cronômetro ou placar próprio: tudo pelo simulado padrão.</li>
+<li>Testado nas duas entregas (prova e por questão) e nas duas telas (prova inteira e uma por vez), até a nota.</li>
+<li>“Desempenho por tema” e “Copiar resultado” aparecem na tela de nota.</li>
+<li>Testado em tela de celular e nos temas claro e escuro.</li>
+<li><code>conferir.py</code> sem pendência; publicado só com <code>publicar.py</code>, quando pedido.</li>
+</ul>
+
+<h2>13. Observação final</h2>
+<p>Nem sempre haverá provas anteriores ou justificativas — tudo bem: a masterclass da matéria continua sendo a base, e as regras de estilo e anti-padrão (seções 5 e 6) servem de molde. Quando houver só as justificativas, elas viram questões reconstruídas (seção 11) e contam como prova real. Sem nenhuma das duas, o simulado é feito de questões novas, formuladas no mesmo raciocínio e adaptadas à matéria solicitada. Em qualquer caso, a entrega é a mesma: pelo simulado padrão do site (seção 9).</p>
+
+<p class="rodape">Conta compartilhada — Matheus Tavares e Vinícius Cabral · Faculdade de Ciências Médicas de Minas Gerais</p>
+</body>
+</html>

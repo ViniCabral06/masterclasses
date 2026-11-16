@@ -44,6 +44,8 @@
   color-scheme:light;
 }
 :root:is([data-vidro="farmaco"],[data-vidro="pato"])[data-theme="light"]{--vg-acc-ink:#c4173a}
+/* texto sobre fundo "tinta" (selos e chips ativos): no claro a tinta é escura, então o texto é claro */
+:root:is([data-vidro="farmaco"],[data-vidro="pato"])[data-theme="light"]{--on-ink:#f7f8f7}
 :root[data-vidro="micro"][data-theme="light"]{--vg-acc-ink:#6a2fd6}
 :root[data-vidro="th4"][data-theme="light"]{--vg-acc-ink:#04875a}
 :root[data-vidro="pato"][data-theme="light"]{--vg-acc-ink:#c2186f}

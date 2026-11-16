@@ -81,10 +81,24 @@ Responda sempre em português (Brasil).
 | `_tema/extras.js` | Zoom ao clicar nas imagens do conteúdo e crédito no canto (o `publicar.py` inclui). |
 | `_tema/memes.js` | Meme secreto ao gabaritar um grupo de questões. Lê `<pasta>/_img/memes.json`; respeita masters com sistema próprio (Farmacologia, Microbiologia, TH IV). |
 | `_tema/foco.js` | Painel "🎯 Foco de estudo" no topo da barra lateral: grifo de frequência nas aulas e segmentos (parciais / somativas / todas / desligado), divisão das aulas escolhida pela pessoa ("a parcial da minha turma vai até a aula N") e grupo "✅ Já estudadas". Fica salvo por master em `vg-foco:<chave>`. Cada master tem um adaptador em `AD`; master novo precisa do seu. Na Patologia (aulas em `aulas/`, abertas em iframe), a frequência de cada segmento é contada pelo `publicar.py` nas aulas e gravada no master no bloco `vidro:foco` (`window.VG_FOCO`): aula ou questão nova entra sozinha ao publicar. TH IV fica de fora de propósito. O `publicar.py` inclui. |
+| `_tema/simulado.js` | Simulado padrão do site, igual em todas as matérias: lista de provas e simulados, tela "Como você quer fazer?" (simular a prova ou entregar por questão; prova inteira na página ou uma questão por vez), cronômetro de 3 min por questão, dissertativa com contador, nota, desempenho por tema, "Copiar resultado" e correção comentada. Fica salvo por master em `vg-sim:<chave>`. O `publicar.py` inclui. Ver "Simulados". |
 | `AGENTS.md` | Regras para o Codex (lê o CLAUDE.md e a skill). O `publicar.py` envia. |
 | `.claude/skills/masterclass-medica/` | Cópia única da skill, usada pelo Claude Code e pelo Codex. Edite só aqui; o `publicar.py` envia. |
+| `.claude/skills/simulados-masterclass/` | Skill dos simulados (`/simulados-masterclass`) e o texto completo do padrão (`instrucoes.html`). Cópia única, como a outra. |
 | `conferir.py` | Confere se cada master tem o padrão do site e diz o que falta. |
 | `publicar.py` | Tema, otimização e publicação. Os blocos entre `<!--vidro:...-->` nos masters são gerados por ele: não edite à mão. |
+
+## Simulados
+
+**Regra: todo simulado roda no simulado padrão (`_tema/simulado.js`).** Nada de tela de início, cronômetro, placar ou correção próprios num master.
+
+- **Simulado novo, de qualquer matéria e período: use a skill `/simulados-masterclass`** (`.claude/skills/simulados-masterclass/`). Ela tem o fluxo, as regras das questões e onde pôr em cada master. O texto completo do padrão é o `instrucoes.html` da pasta da skill (fonte do PDF *Instruções Padrão para Criação de Simulados Interativos*). Mudou o padrão? Edite lá e gere o PDF de novo.
+- Aba "Simulados" de um master: `VGSim.lista(host, {chave, grupos, aoFim})`, com o grupo "Provas anteriores" (cada prova inteira é um simulado) e, abaixo, "Simulados" (os nossos). Modelo: `vgSimMontar` em Humanização.
+- Simulado em página ou painel próprio (Patologia, Farmacologia): `VGSim.um(host, {chave, item, livre})`. Modelo: `aulas/simulado4.html`.
+- Cada questão: `{id, tag (origem), enun, alts, gab, com, grupo (tema)}`. Dissertativa: sem `alts` e sem `gab`; `com` é a resposta ideal.
+- O tema (`grupo`) nunca aparece antes de a questão ser entregue; o motor já cuida disso.
+- Se faltar algo, mude o `simulado.js`, para valer em todas as matérias.
+- Ainda no gerador próprio: "Monte sua prova" da Farmacologia.
 
 ## Grifos e anotações
 

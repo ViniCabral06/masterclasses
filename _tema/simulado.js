@@ -6,6 +6,7 @@
    VGSim.um(host, {chave, item, livre(on), voltar(), aoFim})                 página de um simulado só (Patologia, Farmacologia, Microbiologia)
    item    = {id, tag, titulo, desc, qs: [questão] | função, sorteio: true se qs() muda a cada chamada}
    questão = {id, tag, enun (HTML), alts [HTML], gab (índice, lista de índices ou null), com (HTML | função), grupo}
+             dissertativa = sem alts e sem gab; com = resposta ideal; lim = limite de caracteres (500)
    Fica salvo por master em localStorage, chave "vg-sim:<chave>": simulado em andamento, última nota e a escolha de modo. */
 (function () {
   'use strict';
@@ -80,6 +81,9 @@
     '.vgsim .vgs-qf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 0}' +
     '.vgsim .vgs-com{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--s-bg2);font-size:15px;line-height:1.6}' +
     '.vgsim .vgs-com p{margin:0 0 10px;max-width:none}.vgsim .vgs-com p:last-child{margin:0}' +
+    '.vgsim .vgs-ta{display:block;width:100%;margin:0;padding:12px 14px;border-radius:14px;border:1px solid var(--s-ln);background:transparent;color:inherit;font:inherit;font-size:15px;line-height:1.5;resize:vertical}' +
+    '.vgsim .vgs-cc{text-align:right;font-size:12.5px;opacity:.7;font-variant-numeric:tabular-nums;margin:4px 2px 0}' +
+    '.vgsim .vgs-pre{white-space:pre-wrap}' +
     '.vgsim .vgs-nota{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:baseline;border:1px solid var(--s-ln);background:var(--s-bg);border-radius:20px;padding:18px 20px;margin:0 0 14px}' +
     '.vgsim .vgs-nota b{font-family:var(--vg-display,inherit);font-weight:400;font-size:44px;line-height:1}' +
     '.vgsim .vgs-tab{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:14.5px;display:table}' +
@@ -145,22 +149,25 @@
     function tQ(i, fim) {
       var q = qs[i], a = run.ans[i], dn = fim || !!run.dn[i], gb = gabs(q), h;
       h = '<div class="vgs-q" id="vgs-q-' + i + '"><div class="vgs-qh"><span class="vgs-n">' + (i + 1) + '</span>' + (q.tag ? '<span class="vgs-tag">' + q.tag + '</span>' : '') +
-        (dn ? (!gb.length ? '' : certa(q, a) ? '<span class="vgs-st ok">Certa</span>' : '<span class="vgs-st no">' + (a == null ? 'Em branco' : 'Errada') + '</span>') : '') + '</div>' +
+        (dn ? (!gb.length ? '' : certa(q, a) ? '<span class="vgs-st ok">Certa</span>' : '<span class="vgs-st no">' + (a == null ? 'Em branco' : 'Errada') + '</span>') : '') + (dn && q.grupo ? '<span class="vgs-tag">' + esc(q.grupo) + '</span>' : '') + '</div>' +
         '<div class="vgs-en">' + q.enun + '</div><div class="vgs-alts">';
       (q.alts || []).forEach(function (t, j) {
         if (dn) h += '<div class="vgs-alt lock' + (gb.indexOf(j) >= 0 ? ' ok' : a === j ? ' bad' : '') + '"><span class="vgs-l">' + L[j] + '</span><span class="vgs-t">' + t + '</span></div>';
         else h += '<button type="button" class="vgs-alt' + (a === j ? ' sel' : '') + '" data-vgs="alt" data-i="' + i + '" data-j="' + j + '" aria-pressed="' + (a === j) + '"><span class="vgs-l">' + L[j] + '</span><span class="vgs-t">' + t + '</span></button>';
       });
       h += '</div>';
+      /* dissertativa: campo de texto com contador; a resposta ideal só aparece depois de entregar */
+      var disc = !(q.alts || []).length, lim = q.lim || 500, tx = (run.txt || {})[i] || '';
+      if (disc && !dn) h += '<textarea class="vgs-ta" data-i="' + i + '" maxlength="' + lim + '" rows="5" placeholder="Escreva a sua resposta" aria-label="Resposta da questão ' + (i + 1) + '">' + esc(tx) + '</textarea><div class="vgs-cc">' + tx.length + '/' + lim + '</div>';
+      if (disc && dn && tx) h += '<div class="vgs-com"><p><b>Sua resposta</b></p><p class="vgs-pre">' + esc(tx) + '</p></div>';
       if (!fim) {
         h += '<div class="vgs-qf">';
-        var disc = !(q.alts || []).length;
-        if (!dn && disc) h += run.modo === 'q' ? '<button class="vgs-b pri sm" type="button" data-vgs="entq" data-i="' + i + '">Ver a resposta esperada</button>' : '<span class="vgs-tag">Discursiva: responda no papel; a resposta esperada aparece na correção</span>';
+        if (!dn && disc) h += run.modo === 'q' ? '<button class="vgs-b pri sm" type="button" data-vgs="entq" data-i="' + i + '">Ver a resposta ideal</button>' : '';
         else if (!dn && run.modo === 'q') h += '<button class="vgs-b pri sm" type="button" data-vgs="entq" data-i="' + i + '"' + (a == null ? ' disabled' : '') + '>Entregar esta questão</button>';
         if (!dn && !disc) h +='<button class="vgs-b sm" type="button" data-vgs="limpa" data-i="' + i + '"' + (a == null ? ' disabled' : '') + '>Limpar resposta</button>';
         h += '<button class="vgs-b sm" type="button" data-vgs="flag" data-i="' + i + '">' + (run.flag[i] ? 'Desmarcar revisão' : 'Marcar para revisar') + '</button></div>';
       }
-      if (dn) { var c = com(q, a); if (c) h += '<div class="vgs-com">' + c + '</div>'; }
+      if (dn) { var c = com(q, a); if (c) h += '<div class="vgs-com">' + (disc ? '<p><b>Resposta ideal</b></p>' : '') + c + '</div>'; }
       return h + '</div>';
     }
     function tGrade() {
@@ -175,6 +182,7 @@
       var r = Object.keys(run.ans).length, f = 0, d = 0, k;
       for (k in run.flag) if (run.flag[k]) f++;
       for (k in run.dn) if (run.dn[k]) d++;
+      for (k in (run.txt || {})) if (run.txt[k] && run.ans[k] == null) r++;
       return (run.modo === 'q' ? d + ' de ' + qs.length + ' entregues · ' : '') + r + ' de ' + qs.length + ' respondidas' + (f ? ' · ' + f + ' para revisar' : '');
     }
     function tRun() {
@@ -208,15 +216,27 @@
         '</span><span>Tempo: ' + mmss(run.used) + ' de ' + mmss(total()) + (over ? ' (estourou)' : '') + '</span></div>';
       if (qs.length > p.total) h += '<p class="vgs-p">' + (qs.length - p.total) + ' questão(ões) sem gabarito objetivo ficaram fora da nota: confira pelo comentário.</p>';
       if (gk.length > 1 && gk.length <= p.total / 2) {
-        h += '<div class="vgs-sec">Acerto por tema</div><table class="vgs-tab">';
-        gk.sort(function (x, y) { return p.grupos[x][0] / p.grupos[x][1] - p.grupos[y][0] / p.grupos[y][1]; }).forEach(function (k) { h += '<tr><td>' + esc(k) + '</td><td>' + p.grupos[k][0] + ' de ' + p.grupos[k][1] + '</td></tr>'; });
+        h += '<div class="vgs-sec">Desempenho por tema</div><table class="vgs-tab"><tr><td><b>Tema</b></td><td><b>Acertos</b></td><td><b>% de erro</b></td></tr>';
+        gk.sort(function (x, y) { return p.grupos[x][0] / p.grupos[x][1] - p.grupos[y][0] / p.grupos[y][1]; }).forEach(function (k) { var v = p.grupos[k]; h += '<tr><td>' + esc(k) + '</td><td>' + v[0] + ' de ' + v[1] + '</td><td>' + Math.round((v[1] - v[0]) / v[1] * 100) + '%</td></tr>'; });
         h += '</table>';
       }
       h += '<div class="vgs-acts" style="margin:0 0 18px"><button class="vgs-b pri" type="button" data-vgs="refaz">Refazer</button>' +
+        (gk.length ? '<button class="vgs-b" type="button" data-vgs="copiar">Copiar resultado</button>' : '') +
         (unico && !cfg.voltar ? '<button class="vgs-b" type="button" data-vgs="fechar">Voltar ao início</button>' : '<button class="vgs-b" type="button" data-vgs="fechar">Voltar aos simulados</button>') + '</div>' +
         '<div class="vgs-sec">Correção comentada</div>';
       qs.forEach(function (q, k) { h += tQ(k, true); });
       return h;
+    }
+    /* texto do resultado por tema, para colar no pedido do próximo simulado (banco de desempenho) */
+    function resTexto() {
+      var p = placar(), t = 'Resultado · ' + item.titulo + ' · ' + new Date().toLocaleDateString('pt-BR') + '\nNota: ' + p.ok + ' de ' + p.total + ' (' + p.pct + '%)\nTema | Feitas | Acertos | Erros | % erro';
+      Object.keys(p.grupos).forEach(function (k) { var v = p.grupos[k]; t += '\n' + k + ' | ' + v[1] + ' | ' + v[0] + ' | ' + (v[1] - v[0]) + ' | ' + Math.round((v[1] - v[0]) / v[1] * 100) + '%'; });
+      return t;
+    }
+    function copiar(b) {
+      var t = resTexto(), ok = function () { b.textContent = 'Resultado copiado'; };
+      var velho = function () { var a = document.createElement('textarea'); a.value = t; document.body.appendChild(a); a.select(); try { document.execCommand('copy'); ok(); } catch (e) { } a.remove(); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, velho); else velho();
     }
     function tLivre() {
       return '<div class="vgs-livre"><span>Estudando sem cronômetro: as questões estão abaixo, com o gabarito de cada uma.</span><button class="vgs-b pri sm" type="button" data-vgs="simular">Fazer como simulado</button></div>';
@@ -295,6 +315,13 @@
       else if (a === 'sair') { if (confirm('Abandonar este simulado? As respostas serão apagadas.')) largar(); }
       else if (a === 'refaz') { run = null; salvar(); abrir(item); }
       else if (a === 'fechar') largar();
+      else if (a === 'copiar') copiar(b);
+    });
+    host.addEventListener('input', function (e) {
+      var t = e.target; if (!t.classList || !t.classList.contains('vgs-ta') || !run) return;
+      run.txt = run.txt || {}; run.txt[+t.getAttribute('data-i')] = t.value; salvar();
+      var c = t.nextElementSibling; if (c) c.textContent = t.value.length + '/' + t.getAttribute('maxlength');
+      c = host.querySelector('.vgs-ct'); if (c) c.textContent = conta();
     });
 
     /* retoma o simulado em andamento (ou o resultado ainda aberto) */

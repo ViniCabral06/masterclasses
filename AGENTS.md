@@ -9,9 +9,12 @@ Responda sempre em português (Brasil).
    Se algo aqui contradizer o CLAUDE.md, o CLAUDE.md ganha, e você avisa a diferença.
 2. `.claude/skills/masterclass-medica/SKILL.md`: a skill que define o padrão das masterclasses
    (o Claude Code lê esse mesmo arquivo). É a ÚNICA cópia oficial da skill.
+3. `.claude/skills/simulados-masterclass/SKILL.md` (e o `instrucoes.html` ao lado): o padrão de todo
+   simulado, de qualquer matéria e período. Leia antes de criar ou mudar qualquer simulado.
 
 ## Skill compartilhada (sincronia automática)
-- Existe uma só skill: `.claude/skills/masterclass-medica/SKILL.md`. Claude e Codex leem o mesmo arquivo,
+- Existem duas skills, uma cópia de cada: `.claude/skills/masterclass-medica/SKILL.md` e
+  `.claude/skills/simulados-masterclass/SKILL.md`. Claude e Codex leem os mesmos arquivos,
   então uma mudança feita por qualquer um vale para os dois depois do `git pull`.
 - Não crie cópia da skill em outra pasta (`~/.codex/skills`, `.agents/skills` etc.). Cópia = versões divergentes.
 - Mudou a skill? Diga o que mudou e publique com `python publicar.py "Skill: ..."`, só quando pedirem.
