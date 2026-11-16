@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt-BR" data-tone="prova" data-theme="dark">
-<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=996cf227"><script defer src="../../_tema/notas.js?v=748c00a9"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=70434ba8"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><script defer src="../../_tema/siglas.js?v=73b29720"></script><!--/vidro:cabeca-->
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=996cf227"><script defer src="../../_tema/notas.js?v=748c00a9"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=70434ba8"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><script defer src="../../_tema/simulado.js?v=66a9df95"></script><script defer src="../../_tema/siglas.js?v=73b29720"></script><!--/vidro:cabeca-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simulado — Patologia Médica I (Cardiovascular + Respiratório)</title>
@@ -614,6 +614,22 @@ textarea.d-answer:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--ac
 
   renderAllObjetivas();
   renderAllDiss();
+  /* vgsim: tela de escolha, cronômetro e correção pelo simulado padrão do site (_tema/simulado.js) */
+  window.addEventListener('DOMContentLoaded', function(){
+    if (!window.VGSim) return;
+    var pane = document.getElementById('pane-obj'), host = document.createElement('div');
+    var alvo = [].slice.call(pane.children);
+    pane.insertBefore(host, pane.firstChild);
+    var h1 = document.querySelector('.hero h1'), E = VGSim.esc, CH = 'pato-sim-obj2';
+    function par(t){ return String(t || '').split(/\n+/).map(function(x){ return '<p>' + E(x) + '</p>'; }).join(''); }
+    window.VG_SIM = VGSim.um(host, {chave: 'pato:' + CH, item: {id: CH, titulo: h1 ? h1.textContent : 'Simulado', qs: function(){
+      return OBJ.map(function(q){
+        return {id: CH + '-' + q.id, tag: '✍️ Simulado', grupo: q.tema === 'CV' ? 'Cardiovascular' : q.tema === 'Resp' ? 'Respiratório' : (q.tema || ''),
+          enun: par(q.vignette) + par(q.comando), alts: q.options.map(E), gab: q.correct,
+          com: '<ul>' + q.justs.map(function(j, k){ return '<li><b>' + LETTERS[k] + (k === q.correct ? ' (correta)' : '') + ':</b> ' + E(j) + '</li>'; }).join('') + '</ul>'};
+      });
+    }}, livre: function(on){ alvo.forEach(function(e){ e.style.display = on ? '' : 'none'; }); }});
+  });
 })();
 </script>
 <script>(function(){

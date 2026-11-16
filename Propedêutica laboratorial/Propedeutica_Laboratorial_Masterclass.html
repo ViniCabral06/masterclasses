@@ -559,7 +559,7 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=996cf227">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=4f9f9423"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/foco.js?v=80e61aad"></script>
+<script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=4f9f9423"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=66a9df95"></script><script defer src="../_tema/foco.js?v=80e61aad"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -596,6 +596,7 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 <div id="vidro-load" style="--vl:#4fe0cf" role="status" aria-label="Carregando Propedêutica Laboratorial"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M8 3h8M9.5 3v14.5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 10h5"/><path d="M9.5 3.5h5"/></svg></div><div class="vl-t">Propedêutica Laboratorial</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
 
 
 
@@ -970,15 +971,27 @@ function refs(){
  '</ul><h2>Material das aulas</h2><ul>'+data.files.map(f=>'<li>'+esc(f)+'</li>').join('')+'</ul></section>';
 }
 function shuffled(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function sims(){
- const setup=hero('Prática cronometrada','Simulados','Escolha o quiz integrador de 15 questões ou sorteie questões por aula. O gabarito aparece após a entrega.')+
- '<section class="section"><div class="row">'+(window.simButtons?simButtons():'')+'<button data-start="final">Quiz integrador · 15 questões</button><label>Aula <select id="sim-aula"><option value="">Todas</option>'+data.lessons.map(l=>'<option value="'+l.id+'">'+esc(l.number+'. '+l.title)+'</option>').join('')+'</select></label><label>Quantidade <input class="tool-input" id="sim-count" type="number" min="1" max="40" value="15"></label><button data-start="random">Sortear</button></div><p>'+link('somativas','Treinar pelas provas originais')+'</p></section>';
- if(!sim)return setup;
- const qs=sim.qs;
- return setup+'<section class="section"><div class="row"><h2>Simulado em andamento</h2><output class="score" id="clock"></output></div><div class="tabs">'+qs.map((q,i)=>link('simulados',(sim.flags[q.id]?'⚑ ':'')+(i+1),'test-'+q.id)).join('')+'</div>'+
- qs.map((q,i)=>'<fieldset class="quiz-item" id="test-'+q.id+'"><legend>'+ (i+1)+'. '+esc(q.prompt)+'</legend>'+q.options.map((o,j)=>'<label class="option'+(sim.done?(j===q.answer?' right':sim.answers[q.id]===j?' wrong':''):'')+'"><input type="radio" data-sim="'+q.id+'" name="sim-'+q.id+'" value="'+j+'"'+(sim.answers[q.id]===j?' checked':'')+(sim.done?' disabled':'')+'><span class="L">'+String.fromCharCode(65+j)+'</span><span class="ot">'+esc(o)+'</span></label>').join('')+
- (sim.done?'<p class="feedback '+(sim.answers[q.id]===q.answer?'good':'bad')+'">Gabarito '+String.fromCharCode(65+q.answer)+'. '+esc(q.why)+' '+link(q.aula,'Rever a aula',q.segment||q.aula+'-revisao')+'</p>':'<button data-flag="'+q.id+'">'+(sim.flags[q.id]?'⚑ Remover marcação':'⚐ Marcar para rever')+'</button>')+'</fieldset>').join('')+
- (sim.done?'<p class="score">Nota: '+qs.filter(q=>sim.answers[q.id]===q.answer).length+' de '+qs.length+'</p>':'<button id="submit-sim">Entregar simulado</button>')+'</section>';
+/* Simulados: aba padrão do site (_tema/simulado.js). Cada prova anterior inteira é um simulado; abaixo, os simulados extras.
+   Antes de começar a pessoa escolhe a entrega (prova / por questão) e a tela (prova inteira / uma por vez). */
+function vgAula(id){const l=data.lessons.find(x=>x.id===id);return l?'Aula '+l.number+' · '+l.title:''}
+function vgQ(q,tag){return {id:q.id,tag,enun:'<p>'+esc(q.prompt)+'</p>',alts:(q.options||[]).map(esc),gab:q.answer,grupo:vgAula(q.aula),com:(q.why?'<p>'+esc(q.why)+'</p>':'')+(vgAula(q.aula)?'<p>'+link(q.aula,'Rever a aula',q.segment||q.aula+'-revisao')+'</p>':'')}}
+function vgExame(e){return e.items.filter(x=>x.question&&(x.question.options||[]).length).map(x=>{const q=x.question,l=data.lessons.find(l=>l.sections.some(s=>(s.refs||[]).includes(x.id))),sg=l&&l.sections.find(s=>(s.refs||[]).includes(x.id));
+ return vgQ({id:'vg-'+x.id,prompt:[q.stem,q.command].filter(Boolean).join(' '),options:q.options,answer:q.answer,why:q.why,aula:q.aula||(l?l.id:''),segment:q.segment||(sg?sg.id:'')},q.rec?'📝 Questão de prova · reconstruída da justificativa':'📝 Das provas')})}
+function vgTag(q){return /^(sp-|sim-)/.test(q.id)?'📝 Questão de prova':'✍️ Autoral'}
+function vgLote(qs){return (qs||[]).map(q=>vgQ(q,vgTag(q)))}
+function sims(){return hero('Treino no formato da prova','Simulados','Cada prova anterior é um simulado inteiro. Antes de começar você escolhe: simular a prova, com o gabarito só no fim, ou entregar questão por questão. São 3 minutos por questão.')+'<section class="section"><div id="vgsim-host"></div></section>'}
+function vgSimMontar(){
+ const host=$('#vgsim-host');if(!host)return;
+ if(!window.VGSim){addEventListener('DOMContentLoaded',vgSimMontar,{once:true});return}
+ const provas=data.exams.map(e=>{const rec=e.items.some(x=>x.question&&x.question.rec);return {id:'prova-'+e.key,tag:e.group==='parciais'?'Prova parcial':'Prova somativa',titulo:(e.group==='parciais'?'Parcial ':'Somativa ')+e.turma,desc:rec?'Reconstruída das justificativas oficiais; o gabarito é o oficial.':'Texto original da prova.',qs:()=>vgExame(e)}}).filter(it=>it.qs().length);
+ const extras=[{id:'prova30',tag:'Prova + autorais',titulo:'Simulado da prova',desc:'30 questões sorteadas, a maior parte de prova.',sorteio:true,n:30,qs:()=>vgLote(simPick('prova30'))},
+  {id:'fixo-1',tag:'Simulado fixo',titulo:'Simulado 1 · aulas 1 a 7',desc:'30 questões, sempre as mesmas.',qs:()=>vgLote(simPick('fixo-1'))},
+  {id:'fixo-2',tag:'Simulado fixo',titulo:'Simulado 2 · aulas 8 em diante',desc:'30 questões, sempre as mesmas.',qs:()=>vgLote(simPick('fixo-2'))},
+  {id:'fixo-3',tag:'Simulado fixo',titulo:'Simulado 3 · semestre todo',desc:'30 questões, sempre as mesmas.',qs:()=>vgLote(simPick('fixo-3'))},
+  {id:'final',tag:'✍️ Autoral',titulo:'Quiz integrador',desc:'15 questões autorais, equilibradas entre as aulas.',sorteio:true,n:15,qs:()=>vgLote(balanced15())},
+  {id:'sorteio',tag:'✍️ Autoral',titulo:'Sorteio do banco',desc:'15 questões sorteadas de todas as aulas.',sorteio:true,n:15,qs:()=>vgLote(shuffled(allQ).slice(0,15))}];
+ VGSim.lista(host,{chave:'lab',grupos:[{titulo:'Provas anteriores',sub:'A prova inteira, como caiu.',itens:provas},{titulo:'Simulados',sub:'Montados por nós, no formato da prova.',itens:extras}],
+  aoFim:r=>{r.erradas.forEach(id=>{state.missed[id]=true});save()}});
 }
 
 function keysBlock(s){return s.keys?'<div class="keys"><b>Pontos-chave</b><ul>'+s.keys.map(k=>'<li>'+esc(k)+'</li>').join('')+'</ul></div>':''}
@@ -1026,7 +1039,7 @@ function render({scroll=true}={}){
  active=data.lessons.some(l=>l.id===page)||Object.hasOwn(pages,page)?page:'home';
  const l=data.lessons.find(x=>x.id===active);
  const html=l?lesson(l,anchor):window.XPAGES&&XPAGES[active]?XPAGES[active](anchor):active==='parciais'||active==='somativas'?exam(active,anchor):active==='simulados'?sims():active==='revisao'?review():active==='minha'?myReview():active==='treino'?training():active==='arena'?arena():active==='fontes'?refs():home();
- $('#main').innerHTML='<article class="paper">'+html+'</article>';if(window.MC&&MC.rerunAllWidgets){MC.rerunAllWidgets();if(window.WGarena)WGarena();}delete openGrp[active];curSeg=(l?lessonView:anchor)||'';if(l){state.last=active;save()}progress();
+ $('#main').innerHTML='<article class="paper">'+html+'</article>';vgSimMontar();if(window.MC&&MC.rerunAllWidgets){MC.rerunAllWidgets();if(window.WGarena)WGarena();}delete openGrp[active];curSeg=(l?lessonView:anchor)||'';if(l){state.last=active;save()}progress();
  nav();
  document.querySelectorAll('[data-qid]').forEach(f=>feedback(f));
  document.querySelectorAll('.magnify').forEach(img=>{img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-label','Ampliar: '+img.alt)});

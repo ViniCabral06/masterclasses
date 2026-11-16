@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-tone="prova" data-theme="dark">
-<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=996cf227"><script defer src="../../_tema/notas.js?v=748c00a9"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=70434ba8"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><script defer src="../../_tema/siglas.js?v=73b29720"></script><!--/vidro:cabeca-->
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=996cf227"><script defer src="../../_tema/notas.js?v=748c00a9"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=70434ba8"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><script defer src="../../_tema/simulado.js?v=66a9df95"></script><script defer src="../../_tema/siglas.js?v=73b29720"></script><!--/vidro:cabeca-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Simulados — Provas Antigas</title>
@@ -1188,6 +1188,7 @@ function jumpToQuestion(qid){
   if(!el)return false;
   const pane=el.closest('.pane');
   if(pane)show(pane.id);
+  if(pane&&window.VG_SIMS&&VG_SIMS[pane.id])VG_SIMS[pane.id].livre();
   setTimeout(()=>{
     el.scrollIntoView({behavior:'smooth',block:'center'});
     el.classList.add('jump-flash');
@@ -1203,6 +1204,21 @@ window.addEventListener('message',ev=>{
     progress=ev.data.state||{};
     Object.keys(chkByTarget).forEach(id=>{chkByTarget[id].checked=!!progress[id];});
   }
+});
+
+/* vgsim: cada prova abre com a tela de escolha (simular a prova ou entregar por questão) e o cronômetro do simulado padrão do site */
+window.VG_SIMS={};
+window.addEventListener('DOMContentLoaded',()=>{
+  if(!window.VGSim)return;
+  panes.forEach(p=>{
+    const arts=[...p.querySelectorAll('article.q')];if(!arts.length)return;
+    const tit=p.querySelector('.pane-title'),lede=p.querySelector('.lede'),host=document.createElement('div');
+    const alvo=[...p.children].filter(c=>c!==tit&&c!==lede);
+    (lede||tit).after(host);
+    VG_SIMS[p.id]=VGSim.um(host,{chave:'pato:'+p.id,item:{id:p.id,titulo:(tit?tit.textContent:'Prova').replace(/^Simulado — /,''),qs:()=>arts.map((a,i)=>{
+      const o=VGSim.deArtigo(a),c=a.dataset.correct;o.id=a.dataset.qid||p.id+'-'+i;o.gab=c?'ABCDE'.indexOf(c):null;return o})},
+      livre:on=>alvo.forEach(c=>{if(!c.matches('.cel-fin,.navfoot,.segnav'))c.style.display=on?'':'none'})});
+  });
 });
 
 const start=location.hash.replace('#','');

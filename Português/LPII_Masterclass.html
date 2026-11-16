@@ -412,7 +412,7 @@ mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=996cf227">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=4f9f9423"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/foco.js?v=80e61aad"></script>
+<script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=4f9f9423"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=66a9df95"></script><script defer src="../_tema/foco.js?v=80e61aad"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -449,6 +449,7 @@ mark.f1{background:#d8f3e3}mark.f2{background:#fdf0bf}mark.f3{background:#fcd9a8
 <div id="vidro-load" style="--vl:#ff8a5b" role="status" aria-label="Carregando Português Aplicado à Saúde II"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 16h5"/></svg></div><div class="vl-t">Português Aplicado à Saúde II</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
 
 
 
@@ -1196,26 +1197,14 @@ function cacaErros(el){
  $('#lc',el).onclick=()=>{let ok=0;$$('.ln',box).forEach((b,i)=>{const sel=b.classList.contains('sel'),er=!!L[i][1];b.classList.remove('sel','right','wrong');if(sel===er){b.classList.add('right');ok++}else b.classList.add('wrong')});
   $('#lr',el).innerHTML='<div class="exp on">'+L.map(l=>'• '+esc(l[0])+' → '+(l[1]?'<b>ERRO</b>: ':'adequado: ')+esc(l[2])).join('<br>')+'</div>';if(ok===L.length&&!S.ans['ce']){S.ans['ce']={v:1,ok:true};addXP(20,'caça-erros perfeito')}}
 }
-/* --- simulado --- */
+/* --- simulado: aba padrão do site (_tema/simulado.js) --- */
 function rSim(vw){
- if(!S.sim)S.sim={ans:{},t0:null,done:false};
- const sm=S.sim;
- if(!sm.t0&&!sm.done){vw.innerHTML='<h1 class="title">Simulado da Somativa</h1><div class="warn">30 questões reconstruídas a partir das justificativas oficiais da Somativa 81 (embaralhadas por aula; a ordem real não é conhecida). Cronômetro: 3 min por questão (90 min). O gabarito só aparece ao entregar.</div><button class="cbtn" id="st">Iniciar simulado</button>';$('#st').onclick=()=>{sm.t0=Date.now();save();render()};if(cur.focus)vw.insertAdjacentHTML('beforeend','<p style="margin-top:14px;color:var(--muted)">Você veio da justificativa '+cur.focus+'. Ela está na aba “Das provas” do módulo correspondente.</p>');return}
- if(sm.done){const c=PROVA.filter(p=>sm.ans[p.j]===p.c).length;const bym={};PROVA.forEach(p=>{bym[p.m]=bym[p.m]||[0,0];bym[p.m][1]++;if(sm.ans[p.j]===p.c)bym[p.m][0]++});
-  vw.innerHTML='<h1 class="title">Resultado</h1><div class="card"><h3>'+c+' / 30 · nota '+(c/3).toFixed(1)+'</h3><table>'+MODS.map(m=>'<tr><td>'+m.nome+'</td><td>'+(bym[m.id]?bym[m.id][0]+'/'+bym[m.id][1]:'—')+'</td><td>'+(bym[m.id]&&bym[m.id][0]<bym[m.id][1]?'<button class="cbtn ghost" data-go="'+m.id+'">Revisar</button>':'')+'</td></tr>').join('')+'</table></div><div class="qs" id="sq"></div><div class="rowb"><button class="cbtn ghost" id="rs">Refazer simulado</button></div>';
-  PROVA.forEach(p=>{const a=sm.ans[p.j];$('#sq',vw).insertAdjacentHTML('beforeend','<div class="q"><span class="tag p">Justificativa '+p.j+' · '+(a===p.c?'✔ acertou':'✘ '+(a==null?'em branco':'errou'))+'</span><div class="qt">'+esc(p.q)+'</div>'+p.a.map((t,i)=>'<div class="alt lock'+(i===p.c?' ok':(i===a?' bad':''))+'"><b>'+A[i]+'</b><span>'+esc(t)+'</span></div>').join('')+'<div class="exp on">'+esc(p.e)+'</div></div>')});
-  $$('[data-go]',vw).forEach(b=>b.onclick=()=>go({v:'mod',id:b.dataset.go,tab:'prova'}));$('#rs').onclick=()=>{S.sim=null;save();render()};return}
- let order=sm.order||(sm.order=PROVA.map(p=>p.j).sort(()=>Math.random()-.5));let n=sm.n||0;
- vw.innerHTML='<div class="top"><h1 class="title" style="margin:0">Simulado</h1><span class="score" id="tm" style="margin-left:auto"></span></div><div class="grid" id="gr"></div><div id="sq"></div>';
- const draw=()=>{const p=PROVA.find(x=>x.j===order[n]);$('#gr',vw).innerHTML=order.map((j,i)=>'<button class="gb'+(sm.ans[j]!=null?' ans':'')+(sm.flags&&sm.flags[j]?' flag':'')+(i===n?' cur':'')+'" data-n="'+i+'">'+(i+1)+'</button>').join('');
-  $('#sq',vw).innerHTML='<div class="q"><span class="tag a">Questão '+(n+1)+' de 30</span><div class="qt">'+esc(p.q)+'</div>'+p.a.map((t,i)=>'<button class="alt'+(sm.ans[p.j]===i?' sel':'')+'" data-i="'+i+'"><b>'+A[i]+'</b><span>'+esc(t)+'</span></button>').join('')+'<div class="rowb"><button class="cbtn ghost" id="fl">🚩 '+(sm.flags&&sm.flags[p.j]?'Desmarcar':'Marcar para revisar')+'</button><button class="cbtn ghost" id="pv">← Anterior</button><button class="cbtn ghost" id="nx">Próxima →</button><button class="cbtn" id="en">Entregar</button></div></div>';
-  $$('.alt',vw).forEach(b=>b.onclick=()=>{sm.ans[p.j]=+b.dataset.i;save();draw()});
-  $$('.gb',vw).forEach(b=>b.onclick=()=>{sm.n=n=+b.dataset.n;save();draw()});
-  $('#fl',vw).onclick=()=>{sm.flags=sm.flags||{};sm.flags[p.j]=!sm.flags[p.j];save();draw()};
-  $('#pv',vw).onclick=()=>{if(n>0){sm.n=--n;draw()}};$('#nx',vw).onclick=()=>{if(n<29){sm.n=++n;draw()}};
-  $('#en',vw).onclick=()=>{const blank=PROVA.filter(p=>sm.ans[p.j]==null).length;if(blank&&!confirm(blank+' em branco. Entregar mesmo assim?'))return;sm.done=true;const c=PROVA.filter(p=>sm.ans[p.j]===p.c).length;save();addXP(c,'simulado');render()}};
- draw();
- const tick=()=>{if(!$('#tm'))return;const left=90*60-Math.floor((Date.now()-sm.t0)/1000);const a=Math.abs(left);$('#tm').textContent=(left<0?'⏱ estourou +':'⏱ ')+String(Math.floor(a/60)).padStart(2,'0')+':'+String(a%60).padStart(2,'0');setTimeout(tick,1000)};tick();
+ vw.innerHTML='<h1 class="title">Simulados</h1><p style="color:var(--muted);margin:0 0 6px">Cada prova anterior é um simulado inteiro. Antes de começar você escolhe: simular a prova, com o gabarito só no fim, ou entregar questão por questão. São 3 minutos por questão.</p><div id="vgsim-host"></div>'+(cur.focus?'<p style="margin-top:14px;color:var(--muted)">Você veio da justificativa '+esc(cur.focus)+'. Ela está na aba “Das provas” do módulo correspondente.</p>':'');
+ const monta=()=>{const host=$('#vgsim-host');if(!host)return;
+  VGSim.lista(host,{chave:'lp2',grupos:[{titulo:'Provas anteriores',sub:'A prova inteira. A ordem real das questões não é conhecida.',itens:[{id:'s81',tag:'Prova somativa',titulo:'Somativa 81',desc:'Reconstruída das justificativas oficiais; o gabarito é o oficial.',
+   qs:()=>PROVA.map(p=>({id:'j'+p.j,tag:'📝 Questão de prova · reconstruída da justificativa',enun:'<p>'+esc(p.q)+'</p>',alts:p.a.map(esc),gab:p.c,grupo:(MODS.find(m=>m.id===p.m)||{}).nome||'',com:'<p>'+esc(p.e)+'</p>'}))}]}],
+   aoFim:r=>addXP(r.ok,'simulado')})};
+ if(window.VGSim)monta();else addEventListener('DOMContentLoaded',monta,{once:true});
 }
 /* --- quiz final --- */
 function rQuiz(vw){
