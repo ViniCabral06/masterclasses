@@ -90,6 +90,22 @@
     '.vgsim .vgs-tab td{padding:8px 10px 8px 0;border-bottom:1px solid var(--s-ln);background:transparent;color:inherit}' +
     '.vgsim .vgs-livre{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border:1px solid var(--s-ln);background:var(--s-bg);border-radius:16px;padding:10px 14px;margin:0 0 18px;font-size:14px}' +
     '@media (max-width:700px){.vgsim .vgs-g2{grid-template-columns:1fr}.vgsim .vgs-q{padding:15px 14px;border-radius:16px}.vgsim .vgs-bar{top:4px;padding:8px 10px}.vgsim .vgs-tm{font-size:18px}.vgsim .vgs-grid button{width:32px;height:32px}}' +
+    '.vgsim #vgs-gf-top{scroll-margin-top:84px}' +
+    '.vgsim .vgs-gf{display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:6px;margin:0 0 10px}' +
+    '.vgsim .vgs-gf button{appearance:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:50px;width:auto;padding:4px 0;margin:0;border-radius:12px;border:1px solid var(--s-ln);background:transparent;color:inherit;font:inherit;font-family:inherit;cursor:pointer;box-shadow:none;font-variant-numeric:tabular-nums}' +
+    '.vgsim .vgs-gf small{font-size:11px;font-weight:600;opacity:.7;line-height:1}' +
+    '.vgsim .vgs-gf b{font-size:16px;font-weight:700;line-height:1.1}' +
+    '.vgsim .vgs-gf .rt{background:color-mix(in srgb,var(--s-ok) 26%,transparent);border-color:var(--s-ok)}' +
+    '.vgsim .vgs-gf .wr{background:color-mix(in srgb,var(--s-bad) 24%,transparent);border-color:var(--s-bad)}' +
+    '.vgsim .vgs-gf .br{border-style:dashed;border-color:var(--s-bad)}' +
+    '.vgsim .vgs-gf .ds{background:var(--s-bg2)}' +
+    '.vgsim .vgs-gf button:active{transform:scale(.96)}' +
+    '.vgsim .vgs-leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;opacity:.8;margin:0 0 18px}' +
+    '.vgsim .vgs-leg i{display:inline-block;width:11px;height:11px;border-radius:4px;margin-right:5px;vertical-align:-1px;border:1px solid var(--s-ln)}' +
+    '.vgsim .vgs-q.vgs-flash{animation:vgsflash 1.6s ease-out}' +
+    '@keyframes vgsflash{0%,35%{box-shadow:0 0 0 3px var(--s-acc)}100%{box-shadow:0 0 0 0 transparent}}' +
+    '.vgsim .vgs-up{margin-left:auto}' +
+    '@media (max-width:700px){.vgsim .vgs-gf{grid-template-columns:repeat(auto-fill,minmax(48px,1fr))}.vgsim .vgs-gf button{min-height:46px}}' +
     '@media print{.vgsim .vgs-bar,.vgsim .vgs-grid,.vgsim .vgs-acts{display:none}}';
   function estilo() {
     if (document.getElementById('vgsim-css')) return;
@@ -168,6 +184,7 @@
         h += '<button class="vgs-b sm" type="button" data-vgs="flag" data-i="' + i + '">' + (run.flag[i] ? 'Desmarcar revisão' : 'Marcar para revisar') + '</button></div>';
       }
       if (dn) { var c = com(q, a); if (c) h += '<div class="vgs-com">' + (disc ? '<p><b>Resposta ideal</b></p>' : '') + c + '</div>'; }
+      if (fim) h += '<div class="vgs-qf"><button class="vgs-b sm vgs-up" type="button" data-vgs="grade">↑ Voltar ao gabarito</button></div>';
       return h + '</div>';
     }
     function tGrade() {
@@ -209,11 +226,26 @@
       });
       return { ok: ok, total: val, brancas: br, pct: val ? Math.round(ok / val * 100) : 0, grupos: g, erradas: err, certas: cer };
     }
+    /* grade do resultado: a letra que a pessoa marcou em cada questão, verde se acertou, vermelho se errou;
+       tocar leva à questão na correção comentada */
+    function tGradeFim() {
+      var h = '<div class="vgs-sec" id="vgs-gf-top">Seu gabarito</div><div class="vgs-gf">';
+      qs.forEach(function (q, k) {
+        var a = run.ans[k], disc = !(q.alts || []).length, c, l, d;
+        if (disc) { c = 'ds'; l = (run.txt || {})[k] ? '✎' : '—'; d = 'dissertativa'; }
+        else if (!gabs(q).length) { c = 'ds'; l = a == null ? '—' : L[a]; d = 'sem gabarito'; }
+        else if (a == null) { c = 'br'; l = '—'; d = 'em branco'; }
+        else { c = certa(q, a) ? 'rt' : 'wr'; l = L[a]; d = certa(q, a) ? 'certa' : 'errada'; }
+        h += '<button type="button" class="' + c + '" data-vgs="verq" data-i="' + k + '" aria-label="Questão ' + (k + 1) + ': marcou ' + (l === '—' ? 'nada' : l) + ', ' + d + '"><small>' + (k + 1) + '</small><b>' + l + '</b></button>';
+      });
+      return h + '</div><div class="vgs-leg"><span><i style="background:color-mix(in srgb,var(--s-ok) 26%,transparent);border-color:var(--s-ok)"></i>Acertou</span><span><i style="background:color-mix(in srgb,var(--s-bad) 24%,transparent);border-color:var(--s-bad)"></i>Errou</span><span><i style="border:1px dashed var(--s-bad)"></i>Em branco</span><span>Toque numa questão para ver a correção</span></div>';
+    }
     function tEnd() {
       var p = placar(), over = run.used > total(), gk = Object.keys(p.grupos), h;
       h = '<div class="vgs-crumb">' + esc(item.titulo) + ' · resultado</div>' +
         '<div class="vgs-nota"><b>' + p.pct + '%</b><span>' + p.ok + ' de ' + p.total + ' certas' + (p.brancas ? ' · ' + p.brancas + ' em branco' : '') +
         '</span><span>Tempo: ' + mmss(run.used) + ' de ' + mmss(total()) + (over ? ' (estourou)' : '') + '</span></div>';
+      h += tGradeFim();
       if (qs.length > p.total) h += '<p class="vgs-p">' + (qs.length - p.total) + ' questão(ões) sem gabarito objetivo ficaram fora da nota: confira pelo comentário.</p>';
       if (gk.length > 1 && gk.length <= p.total / 2) {
         h += '<div class="vgs-sec">Desempenho por tema</div><table class="vgs-tab"><tr><td><b>Tema</b></td><td><b>Acertos</b></td><td><b>% de erro</b></td></tr>';
@@ -316,6 +348,8 @@
       else if (a === 'refaz') { run = null; salvar(); abrir(item); }
       else if (a === 'fechar') largar();
       else if (a === 'copiar') copiar(b);
+      else if (a === 'verq') { var el = host.querySelector('#vgs-q-' + i); if (el) { el.scrollIntoView({ block: 'start', behavior: 'smooth' }); el.classList.remove('vgs-flash'); void el.offsetWidth; el.classList.add('vgs-flash'); } }
+      else if (a === 'grade') { var gt = host.querySelector('#vgs-gf-top'); if (gt) gt.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
     });
     host.addEventListener('input', function (e) {
       var t = e.target; if (!t.classList || !t.classList.contains('vgs-ta') || !run) return;

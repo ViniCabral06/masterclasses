@@ -54,7 +54,7 @@ Viram **questões reconstruídas** — nunca foto, recorte ou texto solto. Passo
 
 ## Entrega: o simulado padrão do site
 
-O simulado **não** é uma página à parte. Ele entra na **aba "Simulados" do master da matéria** e roda no `_tema/simulado.js`, que já faz tudo: lista, tela "Como você quer fazer?" (simular a prova ou entregar por questão; prova inteira ou uma por vez), cronômetro, marcar para revisar, retomar de onde parou, dissertativa com contador, nota, desempenho por tema, "Copiar resultado" e correção comentada.
+O simulado **não** é uma página à parte. Ele entra na **aba "Simulados" do master da matéria** e roda no `_tema/simulado.js`, que já faz tudo: lista, tela "Como você quer fazer?" (simular a prova ou entregar por questão; prova inteira ou uma por vez), cronômetro, marcar para revisar, retomar de onde parou, dissertativa com contador, nota, **grade "Seu gabarito"** (a letra marcada em cada questão, verde se acertou, vermelho se errou, tracejada se ficou em branco; tocar leva à questão na correção comentada, que tem "↑ Voltar ao gabarito"), desempenho por tema, "Copiar resultado" e correção comentada.
 
 **Nunca** crie tela de início, cronômetro, placar, grade ou correção próprios. Se o padrão não fizer algo de que o simulado precisa, mude o `simulado.js` — vale para todas as matérias — e avise.
 
@@ -84,7 +84,7 @@ Simulado de prova antiga entra em "Provas anteriores"; o nosso, em "Simulados", 
 ### Testar antes de dizer que está pronto
 
 - `python publicar.py --local` e o servidor local; abra a aba Simulados da matéria.
-- Faça o simulado nas duas entregas e nas duas telas, até a nota. Confira: nenhuma pista do gabarito antes de entregar, todas as alternativas comentadas, tema aparece depois, "Desempenho por tema" e "Copiar resultado" na nota.
+- Faça o simulado nas duas entregas e nas duas telas, até a nota. Confira: nenhuma pista do gabarito antes de entregar, todas as alternativas comentadas, tema aparece depois; na nota, a grade "Seu gabarito" com as cores certas e o toque levando à questão, "Desempenho por tema" e "Copiar resultado".
 - Tela de celular e temas claro e escuro.
 - `python conferir.py` sem pendência.
 - Publicar só se pedirem, com `python publicar.py "mensagem"`.

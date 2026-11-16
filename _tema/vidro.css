@@ -234,6 +234,9 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
 }
 :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"]),:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="img"],[data-vidro="lab"])[data-theme]{--accent-ink:var(--vg-acc-ink);--on-ink:var(--vg-on-acc)}
 :root[data-vidro="port"],:root[data-vidro="port"][data-theme]{--accent-ink:var(--vg-on-acc);--on-ink:var(--vg-on-acc)}
+/* tema claro: textos na cor da matéria (subtítulo e números da capa) usam o tom escuro, legível no fundo claro */
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"])[data-vidro][data-theme="light"]{--tone:var(--vg-acc-ink)}
+:root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"])[data-theme="light"] .metric b{color:var(--vg-acc-ink)}
 :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) .paper :is(button[data-check],button[data-exam-check],button[data-start],#submit-sim){background:var(--vg-acc);color:var(--vg-on-acc);border-color:transparent}
 :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(main,.main,#main){background:transparent!important}
 :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(.sidebar,#side){background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
