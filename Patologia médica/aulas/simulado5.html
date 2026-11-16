@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="pt-BR" data-tone="prova" data-theme="dark">
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=996cf227"><script defer src="../../_tema/notas.js?v=748c00a9"></script><script defer src="../../_tema/segmentos.js?v=249414fa"></script><script defer src="../../_tema/extras.js?v=70434ba8"></script><script defer src="../../_tema/memes.js?v=2a2797aa"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><script defer src="../../_tema/siglas.js?v=73b29720"></script><!--/vidro:cabeca-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulado 2 — somativa · Patologia Médica I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet"><style>/* ===== Visual "Farmacologia" aplicado às aulas de Patologia ===== */
+:root{
+  --ground:#ffffff; --surface:#f5f6f4; --surface-2:#eceeeb; --raised:#ffffff;
+  --border:#e4e6e2; --rule:#eff0ed; --control:#d6d9d4;
+  --ink:#1f201d; --ink-2:#3a3c37; --muted:#676964; --faint:#9a9c96;
+  --accent:#1b6e66; --accent-ink:#0f4d47; --accent-soft:#e3f0ed;
+  --tone:var(--accent);
+  --ok:#2e7d32; --ok-bg:#e6f4e7; --ok-line:#b9dcbb;
+  --bad:#b42318; --bad-bg:#fdecea; --bad-line:#f2c1bb;
+  --warn:#b26a00; --warn-bg:#f8ecd2; --warn-ink:#7a5200;
+  --on-ink:#fff;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121413; --surface:#1a1d1b; --surface-2:#242826; --raised:#1f2320;
+  --border:#2c312e; --rule:#222624; --control:#3d4440;
+  --ink:#e6e9e4; --ink-2:#c3c8c1; --muted:#9aa09a; --faint:#6f766f;
+  --accent:#5fc4ae; --accent-ink:#93e0cd; --accent-soft:#17332d;
+  --ok:#62c27a; --ok-bg:#15281a; --ok-line:#2b5233;
+  --bad:#f07a6c; --bad-bg:#2d1714; --bad-line:#5c2b25;
+  --warn-bg:#33290f; --warn-ink:#f0cf86;
+  --on-ink:#121413;
+}
+/* cada grupo de aulas tem a sua cor, só no que orienta */
+:root[data-tone="cv"]{--tone:#a3263a}
+:root[data-tone="resp"]{--tone:#1f6f8b}
+:root[data-tone="prova"]{--tone:#6b4c8a}
+:root[data-tone="sim"]{--tone:#1b6e66}
+:root[data-tone="gi"]{--tone:#2e7d4f}
+:root[data-tone="acc"]{--tone:#9a5a00}
+:root[data-theme="dark"][data-tone="cv"]{--tone:#ec8a98}
+:root[data-theme="dark"][data-tone="resp"]{--tone:#7cc2dc}
+:root[data-theme="dark"][data-tone="prova"]{--tone:#bca0d8}
+:root[data-theme="dark"][data-tone="sim"]{--tone:#5fc4ae}
+:root[data-theme="dark"][data-tone="gi"]{--tone:#6fbf8e}
+:root[data-theme="dark"][data-tone="acc"]{--tone:#e0b06a}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{background:var(--ground)!important;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:inherit;color:inherit}
+::selection{background:#cfe7e1}
+:root[data-theme="dark"] ::selection{background:#2f5a51}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+*{scrollbar-width:thin;scrollbar-color:var(--control) transparent}
+
+/* ---------- cabeçalho da aula (era "hero") ---------- */
+.hero{background:transparent;color:var(--ink);padding:40px clamp(16px,5vw,72px) 0}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;padding-bottom:28px;border-bottom:1px solid var(--border);
+  margin-bottom:32px}
+.hero h1{order:1;font-family:var(--serif);font-size:clamp(34px,4.4vw,52px);line-height:1.02;margin:0;font-weight:400;
+  letter-spacing:-.015em;color:var(--ink);max-width:none;text-wrap:balance}
+.tag{order:2;display:block;align-self:flex-start;background:transparent;color:var(--tone);font-family:var(--sans);font-size:14px;
+  font-weight:500;letter-spacing:0;padding:0;border-radius:0;margin:12px 0 0}
+.hero p{order:3;margin:14px 0 0;color:var(--muted);font-family:var(--sans);font-size:14.5px;line-height:1.6;max-width:68ch}
+.strip{order:4;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:22px;overflow:hidden;border-radius:0}
+.strip img{width:100%;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--border);filter:none;opacity:.92}
+:root[data-theme="dark"] .strip img{filter:brightness(.9)}
+@media (max-width:700px){.strip{grid-template-columns:repeat(3,1fr)}.strip img:nth-child(n+4){display:none}}
+
+/* ---------- layout (a navegação agora vive na barra lateral do app) ---------- */
+.shell{display:block;max-width:none;margin:0;padding:0 clamp(16px,5vw,72px) 96px}
+nav.rail{display:none}
+main{display:block;max-width:920px;margin:0 auto;padding:0;background:transparent;border-radius:0;box-shadow:none}
+.pane{display:block;animation:rise .35s var(--ease-out) both;scroll-margin-top:100vh}
+/* o cabeçalho grande só aparece na capa da aula; nos segmentos o título do próprio segmento assume */
+html[data-hero="off"] header.hero{display:none}
+html[data-hero="off"] .shell{padding-top:40px}
+.pane[hidden]{display:none}
+
+.pane-title{position:relative;font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin:0 0 28px;
+  padding:0 0 22px;font-weight:400;letter-spacing:-.012em;color:var(--ink);border-bottom:1px solid var(--border);text-wrap:balance}
+.pane-title.has-done{padding-right:150px}
+
+/* ---------- leitura ---------- */
+.prose,.intro{max-width:none}
+.prose p,.intro p,.prose li,.intro li{font-size:17px;line-height:1.7;color:var(--ink)}
+.prose p,.intro p{margin:0 0 18px;max-width:70ch}
+.prose ul,.prose ol,.intro ul,.intro ol{padding-left:22px;margin:0 0 20px;max-width:70ch}
+.prose li,.intro li{margin-bottom:8px}
+.prose li::marker,.intro li::marker{color:var(--faint)}
+.prose h2,.intro h2{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:56px 0 16px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+.intro h2:first-child{margin-top:0}
+.prose h3,.intro h3{font-family:var(--sans);font-size:18px;margin:32px 0 10px;color:var(--ink);font-weight:600;letter-spacing:-.005em}
+.prose strong,.intro strong,.prose b,.intro b{font-weight:600;color:var(--ink)}
+.prose hr,.intro hr{border:0;border-top:1px solid var(--border);margin:36px 0}
+.prose em,.intro em{color:inherit}
+table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:15px;font-family:var(--sans)}
+th{background:transparent;color:var(--muted);text-align:left;padding:10px 14px 10px 0;font-weight:500;font-size:13.5px;
+  border-bottom:1px solid var(--control);vertical-align:bottom}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;text-align:left;
+  font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+@media (max-width:700px){table{display:block;overflow-x:auto}}
+
+.fig{margin:28px auto;max-width:100%;text-align:center}
+.fig img{display:inline-block;max-width:100%;width:auto;max-height:560px;border-radius:12px;border:1px solid var(--border);background:#fff;
+  cursor:zoom-in;transition:transform .2s var(--ease-out)}
+:root[data-theme="dark"] .fig img{border-color:var(--border);filter:brightness(.94)}
+.fig figcaption{font-family:var(--sans);font-size:14px;color:var(--muted);margin:12px auto 0;line-height:1.6;text-align:left;
+  max-width:68ch;padding:0;border:0}
+
+/* ---------- painéis (notas) ---------- */
+.note{border-radius:18px;padding:18px 22px;margin:24px 0;font-size:16px;line-height:1.68;border:none;position:relative;
+  background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:16px;line-height:1.68;max-width:none}
+.note p + p{margin-top:10px}
+.note-extra{background:#f2f2f8}.note-extra>p>strong:first-child{color:#4b4790}
+.note-fix{background:#fbf0ea}.note-fix>p>strong:first-child{color:#9a4a1f}
+.note-link{background:#edf3f8}.note-link>p>strong:first-child{color:#2d5f8f}
+:root[data-theme="dark"] .note-extra{background:#1d1d2a}:root[data-theme="dark"] .note-extra>p>strong:first-child{color:#aaa6ea}
+:root[data-theme="dark"] .note-fix{background:#2a1c15}:root[data-theme="dark"] .note-fix>p>strong:first-child{color:#ec9f73}
+:root[data-theme="dark"] .note-link{background:#17212b}:root[data-theme="dark"] .note-link>p>strong:first-child{color:#8dbbe6}
+.note + ol,.note + ul{margin-top:-6px}
+
+/* ---------- grifos de frequência em prova ---------- */
+mark.exam1,mark.exam2,mark.exam3,mark.exam4,mark.exam5,mark.hot{padding:1px 3px;border-radius:4px;cursor:help;color:inherit;font-weight:inherit;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.exam1{background:#d8f3e3}
+mark.exam2{background:#fdf0bf}
+mark.exam3,mark.hot{background:#fcd9a8}
+mark.exam4{background:#f8bfb5}
+mark.exam5{background:#1c2331;color:#ffe3a3}
+mark.exam5 *{color:#ffe3a3}
+:root[data-theme="dark"] mark.exam1,:root[data-theme="dark"] mark.exam2,:root[data-theme="dark"] mark.exam3,
+:root[data-theme="dark"] mark.exam4,:root[data-theme="dark"] mark.hot,
+:root[data-theme="dark"] mark.exam1 *,:root[data-theme="dark"] mark.exam2 *,:root[data-theme="dark"] mark.exam3 *,
+:root[data-theme="dark"] mark.exam4 *,:root[data-theme="dark"] mark.hot *{color:#1b2230!important}
+:root[data-theme="dark"] mark.exam5{box-shadow:inset 0 0 0 1px #4a5568}
+.examcard{margin:24px 0;padding:18px 22px;border:none;background:#f8f3e1;border-radius:18px}
+.examcard h4{margin:0 0 8px;font-size:14px;color:#765800;font-family:var(--sans);letter-spacing:0;font-weight:600}
+.examcard p{font-size:15px!important;max-width:none!important}
+:root[data-theme="dark"] .examcard{background:#26220f}:root[data-theme="dark"] .examcard h4{color:#e3c25c}
+.exam-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin:14px 0}
+.exam-legend span{padding:3px 9px;border-radius:999px;font-weight:500}
+:root[data-theme="dark"] .exam-legend span[style*="#111111"]{box-shadow:inset 0 0 0 1px #4a5568}
+.q-source{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:0;
+  font-family:var(--sans);text-transform:none}
+.q-source.real{background:var(--ok-bg);color:var(--ok)}
+.q-source.adapted{background:var(--warn-bg);color:var(--warn-ink)}
+.q-source.original{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- quiz ---------- */
+.qzone{margin-top:72px;padding-top:0;border-top:none;max-width:none}
+.qzone-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:0 0 12px;font-weight:400;
+  color:var(--ink);letter-spacing:-.01em}
+.lede{font-family:var(--sans);font-size:14.5px;color:var(--muted);max-width:68ch;line-height:1.6;margin:0 0 24px}
+.q{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.q-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.q-head>.q-source{order:2;margin-top:3px}
+.q-num{order:1;flex:none;min-width:28px;height:28px;padding:0 6px;border-radius:999px;background:var(--ink);color:var(--on-ink);
+  font-family:var(--sans);font-weight:500;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-variant-numeric:tabular-nums;margin:0}
+.q-stem{order:3;flex:1 0 100%;min-width:0}
+.q-stem p{margin:0 0 12px;font-size:16.5px;line-height:1.65;color:var(--ink);max-width:none}
+.q-stem .fig{margin:8px 0 16px}
+.q-stem .fig img{max-height:420px}
+.opts{display:flex;flex-direction:column;gap:0;margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--border);background:var(--raised);
+  border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  color:var(--ink);transition:border-color .15s ease,background-color .15s ease,transform .16s var(--ease-out)}
+.opt:active{transform:scale(.995)}
+.opt-letter{flex:none;width:26px;height:26px;min-width:26px;border-radius:50%;border:1px solid var(--control);font-weight:500;font-size:13px;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.opt-text{flex:1;min-width:0;padding-top:2px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.opt.is-correct{border-color:var(--ok-line);background:var(--ok-bg);box-shadow:none}
+.opt.is-correct .opt-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-wrong{border-color:var(--bad-line);background:var(--bad-bg);box-shadow:none}
+.opt.is-wrong .opt-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+:root[data-theme="dark"] .opt.is-correct .opt-letter,:root[data-theme="dark"] .opt.is-wrong .opt-letter{color:#0d1110}
+.q.done .opt{cursor:default}
+.q.done .opt:active{transform:none}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--control)}:root[data-theme="dark"] .opt:hover{border-color:#4a524d}}
+.q-actions{display:flex;gap:8px;align-items:center;margin:14px 0 0;flex-wrap:wrap}
+.btn-reveal,.btn-grade,.btn-reset{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;
+  cursor:pointer;background:var(--ink);color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn-reveal:active,.btn-grade:active,.btn-reset:active{transform:scale(.97)}
+.btn-reveal{background:var(--surface-2);color:var(--ink)}
+.btn-reset{background:var(--surface-2);color:var(--ink)}
+.btn-grade{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn-grade{color:#0d1110}
+.btn-reveal[hidden],.btn-grade[hidden],.btn-reset[hidden]{display:none}
+.q-why{margin:14px 0 0;padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:15px;line-height:1.6}
+.q-why[hidden]{display:none}
+.q-why p{margin:0 0 10px;font-size:15px;line-height:1.6;max-width:none}
+.q-why p:last-child{margin:0}
+.q-why:has(.q-verdict.ok){background:var(--ok-bg)}
+.q-why:has(.q-verdict.no){background:var(--bad-bg)}
+.q-verdict{font-family:var(--sans);font-weight:600}
+.q-verdict.ok{color:var(--ok)}.q-verdict.no{color:var(--bad)}
+.q-why hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+.q-open textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;
+  background:var(--raised);color:var(--ink);resize:vertical;outline:none}
+.q-open textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.scorebar{position:sticky;top:12px;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--surface);
+  border:1px solid var(--border);border-radius:22px;padding:14px 20px;margin:22px 0 16px;font-family:var(--sans);font-size:15px}
+#scoretext{flex:1 1 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.closing{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ---------- ampliar imagem ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(18,20,18,.82);display:none;place-items:center;z-index:900;padding:30px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:12px;background:#fff}
+.lightbox figcaption{color:#e6e9e4;font-family:var(--sans);font-size:14.5px;margin-top:14px;max-width:70ch;text-align:center;line-height:1.5}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-family:var(--sans);
+  font-size:14px;font-weight:500;border-radius:999px;height:38px;padding:0 18px;cursor:pointer}
+
+/* ---------- dica "caiu em prova" ---------- */
+#mc-tooltip{background:#2b302d!important;color:#eef0ec!important;border:none!important;border-radius:12px!important;padding:12px 14px!important;
+  font-family:var(--sans)!important;font-size:13px!important;line-height:1.5!important;box-shadow:0 12px 32px rgba(20,22,20,.28)!important}
+#mc-tooltip div{color:#c3c8c1!important;font-size:12px!important;letter-spacing:0!important;font-weight:600}
+#mc-tooltip .mc-chip{background:#3b413d!important;color:#eef0ec!important;border:none!important;border-radius:999px!important;padding:3px 10px!important;
+  font-size:12px!important}
+#mc-tooltip .mc-chip:hover{background:var(--accent)!important;color:#0d1110!important}
+
+/* ---------- concluir (vem da barra lateral do app) ---------- */
+.done-t{position:absolute;top:6px;right:0;display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);height:38px;padding:0 16px 0 12px;border-radius:999px;cursor:pointer;background:var(--surface);border:none;user-select:none;
+  letter-spacing:0;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.done-t:active{transform:scale(.97)}
+.done-t .d{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--control);background:var(--raised);
+  transition:background-color .2s ease,border-color .2s ease}
+.done-t.on{color:var(--ok);background:var(--ok-bg)}
+.done-t.on .d{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px var(--ok-bg)}
+@media (max-width:700px){.done-t{position:static;margin-top:14px}.pane-title.has-done{padding-right:0}}
+
+@media (max-width:900px){
+  .hero{padding:24px 16px 0}
+  .shell{padding:0 16px 72px}
+  .q{padding:18px 16px;border-radius:18px}
+  .note{padding:16px 18px}
+  .prose p,.intro p,.prose li,.intro li{font-size:16.5px}
+  .prose h2,.intro h2{font-size:27px;margin-top:44px}
+  .opts{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  .hero,.scorebar,.q-actions,.strip,.done-t{display:none}
+  body{background:#fff!important;color:#000}
+  .pane[hidden],.q-why[hidden]{display:block!important}
+  .q,.fig{break-inside:avoid}
+}
+
+/* ---------- anterior / próximo ---------- */
+.navfoot{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--border)}
+.navfoot button{border:none;background:var(--surface);border-radius:16px;padding:14px 18px;font-family:var(--sans);font-size:14.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);max-width:48%;text-align:left;line-height:1.4;transition:background-color .15s ease,transform .16s var(--ease-out)}
+.navfoot button:last-child{text-align:right;margin-left:auto}
+.navfoot button:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.navfoot button:hover{background:var(--surface-2)}}
+
+/* ---------- botão grande de concluir, no fim do segmento ---------- */
+.cel-fin{display:flex;justify-content:center;margin:34px 0 8px}
+.cel-finish{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+  font:500 16px/1 var(--sans);cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+:root[data-theme="dark"] .cel-finish{color:#0d1110}
+.cel-finish:active{transform:scale(.97)}
+.cel-finish svg{width:20px;height:20px}
+.cel-finish svg circle{fill:none;stroke:currentColor;stroke-width:2;opacity:.55}
+.cel-finish svg path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s var(--ease-out)}
+.cel-finish.on{background:var(--ok-bg);color:var(--ok)}
+:root[data-theme="dark"] .cel-finish.on{color:var(--ok)}
+.cel-finish.on svg path{stroke-dashoffset:0}
+@media (hover:hover) and (pointer:fine){.cel-finish:not(.on):hover{transform:translateY(-1px)}}
+@media (max-width:600px){.cel-finish{width:100%}}
+.cel-fin + .navfoot,.cel-fin + .segnav{margin-top:40px}
+
+.find-flash{background:#ffe08a!important;color:#1f201d!important;border-radius:3px}
+
+/* ===== Simulados 1 e 2: markup gerado por JS ===== */
+.hero-in{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.hero p{max-width:68ch}
+.tabs{display:flex;gap:6px;max-width:920px;margin:22px auto 0;padding:0 0 24px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.tabbtn{border:none;background:var(--surface);border-radius:999px;height:34px;padding:0 16px;font-family:var(--sans);font-size:13.5px;font-weight:500;
+  cursor:pointer;color:var(--ink-2);position:static;transition:background-color .15s ease,color .15s ease,transform .16s var(--ease-out)}
+.tabbtn:active{transform:scale(.97)}
+.tabbtn.active{background:var(--ink);color:var(--on-ink)}
+main.shell{padding-top:32px}
+h2.block-title{font-family:var(--serif);font-size:clamp(28px,2.6vw,34px);line-height:1.12;margin:48px 0 16px;font-weight:400;color:var(--ink);
+  letter-spacing:-.01em;padding:0;border:0}
+h2.block-title:first-of-type{margin-top:0}
+.block-sub{font-family:var(--sans);font-size:14.5px;color:var(--muted);margin:-4px 0 22px;max-width:68ch}
+#scoretext .n{font-variant-numeric:tabular-nums}
+.btn{border:none;border-radius:999px;height:40px;padding:0 20px;font-family:var(--sans);font-weight:500;font-size:14.5px;cursor:pointer;background:var(--ink);
+  color:var(--on-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;
+  transition:background-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn:active:not(:disabled){transform:scale(.97)}
+.btn:disabled{opacity:.3;cursor:not-allowed;background:var(--ink)}
+.btn-outline{background:var(--surface-2);color:var(--ink)}
+.btn-sm{height:34px;padding:0 14px;font-size:13.5px}
+.q-stem .vg{margin:0 0 12px;white-space:pre-line;font-size:16.5px;line-height:1.65}
+.q-stem .cmd{margin:0 0 14px;font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink-2);white-space:pre-line}
+.opt.selected{border-color:var(--ink);background:var(--raised);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt.selected .opt-letter{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.q.locked .opt{cursor:default}
+.opt-just{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--ink-2);margin:-2px 0 12px 38px;padding:0}
+.opt-just.j-correct{color:var(--ok)}
+.opt-just.j-wrong{color:var(--bad)}
+.q-actions{margin-top:14px}
+.hint{font-family:var(--sans);font-size:13px;color:var(--faint)}
+.d{border:none;border-radius:22px;padding:22px 24px 20px;margin:0 0 16px;background:var(--surface)}
+.d-itens{margin:10px 0 16px;padding-left:0;list-style:none}
+.d-itens li{font-family:var(--sans);font-size:14.5px;color:var(--ink-2);margin-bottom:8px;line-height:1.55}
+textarea.d-answer{width:100%;min-height:110px;font-family:var(--sans);font-size:15.5px;line-height:1.55;padding:12px 14px;border:1px solid var(--border);
+  border-radius:14px;resize:vertical;color:var(--ink);background:var(--raised);outline:none}
+textarea.d-answer:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.char-row{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px;font-family:var(--sans);font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.char-row.near-limit{color:var(--warn)}
+.char-row.at-limit{color:var(--bad);font-weight:600}
+.gabarito{margin-top:14px;padding:16px 18px;background:#e9f3f0;border-radius:16px;font-family:var(--sans);font-size:15px;line-height:1.65;white-space:pre-line;
+  color:var(--ink)}
+:root[data-theme="dark"] .gabarito{background:#142824}
+.gabarito-pts{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:10px}
+.closing{font-family:var(--sans);font-size:13px;color:var(--muted);text-align:left;line-height:1.6}
+@media (max-width:700px){.scorebar{flex-direction:column;align-items:stretch}#scoretext{text-align:center}}
+/*pv-alts*/
+.pv-certa{margin-top:12px;padding:10px 14px;border-radius:12px;border:1px solid var(--ok-line,#b9dcbb);background:var(--ok-bg,#e6f4e7)}
+.pv-certa>b{display:block;margin-bottom:4px;color:var(--ok,#2e7d32)}
+.pv-certa p{margin:0;line-height:1.55}
+.pv-alts{margin-top:12px;padding:12px 14px 14px;border-radius:12px;border:1px solid var(--bad-line,#f2c1bb);background:var(--bad-bg,#fdecea)}
+.pv-alts>b{display:block;margin-bottom:10px;color:var(--bad,#b42318)}
+.pv-alts ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.pv-alts li{display:flex;gap:10px;align-items:flex-start}
+.pv-alts .pv-al{flex:none;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-top:1px;border-radius:999px;background:var(--bad,#b42318);color:#fff;font-weight:700;font-size:.85em}
+.pv-alts .pv-ab{min-width:0;flex:1}
+.pv-alts .pv-op{margin:0 0 4px;padding:6px 10px;border-radius:8px;background:var(--ground,#fff);color:var(--ink-2,#3a3c37);font-size:.94em;line-height:1.5}
+.pv-alts .pv-x{background:rgba(220,40,50,.16);color:var(--bad,#b42318);font-weight:600;border-radius:4px;padding:0 3px;text-decoration:underline wavy;text-decoration-color:rgba(220,40,50,.55);text-underline-offset:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.pv-alts .pv-pq{margin:0;line-height:1.55;color:var(--ink,#1f201d)}
+.pv-alts .pv-pq::before{content:"Por quê: ";font-weight:700;color:var(--bad,#b42318)}
+.pv-alts li.ok .pv-al{background:var(--ok,#2e7d32)}
+.pv-alts li.ok .pv-pq::before{content:"Está certa: ";color:var(--ok,#2e7d32)}
+.pv-alts .pv-al.rom{width:auto;min-width:24px;padding:0 7px}
+.pv-alts.pv-afs{border-color:var(--border,#e4e6e2);background:var(--surface,#f5f6f4)}
+.pv-alts.pv-afs>b{color:var(--ink,#1f201d)}
+.pv-alts.pv-afs li:not(.ok) .pv-pq::before{content:"Está errada: "}
+.pv-alts li.dub .pv-al{background:#b26a00}
+.pv-alts.pv-afs li.dub .pv-pq::before{content:"Imprecisa: ";color:#b26a00}
+.pv-dica{margin-top:12px;padding:10px 14px;border-radius:12px;border:1px solid var(--border,#e4e6e2);border-left:4px solid var(--vg-acc,#6b5bd6);background:var(--surface,#f5f6f4)}
+.pv-dica>b{display:block;margin-bottom:3px}
+.pv-dica p{margin:0;line-height:1.55}
+.pv-dica+.pv-dica{margin-top:8px}
+:root[data-theme="dark"] .pv-alts .pv-x{background:rgba(240,110,100,.2)}
+/*/pv-alts*/
+</style>
+<style>
+.mon-aviso{max-width:920px;margin:22px auto 0;padding:14px 18px;border-radius:16px;background:var(--warn-bg);color:var(--warn-ink);font-size:14.5px;line-height:1.55}
+.mon-aviso b{color:inherit}
+.mon-tema{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;background:var(--accent-soft);color:var(--accent-ink);order:2;margin-top:3px}
+.mon-fonte{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:500;background:var(--surface-2);color:var(--muted);order:2;margin-top:3px}
+.q-stem p.af{margin:0 0 8px;padding-left:14px;border-left:3px solid var(--border);font-size:15.5px}
+.mon-wait{font-size:14px;color:var(--muted)}
+.mon-bar{max-width:920px;margin:18px auto 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between;font-size:14.5px;color:var(--muted)}
+.mon-bar b{color:var(--ink)}
+.mon-grupo{max-width:920px;margin:26px auto 10px;font-family:var(--serif);font-size:26px;font-weight:400;color:var(--ink)}
+.q-why .com{margin-top:6px}
+.q-why .com-alt{margin:6px 0 12px;padding-left:18px}
+.q-why .com-alt li{margin:0 0 8px;line-height:1.55}
+.q-why .com-alt li.ok b{color:var(--ok)}
+.q-why .com a{color:var(--accent-ink);text-decoration:underline}
+.q-why .q-verdict.ok{color:var(--ok);font-weight:600}
+.q-why .q-verdict.no{color:var(--bad);font-weight:600}
+</style>
+</head>
+<body><div class="hero">
+  <div class="hero-in">
+    <span class="tag">SIMULADO 2 · SOMATIVA</span>
+    <h1>Simulado 2 — somativa</h1>
+    <p>30 questões de nível intermediário no estilo da somativa: fígado, tubo digestivo, pulmão e coração. Marque a sua resposta e toque em "Ver resposta" para ler por que a certa é a certa e por que cada uma das outras está errada. As marcações ficam salvas neste navegador.</p>
+  </div>
+</div>
+<main class="shell">
+  <div class="mon-aviso" id="mon-aviso"></div>
+  <div class="mon-bar"><span id="mon-cont"></span><button class="btn-reset" type="button" id="mon-zerar">↺ Zerar respostas</button></div>
+  <div id="mon-lista"></div>
+  <p class="closing">Simulado 2 da somativa de Patologia Médica I · gabarito comentado por Vinícius e Matheus</p>
+</main>
+<script id="sim-data" type="application/json">{"q": [{"tema": "Congestão hepática", "txt": ["Mulher de 58 anos, com insuficiência cardíaca direita grave de longa data, apresenta hepatomegalia dolorosa e aumento de transaminases. O fígado, ao corte, tem aspecto de \"noz-moscada\". Quanto à histologia, é CORRETO afirmar:"], "op": ["Congestão da veia porta e dos sinusoides, mais intensa na zona 1.", "Fibrose periportal difusa, com nódulos e perda da estrutura lobular.", "Congestão da veia central e dos sinusoides, mais intensa na zona 3.", "Esteatose periportal macrovesicular, com balonização e neutrófilos."]}, {"tema": "Hipertensão portal", "txt": ["Homem de 52 anos, cirrótico, apresenta hipertensão portal. Assinale a alternativa que traz manifestações DIRETAMENTE decorrentes da hipertensão portal:"], "op": ["Esplenomegalia congestiva, circulação colateral e varizes esofágicas.", "Ginecomastia, eritema palmar e aranhas vasculares na pele do tórax.", "Icterícia, coagulopatia e hipoalbuminemia com edema periférico leve.", "Encefalopatia, flapping e fetor hepático com hálito de odor adocicado."]}, {"tema": "Cirrose", "txt": ["Homem de 55 anos, etilista crônico com cirrose, apresenta ginecomastia, atrofia testicular e eritema palmar. É CORRETO afirmar que esses achados decorrem de:"], "op": ["Aumento da síntese hepática de testosterona, com androgenismo relativo.", "Hipertensão portal, com desvio do fluxo sanguíneo para as veias esofágicas.", "Redução da síntese de albumina, com queda da pressão oncótica do plasma.", "Redução da metabolização hepática dos estrógenos, com hiperestrogenismo."]}, {"tema": "Esquistossomose", "txt": ["Sobre a patogênese da fibrose hepática na esquistossomose mansônica, é CORRETO afirmar:"], "op": ["Os vermes adultos obstruem as veias hepáticas e geram necrose central.", "Os ovos impactam nos ramos portais, e o granuloma Th2 leva à fibrose.", "Os ovos atingem os sinusoides, e a fibrose perivenular destrói lóbulos.", "A resposta Th1 forma granulomas caseosos, com necrose de hepatócitos."]}, {"tema": "Bilirrubina", "txt": ["Recém-nascido com icterícia no 3º dia de vida, submetido a fototerapia. Exames: bilirrubina indireta elevada, urina de cor normal. É CORRETO afirmar:"], "op": ["A bilirrubina direta circula ligada à albumina e não é eliminada na urina.", "A bilirrubina indireta é hidrossolúvel e é eliminada na urina em excesso.", "A bilirrubina indireta circula ligada à albumina e não aparece na urina.", "A fototerapia converte a bilirrubina indireta em direta, por conjugação."]}, {"tema": "Retocolite ulcerativa", "txt": ["Mulher de 32 anos, com diarreia sanguinolenta e tenesmo há 4 meses. A colonoscopia mostra inflamação contínua, do reto ao cólon descendente. Assinale a alternativa CORRETA:"], "op": ["Doença de Crohn, com inflamação transmural e granulomas não caseosos.", "RCU, com inflamação mucosa e risco aumentado de adenocarcinoma colônico.", "RCU, com acometimento do intestino delgado e fístulas enterais comuns.", "RCU, com inflamação transmural, perfuração e formação de fístulas comuns."]}, {"tema": "Câncer colorretal", "txt": ["Homem de 68 anos apresenta anemia ferropriva e sangue oculto nas fezes positivo. A colonoscopia revela adenocarcinoma de ceco. É CORRETO afirmar:"], "op": ["Tumores do cólon direito têm padrão ulcero-infiltrativo e causam obstrução.", "O ceco é o sítio mais comum de adenocarcinoma de cólon, com sangramento.", "Tumores do cólon direito crescem em anel, com fezes afiladas e obstrução.", "Tumores do cólon direito são exofíticos e causam anemia por sangramento."]}, {"tema": "Síndrome de Lynch", "txt": ["Homem de 38 anos, com pai e tio paternos com adenocarcinoma de cólon antes dos 50 anos, sem centenas de pólipos na colonoscopia. A principal hipótese e sua base genética são:"], "op": ["Síndrome de Lynch, com mutação dos genes de reparo, como MSH2 e MLH1.", "Polipose adenomatosa familiar, com mutação do APC e β-catenina livre.", "Síndrome de Lynch, com mutação do APC e centenas de adenomas colônicos.", "Polipose adenomatosa familiar, com mutação do MSH2 e instabilidade."]}, {"tema": "Adenoma-carcinoma", "txt": ["Quanto à sequência adenoma-carcinoma no cólon, é CORRETO afirmar:"], "op": ["Mutação do TP53 inicia o adenoma, e o APC e o K-RAS surgem depois.", "Mutação do K-RAS inicia o adenoma, e o APC e o TP53 surgem depois.", "Mutação do APC inicia o adenoma, e o K-RAS e o TP53 surgem depois.", "Mutação do MSH2 inicia o adenoma, e o APC e o TP53 surgem depois."]}, {"tema": "DRGE", "txt": ["Homem de 45 anos, obeso, com pirose retroesternal diária e hérnia de hiato. Sobre a fisiopatologia da DRGE, é CORRETO afirmar:"], "op": ["A hipertonia do esfíncter esofágico inferior favorece o refluxo do ácido.", "O aumento da pressão abdominal e a hérnia de hiato enfraquecem a barreira.", "A liberação de VIP e óxido nítrico aumenta o tônus do esfíncter inferior.", "A obesidade reduz a pressão intra-abdominal e relaxa o esfíncter inferior."]}, {"tema": "Varizes esofágicas", "txt": ["Homem de 50 anos, etilista com cirrose, apresenta hematêmese volumosa. Sobre as varizes esofágicas, é CORRETO afirmar:"], "op": ["São dilatações intraepiteliais reversíveis após o tratamento da causa base.", "Surgem no terço proximal do esôfago, por hipertensão da veia cava superior.", "Rompem apenas por trauma mecânico, nunca de forma espontânea por pressão.", "São dilatações permanentes das veias submucosas, avaliadas pela endoscopia."]}, {"tema": "Câncer de esôfago", "txt": ["Homem de 62 anos, tabagista e etilista, com disfagia progressiva para sólidos e perda de peso. A biópsia do terço médio do esôfago mostra o tumor. Assinale a alternativa CORRETA:"], "op": ["Carcinoma de células escamosas, com células atípicas e pérolas córneas.", "Adenocarcinoma, com arranjos tubulares de células colunares e mucina.", "Carcinoma de pequenas células, com células pequenas e uniformes em massa.", "Leiomioma esofágico, com feixes de células fusiformes sem atipia nuclear."]}, {"tema": "TNM do esôfago", "txt": ["Sobre o estadiamento TNM do adenocarcinoma de esôfago, é CORRETO afirmar:"], "op": ["O T é definido pelo diâmetro da lesão, e não pela profundidade de invasão.", "O T é definido pelo número de linfonodos regionais comprometidos pela doença.", "O T é definido pela profundidade de invasão da parede, e não pelo tamanho.", "O T depende do grau de diferenciação celular e do tipo histológico do tumor."]}, {"tema": "Gastrite autoimune", "txt": ["Mulher de 55 anos, com anemia macrocítica e anticorpos anti-células parietais positivos. A biópsia gástrica do corpo mostra gastrite autoimune. Quanto à histologia, é CORRETO afirmar:"], "op": ["Infiltrado neutrofílico antral, bacilos espiralados e erosões da mucosa.", "Infiltrado linfocitário, atrofia oxíntica e hiperplasia neuroendócrina.", "Infiltrado eosinofílico difuso, hiperplasia parietal e hipercloridria.", "Necrose fibrinoide da parede, com granulação e trombose de vasos locais."]}, {"tema": "Úlcera péptica", "txt": ["Na úlcera péptica crônica, a base da lesão apresenta camadas histológicas características. Assinale a alternativa que as descreve na ORDEM CORRETA, da superfície para a profundidade:"], "op": ["Necrose fibrinoide, debris e neutrófilos, tecido de granulação e cicatriz fibrosa.", "Debris e neutrófilos, tecido de granulação, necrose fibrinoide e cicatriz fibrosa.", "Cicatriz fibrosa, tecido de granulação, necrose fibrinoide e debris e neutrófilos.", "Debris e neutrófilos, necrose fibrinoide, tecido de granulação e cicatriz fibrosa."]}, {"tema": "Borrmann", "txt": ["Homem de 64 anos com adenocarcinoma gástrico. À endoscopia, a lesão é ulcerada, de bordas elevadas e limites nítidos, sem infiltração difusa da parede. Segundo a classificação de Borrmann:"], "op": ["Borrmann II, lesão ulcerada com bordas elevadas e limites bem nítidos.", "Borrmann I, lesão polipoide ou vegetante, sem ulceração central evidente.", "Borrmann III, lesão ulcerada com infiltração de bordas mal definidas.", "Borrmann IV, lesão infiltrativa difusa, com aspecto de linite plástica."]}, {"tema": "H. pylori", "txt": ["Sobre a infecção por H. pylori e a carcinogênese gástrica, é CORRETO afirmar:"], "op": ["Cepas cagA+ causam inflamação leve e se associam apenas à gastrite antral.", "Dieta rica em sal e pobre em antioxidantes protege contra a carcinogênese.", "Cepas cagA+ causam inflamação mais intensa e maior risco de adenocarcinoma.", "A infecção por H. pylori é fator de risco apenas para o tipo difuso de Lauren."]}, {"tema": "Hepatite tóxica", "txt": ["Mulher de 30 anos evolui com icterícia, coagulopatia e encefalopatia em 2 semanas, após uso de paracetamol em altas doses. O fígado é examinado na necropsia. Assinale a alternativa CORRETA:"], "op": ["Fígado aumentado e firme, com fibrose em ponte e nódulos regenerativos.", "Fígado pequeno e amolecido, com necrose maciça e infiltrado mononuclear.", "Fígado aumentado e amarelado, com esteatose macrovesicular e neutrófilos.", "Fígado de aspecto normal, com vidro fosco e infiltrado portal discreto."]}, {"tema": "Hepatites virais", "txt": ["Sobre as hepatites virais, é CORRETO afirmar:"], "op": ["A hepatite A cronifica com frequência e é transmitida por via parenteral.", "O vírus da hepatite B é citopático direto, e o dano independe da imunidade.", "Hepatócitos em vidro fosco são típicos da fase aguda da hepatite B viral.", "A hepatite C é causada por vírus RNA, com alta cronificação e risco de CHC."]}, {"tema": "Carcinoma hepatocelular", "txt": ["Homem de 60 anos, cirrótico por hepatite B, apresenta nódulo hepático de 4 cm com elevação de alfa-fetoproteína. O diagnóstico mais provável é:"], "op": ["Carcinoma hepatocelular, tendo a cirrose como principal fator de risco.", "Hemangioma cavernoso, neoplasia benigna mais comum, de achado incidental.", "Colangiocarcinoma, com glândulas atípicas em estroma desmoplásico denso.", "Metástase de adenocarcinoma colônico, com glândulas e necrose central."]}, {"tema": "Infarto do miocárdio", "txt": ["Homem de 61 anos morre no 4º dia após um infarto agudo do miocárdio extenso. Na necropsia, a área infartada do ventrículo esquerdo deve mostrar, à microscopia:"], "op": ["Cicatriz colágena densa e organizada, com poucas células inflamatórias.", "Miocárdio sem alterações, pois a necrose só fica visível após duas semanas.", "Necrose de coagulação, neutrófilos em degeneração e chegada de macrófagos.", "Tecido de granulação maduro, com neovasos e deposição inicial de colágeno."]}, {"tema": "Diverticulite", "txt": ["Homem de 70 anos, com doença diverticular do cólon sigmoide. Assinale a alternativa que apresenta as complicações da DIVERTICULITE:"], "op": ["Diverticulite, isquemia da mesentérica superior, volvo e invaginação intestinal.", "Diverticulite, abscesso pericólico, perfuração com peritonite, fístulas e obstrução.", "Abscesso apendicular, hemorragia digestiva alta, estenose pilórica e fístula biliar.", "Hemorragia por varizes, peritonite bacteriana, megacólon e polipose adenomatosa."]}, {"tema": "Isquemia intestinal", "txt": ["Sobre a isquemia intestinal, é CORRETO afirmar:"], "op": ["A mucosa é a primeira camada afetada, e o infarto transmural causa peritonite.", "A serosa é a primeira camada afetada, e a mucosa é preservada por mais tempo.", "O infarto transmural não evolui para peritonite enquanto não houver perfuração.", "A arteriografia convencional é o exame de escolha, sem papel da angiotomografia."]}, {"tema": "Apendicite", "txt": ["Jovem de 19 anos, com dor em fossa ilíaca direita e febre. Na fase inicial da apendicite aguda, o exame histológico mostra:"], "op": ["Granulomas não caseosos com células gigantes e fibrose transmural da parede.", "Fecalito com mucosa íntegra e ausência de infiltrado inflamatório na parede.", "Necrose fibrinoide da parede com trombose dos vasos da submucosa e serosa.", "Congestão dos vasos da serosa e infiltrado neutrofílico na parede do órgão."]}, {"tema": "Câncer de laringe", "txt": ["Homem de 66 anos, tabagista, com rouquidão persistente. A laringoscopia mostra lesão em prega vocal. Sobre as neoplasias da laringe, é CORRETO afirmar:"], "op": ["O adenocarcinoma predomina, e o tumor glótico metastatiza precocemente.", "O tumor supraglótico é o mais comum e causa principalmente rouquidão.", "O carcinoma escamoso predomina, e o tumor glótico dá sintomas precoces.", "O tumor infraglótico é o mais comum e causa principalmente disfagia."]}, {"tema": "Adenocarcinoma de pulmão", "txt": ["Mulher de 60 anos, não tabagista, com opacidade pulmonar periférica de crescimento lento. A biópsia mostra células neoplásicas que revestem as paredes alveolares. O diagnóstico é:"], "op": ["Carcinoma de pequenas células, de crescimento rápido e origem neuroendócrina.", "Adenocarcinoma lepídico, de crescimento lento, sobre os septos alveolares.", "Carcinoma de células escamosas, com pérolas córneas e localização central.", "Carcinoma de grandes células, de crescimento rápido e padrão indiferenciado."]}, {"tema": "Edema pulmonar", "txt": ["Homem de 70 anos, com infarto agudo do miocárdio e dispneia intensa. A radiografia mostra edema pulmonar. O mecanismo principal do edema é:"], "op": ["Lesão da barreira alvéolo-capilar, com aumento da permeabilidade vascular.", "Redução da pressão oncótica do plasma, por hipoalbuminemia grave e crônica.", "Redução da pressão intersticial, por obstrução do fluxo linfático pulmonar.", "Aumento da pressão hidrostática dos capilares, por congestão na IC esquerda."]}, {"tema": "Pneumonia lobar", "txt": ["Homem de 45 anos, com febre alta, tosse produtiva com escarro ferruginoso e consolidação de um lobo pulmonar. Sobre a pneumonia lobar, é CORRETO afirmar:"], "op": ["Em geral causada pelo S. pneumoniae, com consolidação fibrino-supurativa lobar.", "É um processo focal e bilateral, com múltiplos focos centrados nos bronquíolos.", "Cursa com espessamento septal por linfócitos, sem exsudato alveolar relevante.", "Destrói a parede alveolar e forma cavidades, com cura espontânea sem sequelas."]}, {"tema": "Bronquite crônica", "txt": ["Homem de 58 anos, tabagista de longa data, com tosse e expectoração diárias há anos. Sobre a bronquite crônica, é CORRETO afirmar:"], "op": ["Define-se por dilatação permanente de brônquios, com tosse e hemoptise recorrentes.", "Define-se por destruição das paredes alveolares, sem inflamação das vias aéreas.", "Define-se por tosse produtiva por 3 meses em 2 anos, com hipertrofia glandular.", "Define-se por tosse seca episódica, com broncoespasmo reversível e eosinofilia."]}, {"tema": "Cor pulmonale", "txt": ["Homem de 65 anos, portador de DPOC grave, apresenta edema de membros inferiores, turgência jugular e hepatomegalia. Assinale a alternativa que representa o diagnóstico mais provável da alteração cardíaca:"], "op": ["Cardiopatia hipertensiva, secundária à sobrecarga pressórica do VE.", "Cor pulmonale crônico, secundário à hipertensão pulmonar de base.", "Cardiopatia isquêmica crônica, secundária à aterosclerose coronária.", "Cardiopatia chagásica crônica, secundária à fibrose do miocárdio."]}], "gab": ["C", "A", "D", "B", "C", "B", "D", "A", "C", "B", "D", "A", "C", "B", "D", "A", "C", "B", "D", "A", "C", "B", "A", "D", "C", "B", "D", "A", "C", "B"], "com": ["* A — Incorreta: A congestão por insuficiência cardíaca direita compromete sobretudo a drenagem venosa centrolobular, não a zona 1 periportal.\n* B — Incorreta: Fibrose difusa com nódulos regenerativos caracteriza cirrose. A hepatopatia congestiva pode evoluir para fibrose, mas não corresponde inicialmente a esse padrão.\n* C — Correta: A pressão venosa retrógrada congestiona a veia central e os sinusoides da zona 3, gerando o aspecto alternado escuro e claro de noz-moscada.\n* D — Incorreta: Esteatose, balonização e neutrófilos remetem mais à esteato-hepatite do que à congestão passiva cardíaca.", "* A — Correta: A pressão portal elevada produz esplenomegalia congestiva e circulação colateral portossistêmica, inclusive varizes esofágicas.\n* B — Incorreta: Ginecomastia, eritema palmar e aranhas vasculares refletem sobretudo alterações hormonais da insuficiência hepatocelular.\n* C — Incorreta: Icterícia, coagulopatia e hipoalbuminemia estão principalmente relacionadas à disfunção de síntese e excreção hepática.\n* D — Incorreta: Encefalopatia pode ser favorecida por desvios portossistêmicos, mas flapping e fetor hepático não são manifestações diretamente e exclusivamente decorrentes da pressão portal.", "* A — Incorreta: O fígado não é o principal órgão produtor de testosterona; na cirrose geralmente há hipogonadismo relativo.\n* B — Incorreta: Desvios portossistêmicos não explicam isoladamente ginecomastia, atrofia testicular e eritema palmar.\n* C — Incorreta: Baixa albumina causa redução da pressão oncótica e contribui para edema e ascite, não para os sinais de feminização.\n* D — Correta: A alteração do metabolismo de hormônios sexuais e do equilíbrio estrogênio/andrógeno favorece ginecomastia, atrofia testicular e eritema palmar.", "* A — Incorreta: A lesão é causada principalmente pelos ovos presos no território portal, não pela obstrução das veias hepáticas por vermes adultos.\n* B — Correta: Ovos nos pequenos ramos portais induzem granulomas com resposta imunológica de predomínio Th2, culminando em fibrose periportal de Symmers.\n* C — Incorreta: A fibrose esquistossomótica é periportal, não uma destruição centrolobular perivenular típica.\n* D — Incorreta: A resposta com granuloma caseoso e predomínio Th1 não define a fisiopatologia característica da esquistossomose hepática.", "* A — Incorreta: A bilirrubina direta (conjugada) é hidrossolúvel e, quando elevada no plasma, pode aparecer na urina.\n* B — Incorreta: A bilirrubina indireta é lipossolúvel e não é livremente filtrada pelos rins.\n* C — Correta: A bilirrubina não conjugada circula ligada à albumina; por isso não produz bilirrubinúria, mantendo a urina sem escurecimento por bilirrubina.\n* D — Incorreta: A fototerapia forma fotoisômeros mais hidrossolúveis, elimináveis sem exigir a conjugação hepática; não converte diretamente a molécula em bilirrubina conjugada.", "* A — Incorreta: Crohn é tipicamente segmentar, transmural e frequentemente associado a lesões salteadas, fístulas e granulomas não caseosos.\n* B — Correta: Inflamação contínua iniciada no reto, tenesmo e diarreia sanguinolenta favorecem RCU; doença extensa e prolongada eleva risco de câncer colorretal.\n* C — Incorreta: RCU compromete sobretudo o cólon e reto; fístulas enterais e doença difusa do delgado são características de Crohn.\n* D — Incorreta: A inflamação da RCU é predominantemente mucosa/submucosa; fístulas transmurais não são frequentes.", "* A — Incorreta: Lesões anulares e estenosantes com obstrução são mais típicas do cólon esquerdo.\n* B — Incorreta: O ceco pode ser acometido, mas não deve ser apontado isoladamente como sítio mais comum de todo o adenocarcinoma colorretal.\n* C — Incorreta: Crescimento circunferencial com estreitamento do calibre das fezes e obstrução é mais típico do cólon esquerdo.\n* D — Correta: No cólon direito, o lúmen amplo permite tumores volumosos e exofíticos; o sangramento crônico oculto frequentemente provoca anemia ferropriva.", "* A — Correta: Lynch decorre de alterações germinativas em genes de reparo de DNA, como MLH1, MSH2, MSH6 e PMS2, com instabilidade de microssatélites.\n* B — Incorreta: Polipose adenomatosa familiar por APC costuma causar dezenas a centenas ou milhares de adenomas; o caso não tem polipose exuberante.\n* C — Incorreta: Lynch não se caracteriza por mutação germinativa de APC e centenas de pólipos; isso sugere polipose adenomatosa familiar.\n* D — Incorreta: MSH2 integra a via de reparo de DNA da síndrome de Lynch, não a alteração típica da polipose por APC.", "* A — Incorreta: TP53 participa geralmente de etapas tardias da progressão neoplásica, não do início clássico do adenoma.\n* B — Incorreta: KRAS favorece crescimento e progressão do adenoma, mas geralmente sucede a inativação inicial de APC.\n* C — Correta: A via clássica envolve perda de APC, ativação posterior de KRAS e alterações tardias em TP53, entre outros eventos.\n* D — Incorreta: MSH2 pertence à via de deficiência de reparo de DNA, diferente da sequência clássica de instabilidade cromossômica APC-KRAS-TP53.", "* A — Incorreta: Hipertonia do esfíncter inferior tende a impedir o refluxo, não a favorecê-lo.\n* B — Correta: Obesidade aumenta a pressão intra-abdominal; a hérnia de hiato compromete a barreira antirrefluxo, favorecendo exposição ácida esofágica.\n* C — Incorreta: VIP e óxido nítrico participam do relaxamento da musculatura lisa e do esfíncter esofágico inferior, não do aumento do seu tônus.\n* D — Incorreta: A obesidade eleva, em vez de reduzir, a pressão intra-abdominal e contribui para o refluxo por diferentes mecanismos.", "* A — Incorreta: As varizes são dilatações de veias submucosas, não estruturas intraepiteliais.\n* B — Incorreta: As varizes portais típicas estão sobretudo no esôfago distal, em conexões entre circulação gástrica esquerda e sistema ázigos.\n* C — Incorreta: A ruptura pode ocorrer espontaneamente por hipertensão portal e elevada tensão na parede varicosa, sem trauma.\n* D — Correta: São dilatações patológicas de veias submucosas, identificadas e classificadas por endoscopia, com risco de hemorragia volumosa.", "* A — Correta: Tabagismo, álcool, disfagia progressiva e lesão do terço médio favorecem carcinoma escamoso, cuja histologia pode exibir pérolas córneas e pontes intercelulares.\n* B — Incorreta: Adenocarcinoma tipicamente se associa a Barrett e ao esôfago distal, com diferenciação glandular.\n* C — Incorreta: Carcinoma de pequenas células esofágico existe, mas é muito mais raro e não é a hipótese principal desse conjunto clínico.\n* D — Incorreta: Leiomioma é um tumor benigno de músculo liso, e não explica tão bem o quadro suspeito de câncer invasivo.", "* A — Incorreta: O T não é definido pelo maior diâmetro, e sim pela profundidade de invasão e estruturas comprometidas.\n* B — Incorreta: Número de linfonodos regionais comprometidos define N, não T.\n* C — Correta: T1 invade mucosa/submucosa; progressão para muscular própria, adventícia ou estruturas adjacentes aumenta a categoria T.\n* D — Incorreta: Grau histológico e tipo tumoral podem contribuir para avaliação prognóstica/agrupamento de estádios, mas não definem a categoria anatômica T.", "* A — Incorreta: Neutrófilos antrais e bacilos espiralados sugerem gastrite por H. pylori, não autoimune oxíntica.\n* B — Correta: Agressão imune às células parietais provoca infiltrado linfocitário, atrofia das glândulas oxínticas e hiperplasia de células neuroendócrinas ECL por hipergastrinemia.\n* C — Incorreta: Ocorre hipocloridria/acloridria por perda de células parietais, não hipercloridria com hiperplasia parietal.\n* D — Incorreta: Necrose fibrinoide vascular com trombose não representa o padrão histológico esperado da gastrite autoimune.", "* A — Incorreta: Coloca a necrose fibrinoide antes do exsudato superficial; a ordem clássica é inversa.\n* B — Incorreta: Posiciona o tecido de granulação acima da faixa de necrose fibrinoide, invertendo as camadas intermediárias.\n* C — Incorreta: Apresenta a ordem da profundidade para a superfície, oposta à solicitada.\n* D — Correta: Da superfície ao fundo: detritos e neutrófilos → necrose fibrinoide → tecido de granulação → cicatriz fibrosa.", "* A — Correta: Borrmann II descreve úlcera tumoral com bordas elevadas e limites relativamente nítidos, tal como no enunciado.\n* B — Incorreta: Borrmann I é massa polipoide/vegetante, não uma úlcera de bordas bem delimitadas.\n* C — Incorreta: Borrmann III é úlcera infiltrativa, com limites menos definidos e invasão além das bordas aparentes.\n* D — Incorreta: Borrmann IV é infiltração difusa da parede, frequentemente produzindo linite plástica.", "* A — Incorreta: Cepas CagA positivas são frequentemente mais virulentas e se associam a inflamação mais intensa, não necessariamente leve.\n* B — Incorreta: Consumo elevado de sal e baixa oferta de vegetais/antioxidantes não são protetores; podem contribuir para maior risco.\n* C — Correta: A proteína CagA interfere na sinalização e organização celular, contribuindo para inflamação e maior risco de adenocarcinoma gástrico.\n* D — Incorreta: H. pylori associa-se de maneira especialmente importante ao câncer gástrico do tipo intestinal; não é fator de risco apenas para o difuso.", "* A — Incorreta: Fibrose em ponte e nódulos regenerativos implicam doença hepática crônica, não insuficiência fulminante em duas semanas.\n* B — Correta: Superdosagem de paracetamol pode provocar necrose hepatocelular extensa, inicialmente centrolobular e, em casos fulminantes, maciça; o fígado pode ficar pequeno e flácido.\n* C — Incorreta: Esteatose macrovesicular com neutrófilos não é o padrão predominante da necrose grave provocada pelo metabólito tóxico do paracetamol.\n* D — Incorreta: Hepatócitos em vidro fosco são associados à presença de HBsAg em hepatite B crônica, não a intoxicação por paracetamol.", "* A — Incorreta: A hepatite A é transmitida principalmente por via fecal-oral e não estabelece infecção crônica.\n* B — Incorreta: Na hepatite B, o dano hepatocelular é predominantemente mediado pela resposta imune do hospedeiro, não por citotoxicidade viral direta.\n* C — Incorreta: Hepatócitos em vidro fosco são característicos da presença de HBsAg, especialmente na hepatite B crônica.\n* D — Correta: O HCV é um vírus RNA e pode tornar-se crônico, com risco de fibrose, cirrose e carcinoma hepatocelular.", "* A — Correta: Cirrose é fator de risco importante para carcinoma hepatocelular; hepatite B também pode causar CHC na ausência de cirrose. Nódulo e AFP elevada reforçam a suspeita.\n* B — Incorreta: Hemangioma é benigno e geralmente incidental; não é a explicação mais provável em cirrótico com nódulo suspeito e AFP elevada.\n* C — Incorreta: Colangiocarcinoma é uma alternativa diferencial, mas o contexto descrito favorece carcinoma hepatocelular.\n* D — Incorreta: Metástase colorretal exige contexto clínico compatível; o padrão de risco e marcadores do caso favorece neoplasia hepática primária.", "* A — Incorreta: Cicatriz colágena densa só se completa por volta de 2 meses após o infarto. No 4º dia ainda não há colágeno organizado.\n* B — Incorreta: A necrose fica visível muito antes: a microscopia mostra necrose de coagulação já nas primeiras 4 a 12 horas, e a macroscopia mostra alterações em cerca de 12 a 24 horas.\n* C — Correta: Entre o 3º e o 7º dia há necrose de coagulação já estabelecida, neutrófilos se desfazendo (o pico deles é em 1 a 3 dias) e macrófagos chegando para fagocitar as fibras mortas. É a fase de parede mais mole, com maior risco de ruptura.\n* D — Incorreta: Tecido de granulação maduro, com neovasos e colágeno, aparece por volta da 2ª semana (10 a 14 dias), não no 4º dia.", "* A — Incorreta: Isquemia mesentérica superior, vólvulo e invaginação não são complicações típicas diretamente resultantes da diverticulite.\n* B — Correta: Entre as complicações reconhecidas estão abscesso pericólico, perfuração com peritonite, fístulas e obstrução por inflamação ou estenose.\n* C — Incorreta: Abscesso apendicular, hemorragia digestiva alta e estenose pilórica não correspondem ao conjunto de complicações da diverticulite do sigmoide.\n* D — Incorreta: Hemorragia varicosa, peritonite bacteriana espontânea, megacólon e polipose não constituem o conjunto de complicações típico.", "* A — Correta: A mucosa intestinal é especialmente sensível à hipóxia; a evolução para infarto transmural pode desencadear peritonite por necrose e resposta inflamatória serosa.\n* B — Incorreta: A serosa não é a primeira a sofrer lesão; a mucosa é particularmente vulnerável à redução da perfusão.\n* C — Incorreta: A necrose transmural já pode provocar peritonite antes de perfuração macroscópica franca; perfuração piora o quadro.\n* D — Incorreta: Angiotomografia é exame fundamental na suspeita de isquemia mesentérica aguda, frequentemente preferido na investigação inicial; arteriografia tem indicações selecionadas.", "* A — Incorreta: Granulomas não caseosos e fibrose transmural favorecem doenças granulomatosas, como Crohn, não apendicite aguda usual.\n* B — Incorreta: Fecalito pode ser o fator obstrutivo, mas o diagnóstico histológico exige inflamação da parede; fecalito isolado não basta.\n* C — Incorreta: Necrose vascular fibrinoide e trombose generalizada não são o padrão típico inicial; alterações isquêmicas e trombóticas podem surgir em fases avançadas.\n* D — Correta: Congestão vascular e infiltrado neutrofílico na parede caracterizam apendicite aguda. Neutrófilos na muscular própria são achado diagnóstico clássico.", "* A — Incorreta: O tipo mais comum é carcinoma escamoso, não adenocarcinoma; o tumor glótico tende a causar rouquidão cedo e não metastatiza tão precocemente.\n* B — Incorreta: Lesões supraglóticas podem disseminar-se para linfonodos mais cedo; rouquidão precoce é mais típica das lesões glóticas.\n* C — Correta: O carcinoma escamoso predomina na laringe. Como afeta as pregas vocais, o câncer glótico costuma se manifestar precocemente com disfonia.\n* D — Incorreta: Tumores infraglóticos são menos comuns; disfagia não é sua manifestação característica principal.", "* A — Incorreta: Carcinoma de pequenas células geralmente é central, cresce rapidamente e apresenta diferenciação neuroendócrina.\n* B — Correta: O padrão lepídico é o crescimento de células neoplásicas ao longo dos septos/paredes alveolares preexistentes, frequentemente em lesões periféricas.\n* C — Incorreta: Carcinoma escamoso costuma estar associado ao tabagismo, com queratinização e frequentemente localização central.\n* D — Incorreta: Grandes células representa tumor indiferenciado sem o padrão histológico específico de revestimento alveolar descrito.", "* A — Incorreta: Aumento da permeabilidade alvéolo-capilar é mecanismo de edema não cardiogênico, por exemplo na SDRA.\n* B — Incorreta: Hipoalbuminemia pode favorecer edema em outros contextos, mas não explica principalmente o edema pulmonar agudo após infarto.\n* C — Incorreta: Obstrução linfática não é o mecanismo básico do edema pulmonar cardiogênico agudo.\n* D — Correta: Falência ventricular esquerda eleva pressões no átrio esquerdo e na circulação venosa/capilar pulmonar; a pressão hidrostática aumentada faz líquido extravasar.", "* A — Correta: S. pneumoniae é agente clássico de pneumonia lobar, com exsudato alveolar rico em fibrina e neutrófilos e consolidação de parte importante de um lobo.\n* B — Incorreta: Múltiplos focos centrados em bronquíolos caracterizam broncopneumonia (padrão lobular), não pneumonia lobar típica.\n* C — Incorreta: Infiltrado septal predominantemente mononuclear com pouco exsudato alveolar remete a pneumonia intersticial/atípica.\n* D — Incorreta: Necrose destrutiva com cavitação é mais associada a pneumonias necrosantes ou abscessos, não ao padrão lobar pneumocócico usual.", "* A — Incorreta: Dilatação permanente de brônquios corresponde a bronquiectasias, frequentemente com infecções recorrentes.\n* B — Incorreta: Destruição dos septos alveolares e aumento permanente dos espaços aéreos distais definem enfisema.\n* C — Correta: Bronquite crônica é definida clinicamente por tosse produtiva por ≥ 3 meses/ano em 2 anos consecutivos, após excluir outras causas; há hiperplasia/hipertrofia de glândulas mucosas e células caliciformes.\n* D — Incorreta: Tosse seca episódica, broncoespasmo reversível e eosinofilia sugerem mais asma, não bronquite crônica.", "* A — Incorreta: A cardiopatia hipertensiva sistêmica compromete predominantemente o ventrículo esquerdo e não é a explicação mais direta do quadro associado à DPOC.\n* B — Correta: A doença pulmonar crônica pode provocar hipertensão pulmonar, sobrecarga e disfunção de ventrículo direito, com edema periférico, turgência jugular e hepatomegalia.\n* C — Incorreta: Doença coronariana pode coexistir, mas não é o mecanismo típico de sobrecarga direita por DPOC descrito.\n* D — Incorreta: Cardiopatia chagásica pode causar insuficiência cardíaca, mas não é a hipótese principal diante de DPOC grave e sinais de hipertensão pulmonar."], "nota": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null], "erro": [{"A": ["veia porta", "zona 1"], "B": ["Fibrose periportal difusa, com nódulos e perda da estrutura lobular"], "D": ["Esteatose periportal macrovesicular, com balonização e neutrófilos"]}, {"B": ["Ginecomastia, eritema palmar e aranhas vasculares"], "C": ["Icterícia, coagulopatia e hipoalbuminemia"], "D": ["Encefalopatia, flapping e fetor hepático"]}, {"A": ["Aumento da síntese hepática de testosterona", "androgenismo relativo"], "B": ["Hipertensão portal", "desvio do fluxo sanguíneo para as veias esofágicas"], "C": ["Redução da síntese de albumina", "queda da pressão oncótica"]}, {"A": ["Os vermes adultos obstruem as veias hepáticas", "necrose central"], "C": ["atingem os sinusoides", "fibrose perivenular destrói lóbulos"], "D": ["Th1", "granulomas caseosos"]}, {"A": ["A bilirrubina direta circula ligada à albumina e não é eliminada na urina"], "B": ["é hidrossolúvel e é eliminada na urina em excesso"], "D": ["converte a bilirrubina indireta em direta, por conjugação"]}, {"A": ["Doença de Crohn", "inflamação transmural e granulomas não caseosos"], "C": ["acometimento do intestino delgado e fístulas enterais comuns"], "D": ["inflamação transmural, perfuração e formação de fístulas comuns"]}, {"A": ["padrão ulcero-infiltrativo e causam obstrução"], "B": ["O ceco é o sítio mais comum de adenocarcinoma de cólon"], "C": ["crescem em anel, com fezes afiladas e obstrução"]}, {"B": ["Polipose adenomatosa familiar"], "C": ["mutação do APC e centenas de adenomas colônicos"], "D": ["Polipose adenomatosa familiar", "MSH2"]}, {"A": ["Mutação do TP53 inicia o adenoma"], "B": ["Mutação do K-RAS inicia o adenoma"], "D": ["Mutação do MSH2 inicia o adenoma"]}, {"A": ["hipertonia", "favorece o refluxo"], "C": ["aumenta o tônus"], "D": ["reduz a pressão intra-abdominal"]}, {"A": ["intraepiteliais"], "B": ["terço proximal", "hipertensão da veia cava superior"], "C": ["Rompem apenas por trauma mecânico, nunca de forma espontânea"]}, {"B": ["Adenocarcinoma", "arranjos tubulares de células colunares e mucina"], "C": ["Carcinoma de pequenas células"], "D": ["Leiomioma esofágico"]}, {"A": ["definido pelo diâmetro da lesão, e não pela profundidade de invasão"], "B": ["definido pelo número de linfonodos regionais"], "D": ["depende do grau de diferenciação celular e do tipo histológico"]}, {"A": ["Infiltrado neutrofílico antral, bacilos espiralados"], "C": ["Infiltrado eosinofílico difuso, hiperplasia parietal e hipercloridria"], "D": ["Necrose fibrinoide da parede, com granulação e trombose"]}, {"A": ["Necrose fibrinoide, debris e neutrófilos"], "B": ["tecido de granulação, necrose fibrinoide"], "C": ["Cicatriz fibrosa, tecido de granulação, necrose fibrinoide e debris e neutrófilos"]}, {"B": ["Borrmann I", "polipoide ou vegetante"], "C": ["Borrmann III", "infiltração de bordas mal definidas"], "D": ["Borrmann IV", "infiltrativa difusa"]}, {"A": ["inflamação leve", "apenas à gastrite antral"], "B": ["protege contra a carcinogênese"], "D": ["apenas para o tipo difuso"]}, {"A": ["aumentado e firme, com fibrose em ponte e nódulos regenerativos"], "C": ["esteatose macrovesicular e neutrófilos"], "D": ["aspecto normal, com vidro fosco"]}, {"A": ["cronifica com frequência", "via parenteral"], "B": ["citopático direto", "independe da imunidade"], "C": ["fase aguda"]}, {"B": ["Hemangioma cavernoso"], "C": ["Colangiocarcinoma"], "D": ["Metástase de adenocarcinoma colônico"]}, {"A": ["Cicatriz colágena densa e organizada"], "B": ["Miocárdio sem alterações", "só fica visível após duas semanas"], "D": ["Tecido de granulação maduro", "deposição inicial de colágeno"]}, {"A": ["isquemia da mesentérica superior, volvo e invaginação intestinal"], "C": ["Abscesso apendicular, hemorragia digestiva alta, estenose pilórica e fístula biliar"], "D": ["Hemorragia por varizes, peritonite bacteriana, megacólon e polipose adenomatosa"]}, {"B": ["A serosa é a primeira camada afetada", "a mucosa é preservada por mais tempo"], "C": ["não evolui para peritonite enquanto não houver perfuração"], "D": ["sem papel da angiotomografia"]}, {"A": ["Granulomas não caseosos com células gigantes e fibrose transmural"], "B": ["mucosa íntegra e ausência de infiltrado inflamatório"], "C": ["Necrose fibrinoide da parede com trombose"]}, {"A": ["O adenocarcinoma predomina", "metastatiza precocemente"], "B": ["O tumor supraglótico é o mais comum", "causa principalmente rouquidão"], "D": ["O tumor infraglótico é o mais comum", "disfagia"]}, {"A": ["Carcinoma de pequenas células"], "C": ["Carcinoma de células escamosas"], "D": ["Carcinoma de grandes células"]}, {"A": ["Lesão da barreira alvéolo-capilar", "aumento da permeabilidade vascular"], "B": ["Redução da pressão oncótica do plasma"], "C": ["obstrução do fluxo linfático pulmonar"]}, {"B": ["focal e bilateral, com múltiplos focos centrados nos bronquíolos"], "C": ["espessamento septal por linfócitos, sem exsudato alveolar"], "D": ["Destrói a parede alveolar e forma cavidades"]}, {"A": ["dilatação permanente de brônquios"], "B": ["destruição das paredes alveolares"], "D": ["tosse seca episódica, com broncoespasmo reversível e eosinofilia"]}, {"A": ["Cardiopatia hipertensiva", "sobrecarga pressórica do VE"], "C": ["Cardiopatia isquêmica crônica"], "D": ["Cardiopatia chagásica crônica"]}], "af": {}, "dica": [[["Para memorizar", "Congestão cardíaca: zona 3 (centrolobular)."]], [["Para memorizar", "Pressão portal: varizes, colaterais, esplenomegalia e ascite (multifatorial)."]], [["Para memorizar", "Feminização na cirrose: aumento relativo da ação estrogênica."]], [["Para memorizar", "Esquistossomose: ovos + granulomas periportais + fibrose de Symmers."]], [["Para memorizar", "Indireta: ligada à albumina e ausente da urina; direta: pode causar colúria."]], [["Para memorizar", "RCU: contínua a partir do reto, principalmente mucosa, com aumento de risco de câncer em doença extensa e duradoura."]], [["Para memorizar", "Direito: massa exofítica e anemia. Esquerdo: lesão constritiva, alteração do trânsito e obstrução."]], [["Para memorizar", "Lynch = reparo de DNA, câncer precoce, sem polipose exuberante; PAF = APC, muitos adenomas."]], [["Para memorizar", "Sequência clássica: APC → KRAS → TP53."]], [["Para memorizar", "DRGE: relaxamentos transitórios/incompetência do EEI, hérnia de hiato e aumento de pressão abdominal."]], [["Para memorizar", "Variz portal: submucosa distal + pressão portal elevada."], ["Observação", "A palavra \"permanentes\" é simplificadora: varizes podem diminuir ou ser erradicadas após tratamento endoscópico e redução da pressão portal."]], [["Para memorizar", "Escamoso: álcool/tabaco, terço médio, queratinização. Adeno: Barrett, terço distal, glândulas."]], [["Para memorizar", "TNM: T = profundidade; N = linfonodos; M = metástases."]], [["Para memorizar", "Autoimune: corpo/fundo, atrofia oxíntica, ↓ fator intrínseco, ↑ gastrina, hiperplasia ECL."]], [["Para memorizar", "Ulceração crônica: exsudato superficial, necrose, reparo vascular e fibrose profunda."]], [["Para memorizar", "Borrmann I: polipoide; II: úlcera delimitada; III: úlcera infiltrativa; IV: infiltração difusa."]], [["Para memorizar", "H. pylori + inflamação/atrofia/metaplasia; cepas CagA+ podem elevar o risco."]], [["Para memorizar", "Paracetamol → NAPQI → depleção de glutationa → necrose centrolobular; formas graves: necrose maciça."], ["Observação", "O padrão de infiltrado inflamatório pode variar e a necrose tóxica pode mostrar inflamação relativamente discreta; o componente definidor é a necrose extensa."]], [["Para memorizar", "HAV = aguda fecal-oral; HBV = vírus DNA e dano imune; HCV = RNA e risco de cronificação."]], [["Para memorizar", "Cirrose ou HBV crônico + nódulo: considerar CHC; AFP elevada ajuda, mas isoladamente não confirma."]], [["Para memorizar", "IAM: 4–12 h necrose de coagulação; 1–3 dias neutrófilos; 3–7 dias macrófagos (risco de ruptura); 7–14 dias granulação; ~2 meses cicatriz."]], [["Para memorizar", "Diverticulite complicada: abscesso, perfuração/peritonite, fístula, obstrução."], ["Atenção", "A alternativa B repete \"diverticulite\" como se fosse complicação dela própria; a redação é imperfeita, mas as demais complicações listadas estão corretas."]], [["Para memorizar", "Isquemia intestinal: mucosa primeiro; necrose transmural → peritonite."]], [["Para memorizar", "Apendicite histológica: neutrófilos na muscular própria (mais importante que apenas fecalito)."]], [["Para memorizar", "Glote: rouquidão precoce e menor drenagem linfática; supraglote: linfonodos mais precoces."]], [["Para memorizar", "Lepídico = crescimento ao longo das paredes alveolares, preservando inicialmente sua arquitetura."], ["Observação", "\"Padrão lepídico\" não estabelece sozinho invasividade ou subtipo definitivo; avaliação completa da peça pode ser necessária."]], [["Para memorizar", "Infarto + IC esquerda → pressão hidrostática capilar pulmonar ↑ → edema."]], [["Para memorizar", "Lobar: consolidação de lobo e exsudato alveolar fibrinossupurativo; broncopneumonia: focos multifocais."]], [["Para memorizar", "Bronquite crônica: 3 meses por ano, por 2 anos; glândulas mucosas aumentadas e hipersecreção."]], [["Para memorizar", "DPOC → hipóxia/alteração vascular pulmonar → hipertensão pulmonar → sobrecarga de VD → cor pulmonale."]]]}</script>
+<script>
+(function(){
+  "use strict";
+  var D = JSON.parse(document.getElementById('sim-data').textContent), L = ['A','B','C','D'];
+  var CHAVE = 'pato-sim-somativa2-v1', st = {};
+  try { st = JSON.parse(localStorage.getItem(CHAVE) || '{}') || {}; } catch (e) { st = {}; }
+  function salva(){ try { localStorage.setItem(CHAVE, JSON.stringify(st)); } catch (e) {} }
+  var temGab = D.gab.some(function(g){ return !!g; });
+  document.getElementById('mon-aviso').innerHTML = temGab
+    ? '<b>Gabarito comentado disponível.</b> Marque a sua resposta e toque em "Ver resposta" para conferir e ler o comentário de cada alternativa. Cada alternativa tem o porquê: a certa e por que as outras não podem ser.'
+    : '<b>Gabarito ainda não liberado.</b> Os monitores vão corrigir as questões na reunião on-line com cada turma. Por enquanto, marque as suas respostas: elas ficam salvas e, quando o gabarito comentado chegar, dá para conferir aqui mesmo.';
+  var lista = document.getElementById('mon-lista'), ult = null;
+  function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function certa(i, k){ return !!D.gab[i] && D.gab[i].indexOf(L[k]) >= 0; }
+  function texto(alvo, t){   // texto com links no formato [rótulo](https://...)
+    var re = /\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g, ult = 0, m;
+    while ((m = re.exec(t))) {
+      if (m.index > ult) alvo.appendChild(document.createTextNode(t.slice(ult, m.index)));
+      var a = el('a', '', m[1]); a.href = m[2]; a.target = '_blank'; a.rel = 'noopener noreferrer'; alvo.appendChild(a); ult = re.lastIndex;
+    }
+    if (ult < t.length) alvo.appendChild(document.createTextNode(t.slice(ult)));
+  }
+  function marca(alvo, t, frs){   // grifa em vermelho os trechos errados da alternativa
+    var r = [];
+    frs.forEach(function(f){ var k = t.indexOf(f); if (k >= 0) r.push([k, k + f.length]); });
+    r.sort(function(a, b){ return a[0] - b[0]; });
+    var pos = 0;
+    r.forEach(function(x){ if (x[0] < pos) return; if (x[0] > pos) alvo.appendChild(document.createTextNode(t.slice(pos, x[0]))); alvo.appendChild(el('mark', 'pv-x', t.slice(x[0], x[1]))); pos = x[1]; });
+    if (pos < t.length) alvo.appendChild(document.createTextNode(t.slice(pos)));
+  }
+  function conta(){
+    var n = 0, ok = 0, vis = 0;
+    D.q.forEach(function(q, i){ var s = st[i] || {}; if (s.sel != null) n++; if (s.ver && D.gab[i]) { vis++; if (certa(i, s.sel)) ok++; } });
+    document.getElementById('mon-cont').innerHTML = 'Respondidas: <b>' + n + '</b> de ' + D.q.length + (temGab ? ' · Acertos: <b>' + ok + '</b> de ' + vis + ' conferidas' : '');
+  }
+  function monta(i){
+    var q = D.q[i], s = st[i] || (st[i] = {}), g = D.gab[i];
+    var art = el('article', 'q' + (s.ver && g ? ' done' : '')); art.id = 'mq' + (i + 1);
+    var h = el('header', 'q-head');
+    h.appendChild(el('span', 'q-num', String(i + 1)));
+    h.appendChild(el('span', 'mon-fonte', '✍️ Simulado'));
+    h.appendChild(el('span', 'mon-tema', q.tema));
+    var stem = el('div', 'q-stem');
+    q.txt.forEach(function(p){ stem.appendChild(el('p', /^(I|II|III|IV)\. /.test(p) ? 'af' : '', p)); });
+    h.appendChild(stem); art.appendChild(h);
+    var ops = el('div', 'opts'); ops.setAttribute('role', 'group'); ops.setAttribute('aria-label', 'Alternativas da questão ' + (i + 1));
+    q.op.forEach(function(t, k){
+      var b = el('button', 'opt'); b.type = 'button'; b.setAttribute('aria-pressed', s.sel === k ? 'true' : 'false');
+      if (s.ver && g) { if (g.indexOf(L[k]) >= 0) b.classList.add('is-correct'); else if (s.sel === k) b.classList.add('is-wrong'); }
+      b.appendChild(el('span', 'opt-letter', L[k])); b.appendChild(el('span', 'opt-text', t));
+      b.addEventListener('click', function(){ if (s.ver && g) return; s.sel = (s.sel === k ? null : k); salva(); refaz(i); conta(); });
+      ops.appendChild(b);
+    });
+    art.appendChild(ops);
+    var ac = el('div', 'q-actions');
+    if (g) {
+      var vb = el('button', 'btn-reveal', s.ver ? 'Esconder resposta' : 'Ver resposta'); vb.type = 'button';
+      vb.addEventListener('click', function(){ s.ver = !s.ver; salva(); refaz(i); conta(); });
+      ac.appendChild(vb);
+    } else ac.appendChild(el('span', 'mon-wait', s.sel != null ? 'Resposta marcada: ' + L[s.sel] + ' · aguardando o gabarito dos monitores' : 'Aguardando o gabarito dos monitores'));
+    art.appendChild(ac);
+    if (s.ver && g) {
+      var w = el('div', 'q-why'), gt = g.split('').join(' e '), nt = D.nota[i] ? ' (' + D.nota[i] + ')' : '';
+      w.appendChild(el('p', 'q-verdict ' + (s.sel == null ? '' : certa(i, s.sel) ? 'ok' : 'no'),
+        (s.sel == null ? '' : certa(i, s.sel) ? 'Você acertou. ' : 'Você marcou ' + L[s.sel] + '. ') + 'Gabarito: ' + gt + nt));
+      if (D.com[i]) {
+        var ex = {};
+        String(D.com[i]).split(/\n+/).forEach(function(p){ var b = /^\* ([A-D]) — (?:Correta|Incorreta): (.*)$/.exec(p); if (b) ex[b[1]] = b[2]; });
+        if (ex[g]) { var ok = el('div', 'pv-certa'); ok.appendChild(el('b', '', 'Por que a ' + g + ' é a certa')); ok.appendChild(el('p', '', ex[g])); w.appendChild(ok); }
+        var af = D.af && D.af[i], box = el('div', af ? 'pv-alts pv-afs' : 'pv-alts'), ul = el('ul'), er = (D.erro && D.erro[i]) || {};
+        box.appendChild(el('b', '', af ? 'As afirmativas, uma a uma' : 'Por que as outras alternativas estão erradas'));
+        if (af) af.forEach(function(a){
+          var li = el('li', a.ok === 2 ? 'dub' : a.ok ? 'ok' : ''), ab = el('div', 'pv-ab'), po = el('p', 'pv-op');
+          li.appendChild(el('span', 'pv-al rom', a.r)); marca(po, a.t, a.x);
+          ab.appendChild(po); ab.appendChild(el('p', 'pv-pq', a.pq)); li.appendChild(ab); ul.appendChild(li);
+        });
+        if (!af) L.forEach(function(lt, k){
+          if (lt === g || !ex[lt]) return;
+          var li = el('li'), ab = el('div', 'pv-ab'), po = el('p', 'pv-op');
+          li.appendChild(el('span', 'pv-al', lt));
+          marca(po, q.op[k], er[lt] || []);
+          ab.appendChild(po); ab.appendChild(el('p', 'pv-pq', ex[lt])); li.appendChild(ab); ul.appendChild(li);
+        });
+        box.appendChild(ul); w.appendChild(box);
+        ((D.dica && D.dica[i]) || []).forEach(function(d){
+          var dc = el('div', 'pv-dica'); dc.appendChild(el('b', '', (d[0] === 'Para memorizar' ? '💡 ' : '⚠️ ') + d[0])); dc.appendChild(el('p', '', d[1])); w.appendChild(dc);
+        });
+      }
+      art.appendChild(w);
+    }
+    return art;
+  }
+  function refaz(i){ var v = document.getElementById('mq' + (i + 1)); v.parentNode.replaceChild(monta(i), v); }
+  D.q.forEach(function(q, i){
+    if (q.tema !== ult) { lista.appendChild(el('h2', 'mon-grupo', q.tema)); ult = q.tema; }
+    lista.appendChild(monta(i));
+  });
+  conta();
+  document.getElementById('mon-zerar').addEventListener('click', function(){
+    if (!confirm('Apagar todas as suas respostas deste simulado?')) return;
+    st = {}; salva(); D.q.forEach(function(q, i){ refaz(i); }); conta();
+  });
+})();
+</script>
+<script>(function(){
+  // Ponte entre a aula (iframe) e a barra lateral do app. Não mexe no conteúdo nem na lógica de quiz.
+  var P = window.parent;
+  if (!P || P === window) return;
+  var root = document.documentElement;
+  root.classList.add('embedded');
+  var parts = (window.name || '').split('|');
+  var LEC = parts[1] || '';
+  var progress = {};
+
+  function setTheme(t){ root.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); }
+  setTheme(parts[2] || 'dark');
+
+  function navEls(){ return Array.prototype.slice.call(document.querySelectorAll('.nav-item[data-target], .navbtn[data-view]')); }
+  function keyOf(e){ return e.getAttribute('data-target') || e.getAttribute('data-view'); }
+  function labelOf(e){
+    var n = e.querySelector('.navlabel, .nav-num + span');
+    return (n ? n.textContent : e.textContent).replace(/\s+/g,' ').trim();
+  }
+  function activeKey(){
+    var a = navEls().filter(function(e){ return e.classList.contains('active'); })[0];
+    return a ? keyOf(a) : null;
+  }
+
+  // ----- botão "Concluir" no título de cada segmento -----
+  function paintDone(btn, key){
+    var on = !!progress[key];
+    if (btn.classList.contains('on') !== on) btn.classList.toggle('on', on);   // só mexe no DOM se mudou (evita laço do observer)
+    var lbl = btn.querySelector('.lbl'), txt = on ? 'Concluído' : 'Concluir';
+    if (lbl.textContent !== txt) lbl.textContent = txt;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var fin = document.querySelector('.cel-finish[data-key="' + key + '"]');
+    if (fin) paintFin(fin, on, key);
+  }
+
+  // ----- botão grande no fim do segmento -----
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+  function isSeg(key){ return /^(seg\d+|s\d+|parcial\d+)$/.test(key); }
+  function paintFin(b, on, key){
+    if (b.classList.contains('on') !== on) b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var txt = on ? (isSeg(key) ? 'Segmento concluído' : 'Estudado') + ' · tocar para desfazer'
+                 : (isSeg(key) ? 'Concluir segmento' : 'Marcar como estudado');
+    var s = b.lastChild; if (s.textContent !== txt) s.textContent = txt;
+  }
+  function ensureFin(scope, key){
+    if (!scope || !key || key === 'capa' || key === 'home') return;
+    var foot = scope.querySelector('.navfoot, .segnav');
+    if (!foot) return;
+    var box = scope.querySelector('.cel-fin');
+    if (box && box.getAttribute('data-key') === key && box.nextElementSibling === foot) return;
+    if (box) box.remove();
+    box = document.createElement('div'); box.className = 'cel-fin'; box.setAttribute('data-key', key);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cel-finish'; b.setAttribute('data-key', key);
+    b.innerHTML = CHECK + '<span></span>';
+    b.addEventListener('click', function(){
+      var top = document.querySelector('.done-t[data-key="' + key + '"]');
+      if (top) top.click();
+    });
+    box.appendChild(b);
+    foot.parentNode.insertBefore(box, foot);
+    paintFin(b, !!progress[key], key);
+  }
+  function attachDone(title, key){
+    if (!title || !key || key === 'capa' || key === 'home') return;
+    var old = title.querySelector('.done-t');
+    if (old && old.getAttribute('data-key') === key) { paintDone(old, key); return; }
+    if (old) old.remove();
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'done-t'; b.setAttribute('data-key', key);
+    b.innerHTML = '<span class="d"></span><span class="lbl">Concluir</span>';
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      progress[key] = !progress[key];
+      paintDone(b, key);
+      P.postMessage({type:'setProgress', lecture:LEC, target:key, done:!!progress[key]}, '*');
+    });
+    if (!title.classList.contains('has-done')) title.classList.add('has-done');
+    title.appendChild(b);
+    paintDone(b, key);
+  }
+  function decorate(){
+    // aulas estáticas: um .pane por segmento
+    document.querySelectorAll('.pane').forEach(function(p){
+      if (p.hidden) return;
+      attachDone(p.querySelector('.pane-title'), p.id);
+      ensureFin(p, p.id);
+    });
+    // aula 2: conteúdo montado por JS
+    var t = document.querySelector('h2.seg-title');
+    if (t) { attachDone(t, activeKey()); ensureFin(document.getElementById('content'), activeKey()); }
+  }
+
+  // ----- rodapé anterior/próximo (substitui a barra de navegação escondida) -----
+  function addNavFoot(){
+    var items = navEls();
+    if (!items.length || document.querySelector('.segnav')) return;
+    items.forEach(function(it, i){
+      var id = keyOf(it);
+      var pane = document.getElementById(id);
+      if (!pane || !pane.classList.contains('pane') || pane.querySelector('.navfoot')) return;
+      var prev = items[i-1], next = items[i+1];
+      var f = document.createElement('div'); f.className = 'navfoot';
+      function mk(target, txt, isNext){
+        var b = document.createElement('button'); b.type = 'button';
+        b.textContent = isNext ? txt + ' →' : '← ' + txt;
+        b.addEventListener('click', function(){ target.click(); });
+        return b;
+      }
+      if (prev) f.appendChild(mk(prev, labelOf(prev), false));
+      if (next) f.appendChild(mk(next, labelOf(next), true));
+      pane.appendChild(f);
+    });
+  }
+
+  // piscar o termo achado pela busca
+  function flashTerm(rootEl, term){
+    if (!rootEl || !term) return;
+    var low = term.toLowerCase(), w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentElement; if (!p || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue;
+      var k = n.data.toLowerCase().indexOf(low);
+      if (k < 0) continue;
+      var mid = n.splitText(k); mid.splitText(term.length);
+      var sp = document.createElement('span'); sp.className = 'find-flash';
+      mid.parentNode.insertBefore(sp, mid); sp.appendChild(mid);
+      sp.scrollIntoView({block:'center'});
+      setTimeout(function(){ var q = sp.parentNode; if (!q) return; while (sp.firstChild) q.insertBefore(sp.firstChild, sp); q.removeChild(sp); q.normalize(); }, 2600);
+      return;
+    }
+  }
+
+  var last = null;
+  function reportActive(){
+    var k = activeKey();
+    if (k !== last) { last = k; P.postMessage({type:'segActive', lecture:LEC, key:k}, '*'); }
+    var off = (k && k !== 'capa' && k !== 'home' && !document.querySelector('.hero .tabs')) ? 'off' : 'on';
+    if (root.getAttribute('data-hero') !== off) root.setAttribute('data-hero', off);
+    decorate();
+  }
+  var mo = new MutationObserver(function(){ clearTimeout(mo._t); mo._t = setTimeout(reportActive, 30); });
+  mo.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class','hidden']});
+  var content = document.getElementById('content');
+  if (content) mo.observe(content, {childList:true});
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data;
+    if (!d || !d.type) return;
+    if (d.type === 'setTheme') setTheme(d.theme);
+    else if (d.type === 'goto') {
+      var el = navEls().filter(function(e){ return keyOf(e) === d.key; })[0];
+      if (el) el.click();
+    }
+    else if (d.type === 'gotoPane') {
+      if (document.getElementById('hl-pop')) return;   // aulas com marca-texto rosa tratam sozinhas
+      var pe = navEls().filter(function(e){ return keyOf(e) === d.pane; })[0];
+      if (pe) pe.click();
+      setTimeout(function(){ flashTerm(document.getElementById(d.pane) || document.getElementById('content') || document.body, d.term); }, 140);
+    }
+    else if (d.type === 'progressState' && d.lecture === LEC) {
+      progress = d.state || {};
+      document.querySelectorAll('.done-t').forEach(function(b){ paintDone(b, b.getAttribute('data-key')); });
+    }
+  });
+
+  function boot(){
+    addNavFoot();
+    reportActive();
+    P.postMessage({type:'bridgeReady', lecture:LEC}, '*');
+    P.postMessage({type:'requestProgress', lecture:LEC}, '*');
+  }
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', function(){ setTimeout(boot, 0); });
+})();
+</script>
+</body>
+</html>
