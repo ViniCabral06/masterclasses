@@ -339,7 +339,7 @@ async function lampInit() {
   addEventListener('pointerup', endDrag, true); addEventListener('pointercancel', endDrag, true);
   // clique no botão (ou toque/teclado): a lâmpada desce e a cordinha é puxada sozinha
   document.addEventListener('click', e => {
-    const b = e.target.closest && e.target.closest(THEME_SEL); if (!b || lampMine) return;
+    const b = e.target.closest && e.target.closest(THEME_SEL); if (!b || lampMine || html.classList.contains('vga-on')) return; // modo foco (abas.js): sem lâmpada, troca na hora
     e.preventDefault(); e.stopImmediatePropagation(); btn = b;
     if (reduce) { flip(); return; }
     const was = shown; show(); setTimeout(() => ud.autoPull(), was ? 0 : 520); hideSoon(1500);

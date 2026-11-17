@@ -250,6 +250,8 @@ html.vga-on #vidro-pers .vp-sec:has(#vp-ninja){display:none}
 #vg-ajustes .vga-aj .tx{flex:1;min-width:0}
 #vg-ajustes .vga-sw{flex:none;width:40px;height:24px;border-radius:999px;background:var(--vg-acc,#5aa9ff);position:relative}
 #vg-ajustes .vga-sw::after{content:"";position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff}
+#vg-ajustes .vga-aj.off .vga-sw{background:rgba(127,127,127,.4)}
+#vg-ajustes .vga-aj.off .vga-sw::after{right:auto;left:3px}
 #vg-ajustes hr{border:0;border-top:1px solid rgba(127,127,127,.22);margin:6px 4px 10px}
 html.vga-on #vidro-pers{bottom:calc(var(--vga-h) + var(--vga-gap) + 60px)!important;max-height:calc(100dvh - var(--vga-h) - 96px)!important}
 ${A.esconde}
@@ -263,7 +265,9 @@ html.vga-lista #vg-lista{display:block}
 html[data-theme=light] #vg-lista{background-color:#f7f8f7!important}
 html[data-theme=light] .vga-l{background-color:#fff;border-color:rgba(0,0,0,.1)}
 html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
-#vg-lista::before{content:"";position:fixed;inset:0;z-index:-1;background:inherit}
+html.vidro-ready body > :is(#vg-lista,#vg-abas,#vg-segs,#vg-ajustes,#vg-busca,#vg-abas-aviso){animation:none!important}
+html.vidro-ready body > #vg-lista{opacity:1!important}
+#vg-lista{isolation:isolate}
 #vg-lista .in{max-width:740px;margin:0 auto;padding:40px 20px calc(var(--vga-h) + 60px)}
 #vg-lista h1{margin:0 0 6px;font:400 34px/1.1 var(--vg-display,var(--serif,serif));letter-spacing:-.01em;color:var(--ink,inherit)}
 #vg-lista h2{margin:28px 0 10px;font:600 12px/1 var(--vg-text,system-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,var(--ink-2,#8a94a3))}
@@ -618,9 +622,17 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
     aj = D.createElement('div'); aj.id = 'vg-ajustes'; aj.setAttribute('role', 'dialog'); aj.setAttribute('aria-label', 'Ajustes da matéria');
     aj.innerHTML = '<div class="h">⚙️ Ajustes da matéria</div>'
       + '<button type="button" class="vga-aj" data-aj="sair" role="switch" aria-checked="true"><span class="tx">🥷 Modo foco<small>Desligar volta ao master com a barra lateral (recarrega a página)</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
+      + '<button type="button" class="vga-aj" data-aj="tema" role="switch"><span class="tx">☀️ Tema claro<small>Liga o modo foco claro; desligado fica escuro</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
       + '<button type="button" class="vga-aj" data-aj="pers"><span class="tx">🎨 Personalização<small>Tema claro ou escuro, fundo e cor de destaque</small></span><span aria-hidden="true">›</span></button><hr>';
+    const pintaTema = () => { const b = aj.querySelector('[data-aj=tema]'), on = html.dataset.theme === 'light'; b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
+    pintaTema(); new MutationObserver(pintaTema).observe(html, { attributes: true, attributeFilter: ['data-theme'] });
     aj.addEventListener('click', e => {
       const b = e.target.closest('[data-aj]'); if (!b) return;
+      if (b.dataset.aj === 'tema') {
+        // o botão de tema do master fica escondido no modo foco: clica nele direto
+        const t = D.querySelector('[data-act="theme"],#btnTheme,.themebtn');
+        if (t) t.click(); setTimeout(pintaTema, 50); return;
+      }
       if (b.dataset.aj === 'sair') { try { localStorage.setItem('vidro-modo-foco', 'false'); } catch (x) {} location.reload(); }
       else { ajustes(false); const fx = D.getElementById('vidro-fx'); if (fx) setTimeout(() => fx.click(), 0); }
     });
