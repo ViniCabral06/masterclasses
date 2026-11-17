@@ -61,6 +61,7 @@ a{text-decoration:none}
 
 #gl{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;transition:opacity .7s var(--ease)}
 body.quiet #gl{opacity:.2}
+body.fundo #gl{opacity:.32}
 .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(120% 90% at 0% 50%,rgba(4,7,11,.82) 0%,rgba(4,7,11,.35) 45%,rgba(4,7,11,0) 70%)}
 .grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
@@ -264,18 +265,22 @@ main{position:relative;z-index:10;height:100%}
 @keyframes shake{20%,60%{translate:-7px 0}40%,80%{translate:7px 0}}
 
 /* subjects */
-.subjects-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center}
-.cards{margin-top:28px;display:flex;flex-direction:column;gap:14px}
-.card{--r:28px;display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;padding:18px 22px;cursor:pointer;border:0;text-align:left;width:100%;
+.subjects-layout{display:block}
+.cards{margin-top:clamp(22px,4vh,44px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{--r:24px;display:flex;align-items:flex-end;min-height:clamp(104px,19vh,176px);padding:20px 22px;cursor:pointer;border:0;text-align:left;width:100%;
   transition:transform .6s var(--spring),background .4s}
 .card .ico{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;background:color-mix(in srgb,var(--tint) 22%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tint) 55%,transparent)}
 .card .ico svg{width:34px;height:34px;stroke:var(--tint);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.card h3{font-family:var(--display);font-weight:800;font-size:clamp(26px,2.4vw,38px);letter-spacing:-.035em;line-height:1}
+.card h3{font-family:var(--display);font-weight:800;font-size:clamp(20px,1.9vw,30px);letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
 .card p{margin-top:6px;color:var(--ink-2);font-size:15px;max-width:52ch}
 .tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
 .tags span{font-size:13px;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--ink-2)}
 .card .go{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:#05070a;font-size:22px;transform:scale(.85) rotate(-45deg);transition:transform .5s var(--spring)}
-.card:hover,.card:focus-visible,.card.hot{transform:translateX(14px);--hl:1;background:linear-gradient(120deg,color-mix(in srgb,var(--tint) 26%,transparent),rgba(255,255,255,.04) 70%)}
+.card:hover,.card:focus-visible,.card.hot{transform:translateY(-4px);--hl:1;background:linear-gradient(120deg,color-mix(in srgb,var(--tint) 26%,transparent),rgba(255,255,255,.04) 70%)}
+/* cada cartão na cor da matéria, translúcido (o fundo 3D continua aparecendo) */
+.cards .card{background:linear-gradient(135deg,color-mix(in srgb,var(--tint) 72%,transparent),color-mix(in srgb,var(--tint) 46%,transparent) 80%)!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tint) 80%,white 10%),0 10px 30px color-mix(in srgb,var(--tint) 22%,transparent)}
+.cards .card h3{text-shadow:0 1px 10px rgba(0,0,0,.35)}
+.cards .card:hover,.cards .card:focus-visible,.cards .card.hot{background:linear-gradient(135deg,color-mix(in srgb,var(--tint) 85%,transparent),color-mix(in srgb,var(--tint) 58%,transparent) 80%)!important}
 .card:hover .go,.card.hot .go{transform:scale(1) rotate(0)}
 .card[data-k="farmaco"]{--tint:var(--farmaco)}
 .card[data-k="micro"]{--tint:var(--micro)}
@@ -290,7 +295,7 @@ main{position:relative;z-index:10;height:100%}
 .extra:hover{background:color-mix(in srgb,var(--th4) 32%,transparent);transform:scale(1.04)}
 .extra svg{width:18px;height:18px}
 
-.specimen{position:relative;height:min(68vh,640px);display:flex;align-items:flex-end;justify-content:flex-end;pointer-events:none}
+.specimen{display:none}
 .readout{--r:22px;padding:16px 20px;min-width:260px;pointer-events:auto;position:fixed;right:var(--gutter,32px);bottom:28px;z-index:5}
 .card[data-k="prop"]{--tint:var(--img)}
 #prop-dlg{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;background:rgba(4,6,10,.55);opacity:0;transition:opacity .22s ease}
@@ -345,8 +350,7 @@ main{position:relative;z-index:10;height:100%}
   .periods{grid-template-columns:repeat(4,1fr);max-width:none}
   .period{aspect-ratio:1.4;padding:16px}
   .period .num{font-size:clamp(44px,7vw,72px)}
-  .subjects-layout{grid-template-columns:1fr}
-  .specimen{display:none}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:700px){
   body{overflow:auto}
@@ -362,9 +366,8 @@ main{position:relative;z-index:10;height:100%}
   .home{margin-top:18vh}
   .periods{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:32px}
   .period{aspect-ratio:1.35;padding:16px}
-  .card{grid-template-columns:auto 1fr;gap:16px;padding:18px}
-  .card .go{display:none}
-  .card .ico{width:52px;height:52px;border-radius:16px}
+  .cards{gap:10px}
+  .card{min-height:96px;padding:16px}
   .card:hover,.card.hot{transform:none}
   .veil{background:linear-gradient(rgba(4,7,11,.25),rgba(4,7,11,.75) 60%)}
 }
@@ -494,7 +497,6 @@ main{position:relative;z-index:10;height:100%}
     <div class="wrap subjects-layout">
       <div>
         <h2 id="t-p4" class="in">4º período</h2>
-        <p class="sub in" style="--i:1">Oito matérias. Passe o mouse: a cápsula se abre, as bactérias perseguem o cursor, o coração acelera, as células morrem por apoptose e o raio X varre o tórax. Clique para agitar.</p>
         <div class="cards" id="cards"></div>
       </div>
       <div class="specimen">
@@ -631,14 +633,7 @@ const LISTA = []; { const dentro = new Set(GRUPO.prop.de); let posto = false;
   for (const [k,s] of Object.entries(SUBJECTS)) { if (!dentro.has(k)) LISTA.push([k,s]); else if (!posto) { LISTA.push(['prop',GRUPO.prop]); posto = true; } } }
 cards.innerHTML = LISTA.map(([k,s],i)=>`
   <div class="card glass in" style="--i:${i+2}" data-k="${k}" role="${GRUPO[k]?'button':'link'}" tabindex="0" aria-label="${GRUPO[k]?'Escolher entre Propedêutica de Imagem e Laboratorial':'Abrir masterclass de '+s.name}"${GRUPO[k]?' aria-haspopup="dialog"':''}>
-    <span class="ico"><svg viewBox="0 0 24 24">${s.icon}</svg></span>
-    <span>
-      <h3>${s.name}</h3>
-      <p>${s.desc}</p>
-      <span class="tags">${s.tags.map(t=>`<span>${t}</span>`).join('')}</span>
-      ${s.game?`<a class="extra" href="${encodeURI(s.game)}" data-game="1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Jogar o Corredor da OSCE em 3D</a>`:''}
-    </span>
-    <span class="go" aria-hidden="true">→</span>
+    <h3>${s.name}</h3>
   </div>`).join('');
 
 /* janela "Propedêutica": Imagem ou Laboratorial */
@@ -691,6 +686,7 @@ function show(name,push=true){
   document.body.dataset.accent='hub';
   HUB.setScene(name==='home'?'helix':name==='periodos'?'ring':'helix');
   document.body.classList.remove('quiet');
+  document.body.classList.toggle('fundo',name==='p4');
   if(name==='home') setTimeout(()=>{ homeScroll(); if(matchMedia('(min-width:701px)').matches) document.getElementById('s-home').focus({preventScroll:true}); }, 320);
   if(name==='p4'){roT.textContent='Escolha uma matéria';roS.textContent='Fármacos, bactérias ou coração';}
 }

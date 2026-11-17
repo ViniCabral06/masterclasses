@@ -146,7 +146,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
   let painel = null, totP = 0, totS = 0, info = [];
   const MODOS = [['todos', 'Todas'], ['parciais', 'Parciais'], ['somativas', 'Somativas'], ['off', 'Desligados']];
   function montaPainel(nav) {
-    if (painel && painel.isConnected && painel.nextElementSibling === nav) return;
+    if (painel && painel.isConnected && (painel.nextElementSibling === nav || painel.parentElement === window.VGFocoHost)) return; // o abas.js põe o painel em "Ajustes da matéria"
     if (!painel) {
       painel = D.createElement('details'); painel.className = 'vgf-panel';
       painel.addEventListener('click', e => {
@@ -162,7 +162,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       painel.addEventListener('toggle', () => { cfg.painel = painel.open; salva(); });
       painel.open = !!cfg.painel;
     }
-    nav.parentElement.insertBefore(painel, nav);
+    if (window.VGFocoHost) window.VGFocoHost.appendChild(painel); else nav.parentElement.insertBefore(painel, nav);
   }
   function pintaPainel() {
     const corte = corteAtual(), nm = { todos: 'todas as provas', parciais: 'parciais', somativas: 'somativas', off: 'grifos desligados' }[cfg.modo];

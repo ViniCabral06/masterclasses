@@ -121,11 +121,13 @@ def bloco_cabeca(m, rel):
         return f"{H_INI}{FONTES}{H_FIM}"
     k = m["k"]
     # posição: volta para onde a pessoa parou (hash salvo por vidro.js); VIDRO_NOVO = primeira visita, sidebar toda fechada
-    pos = ("(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}"
+    # ?vgindice: cópia escondida que a 🔍 Buscar (abas.js) usa para ler o texto da matéria; não grava nada no navegador
+    pos = ("if(/[?&]vgindice=/.test(location.search)){window.__vgIndex=1;try{Storage.prototype.setItem=Storage.prototype.removeItem=Storage.prototype.clear=function(){}}catch(e){}}"
+           "(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}"
            "window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();")
     forcar = "<script>document.documentElement.dataset.vidro=%s;%s</script>" % (json.dumps(k), pos)
     return (f"{H_INI}\n{forcar}\n{FONTES}\n<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\">\n{IMPORTMAP}\n"
-            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/flashcards.js?v={ver('flashcards.js')}\"></script><script defer src=\"{rel}/foco.js?v={ver('foco.js')}\"></script>\n{H_FIM}")
+            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/flashcards.js?v={ver('flashcards.js')}\"></script><script defer src=\"{rel}/foco.js?v={ver('foco.js')}\"></script><script defer src=\"{rel}/abas.js?v={ver('abas.js')}\"></script>\n{H_FIM}")
 
 
 def bloco_corpo(m):
