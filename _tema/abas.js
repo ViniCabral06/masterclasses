@@ -265,7 +265,17 @@ html.vga-lista #vg-lista{display:block}
 html[data-theme=light] #vg-lista{background-color:#f7f8f7!important}
 html[data-theme=light] .vga-l{background-color:#fff;border-color:rgba(0,0,0,.1)}
 html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
-html.vidro-ready body > :is(#vg-lista,#vg-abas,#vg-segs,#vg-ajustes,#vg-busca,#vg-abas-aviso){animation:none!important}
+html.vga-on body{padding-top:52px!important}
+#vg-canto{position:fixed;top:12px;left:12px;z-index:615;display:flex;gap:8px}
+html[data-vga-lado=t] #vg-canto{top:calc(var(--vga-h) + 22px)}
+@media(min-width:701px){html[data-vga-lado=l] #vg-canto{left:98px}}
+#vg-canto>*{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;border:1px solid rgba(255,255,255,.14);
+  background:rgba(20,22,21,.55);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);color:#eef2ef;cursor:pointer;padding:0;text-decoration:none}
+#vg-canto>*[hidden]{display:none}
+#vg-canto svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#vg-canto>*:hover{background:rgba(40,44,42,.7)}
+html.light #vg-canto>*,html[data-theme=light] #vg-canto>*{background:rgba(255,255,255,.7);color:#1d211f;border-color:rgba(0,0,0,.1)}
+html.vidro-ready body > :is(#vg-canto,#vg-lista,#vg-abas,#vg-segs,#vg-ajustes,#vg-busca,#vg-abas-aviso){animation:none!important}
 html.vidro-ready body > #vg-lista{opacity:1!important}
 #vg-lista{isolation:isolate}
 #vg-lista .in{max-width:740px;margin:0 auto;padding:40px 20px calc(var(--vga-h) + 60px)}
@@ -429,6 +439,11 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
     if (k === 'ajustes') { busca(false); ajustes(); return; }
     if (k === 'busca') { ajustes(false); busca(); return; }
     ajustes(false); busca(false);
+    if (k === 'sim') { /* Simulados abre direto na grade de cartões, sem lista antes */
+      if (AD[K] === caderno) { fechar(); A.ir('#simulados'); return; }
+      const ss = avulso('sim'), alvo = ss.find(x => /^simulados?$/i.test(x.titulo.replace(/^[^\wÀ-ú]+/, '').trim())) || ss.find(x => /simulad/i.test(x.titulo)) || ss[0];
+      if (alvo) { fechar(); A.ir(alvo.id); return; }
+    }
     if (k === 'aulas' || k === 'sim') { if (folha === k) fechar(); else abrir(k); return; }
     fechar();
     if (k === 'notas') { const n = avulso('notas')[0]; if (n) A.ir(n.id); else avisar('Esta matéria ainda não tem a página de notas'); return; }
@@ -593,7 +608,18 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
     lista = D.createElement('div'); lista.id = 'vg-lista'; lista.setAttribute('role', 'dialog'); lista.setAttribute('aria-label', 'Aulas');
     lista.addEventListener('click', e => { const b = e.target.closest('.vga-l'); if (!b) return; if (b.dataset.aula) abreAula(b.dataset.aula); else { fechar(); A.ir(b.dataset.id); } });
     aviso = D.createElement('div'); aviso.id = 'vg-abas-aviso'; aviso.setAttribute('role', 'status');
-    bar = D.createElement('nav'); bar.id = 'vg-abas'; bar.setAttribute('aria-label', 'Navegação da masterclass');
+    { /* canto de cima à esquerda: casinha (volta ao hub) e tela cheia, só ícones */
+      const sc = D.querySelector('script[src*="_tema/abas.js"]');
+      let hub = '../index.html'; try { hub = new URL('../index.html', sc.src).href; } catch (e) {}
+      const cn = D.createElement('div'); cn.id = 'vg-canto';
+      cn.innerHTML = `<a href="${hub}" title="Menu principal" aria-label="Menu principal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg></a><button type="button" title="Tela cheia" aria-label="Tela cheia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>`;
+      const fs = cn.querySelector('button');
+      if (!D.documentElement.requestFullscreen) fs.hidden = true;
+      fs.addEventListener('click', () => { if (D.fullscreenElement) D.exitFullscreen(); else D.documentElement.requestFullscreen().catch(() => {}); });
+      D.addEventListener('fullscreenchange', () => { const on = !!D.fullscreenElement; fs.title = fs.ariaLabel = on ? 'Sair da tela cheia' : 'Tela cheia'; fs.querySelector('path').setAttribute('d', on ? 'M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5' : 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5'); });
+      D.body.appendChild(cn);
+    }
+    bar =D.createElement('nav'); bar.id = 'vg-abas'; bar.setAttribute('aria-label', 'Navegação da masterclass');
     bar.innerHTML = ABAS.map(x => `<button type="button" data-k="${x.k}" title="${x.a}" aria-label="${x.a}"><span class="i" aria-hidden="true">${x.i}</span><span class="t">${x.t}</span></button>`).join('');
     bar.addEventListener('click', e => { if (arrastou) { arrastou = false; return; } const b = e.target.closest('button'); if (b) toque(b.dataset.k); });
     /* barra móvel: segurar e arrastar até uma borda (embaixo, em cima, esquerda ou direita); nas laterais ela fica vertical.

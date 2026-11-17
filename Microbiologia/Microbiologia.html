@@ -830,12 +830,13 @@ textarea.inp{border-radius:16px}
 
 
 
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="micro";if(/[?&]vgindice=/.test(location.search)){window.__vgIndex=1;try{Storage.prototype.setItem=Storage.prototype.removeItem=Storage.prototype.clear=function(){}}catch(e){}}(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=48e0b8b6">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=5c0ea939"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=c1c7efad"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/foco.js?v=56196cf9"></script><script defer src="../_tema/abas.js?v=092a515b"></script>
+<script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=5c0ea939"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/foco.js?v=56196cf9"></script><script defer src="../_tema/abas.js?v=a3efc29f"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -872,6 +873,8 @@ textarea.inp{border-radius:16px}
 <div id="vidro-load" style="--vl:#9a5bff" role="status" aria-label="Carregando Microbiologia"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><rect x="4" y="9" width="11" height="6" rx="3"/><path d="M15 12c2 0 2-2 4-2M15 12c2 0 2 2 4 2"/><circle cx="18" cy="5" r="1.6"/><circle cx="6" cy="19" r="1.6"/></svg></div><div class="vl-t">Microbiologia</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
+
 
 
 
@@ -1572,9 +1575,8 @@ function pSim(){
   if(SIM&&SIM.state==='run')return simRun();
   if(SIM&&SIM.state==='end')return simEnd();
   const wrong=(S.simwrong||[]).length;
-  return `<div class="page"><div class="crumb">Treino no formato da prova</div><h1 class="pt">Simulados</h1><p class="psub">Cronômetro de 3 minutos por questão (o tempo estourado fica visível), sem gabarito até entregar, marcação para revisar, grade de navegação, nota, acerto por aula e correção comentada. Se você sair no meio, o simulado continua de onde parou.</p>
-  <div class="wgrid">${Object.keys(PRESETS).map(k=>`<div class="panel"><div class="crumb">${PRESETS[k].tag}</div><h3>${PRESETS[k].nome}</h3><p class="d">${PRESETS[k].desc}</p><div class="actions" style="margin:0"><button class="btn ${k==='prova'?'pri':''}" data-act="simstart" data-preset="${k}">Iniciar · 90 min</button></div></div>`).join('')}</div>
-  ${provaPanel()}<div class="panel" style="margin-top:16px"><h3>Simulado personalizado</h3><p class="d">Sorteia do banco inteiro do material, com filtro por aula e por nível.</p><div class="toolbar"><select class="inp" id="sa" aria-label="Aula"><option value="">Todas as aulas</option>${MODS.map(m=>`<option value="${m.id}">Aula ${m.num} · ${m.nome}</option>`).join('')}</select><select class="inp" id="sl" aria-label="Nível"><option value="">Nível misto</option><option value="f">Só fácil</option><option value="p">Só padrão</option><option value="d">Só difícil</option></select><select class="inp" id="sn" aria-label="Quantidade"><option>10</option><option selected>15</option><option>20</option><option>30</option></select></div><div class="actions" style="margin:0"><button class="btn" data-act="simstart" data-preset="custom">Iniciar personalizado</button></div></div>
+  return `<div class="page"><div class="crumb">Treino no formato da prova</div><h1 class="pt">Simulados</h1><p class="psub">Cada prova anterior é um simulado inteiro. Antes de começar você escolhe: simular a prova, com o gabarito só no fim, ou entregar questão por questão. São 3 minutos por questão.</p>
+  <div id="vgsim-lista"></div><div class="panel" style="margin-top:16px"><h3>Simulado personalizado</h3><p class="d">Sorteia do banco inteiro do material, com filtro por aula e por nível.</p><div class="toolbar"><select class="inp" id="sa" aria-label="Aula"><option value="">Todas as aulas</option>${MODS.map(m=>`<option value="${m.id}">Aula ${m.num} · ${m.nome}</option>`).join('')}</select><select class="inp" id="sl" aria-label="Nível"><option value="">Nível misto</option><option value="f">Só fácil</option><option value="p">Só padrão</option><option value="d">Só difícil</option></select><select class="inp" id="sn" aria-label="Quantidade"><option>10</option><option selected>15</option><option>20</option><option>30</option></select></div><div class="actions" style="margin:0"><button class="btn" data-act="simstart" data-preset="custom">Iniciar personalizado</button></div></div>
   ${wrong?`<div class="panel" style="margin-top:16px"><h3>Erros de simulados</h3><p class="d">${wrong} questão${wrong===1?'':'ões'} errada${wrong===1?'':'s'} ou em branco ficaram guardadas em «Minha revisão».</p><button class="btn sm ghost" data-go="my">Abrir Minha revisão</button></div>`:''}
   ${S.sim.length?`<h3 style="font:600 20px var(--serif);margin:22px 0 8px">Últimos resultados</h3>${S.sim.map(r=>`<div class="somi"><b>${r.n}%</b> de acerto em ${r.t} questões · ${r.l} · ${r.d}</div>`).join('')}`:''}</div>`;
 }
@@ -1613,8 +1615,28 @@ function vgSimMontar(){
     save()}});
   return true;
 }
+function vgFimMicro(res){
+  S.sim.unshift({n:res.pct,t:res.total,l:res.titulo,d:new Date().toLocaleDateString('pt-BR')});S.sim=S.sim.slice(0,5);
+  S.simwrong=S.simwrong||[];
+  res.erradas.forEach(id=>{if(S.simwrong.indexOf(id)<0)S.simwrong.push(id)});
+  res.certas.forEach(id=>{const k=S.simwrong.indexOf(id);if(k>=0)S.simwrong.splice(k,1)});
+  save()}
+/* Aba Simulados no padrão do site: grade de cartões (provas anteriores + simulados), igual às outras matérias. */
+function vgListaMontar(){
+  const host=$('#vgsim-lista');if(!host)return false;
+  if(!window.VGSim){addEventListener('DOMContentLoaded',()=>vgListaMontar(),{once:true});return true}
+  const nuc=CAI.filter(c=>c.n>=3).length;
+  const provas=[{id:'p81',tag:'Prova parcial',titulo:'Parcial 81',desc:'Transcrita da prova; as justificativas por alternativa foram elaboradas aqui.',qs:()=>P81.map(vgQ)}]
+    .concat(PNUMS.map(p=>({id:'som'+p,tag:'Prova somativa',titulo:'Somativa '+p,desc:'Reconstruída das justificativas oficiais; o gabarito é o oficial.',qs:()=>provaQs(p).map(vgQ)})));
+  const extras=Object.keys(PRESETS).map(k=>({id:'pre-'+k,tag:PRESETS[k].tag,titulo:PRESETS[k].nome,desc:PRESETS[k].desc,sorteio:true,n:30,qs:()=>buildSim(k,'',null,30).map(vgQ)}))
+    .concat(SMQ.map((qs,i)=>({id:'sm'+(i+1),tag:'Gabarito comentado',titulo:'Simulado '+(i+1),desc:SMTIT[i+1]+'.',qs:()=>qs.map(vgQ)})))
+    .concat([{id:'nucleo',tag:'O que vai cair',titulo:'Núcleo',desc:'As questões que caíram em 3 provas ou mais, em ordem aleatória.',sorteio:true,n:nuc,qs:()=>sample(CAI.filter(c=>c.n>=3).map(c=>QMAP.get(c.rep)),999).map(vgQ)}]);
+  VGSim.lista(host,{chave:'micro-lista',grupos:[{titulo:'Provas anteriores',sub:'A prova inteira, como caiu.',itens:provas},{titulo:'Simulados',sub:'Montados por nós, no formato da prova.',itens:extras}],aoDesenhar:h=>hydrate(h),aoFim:vgFimMicro});
+  return true;
+}
 function simBind(){
   if(vgSimMontar())return;
+  if(vgListaMontar())return;
   clearInterval(simTick);
   if(SIM&&SIM.state==='run'){const f=()=>{const e=Math.floor((Date.now()-SIM.t0)/1000),r=SIM.total-e,el=$('#stm');if(!el)return clearInterval(simTick);const a=Math.abs(r),t=`${String(Math.floor(a/60)).padStart(2,'0')}:${String(a%60).padStart(2,'0')}`;el.textContent=r>=0?t:'+'+t+' tempo estourado';el.classList.toggle('over',r<0)};f();simTick=setInterval(f,1000)}
 }

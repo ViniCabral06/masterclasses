@@ -96,6 +96,7 @@ Responda sempre em português (Brasil).
 - **Simulado novo, de qualquer matéria e período: use a skill `/simulados-masterclass`** (`.claude/skills/simulados-masterclass/`). Ela tem o fluxo, as regras das questões e onde pôr em cada master. O texto completo do padrão é o `instrucoes.html` da pasta da skill (fonte do PDF *Instruções Padrão para Criação de Simulados Interativos*). Mudou o padrão? Edite lá e gere o PDF de novo.
 - Aba "Simulados" de um master: `VGSim.lista(host, {chave, grupos, aoFim})`, com o grupo "Provas anteriores" (cada prova inteira é um simulado) e, abaixo, "Simulados" (os nossos). Modelo: `vgSimMontar` em Humanização.
 - Simulado em página ou painel próprio (Patologia, Farmacologia): `VGSim.um(host, {chave, item, livre})`. Modelo: `aulas/simulado4.html`.
+- **Toda matéria tem a página "Simulados" com a grade de cartões** (Provas anteriores + Simulados), no modo normal e no 🥷 modo foco (a aba ⏱️ Simulados abre direto nela). Simulado que mora em outra página do master entra na grade com `ir()` no item: o cartão leva até ele. Modelos: `pane-sim-grade` na Farmacologia, `aulas/simgrade.html` na Patologia, `vgListaMontar` na Microbiologia.
 - Cada questão: `{id, tag (origem), enun, alts, gab, com, grupo (tema)}`. Dissertativa: sem `alts` e sem `gab`; `com` é a resposta ideal.
 - O tema (`grupo`) nunca aparece antes de a questão ser entregue; o motor já cuida disso.
 - Se faltar algo, mude o `simulado.js`, para valer em todas as matérias.

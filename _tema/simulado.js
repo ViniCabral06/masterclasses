@@ -327,6 +327,7 @@
       var a = b.getAttribute('data-vgs'), i = +b.getAttribute('data-i');
       if (a === 'abrir') {
         var it = achar(b.getAttribute('data-id')); if (!it) return;
+        if (it.ir) return it.ir(); /* cartão que leva ao simulado em outra página do master */
         if (run && run.id === it.id && !run.done) { item = it; qs = run.qs || resolver(it); tela = 'run'; desenhar(true); }
         else abrir(it);
       }
