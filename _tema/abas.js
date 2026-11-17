@@ -258,6 +258,12 @@ ${CSS_SEG}
 /* listas (aba "Aulas" e aba "Simulados") */
 #vg-lista{position:fixed;inset:0;z-index:590;overflow-y:auto;background:var(--ground,var(--vg-ground,#0b0d10));color:var(--ink,inherit);font-family:var(--vg-text,var(--sans,system-ui,sans-serif));display:none}
 html.vga-lista #vg-lista{display:block}
+/* fundo sempre sólido: em alguns masters o tema deixa --ground transparente e o master aparecia por trás */
+#vg-lista{background:var(--vg-ground,#111312)!important;background-color:#111312!important}
+html[data-theme=light] #vg-lista{background-color:#f7f8f7!important}
+html[data-theme=light] .vga-l{background-color:#fff;border-color:rgba(0,0,0,.1)}
+html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
+#vg-lista::before{content:"";position:fixed;inset:0;z-index:-1;background:inherit}
 #vg-lista .in{max-width:740px;margin:0 auto;padding:40px 20px calc(var(--vga-h) + 60px)}
 #vg-lista h1{margin:0 0 6px;font:400 34px/1.1 var(--vg-display,var(--serif,serif));letter-spacing:-.01em;color:var(--ink,inherit)}
 #vg-lista h2{margin:28px 0 10px;font:600 12px/1 var(--vg-text,system-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,var(--ink-2,#8a94a3))}
