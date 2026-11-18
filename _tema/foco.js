@@ -338,6 +338,9 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
     } finally {
       if (scrollAntes !== null) nav.scrollTop = scrollAntes;
       try { textos(); observaTexto(); } catch (e) {}
+      // o modo foco (abas.js) repinta a lista de aulas/segmentos com as cores novas
+      const sig = cfg.modo + '|' + cfg.div + '|' + cfg.corte;
+      if (sig !== aplica.sig) { aplica.sig = sig; setTimeout(() => D.dispatchEvent(new CustomEvent('vgfoco', { detail: { modo: cfg.modo } })), 0); }
       ocupado = false;
       observa(nav);
     }

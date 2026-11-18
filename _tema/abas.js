@@ -358,6 +358,7 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
     setTimeout(() => { if (folha === qual) monta(qual); }, 900); // o Foco de estudo pode pintar as cores depois
     lista.scrollTop = 0; const f = $('.vga-l.atual', lista) || $('.vga-l', lista); if (f) f.focus({ preventScroll: true });
   }
+  D.addEventListener('vgfoco', () => { if (folha) monta(folha); pintar(); }); // filtro do Foco mudou: cores novas na lista
   function fechar() { if (!folha) return; folha = ''; html.classList.remove('vga-lista'); pintar(); }
 
   function monta(qual) {
