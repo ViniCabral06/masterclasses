@@ -109,7 +109,7 @@
   }
 
   /* ---------- barra lateral: nome curto + título inteiro no item aberto ---------- */
-  const SB = { pato: '.it>.x', huma: '#nav .it>.x', prev: '#nav .it>.x', port: '.sb>.x', micro: '.it>.lb' }[K];
+  const SB = { pato: '.it>.x', huma: '#nav .it>.x', prev: '#nav .it>.x', port: '.sb>.x', micro: '.it>.lb', semio: '.it>.lb' }[K];
   function sidebar() {
     if (!SB || html.classList.contains('vidro-aula')) return;
     D.querySelectorAll(SB).forEach(x => {
@@ -130,7 +130,7 @@
     try {
       if (html.classList.contains('vidro-aula') && K === 'pato') patoAula();
       else if (K === 'farmaco') farmaco();
-      else if (K === 'micro') micro();
+      else if (K === 'micro' || K === 'semio') micro();
       else if (K === 'huma' || K === 'prev') humaPrev();
     } catch (e) { /* nunca quebra o master */ }
   }

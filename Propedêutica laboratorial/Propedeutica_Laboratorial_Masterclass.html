@@ -197,6 +197,22 @@ button:hover,a.jump:hover{background:var(--surface-2)}
 .panel.alert b:first-child{color:#4b4790}
 :root[data-theme="dark"] .panel.alert{background:#1d1d2a}
 :root[data-theme="dark"] .panel.alert b:first-child{color:#aaa6ea}
+.panel.prof{background:#fff4dc;border-left:5px solid #e0a020;margin-top:0}
+.panel.prof>b:first-child{display:block;font-size:19px;color:#7a4e00;margin-bottom:8px}
+.panel.prof .prof-list{list-style:none;margin:14px 0;padding:0;display:grid;gap:8px;counter-reset:pf}
+.panel.prof .prof-list li{counter-increment:pf;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;background:#ffffffb3;border-radius:12px;padding:9px 12px;line-height:1.4}
+.panel.prof .prof-list li::before{content:counter(pf);flex:none;width:24px;height:24px;border-radius:50%;background:#e0a020;color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center}
+.panel.prof .prof-list .t{font-weight:600;flex:1 1 200px}
+.panel.prof .st{font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.panel.prof .st.ok{background:#d9f2e0;color:#17613a}
+.panel.prof .st.part{background:#ffe6b3;color:#7a4e00}
+.panel.prof .prof-list .jump{font-size:13.5px}
+.panel.prof .falta{margin-top:12px;font-size:14.5px}
+:root[data-theme="dark"] .panel.prof{background:#2a2312;border-left-color:#e0a020}
+:root[data-theme="dark"] .panel.prof>b:first-child{color:#f0c36b}
+:root[data-theme="dark"] .panel.prof .prof-list li{background:#ffffff0f}
+:root[data-theme="dark"] .panel.prof .st.ok{background:#16351f;color:#8fdba8}
+:root[data-theme="dark"] .panel.prof .st.part{background:#4a3910;color:#f0c36b}
 details.panel{padding:0;overflow:hidden}
 details.panel>summary,.exam-item>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:14px 20px;font-weight:600;font-size:15px;color:var(--ink);transition:background-color .15s ease}
 details.panel>summary::-webkit-details-marker,.exam-item>summary::-webkit-details-marker{display:none}
@@ -557,12 +573,13 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 
 
 
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="lab";if(/[?&]vgindice=/.test(location.search)){window.__vgIndex=1;try{Storage.prototype.setItem=Storage.prototype.removeItem=Storage.prototype.clear=function(){}}catch(e){}}(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../_tema/vidro.css?v=48e0b8b6">
+<link rel="stylesheet" href="../_tema/vidro.css?v=1eedba82">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=bca79de4"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=5c0ea939"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=249414fa"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/foco.js?v=56196cf9"></script><script defer src="../_tema/abas.js?v=a3efc29f"></script>
+<script defer src="../_tema/modelos.js?v=6e1cf793"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=98142cfe"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=540f7a45"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/foco.js?v=5980c528"></script><script defer src="../_tema/abas.js?v=6128483a"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -599,6 +616,8 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 <div id="vidro-load" style="--vl:#4fe0cf" role="status" aria-label="Carregando Propedêutica Laboratorial"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M8 3h8M9.5 3v14.5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 10h5"/><path d="M9.5 3.5h5"/></svg></div><div class="vl-t">Propedêutica Laboratorial</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
+
 
 
 
@@ -876,12 +895,31 @@ function quiz(qs,title){
  '<div class="row"><button type="button" data-check="'+q.id+'">Conferir</button><button type="button" data-reset="'+q.id+'">Limpar</button></div>'+
  '<div class="feedback" hidden></div></fieldset>').join('')+'</div>';
 }
+/* Aviso da professora: temas da próxima prova (18/11/2026). Primeiro semestre dela na disciplina. */
+function profTemas(){
+ const T=[
+  ['Função hepática','ok','completo',[['a08','Aula 8','a08-1']]],
+  ['Marcadores inflamatórios','part','só PCR e PCT',[['a01','Aula 1 · PCR e PCT','a01-2']]],
+  ['Autoimunidade','ok','completo',[['a11','Aula 11 · FAN, FR, anti-CCP, LES','a11-3']]],
+  ['COVID-19, dengue, zika e chikungunya','part','dengue e chikungunya',[['a11','Aula 11 · dengue e chikungunya','a11-1']]],
+  ['Hepatites virais','ok','completo',[['a08','Aula 8 · A, B, C, D e E','a08-5']]],
+  ['HIV e outras infecções sexualmente transmissíveis','part','HIV e sífilis',[['a11','Aula 11 · HIV','a11-1'],['a11','sífilis','a11-2']]],
+  ['Introdução à microbiologia','ok','completo',[['a09','Aula 9','a09-1']]],
+  ['Hiperglicemia','ok','completo',[['a10','Aula 10','a10-1']]]
+ ];
+ const st={ok:'✅ no master',part:'🟡 parcial'};
+ return '<div class="panel prof"><b>🎯 Temas da próxima prova · aviso da professora</b>'+
+ '<p><b>É o primeiro semestre dela com esta disciplina.</b> As provas do acervo são de semestres anteriores, então o grifo de frequência é só apoio, não previsão: <b>o que ela listou manda</b>. Estude estes 8 temas primeiro (na ordem da lista dela):</p>'+
+ '<ol class="prof-list">'+T.map(([n,k,obs,ls])=>'<li><span class="t">'+esc(n)+'</span><span class="st '+k+'" title="'+esc(obs)+'">'+st[k]+(k==='part'?' · '+esc(obs):'')+'</span>'+ls.map(([a,l,s])=>link(a,l,s)).join('')+'</li>').join('')+'</ol>'+
+ '<p><b>Aula on-line extra de COVID e HIV:</b> a professora propôs <b>sexta-feira, 20/11, de manhã</b> (estava sendo combinada com a turma). Confira a data final com ela.</p>'+
+ '<p class="falta"><b>Ainda falta no master:</b> os slides novos dela (marcadores inflamatórios além de PCR e PCT, COVID-19, zika e as outras ISTs) ainda não entraram, e as questões de prova dela só aparecem depois da prova. Assim que os slides chegarem, esses temas viram aula.</p></div>';
+}
 function home(){
  const q=data.exams.reduce((n,e)=>n+e.items.filter(x=>x.question&&x.question.kind==='choice').length,0);
  return hero('Caderno interativo · hemograma, rim, fígado, lípides e glicemia','Propedêutica Laboratorial','Do raciocínio clínico ao laudo: estude por aula e treine com as questões de laboratório das provas.')+
- '<section class="section"><div class="grid">'+[[data.lessons.length,'aulas'],[data.exams.length,'provas no acervo'],[q,'questões das provas'],[allQ.length,'questões autorais']].map(([n,t])=>'<div class="metric"><b>'+n+'</b>'+t+'</div>').join('')+'</div>'+
+ '<section class="section">'+profTemas()+'<div class="grid">'+[[data.lessons.length,'aulas'],[data.exams.length,'provas no acervo'],[q,'questões das provas'],[allQ.length,'questões autorais']].map(([n,t])=>'<div class="metric"><b>'+n+'</b>'+t+'</div>').join('')+'</div>'+
  progressBlock()+'<h2>Escolha seu ponto de partida</h2><div class="tabs">'+continueLink()+link('somativas',pages.somativas)+link('treino','Treinar por aula')+link('simulados',pages.simulados)+link('revisao',pages.revisao)+'</div>'+
- '<div class="panel"><b>Como ler os grifos</b><p>A frase de abertura de cada segmento vem grifada quando o tema já caiu em prova. A cor indica em quantas das '+data.exams.length+' provas do acervo o tema apareceu:</p><div class="legend"><span class="exam1">verde: 1 prova</span><span class="exam2">amarelo: 2</span><span class="exam3">laranja: 3</span><span class="exam4">vermelho: 4</span><span class="exam5">preto: 5 ou mais</span></div></div>'+
+ '<div class="panel"><b>Como ler os grifos</b><p>A frase de abertura de cada segmento vem grifada quando o tema já caiu em prova. A cor indica em quantas das '+data.exams.length+' provas do acervo o tema apareceu:</p><div class="legend"><span class="exam1">verde: 1 prova</span><span class="exam2">amarelo: 2</span><span class="exam3">laranja: 3</span><span class="exam4">vermelho: 4</span><span class="exam5">preto: 5 ou mais</span></div><p style="margin-top:12px"><b>Neste semestre a professora é nova na disciplina:</b> a cor do grifo vem das provas antigas. Se um tema está na lista dela, estude mesmo sem grifo.</p></div>'+
  '<div class="panel"><b>Parcial e somativa</b><p>As aulas 1 a 6 (medicina laboratorial, hemograma e função renal) são da <b>parcial</b>; as aulas 7 a 10 (dislipidemias, função hepática, microbiologia e hiperglicemias) são da <b>somativa</b>. A Aula 11 reúne temas que caíram nas somativas e não estão nos slides.</p></div>'+
  '<div class="panel alert"><b>Sobre as questões das provas</b><p>Recebemos as justificativas oficiais das somativas 77 a 81, sem os enunciados. As questões de laboratório foram reconstruídas a partir da justificativa, com a alternativa certa na letra indicada pelo gabarito oficial, com a justificativa liberada só depois de conferir, sempre marcadas como reconstruídas. As questões ✍️ autorais são nossas, no estilo das provas.</p></div>'+
  '<p class="muted">Professora: Daniella Brites.</p></section>';

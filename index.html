@@ -31,6 +31,7 @@
   --port:#ff8a5b;
   --img:#9fd3ff;
   --lab:#4fe0cf;
+  --semio:#ffd93d;
   --accent:var(--hub);
   --glass:rgba(255,255,255,.055);
   --glass-hi:rgba(255,255,255,.11);
@@ -54,6 +55,7 @@ body[data-accent="huma"]{--accent:var(--huma)}
 body[data-accent="img"]{--accent:var(--img)}
 body[data-accent="lab"]{--accent:var(--lab)}
 body[data-accent="port"]{--accent:var(--port)}
+body[data-accent="semio"]{--accent:var(--semio)}
 button,a{font:inherit;color:inherit}
 a{text-decoration:none}
 ::selection{background:var(--hub);color:var(--on-hub)}
@@ -290,6 +292,7 @@ main{position:relative;z-index:10;height:100%}
 .card[data-k="huma"]{--tint:var(--huma)}
 .card[data-k="img"]{--tint:var(--img)}
 .card[data-k="lab"]{--tint:var(--lab)}
+.card[data-k="semio"]{--tint:var(--semio)}
 .card[data-k="port"]{--tint:var(--port)}
 .extra{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:7px 13px 7px 9px;border-radius:999px;background:color-mix(in srgb,var(--th4) 18%,transparent);color:var(--th4);transition:background .3s,transform .4s var(--spring)}
 .extra:hover{background:color-mix(in srgb,var(--th4) 32%,transparent);transform:scale(1.04)}
@@ -580,6 +583,14 @@ const SUBJECTS = {
     readout:["Português Aplicado à Saúde II","8 aulas · documentos médicos"],
     icon:'<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 16h5"/>'
   },
+  semio:{
+    name:"Semiologia Médica I",
+    href:"Semiologia/Semiologia.html",
+    desc:"Da anamnese à ausculta: exame físico geral, dor, bulhas e sopros, pulsos e pressão, dor torácica, síncope e o exame do aparelho respiratório, com as provas 77 a 82.",
+    tags:["Anamnese","Exame físico geral","Semiologia da dor","Bulhas e desdobramentos","Sopros","Pulsos e PA","Dor torácica","Exame respiratório"],
+    readout:["Semiologia Médica I","12 aulas · parciais e somativas"],
+    icon:'<path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/>'
+  },
   th4:{
     name:"Treinamento de Habilidades IV",
     href:"Treinamento de Habilidades IV/TH4_Masterclass_OSCE.html",
@@ -813,7 +824,7 @@ show(location.hash.slice(1)||'home',false);
   "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
 }}
 </script>
-<script src="_tema/modelos.js?v=bca79de4"></script>
+<script src="_tema/modelos.js?v=6e1cf793"></script>
 <script src="_tema/palco.js?v=713ea5fe"></script>
 <script src="_tema/liquido.js?v=727b02a3"></script>
 <script type="module">
@@ -827,7 +838,7 @@ const {createStage} = window.VidroPalco(THREE, COL);
 const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30, start:false} : {dust:1000, dpr:1.5, start:false});
 // se o aparelho sofrer, a primeira coisa a sair é a refração líquida (o efeito mais caro da página)
 W.onDegrade = () => { document.documentElement.classList.remove('refract'); window.Liquido && Liquido.off(); };
-const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeMicroscope(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook(), img:makeRaiox(), lab:makeTubo()};
+const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeMicroscope(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook(), img:makeRaiox(), lab:makeTubo(), semio:makeHeart({scale:.95})};
 /* modo leve automático: mede os quadros com tudo ligado; se não passa de ~30 fps
    (ex.: navegador sem placa de vídeo), desliga o 3D, a refração e o desfoque, e lembra disso */
 setTimeout(function medir(){

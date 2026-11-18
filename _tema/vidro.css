@@ -23,6 +23,7 @@
 }
 :root:is([data-vidro="farmaco"],[data-vidro="pato"]){--vg-acc:#ff4d6d;--vg-acc-ink:#ff9aac;--vg-on-acc:#1a0207}
 :root[data-vidro="micro"]{--vg-acc:#9a5bff;--vg-acc-ink:#c7a6ff;--vg-on-acc:#ffffff}
+:root[data-vidro="semio"]{--vg-acc:#ffd93d;--vg-acc-ink:#ffe680;--vg-on-acc:#1a1406}
 :root[data-vidro="th4"]{--vg-acc:#38f5a3;--vg-acc-ink:#8dffd0;--vg-on-acc:#032015}
 :root[data-vidro="pato"]{--vg-acc:#ff6fb5;--vg-acc-ink:#ffb3d9;--vg-on-acc:#2a0617}
 :root[data-vidro="prev"]{--vg-acc:#ffb547;--vg-acc-ink:#ffd28a;--vg-on-acc:#2a1800}
@@ -47,6 +48,7 @@
 /* texto sobre fundo "tinta" (selos e chips ativos): no claro a tinta é escura, então o texto é claro */
 :root:is([data-vidro="farmaco"],[data-vidro="pato"])[data-theme="light"]{--on-ink:#f7f8f7}
 :root[data-vidro="micro"][data-theme="light"]{--vg-acc-ink:#6a2fd6}
+:root[data-vidro="semio"][data-theme="light"]{--vg-acc-ink:#8a6a00}
 :root[data-vidro="th4"][data-theme="light"]{--vg-acc-ink:#04875a}
 :root[data-vidro="pato"][data-theme="light"]{--vg-acc-ink:#c2186f}
 :root[data-vidro="prev"][data-theme="light"]{--vg-acc-ink:#9a5800}
@@ -183,23 +185,25 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
 :root:is([data-vidro="farmaco"],[data-vidro="pato"]) figure img,:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .chart,:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .hs-wrap{border-radius:14px}
 
 /* ===================================================== MICROBIOLOGIA */
-:root[data-vidro="micro"]{
+/* Semiologia usa a mesma pele (cor amarela em --vg-acc) */
+:root:is([data-vidro="micro"],[data-vidro="semio"]){
   --ground:var(--vg-ground); --surface:var(--vg-glass); --surface-2:var(--vg-glass2); --raised:var(--vg-glass3); --border:var(--vg-edge);
   --ink:var(--vg-ink); --ink-2:var(--vg-ink2); --muted:var(--vg-muted);
   --accent:var(--vg-acc); --accent-ink:var(--vg-on-acc);
   --card:var(--vg-paper); --card-ink:#14161c; --card-ink2:#3d424d; --card-border:transparent; --card-soft:rgba(16,22,40,.05);
   --ui:var(--vg-text); --serif:var(--vg-text);
 }
-:root[data-vidro="micro"] :is(#main,#view){background:transparent!important}
-:root[data-vidro="micro"] #side{background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
-:root[data-vidro="micro"] #top{background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
-:root[data-vidro="micro"] .it.on{background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)!important}
-:root[data-vidro="micro"] :is(.card,.wcard,.rv,#mem .mc){-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);box-shadow:var(--vg-paper-shadow);border-color:transparent!important;border-radius:24px}
-:root[data-vidro="micro"] :is(.q,.panel,.mcard,.somi,.cai,.caistats>div,.caibn){-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);box-shadow:var(--vg-shadow);border-color:transparent!important;border-radius:20px}
-:root[data-vidro="micro"] :is(h1.pt,.card h2,.card h3,#view h2){font-family:var(--vg-display);font-weight:400;letter-spacing:-.01em}
-:root[data-vidro="micro"] .card{font-family:var(--vg-text)}
-:root[data-vidro="micro"] .btn{border-radius:999px}
-:root[data-vidro="micro"] .btn.pri{color:#fff}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) :is(#main,#view){background:transparent!important}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) #side{background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) #top{background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) .it.on{background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)!important}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) :is(.card,.wcard,.rv,#mem .mc){-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);box-shadow:var(--vg-paper-shadow);border-color:transparent!important;border-radius:24px}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) :is(.q,.panel,.mcard,.somi,.cai,.caistats>div,.caibn){-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);box-shadow:var(--vg-shadow);border-color:transparent!important;border-radius:20px}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) :is(h1.pt,.card h2,.card h3,#view h2){font-family:var(--vg-display);font-weight:400;letter-spacing:-.01em}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) .card{font-family:var(--vg-text)}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) .btn{border-radius:999px}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) .btn.pri{color:#fff}
+:root[data-vidro="semio"] .btn.pri{color:var(--vg-on-acc)}
 
 /* ===================================================== TH IV (OSCE) */
 :root[data-vidro="th4"]{
@@ -277,10 +281,10 @@ html.vidro-ready #vidro-heart{transform:none;opacity:1}
 /* ===================================================== vidro grosso colorido: caixas, grifos e popups */
 :root[data-vidro] .box.extra{--tint:#8b84ff} :root[data-vidro] .box.liga{--tint:#4da3ff} :root[data-vidro] .box.corr{--tint:#ff8a4d}
 :root[data-vidro] .box.p82{--tint:#ffc53d} :root[data-vidro] .box.leia{--tint:#2fd6b5} :root[data-vidro] .box.clin{--tint:#ff5c97} :root[data-vidro] .box.prof{--tint:#8fd14f}
-:root[data-vidro="micro"] .prof{--tint:#6fbf4a} :root[data-vidro="micro"] .extra{--tint:#e0a84a} :root[data-vidro="micro"] .warn{--tint:#ff6a55}
-:root[data-vidro="micro"] .pearl{--tint:#6f84ff} :root[data-vidro="micro"] .box2{--tint:#3fcfae}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) .prof{--tint:#6fbf4a} :root:is([data-vidro="micro"],[data-vidro="semio"]) .extra{--tint:#e0a84a} :root:is([data-vidro="micro"],[data-vidro="semio"]) .warn{--tint:#ff6a55}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) .pearl{--tint:#6f84ff} :root:is([data-vidro="micro"],[data-vidro="semio"]) .box2{--tint:#3fcfae}
 :root[data-vidro="th4"] .extra{--tint:#a46be0} :root[data-vidro="th4"] .tipbox{--tint:#ffbf2e} :root[data-vidro="th4"] .tipbox.bet{--tint:#22d3c5} :root[data-vidro="th4"] .tipbox.bad{--tint:#ff5f52}
-:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .box,:root[data-vidro="micro"] :is(.prof,.extra,.warn,.pearl,.box2),:root[data-vidro="th4"] :is(.extra,.tipbox){
+:root:is([data-vidro="farmaco"],[data-vidro="pato"]) .box,:root:is([data-vidro="micro"],[data-vidro="semio"]) :is(.prof,.extra,.warn,.pearl,.box2),:root[data-vidro="th4"] :is(.extra,.tipbox){
   --t:var(--tint,var(--vg-acc));
   position:relative;border:0!important;border-radius:22px!important;
   background:
@@ -341,7 +345,7 @@ html.vl-acende::view-transition-new(root){z-index:2}
 :root[data-vidro][data-theme="light"]{--vg-under:rgba(250,252,254,.6)}
 :root[data-vidro]:not([data-theme="light"]){--vg-glass:rgba(22,28,36,.62);--vg-glass2:rgba(30,37,46,.66);--vg-glass3:rgba(40,48,58,.7)}
 :root:is([data-vidro="farmaco"],[data-vidro="pato"]) :is(.q,.box,.step,.legend,.score,.bk,.vf,.mr-item,.arena-card,.xpbig,.wg,.done-t,.navfoot button,.chipbtn),
-:root[data-vidro="micro"] :is(.card,.wcard,.rv,#mem .mc,.q,.panel,.mcard,.somi,.cai,.caistats>div,.caibn,.prof,.extra,.warn,.pearl,.box2),
+:root:is([data-vidro="micro"],[data-vidro="semio"]) :is(.card,.wcard,.rv,#mem .mc,.q,.panel,.mcard,.somi,.cai,.caistats>div,.caibn,.prof,.extra,.warn,.pearl,.box2),
 :root[data-vidro="th4"] :is(.sheet,.qcard,.tile,.station,.chip,.lvl,.extra,.tipbox),
 :root[data-vidro] :is(mark,.hlbtn){-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 /* barras e botões fixos: desfoque mais curto e sem saturação extra */
@@ -369,7 +373,7 @@ html.vidro-leve[data-vidro][data-theme="light"]{--vg-side:rgba(244,247,250,.96);
   :root[data-vidro] :is(pre,table){overflow-x:auto}
   :root[data-vidro] body{overflow-x:clip}
   /* caixas de vidro grosso: menos arredondadas e mais justas */
-  :root:is([data-vidro="farmaco"],[data-vidro="pato"]) .box,:root[data-vidro="micro"] :is(.prof,.extra,.warn,.pearl,.box2),:root[data-vidro="th4"] :is(.extra,.tipbox){border-radius:18px!important}
+  :root:is([data-vidro="farmaco"],[data-vidro="pato"]) .box,:root:is([data-vidro="micro"],[data-vidro="semio"]) :is(.prof,.extra,.warn,.pearl,.box2),:root[data-vidro="th4"] :is(.extra,.tipbox){border-radius:18px!important}
 }
 @media (pointer:coarse){#vidro-fx:hover,#vidro-home:hover{transform:none}}
 
@@ -456,9 +460,9 @@ mark.vg-nota.vg-fim::after{content:"💬";font-size:.72em;margin-left:3px;vertic
 /* Microbiologia: a página do segmento (.page > .card) ganha o vidro do tema, então precisa de respiro
    interno para o texto não encostar na borda; parágrafos e listas usam a coluna toda, alinhados
    com figuras e tabelas (antes uns paravam em ~790px e outros em ~930px) */
-:root[data-vidro="micro"] .page > .card{padding:30px 36px 36px}
-:root[data-vidro="micro"] #prose :is(p,ul,ol){max-width:none}
-@media (max-width:700px){:root[data-vidro="micro"] .page > .card{padding:18px 16px 22px}}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) .page > .card{padding:30px 36px 36px}
+:root:is([data-vidro="micro"],[data-vidro="semio"]) #prose :is(p,ul,ol){max-width:none}
+@media (max-width:700px){:root:is([data-vidro="micro"],[data-vidro="semio"]) .page > .card{padding:18px 16px 22px}}
 
 /* Barra lateral recolhida (Patologia, Humanização, Preventiva e quem usar .sb-bloco):
    as caixas de bloco ("Bloco da parcial", "Somativa"...) viram um separador fino com a setinha,

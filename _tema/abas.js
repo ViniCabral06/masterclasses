@@ -157,6 +157,7 @@
       vigia: fn => { new MutationObserver(fn).observe($('#tabbtns'), { attributes: true, subtree: true, attributeFilter: ['class'] }); D.addEventListener('load', e => { if (e.target.tagName === 'IFRAME') { setTimeout(fn, 60); try { e.target.contentWindow.addEventListener('hashchange', () => setTimeout(fn, 30)); } catch (x) {} } }, true); },
     },
   };
+  AD.semio = AD.micro; // Semiologia usa o motor da Microbiologia
   const A = AD[K]; if (!A) return;
 
   const CK = 'vg-abas:' + K;
@@ -380,7 +381,7 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
       + '</div>';
   }
   /* barrinha cinza entre a parcial e a somativa: segue "A parcial da minha turma vai até a aula N" dos Ajustes */
-  const CORTE0 = { huma: 4, prev: 5, img: 7, micro: 3, farmaco: 3, port: 4, pato: 7 }; // o mesmo padrão do foco.js
+  const CORTE0 = { huma: 4, prev: 5, img: 7, micro: 3, semio: 4, farmaco: 3, port: 4, pato: 7 }; // o mesmo padrão do foco.js
   function corte() {
     const c = LS('vg-foco:' + K) || {}; if (c.div === false) return 0;
     const n = aulas().length; return Math.max(1, Math.min(n || 1, c.corte || CORTE0[K] || Math.ceil((n || 2) / 2)));

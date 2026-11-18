@@ -38,6 +38,14 @@
         return { key: m.id, nome: 'Aula ' + m.num, done: m.segs.every(s => dn[m.id + '/' + s.id]), segs };
       }); },
     },
+    semio: { // mesmo molde da Microbiologia; parcial = P80–P82 e Estudo dirigido (ED)
+      nav: () => AD.micro.nav(), aulas: () => AD.micro.aulas(), segs: a => AD.micro.segs(a),
+      dados: () => { const st = LS('mc-semio-v1') || {}, dn = st.done || {}; return DATA.modules.map(m => {
+        const segs = {};
+        m.segs.forEach(s => { const r = uniq(refsDe(s.html).concat(s.pv || [])); const P = r.filter(x => /^(P|ED)/i.test(x)).length; segs[m.id + '/' + s.id] = { p: P, s: r.length - P }; });
+        return { key: m.id, nome: 'Aula ' + m.num, done: m.segs.every(s => dn[m.id + '/' + s.id]), segs };
+      }); },
+    },
     farmaco: {
       nav: () => D.querySelector('.sb-nav'),
       aulas: () => [...D.querySelectorAll('.sb-nav > .grp')].filter(el => /^Aula/.test((el.querySelector('.grp-h') || {}).title || '')).map(el => ({ el, key: (el.querySelector('.it') || {}).dataset.id, head: el.querySelector('.grp-h'), cur: !!el.querySelector('.it.active') })),
@@ -88,7 +96,7 @@
   const SEM_FEITAS = new Proxy({}, { get: () => 1 }); // o grupo "Já estudadas" saiu de todos os masters (pedido do Matheus)
   if (SEM_FEITAS[K]) cfg.recolher = false;
   const salva = () => { try { localStorage.setItem(CK, JSON.stringify(cfg)); } catch (e) {} };
-  const CORTE0 = { huma: 4, prev: 5, img: 7, micro: 3, farmaco: 3, port: 4, pato: 7 }; // divisão que o master já usava
+  const CORTE0 = { huma: 4, prev: 5, img: 7, micro: 3, semio: 4, farmaco: 3, port: 4, pato: 7 }; // divisão que o master já usava
 
   /* ---------- estilo ---------- */
   const st = D.createElement('style'); st.id = 'vg-foco-css';
