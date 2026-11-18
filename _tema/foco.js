@@ -101,8 +101,8 @@
   /* ---------- estilo ---------- */
   const st = D.createElement('style'); st.id = 'vg-foco-css';
   st.textContent = `
-html.vgf-on .sb-bloco,html.vgf-on .sb-fold{display:none!important}
-html.vgf-on .sb-bloco-c{display:contents!important}
+html.vgf-on .sb-bloco,html.vgf-on .sb-fold,html.vgf-semdiv .sb-bloco{display:none!important}
+html.vgf-on .sb-bloco-c,html.vgf-semdiv .sb-bloco-c{display:contents!important}
 html.vgf-on .vgf-nav{display:flex!important;flex-direction:column}
 html.vgf-on .vgf-nav>*{flex:0 0 auto}
 html.vgf-on .vgf-nav .grp:not(.vgf-x){display:block!important}
@@ -233,6 +233,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       });
       const liga = cfg.div || cfg.recolher;
       html.classList.toggle('vgf-on', liga); nav.classList.toggle('vgf-nav', liga);
+      html.classList.toggle('vgf-semdiv', !cfg.div); // divisão desligada: some também a divisão própria do master (blocos parcial/somativa)
       // os cabeçalhos reaproveitados (.vgf-h) não entram na lista: a ordem deles é dada abaixo, junto do grupo
       const flat = []; [...nav.children].forEach(c => { if (c.classList.contains('vgf-h')) return; if (c.classList.contains('sb-bloco-c')) flat.push(...c.children); else flat.push(c); });
       flat.forEach(c => { c.style.order = ''; c.classList.remove('vgf-x'); });

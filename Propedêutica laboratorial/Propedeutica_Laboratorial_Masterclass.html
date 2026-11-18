@@ -208,6 +208,7 @@ button:hover,a.jump:hover{background:var(--surface-2)}
 .panel.prof .st.part{background:#ffe6b3;color:#7a4e00}
 .panel.prof .prof-list .jump{font-size:13.5px}
 .panel.prof .falta{margin-top:12px;font-size:14.5px}
+.panel.prof .prof-go{display:flex;flex-wrap:wrap;gap:8px}
 :root[data-theme="dark"] .panel.prof{background:#2a2312;border-left-color:#e0a020}
 :root[data-theme="dark"] .panel.prof>b:first-child{color:#f0c36b}
 :root[data-theme="dark"] .panel.prof .prof-list li{background:#ffffff0f}
@@ -574,12 +575,15 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 
 
 
+
+
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="lab";if(/[?&]vgindice=/.test(location.search)){window.__vgIndex=1;try{Storage.prototype.setItem=Storage.prototype.removeItem=Storage.prototype.clear=function(){}}catch(e){}}(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=1eedba82">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=6e1cf793"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=98142cfe"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=540f7a45"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/foco.js?v=5980c528"></script><script defer src="../_tema/abas.js?v=6128483a"></script>
+<script defer src="../_tema/modelos.js?v=6e1cf793"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=98142cfe"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=540f7a45"></script><script defer src="../_tema/extras.js?v=70434ba8"></script><script defer src="../_tema/memes.js?v=2a2797aa"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=3a3de98f"></script><script defer src="../_tema/foco.js?v=86cdc5f3"></script><script defer src="../_tema/abas.js?v=6128483a"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -616,6 +620,10 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 <div id="vidro-load" style="--vl:#4fe0cf" role="status" aria-label="Carregando Propedêutica Laboratorial"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M8 3h8M9.5 3v14.5a2.5 2.5 0 0 0 5 0V3"/><path d="M9.5 10h5"/><path d="M9.5 3.5h5"/></svg></div><div class="vl-t">Propedêutica Laboratorial</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
+
+
+
 
 
 
@@ -909,6 +917,8 @@ function profTemas(){
  ];
  const st={ok:'✅ no master',part:'🟡 parcial'};
  return '<div class="panel prof"><b>🎯 Temas da próxima prova · aviso da professora</b>'+
+ '<p><b>O foco bem maior é a matéria nova:</b> os 8 temas abaixo, que ela mandou para a turma. A <b>matéria passada</b> (hemograma, rim, lípides) entra de outro jeito: como um valor no enunciado, por exemplo um VCM ou uma hemoglobina, que você precisa saber ler na hora.</p>'+
+ '<p class="prof-go">'+link('sinais','📖 Valores para decorar')+link('relampago','⚡ Jogo: Plantão relâmpago')+'</p>'+
  '<p><b>É o primeiro semestre dela com esta disciplina.</b> As provas do acervo são de semestres anteriores, então o grifo de frequência é só apoio, não previsão: <b>o que ela listou manda</b>. Estude estes 8 temas primeiro (na ordem da lista dela):</p>'+
  '<ol class="prof-list">'+T.map(([n,k,obs,ls])=>'<li><span class="t">'+esc(n)+'</span><span class="st '+k+'" title="'+esc(obs)+'">'+st[k]+(k==='part'?' · '+esc(obs):'')+'</span>'+ls.map(([a,l,s])=>link(a,l,s)).join('')+'</li>').join('')+'</ol>'+
  '<p><b>Aula on-line extra de COVID e HIV:</b> a professora propôs <b>sexta-feira, 20/11, de manhã</b> (estava sendo combinada com a turma). Confira a data final com ela.</p>'+
@@ -918,7 +928,7 @@ function home(){
  const q=data.exams.reduce((n,e)=>n+e.items.filter(x=>x.question&&x.question.kind==='choice').length,0);
  return hero('Caderno interativo · hemograma, rim, fígado, lípides e glicemia','Propedêutica Laboratorial','Do raciocínio clínico ao laudo: estude por aula e treine com as questões de laboratório das provas.')+
  '<section class="section">'+profTemas()+'<div class="grid">'+[[data.lessons.length,'aulas'],[data.exams.length,'provas no acervo'],[q,'questões das provas'],[allQ.length,'questões autorais']].map(([n,t])=>'<div class="metric"><b>'+n+'</b>'+t+'</div>').join('')+'</div>'+
- progressBlock()+'<h2>Escolha seu ponto de partida</h2><div class="tabs">'+continueLink()+link('somativas',pages.somativas)+link('treino','Treinar por aula')+link('simulados',pages.simulados)+link('revisao',pages.revisao)+'</div>'+
+ progressBlock()+'<h2>Escolha seu ponto de partida</h2><div class="tabs">'+continueLink()+link('sinais','📖 Valores para decorar')+link('relampago','⚡ Plantão relâmpago')+link('somativas',pages.somativas)+link('treino','Treinar por aula')+link('simulados',pages.simulados)+link('revisao',pages.revisao)+'</div>'+
  '<div class="panel"><b>Como ler os grifos</b><p>A frase de abertura de cada segmento vem grifada quando o tema já caiu em prova. A cor indica em quantas das '+data.exams.length+' provas do acervo o tema apareceu:</p><div class="legend"><span class="exam1">verde: 1 prova</span><span class="exam2">amarelo: 2</span><span class="exam3">laranja: 3</span><span class="exam4">vermelho: 4</span><span class="exam5">preto: 5 ou mais</span></div><p style="margin-top:12px"><b>Neste semestre a professora é nova na disciplina:</b> a cor do grifo vem das provas antigas. Se um tema está na lista dela, estude mesmo sem grifo.</p></div>'+
  '<div class="panel"><b>Parcial e somativa</b><p>As aulas 1 a 6 (medicina laboratorial, hemograma e função renal) são da <b>parcial</b>; as aulas 7 a 10 (dislipidemias, função hepática, microbiologia e hiperglicemias) são da <b>somativa</b>. A Aula 11 reúne temas que caíram nas somativas e não estão nos slides.</p></div>'+
  '<div class="panel alert"><b>Sobre as questões das provas</b><p>Recebemos as justificativas oficiais das somativas 77 a 81, sem os enunciados. As questões de laboratório foram reconstruídas a partir da justificativa, com a alternativa certa na letra indicada pelo gabarito oficial, com a justificativa liberada só depois de conferir, sempre marcadas como reconstruídas. As questões ✍️ autorais são nossas, no estilo das provas.</p></div>'+
@@ -1304,6 +1314,337 @@ document.addEventListener('input',e=>{
  if(e.target.matches('[data-img-draft]')){const id=e.target.dataset.imgDraft;ex.img[id]=Object.assign(ex.img[id]||{},{draft:e.target.value});keep()}
  if(e.target.id==='sg-q'){const q=e.target.value.trim().toLowerCase();document.querySelectorAll('.sg-item').forEach(el=>el.hidden=q&&!el.dataset.sg.includes(q));document.querySelectorAll('.sg-sec').forEach(s=>s.hidden=![...s.querySelectorAll('.sg-item')].some(i=>!i.hidden))}
 });
+render({scroll:false});
+})();
+</script>
+<style>
+/* ---------- Valores para decorar ---------- */
+.vd-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.vd-chip{border:1px solid var(--border);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 14px;font:inherit;font-size:14px;cursor:pointer}
+.vd-chip.on{background:var(--accent);border-color:var(--accent);color:var(--on-ink)}
+.vd-prog{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:14px;color:var(--muted);margin:6px 0 4px}
+.vd-prog .bar{flex:1 1 140px;height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.vd-prog .bar i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .3s}
+.vd-list{display:grid;gap:8px}
+.vd-row{display:grid;grid-template-columns:minmax(150px,26%) 1fr auto;gap:6px 16px;align-items:center;background:var(--surface);border-radius:14px;padding:12px 16px}
+.vd-row.b1{box-shadow:inset 4px 0 0 var(--bad)}
+.vd-row.b3{box-shadow:inset 4px 0 0 var(--ok)}
+.vd-k b{display:block;font-size:15.5px;line-height:1.3}
+.vd-src{font-size:11.5px;color:var(--muted)}
+.vd-val{display:block;font-weight:700;font-size:16.5px;color:var(--accent-ink);font-variant-numeric:tabular-nums;line-height:1.4}
+.vd-v small{display:block;color:var(--muted);font-size:13.5px;line-height:1.45;margin-top:3px}
+.vd-v .jump{font-size:12.5px;margin-top:6px}
+.vd-reveal{width:100%;text-align:left;border:1px dashed var(--control);background:transparent;color:var(--muted);border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;cursor:pointer}
+.vd-reveal:hover{border-color:var(--accent);color:var(--ink)}
+.vd-act{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.vd-act button{border:1px solid var(--border);background:var(--raised);color:var(--ink);border-radius:10px;padding:6px 10px;font:inherit;font-size:13px;cursor:pointer}
+.vd-act button.ok:hover{border-color:var(--ok-line);background:var(--ok-bg)}
+.vd-act button.no:hover{border-color:var(--bad-line);background:var(--bad-bg)}
+.vd-box{font-size:12px;color:var(--muted);min-width:74px}
+.vd-ouro{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin:12px 0}
+.vd-ouro div{background:var(--accent-soft);border-radius:12px;padding:10px 12px;font-size:13.5px;line-height:1.35}
+.vd-ouro b{display:block;font-size:14.5px;color:var(--accent-ink);margin-bottom:2px}
+.vd-tag{display:inline-block;font-family:var(--sans);font-size:12px;font-weight:600;border-radius:999px;padding:2px 10px;margin-left:8px;vertical-align:middle;background:var(--warn-bg);color:var(--warn-ink)}
+.vd-tag.nova{background:var(--accent-soft);color:var(--accent-ink)}
+@media (max-width:700px){.vd-row{grid-template-columns:1fr;padding:12px 14px}.vd-box{min-width:0}}
+/* ---------- Plantão relâmpago ---------- */
+.rl{max-width:700px;margin:0 auto}
+.rl-hud{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;font-size:15px;margin-bottom:10px;font-variant-numeric:tabular-nums}
+.rl-hud b{font-size:18px}
+.rl-time{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-bottom:14px}
+.rl-time i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.rl-time.low i{background:var(--bad)}
+.rl-card{background:var(--raised);border:1px solid var(--border);border-radius:20px;padding:20px 22px 18px;box-shadow:0 10px 30px #00000012;transition:border-color .2s,box-shadow .2s}
+.rl-card.is-ok{border-color:var(--ok);box-shadow:0 0 0 3px var(--ok-line)}
+.rl-card.is-no{border-color:var(--bad);box-shadow:0 0 0 3px var(--bad-line);animation:rlShake .35s}
+@keyframes rlShake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media (prefers-reduced-motion:reduce){.rl-card.is-no{animation:none}}
+.rl-head{display:flex;justify-content:space-between;gap:10px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);border-bottom:1px dashed var(--border);padding-bottom:8px;margin-bottom:14px}
+#rl .rl-ctx{color:var(--muted);font-size:15px;margin:0 0 2px}
+#rl .rl-big{font-family:var(--serif);font-size:clamp(28px,6.5vw,44px);line-height:1.12;margin:2px 0 6px;font-variant-numeric:tabular-nums;color:var(--ink)}
+#rl .rl-ask{font-weight:600;font-size:16.5px;line-height:1.45;margin:6px 0 14px}
+.rl-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.rl-opt{border:1px solid var(--border);background:var(--surface-2);color:var(--ink);border-radius:12px;padding:12px;font:inherit;font-size:15px;line-height:1.35;cursor:pointer;text-align:left;display:flex;gap:8px;align-items:flex-start}
+.rl-opt kbd{font:inherit;font-size:11.5px;color:var(--faint);border:1px solid var(--border);border-radius:6px;padding:0 6px;flex:none;margin-top:2px}
+.rl-opt:hover:not(:disabled){border-color:var(--accent)}
+.rl-opt:disabled{cursor:default}
+.rl-opt.right{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.rl-opt.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+#rl .rl-exp{margin:14px 0 0;font-size:14.5px;line-height:1.5}
+.rl-exp b{color:var(--accent-ink)}
+.rl-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.rl-go{border:0;background:var(--accent);color:var(--on-ink);border-radius:14px;padding:13px 22px;font:inherit;font-size:16.5px;font-weight:600;cursor:pointer}
+.rl-sec{border:1px solid var(--border);background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 16px;font:inherit;font-size:14.5px;cursor:pointer}
+.rl-start h3{margin:18px 0 8px}
+.rl-rules{margin:8px 0 0;padding-left:20px;line-height:1.6}
+.rl-end{text-align:center}
+.rl-miss{text-align:left;display:grid;gap:6px;margin:16px 0}
+.rl-miss div{background:var(--bad-bg);border-radius:10px;padding:9px 12px;font-size:14px;line-height:1.45}
+.rl-miss small{color:var(--muted)}
+.rl-end .rl-row{justify-content:center}
+</style>
+<script>/* Valores para decorar + Plantão relâmpago (jogo). Valores tirados das aulas do master; "referência usual" = não está nos slides que temos. */
+(function(){
+const KEY='lab-valores-v1';
+let st={box:{},best:{},fil:'tudo',hide:false,rlSet:'tudo',rlMode:'arcade'};
+try{st=Object.assign(st,JSON.parse(localStorage.getItem(KEY)||'{}')||{})}catch(_){}
+const keep=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(_){}};
+/* a: aula · s: segmento · k: exame · v: valor · d: dica · f: fonte · n: matéria nova (temas da prova) · o: número de ouro · g: classificar · q: perguntas · c: gerador */
+const V=[
+{id:'pcr',a:'a01',s:'a01-2',n:1,f:'usual',k:'PCR (proteína C-reativa)',v:'normal < 5 mg/L (= 0,5 mg/dL) · confira a unidade do laudo',d:'Sobe em ~6 h e faz pico em ~48 h. Muito sensível e pouco específica: vale a curva, não o número isolado.',g:{u:'mg/L',fx:[[0,4,'Normal'],[12,280,'Elevada']]},q:{p:'Depois do estímulo inflamatório, quando a PCR começa a subir e quando faz pico?',ok:'Sobe em ~6 h, pico em ~48 h',no:['Sobe em 30 min, pico em 2 h','Sobe em 3 dias, pico em 2 semanas','Sobe em 24 h, pico em 7 dias']}},
+{id:'pct',a:'a01',s:'a01-2',n:1,f:'usual',k:'Procalcitonina',v:'< 0,25 ng/mL: bacteriana improvável · ≥ 0,5 ng/mL: bacteriana provável',d:'Guia a entrada e a retirada do antibiótico. Sobe pouco nas viroses.',o:'< 0,25 improvável · ≥ 0,5 bacteriana',g:{u:'ng/mL',dec:2,fx:[[0.03,0.22,'Bacteriana improvável'],[0.6,9,'Bacteriana provável']]},q:{p:'Para que a procalcitonina é mais útil?',ok:'Guiar o início e a suspensão do antibiótico na suspeita bacteriana',no:['Diagnosticar infarto','Confirmar infecção viral','Acompanhar diabetes']}},
+{id:'vhs',a:'a01',s:'a01-2',n:1,f:'usual',k:'VHS',v:'homem < 15 · mulher < 20 mm/h (sobe com a idade)',d:'Limite prático: homem = idade ÷ 2; mulher = (idade + 10) ÷ 2. É lenta: leva dias para subir e semanas para cair. Anemia e gestação aumentam.',q:{p:'Pela regra (idade + 10) ÷ 2, qual o limite superior aproximado da VHS de uma mulher de 60 anos?',ok:'35 mm/h',no:['20 mm/h','60 mm/h','10 mm/h']}},
+{id:'trop',a:'a01',s:'a01-2',n:1,f:'aula',k:'Troponina (infarto)',v:'acima do percentil 99 + curva (sobe ou cai) + critério de isquemia',d:'Lesão miocárdica não é sinônimo de infarto: na DRC a troponina fica cronicamente alta.',q:{p:'Troponina indica lesão miocárdica quando está acima de:',ok:'Percentil 99 da população de referência',no:['Percentil 95','Duas vezes a média','Percentil 50']}},
+{id:'bnp',a:'a01',s:'a01-2',f:'usual',k:'BNP / NT-proBNP no pronto-socorro',v:'BNP < 100 pg/mL ou NT-proBNP < 300 pg/mL: IC aguda improvável',d:'No PS o valor é o VPN: baixo exclui. Obesidade baixa o BNP; idade e DRC elevam.',q:{p:'No pronto-socorro, o BNP serve principalmente para:',ok:'Excluir insuficiência cardíaca (alto VPN)',no:['Confirmar infarto','Diagnosticar TEP','Medir a fração de ejeção']}},
+{id:'k',a:'a01',s:'a01-5',f:'aula',k:'Potássio sérico',v:'3,5 a 5,0 mEq/L',d:'K⁺ alto com ECG e creatinina normais: pense em pseudo-hipercalemia (garrote longo, hemólise) e recolha antes de tratar.',g:{u:'mEq/L',dec:1,fx:[[2.4,3.3,'Baixo'],[3.5,5,'Normal'],[5.3,7.2,'Alto']]}},
+{id:'garrote',a:'a01',s:'a01-4',f:'aula',k:'Garrote',v:'no máximo 1 minuto',d:'Garrote > 1 min e abrir e fechar a mão: K⁺, lactato, cálcio e proteínas falsamente altos.',q:{p:'Garrote por mais de quanto tempo já falseia K⁺, lactato e proteínas?',ok:'1 minuto',no:['5 minutos','10 minutos','15 minutos']}},
+{id:'ir',a:'a02',s:'a02-2',f:'aula',k:'Intervalo de referência',v:'95% das pessoas saudáveis',d:'5% dos saudáveis ficam "fora da referência". Fora do intervalo não é sinônimo de doença.',q:{p:'O intervalo de referência inclui que proporção das pessoas saudáveis?',ok:'95%',no:['99%','100%','68%']}},
+{id:'pre',a:'a02',s:'a02-4',f:'aula',k:'Erros de laboratório',v:'60 a 70% são da fase pré-analítica',d:'O erro mais comum acontece antes da máquina: coleta, tubo, transporte, garrote.',q:{p:'Que fração dos erros de laboratório acontece na fase pré-analítica?',ok:'60 a 70%',no:['10 a 20%','Cerca de 30%','Mais de 95%']}},
+{id:'alcool',a:'a02',s:'a02-4',f:'aula',k:'Álcool antes do exame',v:'72 horas sem álcool',d:'O uso crônico eleva GGT e VCM.',q:{p:'Quanto tempo sem álcool antes do perfil lipídico e das enzimas hepáticas?',ok:'72 horas',no:['12 horas','24 horas','7 dias']}},
+{id:'hbh',a:'a03',s:'a03-1',f:'aula',k:'Hemoglobina · homem',v:'13,5 a 17 g/dL · anemia se < 13',d:'É o parâmetro que define anemia. Hb normal no começo de uma hemorragia aguda não afasta sangramento grave.',o:'anemia: homem < 13 · mulher < 12 · gestante < 11',g:{l:'Hemoglobina',ctx:'Homem adulto',u:'g/dL',dec:1,fx:[[7,12.9,'Anemia'],[13.5,17,'Normal']]}},
+{id:'hbm',a:'a03',s:'a03-1',f:'aula',k:'Hemoglobina · mulher',v:'12 a 15 g/dL · anemia se < 12',d:'Na gestante o corte cai para 11 (anemia dilucional é fisiológica).',g:{l:'Hemoglobina',ctx:'Mulher adulta, não gestante',u:'g/dL',dec:1,fx:[[6.5,11.9,'Anemia'],[12,15,'Normal']]}},
+{id:'hbg',a:'a03',s:'a03-1',f:'aula',k:'Hemoglobina · gestante',v:'anemia se < 11 g/dL',d:'Corte mais baixo por causa da hemodiluição da gestação.',g:{l:'Hemoglobina',ctx:'Gestante',u:'g/dL',dec:1,fx:[[7,10.9,'Anemia'],[11,13.5,'Sem anemia']]}},
+{id:'hem',a:'a04',s:'a04-1',f:'aula',k:'Hemácias',v:'4,5 a 6,0 milhões/mm³',d:'Hemácias normais ou altas com VCM muito baixo: pense em traço talassêmico (Mentzer < 13).'},
+{id:'ht',a:'a04',s:'a04-1',f:'aula',k:'Hematócrito',v:'38 a 50%',d:'Entra no VCM (Ht ÷ hemácias × 10) e na correção dos reticulócitos (× Ht ÷ 45).'},
+{id:'vcm',a:'a03',s:'a03-2',f:'aula',k:'VCM',v:'80 a 100 fL',d:'< 80 microcítica (TAILS) · > 100 macrocítica (B12, folato, álcool, hepatopatia). Na megaloblástica costuma ficar entre 110 e 140.',o:'80 a 100 fL · < 80 micro · > 100 macro',g:{u:'fL',fx:[[58,78,'Microcítica'],[81,99,'Normocítica'],[102,135,'Macrocítica']]}},
+{id:'vcmf',a:'a03',s:'a03-2',f:'aula',k:'Cálculo do VCM',v:'VCM = Ht ÷ hemácias (milhões) × 10',d:'Ht 28% com 4 milhões de hemácias: 28 ÷ 4 × 10 = 70 fL. A professora chama de questão "mecânica": é ponto garantido.',c:'vcm'},
+{id:'hcm',a:'a04',s:'a04-1',f:'aula',k:'HCM',v:'26 a 34 pg (outra aula: 28 a 32)',d:'Baixa = hipocromia; anda junto com a microcitose.',g:{u:'pg',fx:[[17,24,'Hipocrômica'],[27,33,'Normocrômica']]}},
+{id:'chcm',a:'a04',s:'a04-1',f:'aula',k:'CHCM',v:'31 a 36 g/dL (outra aula: 32 a 35)',d:'CHCM alta: lembre de esferocitose.',g:{u:'g/dL',dec:1,fx:[[25,30,'Baixa'],[32,35,'Normal'],[37,39.5,'Alta (esferócitos?)']]}},
+{id:'rdw',a:'a03',s:'a03-2',f:'aula',k:'RDW',v:'11,5 a 15%',d:'Alto = anisocitose: carências (ferro, B12). No traço talassêmico o RDW costuma ser normal.',o:'até 15% · alto = anisocitose (carência)',g:{u:'%',dec:1,fx:[[11.5,14.8,'Normal'],[16,24,'Alto (anisocitose)']]}},
+{id:'ret',a:'a03',s:'a03-4',f:'aula',k:'Reticulócitos',v:'0,5 a 2%',d:'Na anemia: > 2% = medula respondendo (hemólise, sangramento) · ≤ 2% = falha de produção (carência, DRC, aplasia). Corrija pelo IPR.',o:'0,5 a 2% · > 2% hemólise ou sangramento',g:{u:'%',dec:1,fx:[[0.1,0.4,'Baixos'],[0.6,1.9,'Normais'],[3,12,'Altos']]}},
+{id:'ipr',a:'a05',s:'a05-3',f:'aula',k:'IPR (índice de produção reticulocitária)',v:'retic % × (Ht ÷ 45) ÷ fator de maturação · > 2 a 3% = resposta adequada',d:'Reticulócito "alto" em porcentagem pode ser resposta inadequada depois de corrigido.',q:{p:'Ht 25%, reticulócitos 5%, fator de maturação 2,0. Qual o IPR e a leitura?',ok:'≈ 1,4%: resposta medular inadequada',no:['5%: hemólise franca','2,8%: hiperproliferativa','10%: hiperplasia eritroide']}},
+{id:'mentzer',a:'a05',s:'a05-4',f:'aula',k:'Índice de Mentzer',v:'VCM ÷ hemácias (milhões): < 13 talassemia · > 13 ferropriva',d:'É triagem, não diagnóstico: confirme com ferritina e eletroforese de hemoglobina.',c:'mentzer'},
+{id:'ferr',a:'a04',s:'a04-3',f:'aula',k:'Ferritina',v:'homem 30 a 300 · mulher 15 a 200 μg/L',d:'Baixa = estoque vazio (o marcador mais preciso de ferropenia). É proteína de fase aguda: normal ou alta não afasta ferropenia na inflamação.',o:'baixa = ferropriva · alta na inflamação',g:{l:'Ferritina',ctx:'Mulher',u:'μg/L',fx:[[2,13,'Baixa (estoque vazio)'],[18,190,'Normal'],[260,1200,'Alta (inflamação ou sobrecarga)']]}},
+{id:'tsat',a:'a04',s:'a04-3',f:'aula',k:'Saturação da transferrina',v:'< 20% deficiência · > 50% sobrecarga',d:'TSAT = ferro ÷ TIBC × 100.',o:'< 20% falta ferro · > 50% sobrecarga',g:{u:'%',fx:[[4,18,'Deficiência de ferro'],[22,48,'Normal'],[55,95,'Sobrecarga (hemocromatose?)']]}},
+{id:'leuc',a:'a04',s:'a04-6',f:'usual',k:'Leucócitos',v:'4.000 a 11.000/mm³ (varia por laboratório)',d:'Leia cada série em número absoluto, nunca só pela porcentagem.',o:'4.000 a 11.000/mm³',g:{u:'/mm³',step:100,fx:[[1200,3800,'Leucopenia'],[4200,10800,'Normal'],[12000,30000,'Leucocitose']]}},
+{id:'can',a:'a05',s:'a05-5',f:'aula',k:'Neutrófilos absolutos (CAN)',v:'< 1.500 neutropenia · leve 1.000 a 1.500 · moderada 500 a 1.000 · grave < 500/mm³',d:'Grave com febre (Tax ≥ 38,3 °C, ou ≥ 38 °C por 1 h) = neutropenia febril: antibiótico imediato.',o:'< 1.500 neutropenia · < 500 grave',g:{l:'Neutrófilos',u:'/mm³',step:50,fx:[[50,450,'Neutropenia grave'],[550,950,'Neutropenia moderada'],[1050,1450,'Neutropenia leve'],[1600,7000,'Normal']]}},
+{id:'canp',a:'a04',s:'a04-6',f:'aula',k:'CAN pela porcentagem',v:'CAN = leucócitos × % de neutrófilos',d:'2.000 leucócitos com 40% de neutrófilos = 800/mm³: a porcentagem "normal" esconde neutropenia.',c:'can'},
+{id:'plaq',a:'a05',s:'a05-3',f:'aula',k:'Plaquetas',v:'150.000 a 400.000/mm³',d:'Plaquetas muito baixas em quem está bem: pense em pseudotrombocitopenia por EDTA e recolha em citrato.',o:'150 a 400 mil/mm³',g:{u:'/mm³',step:1000,fx:[[20000,140000,'Plaquetopenia'],[160000,390000,'Normal'],[460000,900000,'Plaquetose']]}},
+{id:'leuc50',a:'a05',s:'a05-5',f:'aula',k:'Leucocitose extrema',v:'reação leucemoide > 50.000 · hiperleucocitose > 100.000/mm³',d:'Leucemoide é reativa, com desvio e sem clone; hiperleucocitose costuma ser leucemia.',q:{p:'Leucocitose reativa acima de 50.000/mm³, com desvio à esquerda e sem clone, se chama:',ok:'Reação leucemoide',no:['Hiperleucocitose','Leucostase','Leucemia aguda']}},
+{id:'blast',a:'a03',s:'a03-3',f:'aula',k:'Blastos',v:'> 20% na medula = leucemia aguda (> 5% no sangue já levanta suspeita)',q:{p:'Qual porcentagem de blastos na medula confirma leucemia aguda?',ok:'> 20%',no:['> 5%','> 50%','> 2%']}},
+{id:'cr',a:'a06',s:'a06-4',f:'aula',k:'Creatinina',v:'0,7 a 1,3 mg/dL, mas o basal do paciente manda',d:'Creatinina dentro da referência pode esconder perda de ~50% da função em idosos e sarcopênicos.',q:{p:'Idoso desnutrido: creatinina basal 0,5, agora 1,0 mg/dL (referência 0,7 a 1,3). Leitura correta:',ok:'Dobrou o basal: lesão renal aguda',no:['Normal, está dentro da referência','Erro de coleta','DRC estágio 5']}},
+{id:'lra',a:'a06',s:'a06-4',f:'aula',k:'Lesão renal aguda (KDIGO)',v:'creatinina ≥ 1,5× o basal em até 7 dias · estágio 2: 2,0 a 2,9× · estágio 3: ≥ 3×',d:'Compare sempre com o basal, nunca só com a referência.',o:'≥ 1,5× o basal em 7 dias',c:'lra'},
+{id:'ureia',a:'a06',s:'a06-4',f:'aula',k:'Ureia',v:'15 a 39 mg/dL (adulto)',d:'No pré-renal a ureia sobe mais que a creatinina. Hemorragia digestiva e dieta rica em proteína elevam.',g:{u:'mg/dL',fx:[[16,38,'Normal'],[48,180,'Elevada']]}},
+{id:'tfg',a:'a06',s:'a06-5',f:'aula',k:'TFG · estágios da DRC',v:'G1 ≥ 90 · G2 60–89 · G3a 45–59 · G3b 30–44 · G4 15–29 · G5 < 15 mL/min/1,73 m²',d:'DRC = TFG < 60 ou albuminúria por mais de 3 meses. CKD-EPI 2021 não usa raça.',o:'DRC: < 60 ou albuminúria por > 3 meses',g:{l:'TFG',u:'mL/min/1,73 m²',fx:[[92,120,'G1'],[61,88,'G2'],[46,58,'G3a'],[31,43,'G3b'],[16,28,'G4'],[5,13,'G5']]}},
+{id:'alb',a:'a06',s:'a06-5',f:'aula',k:'Albuminúria',v:'A1 < 30 · A2 30 a 300 · A3 > 300 mg/g',d:'É o marcador mais precoce de lesão renal em DM e HAS. Confirme em 2 de 3 amostras.',o:'A1 < 30 · A2 30–300 · A3 > 300',g:{l:'Albumina/creatinina urinária',u:'mg/g',fx:[[3,28,'A1'],[33,290,'A2'],[320,2500,'A3']]}},
+{id:'prot',a:'a06',s:'a06-5',f:'aula',k:'Proteinúria de 24 h',v:'> 150 mg/dia é anormal · nefrótica > 3,5 g/24 h',d:'A fita detecta albumina, não Bence Jones.',g:{l:'Proteinúria',u:'mg/24 h',step:10,fx:[[40,140,'Normal'],[200,3300,'Proteinúria (não nefrótica)'],[3800,9000,'Faixa nefrótica']]}},
+{id:'sedh',a:'a06',s:'a06-3',f:'aula',k:'Hemácias no sedimento',v:'0 a 2 por campo de maior aumento',d:'Hematúria: peça dismorfismo. Fita positiva para sangue sem hemácias: mioglobina ou hemoglobina.',g:{l:'Sedimento',u:'hemácias/campo',fx:[[0,2,'Normal'],[6,50,'Hematúria']]}},
+{id:'sedl',a:'a06',s:'a06-3',f:'aula',k:'Leucócitos no sedimento',v:'0 a 5 por campo · cilindro hialino até 2 por campo de menor aumento',d:'Cilindro hemático = glomerulonefrite; leucocitário = pielonefrite ou nefrite intersticial.',g:{l:'Sedimento',u:'leucócitos/campo',fx:[[0,4,'Normal'],[10,80,'Piúria']]}},
+{id:'dens',a:'a06',s:'a06-2',f:'aula',k:'Densidade urinária',v:'1,003 a 1,030 · fixa em ~1,010 = o rim não concentra',q:{p:'Densidade urinária fixa em torno de 1,010 sugere:',ok:'Isostenúria: o rim perdeu a capacidade de concentrar',no:['Desidratação grave','Diabetes mellitus descompensado','Urina normal']}},
+{id:'diur',a:'a06',s:'a06-2',f:'aula',k:'Diurese de 24 h',v:'normal 1 a 2 L · oligúria < 400–500 mL · anúria < 100 mL · poliúria > 3 L',g:{l:'Diurese',u:'mL/24 h',step:10,fx:[[10,90,'Anúria'],[150,380,'Oligúria'],[900,2200,'Normal'],[3300,6000,'Poliúria']]}},
+{id:'urina2',a:'a06',s:'a06-2',f:'aula',k:'Urina até o laboratório',v:'processar em até 2 h (ou refrigerar)',d:'Parada mais de 2 h: pH sobe, glicose e cetonas caem, bactérias crescem.',q:{p:'Em quanto tempo a urina tipo 1 deve ser processada, sem refrigerar?',ok:'Até 2 horas',no:['Até 12 horas','Até 24 horas','Até 30 minutos, senão é perdida']}},
+{id:'fried',a:'a07',s:'a07-3',f:'aula',k:'Friedewald',v:'LDL = CT − HDL − TG ÷ 5 · não usar com TG ≥ 400',d:'Com TG ≥ 400 peça LDL direto, ou use não-HDL (CT − HDL) ou ApoB.',o:'LDL = CT − HDL − TG/5 · TG ≥ 400 não',c:'fried'},
+{id:'meta',a:'a07',s:'a07-4',f:'aula',k:'Metas de LDL por risco',v:'baixo < 115 · moderado < 100 · alto < 70 · muito alto < 55 · extremo < 40 mg/dL',d:'Quanto maior o risco, menor a meta.',o:'< 115 · < 100 · < 70 · < 55 · < 40',c:'meta'},
+{id:'lip',a:'a07',s:'a07-3',f:'aula',k:'Perfil lipídico desejável',v:'CT < 190 · HDL > 40 · TG < 150 mg/dL',d:'Sem jejum serve na rotina; sem álcool 72 h e sem exercício intenso 24 h.',g:{l:'Triglicerídeos',u:'mg/dL',fx:[[60,145,'Desejável'],[160,390,'Alto'],[420,900,'Alto, e invalida o Friedewald']]}},
+{id:'ldl190',a:'a07',s:'a07-4',f:'aula',k:'LDL ≥ 190 mg/dL',v:'já é alto risco, sem calculadora',d:'ASCVD, DM, DRC, HAS grave, LDL ≥ 190 e hipercolesterolemia familiar dispensam o escore.',q:{p:'Paciente sem doença aterosclerótica com LDL de 210 mg/dL. Risco cardiovascular mínimo:',ok:'Alto (não precisa de calculadora)',no:['Baixo','Moderado','Depende só do SCORE2']}},
+{id:'rastreio',a:'a07',s:'a07-3',f:'aula',k:'Rastreio lipídico',v:'a partir dos 20 anos, a cada 5 anos · Lp(a) uma vez na vida',q:{p:'Quantas vezes dosar a Lp(a)?',ok:'Pelo menos uma vez na vida',no:['Todo ano','A cada 5 anos','Só se o LDL estiver alto']}},
+{id:'bt',a:'a08',s:'a08-3',n:1,f:'aula',k:'Bilirrubina total',v:'< 1,2 mg/dL · indireta ≤ 0,8 · direta ≤ 0,4 · icterícia visível > 2 a 3',d:'A bilirrubina é fotossensível. Carotenemia amarela a pele mas poupa a esclera.',o:'< 1,2 · icterícia visível > 2 a 3',g:{l:'Bilirrubina total',u:'mg/dL',dec:1,fx:[[0.3,1.1,'Normal'],[1.4,1.9,'Alta, sem icterícia visível'],[3.2,15,'Alta, com icterícia']]}},
+{id:'bfr',a:'a08',s:'a08-3',n:1,f:'aula',k:'Fração da bilirrubina',v:'indireta > 80% = pré-hepática ou conjugação · direta > 50% = colestática',d:'Indireta não aparece na urina; direta causa colúria. Gilbert: indireta isolada, piora com jejum ou infecção.',o:'indireta > 80% · direta > 50%',c:'bili'},
+{id:'rr',a:'a08',s:'a08-2',n:1,f:'aula',k:'R-ratio',v:'(ALT ÷ LSN) ÷ (FA ÷ LSN): ≥ 5 hepatocelular · 2 a 5 misto · ≤ 2 colestático',d:'Classifica o padrão, não prova a causa.',o:'≥ 5 hepatocelular · 2–5 misto · ≤ 2 colestático',c:'rr'},
+{id:'altfa',a:'a08',s:'a08-2',n:1,f:'aula',k:'ALT e FA relevantes',v:'ALT ≥ 4× o LSN · FA ≥ 1,25× o LSN',d:'FA isolada: osso ou gestação; GGT isolada: álcool ou fármacos.',q:[{p:'A partir de quantas vezes o LSN a ALT é clinicamente relevante?',ok:'4×',no:['1,25×','2×','10×']},{p:'A partir de quantas vezes o LSN a FA é clinicamente relevante?',ok:'1,25×',no:['4×','3×','10×']}]},
+{id:'necro',a:'a08',s:'a08-4',n:1,f:'aula',k:'Aminotransferases muito altas',v:'necrose aguda: > 500 U/L, com ALT > AST · álcool: AST > ALT (AST/ALT > 2 apoia)',d:'Milhares de U/L: isquemia, paracetamol, hepatite aguda. AST desproporcional com mialgia: dose CK (músculo).',q:[{p:'Aminotransferases acima de 500 U/L com ALT maior que AST sugerem:',ok:'Necrose hepatocelular aguda (vírus, fármaco, isquemia)',no:['Hepatite alcoólica','Colestase extra-hepática','Síndrome de Gilbert']},{p:'AST/ALT maior que 2, no contexto certo, apoia:',ok:'Doença hepática alcoólica',no:['Hepatite viral aguda','Obstrução biliar','Hemólise']}]},
+{id:'albu',a:'a08',s:'a08-4',n:1,f:'aula',k:'Albumina',v:'meia-vida ~20 dias · só cai com lesão > 80% (referência usual 3,5 a 5,0 g/dL)',d:'Marcador lento, de doença crônica: não serve para lesão aguda.',q:{p:'Por que a albumina demora a cair numa lesão hepática aguda?',ok:'Meia-vida de ~20 dias',no:['Meia-vida de 4 a 6 horas','É produzida pelo rim','Sobe na inflamação']}},
+{id:'inr',a:'a08',s:'a08-4',n:1,f:'aula',k:'TP / INR',v:'INR ≈ 1,0 · altera em horas (fator VII: meia-vida de 4 a 6 h)',d:'Lesão aguda + INR alto + encefalopatia = insuficiência hepática aguda. Vitamina K não corrige o INR da doença hepatocelular.',q:{p:'Por que o INR altera antes da albumina?',ok:'Fator VII tem meia-vida de 4 a 6 h; a albumina, ~20 dias',no:['O INR mede lesão do hepatócito','A albumina é produzida no baço','O INR depende só da vitamina K da dieta']}},
+{id:'hbcr',a:'a08',s:'a08-5',n:1,f:'aula',k:'Hepatite B crônica',v:'HBsAg positivo por ≥ 6 meses',q:{p:'Quando a hepatite B é considerada crônica?',ok:'HBsAg positivo por 6 meses ou mais',no:['Anti-HBs positivo por 6 meses','Anti-HBc IgM positivo por 1 mês','HBsAg positivo por 2 semanas']}},
+{id:'hbv',a:'a08',s:'a08-5',n:1,f:'aula',k:'Sorologia da hepatite B',v:'anti-HBs sozinho = vacina · anti-HBc + anti-HBs = curado · HBsAg + = infecção atual',d:'Anti-HBc só aparece com contato com o vírus: a vacina não gera anti-HBc.',o:'anti-HBs só = vacina · + anti-HBc = curado',c:'hbv'},
+{id:'hcvhav',a:'a08',s:'a08-5',n:1,f:'aula',k:'Hepatites A e C',v:'A aguda: anti-HAV IgM · C: anti-HCV positivo → confirmar com HCV-RNA',d:'A e E: fecal-oral. B, C e D: sangue e outras vias; a D depende da B.',q:[{p:'Qual marcador indica hepatite A aguda?',ok:'Anti-HAV IgM',no:['Anti-HAV IgG','Anti-HBc IgM','HBsAg']},{p:'Anti-HCV positivo. O que confirma infecção ativa?',ok:'HCV-RNA (PCR)',no:['Repetir o anti-HCV','Anti-HCV IgM','Dosar ALT']}]},
+{id:'uro',a:'a09',s:'a09-1',n:1,f:'usual',k:'Urocultura',v:'clássico: ≥ 10⁵ UFC/mL · mas quem decide é o sintoma',d:'Idosa sem sintomas com 100.000 UFC/mL = bacteriúria assintomática (em geral não tratar). Jovem com disúria e 30.000 UFC/mL pode ser ITU.',q:{p:'Idosa de 78 anos sem sintomas, urocultura com 100.000 UFC/mL de E. coli. Conduta:',ok:'Bacteriúria assintomática: em geral não tratar',no:['Antibiótico, porque ≥ 10⁵ é infecção','Repetir até negativar','Internar para antibiótico venoso']}},
+{id:'hemoc',a:'a09',s:'a09-3',n:1,f:'usual',k:'Hemocultura',v:'2 conjuntos, de punções diferentes, antes do antibiótico',d:'O mesmo estafilococo coagulase-negativo nas 2 punções + prótese valvar: investigar endocardite. Contaminante não é sinônimo de irrelevante.',q:{p:'Homem com prótese valvar e febre: S. epidermidis nas duas hemoculturas de punções diferentes. Conduta:',ok:'Investigar endocardite (ecocardiograma)',no:['Contaminação: ignorar','Pedir só PCR','Repetir sem mudar nada']}},
+{id:'bacilo',a:'a09',s:'a09-2',n:1,f:'aula',k:'Baciloscopia',v:'mínimo de 3 lâminas para liberar',d:'M. leprae não é cultivável. NAAT negativo não exclui tuberculose.',q:{p:'Quantas lâminas, no mínimo, para liberar a baciloscopia?',ok:'3',no:['1','2','10']}},
+{id:'liquor',a:'a09',s:'a09-2',n:1,f:'aula',k:'Líquor',v:'transporte em temperatura ambiente, nunca na geladeira',d:'A Neisseria morre no frio.',q:{p:'Como transportar o líquor para cultura?',ok:'Em temperatura ambiente, sem geladeira',no:['Na geladeira a 4 °C','Congelado','Em formol']}},
+{id:'gj',a:'a10',s:'a10-2',n:1,f:'aula',k:'Glicemia de jejum',v:'< 100 normal · 100 a 125 pré-diabetes · ≥ 126 diabetes',d:'Um exame alterado: repita ou peça outro. Dois testes diferentes alterados na mesma coleta confirmam.',o:'≥ 126 DM · 100–125 pré',g:{u:'mg/dL',fx:[[70,99,'Normal'],[100,125,'Pré-diabetes'],[126,260,'Diabetes']]}},
+{id:'a1c',a:'a10',s:'a10-2',n:1,f:'aula',k:'HbA1c',v:'< 5,7 normal · 5,7 a 6,4 pré-diabetes · ≥ 6,5 diabetes',d:'Hemólise e perda de sangue baixam a HbA1c; ferropenia pode elevá-la. Se ela não é confiável, valem as glicemias.',o:'≥ 6,5 DM · 5,7–6,4 pré',g:{u:'%',dec:1,fx:[[4.6,5.6,'Normal'],[5.7,6.4,'Pré-diabetes'],[6.5,11,'Diabetes']]}},
+{id:'ttgo',a:'a10',s:'a10-2',n:1,f:'aula',k:'TTGO 2 h (75 g)',v:'< 140 normal · 140 a 199 pré-diabetes · ≥ 200 diabetes',o:'2 h ≥ 200 DM · 140–199 pré',g:{l:'TTGO 2 h',u:'mg/dL',fx:[[80,139,'Normal'],[140,199,'Pré-diabetes'],[200,330,'Diabetes']]}},
+{id:'acaso',a:'a10',s:'a10-2',n:1,f:'aula',k:'Glicemia ao acaso',v:'≥ 200 mg/dL com sintomas clássicos = diabetes, sem repetir',q:{p:'Glicemia ao acaso de 310 mg/dL com poliúria, polidipsia e perda de peso:',ok:'Fecha diabetes, sem precisar repetir',no:['Precisa de TTGO','Precisa de duas HbA1c','É só pré-diabetes']}},
+{id:'jejum',a:'a10',s:'a10-3',n:1,f:'aula',k:'Jejum da glicemia',v:'pelo menos 8 h sem calorias',q:{p:'Jejum mínimo para a glicemia de jejum:',ok:'8 horas sem calorias',no:['4 horas','12 horas obrigatórias','Não precisa de jejum']}},
+{id:'janela',a:'a10',s:'a10-3',n:1,f:'aula',k:'O que cada exame mostra',v:'glicemia: o momento · frutosamina: 2 a 3 semanas · HbA1c: 2 a 3 meses',q:{p:'A frutosamina reflete a glicemia de quanto tempo?',ok:'2 a 3 semanas',no:['2 a 3 meses','Só o momento da coleta','1 ano']}},
+{id:'cad',a:'a10',s:'a10-4',n:1,f:'aula',k:'Cetoacidose diabética',v:'diabetes ou glicose ≥ 200 + β-hidroxibutirato ≥ 3,0 mmol/L + pH < 7,3 ou HCO₃ < 18',d:'Com iSGLT2 a glicose pode vir pouco elevada (CAD euglicêmica). Cheque o K⁺ antes da insulina.',o:'BHB ≥ 3 + pH < 7,3 ou HCO₃ < 18',q:[{p:'Na cetoacidose, que β-hidroxibutirato define a cetose?',ok:'≥ 3,0 mmol/L',no:['≥ 0,6 mmol/L','≥ 10 mmol/L','≥ 1,0 mmol/L']},{p:'Na cetoacidose, a acidose é definida por:',ok:'pH < 7,3 e/ou HCO₃ < 18 mmol/L',no:['pH < 7,0 e HCO₃ < 10','pH < 7,45','HCO₃ < 24 isolado']}]},
+{id:'hipo',a:'a10',s:'a10-4',n:1,f:'usual',k:'Hipoglicemia',v:'< 70 mg/dL (nível 1) · < 54 mg/dL (nível 2)',g:{l:'Glicemia capilar',u:'mg/dL',fx:[[30,53,'Hipoglicemia nível 2'],[55,69,'Hipoglicemia nível 1'],[75,99,'Normal']]}},
+{id:'hiv',a:'a11',s:'a11-1',n:1,f:'aula',k:'HIV · janela',v:'ELISA de 4ª geração: ~20 dias · Western Blot: 45 a 60 dias',d:'Teste rápido é triagem; o NAT (carga viral) confirma.',o:'ELISA 4ª geração ~20 dias',q:[{p:'Depois da exposição, o ELISA de 4ª geração para HIV fica positivo a partir de cerca de:',ok:'20 dias',no:['3 dias','6 meses','45 a 60 dias']},{p:'Teste rápido de HIV positivo. Qual o papel dele?',ok:'Triagem: confirmar com teste molecular (NAT)',no:['Diagnóstico definitivo','Só serve para gestantes','Mede a carga viral']}]},
+{id:'dengue',a:'a11',s:'a11-1',n:1,f:'aula',k:'Dengue · NS1 × IgM',v:'NS1 até o 5º dia · IgM a partir do 6º dia',o:'NS1 até o 5º dia · IgM do 6º',c:'dengue'},
+{id:'chik',a:'a11',s:'a11-1',n:1,f:'aula',k:'Chikungunya',v:'IgM; IgG mais tardio · IgM precoce negativo não exclui: repita',q:{p:'Chikungunya suspeita com IgM negativo no 2º dia de febre:',ok:'Não exclui: repetir a sorologia mais tarde',no:['Exclui chikungunya','Confirma dengue','Pedir IgG no mesmo dia para fechar']}},
+{id:'vdrl',a:'a11',s:'a11-2',n:1,f:'aula',k:'Sífilis · resposta ao tratamento',v:'VDRL cai ≥ 2 títulos (ex.: 1:32 → 1:8) · o FTA-ABS persiste',d:'Quem acompanha o tratamento é o VDRL; o treponêmico fica reagente por toda a vida.',o:'VDRL cai ≥ 2 títulos = tratou',c:'vdrl'},
+{id:'fan',a:'a11',s:'a11-3',n:1,f:'aula',k:'FAN no lúpus',v:'≥ 1:80 é critério de entrada (EULAR/ACR 2019)',d:'Uma justificativa antiga falou em 1:40: use o valor que a professora ensinar. FAN é sensível e pouco específico.',o:'≥ 1:80 para entrar no LES',q:{p:'Nos critérios EULAR/ACR 2019 de LES, o critério de entrada é:',ok:'FAN ≥ 1:80',no:['FAN ≥ 1:20','Anti-dsDNA positivo','FR ≥ 1:80']}},
+{id:'ccp',a:'a11',s:'a11-3',n:1,f:'aula',k:'Artrite reumatoide',v:'anti-CCP é mais específico que o FR · peça quando o FR vier negativo',q:{p:'Suspeita de artrite reumatoide com fator reumatoide negativo. Próximo exame:',ok:'Anti-CCP',no:['FAN','VDRL','Repetir FR em 1 ano']}},
+{id:'autoac',a:'a11',s:'a11-3',n:1,f:'aula',k:'Autoanticorpos',v:'podem aparecer até 10 anos antes da doença',q:{p:'Autoanticorpos podem preceder a doença autoimune em até:',ok:'10 anos',no:['1 semana','6 meses','Nunca precedem']}}
+];
+const byId=Object.fromEntries(V.map(x=>[x.id,x]));
+const nz=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const aulaN=id=>{const l=data.lessons.find(x=>x.id===id);return l?'Aula '+l.number:''};
+
+/* ---------- página séria ---------- */
+const shown=new Set();let busca='';
+const boxLbl=b=>b===1?'🔁 rever':b===2?'✅ 1 vez':b===3?'⭐ dominado':'';
+function filtrados(){
+ let it=V;
+ if(st.fil==='nova')it=it.filter(x=>x.n);else if(st.fil==='passada')it=it.filter(x=>!x.n);else if(st.fil==='erros')it=it.filter(x=>st.box[x.id]===1);
+ return it;
+}
+function rowH(x){
+ const b=st.box[x.id]||0,hid=st.hide&&!shown.has(x.id),q=nz(busca);
+ return '<div class="vd-row b'+b+'" data-vd="'+x.id+'" data-txt="'+esc(nz(x.k+' '+x.v+' '+(x.d||'')))+'"'+(q&&!nz(x.k+' '+x.v+' '+(x.d||'')).includes(q)?' hidden':'')+'>'+
+ '<div class="vd-k"><b>'+esc(x.k)+'</b><span class="vd-src">'+(x.f==='aula'?'📄 da aula':'📚 referência usual · confira no slide')+'</span></div>'+
+ '<div class="vd-v">'+(hid?'<button type="button" class="vd-reveal" data-vd-show="'+x.id+'">🤔 Tente lembrar · toque para ver</button>':'<span class="vd-val">'+esc(x.v)+'</span>'+(x.d?'<small>'+esc(x.d)+'</small>':'')+(x.s?link(x.a,'Estudar na '+aulaN(x.a),x.s):''))+'</div>'+
+ '<div class="vd-act"><span class="vd-box">'+boxLbl(b)+'</span><button type="button" class="ok" data-vd-mark="ok" data-id="'+x.id+'">✅ Sabia</button><button type="button" class="no" data-vd-mark="no" data-id="'+x.id+'">❌ Errei</button></div></div>';
+}
+function progH(){
+ const dom=V.filter(x=>st.box[x.id]===3).length,err=V.filter(x=>st.box[x.id]===1).length;
+ return '<span>⭐ '+dom+' de '+V.length+' dominados</span><span class="bar"><i style="width:'+Math.round(dom/V.length*100)+'%"></i></span><span>🔁 '+err+' para rever</span>';
+}
+function tagAula(xs){const n=xs.filter(x=>x.n).length;return n===xs.length?'<span class="vd-tag nova">🎯 tema da prova</span>':n?'<span class="vd-tag nova">🎯 parte é tema da prova</span>':'<span class="vd-tag">matéria passada · cai como valor</span>'}
+function decorar(){
+ const it=filtrados(),err=V.filter(x=>st.box[x.id]===1).length,ouro=it.filter(x=>x.o);
+ const grupos=data.lessons.map(l=>[l,it.filter(x=>x.a===l.id)]).filter(g=>g[1].length);
+ return hero('Cola de bolso · decorar de vez','Valores para decorar','Os números de cada aula que a prova cobra, com o ponto de corte, a pegadinha e onde estudar. Esconda os valores, tente lembrar e marque o que já sabe: o que você erra volta primeiro.')+
+ '<section class="section"><div class="panel prof"><b>Como isso cai na prova</b><p>A professora avisou que o foco bem maior é a <b>matéria nova</b>, os 8 temas que ela mandou. A <b>matéria passada</b> pode aparecer como um valor no enunciado, por exemplo um VCM ou uma hemoglobina, e você precisa saber na hora se está normal, mesmo sem a referência ao lado.</p></div>'+
+ '<div class="vd-ctl" role="group" aria-label="Filtrar valores">'+[['tudo','Tudo · '+V.length],['nova','🎯 Matéria nova · '+V.filter(x=>x.n).length],['passada','🧪 Matéria passada · '+V.filter(x=>!x.n).length],['erros','🔁 Só o que errei · '+err]].map(([k,t])=>'<button type="button" class="vd-chip'+(st.fil===k?' on':'')+'" data-vd-fil="'+k+'" aria-pressed="'+(st.fil===k)+'">'+t+'</button>').join('')+'</div>'+
+ '<div class="vd-ctl"><button type="button" class="vd-chip'+(st.hide?' on':'')+'" data-vd-hide aria-pressed="'+!!st.hide+'">'+(st.hide?'🙈 Valores escondidos · mostrar todos':'🙈 Esconder valores (modo decorar)')+'</button>'+link('relampago','⚡ Testar no jogo')+'<input class="tool-input" id="vd-q" value="'+esc(busca)+'" placeholder="Filtrar (ex.: VCM, ferritina, HbA1c)" aria-label="Filtrar valores" style="flex:1 1 220px;margin:0"></div>'+
+ '<div class="vd-prog" id="vd-prog">'+progH()+'</div>'+
+ (ouro.length&&!st.hide?'<h2>⭐ Os números de ouro</h2><p class="muted">Se só der tempo de decorar uma coisa, decore isto.</p><div class="vd-ouro">'+ouro.map(x=>'<div><b>'+esc(x.k)+'</b>'+esc(x.o)+'</div>').join('')+'</div>':'')+'</section>'+
+ (grupos.length?grupos.map(([l,xs])=>'<section class="section vd-sec"><h2>'+EM[l.id]+' Aula '+l.number+' · '+esc(l.title)+tagAula(xs)+'</h2><div class="vd-list">'+xs.map(rowH).join('')+'</div></section>').join(''):
+ '<section class="section"><p class="muted">'+(st.fil==='erros'?'Nada para rever. O que você marcar como "Errei" (ou errar no jogo) aparece aqui.':'Nenhum valor neste filtro.')+'</p></section>')+
+ '<section class="section"><p class="muted">📄 da aula: valor que está no material deste master. 📚 referência usual: valor clássico que não está nos slides que temos; os laboratórios variam, confira no slide da professora.</p></section>';
+}
+function trocaLinha(id){const el=document.querySelector('.vd-row[data-vd="'+id+'"]');if(el)el.outerHTML=rowH(byId[id]);const p=document.getElementById('vd-prog');if(p)p.innerHTML=progH()}
+
+/* ---------- jogo ---------- */
+const Rn=(a,b)=>a+Math.random()*(b-a),RI=(a,b)=>Math.floor(Rn(a,b+1)),pick=a=>a[Math.floor(Math.random()*a.length)];
+const mix=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const fmt=(v,d)=>Number(v).toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});
+function valor(g,f){let v=Rn(f[0],f[1]);v=g.step?Math.round(v/g.step)*g.step:+v.toFixed(g.dec||0);return Math.min(f[1],Math.max(f[0],v))}
+function qMulti(x,q){const o=mix([q.ok,...q.no]);return {id:x.id,ctx:'',big:'',ask:q.p,opts:o,ans:o.indexOf(q.ok),exp:'<b>'+esc(x.k)+':</b> '+esc(x.v)}}
+const C={
+ vcm(x){let ht,rbc,v;do{ht=RI(24,46);rbc=+Rn(2.8,5.6).toFixed(1);v=Math.round(ht/rbc*10)}while(Math.abs(v-80)<3||Math.abs(v-100)<3||v<55||v>135);
+  const cl=n=>n<80?'microcítica':n>100?'macrocítica':'normocítica';
+  const alt=[...new Set([v,Math.round(v*1.3),Math.round(v*0.75),Math.round(ht/rbc)])].filter(n=>n>0);while(alt.length<4)alt.push(v+alt.length*9);
+  const o=mix(alt.slice(0,4));return {id:x.id,ctx:'Hematócrito '+ht+'% · Hemácias '+fmt(rbc,1)+' milhões/mm³',big:'VCM = ?',ask:'Qual o VCM?',opts:o.map(n=>n+' fL · '+cl(n)),ans:o.indexOf(v),exp:'VCM = Ht ÷ hemácias × 10 = '+ht+' ÷ '+fmt(rbc,1)+' × 10 = <b>'+v+' fL</b> ('+cl(v)+'). Normal: 80 a 100 fL.'}},
+ mentzer(x){let vcm,rbc,m;do{vcm=RI(60,78);rbc=+Rn(3.6,6.4).toFixed(1);m=vcm/rbc}while(Math.abs(m-13)<0.8);
+  return {id:x.id,ctx:'Anemia microcítica',big:'VCM '+vcm+' fL · Hemácias '+fmt(rbc,1)+' mi/mm³',ask:'O índice de Mentzer sugere:',opts:['Traço talassêmico (< 13)','Ferropriva (> 13)'],ans:m<13?0:1,exp:'Mentzer = '+vcm+' ÷ '+fmt(rbc,1)+' = <b>'+fmt(m,1)+'</b>. Menor que 13 sugere talassemia; maior que 13, ferropriva.'}},
+ can(x){let le,p,c;do{le=RI(15,90)*100;p=RI(15,75);c=Math.round(le*p/100)}while([500,1000,1500].some(b=>Math.abs(c-b)<60));
+  const k=c<500?0:c<1000?1:c<1500?2:3;
+  return {id:x.id,ctx:'Hemograma',big:'Leucócitos '+fmt(le)+'/mm³ · Neutrófilos '+p+'%',ask:'Pela contagem absoluta, o paciente tem:',opts:['Neutropenia grave','Neutropenia moderada','Neutropenia leve','Neutrófilos normais'],ans:k,exp:'CAN = '+fmt(le)+' × '+p+'% = <b>'+fmt(c)+'/mm³</b>. Grave < 500 · moderada 500 a 1.000 · leve 1.000 a 1.500.'}},
+ lra(x){const faixas=[[1.0,1.3],[1.6,1.9],[2.1,2.8],[3.2,4.4]];let k,b,a,r;do{k=RI(0,3);b=+Rn(0.5,1.2).toFixed(1);a=+(b*Rn(...faixas[k])).toFixed(1);r=a/b}while((k===0&&a-b>=0.3)||[1.5,2,3].some(t=>Math.abs(r-t)<0.06)||(k===0&&r>=1.5)||(k===1&&(r<1.5||r>=2))||(k===2&&(r<2||r>=3))||(k===3&&r<3));
+  return {id:x.id,ctx:'Internado · creatinina basal '+fmt(b,1)+' mg/dL',big:'Creatinina hoje '+fmt(a,1)+' mg/dL',ask:'Pelo KDIGO (em 5 dias):',opts:['Sem lesão renal aguda','LRA estágio 1 (1,5 a 1,9×)','LRA estágio 2 (2,0 a 2,9×)','LRA estágio 3 (≥ 3×)'],ans:k,exp:fmt(a,1)+' ÷ '+fmt(b,1)+' = <b>'+fmt(r,1)+'× o basal</b>. LRA começa em 1,5× o basal; o valor de referência (0,7 a 1,3) não decide.'}},
+ fried(x){const ct=RI(190,300),hdl=RI(32,68),alto=Math.random()<0.3,tg=alto?RI(410,720):RI(80,380),ldl=Math.round(ct-hdl-tg/5);const no='Não calcular: TG ≥ 400 (pedir LDL direto)';
+  let o=alto?[no,(ct-hdl-Math.round(tg/5))+' mg/dL',(ct-hdl)+' mg/dL',(ct-Math.round(tg/5))+' mg/dL']:[ldl+' mg/dL',(ldl+Math.round(tg/5))+' mg/dL',(ct-Math.round(tg/5))+' mg/dL',no];o=[...new Set(o)];o=mix(o);
+  return {id:x.id,ctx:'Perfil lipídico',big:'CT '+ct+' · HDL '+hdl+' · TG '+tg,ask:'Qual o LDL por Friedewald?',opts:o,ans:o.indexOf(alto?no:ldl+' mg/dL'),exp:alto?'TG '+tg+' ≥ 400: <b>Friedewald inválido</b>. Peça LDL direto, ou use não-HDL ('+(ct-hdl)+') ou ApoB.':'LDL = '+ct+' − '+hdl+' − '+tg+' ÷ 5 = <b>'+ldl+' mg/dL</b>.'}},
+ meta(x){const R=[['baixo','< 115 mg/dL'],['moderado','< 100 mg/dL'],['alto','< 70 mg/dL'],['muito alto','< 55 mg/dL'],['extremo','< 40 mg/dL']];const k=RI(0,4),outros=mix(R.filter((_,j)=>j!==k)).slice(0,3),o=[R[k],...outros].sort((p,q)=>R.indexOf(p)-R.indexOf(q));
+  return {id:x.id,ctx:'Dislipidemia',big:'Risco '+R[k][0],ask:'Qual a meta de LDL-c?',opts:o.map(z=>z[1]),ans:o.indexOf(R[k]),exp:'Metas: baixo < 115 · moderado < 100 · alto < 70 · muito alto < 55 · extremo < 40.'}},
+ bili(x){let k,bt,bd,p;do{k=RI(0,2);bt=+Rn(2.5,12).toFixed(1);p=[Rn(5,17),Rn(25,45),Rn(56,85)][k];bd=+(bt*p/100).toFixed(1);p=bd/bt*100}while(Math.abs(p-20)<3||Math.abs(p-50)<3||(k===0&&p>=20)||(k===1&&(p<20||p>50))||(k===2&&p<=50));
+  return {id:x.id,ctx:'Paciente ictérico',big:'BT '+fmt(bt,1)+' · BD '+fmt(bd,1)+' mg/dL',ask:'Qual fração predomina?',opts:['Indireta > 80%: pré-hepática ou conjugação','Mista: nenhuma predomina','Direta > 50%: colestática'],ans:k,exp:'Direta = '+fmt(bd,1)+' de '+fmt(bt,1)+' = <b>'+fmt(p)+'%</b> (indireta '+fmt(100-p)+'%). Indireta > 80%: hemólise ou Gilbert. Direta > 50%: colestase.'}},
+ rr(x){let k,f,R,alt,fa;do{k=RI(0,2);f=Rn(1.3,4);R=[Rn(0.4,1.7),Rn(2.4,4.5),Rn(6,15)][k];alt=Math.round(40*R*f);fa=Math.round(120*f);R=(alt/40)/(fa/120)}while(Math.abs(R-2)<0.2||Math.abs(R-5)<0.25||(k===0&&R>2)||(k===1&&(R<2||R>5))||(k===2&&R<5));
+  return {id:x.id,ctx:'LSN: ALT 40 · FA 120 U/L',big:'ALT '+alt+' · FA '+fa+' U/L',ask:'Pelo R-ratio, o padrão é:',opts:['Colestático (R ≤ 2)','Misto (R entre 2 e 5)','Hepatocelular (R ≥ 5)'],ans:k,exp:'R = ('+alt+' ÷ 40) ÷ ('+fa+' ÷ 120) = <b>'+fmt(R,1)+'</b>.'}},
+ hbv(x){const P=[['−','−','−','Suscetível (vacinar)','Nunca teve contato nem vacina.'],['−','−','+','Imunidade vacinal','Só anti-HBs: a vacina não gera anti-HBc.'],['−','+','+','Infecção passada resolvida','Teve contato (anti-HBc), curou e ficou imune (anti-HBs).'],['+','+','−','Infecção atual (aguda ou crônica)','HBsAg positivo = vírus circulando; IgM do anti-HBc separa aguda de crônica.']];const p=pick(P);
+  return {id:x.id,ctx:'Sorologia de hepatite B',big:'HBsAg '+p[0]+' · anti-HBc '+p[1]+' · anti-HBs '+p[2],ask:'Interpretação:',opts:P.map(z=>z[3]),ans:P.indexOf(p),exp:'<b>'+p[3]+'.</b> '+p[4]}},
+ dengue(x){const d=RI(1,10);return {id:x.id,ctx:'Suspeita de dengue',big:d+'º dia de sintomas',ask:'Qual exame pedir?',opts:['NS1 (antígeno)','IgM (sorologia)'],ans:d<=5?0:1,exp:'NS1 até o 5º dia; IgM a partir do 6º. <b>'+d+'º dia → '+(d<=5?'NS1':'IgM')+'</b>.'}},
+ vdrl(x){const t0=pick([16,32,64,128]),dr=RI(0,4),t1=Math.max(1,t0/2**dr);return {id:x.id,ctx:'Sífilis tratada · controle',big:'VDRL 1:'+t0+' → 1:'+t1,ask:'A resposta ao tratamento foi:',opts:['Adequada (caiu ≥ 2 títulos)','Ainda inadequada (caiu < 2 títulos)'],ans:dr>=2?0:1,exp:'Caiu <b>'+dr+' título'+(dr===1?'':'s')+'</b> (cada título = uma diluição pela metade). Tratamento eficaz: queda de 2 ou mais. O FTA-ABS fica reagente.'}}
+};
+function gerar(x){
+ const qs=x.q?(Array.isArray(x.q)?x.q:[x.q]):[],k=[];if(x.g)k.push('g','g');qs.forEach(q=>k.push(q));if(x.c)k.push('c','c');
+ const e=pick(k);
+ if(e==='c')return C[x.c](x);
+ if(e==='g'){const g=x.g,i=RI(0,g.fx.length-1),v=valor(g,g.fx[i]);return {id:x.id,ctx:g.ctx||'',big:(g.l||x.k)+' '+fmt(v,g.dec)+(g.u[0]==='/'?'':' ')+g.u,ask:'Como você classifica?',opts:g.fx.map(f=>f[2]),ans:i,exp:'<b>'+esc(x.k)+':</b> '+esc(x.v)}}
+ return qMulti(x,e);
+}
+const SETS=[['tudo','Tudo'],['nova','🎯 Matéria nova'],['passada','🧪 Matéria passada']];
+const MODES=[['arcade','⏱️ Contra o relógio · 60 s, 3 vidas'],['treino','🧘 Treino · sem relógio, com explicação']];
+let G=null,T=null,ult=[];
+function pool(){let p=V.filter(x=>x.g||x.q||x.c);if(G.ids)return p.filter(x=>G.ids.includes(x.id));if(G.set==='nova')p=p.filter(x=>x.n);else if(G.set==='passada')p=p.filter(x=>!x.n);return p}
+function inicia(ids){
+ clearInterval(T);T=null;
+ G={set:st.rlSet,mode:ids?'treino':st.rlMode,ids:ids||null,score:0,streak:0,lives:3,n:0,ok:0,miss:[],t0:Date.now(),dur:60000,cur:null,last:null,over:false,rec:false};
+ ult=[];proxima();if(G.mode==='arcade')T=setInterval(tick,100);
+}
+function proxima(){
+ const p=pool();let c=p.filter(x=>!ult.includes(x.id));if(!c.length)c=p;
+ const x=pick(c);ult.push(x.id);if(ult.length>Math.min(6,p.length-1))ult.shift();
+ G.cur=gerar(x);G.last=null;desenha();
+}
+function mult(){return Math.min(4,1+Math.floor(G.streak/3))}
+function responde(i){
+ if(!G||G.over||G.last||!G.cur||i<0||i>=G.cur.opts.length)return;
+ const ok=i===G.cur.ans;G.n++;
+ if(ok){G.ok++;G.streak++;G.score+=10*mult()}
+ else{G.streak=0;if(G.mode==='arcade')G.lives--;G.miss.push({q:G.cur,i});st.box[G.cur.id]=1;keep()}
+ G.last={i,ok};desenha();
+ if(G.mode==='arcade'){const n=G.n;setTimeout(()=>{if(!G||G.over||G.n!==n)return;if(G.lives<=0)fim();else proxima()},ok?650:1900)}
+}
+function tick(){
+ if(!document.getElementById('rl')||!G){clearInterval(T);T=null;if(G&&G.mode==='arcade')G=null;return}
+ const left=Math.max(0,G.dur-(Date.now()-G.t0)),bar=document.getElementById('rl-bar'),tx=document.getElementById('rl-tx');
+ if(bar){bar.style.width=(left/G.dur*100)+'%';bar.parentElement.classList.toggle('low',left<10000)}if(tx)tx.textContent=Math.ceil(left/1000)+' s';
+ if(left<=0)fim();
+}
+function fim(){
+ if(!G||G.over)return;clearInterval(T);T=null;G.over=true;
+ const k=G.ids?'':G.set;
+ if(G.mode==='arcade'&&k){const b=st.best[k]||0;if(G.score>b){st.best[k]=G.score;G.rec=b>0;keep();if(G.rec&&typeof celebrate==='function')celebrate('Novo recorde: '+G.score+' pontos','Plantão relâmpago · '+SETS.find(s=>s[0]===k)[1])}}
+ desenha();
+}
+function inicioH(){
+ const best=st.best[st.rlSet]||0,err=V.filter(x=>st.box[x.id]===1).length;
+ return '<div class="rl-start"><div class="rl-card"><div class="rl-head"><span>Laboratório de plantão</span><span>Recorde: '+best+'</span></div>'+
+ '<p class="rl-big">O laudo chega. Você tem segundos.</p><ul class="rl-rules"><li>Aparece um valor de laudo: diga se está normal, alto ou baixo, ou responda o número certo.</li><li>3 acertos seguidos dobram os pontos (até 4×).</li><li>Cada erro mostra a referência e vai para "🔁 rever" na página de valores.</li><li>No PC: teclas 1 a 6 respondem; Enter passa no treino.</li></ul>'+
+ '<h3>Que matéria?</h3><div class="vd-ctl">'+SETS.map(([k,t])=>'<button type="button" class="vd-chip'+(st.rlSet===k?' on':'')+'" data-rl-set="'+k+'" aria-pressed="'+(st.rlSet===k)+'">'+t+'</button>').join('')+'</div>'+
+ '<h3>Como?</h3><div class="vd-ctl">'+MODES.map(([k,t])=>'<button type="button" class="vd-chip'+(st.rlMode===k?' on':'')+'" data-rl-mode="'+k+'" aria-pressed="'+(st.rlMode===k)+'">'+t+'</button>').join('')+'</div>'+
+ '<div class="rl-row"><button type="button" class="rl-go" data-rl-go>⚡ Começar o plantão</button>'+(err?'<button type="button" class="rl-sec" data-rl-erros>🔁 Treinar os '+err+' que errei</button>':'')+link('sinais','📖 Ver os valores')+'</div></div></div>';
+}
+function jogoH(){
+ const q=G.cur,a=G.last,arc=G.mode==='arcade',left=Math.max(0,G.dur-(Date.now()-G.t0));
+ return '<div class="rl-hud"><span>Pontos <b>'+G.score+'</b>'+(G.streak>=3?' · 🔥 '+mult()+'×':'')+'</span>'+(arc?'<span aria-label="'+G.lives+' vidas">'+'❤️'.repeat(G.lives)+'🤍'.repeat(3-G.lives)+'</span><span id="rl-tx">'+Math.ceil(left/1000)+' s</span>':'<span>✅ '+G.ok+' de '+G.n+'</span><button type="button" class="rl-sec" data-rl-fim>Encerrar</button>')+'</div>'+
+ (arc?'<div class="rl-time'+(left<10000?' low':'')+'"><i id="rl-bar" style="width:'+(left/G.dur*100)+'%"></i></div>':'')+
+ '<div class="rl-card'+(a?(a.ok?' is-ok':' is-no'):'')+'"><div class="rl-head"><span>Laudo nº '+(G.n+(a?0:1))+'</span><span>'+esc(aulaN(byId[q.id].a))+(byId[q.id].n?' · 🎯 matéria nova':'')+'</span></div>'+
+ (q.ctx?'<p class="rl-ctx">'+esc(q.ctx)+'</p>':'')+(q.big?'<p class="rl-big">'+esc(q.big)+'</p>':'')+'<p class="rl-ask">'+esc(q.ask)+'</p>'+
+ '<div class="rl-opts">'+q.opts.map((o,j)=>'<button type="button" class="rl-opt'+(a?(j===q.ans?' right':j===a.i?' wrong':''):'')+'" data-rl-ans="'+j+'"'+(a?' disabled':'')+'><kbd>'+(j+1)+'</kbd><span>'+esc(o)+'</span></button>').join('')+'</div>'+
+ (a?'<p class="rl-exp" role="status">'+(a.ok?'✅ Isso. ':'❌ Era: <b>'+esc(q.opts[q.ans])+'</b>. ')+q.exp+'</p>'+(arc?'':'<div class="rl-row"><button type="button" class="rl-go" data-rl-next>Próximo laudo →</button></div>'):'')+'</div>';
+}
+function fimH(){
+ const arc=G.mode==='arcade',pc=G.n?Math.round(G.ok/G.n*100):0,best=st.best[G.set]||0,ids=[...new Set(G.miss.map(m=>m.q.id))];
+ return '<div class="rl-end rl-card"><div class="eyebrow">'+(arc?(G.lives<=0?'Acabaram as vidas':'Fim do plantão'):'Treino encerrado')+'</div><p class="rl-big">'+G.score+' pontos</p>'+
+ '<p>'+G.ok+' de '+G.n+' certos ('+pc+'%)'+(arc&&!G.ids?' · recorde '+best+(G.rec?' · 🏆 novo recorde!':''):'')+'</p>'+
+ (G.miss.length?'<h3>Revise estes</h3><div class="rl-miss">'+G.miss.slice(-12).map(m=>'<div><b>'+esc(m.q.big||m.q.ask)+'</b> → '+esc(m.q.opts[m.q.ans])+'<br><small>'+esc(byId[m.q.id].k+': '+byId[m.q.id].v)+'</small></div>').join('')+'</div>':'<p>Nenhum erro. 🧠</p>')+
+ '<div class="rl-row"><button type="button" class="rl-go" data-rl-go>⚡ Jogar de novo</button>'+(ids.length?'<button type="button" class="rl-sec" data-rl-erros="'+ids.join(',')+'">🔁 Treinar só estes erros</button>':'')+'<button type="button" class="rl-sec" data-rl-menu>Mudar matéria ou modo</button>'+link('sinais','📖 Ver os valores')+'</div></div>';
+}
+function desenha(){const el=document.getElementById('rl');if(!el)return;el.innerHTML=!G?inicioH():G.over?fimH():jogoH()}
+function relampago(){
+ return hero('Arena · jogo de valores','Plantão relâmpago','O laudo chega e o relógio corre: diga na hora se o valor está normal, alto ou baixo, ou qual é o número certo. Feito para decorar os valores de cada aula jogando.')+
+ '<section class="section"><div class="rl" id="rl">'+(!G?inicioH():G.over?fimH():jogoH())+'</div></section>';
+}
+
+/* ---------- registro ---------- */
+pages.sinais='Valores para decorar';pages.relampago='Plantão relâmpago (jogo)';PEM.sinais='📖';PEM.relampago='⚡';
+{const o=['home','sinais','relampago'],p={};o.forEach(k=>p[k]=pages[k]);Object.keys(pages).forEach(k=>{if(!p[k])p[k]=pages[k]});Object.keys(pages).forEach(k=>delete pages[k]);Object.assign(pages,p)}
+XPAGES.sinais=decorar;XPAGES.relampago=relampago;
+{const ar=window.arenaPage;if(ar)window.arenaPage=function(){return ar().replace('<div class="seg-games">','<div class="seg-games"><a class="seg-card" href="'+route('relampago')+'"><span class="n">⚡</span><span><b>Plantão relâmpago</b><small>Valores de referência contra o relógio</small></span></a><a class="seg-card" href="'+route('sinais')+'"><span class="n">📖</span><span><b>Valores para decorar</b><small>Esconder, lembrar e marcar o que sabe</small></span></a>')}}
+
+document.addEventListener('click',e=>{
+ const t=e.target.closest('[data-vd-fil],[data-vd-hide],[data-vd-show],[data-vd-mark],[data-rl-set],[data-rl-mode],[data-rl-go],[data-rl-erros],[data-rl-ans],[data-rl-next],[data-rl-fim],[data-rl-menu]');if(!t)return;
+ const d=t.dataset;
+ if(d.vdFil){st.fil=d.vdFil;keep();const y=scrollY;render({scroll:false});scrollTo(0,y);return}
+ if(d.vdHide!==undefined){st.hide=!st.hide;shown.clear();keep();const y=scrollY;render({scroll:false});scrollTo(0,y);return}
+ if(d.vdShow){shown.add(d.vdShow);trocaLinha(d.vdShow);return}
+ if(d.vdMark){const b=st.box[d.id]||0;st.box[d.id]=d.vdMark==='no'?1:(b>=2?3:2);keep();trocaLinha(d.id);return}
+ if(d.rlSet){st.rlSet=d.rlSet;keep();desenha();return}
+ if(d.rlMode){st.rlMode=d.rlMode;keep();desenha();return}
+ if(d.rlGo!==undefined){inicia(G&&G.ids?G.ids:null);return}
+ if(d.rlErros!==undefined){const ids=d.rlErros?d.rlErros.split(','):V.filter(x=>st.box[x.id]===1).map(x=>x.id);if(ids.length)inicia(ids);return}
+ if(d.rlAns!==undefined){responde(+d.rlAns);return}
+ if(d.rlNext!==undefined){proxima();return}
+ if(d.rlFim!==undefined){fim();return}
+ if(d.rlMenu!==undefined){clearInterval(T);T=null;G=null;desenha();return}
+});
+document.addEventListener('input',e=>{
+ if(e.target.id!=='vd-q')return;busca=e.target.value;const q=nz(busca.trim());
+ document.querySelectorAll('.vd-row').forEach(r=>r.hidden=!!q&&!r.dataset.txt.includes(q));
+ document.querySelectorAll('.vd-sec').forEach(s=>s.hidden=![...s.querySelectorAll('.vd-row')].some(r=>!r.hidden));
+});
+document.addEventListener('keydown',e=>{
+ if(!G||G.over||!document.getElementById('rl'))return;
+ if(/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||'')||e.metaKey||e.ctrlKey||e.altKey)return;
+ if(/^[1-6]$/.test(e.key)&&!G.last){e.preventDefault();responde(+e.key-1)}
+ else if(e.key==='Enter'&&G.last&&G.mode==='treino'){e.preventDefault();proxima()}
+});
+window.addEventListener('hashchange',()=>{if(G&&G.mode==='arcade'&&!G.over&&location.hash.slice(1).split('/')[0]!=='relampago'){clearInterval(T);T=null;G=null}});
 render({scroll:false});
 })();
 </script>
