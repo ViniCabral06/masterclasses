@@ -213,7 +213,7 @@ details.rx-aula[open]>summary.rx-hd::after{transform:rotate(90deg)}
 details.rx-q{margin-top:10px;border-top:1px solid var(--border);padding-top:8px}
 details.rx-q>summary{cursor:pointer;font:600 14px var(--sans);color:var(--ink)}
 .rx-acts{display:flex;flex-wrap:wrap;gap:8px 16px;margin:12px 0 0}
-.rx-grave{border-left:4px solid var(--accent);background:var(--surface);border-radius:14px;padding:12px 16px;margin:14px 0}
+.rx-grave{border:1px solid var(--accent);background:var(--accent-soft);border-radius:14px;padding:12px 16px;margin:14px 0}
 .rx-grave>b{font:700 12px var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .rx-grave h4{font:600 16px var(--sans);margin:12px 0 4px}
 .rx-rep{margin:18px 0 6px;font:500 13.5px/1.6 var(--sans)}.rx-rep a.jump{margin-right:6px}
