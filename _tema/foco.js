@@ -35,7 +35,11 @@
       dados: () => { const st = LS('mc-micro-v1') || {}, dn = st.done || {}; return DATA.modules.map(m => {
         const segs = {};
         m.segs.forEach(s => { const r = refsDe(s.html); const P = uniq(r.filter(x => /^P/i.test(x))).length; segs[m.id + '/' + s.id] = { p: P, s: uniq(r).length - P }; });
-        return { key: m.id, nome: 'Aula ' + m.num, done: m.segs.every(s => dn[m.id + '/' + s.id]), segs };
+        // a Parcial 81 fica em DATA.prova.p81 (tema = aula), sem marcação por segmento: entra no total da aula
+        const pr = (DATA.prova || {}), P81 = [...(pr.p81 || []), ...(pr.p81disc || [])].filter(q => q.tema === m.id).length;
+        const o = { key: m.id, nome: 'Aula ' + m.num, done: m.segs.every(s => dn[m.id + '/' + s.id]), segs };
+        if (P81) { o.pAula = P81 + Object.values(segs).reduce((u, s) => u + s.p, 0); o.sAula = Object.values(segs).reduce((u, s) => u + s.s, 0); }
+        return o;
       }); },
     },
     semio: { // mesmo molde da Microbiologia; parcial = P80–P82 e Estudo dirigido (ED)
@@ -193,6 +197,59 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
   const tiraG = el => { if (el) el.classList.remove('vgf-g1', 'vgf-g2', 'vgf-g3', 'vgf-g4', 'vgf-g5'); };
   const poeG = (el, n, txt) => { if (!el) return; tiraG(el); if (n) { el.classList.add('vgf-g' + n); el.dataset.vgfTip = txt; } else delete el.dataset.vgfTip; };
 
+  /* ---------- grifos no texto (mark[data-refs] do próprio master) ----------
+     Cada master pinta os grifos do texto com o nível pela quantidade de provas (exam1–5, f1–5, fq1–5).
+     Aqui o grifo segue o filtro: só as refs das parciais, só as das somativas, todas, ou nenhum. */
+  const cad = r => { const x = typeof examById !== 'undefined' && examById[r]; return x ? (x.group === 'parciais' ? 'p' : 's') : (/^p/i.test(r) ? 'p' : 's'); };
+  const TIPO = { huma: cad, prev: cad, img: cad, lab: cad, micro: r => /^P/i.test(r) ? 'p' : 's', semio: r => /^(P|ED)/i.test(r) ? 'p' : 's', farmaco: () => 's', pato: () => 'p' }; // Patologia: os grifos das aulas são das parciais (rótulo "Parcial N — Questão X")
+  const PROVA = r => { const x = typeof examById !== 'undefined' && examById[r]; return x && x.exam ? x.exam : String(r).split(/[-.:]/)[0]; };
+  const NIV = /^(exam|fq|f)([1-5])$/;
+  const CSS_SM = 'mark.vgf-sm{background:none!important;color:inherit!important;box-shadow:none!important;border:0!important;padding:0!important;text-decoration:none!important}mark.vgf-sm::before,mark.vgf-sm::after{display:none!important}';
+  const docsVistos = new WeakSet();
+  function docsTexto() {
+    const out = [D];
+    D.querySelectorAll('iframe').forEach(f => { try { const d = f.contentDocument; if (d && d.body) out.push(d); } catch (e) {} });
+    return out;
+  }
+  function textos() {
+    const tipo = TIPO[K]; if (!tipo) return;
+    docsTexto().forEach(d => {
+      if (!docsVistos.has(d)) {
+        docsVistos.add(d);
+        const s = d.createElement('style'); s.textContent = CSS_SM; (d.head || d.body).appendChild(s);
+        if (d !== D) new MutationObserver(() => { if (!d.__vgfT) d.__vgfT = setTimeout(() => { d.__vgfT = 0; textos(); }, 60); }).observe(d.body, { childList: true, subtree: true });
+      }
+      d.querySelectorAll('mark[data-refs]').forEach(m => {
+        if (m.closest('.vgf-panel')) return;
+        if (m.dataset.vgfOrig == null) m.dataset.vgfOrig = m.className;
+        const orig = m.dataset.vgfOrig, toks = orig.split(/\s+/).filter(Boolean), nt = toks.find(t => NIV.test(t));
+        if (!nt) return; // grifo sem nível (não é de frequência)
+        const [, pre, lv] = nt.match(NIV), refs = m.dataset.refs.split(',').map(x => x.trim()).filter(Boolean);
+        let cls;
+        if (cfg.modo === 'todos') cls = orig;
+        else {
+          const kept = cfg.modo === 'off' ? [] : refs.filter(r => tipo(r) === (cfg.modo === 'parciais' ? 'p' : 's'));
+          const base = toks.filter(t => t !== nt);
+          if (!kept.length) cls = base.concat('vgf-sm').join(' ');
+          else if (kept.length === refs.length) cls = orig;
+          else { // o nível conta provas distintas (até 5) quando o master segue essa regra; senão, proporcional ao original
+            const nk = uniq(kept.map(PROVA)).length, na = uniq(refs.map(PROVA)).length;
+            const n = +lv === Math.min(5, na) ? Math.min(5, nk) : Math.max(1, Math.min(5, Math.round(+lv * nk / Math.max(1, na))));
+            cls = base.concat(pre + n).join(' '); }
+        }
+        if (m.className !== cls) m.className = cls;
+      });
+    });
+  }
+  let obsT = null;
+  function observaTexto() {
+    if (obsT || !D.body) return;
+    let t = 0;
+    obsT = new MutationObserver(() => { if (!t) t = setTimeout(() => { t = 0; textos(); }, 60); });
+    obsT.observe(D.body, { childList: true, subtree: true });
+    D.addEventListener('load', e => { if (e.target && e.target.tagName === 'IFRAME') setTimeout(textos, 50); }, true);
+  }
+
   /* ---------- aplicar ---------- */
   let obs = null, raf = 0, ocupado = false;
   function aplica() {
@@ -280,6 +337,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       depois.forEach(c => { c.style.order = ++o; });
     } finally {
       if (scrollAntes !== null) nav.scrollTop = scrollAntes;
+      try { textos(); observaTexto(); } catch (e) {}
       ocupado = false;
       observa(nav);
     }
