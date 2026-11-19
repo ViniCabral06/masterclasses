@@ -46,6 +46,23 @@ HUB_FAIXA = """
     <h3>Quer ajudar a turma?</h3>
     <p>Se você tem anotações de aula ou provas antigas, fale com o Matheus ou com o Vinícius e negocie seu acesso grátis. As aulas do 5º período (Patologia II, Técnicas Operatórias e mais) já estão quase todas prontas.</p>
     <div class="t83-r" id="t83-r"></div></div>`);
+  /* 5º período: cartão clicável com 6 aulas; o clique avisa que não está no teste grátis */
+  const p5 = document.querySelector('.period[data-p="5"]');
+  if (p5) {
+    p5.classList.remove('soon'); p5.classList.add('t83-p5'); p5.removeAttribute('aria-disabled');
+    p5.setAttribute('aria-label', '5º período, 6 aulas. Indisponível no teste grátis');
+    p5.querySelector('.st').innerHTML = '<i class="t83-lock" aria-hidden="true">🔒</i>6 aulas';
+    let tm;
+    p5.addEventListener('click', e => {
+      e.stopPropagation();
+      let t = document.getElementById('t83-toast');
+      if (!t) { t = document.createElement('div'); t.id = 't83-toast'; t.className = 'glass'; t.setAttribute('role', 'status'); t.setAttribute('data-liquido', ''); document.body.appendChild(t); }
+      t.innerHTML = '<b>🔒 Indisponível no teste grátis</b><span>As 6 aulas do 5º período abrem no semestre que vem.</span>';
+      t.classList.remove('on'); void t.offsetWidth; t.classList.add('on');
+      p5.classList.remove('shake'); void p5.offsetWidth; p5.classList.add('shake');
+      clearTimeout(tm); tm = setTimeout(() => t.classList.remove('on'), 3600);
+    });
+  }
   addEventListener('load', ()=>{ const r=document.getElementById('t83-r'); if(r&&window.VGP) r.innerHTML=window.VGP.botoes('ajuda'); });
 }
 """
@@ -59,6 +76,15 @@ HUB_CSS = """
 .t83-r{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .t83-r .vgp-b{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:99px;background:var(--hub,#d8ff3d);color:var(--on-hub,#111);font-weight:700;text-decoration:none;font-size:14px}
 .t83-r .vgp-b[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.period.t83-p5{cursor:pointer;--tint:var(--hub,#d8ff3d)}
+.period.t83-p5 .num{color:var(--ink,#eef4f6)}
+.period.t83-p5 .st{color:var(--ink,#eef4f6);display:flex;align-items:center;gap:6px}
+.period.t83-p5 .t83-lock{font-style:normal;font-size:13px}
+.period.t83-p5:hover{transform:translateY(-6px) scale(1.02)}
+#t83-toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:9999;transform:translate(-50%,20px);opacity:0;pointer-events:none;display:flex;flex-direction:column;gap:2px;padding:14px 22px;border-radius:22px;text-align:center;font-size:14px;max-width:min(92vw,420px);transition:opacity .25s,transform .25s}
+#t83-toast.on{opacity:1;transform:translate(-50%,0)}
+#t83-toast b{font-size:15px}
+#t83-toast span{opacity:.8}
 @media(max-width:560px){.t83-faixa{border-radius:22px}}
 """
 

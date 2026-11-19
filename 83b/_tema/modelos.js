@@ -1628,6 +1628,95 @@ function makeTubo(o = {}) {
   return g;
 }
 
-return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeMicroscope, makeVaccine, makeHandshake, makeDialogo, makeBook, makeRaiox, makeTubo, makeFrog, makeHeart, makeLamp };
+/* ======================= leito da enfermaria (DIC IV) =======================
+   Cama hospitalar de vidro com soro e monitor; os 10 leitos (números) orbitam.
+   Ponteiro empurra os números e inclina a cama; clique levanta/abaixa a cabeceira, acelera o ECG e espalha os números. */
+function makeLeito(o = {}) {
+  const cheap = !!o.cheap, g = new THREE.Group(), items = [];
+  const AC = COL.dic || 0xb8f35a;
+  const glass = glassMat(0xffffff, cheap, { thickness: .5 });
+  const metal = new THREE.MeshStandardMaterial({ color: 0xc9d2da, metalness: .85, roughness: .28 });
+  const lenc = new THREE.MeshPhysicalMaterial({ color: 0xf4f7fa, roughness: .6, clearcoat: .2 });
+  const verde = new THREE.MeshStandardMaterial({ color: AC, emissive: AC, emissiveIntensity: .45, roughness: .4 });
+  const tela = new THREE.MeshStandardMaterial({ color: 0x0b1410, emissive: 0x06120a, roughness: .3 });
+  const box = (w, h, d, m) => new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m);
+
+  const hero = new THREE.Group();
+  const L = 2.6, W = 1.2;
+  const base = box(L, .08, W, metal); base.position.y = -.35; hero.add(base);
+  const rodaGeo = new THREE.TorusGeometry(.07, .03, 8, 16);
+  [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([a, b]) => {
+    const pe = new THREE.Mesh(new THREE.CylinderGeometry(.035, .035, .45, 10), metal); pe.position.set(a * (L / 2 - .1), -.6, b * (W / 2 - .1)); hero.add(pe);
+    const r = new THREE.Mesh(rodaGeo, metal); r.position.set(a * (L / 2 - .1), -.86, b * (W / 2 - .1)); hero.add(r);
+  });
+  // colchão (pé) + cabeceira articulada com travesseiro
+  const colchao = box(L * .62, .22, W * .92, lenc); colchao.position.set(L * .19, -.2, 0); hero.add(colchao);
+  const dobra = new THREE.Group(); dobra.position.set(-L * .12, -.2, 0); hero.add(dobra);
+  const enc = box(L * .38, .22, W * .92, lenc); enc.position.x = -L * .19; dobra.add(enc);
+  const trav = new THREE.Mesh(new THREE.CapsuleGeometry(.14, W * .5, 6, 14), lenc); trav.rotation.x = Math.PI / 2; trav.position.set(-L * .3, .2, 0); dobra.add(trav);
+  // cobertor na cor da matéria
+  const cob = box(L * .5, .05, W * .96, new THREE.MeshPhysicalMaterial({ color: AC, roughness: .55, clearcoat: .3, emissive: AC, emissiveIntensity: .12 })); cob.position.set(L * .22, -.06, 0); hero.add(cob);
+  // cabeceira e peseira de vidro, grades laterais
+  const cab = box(.08, .9, W, glass); cab.position.set(-L / 2, .05, 0); hero.add(cab);
+  const pes = box(.08, .6, W, glass); pes.position.set(L / 2, -.08, 0); hero.add(pes);
+  const grade = box(L * .45, .05, .04, metal); grade.position.set(.1, .12, W / 2 + .02); hero.add(grade);
+  const grade2 = grade.clone(); grade2.position.z = -W / 2 - .02; hero.add(grade2);
+  // suporte de soro + bolsa
+  const haste = new THREE.Mesh(new THREE.CylinderGeometry(.025, .025, 2.1, 10), metal); haste.position.set(-L / 2 - .25, .5, -W / 2); hero.add(haste);
+  const bolsa = new THREE.Mesh(new THREE.CapsuleGeometry(.14, .3, 6, 14), glassMat(0xd8f7c0, cheap, { thickness: .3 })); bolsa.position.set(-L / 2 - .25, 1.25, -W / 2 + .12); hero.add(bolsa);
+  // monitor com traçado de ECG
+  const mon = new THREE.Group(); mon.position.set(-L / 2 - .25, 1.1, W / 2 - .1); hero.add(mon);
+  mon.add(box(.62, .44, .08, glass));
+  const scr = box(.54, .36, .02, tela); scr.position.z = .045; mon.add(scr);
+  const NP = 48, ecgPos = new Float32Array(NP * 3);
+  const ecgGeo = new THREE.BufferGeometry(); ecgGeo.setAttribute('position', new THREE.BufferAttribute(ecgPos, 3));
+  const ecg = new THREE.Line(ecgGeo, new THREE.LineBasicMaterial({ color: AC })); ecg.position.z = .06; mon.add(ecg);
+  const bip = new THREE.Mesh(new THREE.SphereGeometry(.025, 10, 8), verde); mon.add(bip);
+  const pulso = x => { const f = ((x % 1) + 1) % 1; return f > .42 && f < .46 ? (f - .42) * 30 : f > .46 && f < .5 ? (.5 - f) * 30 - .08 : Math.exp(-((f - .7) ** 2) * 400) * .25; };
+  hero.scale.setScalar(.82); hero.rotation.set(.32, -.55, 0); g.add(hero);
+
+  // números dos 10 leitos em plaquinhas de vidro
+  const plaqGeo = new THREE.BoxGeometry(.5, .5, .08), numGeo = new THREE.PlaneGeometry(.42, .42);
+  for (let i = 1; i <= 10; i++) {
+    const m = new THREE.Group();
+    m.add(new THREE.Mesh(plaqGeo, glassMat(i % 2 ? AC : 0xffffff, true, { opacity: .45 })));
+    const n = new THREE.Mesh(numGeo, new THREE.MeshBasicMaterial({ map: numTex(i), transparent: true, depthWrite: false })); n.position.z = .05; m.add(n);
+    m.userData = { a: (i / 10) * Math.PI * 2, r: 2.3 + (i % 3) * .35, y: (Math.random() - .5) * 2.6, off: V(), vel: V(), spin: 0, ph: Math.random() * 6 };
+    g.add(m); items.push(m);
+  }
+
+  const tY = S(), tX = S(), ang = S(), ck = {}; let ergue = false, beat = 0;
+  g.userData.offset = new THREE.Vector3(.2, .1, 0);
+  g.userData.tick = (t, dt, I) => {
+    const P = localPointer(g, I), burst = clicked(ck, I);
+    if (burst) { ergue = !ergue; beat = 1; }
+    dobra.rotation.z = -spring(ang, ergue ? .75 : 0, 16, 5, dt);
+    hero.rotation.y = -.55 + spring(tY, P ? THREE.MathUtils.clamp(P.x * .15, -.45, .45) : Math.sin(t * .3) * .15, 16, 4, dt);
+    hero.rotation.x = .32 + spring(tX, P ? THREE.MathUtils.clamp(-P.y * .1, -.25, .25) : 0, 16, 4, dt);
+    hero.position.y = Math.sin(t * .9) * .1;
+    beat = Math.max(0, beat - dt * .4);
+    const vel = 1 + beat * 1.5;
+    for (let k = 0; k < NP; k++) { const x = k / (NP - 1); ecgPos[k * 3] = -.25 + x * .5; ecgPos[k * 3 + 1] = pulso(x * 1.6 - t * .9 * vel) * .45 - .03; ecgPos[k * 3 + 2] = 0; }
+    ecgGeo.attributes.position.needsUpdate = true;
+    bip.position.set(.25, ecgPos[(NP - 1) * 3 + 1], .06);
+    items.forEach(m => {
+      const u = m.userData, a = u.a + t * .12;
+      const p = _b.set(Math.cos(a) * u.r, u.y + Math.sin(t * .8 + u.ph) * .15, Math.sin(a) * u.r * .7).add(u.off);
+      if (P) {
+        _c.subVectors(p, P); const d = _c.length();
+        if (d < 1.4) { u.vel.addScaledVector(_c.normalize(), (1 - d / 1.4) * 30 * dt); u.spin += (1 - d / 1.4) * 10 * dt; }
+      }
+      if (burst) { u.vel.addScaledVector(_c.copy(p).normalize(), 3 + Math.random() * 2); u.spin += 8; }
+      if (I && I.sv) u.vel.y += I.sv * dt * 2.5;
+      u.vel.addScaledVector(u.off, -8 * dt); u.vel.multiplyScalar(Math.exp(-2.6 * dt)); u.off.addScaledVector(u.vel, dt);
+      u.spin *= Math.exp(-1.5 * dt);
+      m.position.copy(p);
+      m.rotation.y += u.spin * dt; m.rotation.y *= Math.exp(-.8 * dt); m.rotation.z = Math.sin(t + u.ph) * .12;
+    });
+  };
+  return g;
+}
+
+return { COL, glassMat, makeHelix, makeRing, makePills, makeBugs, makeCells, makeTissue, makeMicroscope, makeVaccine, makeHandshake, makeDialogo, makeBook, makeRaiox, makeTubo, makeLeito, makeFrog, makeHeart, makeLamp };
 };
 })();
