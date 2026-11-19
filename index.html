@@ -271,6 +271,8 @@ main{position:relative;z-index:10;height:100%}
 /* subjects */
 .subjects-layout{display:block}
 .cards{margin-top:clamp(22px,4vh,44px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+/* última linha com só 2 cartões (hoje DIC IV e TH IV): centralizados, sob Propedêutica e Português */
+@media (min-width:1101px){.cards .card:nth-child(4n+1):nth-last-child(2){grid-column:2}}
 .card{--r:24px;display:flex;align-items:flex-end;min-height:clamp(104px,19vh,176px);padding:20px 22px;cursor:pointer;border:0;text-align:left;width:100%;
   transition:transform .6s var(--spring),background .4s}
 .card .ico{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;background:color-mix(in srgb,var(--tint) 22%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tint) 55%,transparent)}
@@ -871,7 +873,7 @@ show(location.hash.slice(1)||'home',false);
   "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
 }}
 </script>
-<script src="_tema/modelos.js?v=408126f0"></script>
+<script src="_tema/modelos.js?v=a24da698"></script>
 <script src="_tema/palco.js?v=713ea5fe"></script>
 <script src="_tema/propaganda.js?v=c17d18be"></script>
 <script src="_tema/liquido.js?v=727b02a3"></script>
@@ -879,14 +881,14 @@ show(location.hash.slice(1)||'home',false);
 // modo leve: sem 3D (o hub continua igual, só sem o fundo animado)
 if (window.LENTO) { document.getElementById('gl').style.display = 'none'; throw new Error('hub em modo leve: 3D desligado'); }
 import * as THREE from 'three';
-const {makeHelix,makeFrog,makeRing,makePills,makeBugs,makeTissue,makeMicroscope,makeVaccine,makeHandshake,makeDialogo,makeBook,makeRaiox,makeTubo,makeHeart,COL} = window.VidroModelos(THREE);
+const {makeHelix,makeFrog,makeRing,makePills,makeBugs,makeTissue,makeMicroscope,makeVaccine,makeHandshake,makeDialogo,makeBook,makeRaiox,makeTubo,makeLeito,makeHeart,COL} = window.VidroModelos(THREE);
 COL.hub = 0xd8ff3d; // a cor da marca (verde marca-texto) no DNA e no anel
 const {createStage} = window.VidroPalco(THREE, COL);
 
 const W = await createStage(document.getElementById('gl'), window.FRACO ? {bloom:false, dust:500, dpr:1, fps:30, start:false} : {dust:1000, dpr:1.5, start:false});
 // se o aparelho sofrer, a primeira coisa a sair é a refração líquida (o efeito mais caro da página)
 W.onDegrade = () => { document.documentElement.classList.remove('refract'); window.Liquido && Liquido.off(); };
-const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeMicroscope(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook(), img:makeRaiox(), lab:makeTubo(), semio:makeHeart({scale:.95}), dic:makeVaccine()};
+const SCENES = {helix:makeFrog(),   /* página inicial: o sapo de jaleco (antes era o DNA) */ ring:makeRing(), farmaco:makePills(), micro:makeBugs(), th4:makeHeart({rings:true, scale:1.05}), pato:makeMicroscope(), prev:makeVaccine(), huma:makeDialogo(), port:makeBook(), img:makeRaiox(), lab:makeTubo(), semio:makeHeart({scale:.95}), dic:makeLeito()};
 /* modo leve automático: mede os quadros com tudo ligado; se não passa de ~30 fps
    (ex.: navegador sem placa de vídeo), desliga o 3D, a refração e o desfoque, e lembra disso */
 setTimeout(function medir(){
