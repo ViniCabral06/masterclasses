@@ -404,6 +404,15 @@ main{position:relative;z-index:10;height:100%}
 #t83-toast.on{opacity:1;transform:translate(-50%,0)}
 #t83-toast b{font-size:15px}
 #t83-toast span{opacity:.8}
+#t83-toast.on{pointer-events:auto}
+.t83-mais{margin-top:8px;align-self:center;min-height:36px;padding:0 18px;border:0;border-radius:99px;background:var(--hub,#d8ff3d);color:var(--on-hub,#111);font-weight:700;font-size:14px;cursor:pointer}
+#t83-modal{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.55)}
+.t83-card{position:relative;max-width:480px;width:100%;max-height:90vh;overflow:auto;padding:26px 22px 22px;border-radius:26px;text-align:left}
+.t83-card h3{font-family:var(--display);font-size:26px;line-height:1.1;margin:4px 0 12px}
+.t83-card p{margin:0 0 12px;font-size:15px;line-height:1.5}
+.t83-k{font-size:12px!important;letter-spacing:.08em;text-transform:uppercase;color:var(--hub,#d8ff3d)}
+.t83-x{position:absolute;top:10px;right:12px;width:34px;height:34px;border:0;border-radius:50%;background:transparent;color:inherit;font-size:22px;cursor:pointer}
+.t83-card .t83-r{justify-content:flex-start}
 @media(max-width:560px){.t83-faixa{border-radius:22px}}
 </style>
 </head>
@@ -688,20 +697,40 @@ document.getElementById('n-aul').textContent = N_AUL;
     <p>Se você tem anotações de aula ou provas antigas, fale com o Matheus ou com o Vinícius e negocie seu acesso grátis. As aulas do 5º período (Patologia II, Técnicas Operatórias e mais) já estão quase todas prontas.</p>
     <div class="t83-r" id="t83-r"></div></div>`);
   /* 5º período: cartão clicável com 6 aulas; o clique avisa que não está no teste grátis */
+  function saibaMais() {
+    let m = document.getElementById('t83-modal');
+    if (m) m.remove();
+    m = document.createElement('div'); m.id = 't83-modal';
+    m.innerHTML = `<div class="t83-card glass" data-liquido role="dialog" aria-modal="true" aria-labelledby="t83-mt">
+      <button type="button" class="t83-x" aria-label="Fechar">×</button>
+      <p class="t83-k">Semestre que vem</p>
+      <h3 id="t83-mt">Masterclasses bem mais baratas, para a nossa sala.</h3>
+      <p>Neste semestre você testa de graça. Quando o próximo começar, a gente passa a <b>vender as masterclasses</b> por um preço <b>bem mais barato</b>, pensado para a turma, e não para cursinho.</p>
+      <p>Vai ter também um <b>programa de indicações</b>: quem chamar colegas para estudar com a gente ganha vantagem no acesso.</p>
+      <p>O 5º período já está quase todo pronto. Quer garantir seu lugar ou entender melhor? Fale com a gente.</p>
+      <div class="t83-r" id="t83-rm"></div></div>`;
+    document.body.appendChild(m);
+    const rm = m.querySelector('#t83-rm'); if (window.VGP) rm.innerHTML = window.VGP.botoes('lista');
+    const fechar = () => m.remove();
+    m.querySelector('.t83-x').onclick = fechar;
+    m.addEventListener('click', e => { if (e.target === m) fechar(); });
+    addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { fechar(); removeEventListener('keydown', esc); } });
+  }
   const p5 = document.querySelector('.period[data-p="5"]');
   if (p5) {
     p5.classList.remove('soon'); p5.classList.add('t83-p5'); p5.removeAttribute('aria-disabled');
-    p5.setAttribute('aria-label', '5º período, 6 aulas. Indisponível no teste grátis');
+    p5.setAttribute('aria-label', '5º período, 6 aulas. Indisponível no teste grátis. Quase pronto');
     p5.querySelector('.st').innerHTML = '<i class="t83-lock" aria-hidden="true">🔒</i>6 aulas';
     let tm;
     p5.addEventListener('click', e => {
       e.stopPropagation();
       let t = document.getElementById('t83-toast');
       if (!t) { t = document.createElement('div'); t.id = 't83-toast'; t.className = 'glass'; t.setAttribute('role', 'status'); t.setAttribute('data-liquido', ''); document.body.appendChild(t); }
-      t.innerHTML = '<b>🔒 Indisponível no teste grátis</b><span>As 6 aulas do 5º período abrem no semestre que vem.</span>';
+      t.innerHTML = '<b>🔒 Indisponível no teste grátis</b><span>As aulas do 5º período estão quase prontas.</span><button type="button" class="t83-mais">Saiba mais</button>';
+      t.querySelector('.t83-mais').onclick = () => { t.classList.remove('on'); saibaMais(); };
       t.classList.remove('on'); void t.offsetWidth; t.classList.add('on');
       p5.classList.remove('shake'); void p5.offsetWidth; p5.classList.add('shake');
-      clearTimeout(tm); tm = setTimeout(() => t.classList.remove('on'), 3600);
+      clearTimeout(tm); tm = setTimeout(() => t.classList.remove('on'), 7000);
     });
   }
   addEventListener('load', ()=>{ const r=document.getElementById('t83-r'); if(r&&window.VGP) r.innerHTML=window.VGP.botoes('ajuda'); });
