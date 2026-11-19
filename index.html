@@ -329,7 +329,8 @@ main{position:relative;z-index:10;height:100%}
 .prop-op .tags{display:flex;flex-wrap:wrap;gap:6px}
 .prop-op .tags span{font-size:12.5px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.07)}
 .prop-op .abrir{margin-top:auto;padding-top:8px;font-weight:600;color:var(--tint)}
-@media (max-width:640px){.prop-ops{grid-template-columns:1fr}.prop-box{padding:22px 18px}}
+@media (min-width:641px){.prop-ops.tres{grid-template-columns:repeat(3,1fr)}.prop-box:has(.tres){width:min(940px,100%)}}
+@media (max-width:640px){.prop-ops,.prop-ops.tres{grid-template-columns:1fr}.prop-box{padding:22px 18px}}
 @media (prefers-reduced-motion:reduce){#prop-dlg,.prop-box,.prop-op{transition:none}}
 .readout b{display:block;font-family:var(--display);font-size:22px;letter-spacing:-.02em}
 .readout small{color:var(--ink-2);font-size:14px}
@@ -384,16 +385,6 @@ main{position:relative;z-index:10;height:100%}
   .stage .in,.home h1 .w>span{transform:none;filter:none}
 }
 
-.t83-faixa{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;margin:0 var(--gutter,16px) 18px;padding:12px 18px;border-radius:99px;text-align:center;font-size:14px}
-.t83-faixa b{color:var(--hub,#d8ff3d);letter-spacing:.08em;text-transform:uppercase;font-size:12px}
-.t83-fim{max-width:640px;margin:26px auto 0;padding:22px 20px;border-radius:26px;text-align:center}
-.t83-fim h3{font-family:var(--display);font-size:26px;margin:0 0 8px}
-.t83-fim p{margin:0 0 14px;font-size:15px;line-height:1.5;opacity:.9}
-.t83-r{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.t83-r .vgp-b{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:99px;background:var(--hub,#d8ff3d);color:var(--on-hub,#111);font-weight:700;text-decoration:none;font-size:14px}
-.t83-r .vgp-b[aria-disabled="true"]{opacity:.45;pointer-events:none}
-.t83-todas{display:inline-block;margin-top:14px;font-size:12.5px;opacity:.65;color:inherit}
-@media(max-width:560px){.t83-faixa{border-radius:22px}}
 </style>
 </head>
 <body data-accent="hub">
@@ -627,18 +618,6 @@ const SUBJECTS = {
 };
 const TICK = ["De aluno pra aluno","A gente também teve essa dúvida","Explicado do jeito que a gente queria ter ouvido em aula","O resumo que a gente queria ter na véspera","Feito por quem tá na mesma caminhada","O caderno que a gente queria ter pegado emprestado","Do jeito que a gente explicaria no intervalo","Sem decoreba: com o porquê de cada coisa","Feito entre uma prova e outra, pra turma toda","Pensado por quem já travou nessa mesma matéria","A matéria do jeito que a gente entendeu de verdade","Estudado em dupla, dividido com todo mundo"];
 
-/* ---- modo "Turma 83B": ligado por /83b/ (flag vg-turma). Sem o flag, nada muda. ---- */
-const T83 = (()=>{ try{ if(new URLSearchParams(location.search).get('turma')==='todas') localStorage.removeItem('vg-turma');
-  const f=JSON.parse(localStorage.getItem('vg-turma')||'null'); return !!(f&&f.t==='83b'&&Date.now()<f.ate); }catch(e){ return false; } })();
-if (T83) {
-  window.VGP_HUB = true;
-  const manter = ['lab','img','pato','dic','semio','prev'];
-  Object.keys(SUBJECTS).forEach(k=>{ if(!manter.includes(k)) delete SUBJECTS[k]; });
-  Object.assign(SUBJECTS.pato, {name:"Patologia · Prática 2", href:"Patologia médica/Patologia_I_Masterclass.html#pratica2",
-    desc:"A prova prática de TGI e fígado, lâmina por lâmina: esôfago, estômago, intestino, fígado e pâncreas, com treino de lâminas e simulados.",
-    tags:["Esôfago","Estômago","Intestino","Fígado","Pâncreas","Treino de lâminas"], readout:["Prática 2","TGI e fígado · lâminas e simulados"]});
-}
-
 document.getElementById('tick').innerHTML = [...TICK,...TICK].map(t=>`<span>${t}</span>`).join('');
 
 const per = document.getElementById('periods');
@@ -668,55 +647,58 @@ const N_MAT = Object.keys(SUBJECTS).length;
 const N_AUL = Object.values(SUBJECTS).reduce((n,s)=>n+(+(/(\d+) aulas/.exec(s.readout[1])||[0,0])[1]),0);
 document.getElementById('n-mat').textContent = N_MAT;
 document.getElementById('n-aul').textContent = N_AUL;
-if (T83) {
-  const wa = () => (window.VGP ? window.VGP.botoes('ajuda') : '');
-  document.getElementById('lede').textContent = 'Exclusivo da turma 83B. O que vamos estudar hoje?';
-  document.title = 'Masterclasses · Turma 83B';
-  document.getElementById('mats').insertAdjacentHTML('beforebegin', `<aside class="t83-faixa glass" data-liquido>
-    <b>Exclusivo 83B</b><span>Feito pela turma, para a turma. Neste semestre é livre; <u>semestre que vem tem mais</u>: o 5º período já está quase todo pronto.</span></aside>`);
-  document.querySelector('.fim-in .credits').insertAdjacentHTML('beforebegin', `<div class="t83-fim glass" data-liquido>
-    <h3>Quer ajudar a turma?</h3>
-    <p>Se você tem anotações de aula ou provas antigas, fale com o Matheus ou com o Vinícius e negocie seu acesso grátis. As aulas do 5º período (Patologia II, Técnicas Operatórias e mais) já estão quase todas prontas.</p>
-    <div class="t83-r" id="t83-r"></div>
-    <a class="t83-todas" href="?turma=todas">Ver todas as matérias do site</a></div>`);
-  addEventListener('load', ()=>{ const r=document.getElementById('t83-r'); if(r&&window.VGP) r.innerHTML=window.VGP.botoes('ajuda'); });
-}
 
 const cards = document.getElementById('cards');
-/* Propedêutica: um cartão só no período; o clique abre a janela para escolher Imagem ou Laboratorial */
+/* Matérias com escolha na entrada: um cartão só no período; o clique abre a janela para escolher a parte.
+   Propedêutica: Imagem ou Laboratorial. Patologia: a matéria (sala de aula normal), a Prática 1 ou a Prática 2. */
+const opDe = k => { const s = SUBJECTS[k]; return {k, nome:s.name.replace('Propedêutica ','').replace(/^de /,''), sub:s.readout[1], tags:s.tags, href:s.href, label:s.name, icon:s.icon}; };
 const GRUPO = {prop:{name:"Propedêutica", de:["img","lab"],
   desc:"Imagem e Laboratorial num lugar só: do raio X, TC e ultrassom ao hemograma, função renal e hepática. Clique para escolher a masterclass.",
   tags:["Propedêutica de Imagem","Propedêutica Laboratorial"],
-  readout:["Propedêutica","Imagem e Laboratorial · 2 masterclasses"],
+  readout:["Propedêutica","Imagem e Laboratorial · 2 masterclasses"], sub:"Qual masterclass você quer abrir?", aria:"Escolher entre Propedêutica de Imagem e Laboratorial",
   icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 6v12M8 8c-2 1-2 3-2 5M16 8c2 1 2 3 2 5"/>'}};
-const LISTA = []; { const dentro = new Set(GRUPO.prop.de); let posto = false;
-  for (const [k,s] of Object.entries(SUBJECTS)) { if (!dentro.has(k)) LISTA.push([k,s]); else if (!posto) { LISTA.push(['prop',GRUPO.prop]); posto = true; } } }
+if (SUBJECTS.pato) { const P = SUBJECTS.pato, H = P.href;
+  GRUPO.pato = {name:P.name, de:["pato"], desc:P.desc, tags:P.tags, icon:P.icon,
+    readout:[P.name, "A matéria e as 2 provas práticas, cada uma à parte"], sub:"O que você vai estudar agora?", aria:"Escolher entre a matéria de Patologia e as provas práticas",
+    ops:[
+      {k:"pato", nome:"Matéria", sub:"Sala de aula · 14 aulas, provas e simulados", tags:["Cardio e pulmão","TGI e fígado","Provas antigas"], href:H, label:P.name, icon:P.icon},
+      {k:"pato", nome:"Prática 1", sub:"Cardio e pulmão · lâminas e peças · provas 79 a 82", tags:["Aterosclerose e IAM","Valvopatias e Chagas","Pneumonias","Neoplasias"], href:H+"?parte=pratica1", label:"Patologia · Prática 1",
+        icon:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'},
+      {k:"pato", nome:"Prática 2", sub:"TGI e fígado · lâminas e peças · provas 79 e 81", tags:["Esôfago e estômago","Intestino","Fígado","Laringe"], href:H+"?parte=pratica2", label:"Patologia · Prática 2",
+        icon:'<rect x="3" y="8" width="18" height="8" rx="1.5"/><circle cx="12" cy="12" r="2.2"/><path d="M7 8v8M17 8v8"/>'}]}; }
+const opsDe = gk => GRUPO[gk].ops || GRUPO[gk].de.filter(k => SUBJECTS[k]).map(opDe);
+const LISTA = []; { const dono = {}; Object.entries(GRUPO).forEach(([gk,g]) => g.de.forEach(k => dono[k] = gk)); const posto = new Set();
+  for (const [k,s] of Object.entries(SUBJECTS)) { const gk = dono[k]; if (!gk) LISTA.push([k,s]); else if (!posto.has(gk)) { LISTA.push([gk,GRUPO[gk]]); posto.add(gk); } } }
 cards.innerHTML = LISTA.map(([k,s],i)=>`
-  <div class="card glass in" style="--i:${i+2}" data-k="${k}" role="${GRUPO[k]?'button':'link'}" tabindex="0" aria-label="${GRUPO[k]?'Escolher entre Propedêutica de Imagem e Laboratorial':'Abrir masterclass de '+s.name}"${GRUPO[k]?' aria-haspopup="dialog"':''}>
+  <div class="card glass in" style="--i:${i+2}" data-k="${k}" role="${GRUPO[k]?'button':'link'}" tabindex="0" aria-label="${GRUPO[k]?GRUPO[k].aria:'Abrir masterclass de '+s.name}"${GRUPO[k]?' aria-haspopup="dialog"':''}>
     <h3>${s.name}</h3>
   </div>`).join('');
 
-/* janela "Propedêutica": Imagem ou Laboratorial */
+/* janela de escolha (Propedêutica: Imagem ou Laboratorial; Patologia: matéria ou práticas) */
 document.body.insertAdjacentHTML('beforeend', `<div id="prop-dlg" hidden>
   <div class="prop-box glass" data-liquido role="dialog" aria-modal="true" aria-labelledby="prop-t">
     <button class="prop-x" type="button" aria-label="Fechar">×</button>
-    <h3 id="prop-t">Propedêutica</h3>
-    <p class="prop-sub">Qual masterclass você quer abrir?</p>
-    <div class="prop-ops">${GRUPO.prop.de.map(k=>{const s=SUBJECTS[k];return `
-      <button class="prop-op" type="button" data-k="${k}" style="--tint:var(--${k})">
-        <span class="ico"><svg viewBox="0 0 24 24">${s.icon}</svg></span>
-        <b>${s.name.replace('Propedêutica ','').replace(/^de /,'')}</b>
-        <small>${s.readout[1]}</small>
-        <span class="tags">${s.tags.slice(0,4).map(t=>`<span>${t}</span>`).join('')}</span>
-        <span class="abrir">Abrir masterclass →</span>
-      </button>`}).join('')}</div>
+    <h3 id="prop-t"></h3>
+    <p class="prop-sub"></p>
+    <div class="prop-ops"></div>
   </div></div>`);
 const propDlg = document.getElementById('prop-dlg'); let propVolta = null;
-function abrirProp(){ propVolta = document.activeElement; propDlg.hidden = false; requestAnimationFrame(()=>propDlg.classList.add('on')); propDlg.querySelector('.prop-op').focus({preventScroll:true}); }
+function abrirProp(gk){ gk = GRUPO[gk] ? gk : 'prop'; const g = GRUPO[gk], ops = opsDe(gk);
+  propDlg.querySelector('#prop-t').textContent = g.name; propDlg.querySelector('.prop-sub').textContent = g.sub;
+  const box = propDlg.querySelector('.prop-ops'); box.classList.toggle('tres', ops.length > 2);
+  box.innerHTML = ops.map((o,i)=>`
+      <button class="prop-op" type="button" data-i="${i}" data-g="${gk}" data-k="${o.k}" style="--tint:var(--${o.k})">
+        <span class="ico"><svg viewBox="0 0 24 24">${o.icon}</svg></span>
+        <b>${o.nome}</b>
+        <small>${o.sub}</small>
+        <span class="tags">${o.tags.slice(0,4).map(t=>`<span>${t}</span>`).join('')}</span>
+        <span class="abrir">Abrir →</span>
+      </button>`).join('');
+  propVolta = document.activeElement; propDlg.hidden = false; requestAnimationFrame(()=>propDlg.classList.add('on')); propDlg.querySelector('.prop-op').focus({preventScroll:true}); }
 function fecharProp(){ if (propDlg.hidden) return; propDlg.classList.remove('on'); setTimeout(()=>{propDlg.hidden = true}, 220); if (propVolta && propVolta.focus) propVolta.focus({preventScroll:true}); }
 propDlg.addEventListener('click', e=>{
   e.stopPropagation();
-  const o = e.target.closest('.prop-op'); if (o) { openSubject(o.dataset.k); setTimeout(fecharProp, 900); return; }
+  const o = e.target.closest('.prop-op'); if (o) { const op = opsDe(o.dataset.g)[+o.dataset.i]; focusSubject(op.k); open(SUBJECTS[op.k], op.label, encodeURI(op.href), op.k); setTimeout(fecharProp, 900); return; }
   if (e.target === propDlg || e.target.closest('.prop-x')) fecharProp();
 });
 propDlg.addEventListener('pointerover', e=>{ const o = e.target.closest('.prop-op'); if (o) focusSubject(o.dataset.k); });
@@ -758,9 +740,9 @@ document.addEventListener('click',e=>{
   const sc=e.target.closest('[data-scroll]'); if(sc){document.getElementById(sc.dataset.scroll).scrollIntoView({behavior:'smooth'});return}
   const o=e.target.closest('[data-open]'); if(o){openSubject(o.dataset.open);return}
   const g=e.target.closest('[data-game]'); if(g){e.preventDefault();open(SUBJECTS.th4,'Corredor da OSCE',g.getAttribute('href'));return}
-  const c=e.target.closest('.card'); if(c){ if(GRUPO[c.dataset.k]) abrirProp(); else openSubject(c.dataset.k); }
+  const c=e.target.closest('.card'); if(c){ if(GRUPO[c.dataset.k]) abrirProp(c.dataset.k); else openSubject(c.dataset.k); }
 });
-cards.addEventListener('keydown',e=>{const c=e.target.closest('.card');if(c&&(e.key==='Enter'||e.key===' ')){e.preventDefault(); if(GRUPO[c.dataset.k]) abrirProp(); else openSubject(c.dataset.k)}});
+cards.addEventListener('keydown',e=>{const c=e.target.closest('.card');if(c&&(e.key==='Enter'||e.key===' ')){e.preventDefault(); if(GRUPO[c.dataset.k]) abrirProp(c.dataset.k); else openSubject(c.dataset.k)}});
 addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(current==='p4')show('periodos'); else if(current==='periodos')show('home'); }});
 
 const roT=document.getElementById('ro-t'), roS=document.getElementById('ro-s');
@@ -875,7 +857,6 @@ show(location.hash.slice(1)||'home',false);
 </script>
 <script src="_tema/modelos.js?v=a24da698"></script>
 <script src="_tema/palco.js?v=713ea5fe"></script>
-<script src="_tema/propaganda.js?v=c17d18be"></script>
 <script src="_tema/liquido.js?v=727b02a3"></script>
 <script type="module">
 // modo leve: sem 3D (o hub continua igual, só sem o fundo animado)

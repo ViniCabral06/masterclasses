@@ -134,3 +134,9 @@ O site é usado em celular e PC fraco.
 Mantenha "Feito por: Matheus Tavares e Vinícius Cabral" no hub e na tela de carregamento (igual aos masters).
 
 Exceção: o master de **DIC IV é do Thiaginho** e diz só "Made by Thiaginho" (barra lateral, rodapé e tela de carregamento). A tela de carregamento vem de `CREDITOS` no `publicar.py`; o `data-credito-proprio` no master impede o selo do `extras.js`; o `conferir.py` dispensa o item do crédito em `DISPENSA`. Master de outra autoria segue o mesmo caminho. O DIC IV é editado direto no HTML: não rode de novo o `_planos/montar_dic.py`.
+
+## Vitrine 83B (cópia separada)
+
+- A vitrine da turma 83B (propaganda, só 6 matérias) mora em `83b/` e é **gerada** por `python gerar_83b.py`, a partir dos masters já processados. A propaganda (`_83b/propaganda.js`) existe **só** nessa cópia.
+- **Regra: nada da vitrine pode entrar no site normal** (hub, masters, `_tema/`, `publicar.py` sem propaganda ou filtro). Atualizou os masters? Pode rodar o `gerar_83b.py` de novo para a vitrine acompanhar; o contrário nunca.
+- Contatos, matérias do 5º período e textos: topo de `_83b/propaganda.js`; ajustes do hub e do master de Patologia: constantes do `gerar_83b.py`.

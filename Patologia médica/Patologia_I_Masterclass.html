@@ -66,6 +66,11 @@ button{font-family:inherit;color:inherit}
 .sb-search kbd{position:absolute;right:28px;top:17px;font:500 11px/1 var(--sans);color:var(--faint);background:var(--surface-2);border-radius:6px;padding:4px 6px;pointer-events:none;transition:opacity .15s ease}
 .sb-search input:focus ~ kbd,.sb-search input:not(:placeholder-shown) ~ kbd{opacity:0}
 .sb-prog{padding:2px 20px 14px}
+.sb-partes{display:flex;gap:4px;margin:0 12px 12px;padding:4px;border-radius:999px;border:1px solid var(--line, rgba(127,127,127,.25))}
+.sb-partes a{flex:1;min-width:0;text-align:center;padding:6px 4px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--muted);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .2s,color .2s}
+.sb-partes a:hover{color:var(--ink)}
+.sb-partes a[aria-current="page"]{background:var(--vg-acc, var(--accent));color:#fff}
+.sidebar.collapsed .sb-partes{display:none}
 .sb-prog .row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:7px}
 .sb-prog .row span:last-child{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:500}
 .sb-prog .bar{height:4px;border-radius:4px;background:var(--surface-2);overflow:hidden}
@@ -265,12 +270,13 @@ iframe.show{display:block}
 
 
 
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="pato";if(/[?&]vgindice=/.test(location.search)){window.__vgIndex=1;try{Storage.prototype.setItem=Storage.prototype.removeItem=Storage.prototype.clear=function(){}}catch(e){}}(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=6198930b">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/propaganda.js?v=c17d18be"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=a8eefd32"></script><script defer src="../_tema/foco.js?v=9246477d"></script><script defer src="../_tema/abas.js?v=b9e2f6da"></script>
+<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=a8eefd32"></script><script defer src="../_tema/foco.js?v=9246477d"></script><script defer src="../_tema/abas.js?v=b9e2f6da"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -357,6 +363,7 @@ iframe.show{display:block}
 
 
 
+
 <div class="app">
 <div class="mbar"><button id="mBurger" aria-label="Abrir menu">☰</button><span>Patologia Médica I</span>
   <button class="themebtn" id="themeBtnM" title="Alternar tema" aria-label="Alternar tema"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
@@ -372,7 +379,8 @@ iframe.show{display:block}
     </div>
   </div>
   <div class="sb-search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg><input id="sInput" placeholder="Buscar em todas as aulas…" autocomplete="off"><kbd>/</kbd></div>
-  <div class="sb-prog"><div class="row"><span>Progresso Geral de Estudo</span><span id="progPct">0%</span></div><div class="bar"><div class="fill" id="progFill"></div></div></div>
+  <nav class="sb-partes" aria-label="Parte da matéria"><a href="Patologia_I_Masterclass.html" data-parte="">📚 Matéria</a><a href="Patologia_I_Masterclass.html?parte=pratica1" data-parte="pratica1">🫀 Prática 1</a><a href="Patologia_I_Masterclass.html?parte=pratica2" data-parte="pratica2">🍽️ Prática 2</a></nav>
+  <div class="sb-prog"><div class="row"><span id="progLbl">Progresso Geral de Estudo</span><span id="progPct">0%</span></div><div class="bar"><div class="fill" id="progFill"></div></div></div>
   <nav class="sb-nav" id="tabbtns" aria-label="Aulas e segmentos"></nav>
   <div class="sb-foot"><button id="resetAll">↺ Zerar progresso de estudo</button></div>
 </aside>
@@ -433,6 +441,9 @@ const openGrp = {};      // key -> grupo aberto?
 let currentKey = null;
 const TABMAP = {}; TABS.forEach(t => TABMAP[t.key] = t);
 TABMAP.home = {key:'home', short:'Boas-vindas', label:'', icon:'🏠'};
+/* entrada dividida em 3: a matéria (sala de aula normal), a Prática 1 ou a Prática 2. ?parte=pratica1|pratica2; sem parte = a matéria */
+const PARTE = (() => { try{ const p = new URLSearchParams(location.search).get('parte'); return TABMAP[p] && TABMAP[p].group === 'pratica' ? p : ''; }catch(e){ return ''; } })();
+const naParte = k => PARTE ? k === PARTE : !(TABMAP[k] && TABMAP[k].group === 'pratica');
 /* blocos da barra lateral: parcial, somativa, pós-somativa e provas (cada um recolhível; todos fechados na 1ª visita) */
 const BLOCOS = [
   {id:'parcial',  t:'Bloco da parcial', d:'Cardio e pulmão', secs:['Cardiovascular','Respiratório']},
@@ -481,7 +492,7 @@ function doneOf(key){
 }
 function updateProgress(){
   let d = 0, t = 0;
-  TABS.filter(tb => tb.group !== 'pratica').forEach(tb => { const r = doneOf(tb.key); d += r.done; t += r.total; });
+  TABS.filter(tb => naParte(tb.key)).forEach(tb => { const r = doneOf(tb.key); d += r.done; t += r.total; });
   const pct = t ? Math.round(d / t * 100) : 0;
   document.getElementById('progPct').textContent = pct + '%';
   document.getElementById('progFill').style.width = pct + '%';
@@ -490,13 +501,13 @@ function updateProgress(){
 /* ---------- barra lateral ---------- */
 function renderNav(){
   const prog = lectureProgress();
-  let html = '<div class="grp noitems' + (currentKey === 'home' ? ' on' : '') + ' closed" data-key="home"><button class="grp-h" data-key="home" aria-expanded="false"><span class="em">🏠</span><span class="lbl">Boas-vindas</span><span class="chev">▼</span></button></div>';
+  let html = PARTE ? '' : '<div class="grp noitems' + (currentKey === 'home' ? ' on' : '') + ' closed" data-key="home"><button class="grp-h" data-key="home" aria-expanded="false"><span class="em">🏠</span><span class="lbl">Boas-vindas</span><span class="chev">▼</span></button></div>';
   BLOCOS.forEach(b => {
   let bh = '';
   SECTIONS.filter(sec => b.secs.includes(sec.t)).forEach(sec => {
     let secHtml = '';
     sec.keys.forEach(key => {
-      const tb = TABMAP[key]; if (!tb) return;
+      const tb = TABMAP[key]; if (!tb || !naParte(key)) return;
       const items = NAV[key] || [];
       const hasItems = items.length > 0;
       const st = doneOf(key);
@@ -523,6 +534,7 @@ function renderNav(){
     if (secHtml) bh += '<div class="sb-sec">' + esc(sec.t) + '</div>' + secHtml;
   });
   if (!bh) return;
+  if (PARTE) { html += bh; return; }   // prática aberta sozinha: sem o bloco em volta
   const ab = !!blocoAberto[b.id];
   html += '<button type="button" class="sb-bloco' + (ab ? ' open' : '') + '" data-bloco="' + b.id + '" aria-expanded="' + ab + '"><span class="fchev">▶</span><span class="ft">' + esc(b.t) + '</span><span class="fn">' + esc(b.d) + '</span></button><div class="sb-bloco-c"' + (ab ? '' : ' hidden') + '>' + bh + '</div>';
   });
@@ -612,10 +624,10 @@ function boasVindas(){
   w = document.createElement('section'); w.id = 'welcome'; w.hidden = true;
   const card = k => { const t = TABMAP[k]; if (!t) return ''; const r = doneOf(k);
     return '<button type="button" class="wc-card" data-go="' + k + '"><span class="em">' + esc(t.icon) + '</span><span><b>' + esc(t.short) + '</b><small>' + esc(t.label || '') + (r.total ? ' · ' + r.done + '/' + r.total : '') + '</small></span></button>'; };
-  const blocos = BLOCOS.map(b => { const keys = SECTIONS.filter(x => b.secs.includes(x.t)).flatMap(x => x.keys); if (!keys.length) return '';
+  const blocos = BLOCOS.map(b => { const keys = SECTIONS.filter(x => b.secs.includes(x.t)).flatMap(x => x.keys).filter(naParte); if (!keys.length) return '';
     return '<h2>' + esc(b.t) + (b.d ? ' <small>' + esc(b.d) + '</small>' : '') + '</h2><div class="wc-grid">' + keys.map(card).join('') + '</div>'; }).join('');
   w.innerHTML = '<div class="wc-in"><p class="wc-k">Patologia Médica I · CMMG</p><h1>Bem-vindo à Patologia</h1>' +
-    '<p class="wc-lead">Cada aula vira um capítulo com texto aprofundado, imagens das peças e lâminas, verificações por segmento, quiz final e a página "O que mais cai em prova". As aulas estão separadas em <b>bloco da parcial</b> e <b>somativa</b>; as provas antigas ficam no fim. As <b>provas práticas</b> (lâminas e peças) têm um bloco só delas, com as duas práticas separadas.</p>' +
+    '<p class="wc-lead">Cada aula vira um capítulo com texto aprofundado, imagens das peças e lâminas, verificações por segmento, quiz final e a página "O que mais cai em prova". As aulas estão separadas em <b>bloco da parcial</b> e <b>somativa</b>; as provas antigas ficam no fim. As <b>provas práticas</b> (lâminas e peças) ficam à parte: abra pelos botões <b>Prática 1</b> e <b>Prática 2</b> no alto da barra lateral.</p>' +
     '<ul class="wc-dicas"><li>Clique numa aula na barra lateral ou num cartão abaixo para começar.</li><li>Selecione um trecho para grifar ou anotar.</li><li>Clique numa imagem para ampliar.</li></ul>' +
     blocos + '<p class="wc-by">by Vinícius Cabral e Matheus Tavares</p></div>';
   w.addEventListener('click', e => { const c = e.target.closest('[data-go]'); if (!c) return; openGrp[c.dataset.go] = true; switchTab(c.dataset.go); });
@@ -755,6 +767,7 @@ async function buildIndex(){
   if (INDEX || indexing) return;
   indexing = true; INDEX = [];
   for (const t of TABS) {
+    if (!naParte(t.key)) continue;
     try{ if (DOCS[t.key][0] === '@' && !TXT[t.key]) TXT[t.key] = await fetch(DOCS[t.key].slice(1)).then(r => r.text()); INDEX.push(...indexDoc(t)); }catch(e){ console.warn('index', t.key, e); }
     await new Promise(r => setTimeout(r, 0));   // respira entre uma aula e outra
   }
@@ -932,14 +945,23 @@ document.getElementById('resetAll').addEventListener('click', () => {
   };
 })();
 
+document.querySelectorAll('.sb-partes a').forEach(a => { if (a.dataset.parte === PARTE) a.setAttribute('aria-current', 'page'); });
+if (PARTE) { const t = TABMAP[PARTE], sub = document.querySelector('.sb-head p'), mb = document.querySelector('.mbar span');
+  if (sub) sub.textContent = 'Prova prática · ' + t.short.replace(/^Prática \d · /, '');
+  if (mb) mb.textContent = 'Patologia · ' + t.short.split(' · ')[0];
+  document.getElementById('progLbl').textContent = 'Progresso da ' + t.short.split(' · ')[0];
+  document.title = t.short + ' · Patologia Médica I'; }
 renderNav();
 updateProgress();
 // primeira visita: tudo recolhido; depois, volta para onde parou
 (function(){
-  let pos = null; try{ pos = JSON.parse(localStorage.getItem('pato-pos') || 'null'); }catch(e){}
+  const POS = PARTE ? 'pato-pos-' + PARTE : 'pato-pos';
+  let pos = null; try{ pos = JSON.parse(localStorage.getItem(POS) || 'null'); }catch(e){}
+  if (pos && !naParte(pos.key)) pos = null;
+  if (!pos && PARTE) pos = {key: PARTE, seg: null};
   if (pos && TABMAP[pos.key]) { if (pos.seg && !SKIP(pos.seg)) openSegment(pos.key, pos.seg); else { openGrp[pos.key] = true; switchTab(pos.key); } }
   else switchTab('home');
-  const save = () => { try{ localStorage.setItem('pato-pos', JSON.stringify({key: currentKey, seg: activeSeg[currentKey] || null})); }catch(e){} };
+  const save = () => { try{ localStorage.setItem(POS, JSON.stringify({key: currentKey, seg: activeSeg[currentKey] || null})); }catch(e){} };
   addEventListener('pagehide', save); document.addEventListener('visibilitychange', () => { if (document.hidden) save(); }); setInterval(save, 5000);
 })();
 // a busca lê as aulas só quando alguém busca (economiza dados no celular)

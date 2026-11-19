@@ -1,0 +1,89 @@
+@titulo Flashcards · Língua Portuguesa II
+@sub Tudo da revisão final em cartas: cada documento médico, os números e leis que caem e as pegadinhas da Somativa 81. Toque para virar, marque se sabia; as que você errar voltam em "Só as que errei".
+
+# a1 | 🩺 Aula 1 · Consulta e comunicação
+Comunicação ponte × muro? :: **Ponte:** empatia, linguagem do paciente, escuta sem interromper, perguntas abertas e fechadas equilibradas, fechamento com próximos passos.\n**Muro:** jargão, postura distante, só perguntas fechadas, encerrar sem checar dúvidas. :: 2 na S81
+O que a boa comunicação produz, em cadeia? :: **Vínculo → anamnese mais fiel → diagnóstico preciso → adesão.**
+Linguagem técnica excessiva e postura distante constroem pontes? :: **Não.** Criam **barreiras** (asserção falsa na prova).
+Usar só perguntas fechadas melhora a expressão das necessidades? :: **Não.** Restringe a comunicação; o ideal é **equilibrar** abertas e fechadas.
+Os objetivos da consulta? :: **Diagnóstico, tratamento, prognóstico e prevenção.**
+Como fechar a consulta? :: **Confirmar o plano**, dar os **próximos passos** e **checar dúvidas**.
+O que é escuta atenta? :: **Não interromper e não direcionar** a fala do paciente.
+O que a empatia traz? :: Mais **adesão**, diagnóstico mais **preciso**, menos **processos**.
+
+# a2 | 📋 Aula 2 · Anamnese e relatório
+De onde vem a palavra anamnese? :: **Ana + mnese = recordar.** :: 4 na S81
+Os três tempos da anamnese? :: **Início:** acolhimento e **vínculo**.\n**Meio:** compreender o problema.\n**Fim:** **manejo** e próximos passos.
+Qual é o foco no início da anamnese? :: **Acolhimento e vínculo.**
+O que diz a Resolução CFM 2.056/2013 sobre a anamnese? :: Anamnese **completa**, incluindo a **ocupação real**: as atividades **efetivamente desempenhadas**.
+"Durmo mal, como pouco, não faço exercício" entra em qual parte da anamnese? :: **Hábitos e costumes.**
+Álcool, fumo e drogas: o que perguntar? :: São **outros fatores de risco**: quantidade, frequência, idade de início e de parada.
+Como deve ser o relatório da anamnese? :: **Técnico e objetivo**, com **verbos variados** (relata, nega, informa…) em vez de repetir "refere".
+
+# a3 | 🗂️ Aula 3 · Prontuário médico
+O que é o prontuário? :: Documento **único, legal, sigiloso e científico** de toda a assistência. Garante **continuidade** do cuidado, **segurança** do paciente e **defesa legal**. :: 4 na S81
+Que resolução define o prontuário? :: **Resolução CFM 1.638/2002.**
+O que todo registro no prontuário precisa ter? :: **Data, hora, assinatura e CRM**, sem abreviação. Feito por **toda a equipe**.
+Lei 13.787/2018: por quanto tempo guardar o prontuário? :: **20 anos a partir do último registro** (não 10).
+Prontuário digitalizado pode ser descartado automaticamente? :: **Não.** Exige análise da **comissão permanente de revisão de prontuários**. Autorização do paciente **não basta**.
+A sequência da vida do prontuário (Lei 13.787/2018)? :: Registro → **digitalização com certificação** → **20 anos** do último registro → **comissão permanente** analisa → eliminação.
+Pode negar ao paciente o acesso ao próprio prontuário? :: **Não** — vedado pelo **art. 88 do CEM**, salvo risco ao paciente.
+"Muxoxo", "lombo", "med IM", "sob obs." no prontuário? :: **Inadequados:** abreviaturas e regionalismos. Escreva por extenso: anti-inflamatório, autoimune, ultrassonografia, intramuscular.
+Que artigos do CEM tratam do prontuário? :: **Arts. 87 e 88.**
+
+# a4 | 📄 Aula 4 · Atestado médico
+O que é o atestado médico? :: **Fato médico + consequência** (ex.: afastamento). Sigilo é a regra. :: 4 na S81
+Quando o CID pode constar no atestado? :: Só por **justa causa**, **dever legal** (ex.: notificação obrigatória) ou **pedido do paciente** (registrado). Fora disso, **não**: sigilo é a regra.
+O que é obrigatório no atestado? :: **Nome, documento e data**. Endereço **não**.
+A falta do endereço residencial invalida o atestado? :: **Não.** Não há obrigatoriedade legal do endereço.
+A empresa pode recusar um atestado médico verídico? :: **Não.** Há **presunção de veracidade**; divergência só por médico da instituição ou perito.
+Atestado falso: o que é e que lei pune? :: **Infração ética grave**; **Lei 3.268/57** (5 penas).
+Declaração de comparecimento × atestado? :: A **declaração** só **comprova presença** na consulta; **não** descreve condição clínica. Não é atestado.
+Que resolução rege o atestado e o que ele deve ter? :: **Res. CFM 2.381/2024**: tempo + diagnóstico (se autorizado) + médico com CRM, **legível**.
+
+# a5 | 🔬 Aula 5 · Laudo médico
+O que é o laudo médico? :: **Descrição técnica de achados de exame + conclusão**, assinada por **médico com CRM**. Base para hipótese diagnóstica, tratamento, perícia e comunicação entre profissionais. :: 2 na S81
+Que resolução rege o laudo? :: **Res. CFM 2.235/2019** — laudo por médico com CRM.
+A sequência do laudo? :: **Indicação → técnica → achados → conclusão → CRM.**
+Linguagem do laudo? :: **Técnica**; a conclusão pode ter termos não técnicos. O médico deve **explicar o laudo ao paciente** (autonomia e direito à informação).
+O laudo é apenas um controle interno da clínica? :: **Não.** Descreve **achados e conclusões** de exames.
+Laudo psiquiátrico tem quantos blocos? :: **4 blocos.** O laudo comum tem **9 elementos**.
+
+# a6 | 💊 Aula 6 · Prescrição médica
+As partes da prescrição, na ordem? :: **Cabeçalho** (clínica e médico) → **superinscrição** (paciente e via) → **inscrição** (fármaco, forma, concentração) → **subscrição** (quantidade total) → **adscrição** (como usar). :: 8 na S81
+Faltou a subscrição. Qual o problema? :: Falta a **quantidade total**: dificulta a **dispensação e o controle**.
+Adscrição incompleta compromete o quê? :: A **compreensão** de como usar o remédio.
+Receita A × receita B? :: **A (amarela):** entorpecentes, validade de **30 dias**.\n**B (azul):** psicotrópicos.
+Se a receita não diz "não autorizo a substituição", pode trocar? :: **Sim.** A troca é autorizada **tacitamente**.
+O médico é obrigado a prescrever genéricos? :: **Não.** A escolha depende da necessidade clínica.
+Qual é o tema nº 1 da prova? :: **Letramento em saúde** (5 questões na S81): **linguagem simples**, **recurso visual** (tabela de horários, desenho), **poucas mensagens** e **confirmar** ("me explica como vai tomar?").
+Etapa da OMS mais esquecida na prescrição? :: **Informação ao paciente.** São **6 etapas**.
+Que leis/artigos tratam da prescrição? :: **CEM art. 11** e **Lei 5.991/73, art. 43**.
+
+# a7 | 🏥 Aula 7 · Sumário de alta
+Para que serve o sumário de alta? :: **Transição e continuidade do cuidado**: quem recebe o paciente continua com segurança → **menos reinternações** evitáveis. :: 3 na S81
+Quem elabora o sumário de alta? :: O **médico assistente** (ou substituto). É **dever** dele — **CEM art. 87, §3º**.
+Sumário de alta é opcional, a critério da direção? :: **Não.** É dever do médico assistente.
+Que portaria traz o modelo do sumário de alta? :: **Portaria 701/2022.**
+Conteúdo obrigatório do sumário de alta? :: **Identificação, resumo, diagnóstico(s), plano e orientações.**
+Inadequações de um sumário de alta? :: Dados **insuficientes**, **sem CRM**, **sem aconselhamento** ao paciente.
+
+# a8 | 🕊️ Aula 8 · Atestado de óbito
+Atestado de óbito: vias, blocos e variáveis? :: **3 vias** (branca, amarela e rosa), **9 blocos**, **59 variáveis** (versão 2014). :: 3 na S81
+A declaração de óbito tem uma via azul? :: **Não.** São três: **branca, amarela e rosa**.
+Atestado de óbito × certidão de óbito? :: **Atestado:** documento **médico** (ato médico).\n**Certidão:** **civil, do cartório**, feita a partir do atestado.
+Como preencher o Bloco V, Parte I? :: Em **cadeia causal**: linha **a = causa direta** (a que matou) → b, c "devida a…" → **causa básica na última linha** preenchida.
+PCR ou "falência múltipla" podem ser a causa da morte? :: **Não.** São **modo de morrer**; não esclarecem a causa básica.
+Como escrever o atestado de óbito? :: **Caneta azul ou preta**, **letra de forma**, **sem rasura**. Dado desconhecido: "ignorado" ou traço.
+O que tem o Bloco VII? :: **Causas externas** (5 variáveis).
+Bloco IX: morte sem médico? :: **Cartório + 2 testemunhas.**
+
+# doc | 📑 Qual documento é qual
+Registrar toda a assistência, com continuidade: qual documento? :: **Prontuário** — toda a equipe, com data, hora, assinatura e CRM.
+Afirmar um fato médico e a consequência (afastamento): qual documento? :: **Atestado.**
+Provar só que a pessoa esteve na consulta: qual documento? :: **Declaração de comparecimento** (sem condição clínica).
+Descrever os achados de um exame e concluir: qual documento? :: **Laudo** (médico com CRM).
+Documentar a decisão terapêutica: qual documento? :: **Prescrição.**
+Passar o cuidado adiante ao fim da internação: qual documento? :: **Sumário de alta** (médico assistente).
+Declarar a morte e a cadeia de causas: qual documento? :: **Atestado de óbito** (a certidão é do cartório).
+Quantas questões cada tema rendeu na Somativa 81? :: **Letramento 5** · atestado 4 · prontuário 4 · anamnese 4 · prescrição 3 · sumário de alta 3 · atestado de óbito 3 · consulta 2 · laudo 2.
