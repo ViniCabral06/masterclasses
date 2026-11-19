@@ -31,6 +31,7 @@
 :root[data-vidro="port"]{--vg-acc:#ff8a5b;--vg-acc-ink:#ffb898;--vg-on-acc:#2a0d02}
 :root[data-vidro="img"]{--vg-acc:#9fd3ff;--vg-acc-ink:#cfe9ff;--vg-on-acc:#04182a}
 :root[data-vidro="lab"]{--vg-acc:#4fe0cf;--vg-acc-ink:#a6f2ea;--vg-on-acc:#02201d}
+:root[data-vidro="dic"]{--vg-acc:#b8f35a;--vg-acc-ink:#d6fa9c;--vg-on-acc:#132000}
 
 /* tema claro: vidro fosco sobre névoa clara */
 :root[data-vidro][data-theme="light"]{
@@ -56,6 +57,7 @@
 :root[data-vidro="port"][data-theme="light"]{--vg-acc-ink:#b9441a}
 :root[data-vidro="img"][data-theme="light"]{--vg-acc-ink:#2a6b9c}
 :root[data-vidro="lab"][data-theme="light"]{--vg-acc-ink:#0b7d76}
+:root[data-vidro="dic"][data-theme="light"]{--vg-acc-ink:#4c7a0c}
 :root[data-vidro][data-theme="light"] #vidro-bg .au{opacity:.3}
 
 html[data-vidro]{background:var(--vg-ground)!important}
@@ -253,6 +255,34 @@ html.vidro-ready body > *:not(#vidro-load):not(#vidro-bg){animation:vg-in .9s cu
 :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) :is(.btn,.cel-finish,button.primary){border-radius:999px}
 :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) .cel-ov{background:rgba(4,7,11,.55)!important}
 :root:is([data-vidro="prev"],[data-vidro="huma"],[data-vidro="port"],[data-vidro="img"],[data-vidro="lab"]) img.magnify{border-radius:14px}
+
+/* ===================================================== DIC IV (Enfermaria: leitos = aulas)
+   Molde caderno: barra lateral e barra do celular de vidro; as cores do app (papel, tinta, teal) viram as do vidro. */
+:root[data-vidro="dic"],:root[data-vidro="dic"][data-theme="dark"],:root[data-vidro="dic"][data-theme="light"]{
+  --paper:transparent; --paper-2:var(--vg-glass); --card:var(--vg-glass2); --ink:var(--vg-ink); --ink-dim:var(--vg-ink2); --ink-faint:var(--vg-muted);
+  --line:var(--vg-edge); --line-2:var(--vg-control); --teal-600:var(--vg-acc-ink); --teal-500:var(--vg-acc); --teal-100:color-mix(in srgb,var(--vg-acc) 16%,transparent);
+  --on-acc:var(--vg-on-acc); --f-serif:var(--vg-display); --f-sans:var(--vg-text)}
+:root[data-vidro="dic"] body{background:transparent}
+:root[data-vidro="dic"] :is(main,#main){background:transparent!important}
+:root[data-vidro="dic"] .sidebar{background:var(--vg-side)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-right:0!important;box-shadow:var(--vg-sidesh)}
+:root[data-vidro="dic"] header.top{background:var(--vg-bar)!important;-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);border-bottom:0!important}
+:root[data-vidro="dic"] :is(.it.active,.grp.single.on>.grp-h){background:color-mix(in srgb,var(--vg-acc) 20%,var(--vg-glass))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc) 40%,transparent)!important;color:var(--vg-ink)!important}
+:root[data-vidro="dic"] :is(.it,.grp-h):hover{background:var(--vg-hov)}
+:root[data-vidro="dic"] :is(.hero,.case-head){background:none!important;color:var(--vg-ink)}
+:root[data-vidro="dic"] :is(.hero p.lede,.case-head .sub){color:var(--vg-ink2)}
+:root[data-vidro="dic"] :is(.case-head .back,.case-progress){color:var(--vg-muted)}
+:root[data-vidro="dic"] .case-progress .lvbar{background:var(--vg-glass2)}
+:root[data-vidro="dic"] :is(.chip,.cd){border-color:var(--vg-edge);color:var(--vg-ink2)}
+:root[data-vidro="dic"] .cd b{color:var(--vg-ink)}
+:root[data-vidro="dic"] .eyebrow{color:var(--vg-acc-ink)}
+:root[data-vidro="dic"] :is(h1,h2){font-family:var(--vg-display);font-weight:400;letter-spacing:-.01em}
+:root[data-vidro="dic"] :is(.q,.bed,.band,.box,.osce,.dq,.atl,.panel,.widget,.welcome){border-color:transparent!important;border-radius:22px;box-shadow:var(--vg-shadow)}
+:root[data-vidro="dic"] :is(.opt){border-radius:14px}
+:root[data-vidro="dic"] :is(.btn){border-radius:999px}
+:root[data-vidro="dic"] :is(.btn.pri,button.play){background:var(--vg-acc);border-color:transparent;color:var(--vg-on-acc)}
+:root[data-vidro="dic"] .result{background:linear-gradient(155deg,color-mix(in srgb,var(--vg-acc) 30%,rgba(8,12,18,.85)),rgba(8,12,18,.85));color:#eef4f6}
+:root[data-vidro="dic"] .toast{background:rgba(8,12,18,.88)}
+:root[data-vidro="dic"] .toast b{color:var(--vg-acc)}
 
 /* ===================================================== monitor cardíaco (TH IV) */
 #vidro-heart{--vg-ink:#eef4f6;--vg-ink2:rgba(238,244,246,.78);--vg-muted:rgba(238,244,246,.58);position:fixed;right:16px;bottom:68px;z-index:95;width:236px;border-radius:26px;overflow:hidden;color:var(--vg-ink);font-family:var(--vg-text);

@@ -9,7 +9,9 @@ const V=document.documentElement.dataset.vidro;
 const CFG={
   prev:{nome:'Medicina Preventiva',
     par:{sub:'Aulas 1 a 5',ids:['a01','a02','a03','a04','a05'],g:'parciais',prova:'Parciais 80 a 83'},
-    som:{sub:'Semestre inteiro',g:'somativas',prova:'Somativas 80 e 81',grupos:[
+    som:{sub:'Semestre inteiro',g:'somativas',prova:'Somativas 80 e 81',
+      aviso:'A professora Edna disse que na somativa só cai o que <b>não foi cobrado na parcial</b>. Revise primeiro o que ficou de fora da sua parcial.',
+      grupos:[
       {t:'Matéria nova: Aulas 6 a 10',ids:['a06','a07','a08','a09','a10'],open:true},
       {t:'Aulas 1 a 5: também caem na somativa',ids:['a01','a02','a03','a04','a05'],open:false,nota:'A somativa cobra o semestre inteiro. Abra cada aula para revisar.'}]}},
   lab:{nome:'Propedêutica laboratorial',

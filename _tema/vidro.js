@@ -117,7 +117,7 @@ async function montarBg() {
     stage = await createStage(canvas, { cheap: true, bloom: false, fps: 30, dust: small ? 0 : 200, dpr: 1, fog: .03, alpha: true, exposure: 1, start: false });
     // se mesmo no mínimo o aparelho não acompanhar, o fundo 3D desliga sozinho (sem gravar a escolha)
     stage.onSlow = () => { html.classList.add('vidro-calmo'); stage.running = false; setFxLabel(); };
-    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : K === 'pato' ? M.makeMicroscope({ cheap: true }) : K === 'prev' ? M.makeVaccine({ cheap: true }) : K === 'port' ? M.makeBook({ cheap: true }) : K === 'huma' ? M.makeDialogo({ cheap: true }) : K === 'img' ? M.makeRaiox({ cheap: true }) : K === 'lab' ? M.makeTubo({ cheap: true }) : K === 'semio' ? M.makeHeart({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
+    const model = K === 'farmaco' ? M.makePills({ cheap: true }) : K === 'micro' ? M.makeBugs({ cheap: true }) : K === 'pato' ? M.makeMicroscope({ cheap: true }) : K === 'prev' ? M.makeVaccine({ cheap: true }) : K === 'port' ? M.makeBook({ cheap: true }) : K === 'huma' ? M.makeDialogo({ cheap: true }) : K === 'img' ? M.makeRaiox({ cheap: true }) : K === 'lab' ? M.makeTubo({ cheap: true }) : K === 'semio' ? M.makeHeart({ cheap: true }) : K === 'dic' ? M.makeVaccine({ cheap: true }) : M.makeCells({ cheap: true, n: 15, span: 5.5, size: .62 });
     stage.world.add(model);
     // com a luz acesa (tema claro) o vidro dos modelos brilha
     const mats = new Set(); model.traverse(o => { if (o.material) [].concat(o.material).forEach(m => m.emissive && mats.add(m)); });
@@ -156,7 +156,7 @@ painel.innerHTML = `<div class="vp-top"><b>Personalização</b><button type="but
   <div class="vp-sec"><span class="vp-l">Cor de destaque</span><div class="vp-cores">${CORES.map(([c, n]) => `<button type="button" data-cor="${c}" title="${n}" aria-label="${n}"${c ? ` style="--c:${c}"` : ''}></button>`).join('')}</div></div>
   <div class="vp-sec vp-linha"><span><span class="vp-l">Efeitos 3D</span><small>Fundo animado. Desligado economiza bateria.</small></span><button type="button" id="vp-fx" class="vp-sw" role="switch" aria-label="Efeitos 3D"></button></div>`;
 // 🥷 Modo foco: abas embaixo, sem barra lateral nem enfeites (_tema/abas.js); vale para todos os masters que têm o adaptador
-if (/^(huma|prev|img|lab|farmaco|micro|port|pato|semio)$/.test(html.dataset.vidro || '') && !html.classList.contains('vidro-aula')) {
+if (/^(huma|prev|img|lab|farmaco|micro|port|pato|semio|dic)$/.test(html.dataset.vidro || '') && !html.classList.contains('vidro-aula')) {
   const on = store.get('vidro-modo-foco', false) === true;
   painel.insertAdjacentHTML('beforeend', `<div class="vp-sec vp-linha"><span><span class="vp-l">🥷 Modo foco</span><small>Direto ao ponto: aulas, busca e simulados numa barra, sem distrações. Recarrega a página.</small></span><button type="button" id="vp-ninja" class="vp-sw" role="switch" aria-label="Modo foco" aria-checked="${on}"></button></div>`);
   painel.querySelector('#vp-ninja').addEventListener('click', e => { e.stopPropagation(); store.set('vidro-modo-foco', !on); location.reload(); });

@@ -53,7 +53,7 @@
     vigia: fn => { addEventListener('hashchange', () => setTimeout(fn, 30)); new MutationObserver(fn).observe($('#main'), { childList: true }); },
   };
   const AD = {
-    huma: caderno, prev: caderno, img: caderno, lab: caderno,
+    huma: caderno, prev: caderno, img: caderno, lab: caderno, dic: caderno,
     farmaco: {
       grupos: () => $$('.sb-nav > .grp, .sb-nav .sb-bloco-c > .grp, .sb-nav .grp').filter((g, i, a) => a.indexOf(g) === i),
       aulas: () => AD.farmaco.grupos().filter(g => $('.it[data-id^="arena-"]', g)).map(g => {
@@ -377,12 +377,20 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
         + `<span class="ct"><span class="f${f ? ' g' : ''}">${f}</span>/${tot}</span></button>`;
     };
     lista.innerHTML = `<div class="in"><h1>${esc(nome || 'Aulas')}</h1><p class="s">Escolha a aula. Ela abre no segmento em que você parou.</p>`
-      + L.map((a, i) => item(a, i + 1) + (i + 1 === corte() && i + 1 < L.length ? '<div class="vga-div"><span>Até aqui: parcial · Daqui em diante: somativa</span></div>' : '')).join('')
+      + porProva(L).map(g => (g.t ? '<div class="vga-div"><span>' + esc(g.t) + '</span></div>' : '') + g.a.map(([a, i]) => item(a, i + 1)).join('')).join('')
       + (rev.length ? '<h2>Revisão</h2>' + rev.map(x => `<button type="button" class="vga-l sm" data-id="${esc(x.id)}"><span class="tx"><b>${esc(x.titulo)}</b></span><span class="ct">→</span></button>`).join('') : '')
       + '</div>';
   }
-  /* barrinha cinza entre a parcial e a somativa: segue "A parcial da minha turma vai até a aula N" dos Ajustes */
-  const CORTE0 = { huma: 4, prev: 5, img: 7, micro: 3, semio: 4, farmaco: 3, port: 4, pato: 7 }; // o mesmo padrão do foco.js
+  /* barrinhas cinza da divisão: seguem o que a pessoa marcou no Foco de estudo (Parcial, Somativa, Pós-somativa);
+     sem marcação, a lista fica em ordem, sem divisão */
+  function porProva(L) {
+    const pv = (LS('vg-foco:' + K) || {}).prova || {}, ix = L.map((a, i) => [a, i]);
+    if (!L.some(a => pv[a.key])) return [{ t: null, a: ix }];
+    const G = [['p', 'Parcial'], ['s', 'Somativa'], ['ps', 'Pós-somativa']].map(([k, t]) => ({ t, a: ix.filter(([a]) => pv[a.key] === k) }));
+    G.push({ t: 'Sem marcação', a: ix.filter(([a]) => !pv[a.key]) });
+    return G.filter(g => g.a.length);
+  }
+  const CORTE0 = { dic: 5, huma: 4, prev: 5, img: 7, micro: 3, semio: 4, farmaco: 3, port: 4, pato: 7 }; // o mesmo padrão do foco.js
   function corte() {
     const c = LS('vg-foco:' + K) || {}; if (c.div === false) return 0;
     const n = aulas().length; return Math.max(1, Math.min(n || 1, c.corte || CORTE0[K] || Math.ceil((n || 2) / 2)));

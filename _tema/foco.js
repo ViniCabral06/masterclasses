@@ -2,7 +2,8 @@
    - Grifos nas aulas e nos segmentos da barra, pela frequência nas provas: das parciais, das somativas, de todas, ou desligados.
      A cor segue a dos grifos do texto (verde → amarelo → laranja → vermelho → preto) e é relativa ao master:
      preto = o que mais cai nele.
-   - Divisão das aulas escolhida pela pessoa ("a parcial da minha turma vai até a aula N"), porque cada turma divide de um jeito.
+   - Divisão das aulas feita pela pessoa: ela marca cada aula como Parcial, Somativa ou Pós-somativa (cfg.prova),
+     porque cada turma divide de um jeito. Nada é dividido sozinho; sem marcação, a barra mostra as aulas em ordem.
    - Aulas já estudadas (todos os segmentos concluídos) vão para um grupo recolhido, para a barra ficar curta.
    Tudo pode ser desligado, e fica salvo no navegador, por master (localStorage "vg-foco:<chave>").
    O script lê o DOM e os dados de cada master sem mexer no código dele: cada master tem um adaptador em AD.
@@ -28,6 +29,11 @@
   };
   const AD = {
     huma: caderno, prev: caderno, img: caderno, lab: caderno,
+    dic: { // DIC IV (Enfermaria): leitos = aulas, abas do leito = segmentos; sem provas no acervo ainda, então frequência 0
+      nav: caderno.nav, aulas: caderno.aulas, segs: caderno.segs,
+      dados: () => AD.dic.aulas().map(a => { const its = AD.dic.segs(a), segs = {}; its.forEach(s => { segs[s.key] = { p: 0, s: 0 }; });
+        const ins = [...a.el.querySelectorAll('.it input')]; return { key: a.key, nome: (a.head.querySelector('.ga') || a.head).textContent.replace(/[·\s]+$/, ''), done: ins.length > 0 && ins.every(i => i.checked), segs }; }),
+    },
     micro: {
       nav: () => D.getElementById('nav'),
       aulas: () => [...D.querySelectorAll('#nav .grp[data-g]')].map(el => ({ el, key: el.dataset.g, head: el.querySelector('.gh'), cur: el.classList.contains('cur') })),
@@ -69,7 +75,7 @@
       dados: () => { const st = LS('lpii') || {}, dn = st.done || {}; return MODS.map(m => {
         const segs = {};
         m.segs.forEach((s, i) => { const js = []; String(s.h || '').replace(/data-j="([^"]*)"/g, (_, r) => { r.split(',').forEach(x => js.push(x.trim())); }); segs[m.id + ':' + i] = { p: 0, s: uniq(js).length }; });
-        return { key: m.id, nome: 'Aula ' + m.n, done: m.segs.every((_, i) => dn[m.id + ':' + i]), segs, sAula: PROVA.filter(q => q.m === m.id).length };
+        return { key: m.id, nome: 'Aula ' + m.n, done: m.segs.every((_, i) => dn[m.id + ':' + i]), segs, sAula: Object.values(PROVA || {}).filter(q => q && q.m === m.id).length }; // PROVA pode vir como lista ou objeto
       }); },
     },
     pato: { // shell com as aulas em iframes; o título de sistema (Cardiovascular, TGI...) anda junto com a 1ª aula dele.
@@ -97,10 +103,16 @@
   /* ---------- configuração ---------- */
   const CK = 'vg-foco:' + K;
   const cfg = Object.assign({ modo: 'todos', div: true, corte: null, recolher: true, open: {} }, LS(CK) || {});
+  /* divisão das aulas: a pessoa marca cada aula como parcial (p), somativa (s) ou pós-somativa (ps); nada é automático */
+  if (!cfg.prova || typeof cfg.prova !== 'object') cfg.prova = {};
+  const PV = [['p', 'Parcial', 'P'], ['s', 'Somativa', 'S'], ['ps', 'Pós-somativa', 'Pós']];
+  const AVISO_PV = { prev: 'A professora Edna avisou: na somativa só cai o que não foi cobrado na parcial.' };
+  const temMarca = () => Object.keys(cfg.prova).some(k => cfg.prova[k]);
   const SEM_FEITAS = new Proxy({}, { get: () => 1 }); // o grupo "Já estudadas" saiu de todos os masters (pedido do Matheus)
   if (SEM_FEITAS[K]) cfg.recolher = false;
+  if (K === 'dic' && !('div' in (LS(CK) || {}))) cfg.div = false; // DIC IV: sem parcial/somativa (OSCE, revisão dos casos e APIC); a pessoa pode ligar a divisão
   const salva = () => { try { localStorage.setItem(CK, JSON.stringify(cfg)); } catch (e) {} };
-  const CORTE0 = { huma: 4, prev: 5, img: 7, micro: 3, semio: 4, farmaco: 3, port: 4, pato: 7 }; // divisão que o master já usava
+  const CORTE0 = { dic: 5, huma: 4, prev: 5, img: 7, micro: 3, semio: 4, farmaco: 3, port: 4, pato: 7 }; // divisão que o master já usava
 
   /* ---------- estilo ---------- */
   const st = D.createElement('style'); st.id = 'vg-foco-css';
@@ -145,6 +157,17 @@ html.vgf-on .vgf-nav .vgf-x,html.vgf-on .vgf-nav .grp.vgf-x{display:none!importa
 .vgf-b select option{color:#111}
 .vgf-b label.corte{display:block}.vgf-b label.corte select{display:block;width:100%;margin-top:5px}
 .vgf-b .nota{font-size:12px;color:var(--muted,#8a94a3)}
+.vgf-b .aviso{font-size:12px;line-height:1.4;padding:7px 9px;border-radius:10px;background:color-mix(in srgb,var(--vg-acc,#5aa9ff) 14%,transparent);box-shadow:inset 3px 0 0 var(--vg-acc,#5aa9ff)}
+.vgf-pv>summary{cursor:pointer;font-weight:600;font-size:12.5px;list-style:none;display:flex;gap:6px;align-items:center}
+.vgf-pv>summary::-webkit-details-marker{display:none}
+.vgf-pv>summary::before{content:"▶";font-size:9px;transition:transform .2s}.vgf-pv[open]>summary::before{transform:rotate(90deg)}
+.vgf-pv>summary .m{margin-left:auto;font-weight:400;color:var(--muted,#8a94a3);font-size:11.5px}
+.vgf-pvl{display:grid;gap:3px;margin-top:8px;max-height:46vh;overflow:auto;padding-right:2px}
+.vgf-pvr{display:flex;align-items:center;gap:6px;font-size:12.5px}
+.vgf-pvr>span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vgf-pvr .vgf-seg{flex:0 0 auto;flex-wrap:nowrap;gap:3px}
+.vgf-pvr .vgf-seg button{padding:3px 7px;font-size:11.5px}
+.vgf-pvx{all:unset;cursor:pointer;font-size:12px;color:var(--muted,#8a94a3);text-decoration:underline;margin-top:6px;display:inline-block}
 :root{--vgf1:#3fb950;--vgf2:#e3b341;--vgf3:#f0883e;--vgf4:#f85149;--vgf5:#0b0b0b}
 .vgf-leg i.g1{background:var(--vgf1)}.vgf-leg i.g2{background:var(--vgf2)}.vgf-leg i.g3{background:var(--vgf3)}.vgf-leg i.g4{background:var(--vgf4)}.vgf-leg i.g5{background:var(--vgf5);box-shadow:0 0 0 1px rgba(255,255,255,.45)}
 :is(.vgf-g1,.vgf-g2,.vgf-g3,.vgf-g4,.vgf-g5){position:relative}
@@ -163,6 +186,9 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       painel = D.createElement('details'); painel.className = 'vgf-panel';
       painel.addEventListener('click', e => {
         const b = e.target.closest('[data-modo]'); if (b && !b.disabled) { cfg.modo = b.dataset.modo; salva(); aplica(); }
+        const v = e.target.closest('[data-pv]');
+        if (v) { const k = v.dataset.a; if (cfg.prova[k] === v.dataset.pv) delete cfg.prova[k]; else cfg.prova[k] = v.dataset.pv; salva(); aplica(); }
+        if (e.target.closest('[data-pvlimpa]')) { cfg.prova = {}; salva(); aplica(); }
       });
       painel.addEventListener('change', e => {
         const t = e.target;
@@ -171,20 +197,27 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
         if (t.name === 'corte') cfg.corte = +t.value;
         salva(); aplica();
       });
-      painel.addEventListener('toggle', () => { cfg.painel = painel.open; salva(); });
+      painel.addEventListener('toggle', e => { // captura: pega também o "Marcar as aulas" de dentro
+        if (e.target === painel) cfg.painel = painel.open; else if (e.target.classList.contains('vgf-pv')) cfg.pvAberto = e.target.open; salva();
+      }, true);
       painel.open = !!cfg.painel;
     }
     if (window.VGFocoHost) window.VGFocoHost.appendChild(painel); else nav.parentElement.insertBefore(painel, nav);
   }
   function pintaPainel() {
-    const corte = corteAtual(), nm = { todos: 'todas as provas', parciais: 'parciais', somativas: 'somativas', off: 'grifos desligados' }[cfg.modo];
+    const nm = { todos: 'todas as provas', parciais: 'parciais', somativas: 'somativas', off: 'grifos desligados' }[cfg.modo];
+    const nMarc = info.filter(a => cfg.prova[a.key]).length;
     const sem = m => (m === 'parciais' && !totP) || (m === 'somativas' && !totS);
     const h = '<summary>🎯 Foco de estudo<span class="m">' + nm + '</span></summary><div class="vgf-b">' +
       '<div><div class="lb">Grifos nas aulas</div><div class="vgf-seg">' + MODOS.map(([k, t]) => '<button type="button" data-modo="' + k + '" aria-pressed="' + (cfg.modo === k) + '"' + (sem(k) ? ' disabled title="Não há ' + t.toLowerCase() + ' no acervo deste master"' : '') + '>' + t + '</button>').join('') + '</div></div>' +
       (cfg.modo !== 'off' ? '<div class="vgf-leg">cai pouco <i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i><i class="g5"></i> cai sempre</div>' : '') +
       (!totP ? '<div class="nota">Este master só tem somativas no acervo.</div>' : '') +
-      '<label><input type="checkbox" name="div"' + (cfg.div ? ' checked' : '') + '> Dividir as aulas pela parcial</label>' +
-      (cfg.div ? '<label class="corte">A parcial da minha turma vai até a <select name="corte">' + info.map((a, i) => '<option value="' + (i + 1) + '"' + (i + 1 === corte ? ' selected' : '') + '>' + esc(a.rot || a.nome || ('aula ' + (i + 1))) + '</option>').join('') + '</select></label>' : '') +
+      (AVISO_PV[K] ? '<div class="aviso">📣 ' + esc(AVISO_PV[K]) + '</div>' : '') +
+      '<details class="vgf-pv"' + (cfg.pvAberto ? ' open' : '') + '><summary>Em qual prova cai cada aula<span class="m">' + (nMarc ? nMarc + ' marcada' + (nMarc > 1 ? 's' : '') : 'nenhuma marcada') + '</span></summary>' +
+      '<div class="nota" style="margin-top:6px">Marque conforme a sua turma: P = parcial, S = somativa, Pós = pós-somativa. A barra lateral se organiza pelo que você marcar. Toque de novo para desmarcar.</div>' +
+      '<div class="vgf-pvl">' + info.map(a => '<div class="vgf-pvr"><span title="' + esc(a.rot || a.nome) + '">' + esc(a.rot || a.nome) + '</span><div class="vgf-seg">' +
+        PV.map(([t, nome, curto]) => '<button type="button" data-a="' + esc(a.key) + '" data-pv="' + t + '" aria-pressed="' + (cfg.prova[a.key] === t) + '" title="' + nome + '">' + curto + '</button>').join('') + '</div></div>').join('') + '</div>' +
+      (nMarc ? '<button type="button" class="vgf-pvx" data-pvlimpa>Limpar marcações</button>' : '') + '</details>' +
       (SEM_FEITAS[K] ? '' : '<label><input type="checkbox" name="rec"' + (cfg.recolher ? ' checked' : '') + '> Recolher as aulas já estudadas</label>') + '</div>';
     if (painel.dataset.k !== h) { const o = painel.open; painel.innerHTML = h; painel.open = o; painel.dataset.k = h; }
   }
@@ -255,8 +288,10 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
   function aplica() {
     raf = 0;
     const nav = A.nav(); if (!nav) return;
-    let aulas; try { aulas = A.aulas(); info = A.dados(); } catch (e) { return; }
-    if (!aulas.length || !info.length) return;
+    // o master pode ainda não ter criado os dados (ex.: MODS do Português): tenta de novo por alguns segundos
+    const deNovo = () => { aplica.tent = (aplica.tent || 0) + 1; if (aplica.tent < 40) setTimeout(aplica, 250); };
+    let aulas; try { aulas = A.aulas(); info = A.dados(); } catch (e) { deNovo(); return; }
+    if (!aulas.length || !info.length) { deNovo(); return; }
     const scrollAntes = K === 'farmaco' ? nav.scrollTop : null;
     ocupado = true; if (obs) obs.disconnect();
     try {
@@ -288,9 +323,10 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       nav.querySelectorAll(':scope > .vgf-h').forEach(h => {
         if (K === 'farmaco') headers.set(h.dataset.g, h); else h.remove();
       });
-      const liga = cfg.div || cfg.recolher;
+      const marcou = info.some(a => cfg.prova[a.key]);
+      const liga = marcou || cfg.recolher;
       html.classList.toggle('vgf-on', liga); nav.classList.toggle('vgf-nav', liga);
-      html.classList.toggle('vgf-semdiv', !cfg.div); // divisão desligada: some também a divisão própria do master (blocos parcial/somativa)
+      html.classList.add('vgf-semdiv'); // a divisão automática do master (blocos parcial/somativa) não aparece: quem divide é a pessoa
       // os cabeçalhos reaproveitados (.vgf-h) não entram na lista: a ordem deles é dada abaixo, junto do grupo
       const flat = []; [...nav.children].forEach(c => { if (c.classList.contains('vgf-h')) return; if (c.classList.contains('sb-bloco-c')) flat.push(...c.children); else flat.push(c); });
       flat.forEach(c => { c.style.order = ''; c.classList.remove('vgf-x'); });
@@ -299,21 +335,12 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       const primeira = flat.findIndex(c => ehAula.has(c));
       const antes = flat.slice(0, primeira).filter(c => !ehAula.has(c));
       const depois = flat.slice(primeira).filter(c => !ehAula.has(c));
-      const corte = corteAtual();
       const feita = a => { const i = porKey[a.key]; return !!(cfg.recolher && i && i.done); };
       const grupos = [];
-      const nomeDe = a => (porKey[a.key] || {}).nome || '';
-      if (cfg.div) {
-        const g1 = aulas.filter((a, i) => i < corte && !feita(a)), g2 = aulas.filter((a, i) => i >= corte && !feita(a));
-        const faixa = (ini, fim) => {
-          const a = nomeDe(aulas[ini]), b = nomeDe(aulas[fim]); if (ini === fim) return a;
-          const x = (a.match(/\d+/) || [])[0], y = (b.match(/\d+(?!.*\d)/) || [])[0];
-          const pa = a.replace(/\s*\d.*$/, ''), pb = b.replace(/\s*\d.*$/, ''); // "Aula", "Cardio", "TGI"...
-          if (x && y && pa === pb) return (/^aula$/i.test(pa) ? 'Aulas' : pa) + ' ' + x + ' a ' + y;
-          return a + ' a ' + b.replace(/^Aula\s*/i, 'aula ');
-        };
-        grupos.push({ id: 'parcial', t: 'Até a parcial', n: faixa(0, corte - 1), a: g1 });
-        if (corte < aulas.length) grupos.push({ id: 'depois', t: 'Depois da parcial', n: faixa(corte, aulas.length - 1), a: g2 });
+      const qt = n => n + ' aula' + (n > 1 ? 's' : '');
+      if (marcou) {
+        PV.forEach(([t, nome]) => { const g = aulas.filter(a => cfg.prova[a.key] === t && !feita(a)); if (g.length) grupos.push({ id: 'pv-' + t, t: nome, n: qt(g.length), a: g }); });
+        const r = aulas.filter(a => !cfg.prova[a.key] && !feita(a)); if (r.length) grupos.push({ id: 'pv-resto', t: 'Sem marcação', n: qt(r.length), a: r });
       } else grupos.push({ id: 'todas', t: null, a: aulas.filter(a => !feita(a)) });
       if (cfg.recolher) { const f = aulas.filter(feita); if (f.length) grupos.push({ id: 'feitas', t: '✅ Já estudadas', n: f.length + ' aula' + (f.length > 1 ? 's' : ''), a: f }); }
       let o = 0; antes.forEach(c => { c.style.order = ++o; });
@@ -339,7 +366,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       if (scrollAntes !== null) nav.scrollTop = scrollAntes;
       try { textos(); observaTexto(); } catch (e) {}
       // o modo foco (abas.js) repinta a lista de aulas/segmentos com as cores novas
-      const sig = cfg.modo + '|' + cfg.div + '|' + cfg.corte;
+      const sig = cfg.modo + '|' + JSON.stringify(cfg.prova);
       if (sig !== aplica.sig) { aplica.sig = sig; setTimeout(() => D.dispatchEvent(new CustomEvent('vgfoco', { detail: { modo: cfg.modo } })), 0); }
       ocupado = false;
       observa(nav);
