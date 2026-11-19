@@ -26,7 +26,7 @@
 
   /* ---------- adaptadores ----------
      aulas(): [{key, nome, rot, freq, segs:[{id, titulo, feito}], cai, arena}]   (segs: os que contam no x/N)
-     avulsos(): [{id, titulo, tipo:'sim'|'rev'|'notas'|'arena'}]               (fora das aulas)
+     avulsos(): [{id, titulo, tipo:'sim'|'rev'|'notas'|'arena'|'pratica'}]               (fora das aulas)
      atual(): id aberto; ir(id); concluir(id); feito(id)
      pagina(): {doc, topo, fim} do segmento aberto (onde pôr Anterior/Concluir/Próximo) ou null
      esconde: CSS para a página do segmento (botões próprios do master que as novas peças substituem)
@@ -138,7 +138,7 @@
       avulsos: () => AD.pato.grupos().filter(g => !/^(aula|tgi)\d+$/.test(g.dataset.key) && g.dataset.key !== 'home').flatMap(g => {
         const k = g.dataset.key, its = $$('.it[data-seg]', g).filter(it => it.dataset.seg !== 'capa');
         const t = (typeof TABS !== 'undefined' ? TABS : []).find(x => x.key === k) || {};
-        if (!its.length) return [{ id: k + '/', titulo: t.short || txt($('.grp-h', g)), tipo: t.group === 'sim' && !/reta|flash/i.test(t.short || '') ? 'sim' : 'rev' }];
+        if (!its.length || t.group === 'pratica') return [{ id: k + '/', titulo: t.short || txt($('.grp-h', g)), tipo: t.group === 'pratica' ? 'pratica' : t.group === 'sim' && !/reta|flash/i.test(t.short || '') ? 'sim' : 'rev' }];
         return its.map(it => { const tt = limpa(txt(it)); return { id: k + '/' + it.dataset.seg, titulo: tt, tipo: /minha/i.test(tt) ? 'notas' : k === 'simulados' ? 'sim' : 'rev' }; });
       }),
       atual: () => { const it = $('#tabbtns .it.on[data-seg], #tabbtns .it.active[data-seg]'); if (it) return it.dataset.key + '/' + it.dataset.seg; const g = $('#tabbtns .grp.on[data-key]'); return g ? g.dataset.key + '/' : ''; },
@@ -369,7 +369,7 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
         + (ss.length ? ss.map(x => `<button type="button" class="vga-l sm" data-id="${esc(x.id)}"><span class="tx"><b>${esc(x.titulo)}</b></span><span class="ct">→</span></button>`).join('') : '<p class="s">Esta matéria ainda não tem simulados.</p>') + '</div>';
       return;
     }
-    const L = aulas(), au = aulaAberta(), rev = avulso('rev');
+    const L = aulas(), au = aulaAberta(), rev = avulso('rev'), prat = avulso('pratica');
     const item = (a, n) => {
       const tot = a.segs.length, f = a.segs.filter(s => s.feito).length, ok = tot > 0 && f === tot;
       return `<button type="button" class="vga-l${a.freq ? ' ' + a.freq : ''}${ok ? ' ok' : ''}${au === a ? ' atual' : ''}" data-aula="${esc(a.key)}">`
@@ -379,6 +379,7 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
     lista.innerHTML = `<div class="in"><h1>${esc(nome || 'Aulas')}</h1><p class="s">Escolha a aula. Ela abre no segmento em que você parou.</p>`
       + porProva(L).map(g => (g.t ? '<div class="vga-div"><span>' + esc(g.t) + '</span></div>' : '') + g.a.map(([a, i]) => item(a, i + 1)).join('')).join('')
       + (rev.length ? '<h2>Revisão</h2>' + rev.map(x => `<button type="button" class="vga-l sm" data-id="${esc(x.id)}"><span class="tx"><b>${esc(x.titulo)}</b></span><span class="ct">→</span></button>`).join('') : '')
+      + (prat.length ? '<h2>🔬 Provas práticas</h2>' + prat.map(x => `<button type="button" class="vga-l sm" data-id="${esc(x.id)}"><span class="tx"><b>${esc(x.titulo)}</b></span><span class="ct">→</span></button>`).join('') : '')
       + '</div>';
   }
   /* barrinhas cinza da divisão: seguem o que a pessoa marcou no Foco de estudo (Parcial, Somativa, Pós-somativa);

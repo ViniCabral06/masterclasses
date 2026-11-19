@@ -95,6 +95,8 @@
   let selo = null;
   function credito() {
     if (html.classList.contains('vidro-aula') || window.top !== window) return;
+    // master de outra autoria (ex.: DIC IV, do Thiaginho) marca o crédito dele com data-credito-proprio: sem selo
+    if (D.querySelector('[data-credito-proprio]')) { if (selo) selo.hidden = true; return; }
     const visivel = el => el.checkVisibility ? el.checkVisibility({ opacityProperty: true, visibilityProperty: true }) : !!el.offsetParent;
     let tem = false;
     const w = D.createTreeWalker(D.body, NodeFilter.SHOW_TEXT);

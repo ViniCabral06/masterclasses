@@ -20,9 +20,10 @@
 
   const GRUPO = '.pv-box,#quizlist,.qzone,.qsection,.quiz,.quizlist';
   const ITEM = '.q:not(.q-open),.qcard,fieldset.quiz-item';
-  const CERTO = '.is-correct[aria-pressed="true"],.option.right input:checked,.option.right:has(input:checked),.selected-correct';
-  const ERRADO = '.is-wrong,.option.wrong,.selected-incorrect';
-  const RESPONDIDA = el => el.classList.contains('done') || !!el.querySelector('.qoption[disabled],.option.right,.option.wrong,' + ERRADO + ',' + CERTO);
+  // DIC IV: .q.answered, a certa ganha .opt.ok e a marcada errada .opt.no
+  const CERTO = '.is-correct[aria-pressed="true"],.option.right input:checked,.option.right:has(input:checked),.selected-correct,.opt.ok';
+  const ERRADO = '.is-wrong,.option.wrong,.selected-incorrect,.opt.no';
+  const RESPONDIDA = el => el.classList.contains('done') || el.classList.contains('answered') || !!el.querySelector('.qoption[disabled],.option.right,.option.wrong,' + ERRADO + ',' + CERTO);
 
   const TAUNT = ['Ei! Clicar não libera 😤', 'Insistir não abre. Acertar abre.', 'Tá trancado. As questões estão logo acima ☝️',
     'Nem com jeitinho.', 'Sem gabarito, sem meme.', 'Ele tremeu, mas não cedeu.', 'Isso não cai na prova, mas o meme cai no colo de quem acerta.'];
@@ -130,8 +131,9 @@
           : 'Meme secreto · ' + certas.length + ' de ' + n + ' certas<span class="vm-s">Acerte todas para revelar</span>';
     });
   }
-  let tm = 0;
-  const depois = final => { clearTimeout(tm); tm = setTimeout(() => varrer(final), 120); };
+  // "final" (veio de um clique) não se perde quando a própria correção muda o DOM logo depois (ex.: DIC IV)
+  let tm = 0, fin = false;
+  const depois = final => { fin = fin || final; clearTimeout(tm); tm = setTimeout(() => { const f = fin; fin = false; varrer(f); }, 120); };
 
   fetch(base + 'memes.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).then(l => {
     memes = Array.isArray(l) ? l : []; if (!memes.length) return;

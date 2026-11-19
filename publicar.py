@@ -91,6 +91,9 @@ ICONES = {
     "semio": '<path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/>',
     "dic": '<path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/>',
 }
+# master de outra autoria: crédito próprio na tela de carregamento (o padrão é Vinícius e Matheus)
+CREDITOS = {"dic": "Made by <b>Thiaginho</b>"}
+CREDITO_PADRAO = "Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b>"
 COR_PADRAO, ICONE_PADRAO = "#4ff3ff", '<path d="M8 4c0 6 8 6 8 8s-8 2-8 8M16 4c0 6-8 6-8 8s8 2 8 8"/>'
 
 H_INI, H_FIM = "<!--vidro:cabeca-->", "<!--/vidro:cabeca-->"
@@ -129,7 +132,7 @@ def bloco_cabeca(m, rel):
            "window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();")
     forcar = "<script>document.documentElement.dataset.vidro=%s;%s</script>" % (json.dumps(k), pos)
     return (f"{H_INI}\n{forcar}\n{FONTES}\n<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\">\n{IMPORTMAP}\n"
-            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/flashcards.js?v={ver('flashcards.js')}\"></script><script defer src=\"{rel}/revisao.js?v={ver('revisao.js')}\"></script><script defer src=\"{rel}/foco.js?v={ver('foco.js')}\"></script><script defer src=\"{rel}/abas.js?v={ver('abas.js')}\"></script>\n{H_FIM}")
+            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/propaganda.js?v={ver('propaganda.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/flashcards.js?v={ver('flashcards.js')}\"></script><script defer src=\"{rel}/revisao.js?v={ver('revisao.js')}\"></script><script defer src=\"{rel}/foco.js?v={ver('foco.js')}\"></script><script defer src=\"{rel}/abas.js?v={ver('abas.js')}\"></script>\n{H_FIM}")
 
 
 def bloco_corpo(m):
@@ -180,7 +183,7 @@ def bloco_corpo(m):
             f"<div class=\"vl-t\">{nome}</div>"
             "<svg class=\"vl-ecg\" viewBox=\"0 0 320 40\" preserveAspectRatio=\"none\"><path d=\"M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320\"/></svg>"
             "<div class=\"vl-s\"><b>Separando os segmentos</b></div></div>"
-            "<div class=\"vl-c\">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>\n"
+            f"<div class=\"vl-c\">{CREDITOS.get(m['k'], CREDITO_PADRAO)}</div></div>\n"
             f"<script>{js}</script>\n{B_FIM}")
 
 
@@ -329,7 +332,7 @@ def foco_das_aulas(m):
     dados = {}
     for t in tabs:
         k, arq = t["key"], pasta / f"{t['key']}.html"
-        if t.get("group") == "sim" or k not in nav or not arq.exists():
+        if t.get("group") in ("sim", "pratica") or k not in nav or not arq.exists():
             continue
         titulos = {i["k"]: i.get("t", "") for i in nav[k]}
         todas, conta = set(), {}
@@ -377,7 +380,7 @@ def otimizar_fonte(m):
 
 
 def arquivos_do_site(ms):
-    fixos = [".gitignore", ".nojekyll", "index.html", "publicar.py", "conferir.py", "LEIAME.md", "CLAUDE.md", "AGENTS.md", ".claude/skills", "_tema"]
+    fixos = [".gitignore", ".nojekyll", "index.html", "83b", "publicar.py", "conferir.py", "LEIAME.md", "CLAUDE.md", "AGENTS.md", ".claude/skills", "_tema"]
     out = [f for f in fixos if (ROOT / f).exists()]
     for m in ms:
         src = ROOT / m["arquivo"]

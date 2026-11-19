@@ -101,6 +101,7 @@ DISPENSA = {
     'TH4_Masterclass_OSCE.html': ({'Blocos parcial / somativa', 'Questões só de prova por capítulo', 'Aviso "nunca caiu"',
                                    'Página "O que mais cai"',
                                    'Origem de cada questão marcada', 'Seções finais (revisão final, o que vai cair, simulados, minha revisão)'}, 'prova prática (OSCE), sem provas escritas'),
+    'DIC_IV_Masterclass.html': ({'Crédito Vinícius e Matheus'}, 'master do Thiaginho: o crédito é "Made by Thiaginho"'),
 }
 
 

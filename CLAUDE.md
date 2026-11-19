@@ -132,3 +132,5 @@ O site é usado em celular e PC fraco.
 ## Créditos
 
 Mantenha "Feito por: Matheus Tavares e Vinícius Cabral" no hub e na tela de carregamento (igual aos masters).
+
+Exceção: o master de **DIC IV é do Thiaginho** e diz só "Made by Thiaginho" (barra lateral, rodapé e tela de carregamento). A tela de carregamento vem de `CREDITOS` no `publicar.py`; o `data-credito-proprio` no master impede o selo do `extras.js`; o `conferir.py` dispensa o item do crédito em `DISPENSA`. Master de outra autoria segue o mesmo caminho. O DIC IV é editado direto no HTML: não rode de novo o `_planos/montar_dic.py`.
