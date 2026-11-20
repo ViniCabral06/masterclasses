@@ -84,6 +84,8 @@ Responda sempre em português (Brasil).
 | `_tema/simulado.js` | Simulado padrão do site, igual em todas as matérias: lista de provas e simulados, tela "Como você quer fazer?" (simular a prova ou entregar por questão; prova inteira na página ou uma questão por vez), cronômetro de 3 min por questão, dissertativa com contador, nota, grade "Seu gabarito" (letra marcada, verde ou vermelho, toque leva à correção), desempenho por tema, "Copiar resultado" e correção comentada. Fica salvo por master em `vg-sim:<chave>`. O `publicar.py` inclui. Ver "Simulados". |
 | `_tema/abas.js` | **🥷 Modo foco** (opcional: só liga pelo botão na Personalização do `vidro.js`, salvo em `vidro-modo-foco` para todos os masters; recarrega a página). Modo direto ao ponto, no lugar da barra lateral: abas embaixo (📖 Aulas, 🎮 Arena e ⭐ Mais cai da aula aberta, ⏱️ Simulados, 📝 Notas, 🔍 Buscar, ⚙️ Ajustes com o painel do Foco). A barra encaixa embaixo, em cima ou nas laterais (vertical). A 🔍 Buscar lê o texto da matéria numa cópia escondida do master (`?vgindice`, que o `<head>` gerado pelo `publicar.py` impede de gravar no navegador); na Patologia lê direto `aulas/*.html`. Aulas e Simulados abrem uma lista limpa (aula: número, título, segmentos, x/N, verde quando concluída, cor de frequência do Foco). No segmento: ← Anterior · Concluir segmento · Próximo → no início e no fim. Sem fundo 3D, lâmpada nem painel do Foco. A barra lateral fica no DOM, escondida: o script lê as aulas dela e navega por ela. Um adaptador por master em `AD` (todos menos TH IV, de propósito). Só o PC foi acertado; celular fica para depois. O `publicar.py` inclui. |
 | `_tema/revisao.js` | Revisão final nova dos masters em formato de caderno (Medicina Preventiva, Propedêutica laboratorial e de imagem): chave Parcial / Somativa (salva em `vg-revx:<matéria>`), ranking do que mais voltou, esquema e cartões por aula (pontos-chave `keys` e pegadinha `trap` de cada segmento, questão de prova para testar), "⭐ O que mais é cobrado" por aula e "🔁 Questões que se repetem" no Raio-X (agrupa por enunciado, alternativas ou justificativa oficial iguais). As divisões ficam em `CFG` no arquivo. O `publicar.py` inclui. |
+| `_tema/elos.js` + `_tema/elos.json` | 🔗 Ligações entre matérias: depois da frase que cita um tema explicado em outra matéria, um 🔗 abre a caixinha escura com o que a outra matéria ensina e "Ir para o conteúdo" (nova guia, no segmento, piscando no trecho). Os dados vêm do `elos.py`. O `publicar.py` inclui. Ver "Ligações entre matérias". |
+| `elos.py` | Monta o `_tema/elos.json`: catálogo de conceitos, regras de ligação e descrições. Corpus local em `_elos/` (fora do Git). |
 | `AGENTS.md` | Regras para o Codex (lê o CLAUDE.md e a skill). O `publicar.py` envia. |
 | `.claude/skills/masterclass-medica/` | Cópia única da skill, usada pelo Claude Code e pelo Codex. Edite só aqui; o `publicar.py` envia. |
 | `.claude/skills/simulados-masterclass/` | Skill dos simulados (`/simulados-masterclass`) e o texto completo do padrão (`instrucoes.html`). Cópia única, como a outra. |
@@ -120,6 +122,18 @@ Responda sempre em português (Brasil).
 - Caixas de conteúdo (questões, cards de texto) não recebem a lente: seguem "Cuidados de desempenho".
 - A lente só liga em Chrome/Edge no PC. Safari, Firefox, celular e PC fraco ficam com o vidro fosco: é de propósito, não "conserte".
 - O `conferir.py` acusa master sem o `liquido.js`.
+
+## Ligações entre matérias (🔗)
+
+Entram as matérias de conteúdo clínico e a Preventiva (epidemiologia): Microbiologia, Patologia, Farmacologia, Laboratório, Imagem, Semiologia, Preventiva e DIC IV. Humanização, Português e TH IV ficam de fora de propósito.
+
+- O 🔗 fica no fim da frase que cita o tema. Ao passar o mouse (ou tocar, no celular), abre a caixinha escura, no mesmo visual das anotações, com a matéria, a aula e o segmento, uma descrição curta e "Ir para o conteúdo". Toda ligação vale nos dois sentidos.
+- O 🔗 é desenhado pelo CSS (`.vg-elo::after`), sem texto no DOM: não mexe na 🔍 Buscar nem na âncora dos grifos. Nunca entra em questões, títulos, legendas nem botões.
+- "Ir para o conteúdo" abre `<master>?elo=<conceito>&seg=<segmento>`. O `elos.js` do destino abre o segmento, rola até o trecho e pisca nele (`mark.vg-elo-alvo`). Na Patologia ele roda no master e trabalha dentro do iframe da aula.
+- Equilíbrio: só liga quando a outra matéria explica de verdade (tem um segmento "casa" do tema). Até 4 🔗 por segmento, e até 3 segmentos de uma matéria apontando para o mesmo tema na mesma matéria.
+- **Aula nova ou segmento novo:** colete o corpus de novo (`python elos.py --js` mostra o código de coleta; os arquivos vão para `_elos/corpus/`) e rode `python elos.py --faltam`. Escreva as descrições que faltarem em `_elos/descricoes.json` (uma por conceito × matéria de destino, tirada do segmento-casa da matéria de destino), rode `python elos.py` e publique.
+- Tema novo que cruza matérias: acrescente em `C` no `elos.py` (rótulo e sinônimos em regex sem acento; com `=` no início, diferencia maiúsculas). Se a palavra tiver outro sentido numa matéria, use `SEM_CASA` ou `SEM_ORIGEM`. Se a contagem escolher a casa errada, corrija em `CASA`.
+- Master novo nas ligações: acrescente em `ORD`/`MATS` no `elos.py` e um adaptador em `AD` no `_tema/elos.js` (segmento aberto, raiz do texto, como abrir um segmento).
 
 ## Cuidados de desempenho
 
