@@ -160,4 +160,5 @@ Exceção: o master de **DIC IV é do Thiaginho** e diz só "Made by Thiaginho" 
 
 - A vitrine da turma 83B (propaganda, só 6 matérias) mora em `83b/` e é **gerada** por `python gerar_83b.py`, a partir dos masters já processados. A propaganda (`_83b/propaganda.js`) existe **só** nessa cópia.
 - **Regra: nada da vitrine pode entrar no site normal** (hub, masters, `_tema/`, `publicar.py` sem propaganda ou filtro). Atualizou os masters? Pode rodar o `gerar_83b.py` de novo para a vitrine acompanhar; o contrário nunca.
+- **Regra: toda atualização das aulas que já estão na vitrine vale para os dois** (site completo e vitrine). O `publicar.py` roda o `gerar_83b.py` sozinho antes de cada envio (e no `--local`), então a vitrine acompanha sem passo extra. Se o gerador falhar, o envio é cancelado. Matéria nova na vitrine: acrescente em `MASTERS` e `MANTER` no `gerar_83b.py`.
 - Contatos, matérias do 5º período e textos: topo de `_83b/propaganda.js`; ajustes do hub e do master de Patologia: constantes do `gerar_83b.py`.

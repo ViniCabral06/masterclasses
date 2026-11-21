@@ -441,6 +441,12 @@ def main():
             print("Corrija as pendências acima (ou peça ao Claude) antes de dar o master por pronto.\n")
     except Exception as e:
         print("(não consegui rodar o conferir.py:", e, ")")
+    # vitrine 83B: refaz a cópia limitada a partir dos masters já processados, para ela sempre acompanhar o site completo
+    if (ROOT / "gerar_83b.py").exists():
+        print("\nAtualizando a vitrine 83B (83b/)...")
+        r = subprocess.run([sys.executable, str(ROOT / "gerar_83b.py")], cwd=ROOT)
+        if r.returncode != 0:
+            sys.exit("A vitrine 83B não foi gerada (veja a mensagem acima). Nada foi enviado: ajuste o gerar_83b.py e rode de novo.")
     if local:
         print("Pronto (sem enviar). Para ver: python -m http.server 8765 nesta pasta e abra http://localhost:8765"); return
     msg = next((a for a in args if not a.startswith("--")), "Atualiza masterclasses")
