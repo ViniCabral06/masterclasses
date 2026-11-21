@@ -296,20 +296,20 @@ def _questoes_de_prova(doc):
     número da questão), tirada do rótulo de origem ("Parcial 82 — Questão 16", "Somativa 79 · Questão 9 ·
     reconstruída da justificativa"); autorais e adaptadas não contam."""
     def chave(rot):
+        """todas as provas do rótulo: "Somativa 80 · Questão 17 · também caiu em Somativa 78 · Questão 1" conta as duas"""
         rot = html_mod.unescape(re.sub(r"<[^>]+>", "", rot))
         if re.search(r"autoral|estilo das provas|adaptad", rot, re.I):
-            return None
-        q = FOCO_Q.search(rot)
-        return (q.group(1)[0].upper(), q.group(2), ("A" if q.group(3) else "") + q.group(4)) if q else None
+            return set()
+        return {(q.group(1)[0].upper(), q.group(2), ("A" if q.group(3) else "") + q.group(4)) for q in FOCO_Q.finditer(rot)}
     segs = {}
     dj = re.search(r'<script id="app-data"[^>]*>(.*?)</script>', doc, re.S)
     if dj:  # aula montada por JSON (ex.: Patologia, aula 2)
         for sg in json.loads(dj.group(1)).get("segments", []):
-            segs[sg["id"]] = (sg.get("title", ""), {chave(q.get("sourceLabel", "")) for q in (sg.get("pv") or []) if q.get("pvReal")} - {None})
+            segs[sg["id"]] = (sg.get("title", ""), set().union(*[chave(q.get("sourceLabel", "")) for q in (sg.get("pv") or []) if q.get("pvReal")]))
     else:
         for p in re.finditer(r'<section class="pane" id="([\w-]+)"[^>]*>(.*?)</section>', doc, re.S):
             t = re.search(r"<h[12][^>]*>(.*?)</h[12]>", p.group(2), re.S)
-            ks = {chave(x) for x in re.findall(r'class="q-source[^"]*"[^>]*>(.*?)</span>', p.group(2), re.S)} - {None}
+            ks = set().union(*[chave(x) for x in re.findall(r'class="q-source[^"]*"[^>]*>(.*?)</span>', p.group(2), re.S)])
             segs[p.group(1)] = (re.sub(r"<[^>]+>", "", t.group(1)) if t else "", ks)
     return segs
 

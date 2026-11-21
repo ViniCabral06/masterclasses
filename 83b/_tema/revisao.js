@@ -37,7 +37,9 @@ const LS='vg-revx:'+V;
 let bloco='som';try{const v=localStorage.getItem(LS);if(v==='par'||v==='som')bloco=v}catch(e){}
 const E=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
 const lk=(k,t,a)=>typeof link==='function'?link(k,t,a):'<a class="jump" href="#'+k+(a?'/'+a:'')+'">'+E(t)+'</a>';
-const refsOf=s=>(s.refs||[]).map(k=>examById[k]).filter(Boolean);
+/* GEMEA: a mesma questão duas vezes na mesma prova (cadernos com as alternativas em outra ordem): fica só a primeira */
+const GEMEA={};
+const refsOf=s=>(s.refs||[]).filter(k=>!GEMEA[k]).map(k=>examById[k]).filter(Boolean);
 const nExam=(rs,g)=>new Set(rs.filter(x=>!g||x.group===g).map(x=>x.exam)).size;
 const exams=g=>data.exams.filter(e=>e.group===g);
 const nomeProva=e=>(e.group==='parciais'?'Parcial ':'Somativa ')+e.turma;
@@ -55,7 +57,8 @@ const CL={};let CLS=[];
   const F=its.map(x=>{const q=x.question;return{st:sh(nrm((q.stem||'')+' '+(q.command||''))),op:sh(nrm((q.options||[]).join(' '))),wy:sh(nrm(q.why||'')),gab:/^\s*gabarito oficial/i.test(q.why||'')}});
   const p=its.map((_,i)=>i),f=i=>p[i]===i?i:(p[i]=f(p[i]));
   for(let i=0;i<its.length;i++)for(let j=i+1;j<its.length;j++){
-    if(its[i].exam===its[j].exam)continue;const A=F[i],B=F[j];
+    const A=F[i],B=F[j];
+    if(its[i].exam===its[j].exam){if(A.st.size>=8&&jac(A.st,B.st)>=.9&&(!A.op.size&&!B.op.size||jac(A.op,B.op)>=.75))GEMEA[its[j].id]=its[i].id;continue;}
     const a=jac(A.st,B.st);
     const ok=(a>=.6&&A.st.size>=8)||(!A.gab&&!B.gab&&A.wy.size&&B.wy.size&&((jac(A.wy,B.wy)>=.45&&A.wy.size>=10&&B.wy.size>=10)||(jac(A.wy,B.wy)>=.9&&A.wy.size>=6)))||(A.op.size>=20&&a>=.15&&jac(A.op,B.op)>=.75);
     if(ok)p[f(i)]=f(j);

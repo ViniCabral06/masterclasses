@@ -569,7 +569,7 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=c234b062">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=f06f4568"></script><script defer src="../_tema/foco.js?v=9246477d"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="9f992af9"></script><script defer src="../_tema/abas.js?v=b9e2f6da"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script>
+<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=5dfe324c"></script><script defer src="../_tema/foco.js?v=9246477d"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="9f992af9"></script><script defer src="../_tema/abas.js?v=b9e2f6da"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -958,21 +958,29 @@ function home(){
 }
 /* Regra das masterclasses: no segmento entram só questões de prova real (as refs do segmento).
    Se o tema nunca caiu, aparece o aviso e as questões autorais (✍️) ficam abertas. */
-function provaItem(x){
- const rec=x.question&&x.question.rec,cab='<p class="pv-chip">'+(rec?'📝 Questão de prova · reconstruída da justificativa · ':'📝 Das provas · ')+target(x)+(x.short&&!rec?' · '+esc(x.short):'')+'</p>';
+/* A mesma questão caiu em mais de uma prova (a professora repete): no segmento ela entra uma vez só,
+   com todas as provas no rótulo. As páginas de cada prova continuam com a prova inteira. */
+function pvPal(t){return new Set(String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').match(/[a-z0-9]{3,}/g)||[])}
+function pvIgual(a,b){if(!a.size&&!b.size)return true;if(!a.size||!b.size)return false;let n=0;a.forEach(w=>{if(b.has(w))n++});return n/Math.max(a.size,b.size)>=.85}
+/* mesma questão = mesmo caso e mesmo comando E mesmas alternativas (em qualquer ordem). Mesmo caso com outro comando é outra questão. */
+function pvUnicas(refs){const g=[];refs.forEach(x=>{const q=x.question||{},e=pvPal([q.stem,q.command,q.text,x.question?'':x.ocr].join(' ')),o=pvPal((q.options||[]).join(' '));const a=e.size>8&&g.find(k=>pvIgual(e,k.e)&&pvIgual(o,k.o));if(a)a.mais.push(x);else g.push({x,e,o,mais:[]})});return g}
+function pvLista(refs){return pvUnicas(refs).map(o=>provaItem(o.x,o.mais)).join('')}
+function provaItem(x,mais){
+ const rec=x.question&&x.question.rec,cab='<p class="pv-chip">'+(rec?'📝 Questão de prova · reconstruída da justificativa · ':'📝 Das provas · ')+target(x)+(x.short&&!rec?' · '+esc(x.short):'')+(mais&&mais.length?' · também caiu em '+mais.map(target).join(', '):'')+'</p>';
  if(x.question)return '<div class="pv-item">'+cab+examQuestion(x)+'</div>';
  return '<div class="pv-item">'+cab+(x.src?'<figure class="figure"><img loading="lazy" src="'+x.src+'" alt="'+esc(x.label)+'"></figure>':'')+(!x.src&&x.ocr?'<div class="transcription"><p>'+esc(x.ocr)+'</p></div>':'')+'</div>';
 }
 function dasProvas(s,refs,titulo){
  const aut=s.q&&s.q.length?quiz(s.q,titulo):'';
  if(!refs.length)return '<div class="panel pvnone"><b>Este tema nunca caiu nas provas do acervo.</b><p>Não quer dizer que não importa: um tema que nunca caiu pode estrear na sua prova. Para fixar, fiz as minhas questões (✍️ autorais), no estilo das provas.</p></div>'+aut;
- return '<div class="pv-box"><h3>Das provas · '+refs.length+' '+(refs.length===1?'questão':'questões')+'</h3>'+refs.map(provaItem).join('')+'</div>'+(aut?'<details class="panel pv-aut"><summary>Treinar mais: questões autorais ✍️</summary>'+aut+'</details>':'');
+ const n=pvUnicas(refs).length;
+ return '<div class="pv-box"><h3>Das provas · '+n+' '+(n===1?'questão':'questões')+'</h3>'+pvLista(refs)+'</div>'+(aut?'<details class="panel pv-aut"><summary>Treinar mais: questões autorais ✍️</summary>'+aut+'</details>':'');
 }
 function maisCobrado(l){
  const vis=new Set(),refs=l.sections.flatMap(s=>sectionRefs(s)).filter(x=>!vis.has(x.id)&&vis.add(x.id));
  const fin=data.final.filter(q=>q.aula===l.id),aut=fin.length?quiz(fin,'Questões autorais ✍️'):'';
  if(!refs.length)return '<div class="panel pvnone"><b>Esta aula não teve questão nas provas do acervo.</b><p>O roteiro acima mostra o essencial. As questões abaixo são autorais (✍️), feitas por nós para fixar.</p></div>'+aut;
- return '<div class="pv-box"><h3>Questões das provas desta aula · '+refs.length+'</h3>'+refs.map(provaItem).join('')+'</div>'+(aut?'<details class="panel pv-aut"><summary>Treinar mais: questões autorais ✍️</summary>'+aut+'</details>':'');
+ return '<div class="pv-box"><h3>Questões das provas desta aula · '+pvUnicas(refs).length+'</h3>'+pvLista(refs)+'</div>'+(aut?'<details class="panel pv-aut"><summary>Treinar mais: questões autorais ✍️</summary>'+aut+'</details>':'');
 }
 function lesson(l,anchor){anchor=(anchor||'').split('~')[0];const rev=l.id+'-revisao',view=l.sections.some(s=>s.id===anchor)||anchor===rev||anchor===l.id+'-arena'||anchor===l.id+'-imagens'?anchor:'capa';lessonView=view;
  return (view==='capa'?hero('Aula '+String(l.number).padStart(2,'0')+' · Propedêutica de imagem',l.title,l.lead):'')+
