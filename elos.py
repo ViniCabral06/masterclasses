@@ -478,6 +478,14 @@ def main(args):
                 f.write(f"{ch}  ->  {rotulo(md, sd)}\n  {trecho(k, md, sd)}\n")
         print(len(falta), 'pares sem descrição; trechos em _elos/trechos.txt. Escreva em _elos/descricoes.json ({"conceito|matéria": "texto"}).')
         return
+    # caixas "🔗 LIGA COM O SEGMENTO / A AULA" (dentro da mesma matéria): escritas à mão, ficam como estão
+    # ({chave: {segmento: {"r": rótulo, "p": [regex da âncora], "t": texto}}}); as novas entram em _elos/caixas.json
+    antigo = json.load(open(SAIDA, encoding="utf-8")) if os.path.exists(SAIDA) else {}
+    out["i"] = antigo.get("i", {})
+    novas = os.path.join(ROOT, "_elos", "caixas.json")
+    if os.path.exists(novas):
+        for m, segs in json.load(open(novas, encoding="utf-8")).items():
+            out["i"].setdefault(m, {}).update(segs)
     with open(SAIDA, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
     n = sum(len(v) for m in out["l"].values() for v in m.values())

@@ -135,6 +135,13 @@ Entram as matérias de conteúdo clínico e a Preventiva (epidemiologia): Microb
 - Tema novo que cruza matérias: acrescente em `C` no `elos.py` (rótulo e sinônimos em regex sem acento; com `=` no início, diferencia maiúsculas). Se a palavra tiver outro sentido numa matéria, use `SEM_CASA` ou `SEM_ORIGEM`. Se a contagem escolher a casa errada, corrija em `CASA`.
 - Master novo nas ligações: acrescente em `ORD`/`MATS` no `elos.py` e um adaptador em `AD` no `_tema/elos.js` (segmento aberto, raiz do texto, como abrir um segmento).
 
+### Caixas "🔗 LIGA COM O SEGMENTO / A AULA" (dentro da mesma matéria)
+
+- Mostram, no meio do texto, que um tema já foi (ou vai ser) explicado em outro segmento da mesma matéria, e por que isso importa ali. É o mesmo formato das caixas feitas à mão na Patologia e na Farmacologia. Só texto, sem botão.
+- Entram em todas as matérias com aulas, menos TH IV. No máximo 1 por segmento, e nunca em segmento que já tem uma caixa "LIGA COM" feita à mão.
+- O `elos.js` põe a caixa logo depois do parágrafo, da lista ou da tabela que cita o tema, num `<aside class="vg-liga">`. O `notas.js` ignora `aside`, então a caixa não mexe nos grifos. O estilo está no `_tema/vidro.css`, com claro e escuro.
+- Os dados ficam no campo `i` do `_tema/elos.json`: `{matéria: {segmento: {r: rótulo, p: [regex da âncora, sem acento], t: texto}}}`. O `elos.py` preserva esse campo ao recalcular as ligações. Caixa nova vai em `_elos/caixas.json` (mesmo formato) e entra ao rodar `python elos.py`.
+
 ## Cuidados de desempenho
 
 O site é usado em celular e PC fraco.

@@ -21,7 +21,7 @@
   // fora do 🔗: questões, blocos de prova, títulos, botões, navegação e peças do tema
   const FORA = '.qsec,.qset,.q,.qzone,.qcard,.qsection,.vblock,.pv-box,.pv-aut,.quiz,.quiz-item,.qblock,.aut-box,.navfoot,.vga-seg,'
     + '.vg-crumb,.vg-segxy,.legend,.done-bar,.crumb,.actions,.ref-pop,.vg-meme,.mode-note,.sec-disc,.toc,.ptop,.sec-title,.pane-title,'
-    + 'h1,h2,h3,h4,h5,h6,summary,button,a,label,input,select,textarea,figcaption,code,pre,script,style,svg,.vg-elo,.vg-n-ui,mark.vg-elo-alvo';
+    + 'h1,h2,h3,h4,h5,h6,summary,button,a,label,input,select,textarea,figcaption,code,pre,script,style,svg,.vg-elo,.vg-n-ui,mark.vg-elo-alvo,aside.vg-liga';
   const BLOCO = 'p,li,td,th,dd,dt,blockquote,div,section,article,aside,details,figure';
 
   /* ---------- adaptadores: seg() id aberto · raiz() onde está o texto · ir(id) · vigia(fn) ---------- */
@@ -36,6 +36,13 @@
     micro: porHash('#prose'),
     semio: porHash('#prose'),
     prev: porHash('#main .section[id]'),
+    huma: porHash('#main .section[id]'),
+    port: { // Português: aula e segmento pela barra (sem hash)
+      seg: () => { const m = $('#nav .nv.on[data-v=mod]'); if (!m) return ''; const s = $('#nav .sub .sb.on'); return m.dataset.id + ':' + (s ? (s.dataset.mais ? 'mais' : s.dataset.sg) : '0'); },
+      raiz: () => { const tb = $('#tb'); return tb && visivel(tb) ? tb : null; },
+      ir: () => {},
+      vigia: fn => new MutationObserver(fn).observe($('main') || D.body, { childList: true, subtree: true }),
+    },
     img: porHash('#main .section[id]'),
     lab: porHash('#main .section[id]'),
     dic: porHash('section.content.section'),
@@ -108,6 +115,7 @@
     if (sg !== segTent) { segTent = sg; tentativas = 0; }
     // a página do segmento ainda está chegando (iframe trocando de aula, conteúdo montado por JS): tenta de novo
     if (!sg || !raiz || raiz.textContent.trim().length < 40) { if (sg && tentativas++ < 12) setTimeout(depois, 350); return; }
+    caixa(sg, raiz);
     const lista = ((DADOS.l[K] || {})[sg]) || [];
     const marca = sg + '|' + lista.length;
     if (raiz.querySelector('.vg-elo') && raiz.dataset.vgElos === marca) return;
@@ -138,8 +146,31 @@
     } finally { setTimeout(() => { ocupado = false; }, 0); }
     ultimo = sg;
   }
+  /* ---------- caixa "🔗 LIGA COM O SEGMENTO / A AULA" (dentro da mesma matéria) ----------
+     Só texto, logo depois do parágrafo (ou da lista/tabela) que cita o tema. Vai num <aside>,
+     que o notas.js ignora: não muda a âncora dos grifos e não entra na seleção para anotar. */
+  function caixa(sg, raiz) {
+    const c = ((DADOS.i || {})[K] || {})[sg]; if (!c || raiz.querySelector('aside.vg-liga')) return;
+    const pats = c.p.map(p => p[0] === '=' ? { cs: true, r: new RegExp(p.slice(1)) } : { cs: false, r: new RegExp(p) });
+    let alvo = null;
+    const bs = blocos(raiz);
+    for (const b of bs) {
+      if (pats.some(({ cs, r }) => r.test(cs ? b.sa : b.sl))) { alvo = b.el; break; }
+    }
+    // o tema só aparece num título: a caixa entra depois do primeiro parágrafo de verdade do segmento
+    if (!alvo) { const b = bs.find(x => x.el !== raiz && x.tx.trim().length >= 80); alvo = b ? b.el : null; }
+    if (!alvo) return;
+    const fim = alvo.closest('ul,ol,table,dl,.table,.tw') || alvo;
+    const doc = raiz.ownerDocument, as = doc.createElement('aside');
+    as.className = 'vg-liga';
+    const p = doc.createElement('p'), b = doc.createElement('b');
+    b.textContent = '🔗 ' + c.r + ':'; p.append(b, ' ' + c.t); as.appendChild(p);
+    ocupado = true;
+    try { (fim === raiz ? raiz : fim).insertAdjacentElement(fim === raiz ? 'beforeend' : 'afterend', as); }
+    finally { setTimeout(() => { ocupado = false; }, 0); }
+  }
   let tAplicar = 0;
-  const depois = () => { clearTimeout(tAplicar); tAplicar = setTimeout(() => { aplicar(); pousar(); }, 220); };
+  const depois =() => { clearTimeout(tAplicar); tAplicar = setTimeout(() => { aplicar(); pousar(); }, 220); };
 
   /* ---------- caixinha (mesmo visual das anotações: .vg-n-ui .vg-n-tip) ---------- */
   const docs = new WeakMap();
