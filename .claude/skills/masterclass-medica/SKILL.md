@@ -117,7 +117,13 @@ Estas regras vieram do uso real da skill (Farmacologia, Prof. Douglas Almeida, A
 • Use o MESMO número de alternativas das provas reais (Farmacologia: 4, A–D) e o formato “situação-problema + Comando:” separado.
 • Nem toda questão precisa de gráfico: ~25% com imagem, o resto texto.
 • Questões INÉDITAS: use as provas antigas para entender o estilo, sem reaproveitar a matéria/questão já cobrada.
-• Alternativas balanceadas (a certa nunca visivelmente mais longa: razão de tamanho ≤ 1,8 e diferença ≤ 60 caracteres) e letras do gabarito bem distribuídas.
+• **Alternativas equilibradas: a certa NUNCA pode ser a mais longa por folga.** Vale para toda questão que nós escrevemos (autorais, reconstruídas da justificativa, simulados, quiz, Arena, flashcards com alternativas). Só o texto original de prova fica como veio.
+  - Regra que o site confere: é desequilibrada a questão em que a certa é a maior **e** tem ≥ 1,3 × a média das erradas **e** passa a maior errada em ≥ 8 caracteres. Nenhuma questão nossa pode cair nisso.
+  - Meta: todas com tamanho parecido (nenhuma com menos de ~60% da maior); pelo menos uma errada tão longa quanto a certa; a certa às vezes é a mais curta, às vezes a do meio. No conjunto da matéria, a certa só pode ser a mais longa em ~1 de cada 4 questões (o acaso).
+  - Como: tire da certa a explicação embutida (parênteses, "pois…", "— …", exemplo); ela vai para o comentário. Dê às erradas o mesmo nível de detalhe técnico (mecanismo, número, consequência), errado pelo mesmo motivo do comentário delas.
+  - Sem pistas trocadas: nada de palavra absoluta só nas erradas ("sempre", "nunca", "apenas") nem "pode/geralmente" só na certa; nada de repetir o enunciado só na certa; nada de errada absurda.
+  - Letras do gabarito bem distribuídas.
+  - Ao terminar um master ou um lote de questões, meça (comprimento da certa × das erradas) e corrija antes de publicar.
 • Gabarito comentado por alternativa, com a cadeia de mecanismo em setas (fármaco → receptor → proteína G → segundo mensageiro → efeito).
 • Discursivas no molde do professor (receptor + proteína G + segundo mensageiro + efeito), com caixa de texto que salva, “ver resposta esperada” e autoavaliação (acertei / parcial / errei).
 
