@@ -75,7 +75,11 @@ const repChip=g=>'<p class="rx-rep">🔁 <b>Caiu em '+new Set(g.map(x=>x.exam)).
 const segRep=s=>refsOf(s).some(x=>CL[x.id]);
 
 /* ---------- peças visuais ---------- */
-function heat(s,rs){const n=nExam(rs);return n?'<mark class="exam'+Math.min(5,n)+' rx-mk">'+E(s.title)+'</mark>':E(s.title)}
+/* Grifo do título com o balão das provas (mesma caixinha escura dos grifos do texto). Fica dentro de um link,
+   então as provas vão como etiquetas (span), não como links. */
+function heat(s,rs){const n=nExam(rs);if(!n)return E(s.title);
+  const pv=[...new Map(rs.map(x=>[x.exam+'|'+(x.label||''),x])).values()];
+  return '<span class="ref-wrap rx-rw"><mark class="exam'+Math.min(5,n)+' rx-mk" data-refs="'+rs.map(x=>x.id).join(',')+'">'+E(s.title)+'</mark><span class="ref-pop rx-pop"><strong>Caiu em '+n+' '+(n>1?'provas':'prova')+'</strong>'+pv.map(x=>'<span class="rx-pv">'+E(x.label||x.exam)+'</span>').join('')+'</span></span>'}
 function chip(n,g){if(!n)return '<span class="rx-chip zero">nunca caiu</span>';const t=g==='parciais'?(n>1?'parciais':'parcial'):(n>1?'somativas':'somativa');return '<span class="rx-chip'+(n>=3?' hot':'')+'">caiu em '+n+' '+t+'</span>'}
 function esquemaDe(l){
   if(typeof ESQUEMAS==='string'){
@@ -208,6 +212,11 @@ details.rx-aula[open]>summary.rx-hd::after{transform:rotate(90deg)}
 .rx-c h4{font:600 16px/1.35 var(--sans);margin:0;flex:1 1 100%}
 .rx-c h4 a{color:inherit;text-decoration:none}
 .rx-mk{padding:0 3px;border-radius:4px}
+.rx-rw{position:relative;display:inline}
+.rx-rw .rx-pop{display:none;position:absolute;z-index:40;top:100%;left:0;width:min(320px,78vw);font:13px/1.5 var(--sans,inherit);font-weight:400;background:#2b302d;color:#eef0ec;border-radius:12px;box-shadow:0 12px 32px rgba(20,22,20,.28);padding:10px 12px;margin-top:6px;text-align:left;white-space:normal}
+.rx-rw:hover .rx-pop,.rx-rw:focus-within .rx-pop{display:block}
+.rx-pop strong{display:block;margin-bottom:6px;color:#fff;font-weight:600}
+.rx-pv{display:inline-flex;margin:2px 4px 2px 0;background:#3b413d;color:#eef0ec;font-size:12px;padding:3px 10px;border-radius:999px}
 .rx-chip{display:inline-block;font:600 12px/1 var(--sans);padding:5px 9px;border-radius:99px;border:1px solid var(--border);color:var(--ink);white-space:nowrap}
 .rx-chip.hot{background:var(--bad-bg);border-color:var(--bad);color:var(--ink)}
 .rx-chip.rep{background:var(--accent-soft);border-color:var(--accent)}

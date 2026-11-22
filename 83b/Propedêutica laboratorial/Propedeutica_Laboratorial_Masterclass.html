@@ -587,7 +587,7 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=3f8b9f00">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=5dfe324c"></script><script defer src="../_tema/foco.js?v=9246477d"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="9f992af9"></script><script defer src="../_tema/abas.js?v=b9e2f6da"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script><script defer src="../_tema/praticar.js?v=f08615b6"></script>
+<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=425946f3"></script><script defer src="../_tema/foco.js?v=9246477d"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="9f992af9"></script><script defer src="../_tema/abas.js?v=b9e2f6da"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script><script defer src="../_tema/praticar.js?v=f08615b6"></script>
 <script defer src="../_tema/propaganda.js"></script><!--/vidro:cabeca-->
 </head>
 <body>
@@ -2104,8 +2104,8 @@ function lesson(l,anchor){anchor=(anchor||'').split('~')[0];const rev=l.id+'-rev
  const inl=new Set(s.paragraphs.filter(p=>/^\[\[fig \d+\]\]$/.test(p)).map(p=>+p.match(/\d+/)[0]));
  const FIG=f=>'<figure class="figure"><img loading="lazy" class="magnify" src="'+f.src+'" alt="'+esc(f.caption)+'"><figcaption>'+esc(f.caption)+'</figcaption></figure>'+(window.atlasLink?atlasLink(l,f.src):'');
  const figures=s.figures.filter((f,k)=>!inl.has(k)).map(FIG).join('');
- const supporting=dasProvas(s,refs,'Questões autorais ✍️');
- return '<section class="section" id="'+s.id+'"><div class="eyebrow">Segmento '+(i+1)+'</div><button type="button" class="done-t" data-read="'+s.id+'"><span class="d"></span><span class="lbl"></span></button><h2>'+esc(s.title)+'</h2>'+keysBlock(s)+
+ const supporting=dasProvas(s,refs,'Questões autorais ✍️');let gr=0;
+ return '<section class="section" id="'+s.id+'"><div class="eyebrow">Segmento '+(i+1)+'</div><button type="button" class="done-t" data-read="'+s.id+'"><span class="d"></span><span class="lbl"></span></button><h2>'+(refs.length&&!s.paragraphs.some(p=>!/^(## |\[\[|\||- |🗣️ )/.test(p))?title:esc(s.title))+'</h2>'+keysBlock(s)+
  s.paragraphs.map((p,idx)=>{
  if(p.startsWith('## '))return '<h3>'+esc(p.slice(3))+'</h3>';
  if(/^\[\[fig \d+\]\]$/.test(p)){const f=s.figures[+p.match(/\d+/)[0]];return f?FIG(f):''}
@@ -2113,7 +2113,7 @@ function lesson(l,anchor){anchor=(anchor||'').split('~')[0];const rev=l.id+'-rev
  if(p.startsWith('- ')){return '<ul>'+p.split(String.fromCharCode(10)).map(x=>'<li>'+esc(x.replace(/^- /,''))+'</li>').join('')+'</ul>'}
  if(/^\[\[esq [\w-]+\]\]$/.test(p))return window.labEsq?labEsq(p.slice(6,-2)):'';
  if(p.startsWith('🗣️ ')){return '<div class="panel prof"><b>🗣️ A professora destaca</b><p>'+esc(p.slice(3))+'</p></div>'}
- if(idx!==0||!refs.length)return '<p>'+esc(p)+'</p>';
+ if(gr||!refs.length)return '<p>'+esc(p)+'</p>';gr=1; /* grifo no 1o paragrafo de texto, mesmo depois de subtitulo, lista ou tabela */
  const sentence=p.match(/^.*?[.!?](?= |$)/)?.[0]||p;
  return '<p>'+title.replace(esc(s.title),esc(sentence))+esc(p.slice(sentence.length))+'</p>';
  }).join('')+figures+(s.prova?'<div class="panel prova"><b>📝 Como a prova cobra</b><p>'+esc(s.prova)+'</p></div>':'')+(s.note?'<p class="panel alert"><b>■ EXTRA:</b> '+esc(s.note)+'</p>':'')+deepBlock(s)+supporting+
