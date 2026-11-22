@@ -1897,6 +1897,114 @@ const upd=e=>{const r=e.target.closest&&e.target.closest('[data-c14]');if(r&&!CL
 document.addEventListener('input',upd);document.addEventListener('change',upd);
 })();
 </script>
+<!--esq-raciocinio:inicio--><script>
+/* Esquemas com raciocínio (Propedêutica laboratorial).
+   1) Listas de "marque as que você respondeu" viram "ponha em ordem" (data-ord), com conferência.
+   2) Esquemas de explorar (toque, arraste, marque) ganham uma pergunta ANTES de explorar, no formato
+      da enquete do esq.js (data-pk): a resposta só aparece depois de escolher.
+   Estende window.labEsq; não muda os esquemas originais. */
+(function(){
+'use strict';
+const prev=window.labEsq||(()=>'');
+const emb=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const fig=(t,sub,body,cap)=>'<figure class="esq"><div class="esq-h"><b>'+t+'</b>'+(sub?'<span>'+sub+'</span>':'')+'</div>'+body+(cap?'<figcaption>'+cap+'</figcaption>':'')+'</figure>';
+const poll=(ask,opts,ans,rv)=>'<div class="esq-poll esq-antes" data-ans="'+ans+'"><p class="esq-ask"><b>🧠 Antes de explorar:</b> '+ask+'</p><div class="esq-pk">'+opts.map((o,i)=>'<button type="button" data-pk="'+i+'">'+o+'</button>').join('')+'</div><div class="esq-rv" hidden>'+rv+'</div></div>';
+
+/* ---------- 1) ponha em ordem ---------- */
+const ORD={
+ cinco:['Antes de solicitar ou repetir','Ponha as cinco perguntas na ordem do raciocínio · toque na ordem, toque de novo para tirar',
+  [['Hipótese','Qual doença ou processo estou investigando?'],['Tempo','Quando os sintomas começaram e quando ocorreu a coleta?'],['Interferências','Cirurgia, anemia ou medicamentos mudam a interpretação?'],['Evolução','O resultado acompanha o estado clínico do paciente?'],['Decisão','O exame vai mudar investigação, tratamento ou seguimento?']],
+  'Sem hipótese não há o que interpretar; o tempo diz se o marcador já deveria ter mudado; as interferências dizem se o número é confiável; a evolução diz se ele acompanha o paciente; e só então se decide se o exame muda a conduta.',
+  'A repetição precisa de uma pergunta e de um intervalo útil.'],
+ 'ist-4perg':['Quatro perguntas para ler um laudo','Ponha na ordem em que você pergunta antes de interpretar · toque na ordem, toque de novo para tirar',
+  [['Hipótese','Qual é a probabilidade clínica antes do teste?'],['Tempo','Quanto tempo passou desde a exposição: o teste já enxerga a infecção?'],['Método','O exame procura o agente (direto) ou a resposta do corpo (anticorpo)?'],['Decisão','O resultado muda o próximo passo, ou precisa ser repetido ou confirmado?']],
+  'A probabilidade antes do teste define o peso do resultado; o tempo desde a exposição define se o teste já poderia estar positivo (janela); o método diz o que um negativo significa; e por fim se decide: confirmar, repetir ou tratar.',
+  'Negativo dentro da janela não exclui: repita no tempo certo.']
+};
+function ordem(k){const o=ORD[k];
+ return fig(o[0],o[1],'<div class="esq-ord" data-ord="'+k+'"><ol class="esq-ord-alvo"></ol><div class="esq-ord-banco">'+emb(o[2].map((x,i)=>i)).map(i=>'<button type="button" data-oi="'+i+'"><b>'+o[2][i][0]+'</b><span>'+o[2][i][1]+'</span></button>').join('')+'</div><button type="button" class="esq-ord-ok" disabled>Conferir a ordem</button><div class="esq-ord-fb" hidden></div></div>'+(o[4]?'<p class="esq-key">'+o[4]+'</p>':''));
+}
+document.addEventListener('click',e=>{
+ const b=e.target.closest&&e.target.closest('.esq-ord [data-oi]');
+ if(b){const r=b.closest('.esq-ord');if(r.dataset.r)return;const alvo=r.querySelector('.esq-ord-alvo'),banco=r.querySelector('.esq-ord-banco');
+  if(b.parentNode===banco){const li=document.createElement('li');li.appendChild(b);alvo.appendChild(li)}else{const li=b.parentNode;banco.appendChild(b);li.remove()}
+  r.querySelector('.esq-ord-ok').disabled=alvo.children.length!==ORD[r.dataset.ord][2].length;return}
+ const ok=e.target.closest&&e.target.closest('.esq-ord-ok');
+ if(ok){const r=ok.closest('.esq-ord'),o=ORD[r.dataset.ord];r.dataset.r=1;ok.remove();let c=0;
+  [...r.querySelectorAll('.esq-ord-alvo li')].forEach((li,i)=>{const certo=+li.querySelector('[data-oi]').dataset.oi===i;if(certo)c++;li.classList.add(certo?'right':'wrong')});
+  const fb=r.querySelector('.esq-ord-fb');fb.hidden=false;
+  fb.innerHTML='<p class="esq-verd">'+(c===o[2].length?'✅ Ordem certa.':'❌ '+c+' de '+o[2].length+' no lugar. A ordem é:')+'</p>'+(c===o[2].length?'':'<ol>'+o[2].map(x=>'<li><b>'+x[0]+'</b></li>').join('')+'</ol>')+'<p>'+o[3]+'</p><button type="button" class="esq-ord-re">Montar de novo</button>';return}
+ const re=e.target.closest&&e.target.closest('.esq-ord-re');
+ if(re){const f=re.closest('figure.esq'),k=re.closest('.esq-ord').dataset.ord,n=document.createElement('div');n.innerHTML=ordem(k);f.replaceWith(n.firstChild)}
+});
+
+/* ---------- 2) pergunta antes de explorar ---------- */
+const P={
+ /* Aula 11 */
+ 'fase-aguda':['Na resposta de fase aguda, o que o fígado faz com a albumina?',['Aumenta, para manter a pressão oncótica','Reduz: é proteína de fase aguda negativa','Não muda, só a PCR é afetada','Aumenta junto com o fibrinogênio'],1,'A IL-6 desvia a síntese hepática: sobem PCR, fibrinogênio, ferritina e hepcidina; caem albumina e transferrina (fase aguda negativas).'],
+ cinetica:['Depois de um estímulo único, qual marcador sobe primeiro e qual demora mais para normalizar?',['PCR primeiro; VHS demora mais','VHS primeiro; PCR demora mais','Os três sobem e caem juntos','Procalcitonina demora mais que a VHS'],0,'A PCR sobe em horas e cai em dias; a VHS depende do fibrinogênio, sobe devagar e fica alta por semanas. A procalcitonina sobe ainda mais cedo na infecção bacteriana.'],
+ conversor:['Laudo antigo: PCR 1,2 mg/dL. Laudo novo: 12 mg/L. A inflamação piorou?',['Sim, subiu dez vezes em relação ao anterior','Não: é o mesmo valor em outra unidade','Sim, mais que dobrou em pouco tempo','Não dá para comparar laudos diferentes'],1,'1 mg/dL = 10 mg/L. Antes de comparar, confira a unidade: o erro de unidade multiplica por dez.'],
+ 'vhs-tubo':['Qual destes achados AUMENTA a VHS?',['Policitemia','Anemia','Hemácias falciformes','Hipofibrinogenemia'],1,'Anemia, fibrinogênio e globulinas altos aceleram a sedimentação. Policitemia, hemácias de forma anômala e fibrinogênio baixo reduzem a VHS.'],
+ desfechos:['Se o estímulo inflamatório persiste e não é removido, a inflamação aguda tende a:',['Resolver sem deixar marca','Cronificar','Virar sempre abscesso','Parar sozinha em 24 horas'],1,'Resolução exige remover o estímulo; com estímulo persistente, cronifica. Destruição tecidual extensa deixa reparo com fibrose.'],
+ /* Aula 12 */
+ bayes:['FAN reagente 1:160 em mulher sem nenhum sinal de doença autoimune. O mais provável é:',['Lúpus em fase inicial, ainda sem sintomas','Achado sem doença: pré-teste baixa','Artrite reumatoide soronegativa precoce','Erro do laboratório na diluição'],1,'Com probabilidade pré-teste baixa, a maioria dos FAN positivos é de pessoas saudáveis. Arraste a barra e veja o valor preditivo cair.'],
+ hep2:['Qual padrão de FAN em HEp-2 costuma aparecer em pessoas saudáveis?',['Homogêneo difuso','Centromérico discreto','Pontilhado fino denso','Nucleolar homogêneo'],2,'O pontilhado fino denso (anti-DFS70) é frequente em quem não tem doença autoimune sistêmica e até tranquiliza.'],
+ 'les-escore':['No escore EULAR/ACR 2019 do lúpus, qual é o critério de entrada?',['Anti-DNA positivo em título alto','FAN ≥ 1:80 em algum momento','Complemento baixo (C3 e C4)','Nefrite lúpica na biópsia renal'],1,'Sem FAN ≥ 1:80, não se aplica o escore. Depois, em cada domínio conta só o achado de maior peso.'],
+ 'ar-escore':['Na classificação da AR (2010), qual achado soma mais pontos no domínio sorológico?',['FR fracamente positivo, até 3× o limite','Anti-CCP acima de 3× o limite','VHS e PCR elevadas ao mesmo tempo','Sintomas há mais de 6 semanas seguidas'],1,'Sorologia alta (FR ou anti-CCP > 3× o limite superior) vale 3 pontos; baixa vale 2. Provas de fase aguda e duração valem 1.'],
+ algoritmo:['Mulher jovem com eritema malar, artrite e proteinúria. Qual exame se pede primeiro?',['FAN','ANCA','Anti-CCP','Anticentrômero'],0,'Síndrome sugestiva de lúpus: FAN como porta de entrada; se positivo, anti-DNA, anti-Sm e complemento.'],
+ /* Aula 13 */
+ 'arb-perguntas':['Antes de escolher o exame de uma arbovirose, o que você precisa saber primeiro?',['O dia de sintomas','O resultado do hemograma','A cor da urina','A última vacina'],0,'O dia de doença decide entre detectar o vírus (antes do 5º dia) e detectar anticorpos (depois).'],
+ 'janela-geral':['Paciente com 2 dias de febre e suspeita de arbovirose. O que tem mais chance de vir positivo?',['IgG específica','IgM específica','RT-PCR ou antígeno','Nenhum exame ainda'],2,'Nos primeiros dias o vírus circula e a IgM ainda não subiu. Arraste o dia e veja a troca.'],
+ 'covid-testes':['Paciente com sintomas há 2 dias. Qual exame tem maior sensibilidade para COVID-19?',['Sorologia IgG','RT-PCR de swab','Tomografia de tórax','Hemograma'],1,'O RT-PCR detecta RNA viral e é o mais sensível no início; o antígeno é mais rápido e menos sensível; a sorologia não serve para o diagnóstico agudo.'],
+ 'covid-rna':['RT-PCR ainda positivo 3 semanas depois de COVID-19 leve, paciente bem. O que significa?',['Reinfecção certa por outra variante','RNA residual, sem vírus viável','Falha do tratamento antiviral','Doença grave ainda em curso'],1,'O RT-PCR detecta fragmento de RNA, que pode persistir sem vírus viável.'],
+ 'dengue-linha':['Febre há 3 dias, suspeita de dengue. Qual exame você pede?',['NS1 ou RT-PCR','IgM','IgG','Prova do laço como diagnóstico'],0,'Até o 5º dia, detecção do vírus (NS1 ou RT-PCR); a partir do 6º, IgM.'],
+ 'dengue-curso':['Em que fase da dengue o risco de choque é maior?',['No 1º dia de febre alta','Quando a febre cai','Na convalescença tardia','Antes de começar a febre'],1,'Quando a febre cai (por volta do 3º ao 7º dia), o extravasamento plasmático pode levar ao choque.'],
+ 'dengue-hemo':['No hemograma seriado, qual combinação é sinal de alarme?',['Hematócrito subindo e plaquetas caindo','Hematócrito caindo e plaquetas subindo','Leucocitose com neutrofilia','Hemoglobina estável'],0,'Hemoconcentração (Ht subindo) com plaquetopenia progressiva indica extravasamento plasmático.'],
+ 'dengue-grupo':['Paciente com dengue, sem sinais de alarme, mas é gestante. Em que grupo fica?',['Grupo A','Grupo B','Grupo C','Grupo D'],1,'Comorbidade, condição clínica especial ou risco social, sem sinal de alarme, é grupo B. Sinal de alarme é C; choque é D.'],
+ 'zika-linha':['Suspeita de zika há 10 dias. Que amostra ainda pode detectar o vírus?',['Sangue','Urina','Saliva colhida no 1º dia','Nenhuma'],1,'No sangue, o RT-PCR do zika vai até cerca do 5º dia; na urina, até cerca do 15º.'],
+ 'chik-linha':['Chikungunya no 7º dia de sintomas. Qual exame pedir?',['Só RT-PCR, porque é cedo','Só IgM, porque já é tarde','RT-PCR e/ou IgM','Nenhum: já passou a janela'],2,'O RT-PCR vai até cerca do 8º dia e a IgM aparece a partir do 6º: nesse intervalo os dois servem.'],
+ 'chik-fases':['Qual característica marca a fase crônica da chikungunya?',['Viremia alta e persistente','Artralgia por meses','Plaquetopenia grave e sangramento','Exantema pruriginoso difuso'],1,'O vírus some em dias, mas a dor articular pode durar meses ou anos.'],
+ seletor:['Suspeita de dengue no 8º dia de sintomas. O que pedir?',['NS1','RT-PCR','IgM','Nenhum exame'],2,'Depois do 5º dia, a detecção do vírus cai e a IgM é o exame de escolha. Use o seletor para conferir outras combinações.'],
+ /* Aula 14 */
+ 'hiv-virion':['Qual alvo do HIV é detectado pelo teste de 4ª geração, além dos anticorpos?',['gp120','Antígeno p24','Transcriptase reversa','RNA viral'],1,'O 4ª geração detecta anticorpos e o antígeno p24 do capsídeo, o que encurta a janela.'],
+ 'hiv-historia':['O que acontece com o CD4 na fase de latência clínica, sem tratamento?',['Cai lentamente ao longo de anos','Fica normal até a fase de aids','Sobe progressivamente sem tratar','Cai a zero em poucas semanas'],0,'Na infecção aguda há queda e recuperação parcial; depois o CD4 cai devagar, por anos, até a aids.'],
+ 'hiv-janela':['Exposição há 10 dias. Qual marcador tem mais chance de ser detectado?',['Anticorpo IgG','RNA viral','Antígeno p24 isolado','Nenhum: é tudo eclipse'],1,'O RNA aparece por volta do 10º dia, depois o p24 e só então os anticorpos.'],
+ 'hiv-fita':['Teste rápido: aparece só a linha de controle (C), sem a do teste (T). O resultado é:',['Reagente','Não reagente','Inválido','Indeterminado'],1,'Controle presente sem linha de teste = não reagente. Sem a linha de controle, o teste é inválido.'],
+ 'hiv-tr':['Primeiro teste rápido (TR1) reagente. Qual o próximo passo?',['Fechar o diagnóstico de HIV já','Fazer o TR2, de outro fabricante','Repetir o mesmo TR1 em 30 dias','Pedir só a contagem de CD4'],1,'O diagnóstico exige dois testes rápidos diferentes reagentes; se discordarem, segue o fluxo de investigação.'],
+ 'cd4-risco':['Com CD4 abaixo de 200 células/mm³, qual infecção oportunista entra no radar?',['Pneumocistose','Gripe comum','Faringite estreptocócica','Infecção urinária'],0,'Abaixo de 200, pneumocistose; abaixo de 100, toxoplasmose e criptococose; abaixo de 50, CMV e micobactérias atípicas.'],
+ 'sif-testes':['Qual teste de sífilis serve para acompanhar a resposta ao tratamento?',['Teste treponêmico','VDRL (não treponêmico)','FTA-Abs','Teste rápido treponêmico'],1,'O VDRL é titulado e cai com o tratamento; o treponêmico fica positivo por toda a vida.'],
+ 'sif-diluicoes':['O VDRL reagiu até a diluição 1:32 e não reagiu em 1:64. O título é:',['1:64','1:32','1:16','Não reagente'],1,'O título é a maior diluição que ainda reage.'],
+ 'sif-matriz':['Treponêmico reagente e VDRL não reagente, em paciente tratado no passado. Interpretação mais provável:',['Sífilis ativa que precisa de tratamento','Cicatriz sorológica','Falso-positivo dos dois testes juntos','Neurossífilis até prova em contrário'],1,'O treponêmico continua reagente depois da cura; o VDRL negativa ou fica baixo.'],
+ 'ist-matriz':['Para diagnosticar clamídia, qual exame é o de escolha?',['Cultura em ágar sangue de rotina','Teste molecular (NAAT/PCR)','Sorologia IgG para clamídia','Gram da secreção uretral'],1,'A clamídia é intracelular obrigatória: o teste molecular é o mais sensível.'],
+ 'ist-sitio':['Homem que faz sexo oral e anal receptivo. Onde colher para gonorreia e clamídia?',['Só a urina de primeiro jato','Urina, orofaringe e reto','Só o sangue, por sorologia','Só a uretra, com swab'],1,'Colhe-se em cada sítio exposto: a infecção extragenital passa despercebida se só a urina for testada.'],
+ 'hbv-painel':['HBsAg negativo, anti-HBc total negativo e anti-HBs positivo. Interpretação?',['Infecção curada','Vacinado','Infecção aguda','Hepatite B crônica'],1,'Só anti-HBs: imunidade vacinal. Quem teve contato com o vírus tem anti-HBc.']
+};
+window.labEsq=k=>{
+ if(ORD[k])return ordem(k);
+ let h=prev(k);
+ if(P[k]&&h){const i=h.indexOf('</div>',h.indexOf('class="esq-h"'));if(i>0)h=h.slice(0,i+6)+poll(...P[k])+h.slice(i+6)}
+ return h;
+};
+})();
+</script>
+<style>
+.esq-antes{margin:10px 0 14px}
+.esq-ord-alvo{list-style:none;counter-reset:eo;margin:10px 0;padding:10px;min-height:56px;border:1px dashed currentColor;border-color:color-mix(in srgb,currentColor 25%,transparent);border-radius:14px;display:grid;gap:8px}
+.esq-ord-alvo li{counter-increment:eo;display:flex;align-items:center;gap:8px}
+.esq-ord-alvo li::before{content:counter(eo);flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--accent,#3fbf8a);color:#06261d}
+.esq-ord-alvo li.right button{border-color:#3fbf8a}
+.esq-ord-alvo li.wrong button{border-color:#e0675f}
+.esq-ord-banco{display:grid;gap:8px}
+.esq-ord [data-oi]{appearance:none;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;background:color-mix(in srgb,currentColor 6%,transparent);border:1px solid color-mix(in srgb,currentColor 18%,transparent);border-radius:12px;padding:9px 12px;display:flex;flex-direction:column;gap:2px;transition:transform .16s ease,border-color .15s}
+.esq-ord [data-oi]:active{transform:scale(.98)}
+.esq-ord [data-oi] span{font-size:.92em;opacity:.8}
+.esq-ord-ok,.esq-ord-re{margin-top:12px;appearance:none;border:none;cursor:pointer;height:38px;padding:0 16px;border-radius:999px;background:var(--accent,#3fbf8a);color:#06261d;font:600 14px/1 inherit}
+.esq-ord-ok:disabled{opacity:.4;cursor:default}
+.esq-ord-fb{margin-top:12px}
+.esq-ord-fb ol{margin:.3em 0;padding-left:1.3em}
+</style>
+<!--esq-raciocinio:fim-->
+
 <script>
 'use strict';
 const data=JSON.parse(document.querySelector('#dataset').textContent);
