@@ -648,3 +648,53 @@ html.vidro-aula[data-vidro="pato"] .tbl{border-radius:18px;background:var(--vg-g
 .slide-txt-wrap{overflow-x:auto}
 .cap-solta{font-size:.9em;opacity:.85;margin-top:-.6em}
 figcaption .fonte,.cap-solta .fonte{display:block;margin-top:.35em;font-size:.86em;opacity:.7;font-style:italic}
+
+/* ===================================================== 🎮 PRATIQUE O RACIOCÍNIO (_tema/praticar.js)
+   Mesmo espírito dos widgets da Farmacologia e da Patologia TGI: bancada escura no meio do texto. */
+.vg-wg{--wb:#14201d;--wb2:#1d2c28;--wb3:#263833;--wt:#e3ebe7;--wm:#9fb1aa;--wa:var(--vg-acc,#5fc4ae);margin:30px 0;border-radius:20px;background:var(--wb);color:var(--wt);overflow:hidden;box-shadow:0 10px 30px -18px rgba(0,0,0,.6);transition:box-shadow .3s ease}
+[data-theme="light"] .vg-wg{--wb:#f3f6f4;--wb2:#e7eeea;--wb3:#dbe5e0;--wt:#18231f;--wm:#5b6b65;box-shadow:0 0 0 1px rgba(0,0,0,.07),0 10px 26px -20px rgba(0,0,0,.4)}
+.vg-wg.wg-novo{box-shadow:0 0 0 2px var(--wa),0 10px 30px -14px var(--wa)}
+.vg-wg .wg-h{display:flex;align-items:center;gap:12px;padding:16px 18px 13px;border-bottom:1px solid var(--wb3)}
+.vg-wg .wg-ic{width:38px;height:38px;flex:none;border-radius:50%;background:var(--wb3);display:flex;align-items:center;justify-content:center;font-size:18px}
+.vg-wg .wg-tt{flex:1;min-width:0}
+.vg-wg .wg-tt b{display:block;font-size:16px;font-weight:600;color:var(--wt)}
+.vg-wg .wg-tt span{display:block;font-size:13px;color:var(--wm);line-height:1.35}
+.vg-wg .wg-xp{font-size:12px;font-weight:600;color:#1d1a0e;background:#ead7a0;border-radius:999px;padding:4px 10px;white-space:nowrap}
+.vg-wg .wg-xp.ok{background:var(--wa);color:#06261d}
+.vg-wg .wg-b{padding:16px 18px 18px;font-size:15px;line-height:1.55}
+.vg-wg .wg-b p{margin:.5em 0;color:var(--wt)}
+.vg-wg .wg-btn{appearance:none;border:none;cursor:pointer;margin-top:12px;height:38px;padding:0 16px;border-radius:999px;background:var(--wa);color:#06261d;font:600 14px/1 inherit;transition:transform .16s ease,opacity .15s}
+.vg-wg .wg-btn:active{transform:scale(.97)}
+.vg-wg .wg-btn:disabled{opacity:.4;cursor:default}
+.vg-wg .wg-start{margin-top:0}
+.vg-wg .wg-pass{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--wm);margin-bottom:6px}
+.vg-wg .wg-caso,.vg-wg .wg-carta{background:var(--wb2);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.vg-wg .wg-carta{font-size:16px;font-weight:500;text-align:center;padding:18px 14px}
+.vg-wg .wg-q{margin-top:12px;animation:wgIn .22s ease-out}
+.vg-wg .wg-p{font-weight:600;margin-bottom:8px}
+.vg-wg .wg-ops{display:grid;gap:8px}
+.vg-wg .wg-cats{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.vg-wg .wg-op,.vg-wg .wg-chip{appearance:none;text-align:left;border:1px solid var(--wb3);background:var(--wb2);color:var(--wt);border-radius:12px;padding:10px 12px;font:inherit;font-size:14.5px;line-height:1.4;cursor:pointer;transition:background-color .15s,border-color .15s,transform .16s}
+.vg-wg .wg-cats .wg-op{text-align:center;font-weight:600}
+.vg-wg .wg-op:not(:disabled):hover,.vg-wg .wg-chip:hover{border-color:var(--wa)}
+.vg-wg .wg-op:active,.vg-wg .wg-chip:active{transform:scale(.98)}
+.vg-wg .wg-op:disabled{cursor:default}
+.vg-wg .ok:not(.wg-xp):not(.wg-fb){border-color:#3fbf8a;background:color-mix(in srgb,#3fbf8a 22%,var(--wb2))}
+.vg-wg .erro:not(.wg-fb){border-color:#e0675f;background:color-mix(in srgb,#e0675f 22%,var(--wb2))}
+.vg-wg .wg-fb{margin-top:10px;padding:10px 12px;border-radius:12px;border-left:3px solid #e0675f;background:color-mix(in srgb,#e0675f 10%,transparent);font-size:14.5px}
+.vg-wg .wg-fb.ok{border-left-color:#3fbf8a;background:color-mix(in srgb,#3fbf8a 10%,transparent)}
+.vg-wg .wg-fb ol{margin:.3em 0 0;padding-left:1.3em}
+.vg-wg .wg-seq{list-style:none;counter-reset:wgs;margin:8px 0;padding:10px;min-height:52px;border:1px dashed var(--wb3);border-radius:14px;display:grid;gap:6px}
+.vg-wg .wg-seq .wg-chip{counter-increment:wgs;width:100%}
+.vg-wg .wg-seq .wg-chip::before{content:counter(wgs) ". ";font-weight:700;color:var(--wa)}
+.vg-wg .wg-banco{display:flex;flex-wrap:wrap;gap:6px}
+.vg-wg .wg-dica{font-size:13px;color:var(--wm);margin:0 0 6px}
+.vg-wg .wg-placar{font-size:16px;margin:6px 0}
+.vg-wg .wg-esc{display:grid;gap:6px;margin-bottom:10px}
+.vg-wg .wg-esc-i{display:flex;align-items:center;gap:10px;background:var(--wb2);border-radius:12px;padding:9px 12px;cursor:pointer}
+.vg-wg .wg-esc-i span{flex:1}
+.vg-wg .wg-esc-i em{font-style:normal;font-weight:700;color:var(--wa)}
+.vg-wg .wg-esc-i input{accent-color:var(--wa);width:18px;height:18px}
+@keyframes wgIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.vg-wg .wg-q{animation:none}}
+@media (max-width:600px){.vg-wg{margin:24px -6px;border-radius:16px}.vg-wg .wg-b{padding:14px}}
