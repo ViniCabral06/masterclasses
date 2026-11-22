@@ -11,7 +11,9 @@
    Sem fundo 3D, lâmpada, Foco de estudo nem enfeites. A barra lateral do master continua no DOM, escondida:
    é dela (ou dos dados do master) que o script lê as aulas, e é pelos cliques nela que ele navega.
    Cada master tem um adaptador em AD; master sem adaptador (TH IV) continua como sempre.
-   A última aula aberta fica em "vg-abas:<chave>". Só o PC foi acertado; o celular fica para depois. */
+   A última aula aberta fica em "vg-abas:<chave>".
+   Barra com ícones de traço; Anterior · Concluir · Próximo e o canto com o mesmo acabamento dela. No celular a barra de abas
+   fica encaixada embaixo e opaca, e a casinha e a tela cheia viram uma barra fina no topo. */
 (function () {
   const D = document, html = D.documentElement, K = html.dataset.vidro || '';
   if (window.__vgAbas || html.classList.contains('vidro-aula')) return; window.__vgAbas = true;
@@ -49,7 +51,7 @@
     concluir: id => { const b = $('#main [data-read="' + id.split('/').pop() + '"]'); if (b) b.click(); },
     pagina: () => { const s = $('#main .section[id]'); if (!s) return null; const h = $('h2', s); return { doc: D, cont: s, topo: h && h.nextElementSibling && h.nextElementSibling.classList.contains('vg-segxy') ? h.nextElementSibling : h, fim: null }; },
     esconde: '#main .navfoot,#main .done-t,#main .cel-finish{display:none!important}',
-    css: '#side,.side,.sidebar,aside,.drawer-btn,.mbar,.topbar{display:none!important}',
+    css: '#side,.side,.sidebar,aside,.drawer-btn,.mbar,.topbar,body>header.top{display:none!important}', // header.top: cabeçalho do celular (☰ e tema), substituído pelas abas
     vigia: fn => { addEventListener('hashchange', () => setTimeout(fn, 30)); new MutationObserver(fn).observe($('#main'), { childList: true }); },
   };
   const AD = {
@@ -96,7 +98,7 @@
       concluir: () => { const b = $('#view [data-act=done]'); if (b) b.click(); },
       pagina: () => { const p = $('#view .page'), h = p && $('h1.pt', p); if (!h || !$('[data-act=done]', p)) return null; const x = h.nextElementSibling; return { doc: D, cont: p, topo: x && x.classList.contains('vg-segxy') ? x : h, fim: null }; },
       esconde: '#view .page>.actions{display:none!important}',
-      css: '#sb,aside,.sbtoggle,.mtop,.topbar{display:none!important}',
+      css: '#sb,#top,aside,.sbtoggle,.mtop,.topbar{display:none!important}',
       vigia: fn => { addEventListener('hashchange', () => setTimeout(fn, 30)); new MutationObserver(fn).observe($('#view'), { childList: true }); },
     },
     port: {
@@ -165,76 +167,97 @@
   const salva = () => { try { localStorage.setItem(CK, JSON.stringify(mem)); } catch (e) {} };
   const esc = t => String(t == null ? '' : t).replace(/[<>&"]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
 
-  /* ---------- estilo ---------- */
+  /* ---------- estilo ----------
+     Visual limpo, no espírito dos sites da Apple: superfícies sólidas, linhas finas, títulos sans pesados,
+     ícones de traço e a cor de destaque só no que está ativo. No celular a barra fica encaixada embaixo e opaca
+     (o tema tira o desfoque no celular, então nada de vidro transparente por trás do texto). */
   const CSS_SEG = `
 mark.vga-mk{background:color-mix(in srgb,#f5c542 60%,transparent);color:inherit;border-radius:3px;padding:0 1px;scroll-margin:120px}
-.vga-seg{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 22px;font-family:var(--vg-text,var(--sans,system-ui,sans-serif))}
-.vga-seg.fim{margin:48px 0 8px;padding-top:22px;border-top:1px solid var(--border,rgba(127,127,127,.22))}
-.vga-seg button{all:unset;box-sizing:border-box;cursor:pointer;height:40px;padding:0 16px;border-radius:999px;font:500 14px/1 var(--vg-text,var(--sans,system-ui,sans-serif));
-  background:var(--surface,rgba(127,127,127,.12));color:var(--ink,inherit);transition:background-color .15s ease,transform .12s ease;white-space:nowrap}
-.vga-seg button:hover{background:var(--surface-2,rgba(127,127,127,.2))}
-.vga-seg button:active{transform:scale(.97)}
+/* Anterior · Concluir · Próximo: o mesmo acabamento da barra de abas (superfície, borda fina, sombra, ícone de traço) */
+.vga-seg{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 0 24px;font-family:var(--vga-font,var(--vg-text,var(--sans,system-ui,sans-serif)))}
+.vga-seg.fim{margin:48px 0 8px;padding-top:22px;border-top:1px solid var(--vga-line,color-mix(in srgb,currentColor 12%,transparent))}
+.vga-seg button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:46px;padding:0 18px;border-radius:18px;
+  font:500 14px/1 var(--vga-font,var(--vg-text,var(--sans,system-ui,sans-serif)));letter-spacing:.005em;white-space:nowrap;color:var(--vga-ink2,inherit);-webkit-tap-highlight-color:transparent;
+  background:var(--vga-card,color-mix(in srgb,currentColor 7%,transparent));border:1px solid var(--vga-line,color-mix(in srgb,currentColor 14%,transparent));
+  box-shadow:0 1px 2px rgba(0,0,0,.08),0 6px 18px rgba(0,0,0,.1);transition:color .2s ease,background-color .2s ease,transform .15s ease}
+.vga-seg button svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.vga-seg button .fl{fill:currentColor;fill-opacity:0;transition:fill-opacity .2s ease}
+.vga-seg button:hover{color:var(--vga-ink,inherit)}
+.vga-seg button:active{transform:scale(.96)}
 .vga-seg button:focus-visible{outline:2px solid var(--vg-acc,#5aa9ff);outline-offset:2px}
-.vga-seg .dn.on{background:var(--ok-bg,rgba(63,185,80,.16));color:var(--ok,#3fb950);font-weight:600}
-.vga-seg span{flex:0 0 auto;min-width:1px}`;
+.vga-seg .nx{color:var(--vga-on,var(--vg-acc-ink,var(--vg-acc,inherit)));font-weight:600}
+.vga-seg .nx:hover{color:var(--vga-on,var(--vg-acc-ink,var(--vg-acc,inherit)))}
+.vga-seg .nx .fl{fill-opacity:.22}
+.vga-seg .dn.on{color:#30b350;font-weight:600}
+.vga-seg .dn.on .fl{fill-opacity:.2}
+.vga-seg span{flex:0 0 auto;min-width:1px}
+@media (hover:none){.vga-seg button:hover{color:var(--vga-ink2,inherit)}}
+@media (max-width:480px){.vga-seg{gap:8px}.vga-seg button{height:44px;padding:0 14px;border-radius:17px;font-size:13.5px}.vga-seg .pv{width:44px;padding:0}.vga-seg .pv .lb{display:none}}`;
   const st = D.createElement('style'); st.id = 'vg-abas-css';
   st.textContent = `
-:root{--vga-h:64px;--vga-gap:12px}
+/* ---- cores e fonte do modo foco ---- */
+html.vga-on{--vga-font:-apple-system,BlinkMacSystemFont,"SF Pro Text",var(--vg-text,"Instrument Sans"),system-ui,sans-serif;
+  --vga-bg:#111312;--vga-card:#1c1d1f;--vga-card2:#2c2d30;--vga-line:rgba(255,255,255,.1);--vga-ink:#f5f5f7;--vga-ink2:#a1a1a6;
+  --vga-bar:rgba(30,31,33,.82);--vga-solid:#1c1d1f;--vga-sh:0 16px 48px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.25);
+  --vga-on:color-mix(in srgb,var(--vg-acc-ink,var(--vg-acc,#0a84ff)) 82%,#fff)}
+html.vga-on[data-theme=light]{--vga-bg:#f5f5f7;--vga-card:#fff;--vga-card2:#ececf0;--vga-line:rgba(0,0,0,.09);--vga-ink:#1d1d1f;--vga-ink2:#6e6e73;
+  --vga-bar:rgba(255,255,255,.82);--vga-solid:#fff;--vga-sh:0 16px 48px rgba(0,0,0,.12),0 2px 6px rgba(0,0,0,.06);
+  --vga-on:color-mix(in srgb,var(--vg-acc,#0071e3) 78%,#000)}
+:root{--vga-h:62px;--vga-gap:14px}
+
+/* ---- barra de abas ---- */
 #vg-abas{position:fixed;left:50%;bottom:calc(var(--vga-gap) + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:610;
-  width:min(620px,calc(100vw - 20px));height:var(--vga-h);padding:6px;box-sizing:border-box;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;
-  border-radius:22px;background:color-mix(in srgb,var(--ground,var(--vg-ground,#0b0d10)) 78%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
-  box-shadow:0 10px 34px rgba(0,0,0,.28),inset 0 0 0 1px rgba(127,127,127,.22);font-family:var(--vg-text,system-ui,sans-serif)}
+  width:min(580px,calc(100vw - 24px));height:var(--vga-h);padding:6px;box-sizing:border-box;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;
+  border-radius:26px;background:var(--vga-bar);-webkit-backdrop-filter:saturate(180%) blur(24px);backdrop-filter:saturate(180%) blur(24px);
+  border:1px solid var(--vga-line);box-shadow:var(--vga-sh);font-family:var(--vga-font);touch-action:none;user-select:none;-webkit-user-select:none}
 #vg-abas button[hidden]{display:none!important}
-#vg-ajustes{position:fixed;z-index:611;width:min(320px,calc(100vw - 20px));max-height:calc(100dvh - var(--vga-h) - 60px);overflow-y:auto;padding:10px;box-sizing:border-box;border-radius:18px;
-  background:color-mix(in srgb,var(--ground,var(--vg-ground,#0b0d10)) 94%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
-  box-shadow:0 14px 40px rgba(0,0,0,.32),inset 0 0 0 1px rgba(127,127,127,.22);color:var(--ink,inherit);font-family:var(--vg-text,system-ui,sans-serif);
-  opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease,visibility 0s linear .15s}
-#vg-ajustes.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
-#vg-ajustes .h{padding:4px 6px 8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,var(--ink-2,#8a94a3))}
-html.vga-on #vg-ajustes .vgf-panel{display:block!important;margin:0}
+#vg-abas button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;
+  border-radius:20px;color:var(--vga-ink2);font:500 11px/1 var(--vga-font);letter-spacing:.01em;-webkit-tap-highlight-color:transparent;
+  transition:color .2s ease,background-color .2s ease,transform .15s ease}
+#vg-abas button svg{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#vg-abas button .fl{fill:currentColor;fill-opacity:0;transition:fill-opacity .2s ease}
+#vg-abas button .t{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#vg-abas button:hover{color:var(--vga-ink);background:color-mix(in srgb,var(--vga-ink) 6%,transparent)}
+#vg-abas button:active{transform:scale(.94)}
+#vg-abas button:focus-visible{outline:2px solid var(--vga-on);outline-offset:-2px}
+#vg-abas button.on{color:var(--vga-on);font-weight:600}
+#vg-abas button.on svg{stroke-width:1.9}
+#vg-abas button.on .fl{fill-opacity:.22}
+#vg-abas.arrasta{cursor:grabbing;opacity:.92;box-shadow:0 22px 60px rgba(0,0,0,.45),0 0 0 2px color-mix(in srgb,var(--vg-acc,#0a84ff) 55%,transparent)}
+#vg-abas.arrasta button{pointer-events:none}
+/* sem desfoque (celular e PC fraco: o tema desliga) a barra fica sólida, para o texto não aparecer por trás */
+html.vidro-leve #vg-abas,html.vidro-leve :is(#vg-ajustes,#vg-busca,#vg-segs),html.vidro-leve #vg-canto>*{background:var(--vga-solid)!important}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){#vg-abas,#vg-ajustes,#vg-busca,#vg-segs,#vg-canto>*{background:var(--vga-solid)!important}}
 /* barra encaixada: embaixo (padrão), em cima ou nas laterais (vertical) */
 html[data-vga-lado=t] #vg-abas{bottom:auto;top:var(--vga-gap)}
-html:is([data-vga-lado=l],[data-vga-lado=r]) #vg-abas{left:auto;right:auto;bottom:auto;top:50%;transform:translateY(-50%);width:76px;height:auto;max-height:calc(100dvh - 20px);grid-template-columns:minmax(0,1fr)!important;grid-auto-rows:60px}
+html:is([data-vga-lado=l],[data-vga-lado=r]) #vg-abas{left:auto;right:auto;bottom:auto;top:50%;transform:translateY(-50%);width:74px;height:auto;max-height:calc(100dvh - 20px);grid-template-columns:minmax(0,1fr)!important;grid-auto-rows:60px}
 html[data-vga-lado=l] #vg-abas{left:var(--vga-gap)}
 html[data-vga-lado=r] #vg-abas{right:var(--vga-gap)}
 html[data-vga-lado=t].vga-on :is(.main,#main,#view,main){padding-top:calc(var(--vga-h) + 24px)!important}
-html[data-vga-lado=t] #vg-lista .in{padding-top:calc(var(--vga-h) + 40px)}
-@media (min-width:701px){html[data-vga-lado=l].vga-on :is(.main,#main,#view,main),html[data-vga-lado=l] #vg-lista .in{padding-left:110px!important}
-html[data-vga-lado=r].vga-on :is(.main,#main,#view,main),html[data-vga-lado=r] #vg-lista .in{padding-right:110px!important}}
-#vg-abas.arrasta{opacity:.85}
-/* celular e tablet */
-@media (hover:none){#vg-abas button:hover{background:none}}
+html[data-vga-lado=t] #vg-lista .in{padding-top:calc(var(--vga-h) + 56px)}
+@media (min-width:701px){html[data-vga-lado=l].vga-on :is(.main,#main,#view,main),html[data-vga-lado=l] #vg-lista .in{padding-left:112px!important}
+html[data-vga-lado=r].vga-on :is(.main,#main,#view,main),html[data-vga-lado=r] #vg-lista .in{padding-right:112px!important}}
+@media (hover:none){#vg-abas button:hover{background:none;color:var(--vga-ink2)}#vg-abas button.on:hover{color:var(--vga-on)}}
+
+/* ---- celular e tablet: barra de abas encaixada na borda, opaca, como nos apps ---- */
 @media (max-width:700px){
-  :root{--vga-h:58px;--vga-gap:8px}
-  #vg-abas{width:calc(100vw - 12px);padding:4px;gap:2px;border-radius:18px}
-  #vg-abas button{font-size:10px;gap:2px;border-radius:13px}
-  #vg-abas button .i{font-size:18px}
+  :root{--vga-h:58px;--vga-gap:0px}
+  #vg-abas,html:is([data-vga-lado=l],[data-vga-lado=r]) #vg-abas{left:0;right:0;top:auto;bottom:0;transform:none;width:100%;max-height:none;
+    height:calc(var(--vga-h) + env(safe-area-inset-bottom,0px));padding:4px 4px env(safe-area-inset-bottom,0px);gap:0;grid-auto-rows:auto;
+    border-radius:0;border:0;border-top:1px solid var(--vga-line);box-shadow:0 -6px 24px rgba(0,0,0,.18);background:var(--vga-solid)}
+  html:is([data-vga-lado=l],[data-vga-lado=r]) #vg-abas{grid-template-columns:repeat(7,minmax(0,1fr))!important}
+  html[data-vga-lado=t] #vg-abas{top:0;bottom:auto;height:calc(var(--vga-h) + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) 4px 4px;
+    border-top:0;border-bottom:1px solid var(--vga-line);box-shadow:0 6px 24px rgba(0,0,0,.18)}
+  #vg-abas button{font-size:10px;gap:3px;border-radius:14px}
+  #vg-abas button svg{width:23px;height:23px}
   #vg-abas button .t{text-overflow:clip}
-  /* em tela estreita não há espaço para a barra em pé: lateral vira embaixo */
-  html:is([data-vga-lado=l],[data-vga-lado=r]) #vg-abas{top:auto;bottom:calc(var(--vga-gap) + env(safe-area-inset-bottom,0px));left:50%;right:auto;transform:translateX(-50%);width:calc(100vw - 12px);height:var(--vga-h);grid-template-columns:repeat(7,minmax(0,1fr))!important;grid-auto-rows:auto}
-  #vg-lista .in{padding:24px 14px calc(var(--vga-h) + 40px)}
-  #vg-lista h1{font-size:28px}
-  .vga-l{gap:12px;padding:14px 14px}
-  .vga-l b{font-size:15px}
   #vg-busca,#vg-ajustes,#vg-segs{max-height:calc(100dvh - var(--vga-h) - 40px)}
 }
-@media (max-width:420px){.vga-seg{gap:6px}.vga-seg button{height:38px;padding:0 12px;font-size:13px}}
-#vg-abas{touch-action:none;user-select:none;-webkit-user-select:none}
-#vg-abas.arrasta{cursor:grabbing;box-shadow:0 18px 50px rgba(0,0,0,.4),inset 0 0 0 1px color-mix(in srgb,var(--vg-acc,#5aa9ff) 50%,transparent)}
-#vg-abas.arrasta button{pointer-events:none}
-#vg-abas button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;
-  border-radius:16px;color:var(--ink-2,var(--ink,inherit));font-size:12.5px;font-weight:500;line-height:1;-webkit-tap-highlight-color:transparent;
-  transition:background-color .18s ease,color .18s ease,transform .12s ease}
-#vg-abas button .i{font-size:20px;line-height:1}
-#vg-abas button .t{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#vg-abas button:hover{background:rgba(127,127,127,.14)}
-#vg-abas button:active{transform:scale(.96)}
-#vg-abas button:focus-visible{outline:2px solid var(--vg-acc,#5aa9ff);outline-offset:-2px}
-#vg-abas button.on{background:color-mix(in srgb,var(--vg-acc,#5aa9ff) 22%,transparent);color:var(--ink,inherit);font-weight:600;
-  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vg-acc,#5aa9ff) 42%,transparent)}
-#vg-abas-aviso{position:fixed;left:50%;bottom:calc(var(--vga-h) + var(--vga-gap) + 14px);transform:translateX(-50%) translateY(8px);z-index:612;
-  padding:9px 14px;border-radius:999px;background:var(--ink,#111);color:var(--ground,#fff);font:500 13.5px/1.2 var(--vg-text,system-ui,sans-serif);
-  box-shadow:0 8px 24px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;white-space:nowrap}
+
+/* ---- aviso rápido ---- */
+#vg-abas-aviso{position:fixed;left:50%;bottom:calc(var(--vga-h) + var(--vga-gap) + 16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(8px);z-index:612;
+  padding:11px 18px;border-radius:999px;background:var(--vga-ink,#1d1d1f);color:var(--vga-bg,#fff);font:500 14px/1.2 var(--vga-font,system-ui,sans-serif);letter-spacing:-.01em;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .25s cubic-bezier(.2,.8,.2,1);white-space:nowrap}
 #vg-abas-aviso.on{opacity:1;transform:translateX(-50%)}
 
 /* modo direto ao ponto: sem barra lateral, fundo 3D, lâmpada, Foco de estudo nem enfeites */
@@ -243,8 +266,21 @@ html.vga-on :is(#vidro-bg,#vidro-home,#vidro-lamp,#vidro-flash,#vidro-heart,.vg-
 ${A.css}
 html.vga-on :is(.app,#app,.layout,.shell,body){grid-template-columns:minmax(0,1fr)!important}
 html.vga-on :is(.main,#main,#view,main){margin-left:0!important;padding-bottom:calc(var(--vga-h) + 64px)!important}
-html.vga-on #vidro-fx{display:none!important} /* no modo foco, a Personalização e a saída moram em ⚙️ Ajustes */
+html.vga-on #vidro-fx{display:none!important} /* no modo foco, a Personalização e a saída moram em Ajustes */
 html.vga-on #vidro-pers .vp-sec:has(#vp-ninja){display:none}
+html.vga-on #vidro-pers{bottom:calc(var(--vga-h) + var(--vga-gap) + 60px)!important;max-height:calc(100dvh - var(--vga-h) - 96px)!important}
+html.vga-on body{padding-top:56px!important}
+${A.esconde}
+${CSS_SEG}
+
+/* ---- janelinhas: Ajustes, Buscar e o menu de segmentos (visual de antes) ---- */
+#vg-ajustes{position:fixed;z-index:611;width:min(320px,calc(100vw - 20px));max-height:calc(100dvh - var(--vga-h) - 60px);overflow-y:auto;padding:10px;box-sizing:border-box;border-radius:18px;
+  background:color-mix(in srgb,var(--ground,var(--vg-ground,#0b0d10)) 94%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  box-shadow:0 14px 40px rgba(0,0,0,.32),inset 0 0 0 1px rgba(127,127,127,.22);color:var(--ink,inherit);font-family:var(--vg-text,system-ui,sans-serif);
+  opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease,visibility 0s linear .15s}
+#vg-ajustes.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+#vg-ajustes .h{padding:4px 6px 8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,var(--ink-2,#8a94a3))}
+html.vga-on #vg-ajustes .vgf-panel{display:block!important;margin:0}
 #vg-ajustes .vga-aj{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;width:100%;padding:10px 10px;border-radius:12px;font-size:14px;font-weight:500}
 #vg-ajustes .vga-aj:hover,#vg-ajustes .vga-aj:focus-visible{background:rgba(127,127,127,.14)}
 #vg-ajustes .vga-aj small{display:block;font-size:12px;font-weight:400;color:var(--muted,var(--ink-2,#8a94a3))}
@@ -254,52 +290,6 @@ html.vga-on #vidro-pers .vp-sec:has(#vp-ninja){display:none}
 #vg-ajustes .vga-aj.off .vga-sw{background:rgba(127,127,127,.4)}
 #vg-ajustes .vga-aj.off .vga-sw::after{right:auto;left:3px}
 #vg-ajustes hr{border:0;border-top:1px solid rgba(127,127,127,.22);margin:6px 4px 10px}
-html.vga-on #vidro-pers{bottom:calc(var(--vga-h) + var(--vga-gap) + 60px)!important;max-height:calc(100dvh - var(--vga-h) - 96px)!important}
-${A.esconde}
-${CSS_SEG}
-
-/* listas (aba "Aulas" e aba "Simulados") */
-#vg-lista{position:fixed;inset:0;z-index:590;overflow-y:auto;background:var(--ground,var(--vg-ground,#0b0d10));color:var(--ink,inherit);font-family:var(--vg-text,var(--sans,system-ui,sans-serif));display:none}
-html.vga-lista #vg-lista{display:block}
-/* fundo sempre sólido: em alguns masters o tema deixa --ground transparente e o master aparecia por trás */
-#vg-lista{background:var(--vg-ground,#111312)!important;background-color:#111312!important}
-html[data-theme=light] #vg-lista{background-color:#f7f8f7!important}
-html[data-theme=light] .vga-l{background-color:#fff;border-color:rgba(0,0,0,.1)}
-html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
-html.vga-on body{padding-top:52px!important}
-#vg-canto{position:fixed;top:12px;left:12px;z-index:615;display:flex;gap:8px}
-html[data-vga-lado=t] #vg-canto{top:calc(var(--vga-h) + 22px)}
-@media(min-width:701px){html[data-vga-lado=l] #vg-canto{left:98px}}
-#vg-canto>*{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;border:1px solid rgba(255,255,255,.14);
-  background:rgba(20,22,21,.55);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);color:#eef2ef;cursor:pointer;padding:0;text-decoration:none}
-#vg-canto>*[hidden]{display:none}
-#vg-canto svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-#vg-canto>*:hover{background:rgba(40,44,42,.7)}
-html.light #vg-canto>*,html[data-theme=light] #vg-canto>*{background:rgba(255,255,255,.7);color:#1d211f;border-color:rgba(0,0,0,.1)}
-html.vidro-ready body > :is(#vg-canto,#vg-lista,#vg-abas,#vg-segs,#vg-ajustes,#vg-busca,#vg-abas-aviso){animation:none!important}
-html.vidro-ready body > #vg-lista{opacity:1!important}
-#vg-lista{isolation:isolate}
-#vg-lista .in{max-width:740px;margin:0 auto;padding:40px 20px calc(var(--vga-h) + 60px)}
-#vg-lista h1{margin:0 0 6px;font:400 34px/1.1 var(--vg-display,var(--serif,serif));letter-spacing:-.01em;color:var(--ink,inherit)}
-#vg-lista h2{margin:28px 0 10px;font:600 12px/1 var(--vg-text,system-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,var(--ink-2,#8a94a3))}
-#vg-lista p.s{margin:0 0 18px;color:var(--ink-2,inherit);font-size:14.5px}
-.vga-l{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:16px;width:100%;margin:0 0 10px;padding:16px 18px;border-radius:14px;
-  background:var(--surface,rgba(127,127,127,.08));border:1px solid var(--border,rgba(127,127,127,.2));transition:background-color .15s ease,border-color .15s ease}
-.vga-l:hover{background:var(--surface-2,rgba(127,127,127,.14))}
-.vga-l:focus-visible{outline:2px solid var(--vg-acc,#5aa9ff);outline-offset:2px}
-.vga-l .n{flex:none;width:28px;text-align:center;font:400 24px/1 var(--vg-display,var(--serif,serif));color:var(--vg-acc-ink,var(--vg-acc,inherit))}
-.vga-l .tx{flex:1;min-width:0}
-.vga-l b{display:block;font-weight:600;font-size:16px;line-height:1.3;color:var(--ink,inherit)}
-.vga-l small{display:block;margin-top:4px;font-size:13px;color:var(--muted,var(--ink-2,#8a94a3))}
-.vga-l .ct{flex:none;font-size:13px;font-variant-numeric:tabular-nums;color:var(--muted,var(--ink-2,#8a94a3))}
-.vga-l.ok{background:color-mix(in srgb,#3fb950 14%,var(--surface,transparent));border-color:color-mix(in srgb,#3fb950 55%,transparent)}
-.vga-l .ct .g{color:#3fb950;font-weight:700}
-.vga-l.ok .ct{color:#3fb950;font-weight:600}
-.vga-l.atual{border-color:color-mix(in srgb,var(--vg-acc,#5aa9ff) 60%,transparent)}
-.vga-div{display:flex;align-items:center;gap:12px;margin:18px 0 20px;color:var(--muted,var(--ink-2,#8a94a3));font-size:12px;font-weight:600;letter-spacing:.04em}
-.vga-div::before,.vga-div::after{content:"";flex:1;height:2px;border-radius:2px;background:rgba(140,140,140,.45)}
-.vga-l.sm{padding:12px 16px}
-.vga-l.sm b{font-size:15px;font-weight:500}
 /* 🔍 Buscar */
 #vg-busca{position:fixed;z-index:611;width:min(560px,calc(100vw - 20px));max-height:min(620px,calc(100dvh - 110px));display:flex;flex-direction:column;box-sizing:border-box;padding:12px;border-radius:18px;
   background:color-mix(in srgb,var(--ground,var(--vg-ground,#0b0d10)) 96%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
@@ -331,19 +321,73 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
 #vg-segs button .c{flex:none;width:16px;color:#3fb950;font-weight:700}
 #vg-segs button.ok .n{color:#3fb950}
 #vg-segs button.at{background:color-mix(in srgb,var(--vg-acc,#5aa9ff) 20%,transparent);font-weight:600}
-@media (prefers-reduced-motion:reduce){#vg-segs,#vg-abas button,#vg-abas-aviso,.vga-l,.vga-seg button{transition:none!important}}
-@media print{#vg-abas,#vg-abas-aviso,#vg-lista,.vga-seg{display:none!important}}
+
+/* ---- casinha e tela cheia (canto de cima) ---- */
+#vg-canto{position:fixed;top:12px;left:12px;z-index:615;display:flex;gap:8px}
+html[data-vga-lado=t] #vg-canto{top:calc(var(--vga-h) + 22px)}
+@media(min-width:701px){html[data-vga-lado=l] #vg-canto{left:98px}}
+#vg-canto>*{width:42px;height:42px;display:grid;place-items:center;box-sizing:border-box;border-radius:16px;border:1px solid var(--vga-line);padding:0;cursor:pointer;text-decoration:none;
+  background:var(--vga-bar);-webkit-backdrop-filter:saturate(180%) blur(24px);backdrop-filter:saturate(180%) blur(24px);color:var(--vga-ink2);box-shadow:var(--vga-sh);transition:transform .15s ease,color .2s ease}
+#vg-canto>*[hidden]{display:none}
+#vg-canto>*:hover{color:var(--vga-ink)}
+#vg-canto>*:active{transform:scale(.94)}
+#vg-canto svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:700px){
+  /* casinha e tela cheia viram uma barra fina no topo, sólida: o texto não passa por baixo dos botões */
+  #vg-canto,html[data-vga-lado=t] #vg-canto{top:0;left:0;right:0;height:calc(48px + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) 10px 0;box-sizing:border-box;
+    align-items:center;justify-content:space-between;background:var(--vga-solid);border-bottom:1px solid var(--vga-line)}
+  html[data-vga-lado=t] #vg-canto{top:calc(var(--vga-h) + env(safe-area-inset-top,0px));padding-top:0}
+  #vg-canto>*{width:36px;height:36px;border:0;box-shadow:none;background:transparent!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+  html.vga-on body{padding-top:calc(52px + env(safe-area-inset-top,0px))!important}
+}
+html.vidro-ready body > :is(#vg-canto,#vg-lista,#vg-abas,#vg-segs,#vg-ajustes,#vg-busca,#vg-abas-aviso){animation:none!important}
+html.vidro-ready body > #vg-lista{opacity:1!important}
+
+/* ---- listas (aba "Aulas" e aba "Simulados"): visual de antes ---- */
+/* listas (aba "Aulas" e aba "Simulados") */
+#vg-lista{position:fixed;inset:0;z-index:590;overflow-y:auto;background:var(--ground,var(--vg-ground,#0b0d10));color:var(--ink,inherit);font-family:var(--vg-text,var(--sans,system-ui,sans-serif));display:none}
+html.vga-lista #vg-lista{display:block}
+/* fundo sempre sólido: em alguns masters o tema deixa --ground transparente e o master aparecia por trás */
+#vg-lista{background:var(--vg-ground,#111312)!important;background-color:#111312!important}
+html[data-theme=light] #vg-lista{background-color:#f7f8f7!important}
+html[data-theme=light] .vga-l{background-color:#fff;border-color:rgba(0,0,0,.1)}
+html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
+#vg-lista{isolation:isolate}
+#vg-lista .in{max-width:740px;margin:0 auto;padding:40px 20px calc(var(--vga-h) + 60px)}
+#vg-lista h1{margin:0 0 6px;font:400 34px/1.1 var(--vg-display,var(--serif,serif));letter-spacing:-.01em;color:var(--ink,inherit)}
+#vg-lista h2{margin:28px 0 10px;font:600 12px/1 var(--vg-text,system-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,var(--ink-2,#8a94a3))}
+#vg-lista p.s{margin:0 0 18px;color:var(--ink-2,inherit);font-size:14.5px}
+.vga-l{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:16px;width:100%;margin:0 0 10px;padding:16px 18px;border-radius:14px;
+  background:var(--surface,rgba(127,127,127,.08));border:1px solid var(--border,rgba(127,127,127,.2));transition:background-color .15s ease,border-color .15s ease}
+.vga-l:hover{background:var(--surface-2,rgba(127,127,127,.14))}
+.vga-l:focus-visible{outline:2px solid var(--vg-acc,#5aa9ff);outline-offset:2px}
+.vga-l .n{flex:none;width:28px;text-align:center;font:400 24px/1 var(--vg-display,var(--serif,serif));color:var(--vg-acc-ink,var(--vg-acc,inherit))}
+.vga-l .tx{flex:1;min-width:0}
+.vga-l b{display:block;font-weight:600;font-size:16px;line-height:1.3;color:var(--ink,inherit)}
+.vga-l small{display:block;margin-top:4px;font-size:13px;color:var(--muted,var(--ink-2,#8a94a3))}
+.vga-l .ct{flex:none;font-size:13px;font-variant-numeric:tabular-nums;color:var(--muted,var(--ink-2,#8a94a3))}
+.vga-l.ok{background:color-mix(in srgb,#3fb950 14%,var(--surface,transparent));border-color:color-mix(in srgb,#3fb950 55%,transparent)}
+.vga-l .ct .g{color:#3fb950;font-weight:700}
+.vga-l.ok .ct{color:#3fb950;font-weight:600}
+.vga-l.atual{border-color:color-mix(in srgb,var(--vg-acc,#5aa9ff) 60%,transparent)}
+.vga-div{display:flex;align-items:center;gap:12px;margin:18px 0 20px;color:var(--muted,var(--ink-2,#8a94a3));font-size:12px;font-weight:600;letter-spacing:.04em}
+.vga-div::before,.vga-div::after{content:"";flex:1;height:2px;border-radius:2px;background:rgba(140,140,140,.45)}
+.vga-l.sm{padding:12px 16px}
+.vga-l.sm b{font-size:15px;font-weight:500}
+@media (max-width:700px){#vg-lista .in{padding:72px 14px calc(var(--vga-h) + 40px)}#vg-lista h1{font-size:28px}.vga-l{gap:12px;padding:14px 14px}.vga-l b{font-size:15px}}
+@media (prefers-reduced-motion:reduce){#vg-segs,#vg-ajustes,#vg-busca,#vg-abas button,#vg-abas-aviso,.vga-l,.vga-seg button,#vg-ajustes .vga-sw::after{transition:none!important}}
+@media print{#vg-abas,#vg-abas-aviso,#vg-lista,#vg-canto,.vga-seg{display:none!important}}
 `;
 
   /* ---------- montagem ---------- */
   const ABAS = [
-    { k: 'aulas', i: '📖', t: 'Aulas', a: 'Lista de aulas' },
-    { k: 'arena', i: '🎮', t: 'Arena', a: 'Arena da aula aberta' },
-    { k: 'cai', i: '⭐', t: 'Mais cai', a: 'O que mais cai em prova: revisão rápida da aula aberta' },
-    { k: 'sim', i: '⏱️', t: 'Simulados', a: 'Simulados e provas anteriores' },
-    { k: 'notas', i: '📝', t: 'Notas', a: 'Notas: questões erradas e grifos' },
-    { k: 'busca', i: '🔍', t: 'Buscar', a: 'Buscar uma palavra na matéria' },
-    { k: 'ajustes', i: '⚙️', t: 'Ajustes', a: 'Ajustes da matéria' },
+    { k: 'aulas', t: 'Aulas', a: 'Lista de aulas', i: '<path class="fl" d="M12 6.6C10.4 5.3 8.2 4.6 5.4 4.6c-.8 0-1.6.1-2.4.2v13.6c.8-.1 1.6-.2 2.4-.2 2.8 0 5 .7 6.6 2 1.6-1.3 3.8-2 6.6-2 .8 0 1.6.1 2.4.2V4.8c-.8-.1-1.6-.2-2.4-.2-2.8 0-5 .7-6.6 2z"/><path d="M12 6.6v13.6"/>' },
+    { k: 'arena', t: 'Arena', a: 'Arena da aula aberta', i: '<path class="fl" d="M7.6 5.5h8.8A4.6 4.6 0 0 1 21 10.1v2.3a4.6 4.6 0 0 1-4.6 4.6c-1.7 0-2.5-1.6-4.4-1.6s-2.7 1.6-4.4 1.6A4.6 4.6 0 0 1 3 12.4v-2.3a4.6 4.6 0 0 1 4.6-4.6z"/><path d="M6.5 11h4M8.5 9v4M15.5 10h.01M17.5 12h.01"/>' },
+    { k: 'cai', t: 'Mais cai', a: 'O que mais cai em prova: revisão rápida da aula aberta', i: '<path class="fl" d="m12 3.6 2.6 5.3 5.8.9-4.2 4.1 1 5.8L12 17l-5.2 2.7 1-5.8-4.2-4.1 5.8-.9z"/>' },
+    { k: 'sim', t: 'Simulados', a: 'Simulados e provas anteriores', i: '<circle class="fl" cx="12" cy="13.5" r="7.5"/><path d="M12 10v3.5l2.4 1.6M9.5 2.8h5M12 2.8V6M18.3 7.2l1.4-1.4"/>' },
+    { k: 'notas', t: 'Notas', a: 'Notas: questões erradas e grifos', i: '<path class="fl" d="M14 3.5H7.2A2.7 2.7 0 0 0 4.5 6.2v11.6a2.7 2.7 0 0 0 2.7 2.7h9.6a2.7 2.7 0 0 0 2.7-2.7V9z"/><path d="M14 3.5V9h5.5M8.5 13h7M8.5 16.5h4.5"/>' },
+    { k: 'busca', t: 'Buscar', a: 'Buscar uma palavra na matéria', i: '<circle class="fl" cx="10.8" cy="10.8" r="6.3"/><path d="m20 20-4.7-4.7"/>' },
+    { k: 'ajustes', t: 'Ajustes', a: 'Ajustes da matéria', i: '<path d="M4 7.5h8.5M17.5 7.5H20M4 16.5h2.5M11.5 16.5H20"/><circle class="fl" cx="15" cy="7.5" r="2.5"/><circle class="fl" cx="9" cy="16.5" r="2.5"/>' },
   ];
   let segsMenu, tSegs = 0, bar, aviso, lista, folha = '', tAviso = 0, cache = [];
   const aulas = () => { try { cache = A.aulas(); } catch (e) { } return cache; };
@@ -372,7 +416,7 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
     const L = aulas(), au = aulaAberta(), rev = avulso('rev'), prat = avulso('pratica');
     const item = (a, n) => {
       const tot = a.segs.length, f = a.segs.filter(s => s.feito).length, ok = tot > 0 && f === tot;
-      return `<button type="button" class="vga-l${a.freq ? ' ' + a.freq : ''}${ok ? ' ok' : ''}${au === a ? ' atual' : ''}" data-aula="${esc(a.key)}">`
+      return `<button type="button" class="vga-l${a.freq ? ' ' + a.freq : ''}${ok ? ' ok' : ''}${au && au.key === a.key ? ' atual' : ''}" data-aula="${esc(a.key)}">`
         + `<span class="n">${n}</span><span class="tx"><b>${esc(a.nome)}</b><small>${a.rot ? esc(a.rot) + ' · ' : ''}${tot} ${tot === 1 ? 'segmento' : 'segmentos'}</small></span>`
         + `<span class="ct"><span class="f${f ? ' g' : ''}">${f}</span>/${tot}</span></button>`;
     };
@@ -580,9 +624,9 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
     const nomeDe = x => { const s = au.segs.find(z => z.id === x); return s ? s.titulo : x === au.cai ? 'O que mais cai' : ''; };
     const faz = cls => {
       const el = d.createElement('div'); el.className = 'vga-seg ' + cls; el.dataset.seg = id;
-      el.innerHTML = (prev ? `<button type="button" data-to="${esc(prev)}" title="${esc(nomeDe(prev))}">← Anterior</button>` : '<span></span>')
+      el.innerHTML = (prev ? `<button type="button" class="pv" data-to="${esc(prev)}" title="${esc(nomeDe(prev))}" aria-label="Anterior: ${esc(nomeDe(prev))}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg><span class="lb">Anterior</span></button>` : '<span></span>')
         + '<button type="button" class="dn"></button>'
-        + (next ? `<button type="button" data-to="${esc(next)}" title="${esc(nomeDe(next))}">${next === au.cai ? '⭐ O que mais cai →' : 'Próximo →'}</button>` : '<span></span>');
+        + (next ? `<button type="button" class="nx" data-to="${esc(next)}" title="${esc(nomeDe(next))}">${next === au.cai ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="fl" d="m12 3.6 2.6 5.3 5.8.9-4.2 4.1 1 5.8L12 17l-5.2 2.7 1-5.8-4.2-4.1 5.8-.9z"/></svg>O que mais cai' : 'Próximo<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>'}</button>` : '<span></span>');
       el.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
         if (b.classList.contains('dn')) { A.concluir(id); setTimeout(pintaDone, 60); setTimeout(pintaDone, 300); } else A.ir(b.dataset.to); });
       return el;
@@ -596,7 +640,7 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
     let p; try { p = A.pagina(); } catch (e) { p = null; } if (!p || !p.cont) return;
     $$('.vga-seg .dn', p.cont).forEach(b => {
       const on = A.feito(b.closest('.vga-seg').dataset.seg);
-      b.classList.toggle('on', on); b.textContent = on ? '✓ Segmento concluído' : 'Concluir segmento';
+      b.classList.toggle('on', on); b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle class="fl" cx="12" cy="12" r="8.5"/>' + (on ? '<path d="m8.4 12.2 2.4 2.4 4.8-5"/>' : '') + '</svg>' + (on ? 'Segmento concluído' : 'Concluir segmento');
     });
   }
 
@@ -631,7 +675,7 @@ html.vidro-ready body > #vg-lista{opacity:1!important}
       D.body.appendChild(cn);
     }
     bar =D.createElement('nav'); bar.id = 'vg-abas'; bar.setAttribute('aria-label', 'Navegação da masterclass');
-    bar.innerHTML = ABAS.map(x => `<button type="button" data-k="${x.k}" title="${x.a}" aria-label="${x.a}"><span class="i" aria-hidden="true">${x.i}</span><span class="t">${x.t}</span></button>`).join('');
+    bar.innerHTML = ABAS.map(x => `<button type="button" data-k="${x.k}" title="${x.a}" aria-label="${x.a}"><svg viewBox="0 0 24 24" aria-hidden="true">${x.i}</svg><span class="t">${x.t}</span></button>`).join('');
     bar.addEventListener('click', e => { if (arrastou) { arrastou = false; return; } const b = e.target.closest('button'); if (b) toque(b.dataset.k); });
     /* barra móvel: segurar e arrastar até uma borda (embaixo, em cima, esquerda ou direita); nas laterais ela fica vertical.
        A borda fica salva para todos os masters; duplo clique volta para baixo. */
