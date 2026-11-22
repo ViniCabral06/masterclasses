@@ -6,7 +6,7 @@
      ordem       {itens:[na ordem certa], exp}                        toque na ordem; confere no fim
      classifique {cats:[...], cards:[[texto, iCat, porquê?], ...], exp?} um cartão por vez
      escore      {itens:[[rótulo, pontos], ...], faixas:[[min, texto], ...], nota?}
-   seg: "a3/s2" (hash do master). apos: regex (sem acento) do título h2/h3 depois do qual entra; sem apos, vai no fim.
+   seg: o hash do segmento sem o # (Microbiologia "a3/s2"; Preventiva "a03/a03-2"). apos: regex (sem acento) do título h2/h3 depois do qual entra; sem apos, vai no fim.
    Regras do site: a certa nunca aparece antes de responder; alternativas equilibradas; nada de sigla em balão (.wg). */
 (function () {
   'use strict';
@@ -201,7 +201,7 @@
 
   function segAtual() {
     var h = location.hash.replace(/^#\/?/, '');
-    var m = h.match(/^(a\d+)\/(s\d+)/);
+    var m = h.match(/^([\w-]+)\/([\w-]+)/);
     return m ? m[1] + '/' + m[2] : '';
   }
 
@@ -222,12 +222,15 @@
         var n = alvo.nextElementSibling;
         while (n && !/^H[23]$/.test(n.tagName)) n = n.nextElementSibling;
         if (n) prose.insertBefore(no, n); else prose.appendChild(no);
-      } else prose.appendChild(no);
+      } else {
+        var fimQ = prose.querySelector(':scope > .pv-box, :scope > .pv-aut, :scope > .cel-fin');
+        if (fimQ) prose.insertBefore(no, fimQ); else prose.appendChild(no);
+      }
     });
   }
 
   function varrer() {
-    var p = document.getElementById('prose') || document.querySelector('main .prose');
+    var p = document.getElementById('prose') || document.querySelector('main .prose') || document.querySelector('main section.section[id]');
     if (p) inserir(p);
   }
   var agendado = 0;
