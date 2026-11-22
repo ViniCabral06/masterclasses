@@ -116,6 +116,7 @@ Responda sempre em português (Brasil).
 - Ao selecionar texto, o `_tema/notas.js` mostra "💬 Grifar com anotação". Se o master já tiver o botão de grifar dele (`#hlbtn`/`.hlbtn`, como Farmacologia e Microbiologia), aparece só "💬 Anotar", ao lado dele; se não tiver, aparecem "🖍 Grifar" e "💬 Grifar com anotação".
 - A anotação abre na mesma caixinha escura das questões ("Caiu em X somativas"), com Editar e Remover.
 - Fica no navegador de cada pessoa (`localStorage`, chave `vidro-notas:<caminho da página>`), ancorada pelo texto do trecho, então não depende da estrutura do master.
+- **Grifar já salva**: nada de botão "guardar seleção" ou parecido. Cada grifo guarda também o `#hash` de onde foi feito (`h`). Humanização, Preventiva, Imagem e Laboratorial listam os grifos em "Minha revisão › Trechos guardados" pelo `window.VGNotas` (`lista()`, `remover(id)`) e pelo evento `vg-notas` (`meusGrifos()` no master; grifo antigo sem `h` acha o segmento pelo texto).
 - Master ou aula nova não precisa de nada: o `publicar.py` põe o `notas.js` no bloco do tema, inclusive nas aulas separadas em `aulas/` (também nas que já existiam).
 - O texto do master deve ficar dentro de `<main>` (ou `#main`, `#view`, `.main`); barra lateral, menus e botões ficam de fora de propósito.
 

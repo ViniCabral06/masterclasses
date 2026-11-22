@@ -6,7 +6,8 @@
    O trecho fica rosa com um 💬; passar o mouse (ou tocar) abre a mesma caixinha escura das questões
    ("Caiu em X somativas"), com a anotação, Editar e Remover.
 
-   Guardado no navegador de cada pessoa (localStorage), por página. A âncora é o próprio texto do trecho
+   Guardado no navegador de cada pessoa (localStorage), por página, na hora em que se grifa (sem botão de salvar).
+   Cada grifo guarda o #hash de onde foi feito (h) e o master pode listá-los por window.VGNotas / evento 'vg-notas'. A âncora é o próprio texto do trecho
    + um pedaço antes e depois, então funciona em qualquer master sem conhecer a estrutura dele e
    sobrevive a pequenas mudanças no HTML. */
 (function () {
@@ -14,7 +15,9 @@
   const D = document, html = D.documentElement;
   const KEY = 'vidro-notas:' + location.pathname;
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (_) { return []; } };
-  const save = l => { try { localStorage.setItem(KEY, JSON.stringify(l)); } catch (_) { } };
+  // salva na hora e avisa a página (a "Minha revisão" dos masters lista os grifos pelo evento 'vg-notas')
+  const avisar = () => { try { D.dispatchEvent(new CustomEvent('vg-notas')); } catch (_) { } };
+  const save = l => { try { localStorage.setItem(KEY, JSON.stringify(l)); } catch (_) { } avisar(); };
   let notas = load();
 
   // raiz do conteúdo: onde o texto da aula mora (cai no body se o master não tiver <main>)
@@ -138,11 +141,15 @@
 
   function criar(texto) {
     const p = pendente; if (!p) return;
-    const n = { id: 'n' + Date.now().toString(36), q: p.q, pre: p.pre, pos: p.pos, t: texto, d: Date.now() };
+    const n = { id: 'n' + Date.now().toString(36), q: p.q, pre: p.pre, pos: p.pos, t: texto, d: Date.now(), h: location.hash };
     notas.push(n); save(notas);
     aplicando = true; try { envolver(raiz(), p.ini, p.fim, n.id); } finally { aplicando = false; }
     getSelection().removeAllRanges(); pendente = null; esconder(barra); esconder(ed);
   }
+
+  function remover(id) { notas = notas.filter(x => x.id !== id); save(notas); desembrulhar(id); }
+  // para o master listar e apagar os grifos (ex.: "Trechos guardados" na Minha revisão)
+  window.VGNotas = { lista: () => notas.map(n => Object.assign({}, n)), remover };
 
   /* editor */
   function fecharEd() { esconder(ed); editando = null; }
@@ -179,7 +186,7 @@
   tip.addEventListener('mouseleave', () => { segura = false; esconder(tip); });
   tip.addEventListener('click', e => {
     const a = e.target.closest('a'); if (!a) return; const id = tip.dataset.n;
-    if (a.dataset.a === 'remover') { notas = notas.filter(x => x.id !== id); save(notas); desembrulhar(id); esconder(tip); }
+    if (a.dataset.a === 'remover') { remover(id); esconder(tip); }
     else { const n = notas.find(x => x.id === id); editando = id; ta.value = n ? n.t : ''; const r = tip.getBoundingClientRect(); esconder(tip); posicionar(ed, r, false); ta.focus(); }
   });
   addEventListener('scroll', () => { if (!segura) esconder(tip); esconder(barra); }, { passive: true, capture: true });
@@ -191,7 +198,8 @@
     new MutationObserver(depois).observe(root, { childList: true, subtree: true });
     addEventListener('hashchange', depois); D.addEventListener('pane', depois);
     // outra aba editou as notas desta página
-    addEventListener('storage', e => { if (e.key === KEY) { const novas = load(); notas.filter(n => !novas.some(x => x.id === n.id)).forEach(n => desembrulhar(n.id)); notas = novas; aplicar(); } });
+    addEventListener('storage', e => { if (e.key === KEY) { const novas = load(); notas.filter(n => !novas.some(x => x.id === n.id)).forEach(n => desembrulhar(n.id)); notas = novas; aplicar(); avisar(); } });
+    avisar();
   }
   if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', iniciar); else iniciar();
 })();

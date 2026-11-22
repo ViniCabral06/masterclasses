@@ -587,7 +587,7 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=3f8b9f00">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=748c00a9"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=425946f3"></script><script defer src="../_tema/foco.js?v=9246477d"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="9f992af9"></script><script defer src="../_tema/abas.js?v=157b9531"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script><script defer src="../_tema/praticar.js?v=f08615b6"></script>
+<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=e58c1891"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=425946f3"></script><script defer src="../_tema/foco.js?v=9246477d"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="9f992af9"></script><script defer src="../_tema/abas.js?v=157b9531"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script><script defer src="../_tema/praticar.js?v=f08615b6"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -2226,7 +2226,7 @@ function lesson(l,anchor){anchor=(anchor||'').split('~')[0];const rev=l.id+'-rev
  return '<p>'+title.replace(esc(s.title),esc(sentence))+esc(p.slice(sentence.length))+'</p>';
  }).join('')+figures+(s.prova?'<div class="panel prova"><b>📝 Como a prova cobra</b><p>'+esc(s.prova)+'</p></div>':'')+(s.note?'<p class="panel alert"><b>■ EXTRA:</b> '+esc(s.note)+'</p>':'')+deepBlock(s)+supporting+
  ''+''+
- '<div class="cel-fin"><button type="button" class="cel-finish read" data-read="'+s.id+'">'+CHECK+'<span class="lbl"></span></button></div><div class="row"><button data-note="'+s.id+'">Guardar seleção</button></div></section>';
+ '<div class="cel-fin"><button type="button" class="cel-finish read" data-read="'+s.id+'">'+CHECK+'<span class="lbl"></span></button></div></section>';
  }).join('')+
  (view===rev?'<section class="section" id="'+l.id+'-revisao"><div class="eyebrow">Revisão por aula</div><button type="button" class="done-t" data-read="'+l.id+'-revisao"><span class="d"></span><span class="lbl"></span></button><h2>⭐ O que mais foi cobrado</h2><div class="flow">'+l.sections.map(s=>'<span>'+link(l.id,s.title,s.id)+'</span>').join(' → ')+'</div><p>'+esc(l.review)+'</p>'+maisCobrado(l)+lessonNav(l)+'</section>':'')+(view===l.id+'-arena'&&window.arenaAula?arenaAula(l):'')+(view===l.id+'-imagens'&&window.atlasAula?atlasAula(l):'')+segNav(l,view);
 }
@@ -2268,11 +2268,22 @@ function review(){
  '<section class="section"><h2>Recorrência no acervo</h2><p>Cada avaliação conta uma vez por tema. Referências adicionais aparecem para conferência.</p><div class="table"><table><thead><tr><th>Tema</th><th>Avaliações</th><th>Onde conferir</th></tr></thead><tbody>'+ranked.map(([l,s,rs])=>'<tr><td>'+link(l.id,s.title,s.id)+'</td><td>'+new Set(rs.map(x=>x.exam)).size+'/'+data.exams.length+'</td><td><div class="sources">'+rs.map(target).join('')+'</div></td></tr>').join('')+'</tbody></table></div></section>'+
  '<section class="section"><h2>Prática de revisão</h2>'+link('treino','Abrir os casos autorais baseados nas somativas')+'</section>';
 }
+/* grifos do _tema/notas.js (salvos na hora em vidro-notas:<página>): lista da Minha revisão; grifo antigo sem #hash acha o segmento pelo texto */
+function meusGrifos(){
+ const L=(window.VGNotas&&VGNotas.lista())||[];if(!L.length)return [];
+ const txt=o=>typeof o==='string'?o:Array.isArray(o)?o.map(txt).join(' '):o&&typeof o==='object'?Object.values(o).map(txt).join(' '):'';
+ const so=s=>norm(String(s).replace(/<[^>]+>/g,' ')).replace(/\s+/g,' ');
+ let secs=null;
+ return L.slice().sort((a,b)=>(b.d||0)-(a.d||0)).map(n=>{let aula='',seg='';const m=/^#([^/]+)(?:\/(.+))?/.exec(n.h||'');
+  if(m){aula=m[1];seg=m[2]||''}
+  else{secs=secs||data.lessons.flatMap(l=>l.sections.map(s=>({aula:l.id,seg:s.id,t:so(txt(s))})));const q=so(n.q).trim().slice(0,80);const f=q&&secs.find(x=>x.t.includes(q));if(f){aula=f.aula;seg=f.seg}}
+  return Object.assign({},n,{aula,seg})});
+}
 function myReview(){
  const pending=allQ.filter(q=>state.missed[q.id]||state.answers[q.id]==null||state.answers[q.id]!==q.answer);
- const notes=Object.entries(state.notes);
- return hero('Progresso salvo','Minha revisão','Volte às questões pendentes e aos trechos que você guardou.')+
- '<section class="section"><h2>Trechos guardados</h2>'+ (notes.length?notes.map(([k,v])=>'<div class="panel"><span class="chip">'+esc(v.text)+'</span><div class="row">'+link(v.aula,'Voltar ao trecho',v.segment)+'<button data-delete-note="'+esc(k)+'">Remover</button></div></div>').join(''):'<p>Selecione um trecho de uma aula e use “Guardar seleção”.</p>')+
+ const notes=Object.entries(state.notes),grifos=meusGrifos();
+ return hero('Progresso salvo','Minha revisão','Volte às questões pendentes e aos trechos que você grifou.')+
+ '<section class="section"><h2>Trechos guardados</h2>'+ (notes.length||grifos.length?grifos.map(g=>'<div class="panel"><span class="chip">'+esc(g.q)+'</span>'+(g.t?'<p>💬 '+esc(g.t)+'</p>':'')+'<div class="row">'+(g.aula?link(g.aula,'Voltar ao trecho',g.seg):'')+'<button data-delete-grifo="'+esc(g.id)+'">Remover</button></div></div>').join('')+notes.map(([k,v])=>'<div class="panel"><span class="chip">'+esc(v.text)+'</span><div class="row">'+link(v.aula,'Voltar ao trecho',v.segment)+'<button data-delete-note="'+esc(k)+'">Remover</button></div></div>').join(''):'<p>Selecione um trecho de uma aula e toque em 🖍 Grifar: ele fica guardado aqui na hora, sem outro botão.</p>')+
  '<h2>Questões pendentes · '+pending.length+'</h2><div class="revisit">'+pending.map(q=>'<p>'+link(q.aula,q.prompt,q.segment||q.aula+'-revisao')+'</p>').join('')+'</div></section>';
 }
 function refs(){
@@ -2384,6 +2395,7 @@ $('#main').addEventListener('click',e=>{
  if(b.dataset.read){setRead(b.dataset.read,!state.read[b.dataset.read])}
  if(b.dataset.note){const selected=getSelection().toString().trim();if(!selected){b.textContent='Selecione um trecho antes';return}state.notes[b.dataset.note+'-'+Date.now()]={text:selected.slice(0,1200),aula:active,segment:b.dataset.note};save();b.textContent='✓ Trecho guardado'}
  if(b.dataset.deleteNote){delete state.notes[b.dataset.deleteNote];save();render({scroll:false})}
+ if(b.dataset.deleteGrifo){window.VGNotas&&VGNotas.remover(b.dataset.deleteGrifo);render({scroll:false})}
  if(b.dataset.start){const pool=allQ.filter(q=>!$('#sim-aula').value||q.aula===$('#sim-aula').value);const qs=(window.simPick&&simPick(b.dataset.start))||(b.dataset.start==='final'?balanced15():shuffled(pool).slice(0,Math.max(1,Math.min(40,+$('#sim-count').value||15))));sim={qs,answers:{},flags:{},start:Date.now(),done:false};render({scroll:false});$('#clock')?.scrollIntoView({block:'center'})}
  if(b.dataset.flag&&sim){sim.flags[b.dataset.flag]=!sim.flags[b.dataset.flag];render({scroll:false})}
  if(b.id==='submit-sim'&&sim){sim.done=true;sim.finished=Date.now();for(const q of sim.qs){if(sim.answers[q.id]!==q.answer)state.missed[q.id]=true}save();render({scroll:false})}
@@ -2391,6 +2403,7 @@ $('#main').addEventListener('click',e=>{
 $('#main').addEventListener('change',e=>{const el=e.target;if(el.dataset.sim&&sim)sim.answers[el.dataset.sim]=+el.value});
 $('#main').addEventListener('input',e=>{const el=e.target;if(el.dataset.draft!=null){state.drafts[el.dataset.draft]=el.value;save()}});
 $('#main').addEventListener('pointerdown',e=>{if(e.target.closest('[data-note]'))e.preventDefault()});
+document.addEventListener('vg-notas',()=>{if(active==='minha')render({scroll:false})});
 const searchIndex=[...data.lessons.flatMap(l=>l.sections.map(s=>({key:l.id,id:s.id,label:'Aula '+l.number+' · '+s.title,text:[l.title,s.title,...s.paragraphs,...(s.keys||[]),...(s.deep||[]),s.case||'',s.trap||''].join(' ')}))),...Object.values(examById).map(x=>({key:x.group,id:x.id,label:x.label,text:x.label+' '+x.ocr}))].map(x=>({...x,normalized:norm(x.text)}));
 $('#search').addEventListener('input',e=>{const q=norm(e.target.value.trim()),matches=q.length>2?searchIndex.filter(x=>x.normalized.includes(q)):[];$('#hits').hidden=q.length<3;$('#nav').hidden=q.length>2;$('#search-status').textContent=q.length>2?matches.length+' resultado(s)':'';$('#hits').innerHTML=matches.slice(0,50).map(x=>'<a class="it" href="'+route(x.key,x.id)+'"><span class="x">'+esc(x.label)+'</span></a>').join('')});
 document.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]'))document.body.classList.remove('drawer')});
