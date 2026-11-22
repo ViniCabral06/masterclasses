@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-tone="cv" data-theme="dark">
-<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=3f8b9f00"><script defer src="../../_tema/notas.js?v=748c00a9"></script><script defer src="../../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../../_tema/extras.js?v=aee1dea9"></script><script defer src="../../_tema/memes.js?v=86e20ff2"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><script defer src="../../_tema/simulado.js?v=63d77cc4"></script><script defer src="../../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../../_tema/siglas.js?v=bb26111b"></script><script defer src="../../_tema/praticar.js?v=d677c58d"></script><!--/vidro:cabeca-->
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=3f8b9f00"><script defer src="../../_tema/notas.js?v=748c00a9"></script><script defer src="../../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../../_tema/extras.js?v=aee1dea9"></script><script defer src="../../_tema/memes.js?v=86e20ff2"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><script defer src="../../_tema/simulado.js?v=63d77cc4"></script><script defer src="../../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../../_tema/siglas.js?v=bb26111b"></script><script defer src="../../_tema/praticar.js?v=f08615b6"></script><!--/vidro:cabeca-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Masterclass — Insuficiência Cardíaca e Doença de Chagas</title>
@@ -1594,6 +1594,7 @@ show(panes.some(p=>p.id===start)?start:'capa');
 (function(){var K='ca:'+location.pathname+':';
 function g(k){try{return +localStorage.getItem(K+k)||0}catch(e){return 0}}function p(k,v){try{localStorage.setItem(K+k,v)}catch(e){}}
 function xp(){[].forEach.call(document.querySelectorAll('.ca-xp'),function(n){n.textContent='⚡ '+g('xp')+' XP';});}
+window.addXp=function(n,key){var d=key?'wgx-'+key:'';if(d&&g(d))return;if(d)p(d,1);p('xp',g('xp')+n);xp();}; /* usado pelo _tema/praticar.js */
 function start(el){var w=el._w,d=w.cards.map(function(_,i){return i});for(var i=d.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=d[i];d[i]=d[j];d[j]=t}el._s={d:d,pos:0,st:0,ok:0,no:0};draw(el);}
 function lab(w,k){for(var i=0;i<w.cats.length;i++)if(w.cats[i][0]===k)return w.cats[i][1];return k}
 function draw(el){var w=el._w,s=el._s,best=g('b:'+w.id);
@@ -1627,5 +1628,6 @@ function por(){
 new MutationObserver(por).observe(document.documentElement,{childList:true,subtree:true});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',por);else por();
 })();</script>
+<!--praticar:inicio--><script>window.VG_PRATICAR=[{"seg":"#seg2","t":"classifique","ic":"🫁","tit":"IC esquerda ou direita?","sub":"Onde o sangue represa?","cats":["Insuficiência esquerda","Insuficiência direita"],"cards":[["Edema pulmonar e dispneia",0,""],["Turgência jugular",1,""],["Macrófagos com hemossiderina no alvéolo (células da insuficiência cardíaca)",0,""],["Fígado em noz-moscada",1,""],["Ortopneia e dispneia paroxística noturna",0,""],["Edema de membros inferiores e ascite",1,""]]},{"seg":"#seg3","t":"ordem","ic":"🔁","tit":"Da DPOC ao cor pulmonale","sub":"Monte a cadeia.","itens":["Doença pulmonar crônica (ex.: DPOC)","Hipóxia alveolar","Vasoconstrição pulmonar hipóxica","Hipertensão pulmonar","Hipertrofia do ventrículo direito","Insuficiência do ventrículo direito (cor pulmonale)"],"exp":"Cor pulmonale é a IC direita causada por doença do pulmão."},{"seg":"#seg5","t":"classifique","ic":"🐛","tit":"Chagas: aguda ou crônica?","sub":"Classifique o achado.","cats":["Fase aguda","Fase crônica"],"cards":[["Sinal de Romaña",0,""],["Parasitemia alta, tripomastigotas no sangue",0,""],["Aneurisma de ponta do ventrículo esquerdo",1,""],["Cardiomiopatia dilatada com arritmias e BRD",1,""],["Megaesôfago e megacólon",1,""],["Miocardite com ninhos de amastigotas",0,""]]}];</script><!--praticar:fim-->
 </body>
 </html>

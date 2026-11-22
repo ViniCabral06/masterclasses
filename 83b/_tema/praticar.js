@@ -202,7 +202,9 @@
   function segAtual() {
     var h = location.hash.replace(/^#\/?/, '');
     var m = h.match(/^([\w-]+)\/([\w-]+)/);
-    return m ? m[1] + '/' + m[2] : '';
+    if (m) return m[1] + '/' + m[2];
+    try { if (typeof currentView === 'string') return 'view:' + currentView; } catch (e) {} /* aula2 da Patologia: goTo('s3'), let global */
+    return '';
   }
 
   function inserir(prose) {
@@ -229,8 +231,23 @@
     });
   }
 
+  /* Segmentos que ficam todos no DOM, cada um numa seção com id (aulas da Patologia: seg "#seg3").
+     O widget entra no fim do .prose da seção (antes das questões). */
+  function porId() {
+    DADOS.forEach(function (w, i) {
+      if (!w.seg || w.seg.charAt(0) !== '#' || !TIPOS[w.t]) return;
+      var id = idDe(w, i);
+      if (document.querySelector('.vg-wg[data-wgid="' + id.replace(/"/g, '') + '"]')) return;
+      var sec = document.getElementById(w.seg.slice(1));
+      if (!sec) return;
+      var alvo = sec.querySelector('.prose') || sec;
+      alvo.appendChild(widget(w, i));
+    });
+  }
+
   function varrer() {
-    var p = document.getElementById('prose') || document.querySelector('main .prose') || document.querySelector('main section.section[id]');
+    porId();
+    var p = document.getElementById('prose') || document.querySelector('main .prose') || document.querySelector('main section.section[id]') || document.querySelector('#content .content-body');
     if (p) inserir(p);
   }
   var agendado = 0;
