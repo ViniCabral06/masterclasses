@@ -24,7 +24,7 @@ Extraia todo o conteúdo textual e a estrutura de tópicos/slides. Use a skill p
 ### 2. Extrair as imagens (sempre que a aula tiver conteúdo visual)
 Isso é essencial, não opcional, sempre que o material tiver qualquer valor visual — o que inclui praticamente toda aula de semiologia, propedêutica, microbiologia, farmacologia, patologia e afins.
 • Liste e extraia as imagens embutidas: pdfimages -list document.pdf e depois pdfimages -png document.pdf /tmp/img
-• Se a aula tiver gráficos/diagramas vetoriais (comuns em slide exportado do PowerPoint) que pdfimages não capture, rasterize a página inteira com pdftoppm -jpeg -r 150 -f N -l N document.pdf /tmp/page para não perder a informação visual
+• Se a aula tiver gráficos/diagramas vetoriais (comuns em slide exportado do PowerPoint) que pdfimages não capture, rasterize a página com pdftoppm -jpeg -r 150 -f N -l N document.pdf /tmp/page só como etapa intermediária e RECORTE apenas a figura. A página rasterizada nunca entra na aula (ver seção B.1: nunca o slide inteiro)
 • Descarte imagens minúsculas/decorativas (máscaras, logos, bullets) filtrando por tamanho de arquivo
 • Veja (view) cada imagem relevante para entender o que ela mostra e escrever uma legenda útil — na prática, isso é o que permite depois usar a imagem tanto no texto quanto nas perguntas
 • Salve as imagens úteis em uma subpasta imagens/ com nomes descritivos (ex: ausculta-focos-cardiacos.png, não img-014.png)
@@ -40,7 +40,7 @@ Explique de verdade: mecanismos, “porquês”, relações causa-efeito, tudo a
 • Conteúdo que vier diretamente do PDF: desenvolva por completo, com profundidade.
 • Conteúdo adicional — correlações clínicas, pegadinhas de prova conhecidas, tópicos relacionados que não estavam no PDF mas são relevantes: marque sempre com “■ EXTRA:” no início do trecho, para os alunos saberem o que veio da aula original e o que foi acrescentado.
 • Sempre que uma imagem extraída ilustrar o que está sendo explicado, insira-a ali mesmo no texto com ![legenda](imagens/nome-do-arquivo.png), e escreva a legenda explicando o que observar na imagem — para matérias visuais, a legenda É o conteúdo (ex: “note a hiperextensão do quirodáctilo e a base ungueal em vidro de relógio, características do baqueteamento digital”). Não jogue as imagens soltas no fim do segmento; elas pertencem ao trecho que estão ilustrando.
-• Se o PDF não tiver uma imagem boa para algo claramente visual (ex: uma lesão clássica, um achado semiológico canônico), pode usar image_search para trazer uma imagem de referência — respeitando as regras de direitos autorais e conteúdo já embutidas nessa ferramenta.
+• Se o PDF não tiver uma imagem boa para algo claramente visual (ex: uma lesão clássica, um achado semiológico canônico), pesquise na internet, em livro de referência ou em artigo uma imagem ou esquema melhor, respeitando direitos autorais, e SEMPRE cite a fonte (ver seção B.1).
 
 3 perguntas de verificação — múltipla escolha, estilo vinheta clínica de residência brasileira: caso clínico curto (2-4 linhas) seguido de 4-5 alternativas, testando raciocínio sobre o segmento. Em matérias visuais, pelo menos 1 das 3 deve ser baseada em imagem — mostre a imagem e peça pra identificar/interpretar o achado, exatamente como cai em prova prática e em provas de residência com imagem. Depois das 3 perguntas, inclua um gabarito comentado: para cada questão, explique por que a correta está certa e por que as principais erradas estão erradas.
 
@@ -100,6 +100,22 @@ Estas regras vieram do uso real da skill (Farmacologia, Prof. Douglas Almeida, A
 • Figuras numeradas, com etapas, e gráficos são o CENTRO da aula: explique cada uma passo a passo (bloco de etapas 1 → 2 → 3), ancorado no livro-texto citado no slide (ex.: Rang & Dale). Leia eixos, curvas, valores e o que muda entre os painéis.
 • Se não conseguir entender uma figura com segurança, PERGUNTE ao aluno em vez de inventar. Não invente número de figura do livro; se não tiver certeza, cite só o capítulo.
 • Recorte as figuras limpas (sem título do slide vazando, sem anotação por cima quando não for útil). Para usar uma figura NUMA QUESTÃO, gere uma versão sem anotações — anotação do aluno/professor entrega a resposta.
+
+## B.1 Slides: nunca a foto do slide inteiro (regra)
+• **Nunca** ponha na aula a foto ou o print do slide inteiro, nem como imagem, nem como "fonte", nem como "ver o slide original". O slide é matéria-prima: o texto dele vira texto da masterclass e as figuras dele são recortadas.
+• **O texto do slide pode e deve ser usado**, só que escrito, não como foto: título, tópicos, listas e tabelas do slide são reescritos em HTML (texto, lista, tabela), logo abaixo da figura recortada ou no ponto do texto em que se encaixam. Destaques do slide (grifos, cores, negrito) viram grifo ou negrito no texto.
+  - Exemplo: o slide "Enterobacterales – Espécies de maior importância médica" tem uma foto de bacilos à esquerda e a lista de espécies à direita. Errado: a foto do slide inteiro com uma legenda que repete a lista. Certo: só a foto dos bacilos (com a fonte), e embaixo a lista escrita (*Escherichia coli*; *Klebsiella pneumoniae*, *K. oxytoca*, *K. aerogenes*; *Enterobacter*…), com as grifadas no slide em destaque.
+• Se o slide tem uma imagem (foto clínica, lâmina, gráfico, esquema, tabela desenhada), use **só a imagem**, recortada sem título, bullets, logo, rodapé ou numeração do slide. Se ela não sair limpa com pdfimages, rasterize e recorte só a área da figura.
+• Slide que é só texto não vira imagem: vira texto, lista, tabela ou esquema em HTML.
+• **Sempre a fonte embaixo de cada imagem**, na legenda (`<figcaption>`), depois do "o que olhar":
+  - figura de livro citada no slide: "Fonte: Rang & Dale, Farmacologia, 9ª ed., cap. 13" (não invente número de figura; sem certeza, cite só o capítulo);
+  - figura sem origem indicada no slide: "Fonte: slides da aula N, Prof. X";
+  - imagem da internet: autor ou instituição, título e link (ex.: "Fonte: Wikimedia Commons, Fulano, CC BY-SA 4.0, <link>");
+  - artigo: autores, título, revista, ano e DOI ou link;
+  - esquema feito por nós: "Esquema próprio, baseado em [livro/artigo/aula]".
+• **Crie esquemas quando ajudarem**: fluxogramas, tabelas comparativas, linhas do tempo, mapas de mecanismo, em HTML/CSS/SVG no visual do tema (claro e escuro). Quando valer a pena, faça interativo, como já existe em outros masters: hotspots, revelar etapa por etapa, arrastar para classificar, simulador com botões ou sliders (ver seção D).
+• **Vá além do slide**: quando a figura do slide for ruim, pequena ou faltar, pesquise na internet, em livro de referência (o citado pelo professor primeiro) e em artigos outras imagens e esquemas melhores. Prefira fontes de uso livre (Wikimedia Commons, OpenStax, PubMed Central com licença aberta, sites de sociedades e do Ministério da Saúde). Toda imagem ou dado trazido de busca entra com a referência na legenda; o que for acréscimo nosso leva "■ EXTRA:".
+• Se não achar imagem boa nem conseguir fazer um esquema, descreva em texto e avise o usuário que faltou a figura. Mesmo assim, nunca use o slide inteiro.
 
 ## C. Falas do professor (PDF anotado)
 • As anotações do PDF anotado (no padrão deles: caixas verdes; em outra aula podem ser texto vermelho/manuscrito — confirme com o aluno) = o que o professor falou em aula. Insira cada fala como caixa “🗣️ O professor em aula” no ponto exato do conteúdo, entre aspas, com os termos-chave em negrito.

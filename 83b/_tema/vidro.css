@@ -634,3 +634,17 @@ html.vidro-aula[data-vidro="pato"] .tbl{border-radius:18px;background:var(--vg-g
 .rvk .rk-flow.rk-v{flex-direction:column;gap:14px}
 .rvk .rk-flow.rk-v>div{flex-basis:auto}
 .rvk .rk-flow.rk-v>div:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-15px;transform:translateX(-50%)}
+
+/* ===================================================== TEXTO DO SLIDE E FONTE DAS IMAGENS
+   Regra da skill (B.1): nunca a foto do slide inteiro. A figura é recortada e o texto do slide vem escrito aqui. */
+.slide-txt{overflow-x:auto;margin:.5em 0 1.3em;padding:.75em 1em .8em;border-left:3px solid var(--vg-acc,#1b6e66);border-radius:0 10px 10px 0;background:color-mix(in srgb,var(--vg-acc,#1b6e66) 7%,transparent);font-size:.94em;line-height:1.55}
+.slide-txt-r{display:block;font-size:.72em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.65;margin-bottom:.35em}
+.slide-txt p{margin:.25em 0}
+.slide-txt ul{margin:.3em 0 .2em;padding-left:1.2em}
+.slide-txt li{margin:.15em 0}
+.slide-txt table{border-collapse:collapse;width:100%;margin:.4em 0;font-size:.92em}
+.slide-txt th,.slide-txt td{border:1px solid color-mix(in srgb,currentColor 18%,transparent);padding:.3em .5em;text-align:left;vertical-align:top}
+.slide-txt th{background:color-mix(in srgb,var(--vg-acc,#1b6e66) 12%,transparent)}
+.slide-txt-wrap{overflow-x:auto}
+.cap-solta{font-size:.9em;opacity:.85;margin-top:-.6em}
+figcaption .fonte,.cap-solta .fonte{display:block;margin-top:.35em;font-size:.86em;opacity:.7;font-style:italic}
