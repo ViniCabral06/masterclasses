@@ -569,7 +569,7 @@ progress::-moz-progress-bar{background:var(--accent);border-radius:99px}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=3f8b9f00">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=e58c1891"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=425946f3"></script><script defer src="../_tema/foco.js?v=9246477d"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="9f992af9"></script><script defer src="../_tema/abas.js?v=157b9531"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script><script defer src="../_tema/praticar.js?v=f08615b6"></script>
+<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=b12585cd"></script><script defer src="../_tema/notas.js?v=e58c1891"></script><script defer src="../_tema/segmentos.js?v=1f3eea9b"></script><script defer src="../_tema/extras.js?v=aee1dea9"></script><script defer src="../_tema/memes.js?v=86e20ff2"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script defer src="../_tema/simulado.js?v=63d77cc4"></script><script defer src="../_tema/flashcards.js?v=ed770d9e"></script><script defer src="../_tema/revisao.js?v=c9fc6216"></script><script defer src="../_tema/foco.js?v=4d8595e4"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="9f992af9"></script><script defer src="../_tema/abas.js?v=157b9531"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script><script defer src="../_tema/praticar.js?v=f08615b6"></script>
 <script defer src="../_tema/propaganda.js"></script><!--/vidro:cabeca-->
 </head>
 <body>
@@ -954,7 +954,7 @@ function home(){
  progressBlock()+'<h2>Escolha seu ponto de partida</h2><div class="tabs">'+continueLink()+link('somativas',pages.somativas)+link('treino','Treinar por aula')+link('simulados',pages.simulados)+link('revisao',pages.revisao)+'</div>'+
  '<div class="panel"><b>Como ler os grifos</b><p>A frase de abertura de cada segmento vem grifada quando o tema já caiu em prova. A cor indica em quantas das '+data.exams.length+' provas do acervo (77 a 82) o tema apareceu:</p><div class="legend"><span class="exam1">verde — já caiu em 1 prova</span><span class="exam2">amarelo — 2 provas</span><span class="exam3">laranja — 3 provas</span><span class="exam4">vermelho — 4 provas</span><span class="exam5">preto — caiu em todas</span></div><p>Toque no grifo para ver quais provas cobraram o tema e abrir a questão.</p></div>'+
  '<div class="panel alert"><b>Sobre as questões das provas</b><p>Recebemos só as justificativas oficiais, sem os enunciados e sem as imagens. As questões de imagem foram reconstruídas a partir da justificativa, com a alternativa certa na letra do gabarito oficial. As questões de outras disciplinas (laboratório, por exemplo) aparecem apenas com a justificativa.</p></div>'+
- '<p class="muted">Professora: Juliana Rodrigues.</p></section>';
+ '</section>';
 }
 /* Regra das masterclasses: no segmento entram só questões de prova real (as refs do segmento).
    Se o tema nunca caiu, aparece o aviso e as questões autorais (✍️) ficam abertas. */
@@ -1201,7 +1201,7 @@ const L=n=>String.fromCharCode(65+n);
 const aulaNome=id=>{const l=data.lessons.find(x=>x.id===id);return l?'Aula '+l.number+' · '+l.title:''};
 const AREAS=[['','Todos'],['torax','Tórax (RX e TC)'],['osso','Osso'],['abdome','Abdome'],['tgi','Esôfago e TGI']];
 const areaDe=a=>['a01','a02','a03','a04','a05','a06','a07'].includes(a)?'torax':a==='a08'?'osso':a==='a14'?'tgi':'abdome';
-const LEVELS=[[0,'Calouro do negatoscópio'],[100,'Interno de plantão'],[250,'Residente R1'],[450,'Residente R3'],[700,'Radiologista'],[1000,'Nível Profª Juliana']];
+const LEVELS=[[0,'Calouro do negatoscópio'],[100,'Interno de plantão'],[250,'Residente R1'],[450,'Residente R3'],[700,'Radiologista'],[1000,'Professor']];
 
 /* ---------- registro das páginas ---------- */
 Object.assign(pages,{laudo:'Plantão do negatoscópio',imagens:'Provas com imagem',cai:'O que vai cair',hora:'Revisão em 1 hora',raiox:'Raio-X da prova',repetem:'Questões que se repetem',sinais:'Sinais radiológicos'});

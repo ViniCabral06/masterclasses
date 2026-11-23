@@ -106,7 +106,7 @@
   /* divisão das aulas: a pessoa marca cada aula como parcial (p), somativa (s) ou pós-somativa (ps); nada é automático */
   if (!cfg.prova || typeof cfg.prova !== 'object') cfg.prova = {};
   const PV = [['p', 'Parcial', 'P'], ['s', 'Somativa', 'S'], ['ps', 'Pós-somativa', 'Pós']];
-  const AVISO_PV = { prev: 'A professora Edna avisou: na somativa só cai o que não foi cobrado na parcial.' };
+  const AVISO_PV = { prev: 'A professora avisou: na somativa só cai o que não foi cobrado na parcial.' };
   const temMarca = () => Object.keys(cfg.prova).some(k => cfg.prova[k]);
   const SEM_FEITAS = new Proxy({}, { get: () => 1 }); // o grupo "Já estudadas" saiu de todos os masters (pedido do Matheus)
   if (SEM_FEITAS[K]) cfg.recolher = false;

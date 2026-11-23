@@ -89,7 +89,7 @@ Sempre em português do Brasil, no nível de aprofundamento e vocabulário técn
 
 # Padrões acumulados (indicações de Matheus e Vinícius — aplicar SEMPRE, além do fluxo acima)
 
-Estas regras vieram do uso real da skill (Farmacologia, Prof. Douglas Almeida, Aulas 6–9). Valem para qualquer matéria; quando conflitarem com o fluxo acima, estas prevalecem.
+Estas regras vieram do uso real da skill (Farmacologia, Aulas 6–9). Valem para qualquer matéria; quando conflitarem com o fluxo acima, estas prevalecem.
 
 ## A. Antes de começar
 • Se já existe um HTML da matéria (ex.: Farmacologia_Somativas.html), a aula nova entra como MAIS UM MÓDULO nesse mesmo arquivo (mesma sidebar, mesmo progresso, mesmas abas de revisão) — não crie arquivo separado. Pergunte/confirme a numeração da aula (ex.: Aula 6 = Parassimpático, 7 = Respiratório, 8 = Digestório, 9 = Vascular) e use a numeração que o aluno der.
