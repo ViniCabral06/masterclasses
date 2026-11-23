@@ -190,9 +190,10 @@ html.vgf-on .vgf-nav .vgf-x,html.vgf-on .vgf-nav .grp.vgf-x{display:none!importa
 .vgf-g1{--vgf:var(--vgf1)}.vgf-g2{--vgf:var(--vgf2)}.vgf-g3{--vgf:var(--vgf3)}.vgf-g4{--vgf:var(--vgf4)}.vgf-g5{--vgf:var(--vgf5)}
 html .vgf-g1,html .vgf-g2,html .vgf-g3,html .vgf-g4,html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf)!important;background-image:linear-gradient(90deg,color-mix(in srgb,var(--vgf) 22%,transparent),transparent 85%)!important}
 html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,.55)!important;background-image:linear-gradient(90deg,rgba(0,0,0,.26),transparent 85%)!important}
-/* tema escuro: o preto sumia no fundo; vira faixa preta com borda dourada e um contorno dourado no item */
-html[data-theme="dark"] .vgf-g5{box-shadow:inset 5px 0 0 #000,inset 7px 0 0 #ffd66b,inset 0 0 0 1px rgba(255,214,107,.45)!important;background-image:linear-gradient(90deg,rgba(255,214,107,.16),transparent 85%)!important}
-html[data-theme="dark"] .vgf-leg i.g5{background:#000;box-shadow:0 0 0 1.5px #ffd66b}
+/* tema escuro: a faixa preta sumia no fundo e o dourado se confundia com o amarelo (nível 2 e cor da Semiologia).
+   O item vira um cartão preto sólido, com faixa e contorno brancos: dá para ver de longe qual é o mais cobrado. */
+html[data-theme="dark"] .vgf-g5{background-color:#000!important;background-image:none!important;box-shadow:inset 4px 0 0 #fff,inset 0 0 0 1.5px rgba(255,255,255,.55)!important}
+html[data-theme="dark"] .vgf-leg i.g5{background:#000;box-shadow:0 0 0 1.5px #fff}
 `;
   D.head.appendChild(st);
 
