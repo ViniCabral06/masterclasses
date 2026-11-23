@@ -340,6 +340,9 @@ html.vidro-ready #vidro-heart{transform:none;opacity:1}
   background:linear-gradient(180deg,color-mix(in srgb,var(--t) 46%,transparent),color-mix(in srgb,var(--t) 26%,transparent))!important;
   color:inherit!important;border-radius:7px;padding:1px 4px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 0 0 1px color-mix(in srgb,var(--t) 62%,transparent),inset 0 -3px 5px -2px color-mix(in srgb,var(--t) 75%,transparent)}
+/* o que fica dentro do grifo (negrito, sigla) segue a cor do texto: masters antigos (Semiologia) pintavam de escuro
+   tudo dentro do grifo no tema escuro, feito para o grifo pastel sólido, e sumia no vidro. O grifo pessoal (mark) fica com a cor dele. */
+:root[data-vidro][data-theme] :is(mark.fq1,mark.fq2,mark.fq3,mark.fq4,mark.f1,mark.f2,mark.f3,mark.f4) :not(mark){color:inherit!important}
 :root[data-vidro][data-theme] :is(mark.fq5,mark.f5){border-radius:7px;padding:1px 4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 0 0 1px rgba(255,255,255,.14)}
 /* grifo preto (o mais cobrado) no tema escuro: o fundo azul-marinho sumia no fundo escuro.
    Fica preto de verdade, com o texto dourado e um contorno dourado que destaca do fundo. */
