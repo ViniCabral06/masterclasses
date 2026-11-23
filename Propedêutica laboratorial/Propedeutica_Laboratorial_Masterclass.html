@@ -2206,6 +2206,24 @@ function maisCobrado(l){
  if(!refs.length)return '<div class="panel pvnone"><b>Esta aula não teve questão nas provas do acervo.</b><p>O roteiro acima mostra o essencial. As questões abaixo são autorais (✍️), feitas por nós para fixar.</p></div>'+aut;
  return '<div class="pv-box"><h3>Questões das provas desta aula · '+pvUnicas(refs).length+'</h3>'+pvLista(refs)+'</div>'+(aut?'<details class="panel pv-aut"><summary>Treinar mais: questões autorais ✍️</summary>'+aut+'</details>':'');
 }
+/* grifo de conteúdo: cada questão de prova do segmento grifa a frase do texto que mais trata do assunto dela (não a 1ª frase, que costuma ser introdução) */
+const GF_STOP=new Set('de da do das dos em no na nos nas um uma uns umas por para pra com sem que se ao aos as os ou mais menos muito muita ja nao sim sao ser esta este esse essa isso isto pelo pela pelos pelas como quando qual quais quem onde entre sobre ate tem ter sua seu suas seus lhe ele ela eles elas tambem pode podem deve devem foi era sera ha mas porque pois entao assim apenas so cada outro outra outros outras alem mesmo mesma tipo aula aulas segmento professora prova provas questao alternativa alternativas correta corretas incorreta assinale afirmativa afirmativas sobre seguir abaixo acima exceto respectivamente enunciado item itens verdadeiro falso'.split(' '));
+function gfPal(t){return (String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').match(/[a-z0-9]{2,}/g)||[]).filter(w=>!GF_STOP.has(w)).map(w=>w.length>6?w.slice(0,6):w.replace(/s$/,''))}
+let GF_DF=null,GF_N=1;
+function gfIdf(w){if(!GF_DF){GF_DF=new Map();data.lessons.forEach(l=>l.sections.forEach(s=>s.paragraphs.forEach(p=>{if(/^(## |\[\[|\|)/.test(p))return;GF_N++;new Set(gfPal(p)).forEach(k=>GF_DF.set(k,(GF_DF.get(k)||0)+1))})))}return Math.log(1+GF_N/(1+(GF_DF.get(w)||0)))}
+function gfFrases(t){const out=[];let a=0;while(a<t.length){const m=t.slice(a).match(/^.*?[.!?](?= |$)/),b=m?a+m[0].length:t.length;out.push([a,b]);a=b;while(t[a]===' ')a++}return out}
+function gfCands(s){const c=[];s.paragraphs.forEach((p,pi)=>{if(/^(## |\[\[|\|)/.test(p))return;
+ const itens=p.startsWith('- ')?p.split(String.fromCharCode(10)).map(x=>x.replace(/^- /,'')):[p.startsWith('🗣️ ')?p.slice(3):p];
+ itens.forEach((t,li)=>gfFrases(t).forEach(([a,b])=>{const n=t.slice(a,b).trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');c.push({pi,li,a,b,w:new Set(gfPal(t.slice(a,b))),intro:/^(a aula|nesta aula|na aula|este segmento|neste segmento|o segmento|a professora|vamos|antes de|comecemos|para comecar|os detalhes|pelos slides)\b/.test(n),caso:/^(caso|exemplo|homem|mulher|idos[oa]|paciente|crianca|gestante|menin[oa]|lactente|adolescente|jovem|senhora?)\b/.test(n)||/\b\d{1,3} anos\b/.test(n)||/\?$/.test(n)})}))});return c}
+function gfPeso(x){const q=x.question||{},m=new Map(),add=(t,k)=>gfPal(t).forEach(w=>m.set(w,Math.max(m.get(w)||0,k)));
+ add(q.stem,.7);add(q.command,.4);add(q.text,.8);(q.options||[]).forEach((o,i)=>add(o,i===q.answer?1.6:.5));add(q.why,1.3);add(q.expected,1.3);add(x.ocr,1);return m}
+function gfNota(c,m){if(!c.w.size)return 0;let v=0;c.w.forEach(w=>{const k=m.get(w);if(k)v+=k*gfIdf(w)});v/=Math.sqrt(c.w.size+4);if(c.intro)v*=.3;if(c.caso)v*=.35;if(c.w.size<4)v*=.6;return v}
+function gfAlvos(s,refs){const c=gfCands(s);if(!c.length||!refs.length)return [];
+ const gs=pvUnicas(refs).map(o=>{const rs=[o.x].concat(o.mais),m=new Map();rs.forEach(x=>gfPeso(x).forEach((k,w)=>m.set(w,Math.max(m.get(w)||0,k))));const ns=c.map(k=>gfNota(k,m));let b=0;ns.forEach((v,i)=>{if(v>ns[b])b=i});return {rs,ns,b}}).sort((x,y)=>y.ns[y.b]-x.ns[x.b]);
+ const esc1=new Map();gs.forEach(g=>{let i=g.b;if(!esc1.has(i)&&esc1.size>=3){i=[...esc1.keys()].sort((x,y)=>g.ns[y]-g.ns[x])[0]}if(!(g.ns[i]>0))i=esc1.size?[...esc1.keys()][0]:0;if(!esc1.has(i))esc1.set(i,[]);esc1.get(i).push(...g.rs)});
+ return [...esc1].map(([i,rs])=>Object.assign({},c[i],{rs}))}
+function gfMark(s,k,rs,txt){const lv=new Set(rs.map(r=>r.exam)).size,id='refs-'+s.id+'-'+k;return '<span class="ref-wrap"><mark class="exam'+Math.min(5,lv)+'" data-refs="'+rs.map(r=>r.id).join(',')+'"><button type="button" data-ref-toggle aria-describedby="'+id+'">'+esc(txt)+'</button></mark><span class="ref-pop" id="'+id+'"><strong>Cobrado em '+lv+' de '+data.exams.length+' avaliações do acervo</strong>'+rs.map(target).join('')+'</span></span>'}
+function gfTexto(s,alvos,pi,li,t){const a=alvos.map((x,k)=>[x,k]).filter(([x])=>x.pi===pi&&x.li===li).sort((x,y)=>x[0].a-y[0].a);if(!a.length)return esc(t);let h='',p=0;a.forEach(([x,k])=>{h+=esc(t.slice(p,x.a))+gfMark(s,k,x.rs,t.slice(x.a,x.b));p=x.b});return h+esc(t.slice(p))}
 function lesson(l,anchor){anchor=(anchor||'').split('~')[0];const rev=l.id+'-revisao',view=l.sections.some(s=>s.id===anchor)||anchor===rev||anchor===l.id+'-arena'||anchor===l.id+'-imagens'?anchor:'capa';lessonView=view;
  return (view==='capa'?hero('Aula '+String(l.number).padStart(2,'0')+' · Propedêutica laboratorial',l.title,l.lead):'')+
  (view==='capa'?'<section class="section">'+segCards(l)+'</section>':'')+
@@ -2215,18 +2233,16 @@ function lesson(l,anchor){anchor=(anchor||'').split('~')[0];const rev=l.id+'-rev
  const inl=new Set(s.paragraphs.filter(p=>/^\[\[fig \d+\]\]$/.test(p)).map(p=>+p.match(/\d+/)[0]));
  const FIG=f=>'<figure class="figure"><img loading="lazy" class="magnify" src="'+f.src+'" alt="'+esc(f.caption)+'"><figcaption>'+esc(f.caption)+'</figcaption></figure>'+(window.atlasLink?atlasLink(l,f.src):'');
  const figures=s.figures.filter((f,k)=>!inl.has(k)).map(FIG).join('');
- const supporting=dasProvas(s,refs,'Questões autorais ✍️');let gr=0;
- return '<section class="section" id="'+s.id+'"><div class="eyebrow">Segmento '+(i+1)+'</div><button type="button" class="done-t" data-read="'+s.id+'"><span class="d"></span><span class="lbl"></span></button><h2>'+(refs.length&&!s.paragraphs.some(p=>!/^(## |\[\[|\||- |🗣️ )/.test(p))?title:esc(s.title))+'</h2>'+keysBlock(s)+
+ const supporting=dasProvas(s,refs,'Questões autorais ✍️'),alvos=gfAlvos(s,refs);
+ return '<section class="section" id="'+s.id+'"><div class="eyebrow">Segmento '+(i+1)+'</div><button type="button" class="done-t" data-read="'+s.id+'"><span class="d"></span><span class="lbl"></span></button><h2>'+(refs.length&&!alvos.length?title:esc(s.title))+'</h2>'+keysBlock(s)+
  s.paragraphs.map((p,idx)=>{
  if(p.startsWith('## '))return '<h3>'+esc(p.slice(3))+'</h3>';
  if(/^\[\[fig \d+\]\]$/.test(p)){const f=s.figures[+p.match(/\d+/)[0]];return f?FIG(f):''}
  if(p.startsWith('|')){const rows=p.trim().split(String.fromCharCode(10)).map(x=>x.replace(/^\||\|$/g,'').split('|').map(c=>c.trim()));return '<div class="table"><table><thead><tr>'+rows[0].map(c=>'<th>'+esc(c)+'</th>').join('')+'</tr></thead><tbody>'+rows.slice(1).map(rw=>'<tr>'+rw.map(c=>'<td>'+esc(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'}
- if(p.startsWith('- ')){return '<ul>'+p.split(String.fromCharCode(10)).map(x=>'<li>'+esc(x.replace(/^- /,''))+'</li>').join('')+'</ul>'}
+ if(p.startsWith('- ')){return '<ul>'+p.split(String.fromCharCode(10)).map((x,li)=>'<li>'+gfTexto(s,alvos,idx,li,x.replace(/^- /,''))+'</li>').join('')+'</ul>'}
  if(/^\[\[esq [\w-]+\]\]$/.test(p))return window.labEsq?labEsq(p.slice(6,-2)):'';
- if(p.startsWith('🗣️ ')){return '<div class="panel prof"><b>🗣️ A professora destaca</b><p>'+esc(p.slice(3))+'</p></div>'}
- if(gr||!refs.length)return '<p>'+esc(p)+'</p>';gr=1; /* grifo no 1o paragrafo de texto, mesmo depois de subtitulo, lista ou tabela */
- const sentence=p.match(/^.*?[.!?](?= |$)/)?.[0]||p;
- return '<p>'+title.replace(esc(s.title),esc(sentence))+esc(p.slice(sentence.length))+'</p>';
+ if(p.startsWith('🗣️ ')){return '<div class="panel prof"><b>🗣️ A professora destaca</b><p>'+gfTexto(s,alvos,idx,0,p.slice(3))+'</p></div>'}
+ return '<p>'+gfTexto(s,alvos,idx,0,p)+'</p>'; /* grifo na frase que trata do assunto das questoes (gfAlvos) */
  }).join('')+figures+(s.prova?'<div class="panel prova"><b>📝 Como a prova cobra</b><p>'+esc(s.prova)+'</p></div>':'')+(s.note?'<p class="panel alert"><b>■ EXTRA:</b> '+esc(s.note)+'</p>':'')+deepBlock(s)+supporting+
  ''+''+
  '<div class="cel-fin"><button type="button" class="cel-finish read" data-read="'+s.id+'">'+CHECK+'<span class="lbl"></span></button></div></section>';
