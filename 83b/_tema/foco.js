@@ -107,11 +107,24 @@
   if (!cfg.prova || typeof cfg.prova !== 'object') cfg.prova = {};
   const PV = [['p', 'Parcial', 'P'], ['s', 'Somativa', 'S'], ['ps', 'Pós-somativa', 'Pós']];
   const AVISO_PV = { prev: 'A professora avisou: na somativa só cai o que não foi cobrado na parcial.' };
+  /* 🎯 Foco da professora: as aulas que ela disse que caem na próxima prova. Grifa só elas e separa o resto na barra. */
+  const PROF = {
+    lab: { ids: ['a08', 'a09', 'a10', 'a11', 'a12', 'a13', 'a14'],
+      aviso: 'A professora avisou que caem: função hepática, marcadores inflamatórios, autoimunidade, COVID-19, dengue, zika e chikungunya, hepatites virais, HIV e outras ISTs, introdução à microbiologia e hiperglicemia.' },
+  };
+  const M = () => cfg.modo === 'prof' ? 'todos' : cfg.modo; // nos grifos, o foco da professora conta todas as provas
   const temMarca = () => Object.keys(cfg.prova).some(k => cfg.prova[k]);
   const SEM_FEITAS = new Proxy({}, { get: () => 1 }); // o grupo "Já estudadas" saiu de todos os masters (pedido do Matheus)
   if (SEM_FEITAS[K]) cfg.recolher = false;
   if (K === 'dic' && !('div' in (LS(CK) || {}))) cfg.div = false; // DIC IV: sem parcial/somativa (OSCE, revisão dos casos e APIC); a pessoa pode ligar a divisão
   const salva = () => { try { localStorage.setItem(CK, JSON.stringify(cfg)); } catch (e) {} };
+  /* subgrupos de "Provas e revisão" (masters de caderno, onde a lista é longa e sempre aberta) */
+  const RX_MASTER = { huma: 1, prev: 1, img: 1, lab: 1, port: 1 };
+  const RX = [['rx-provas', '📝 Provas anteriores'], ['rx-final', '🎯 Reta final'], ['rx-treino', '🎮 Treinar']];
+  const rxDe = t => /vai cair/i.test(t) ? 1
+    : /parcia|somativa|provas com|das provas|se repetem|raio-x/i.test(t) ? 0
+    : /arena|treino|plant[aã]o|flashcard|autora|minha revis|quiz/i.test(t) ? 2
+    : /revis[aã]o|simulad|sinais|pegadinh|frequ[eê]ncia|termos|valores/i.test(t) ? 1 : -1;
   const CORTE0 = { dic: 5, huma: 4, prev: 5, img: 7, micro: 3, semio: 4, farmaco: 3, port: 4, pato: 7 }; // divisão que o master já usava
 
   /* ---------- estilo ---------- */
@@ -150,6 +163,9 @@ html.vgf-on .vgf-nav .vgf-x,html.vgf-on .vgf-nav .grp.vgf-x{display:none!importa
 .vgf-seg button[aria-pressed="true"]{background:var(--vg-acc,#5aa9ff);color:var(--vg-on-acc,#04162b);font-weight:600}
 .vgf-seg button[disabled]{opacity:.4;cursor:not-allowed}
 .vgf-seg button:focus-visible{outline:2px solid var(--vg-acc,#5aa9ff)}
+.vgf-prof{all:unset;box-sizing:border-box;display:block;width:100%;margin-top:6px;cursor:pointer;padding:7px 10px;border-radius:999px;font-size:12.5px;text-align:center;background:var(--vg-control,rgba(127,127,127,.14))}
+.vgf-prof[aria-pressed="true"]{background:var(--vg-acc,#5aa9ff);color:var(--vg-on-acc,#04162b);font-weight:600}
+.vgf-prof:focus-visible{outline:2px solid var(--vg-acc,#5aa9ff)}
 .vgf-leg{display:flex;align-items:center;gap:4px;font-size:11.5px;color:var(--muted,#8a94a3)}
 .vgf-leg i{width:18px;height:8px;border-radius:4px;display:inline-block}
 .vgf-b label{display:flex;gap:8px;align-items:center;cursor:pointer}
@@ -174,6 +190,9 @@ html.vgf-on .vgf-nav .vgf-x,html.vgf-on .vgf-nav .grp.vgf-x{display:none!importa
 .vgf-g1{--vgf:var(--vgf1)}.vgf-g2{--vgf:var(--vgf2)}.vgf-g3{--vgf:var(--vgf3)}.vgf-g4{--vgf:var(--vgf4)}.vgf-g5{--vgf:var(--vgf5)}
 html .vgf-g1,html .vgf-g2,html .vgf-g3,html .vgf-g4,html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf)!important;background-image:linear-gradient(90deg,color-mix(in srgb,var(--vgf) 22%,transparent),transparent 85%)!important}
 html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,.55)!important;background-image:linear-gradient(90deg,rgba(0,0,0,.26),transparent 85%)!important}
+/* tema escuro: o preto sumia no fundo; vira faixa preta com borda dourada e um contorno dourado no item */
+html[data-theme="dark"] .vgf-g5{box-shadow:inset 5px 0 0 #000,inset 7px 0 0 #ffd66b,inset 0 0 0 1px rgba(255,214,107,.45)!important;background-image:linear-gradient(90deg,rgba(255,214,107,.16),transparent 85%)!important}
+html[data-theme="dark"] .vgf-leg i.g5{background:#000;box-shadow:0 0 0 1.5px #ffd66b}
 `;
   D.head.appendChild(st);
 
@@ -205,13 +224,15 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
     if (window.VGFocoHost) window.VGFocoHost.appendChild(painel); else nav.parentElement.insertBefore(painel, nav);
   }
   function pintaPainel() {
-    const nm = { todos: 'todas as provas', parciais: 'parciais', somativas: 'somativas', off: 'grifos desligados' }[cfg.modo];
+    const nm = { todos: 'todas as provas', parciais: 'parciais', somativas: 'somativas', off: 'grifos desligados', prof: 'foco da professora' }[cfg.modo];
     const nMarc = info.filter(a => cfg.prova[a.key]).length;
     const sem = m => (m === 'parciais' && !totP) || (m === 'somativas' && !totS);
     const h = '<summary>🎯 Foco de estudo<span class="m">' + nm + '</span></summary><div class="vgf-b">' +
-      '<div><div class="lb">Grifos nas aulas</div><div class="vgf-seg">' + MODOS.map(([k, t]) => '<button type="button" data-modo="' + k + '" aria-pressed="' + (cfg.modo === k) + '"' + (sem(k) ? ' disabled title="Não há ' + t.toLowerCase() + ' no acervo deste master"' : '') + '>' + t + '</button>').join('') + '</div></div>' +
+      '<div><div class="lb">Grifos nas aulas</div><div class="vgf-seg">' + MODOS.map(([k, t]) => '<button type="button" data-modo="' + k + '" aria-pressed="' + (cfg.modo === k) + '"' + (sem(k) ? ' disabled title="Não há ' + t.toLowerCase() + ' no acervo deste master"' : '') + '>' + t + '</button>').join('') + '</div>' +
+        (PROF[K] ? '<button type="button" class="vgf-prof" data-modo="prof" aria-pressed="' + (cfg.modo === 'prof') + '">🎯 Foco da professora</button>' : '') + '</div>' +
       (cfg.modo !== 'off' ? '<div class="vgf-leg">cai pouco <i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i><i class="g5"></i> cai sempre</div>' : '') +
       (!totP ? '<div class="nota">Este master só tem somativas no acervo.</div>' : '') +
+      (cfg.modo === 'prof' && PROF[K] ? '<div class="aviso">📣 ' + esc(PROF[K].aviso) + '</div>' : '') +
       (AVISO_PV[K] ? '<div class="aviso">📣 ' + esc(AVISO_PV[K]) + '</div>' : '') +
       '<details class="vgf-pv"' + (cfg.pvAberto ? ' open' : '') + '><summary>Em qual prova cai cada aula<span class="m">' + (nMarc ? nMarc + ' marcada' + (nMarc > 1 ? 's' : '') : 'nenhuma marcada') + '</span></summary>' +
       '<div class="nota" style="margin-top:6px">Marque conforme a sua turma: P = parcial, S = somativa, Pós = pós-somativa. A barra lateral se organiza pelo que você marcar. Toque de novo para desmarcar.</div>' +
@@ -225,7 +246,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
   const corteAtual = () => Math.max(1, Math.min(info.length || 1, cfg.corte || CORTE0[K] || Math.ceil((info.length || 2) / 2)));
 
   /* ---------- grifos ---------- */
-  const val = o => cfg.modo === 'parciais' ? o.p : cfg.modo === 'somativas' ? o.s : o.p + o.s;
+  const val = o => M() === 'parciais' ? o.p : M() === 'somativas' ? o.s : o.p + o.s;
   const nivel = (v, max) => { if (!v || !max) return 0; const r = v / max; return r >= .8 ? 5 : r >= .6 ? 4 : r >= .4 ? 3 : r >= .2 ? 2 : 1; };
   const tiraG = el => { if (el) el.classList.remove('vgf-g1', 'vgf-g2', 'vgf-g3', 'vgf-g4', 'vgf-g5'); };
   const poeG = (el, n, txt) => { if (!el) return; tiraG(el); if (n) { el.classList.add('vgf-g' + n); el.dataset.vgfTip = txt; } else delete el.dataset.vgfTip; };
@@ -244,7 +265,63 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
     D.querySelectorAll('iframe').forEach(f => { try { const d = f.contentDocument; if (d && d.body) out.push(d); } catch (e) {} });
     return out;
   }
+  /* ---------- questões de prova separadas por parcial e somativa ----------
+     Com o Foco em "Parciais" ou "Somativas", cada lista de questões de prova (⭐ O que mais foi cobrado,
+     "Das provas" do segmento) ganha duas abas: a do foco abre primeiro, a outra fica a um toque.
+     Em "Todas" (ou desligado) as questões ficam juntas, como sempre. */
+  const QS = { huma: ['.pv-item', '.pv-chip'], prev: ['.pv-item', '.pv-chip'], img: ['.pv-item', '.pv-chip'], lab: ['.pv-item', '.pv-chip'],
+    semio: ['.q', '.qtag.pv'] }; // Microbiologia: os segmentos só têm somativas (a Parcial 81 fica à parte), nada a separar
+  const qTipo = t => /somativa|\bS\s?\d{2}\b/i.test(t) ? 's' : /parcia|estudo dirigido|\bP\s?\d{2}\b|\bED\b/i.test(t) ? 'p' : '';
+  const qAba = new Map(); // aba escolhida em cada lista (por página), para não voltar ao re-desenhar
+  const CSS_Q = `.vgf-qx{display:none!important}
+.vgf-qtabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
+.vgf-qtabs button{all:unset;cursor:pointer;padding:7px 13px;border-radius:999px;font:600 13.5px/1.2 var(--vg-text,system-ui,sans-serif);
+  background:color-mix(in srgb,currentColor 7%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,currentColor 18%,transparent)}
+.vgf-qtabs button[aria-selected="true"]{background:var(--vg-acc,#5aa9ff);color:var(--vg-on-acc,#04162b);box-shadow:none}
+.vgf-qtabs button:focus-visible{outline:2px solid var(--vg-acc,#5aa9ff);outline-offset:2px}
+.vgf-qtabs .n{opacity:.75;font-weight:500;margin-left:4px}
+.vgf-qvazio{border:1px dashed color-mix(in srgb,currentColor 25%,transparent);border-radius:12px;padding:12px 14px;margin:0 0 12px;font-size:14.5px;line-height:1.45}`;
+  function separa() {
+    const q = QS[K]; if (!q) return;
+    if (!D.getElementById('vgf-q-css')) { const s = D.createElement('style'); s.id = 'vgf-q-css'; s.textContent = CSS_Q; D.head.appendChild(s); }
+    const pais = new Map();
+    D.querySelectorAll(q[0]).forEach(it => { const tg = it.querySelector(q[1]); if (!tg || !it.parentElement) return; const t = qTipo(tg.textContent || ''); if (!pais.has(it.parentElement)) pais.set(it.parentElement, []); pais.get(it.parentElement).push([it, t]); });
+    let i = 0;
+    pais.forEach((its, pai) => {
+      const chave = location.pathname + location.hash + '|' + (i++);
+      const np = its.filter(x => x[1] === 'p').length, ns = its.filter(x => x[1] === 's').length;
+      const foco = M() === 'parciais' ? 'p' : M() === 'somativas' ? 's' : '';
+      const usa = foco && np + ns > 0;
+      const aba = usa ? (qAba.get(chave) || foco) : '';
+      const sig = cfg.modo + '|' + np + '|' + ns + '|' + aba;
+      const barra = pai.querySelector(':scope > .vgf-qtabs');
+      if (pai.dataset.vgfq === sig && (!usa || barra)) return;
+      pai.dataset.vgfq = sig;
+      pai.querySelectorAll(':scope > .vgf-qtabs, :scope > .vgf-qvazio').forEach(x => x.remove());
+      its.forEach(([it, t]) => it.classList.toggle('vgf-qx', !!usa && !!t && t !== aba));
+      if (!usa) return;
+      const outra = foco === 'p' ? 's' : 'p', ordem = [foco, outra];
+      const nome = { p: 'Parciais', s: 'Somativas' }, n = { p: np, s: ns };
+      const b = D.createElement('div'); b.className = 'vgf-qtabs'; b.setAttribute('role', 'tablist');
+      b.innerHTML = ordem.map(k => '<button type="button" role="tab" data-vgfq="' + k + '" aria-selected="' + (k === aba) + '">' + (k === 'p' ? '📝 ' : '📚 ') + nome[k] + '<span class="n">' + n[k] + '</span></button>').join('');
+      b.dataset.chave = chave;
+      pai.insertBefore(b, its[0][0]);
+      if (!n[aba]) {
+        const v = D.createElement('div'); v.className = 'vgf-qvazio';
+        const o = aba === 'p' ? 's' : 'p';
+        v.innerHTML = '<b>Nenhuma questão daqui caiu nas ' + nome[aba].toLowerCase() + '.</b> ' + (n[o] ? (n[o] === 1 ? 'A única questão é' : 'As ' + n[o] + ' questões são') + ' das ' + nome[o].toLowerCase() + ': toque na outra aba para ver.' : '');
+        pai.insertBefore(v, its[0][0]);
+      }
+    });
+  }
+  D.addEventListener('click', e => {
+    const bt = e.target.closest('.vgf-qtabs button[data-vgfq]'); if (!bt) return;
+    e.preventDefault(); e.stopPropagation();
+    qAba.set(bt.parentElement.dataset.chave, bt.dataset.vgfq); separa();
+  }, true);
+
   function textos() {
+    try { separa(); } catch (e) {}
     const tipo = TIPO[K]; if (!tipo) return;
     docsTexto().forEach(d => {
       if (!docsVistos.has(d)) {
@@ -259,9 +336,9 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
         if (!nt) return; // grifo sem nível (não é de frequência)
         const [, pre, lv] = nt.match(NIV), refs = m.dataset.refs.split(',').map(x => x.trim()).filter(Boolean);
         let cls;
-        if (cfg.modo === 'todos') cls = orig;
+        if (M() === 'todos') cls = orig;
         else {
-          const kept = cfg.modo === 'off' ? [] : refs.filter(r => tipo(r) === (cfg.modo === 'parciais' ? 'p' : 's'));
+          const kept = M() === 'off' ? [] : refs.filter(r => tipo(r) === (M() === 'parciais' ? 'p' : 's'));
           const base = toks.filter(t => t !== nt);
           if (!kept.length) cls = base.concat('vgf-sm').join(' ');
           else if (kept.length === refs.length) cls = orig;
@@ -301,20 +378,20 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       const somaS = i => i.sAula != null ? i.sAula : Object.values(i.segs).reduce((u, s) => u + s.s, 0);
       totP = info.reduce((t, a) => t + somaP(a), 0);
       totS = info.reduce((t, a) => t + somaS(a), 0);
-      if ((cfg.modo === 'parciais' && !totP) || (cfg.modo === 'somativas' && !totS)) cfg.modo = 'todos';
+      if ((cfg.modo === 'parciais' && !totP) || (cfg.modo === 'somativas' && !totS) || (cfg.modo === 'prof' && !PROF[K])) cfg.modo = 'todos';
       montaPainel(nav); pintaPainel();
 
       /* grifos */
       // total da aula: questões únicas (pAula/sAula, quando o adaptador sabe) ou a soma dos segmentos
-      const vA = a => { const i = porKey[a.key]; if (!i) return 0; return cfg.modo === 'parciais' ? somaP(i) : cfg.modo === 'somativas' ? somaS(i) : somaP(i) + somaS(i); };
+      const vA = a => { const i = porKey[a.key]; if (!i) return 0; return M() === 'parciais' ? somaP(i) : M() === 'somativas' ? somaS(i) : somaP(i) + somaS(i); };
       const maxA = Math.max(0, ...aulas.map(vA));
       const maxS = Math.max(0, ...info.flatMap(i => Object.values(i.segs).map(val)));
-      const nomeM = { todos: 'nas provas', parciais: 'nas parciais', somativas: 'nas somativas' }[cfg.modo];
+      const nomeM = { todos: 'nas provas', parciais: 'nas parciais', somativas: 'nas somativas' }[M()];
       aulas.forEach(a => {
-        const v = cfg.modo === 'off' ? 0 : vA(a);
+        const fora = cfg.modo === 'prof' && !PROF[K].ids.includes(a.key), v = M() === 'off' || fora ? 0 : vA(a);
         poeG(a.head, nivel(v, maxA), v + ' quest' + (v === 1 ? 'ão' : 'ões') + ' ' + nomeM);
         const i = porKey[a.key];
-        A.segs(a).forEach(s => { const o = i && i.segs[s.key]; const w = cfg.modo === 'off' || !o ? 0 : val(o); poeG(s.el, nivel(w, maxS), w + ' ' + nomeM); });
+        A.segs(a).forEach(s => { const o = i && i.segs[s.key]; const w = M() === 'off' || fora || !o ? 0 : val(o); poeG(s.el, nivel(w, maxS), w + ' ' + nomeM); });
       });
 
       /* divisão e recolhidas */
@@ -324,7 +401,8 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
         if (K === 'farmaco') headers.set(h.dataset.g, h); else h.remove();
       });
       const marcou = info.some(a => cfg.prova[a.key]);
-      const liga = marcou || cfg.recolher;
+      const prof = cfg.modo === 'prof' && PROF[K];
+      const liga = marcou || prof || cfg.recolher || !!RX_MASTER[K];
       html.classList.toggle('vgf-on', liga); nav.classList.toggle('vgf-nav', liga);
       html.classList.add('vgf-semdiv'); // a divisão automática do master (blocos parcial/somativa) não aparece: quem divide é a pessoa
       // os cabeçalhos reaproveitados (.vgf-h) não entram na lista: a ordem deles é dada abaixo, junto do grupo
@@ -338,7 +416,11 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       const feita = a => { const i = porKey[a.key]; return !!(cfg.recolher && i && i.done); };
       const grupos = [];
       const qt = n => n + ' aula' + (n > 1 ? 's' : '');
-      if (marcou) {
+      if (prof) {
+        const g = aulas.filter(a => prof.ids.includes(a.key) && !feita(a)), r = aulas.filter(a => !prof.ids.includes(a.key) && !feita(a));
+        if (g.length) grupos.push({ id: 'prof-sim', t: '🎯 Cai na prova', n: qt(g.length), a: g });
+        if (r.length) grupos.push({ id: 'prof-nao', t: 'Não cai nesta prova', n: qt(r.length), a: r });
+      } else if (marcou) {
         PV.forEach(([t, nome]) => { const g = aulas.filter(a => cfg.prova[a.key] === t && !feita(a)); if (g.length) grupos.push({ id: 'pv-' + t, t: nome, n: qt(g.length), a: g }); });
         const r = aulas.filter(a => !cfg.prova[a.key] && !feita(a)); if (r.length) grupos.push({ id: 'pv-resto', t: 'Sem marcação', n: qt(r.length), a: r });
       } else grupos.push({ id: 'todas', t: null, a: aulas.filter(a => !feita(a)) });
@@ -346,7 +428,7 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
       let o = 0; antes.forEach(c => { c.style.order = ++o; });
       grupos.forEach(g => {
         const temCur = g.a.some(a => a.cur);
-        let ab = g.t == null ? true : (cfg.open[g.id] != null ? cfg.open[g.id] : (g.id !== 'feitas' && temCur));
+        let ab = g.t == null ? true : (cfg.open[g.id] != null ? cfg.open[g.id] : (g.id === 'prof-sim' || (g.id !== 'feitas' && g.id !== 'prof-nao' && temCur)));
         if (temCur && g.id !== 'feitas' && cfg.openAula !== curKey(aulas)) { ab = true; }
         if (g.t != null) {
           const anterior = headers.get(g.id);
@@ -359,9 +441,41 @@ html .vgf-g5{box-shadow:inset 4px 0 0 var(--vgf),inset 5px 0 0 rgba(255,255,255,
         }
         g.a.forEach(a => { [...(a.pre || []), a.el, ...(a.extra || [])].forEach(x => { x.style.order = ++o; x.classList.toggle('vgf-x', !ab); }); });
       });
+      /* provas e revisão: a lista longa do fim vira subgrupos recolhíveis (só nos masters de caderno) */
+      const cab = (id, t, n, ab) => {
+        const anterior = headers.get(id); headers.delete(id);
+        const h = anterior || D.createElement('button');
+        if (!anterior) { h.type = 'button'; h.className = 'vgf-h vgf-rx'; h.dataset.g = id; }
+        h.setAttribute('aria-expanded', ab); const rotulo = '<span class="c">▶</span><span>' + esc(t) + '</span><span class="n">' + esc(n) + '</span>';
+        if (h.dataset.rotulo !== rotulo) { h.innerHTML = rotulo; h.dataset.rotulo = rotulo; }
+        h.style.order = ++o; if (!anterior) nav.appendChild(h);
+      };
+      if (RX_MASTER[K]) {
+        const itens = depois.filter(c => c.matches('.grp.single, button.nv'));
+        const gs = RX.map(([id, t]) => ({ id, t, a: [] }));
+        const fora = [];
+        itens.forEach(c => { const i = rxDe(c.textContent || ''); if (i < 0) fora.push(c); else gs[i].a.push(c); });
+        const usa = gs.filter(g => g.a.length >= 2);
+        gs.filter(g => g.a.length < 2).forEach(g => fora.push(...g.a));
+        const ini = itens.length ? depois.indexOf(itens[0]) : depois.length;
+        depois.slice(0, ini).forEach(c => { c.style.order = ++o; });
+        const ativo = (itens.find(c => c.classList.contains('on')) || {}).textContent || '';
+        usa.forEach(g => {
+          const temCur = g.a.some(c => c.classList.contains('on'));
+          let ab = cfg.open[g.id] != null ? cfg.open[g.id] : temCur;
+          if (temCur && cfg.openRx !== ativo) ab = true;
+          cab(g.id, g.t, g.a.length + ' itens', ab);
+          g.a.forEach(c => { c.style.order = ++o; c.classList.toggle('vgf-x', !ab); });
+        });
+        cfg.openRx = ativo;
+        depois.slice(ini).filter(c => !itens.includes(c) || fora.includes(c)).forEach(c => {
+          c.style.order = ++o;
+          // rótulos do próprio master no meio da lista (ex.: "Revisão final" no Português) ficariam soltos entre os subgrupos
+          if (!itens.includes(c) && c.matches('.grp:not(.single), .sb-sec') && !c.querySelector('a,button')) c.classList.add('vgf-x');
+        });
+      } else depois.forEach(c => { c.style.order = ++o; });
       headers.forEach(h => h.remove());
       cfg.openAula = curKey(aulas);
-      depois.forEach(c => { c.style.order = ++o; });
     } finally {
       if (scrollAntes !== null) nav.scrollTop = scrollAntes;
       try { textos(); observaTexto(); } catch (e) {}
