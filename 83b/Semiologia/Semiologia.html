@@ -1951,7 +1951,7 @@ document.addEventListener('click',e=>{
 });
 /* Foco de estudo (foco.js): em "Somativas" o O que mais é cobrado mostra só o que caiu em somativas (S77–S82 e o Estudo Dirigido da Somativa); em "Parciais", só parciais e o Estudo Dirigido; em "Todas", tudo */
 function focoModo(){try{return (JSON.parse(localStorage.getItem('vg-foco:semio')||'{}')||{}).modo||'todos'}catch(e){return 'todos'}}
-function focoFiltro(){const fm=focoModo();return fm==='somativas'?id=>/^(Sd|EDS)/.test(provaDe(id)):fm==='parciais'?id=>/^(Pd|ED$)/.test(provaDe(id)):null}
+function focoFiltro(){const fm=focoModo();return fm==='somativas'?id=>/^(S[0-9]|EDS)/.test(provaDe(id)):fm==='parciais'?id=>/^(P[0-9]|ED$)/.test(provaDe(id)):null}
 document.addEventListener('vgfoco',()=>{try{if(route()[1]==='cob')render()}catch(e){}});
 function pCob(m){
   const okP=focoFiltro(),fm=focoModo(),C=m.cob,cs=C.keys.map(k=>CAIK.get(k)).filter(Boolean).map(c=>{if(!okP)return c;const ids=c.ids.filter(okP);if(!ids.length)return null;const provas=[...new Set(ids.map(provaDe))];return Object.assign({},c,{ids,provas,n:provas.length,rep:okP(c.rep)?c.rep:ids[ids.length-1]})}).filter(Boolean).sort((x,y)=>okP?y.n-x.n:0);
