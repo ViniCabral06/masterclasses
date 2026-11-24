@@ -1,6 +1,6 @@
 /* ✏️ Editor do site (Vinícius e Matheus) — o publicar.py inclui nos masters e nas aulas.
 
-   - Caneta pequena no canto superior esquerdo, só no site principal (vinicabral06.github.io; localhost para teste).
+   - Caneta pequena no canto superior direito, só no PC (some no celular e no tablet), só no site principal (vinicabral06.github.io; localhost para teste).
      Não aparece na vitrine 83B. Abre com a senha dos administradores.
    - Modo edição: clique num texto do conteúdo para reescrever (Enter termina, Shift+Enter quebra linha, Esc desfaz).
      Selecione um trecho para pôr um 💬 balão (texto que aparece ao passar o mouse).
@@ -103,7 +103,7 @@
   /* ---------- estilo ---------- */
   const st = D.createElement('style');
   st.textContent = 'mark.vge-bal{background:none;color:inherit;border-bottom:2px dotted #f39ac6;cursor:help;-webkit-box-decoration-break:clone;box-decoration-break:clone}'
-    + '#vge-btn{position:fixed;left:10px;top:10px;z-index:2147481500;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0;'
+    + '#vge-btn{position:fixed;right:10px;top:10px;z-index:2147481500;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0;'
     + 'border:1px solid rgba(127,127,127,.28);background:color-mix(in srgb,var(--vg-glass,rgba(255,255,255,.55)) 85%,transparent);color:inherit;opacity:.55;'
     + '-webkit-backdrop-filter:blur(12px) saturate(1.4);backdrop-filter:blur(12px) saturate(1.4);box-shadow:0 2px 10px rgba(0,0,0,.12);transition:opacity .15s,transform .15s}'
     + '#vge-btn:hover{opacity:1;transform:scale(1.06)}#vge-btn svg{width:14px;height:14px}'
@@ -113,11 +113,11 @@
     + 'html.vge-on .vg-n-barra{display:none!important}'
     + 'html.vge-on :is(' + BLOCO + '):not(.vge-ui *):hover{outline:1px dashed rgba(243,154,198,.7);outline-offset:2px;cursor:text}'
     + '[contenteditable].vge-ed{outline:2px solid #f39ac6!important;outline-offset:3px;border-radius:3px;cursor:text}'
-    + '#vge-aviso{position:fixed;left:48px;top:12px;z-index:2147481500;font:12px/1.3 system-ui,sans-serif;background:#1d211f;color:#eef0ec;padding:6px 10px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.25);display:none}'
+    + '#vge-aviso{position:fixed;right:48px;top:12px;z-index:2147481500;font:12px/1.3 system-ui,sans-serif;background:#1d211f;color:#eef0ec;padding:6px 10px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.25);display:none}'
     + 'html.vge-on #vge-aviso{display:block}'
     + '.vge-ui input{display:block;width:100%;box-sizing:border-box;margin:2px 0 8px;padding:8px 10px;border-radius:9px;border:1px solid #3a3f3b;background:#121513;color:#eef0ec;font:inherit;font-size:14px}'
     + '.vge-ui .erro{color:#ff8f9a;font-size:12px;margin-bottom:6px;min-height:1em}.vge-ui .mini{font-size:11px;color:#8f968f;margin-bottom:6px}'
-    + '@media (max-width:860px){#vge-btn{top:auto;bottom:calc(64px + env(safe-area-inset-bottom,0px));left:10px}#vge-aviso{top:auto;left:48px;bottom:calc(68px + env(safe-area-inset-bottom,0px))}}';
+    + '@media (max-width:1024px),(pointer:coarse){#vge-btn,#vge-aviso{display:none!important}}';
 
   /* ---------- balão para todos ---------- */
   const tip = D.createElement('div'); tip.className = 'vg-n-ui vg-n-tip vge-ui';
@@ -349,7 +349,8 @@
 
   function iniciar() {
     D.head.appendChild(st); D.body.append(tip, barra, caixa);
-    if (ADMIN && TOPO) { montarBotao(); try { localStorage.setItem(K_ON, '0'); } catch (_) { } }
+    const PC = !matchMedia('(max-width:1024px),(pointer:coarse)').matches;
+    if (ADMIN && TOPO && PC) { montarBotao(); try { localStorage.setItem(K_ON, '0'); } catch (_) { } }
     else if (ADMIN) definir(localStorage.getItem(K_ON) === '1');
     carregar();
     const root = raiz(); if (root) new MutationObserver(depois).observe(root, { childList: true, subtree: true });
