@@ -9,7 +9,7 @@ const V=document.documentElement.dataset.vidro;
 const CFG={
   prev:{nome:'Medicina Preventiva',
     par:{sub:'Aulas 1 a 5',ids:['a01','a02','a03','a04','a05'],g:'parciais',prova:'Parciais 80 a 83'},
-    som:{sub:'Semestre inteiro',g:'somativas',prova:'Somativas 80 e 81',
+    som:{sub:'Semestre inteiro',g:'somativas',prova:'Somativas 80 a 82',
       aviso:'A professora disse que na somativa só cai o que <b>não foi cobrado na parcial</b>. Revise primeiro o que ficou de fora da sua parcial. <b>Foco da professora na teoria:</b> doenças crônicas não transmissíveis, neoplasias, tabagismo e alcoolismo, violência e acidentes por animais peçonhentos. Os <b>conceitos básicos</b> da matéria (Aulas 1 a 4) continuam essenciais.',
       grupos:[
       {t:'🎯 Foco da professora: as aulas cobradas',ids:['a05','a07','a09','a08','a10'],open:true,badge:['🎯 Foco da professora','foco']},
