@@ -52,7 +52,7 @@
       nav: () => AD.micro.nav(), aulas: () => AD.micro.aulas(), segs: a => AD.micro.segs(a),
       dados: () => { const st = LS('mc-semio-v1') || {}, dn = st.done || {}; return DATA.modules.map(m => {
         const segs = {};
-        m.segs.forEach(s => { const r = uniq(refsDe(s.html).concat(s.pv || [])); const P = r.filter(x => /^(P|ED)/i.test(x)).length; segs[m.id + '/' + s.id] = { p: P, s: r.length - P }; });
+        m.segs.forEach(s => { const r = uniq(refsDe(s.html).concat(s.pv || [])); const P = r.filter(x => /^(P|ED(?!S))/i.test(x)).length; /* EDS (estudo dirigido da somativa) conta como somativa */ segs[m.id + '/' + s.id] = { p: P, s: r.length - P }; });
         return { key: m.id, nome: 'Aula ' + m.num, done: m.segs.every(s => dn[m.id + '/' + s.id]), segs };
       }); },
     },

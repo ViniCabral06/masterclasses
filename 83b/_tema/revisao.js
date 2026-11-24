@@ -136,18 +136,22 @@ const PG_RAIO=window.XPAGES&&XPAGES.repetem?'repetem':window.XPAGES&&XPAGES.raio
 
 /* ---------- ⭐ O que mais é cobrado (por aula) ---------- */
 const velhoMais=typeof maisCobrado==='function'?maisCobrado:null;
+/* Foco de estudo (foco.js): "Somativas" mostra só o que caiu em somativas; "Parciais", só parciais; "Todas", tudo */
+const focoG=()=>{try{const m=(JSON.parse(localStorage.getItem('vg-foco:'+V)||'{}')||{}).modo;return m==='somativas'||m==='parciais'?m:null}catch(e){return null}};
+document.addEventListener('vgfoco',()=>{if(/-revisao$/.test(location.hash))try{render({scroll:false})}catch(e){}});
 function maisNovo(l){
-  const temPar=exams('parciais').length>0;
-  const linhas=l.sections.map(s=>{const rs=refsOf(s);return{s,rs,par:nExam(rs,'parciais'),som:nExam(rs,'somativas'),n:nExam(rs)}}).sort((a,b)=>b.n-a.n||b.rs.length-a.rs.length);
-  const tab='<div class="table"><table class="rx-tab"><thead><tr><th>Tema</th>'+(temPar?'<th>Parciais</th>':'')+'<th>Somativas</th><th>🔁</th></tr></thead><tbody>'+linhas.map(o=>'<tr><td>'+lk(l.id,'',o.s.id).replace('></a>','>'+heat(o.s,o.rs)+'</a>')+'</td>'+(temPar?'<td>'+(o.par||'–')+'</td>':'')+'<td>'+(o.som||'–')+'</td><td>'+(segRep(o.s)?'🔁':'')+'</td></tr>').join('')+'</tbody></table></div>';
+  const fg=focoG(),fgOk=fg&&exams(fg).length>0?fg:null;
+  const temPar=!fgOk&&exams('parciais').length>0,temSom=fgOk!=='parciais';
+  const linhas=l.sections.map(s=>{const rs=refsOf(s).filter(x=>!fgOk||x.group===fgOk);return{s,rs,par:nExam(rs,'parciais'),som:nExam(rs,'somativas'),n:nExam(rs)}}).sort((a,b)=>b.n-a.n||b.rs.length-a.rs.length);
+  const tab='<div class="table"><table class="rx-tab"><thead><tr><th>Tema</th>'+(temPar?'<th>Parciais</th>':'')+(temSom?'<th>Somativas</th>':'<th>Parciais</th>')+'<th>🔁</th></tr></thead><tbody>'+linhas.map(o=>'<tr><td>'+lk(l.id,'',o.s.id).replace('></a>','>'+heat(o.s,o.rs)+'</a>')+'</td>'+(temPar?'<td>'+(o.par||'–')+'</td>':'')+'<td>'+((temSom?o.som:o.par)||'–')+'</td><td>'+(segRep(o.s)?'🔁':'')+'</td></tr>').join('')+'</tbody></table></div>';
   const top=linhas.filter(o=>o.n).slice(0,4);const base=top.length?top:linhas.slice(0,3);
   const grave='<div class="rx-grave"><b>Grave isto</b>'+base.map(o=>'<div><h4>'+E(o.s.title)+(o.n?' <span class="rx-chip'+(o.n>=3?' hot':'')+'">'+o.n+(o.n>1?' provas':' prova')+'</span>':'')+'</h4>'+((o.s.keys||[]).length?'<ul class="rx-keys">'+o.s.keys.slice(0,3).map(k=>'<li>'+E(k)+'</li>').join('')+'</ul>':'')+(o.s.trap?'<p class="rx-trap"><b>⚠️ Pegadinha</b> '+E(o.s.trap)+'</p>':'')+'</div>').join('')+'</div>';
   const vis=new Set(),qs=[];
-  linhas.forEach(o=>o.rs.forEach(x=>{if(vis.has(x.id))return;const g=CL[x.id];if(g){g.forEach(y=>vis.add(y.id));const r=g.filter(y=>ondeItem[y.id]&&ondeItem[y.id][0]===l);qs.push({x:r.length?repDe(r):x,g,n:o.n})}else{vis.add(x.id);qs.push({x,g:null,n:o.n})}}));
+  linhas.forEach(o=>o.rs.forEach(x=>{if(vis.has(x.id))return;let g=CL[x.id];if(g&&fgOk){const gg=g.filter(y=>y.group===fgOk);g=gg.length>1?gg:null}if(g){g.forEach(y=>vis.add(y.id));const r=g.filter(y=>ondeItem[y.id]&&ondeItem[y.id][0]===l);qs.push({x:r.length?repDe(r):x,g,n:o.n})}else{vis.add(x.id);qs.push({x,g:null,n:o.n})}}));
   qs.sort((a,b)=>(b.g?new Set(b.g.map(y=>y.exam)).size:1)-(a.g?new Set(a.g.map(y=>y.exam)).size:1)||b.n-a.n);
   const nRep=qs.filter(q=>q.g).length;
   const fin=(data.final||[]).filter(q=>q.aula===l.id),aut=fin.length&&typeof quiz==='function'?quiz(fin,'Questões autorais ✍️'):'';
-  const cab='<h3 class="rx-sub">Onde a prova bate nesta aula</h3>'+tab+grave;
+  const cab=(fgOk?'<div class="rx-grave"><b>🎯 Foco de estudo: só '+fgOk+'</b><div><p>Esta página mostra só as questões que caíram nas '+fgOk+'. Para ver tudo, escolha <b>Todas</b> no Foco de estudo.</p></div></div>':'')+'<h3 class="rx-sub">Onde a prova bate nesta aula</h3>'+tab+grave;
   if(!qs.length)return cab+'<div class="panel pvnone"><b>Esta aula não teve questão nas provas do acervo.</b><p>Os pontos acima mostram o essencial. As questões abaixo são autorais (✍️), feitas por nós para fixar.</p></div>'+aut;
   return cab+'<div class="pv-box"><h3>Questões das provas desta aula · '+qs.length+(nRep?' <span class="rx-chip rep">🔁 '+nRep+(nRep>1?' repetidas':' repetida')+'</span>':'')+'</h3><p class="rx-lema">As que se repetiram entre provas vêm primeiro.</p>'+qs.map(q=>(q.g?repChip(q.g):'')+provaItem(q.x)).join('')+'</div>'+(aut?'<details class="panel pv-aut"><summary>Treinar mais: questões autorais ✍️</summary>'+aut+'</details>':'');
 }
