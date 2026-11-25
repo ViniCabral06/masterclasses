@@ -74,6 +74,10 @@ ITENS = [
     ('Seções finais (revisão final, o que vai cair, simulados, minha revisão)', fim_do_master,
      'feche o master como a Microbiologia: Revisão final (revisão em 1 hora com esquemas), O que vai cair, '
      'Simulados com as provas anteriores e Minha revisão'),
+    ('Correção alternativa por alternativa', tem(r'<!--porque:inicio-->', r'VGCorrecao\.bloco', r'class="pv-alts'),
+     'toda questão mostra "Por que as outras alternativas estão erradas" pelo _tema/correcao.js: dê porque e trecho a cada '
+     'questão (py exportar_questoes.py → outro modelo → py conferir_porques.py → py importar_porques.py) e chame '
+     'VGCorrecao.bloco(q, {pick}) na tela de correção; veja a seção E da skill masterclass-medica'),
     ('Botão de tema claro/escuro', tem(r'data-act="theme"|id="btnTheme"|\bthemebtn\b'),
      'o botão precisa de data-act="theme", id="btnTheme" ou class="themebtn" para a lâmpada achar'),
     ('Texto dentro de <main>', tem(r'<main\b|id="main"|id="view"|class="main\b'),
@@ -102,8 +106,8 @@ ITENS = [
 DISPENSA = {
     'TH4_Masterclass_OSCE.html': ({'Blocos parcial / somativa', 'Questões só de prova por capítulo', 'Aviso "nunca caiu"',
                                    'Página "O que mais cai"',
-                                   'Origem de cada questão marcada', 'Seções finais (revisão final, o que vai cair, simulados, minha revisão)'}, 'prova prática (OSCE), sem provas escritas'),
-    'DIC_IV_Masterclass.html': ({'Crédito Vinícius e Matheus'}, 'master do Thiaginho: o crédito é "Made by Thiaginho"'),
+                                   'Origem de cada questão marcada', 'Seções finais (revisão final, o que vai cair, simulados, minha revisão)', 'Correção alternativa por alternativa'}, 'prova prática (OSCE), sem provas escritas'),
+    'DIC_IV_Masterclass.html': ({'Crédito Vinícius e Matheus', 'Correção alternativa por alternativa'}, 'master do Thiaginho: o crédito é "Made by Thiaginho"; os exercícios dele não são múltipla escolha no formato do site'),
 }
 
 

@@ -142,6 +142,11 @@ Estas regras vieram do uso real da skill (Farmacologia, Aulas 6–9). Valem para
   - Letras do gabarito bem distribuídas.
   - Ao terminar um master ou um lote de questões, meça (comprimento da certa × das erradas) e corrija antes de publicar.
 • Gabarito comentado por alternativa, com a cadeia de mecanismo em setas (fármaco → receptor → proteína G → segundo mensageiro → efeito).
+• **Correção alternativa por alternativa (regra, modelo: Patologia).** Toda questão de múltipla escolha, de qualquer origem (prova, reconstruída, autoral, quiz, Arena, simulado), mostra depois da resposta o bloco "Por que as outras alternativas estão erradas", desenhado pelo `_tema/correcao.js` (visual no `_tema/vidro.css`, classe `.vg-cor`). Nada de lista própria de "por que as outras estão erradas" no master.
+  - Cada questão traz, além do gabarito, `porque` (uma frase por alternativa errada: o erro dela e o que seria o certo; não comece com "Errada", não repita a alternativa; duas alternativas nunca com o mesmo porquê) e `trecho` (o pedaço exato da alternativa que a torna errada, copiado letra por letra, 2 a 8 palavras; alternativa curta vai inteira). Na certa, os dois ficam vazios.
+  - O bloco só aparece depois de responder, põe primeiro a alternativa que a pessoa marcou ("sua resposta") e grifa o `trecho` em ondinha vermelha. A justificativa oficial continua embaixo, separada.
+  - Como ligar: questão em objeto JS → `VGCorrecao.bloco(q, {pick})` na tela de correção (com `q.alts`, `q.gab` e `q.porque`/`q.trecho`, ou os dados do bloco `<!--porque:inicio-->` gravado pelo `importar_porques.py`); questão no HTML como a Farmacologia (`.q[data-a]` com `.opt[data-l] .ot`) → automático; simulado padrão → automático.
+  - Questões que já existem sem porquê: `py exportar_questoes.py` (lotes em `_exportados/questoes/lotes/`, prompt em `_exportados/questoes/PROMPT.md`), outro modelo preenche, `py conferir_porques.py` confere (português, sem frase-modelo, trecho exato) e `py importar_porques.py` grava nos masters.
 • Discursivas no molde do professor (receptor + proteína G + segundo mensageiro + efeito), com caixa de texto que salva, “ver resposta esperada” e autoavaliação (acertei / parcial / errei).
 
 ## F. Cruzamento com as provas
