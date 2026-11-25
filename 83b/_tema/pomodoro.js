@@ -21,6 +21,8 @@ function ler() {
   let st = null;
   try { st = JSON.parse(localStorage.getItem(K)); } catch (_) { }
   st = st && typeof st === 'object' ? st : {};
+  // no 🥷 modo foco, o tomatinho já aparece (parado) para quem nunca mexeu; desligar fica gravado
+  if (typeof st.on !== 'boolean') { try { st.on = localStorage.getItem('vidro-modo-foco') === 'true'; } catch (_) { st.on = false; } }
   return { on: !!st.on, cfg: M.limpar(st.cfg), e: st.e && st.e.fase ? st.e : M.parar(), pediu: !!st.pediu };
 }
 function gravar(st) { try { localStorage.setItem(K, JSON.stringify(st)); } catch (_) { } }

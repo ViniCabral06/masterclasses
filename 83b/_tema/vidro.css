@@ -768,6 +768,8 @@ html.vga-on #vg-pomo-chama{z-index:620}
 html.vga-on #vg-pomo{z-index:621}
 html.vga-on:not([data-vga-lado=t]):not([data-vga-lado=l]):not([data-vga-lado=r]) #vg-pomo-chama{bottom:calc(var(--vga-h,62px) + var(--vga-gap,14px) + 12px + env(safe-area-inset-bottom,0px))}
 html.vga-on:not([data-vga-lado=t]):not([data-vga-lado=l]):not([data-vga-lado=r]) #vg-pomo{bottom:calc(var(--vga-h,62px) + var(--vga-gap,14px) + 56px + env(safe-area-inset-bottom,0px))}
+/* no PC a barra de abas fica no centro: o tomatinho desce para o canto */
+@media (min-width:701px){html.vga-on:not([data-vga-lado=t]):not([data-vga-lado=l]):not([data-vga-lado=r]) #vg-pomo-chama{right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px))}html.vga-on:not([data-vga-lado=t]):not([data-vga-lado=l]):not([data-vga-lado=r]) #vg-pomo{bottom:calc(64px + env(safe-area-inset-bottom,0px))}}
 @media (prefers-reduced-motion:reduce){#vg-pomo{animation:none}#vg-pomo-chama,#vg-pomo .vgp-corpo{transition:none}}
 
 /* ===== Correção alternativa por alternativa (_tema/correcao.js), igual à Patologia ===== */
