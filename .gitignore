@@ -14,6 +14,8 @@
 !LEIAME.md
 !CLAUDE.md
 !_tema/**
+# Resumões e colas em PDF de cada matéria (exceção à regra dos PDFs)
+!Resumos/**
 !AGENTS.md
 !.claude/
 !.claude/skills/**
