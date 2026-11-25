@@ -154,6 +154,7 @@
     + '[contenteditable].vge-ed{outline:2px solid #f39ac6!important;outline-offset:3px;border-radius:3px;cursor:text}'
     + '#vge-aviso{position:fixed;right:48px;top:12px;z-index:2147481500;font:12px/1.3 system-ui,sans-serif;background:#1d211f;color:#eef0ec;padding:6px 10px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.25);display:none}'
     + 'html.vge-on #vge-aviso{display:block}'
+    + '#vge-aviso.msg{display:block!important;max-width:min(520px,calc(100vw - 120px));white-space:normal;border-radius:14px}'
     + '.vge-ui input{display:block;width:100%;box-sizing:border-box;margin:2px 0 8px;padding:8px 10px;border-radius:9px;border:1px solid #3a3f3b;background:#121513;color:#eef0ec;font:inherit;font-size:14px}'
     + '.vge-ui .erro{color:#ff8f9a;font-size:12px;margin-bottom:6px;min-height:1em}.vge-ui .mini{font-size:11px;color:#8f968f;margin-bottom:6px}'
     + '@media (max-width:1024px),(pointer:coarse){#vge-btn,#vge-aviso{display:none!important}}';
@@ -232,14 +233,15 @@
         if (sha) corpo.sha = sha;
         const w = await gh(ARQ, { method: 'PUT', body: JSON.stringify(corpo) });
         if (w.ok) { marcar(fila.length ? 'salvando' : 'salvo'); return; }
-        if (w.status === 401 || w.status === 403) { aviso('Sem permissão no GitHub: entre de novo pela caneta.'); try { localStorage.removeItem(K_TOK); } catch (_) { } throw new Error('auth'); }
+        if (w.status === 401 || w.status === 403 || w.status === 404) { sairToken(); throw new Error(w.status === 404 ? 'o token não tem permissão de escrita: crie outro marcando public_repo e entre de novo pela caneta' : 'o token não vale mais: entre de novo pela caneta'); }
         if (w.status !== 409 && w.status !== 422) throw new Error('escrita ' + w.status);
       }
       throw new Error('conflito');
-    } catch (e) { fila = ops.concat(fila); marcar('erro'); aviso('Não salvou (' + e.message + '). Tento de novo em 10 s.'); tSalvar = setTimeout(enviar, 10000); }
+    } catch (e) { marcar('erro'); if (!tok()) { aviso('Não salvou: ' + e.message + '.'); return; } fila = ops.concat(fila); aviso('Não salvou (' + e.message + '). Tento de novo em 10 s.'); tSalvar = setTimeout(enviar, 10000); }
     finally { enviando = false; }
   }
-  function aviso(t) { const a = D.getElementById('vge-aviso') || (window.top !== window && (() => { try { return window.top.document.getElementById('vge-aviso'); } catch (_) { return null; } })()); if (a) { a.textContent = t; a.classList.add('msg'); clearTimeout(a._t); a._t = setTimeout(() => { a.textContent = AVISO; a.classList.remove('msg'); }, 4000); } }
+  function sairToken() { try { localStorage.removeItem(K_TOK); localStorage.setItem(K_ON, '0'); } catch (_) { } fila = []; setTimeout(() => definir(false), 0); }
+  function aviso(t) { const a = D.getElementById('vge-aviso') || (window.top !== window && (() => { try { return window.top.document.getElementById('vge-aviso'); } catch (_) { return null; } })()); if (a) { a.textContent = t; a.classList.add('msg'); clearTimeout(a._t); a._t = setTimeout(() => { a.textContent = AVISO; a.classList.remove('msg'); }, /^Não salvou|não subiu/.test(t) ? 15000 : 4000); } }
   const AVISO = '✏️ Modo edição: clique num texto para mudar · selecione um trecho para pôr um 💬 balão';
 
   /* ---------- editar texto ---------- */
@@ -718,12 +720,15 @@
         const tk = tIn.value.trim(); if (!tk) { er.textContent = 'Cole o token.'; return; }
         const rr = await fetch('https://api.github.com/repos/' + REPO, { headers: { Authorization: 'Bearer ' + tk, Accept: 'application/vnd.github+json' } });
         const j = rr.ok ? await rr.json() : null;
-        if (!j || !(j.permissions && j.permissions.push)) { er.textContent = 'Esse token não pode escrever no repositório.'; return; }
+        if (!j || !(j.permissions && j.permissions.push)) { er.textContent = 'Essa conta não pode escrever no repositório.'; return; }
+        // token clássico (ghp_): o GitHub informa os escopos; sem public_repo/repo a gravação volta 404
+        const esc = rr.headers.get('x-oauth-scopes');
+        if (esc !== null && !/(^|,\s*)(public_repo|repo)(\s*,|$)/.test(esc)) { er.textContent = 'Esse token não tem permissão de escrita. Crie outro marcando public_repo.'; return; }
         localStorage.setItem(K_TOK, tk);
         const corpo = { message: 'Editor do site: chave cifrada', content: b64(JSON.stringify(await cifrar(tk, s)) + '\n'), branch: 'main' };
         const ex = await gh(ARQ_CHAVE + '?ref=main'); if (ex.ok) corpo.sha = (await ex.json()).sha;
         const w = await gh(ARQ_CHAVE, { method: 'PUT', body: JSON.stringify(corpo) });
-        if (!w.ok) { er.textContent = 'Não consegui gravar a chave (' + w.status + ').'; return; }
+        if (!w.ok) { localStorage.removeItem(K_TOK); er.textContent = w.status === 404 ? 'O GitHub recusou a gravação (404): o token não tem permissão de escrita. Crie outro marcando public_repo (clássico) ou Contents: Read and write (fine-grained).' : 'Não consegui gravar a chave (' + w.status + ').'; return; }
       }
       esconder(login); localStorage.setItem(K_ON, '1'); definir(true);
     } catch (e) { er.textContent = 'Erro: ' + e.message; }
