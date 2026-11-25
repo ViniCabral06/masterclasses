@@ -329,11 +329,11 @@ def titulo_tem(k, s):
 
 # matérias que não podem ser "casa" de um conceito (a palavra tem outro sentido lá, ou a matéria só cita)
 SEM_CASA = {"fa": {"lab"}, "sensibilidade_especificidade": {"farmaco"}, "edema": {"pato", "img", "farmaco", "prev", "lab", "dic"},
-            "diabetes": {"pato"}, "pielonefrite": {"pato"}, "cavitacao": {"pato"}, "colinergico": {"dic"}, "hepatograma": {"img"},
+            "diabetes": {"pato"}, "pielonefrite": {"pato"}, "cavitacao": {"pato", "micro"}, "colinergico": {"dic"}, "hepatograma": {"img"},
             "determinantes": {"farmaco"}, "betalactamicos": {"farmaco"}, "antifungicos": {"farmaco"}, "leucograma": {"pato", "img"},
             "imunidade": {"pato"}, "vacinas": {"pato"}, "hiv": {"micro", "pato"}, "albumina_inr": {"farmaco"}, "estertores": {"img"}, "disseccao_aorta": {"dic"}, "colelitiase": {"dic"}}
 # matérias que não recebem 🔗 para um conceito (citam de passagem, com outro sentido)
-SEM_ORIGEM = {"alcool": {"micro"}, "fa": {"lab"}, "sensibilidade_especificidade": {"farmaco"}, "imunidade": {"farmaco"}}
+SEM_ORIGEM = {"alcool": {"micro"}, "cavitacao": {"micro"}, "fa": {"lab"}, "sensibilidade_especificidade": {"farmaco"}, "imunidade": {"farmaco"}}
 # casa escolhida à mão quando a contagem erra
 CASA = {("angina", "semio"): "a9/s1", ("gram", "micro"): "a1/s3", ("hemolise", "lab"): "a04/a04-4", ("alcool", "prev"): "a09/a09-1",
         ("aterosclerose", "pato"): "aula1/seg3", ("has", "pato"): "aula1/seg2", ("ldl", "pato"): "aula1/seg4", ("ic", "pato"): "aula3/seg1",
