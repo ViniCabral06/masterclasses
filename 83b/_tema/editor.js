@@ -109,7 +109,8 @@
     if (!img.dataset.vgiSrc) img.dataset.vgiSrc = img.getAttribute('src');
     img.style.display = m.del ? 'none' : '';
     if (m.ns) { img.src = resolver(m.ns); img.removeAttribute('srcset'); } else if (img.getAttribute('src') !== img.dataset.vgiSrc) img.setAttribute('src', img.dataset.vgiSrc);
-    if (m.w) { img.style.width = m.w + 'px'; img.style.maxWidth = '100%'; img.style.height = 'auto'; } else img.style.width = '';
+    if (m.w) { img.style.width = m.w + 'px'; img.style.maxWidth = m.h ? 'none' : '100%'; img.style.height = m.h ? m.h + 'px' : 'auto'; } else { img.style.width = ''; img.style.height = ''; }
+    img.style.transform = m.x || m.y ? 'translate(' + (m.x || 0) + 'px,' + (m.y || 0) + 'px)' : '';
   }
   let tAp = 0; const depois = () => { if (aplicando || (!dados.t.length && !dados.b.length && !dados.i.length)) return; clearTimeout(tAp); tAp = setTimeout(aplicar, 300); };
 
@@ -195,10 +196,12 @@
   addEventListener('scroll', () => { if (!segura) esconder(tip); }, { passive: true, capture: true });
 
   /* ---------- salvar no GitHub ---------- */
-  const tok = () => { try { return localStorage.getItem(K_TOK) || ''; } catch (_) { return ''; } };
+  const TESTE = () => { try { return LOCAL && sessionStorage.getItem('vg-ed-teste') === '1'; } catch (_) { return false; } };
+  const tok = () => { if (TESTE()) return 'teste'; try { return localStorage.getItem(K_TOK) || ''; } catch (_) { return ''; } };
   const b64 = s => { const u = new TextEncoder().encode(s); let x = ''; for (let i = 0; i < u.length; i += 0x8000) x += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(x); };
   const deb64 = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g, '')), c => c.charCodeAt(0)));
   async function gh(caminho, op) {
+    if (TESTE()) { console.info('[editor · teste] ' + ((op && op.method) || 'GET') + ' ' + caminho + ' (não enviado)'); return new Response('{}', { status: op && op.method === 'PUT' ? 201 : 404 }); }
     const h = { Authorization: 'Bearer ' + tok(), Accept: 'application/vnd.github+json' };
     return fetch(API + caminho, Object.assign({ headers: h, cache: 'no-store' }, op || {}, op && op.body ? { headers: Object.assign(h, { 'Content-Type': 'application/json' }) } : {}));
   }
@@ -236,7 +239,7 @@
     } catch (e) { fila = ops.concat(fila); marcar('erro'); aviso('Não salvou (' + e.message + '). Tento de novo em 10 s.'); tSalvar = setTimeout(enviar, 10000); }
     finally { enviando = false; }
   }
-  function aviso(t) { const a = D.getElementById('vge-aviso') || (window.top !== window && (() => { try { return window.top.document.getElementById('vge-aviso'); } catch (_) { return null; } })()); if (a) { a.textContent = t; clearTimeout(a._t); a._t = setTimeout(() => { a.textContent = AVISO; }, 5000); } }
+  function aviso(t) { const a = D.getElementById('vge-aviso') || (window.top !== window && (() => { try { return window.top.document.getElementById('vge-aviso'); } catch (_) { return null; } })()); if (a) { a.textContent = t; a.classList.add('msg'); clearTimeout(a._t); a._t = setTimeout(() => { a.textContent = AVISO; a.classList.remove('msg'); }, 4000); } }
   const AVISO = '✏️ Modo edição: clique num texto para mudar · selecione um trecho para pôr um 💬 balão';
 
   /* ---------- editar texto ---------- */
@@ -279,7 +282,7 @@
     a.el.dataset.vge = a.id; agendar({ k: 't', item });
   }
   // sai da edição ao clicar fora do texto (a barra de formatação e as caixinhas do editor não contam)
-  const DO_EDITOR = '.vge-ui,#vge-tb,#vge-btn,#vge-imgbar,.vge-alca';
+  const DO_EDITOR = '.vge-ui,#vge-tb,#vge-btn,#vge-moldura';
   D.addEventListener('mousedown', e => {
     if (!atual || !e.target.closest) return;
     if (atual.el.contains(e.target) || e.target.closest(DO_EDITOR)) return;
@@ -288,20 +291,20 @@
   D.addEventListener('keydown', e => {
     if (!atual || !atual.el.contains(e.target)) return;
     if (e.key === 'Escape') { e.preventDefault(); terminar(true); }
-    else if (e.key === 'Enter' && !e.shiftKey && !(getSelection().anchorNode && getSelection().anchorNode.parentElement && getSelection().anchorNode.parentElement.closest('li'))) { e.preventDefault(); terminar(); }
+    else if (e.key === 'Enter' && !(getSelection().anchorNode && getSelection().anchorNode.parentElement && getSelection().anchorNode.parentElement.closest('li'))) { e.preventDefault(); D.execCommand('insertLineBreak'); }
     else if ((e.ctrlKey || e.metaKey) && !e.shiftKey && /^[biu]$/i.test(e.key)) { e.preventDefault(); D.execCommand({ b: 'bold', i: 'italic', u: 'underline' }[e.key.toLowerCase()]); }
   }, true);
   // modo edição: clicar no conteúdo edita (e não aciona botões/alternativas do master)
   function noConteudo(t) { const root = raiz(); return root && root.contains(t) && !(t.closest && t.closest(FORA)); }
   D.addEventListener('click', e => {
     if (!ligado || !e.target.closest || e.target.closest(DO_EDITOR + ',mark.vge-bal')) return;
-    if (e.target.tagName === 'IMG' && noConteudo(e.target)) { e.preventDefault(); e.stopPropagation(); selecionarImg(e.target); return; }
+    if (e.target.tagName === 'IMG' && noConteudo(e.target)) { e.preventDefault(); e.stopImmediatePropagation(); selecionarImg(e.target); return; }
     if (atual && atual.el.contains(e.target)) return;
     if (!noConteudo(e.target)) return;
     if (!getSelection().isCollapsed) return;
     const el = e.target.closest(BLOCO) || (e.target.childNodes && [...e.target.childNodes].some(n => n.nodeType === 3 && n.nodeValue.trim()) ? e.target : null);
     if (!el || !noConteudo(el)) return;
-    e.preventDefault(); e.stopPropagation(); editar(el);
+    e.preventDefault(); e.stopImmediatePropagation(); editar(el);
   }, true);
 
   /* ---------- balão: selecionar → 💬 ---------- */
@@ -371,26 +374,29 @@
     limpa: ic('<path d="M6 5h12M12 5l-4 14"/><path d="m15 14 6 6M21 14l-6 6"/>'),
     marca: ic('<path d="m14 4 6 6-8 8H6v-6z"/><path d="M3 21h8"/>')
   };
-  const FONTES = ['Instrument Sans', 'Arial', 'Georgia', 'Times New Roman', 'Verdana', 'Trebuchet MS', 'Courier New', 'Instrument Serif'];
+  // fontes usadas nos masters (guardadas em _tema/fontes/) + as do sistema
+  const FONTES = ['Instrument Sans', 'Instrument Serif', 'Hanken Grotesk', 'Inter', 'Geist', 'Bricolage Grotesque', 'IBM Plex Sans', 'IBM Plex Mono', 'Fraunces', 'Newsreader', 'Source Serif 4', 'Arial', 'Calibri', 'Segoe UI', 'Verdana', 'Trebuchet MS', 'Georgia', 'Times New Roman', 'Courier New', 'Consolas', 'Comic Sans MS', 'Impact'];
   const ESTILOS = [['p', 'Texto normal'], ['h1', 'Título'], ['h2', 'Título 1'], ['h3', 'Título 2'], ['h4', 'Título 3']];
   const tb = D.createElement('div'); tb.id = 'vge-tb'; tb.className = 'vge-ui-tb';
   tb.innerHTML =
     '<button data-c="busca" title="Pesquisar na página (Ctrl+F)">' + I.busca + '</button>'
-    + '<button data-c="undo" title="Desfazer (Ctrl+Z)">' + I.desf + '</button><button data-c="redo" title="Refazer (Ctrl+Y)">' + I.ref + '</button>'
-    + '<button data-c="print" title="Imprimir (Ctrl+P)">' + I.impr + '</button><button data-c="orto" title="Verificação ortográfica">' + I.orto + '</button>'
-    + '<button data-c="pincel" title="Pintar formatação">' + I.pincel + '</button>'
+    + '<button class="so-txt" data-c="undo" title="Desfazer (Ctrl+Z)">' + I.desf + '</button><button class="so-txt" data-c="redo" title="Refazer (Ctrl+Y)">' + I.ref + '</button>'
+    + '<button data-c="print" title="Imprimir (Ctrl+P)">' + I.impr + '</button><button class="so-txt" data-c="orto" title="Verificação ortográfica">' + I.orto + '</button>'
+    + '<button class="so-txt" data-c="pincel" title="Pintar formatação">' + I.pincel + '</button>'
     + '<select data-c="zoom" title="Zoom">' + [50, 75, 90, 100, 125, 150, 200].map(z => '<option value="' + z + '"' + (z === 100 ? ' selected' : '') + '>' + z + '%</option>').join('') + '</select><i></i>'
     + '<select data-c="estilo" class="lg" title="Estilos">' + ESTILOS.map(e => '<option value="' + e[0] + '">' + e[1] + '</option>').join('') + '</select><i></i>'
     + '<select data-c="fonte" class="lg" title="Fonte"><option value="">Fonte</option>' + FONTES.map(f => '<option style="font-family:\'' + f + '\'">' + f + '</option>').join('') + '</select><i></i>'
-    + '<button data-c="tam-" title="Diminuir tamanho da fonte">−</button><input data-c="tam" title="Tamanho da fonte" inputmode="numeric"><button data-c="tam+" title="Aumentar tamanho da fonte">+</button><i></i>'
-    + '<button data-c="bold" title="Negrito (Ctrl+B)"><b>B</b></button><button data-c="italic" title="Itálico (Ctrl+I)"><em style="font-family:Georgia,serif">I</em></button><button data-c="underline" title="Sublinhado (Ctrl+U)"><u>U</u></button>'
+    + '<button class="so-txt" data-c="tam-" title="Diminuir tamanho da fonte">−</button><input data-c="tam" title="Tamanho da fonte" inputmode="numeric"><button class="so-txt" data-c="tam+" title="Aumentar tamanho da fonte">+</button><i></i>'
+    + '<button class="so-txt" data-c="bold" title="Negrito (Ctrl+B)"><b>B</b></button><button class="so-txt" data-c="italic" title="Itálico (Ctrl+I)"><em style="font-family:Georgia,serif">I</em></button><button class="so-txt" data-c="underline" title="Sublinhado (Ctrl+U)"><u>U</u></button>'
     + '<label class="cor" title="Cor do texto"><span class="A">A</span><s data-k="cor"></s><input type="color" data-c="cor" value="#e5484d"></label>'
     + '<label class="cor" title="Cor de destaque">' + I.marca + '<s data-k="dest"></s><input type="color" data-c="dest" value="#ffe066"></label><i></i>'
-    + '<button data-c="link" title="Inserir link (Ctrl+K)">' + I.link + '</button><button data-c="coment" title="Pôr balão de explicação no trecho">' + I.coment + '</button><button data-c="img" title="Inserir imagem">' + I.img + '</button><i></i>'
+    + '<button class="so-txt" data-c="link" title="Inserir link (Ctrl+K)">' + I.link + '</button><button class="so-txt" data-c="coment" title="Pôr balão de explicação no trecho">' + I.coment + '</button><i></i>'
     + '<select data-c="alin" class="ico" title="Alinhar"><option value="">⯀</option><option value="left">Esquerda</option><option value="center">Centro</option><option value="right">Direita</option><option value="justify">Justificado</option></select>'
     + '<select data-c="esp" class="ico" title="Espaçamento entre linhas"><option value="">↕</option><option value="1">Simples</option><option value="1.15">1,15</option><option value="1.5">1,5</option><option value="2">Duplo</option></select>'
-    + '<button data-c="checklist" title="Lista de verificação">' + I.check + '</button><button data-c="ul" title="Lista com marcadores">' + I.lista + '</button><button data-c="ol" title="Lista numerada">' + I.num + '</button>'
-    + '<button data-c="outdent" title="Diminuir recuo">' + I.menos + '</button><button data-c="indent" title="Aumentar recuo">' + I.mais + '</button><button data-c="limpar" title="Limpar formatação (Ctrl+\\)">' + I.limpa + '</button>';
+    + '<button class="so-txt" data-c="checklist" title="Lista de verificação">' + I.check + '</button><button class="so-txt" data-c="ul" title="Lista com marcadores">' + I.lista + '</button><button class="so-txt" data-c="ol" title="Lista numerada">' + I.num + '</button>'
+    + '<button class="so-txt" data-c="outdent" title="Diminuir recuo">' + I.menos + '</button><button class="so-txt" data-c="indent" title="Aumentar recuo">' + I.mais + '</button><button class="so-txt" data-c="limpar" title="Limpar formatação (Ctrl+\\)">' + I.limpa + '</button>'
+    + '<i></i><button data-c="img" class="txt" title="Inserir imagem do computador (no ponto do texto) ou trocar a imagem selecionada">' + I.img + '<span>Imagem</span></button>'
+    + '<button data-c="imgorig" class="txt so-img" title="Volta a imagem ao tamanho e lugar originais">↺ Original</button><button data-c="imgdel" class="txt so-img del" title="Apagar a imagem (Delete)">🗑 Apagar</button>';
   const selAlin = tb.querySelector('[data-c="alin"]'), selEsp = tb.querySelector('[data-c="esp"]');
   selAlin.options[0].textContent = 'Alinhar'; selEsp.options[0].textContent = 'Espaço';
   const inTam = tb.querySelector('[data-c="tam"]');
@@ -417,8 +423,9 @@
     tb.querySelector('[data-c="orto"]').classList.toggle('on', atual.el.spellcheck);
     tb.querySelector('[data-c="pincel"]').classList.toggle('on', !!pincel);
   }
-  function mostrarBarraFmt() { tb.classList.add('on'); html.classList.add('vge-editando'); atualizarBarra(); }
-  function esconderBarraFmt() { tb.classList.remove('on'); html.classList.remove('vge-editando'); pincel = null; }
+  const htmlTopo = () => { if (TOPO) return null; try { return window.top.document.documentElement; } catch (_) { return null; } };
+  function mostrarBarraFmt() { html.classList.add('vge-editando'); const t = htmlTopo(); if (t) t.classList.add('vge-editando'); atualizarBarra(); }
+  function esconderBarraFmt() { html.classList.remove('vge-editando'); const t = htmlTopo(); if (t) t.classList.remove('vge-editando'); pincel = null; }
   // embrulha a seleção num <span style> (tamanho em pt, pincel)
   function embrulhar(estilo) {
     const s = getSelection(); if (!s.rangeCount || s.isCollapsed) return null;
@@ -444,8 +451,41 @@
     D.execCommand(tipo === 'ol' ? 'insertOrderedList' : 'insertUnorderedList');
     const l = noSel() && noSel().closest('ul,ol'); if (l && atual.el.contains(l)) l.classList.toggle('vge-check', !!check);
   }
+  // aula aberta num iframe (Patologia): a barra do topo comanda o editor de dentro do iframe
+  function editorDoIframe() {
+    if (!TOPO || atual || imgSel) return null;
+    for (const f of D.querySelectorAll('iframe')) {
+      if (!f.offsetParent || f.getBoundingClientRect().width < 200 || /[?&]vgindice=/.test(f.src || '')) continue;
+      try { const w = f.contentWindow; if (w && w.__vgEditorCmd) return w; } catch (_) { }
+    }
+    return null;
+  }
+  window.__vgEditorCmd = (c, v) => cmd(c, v);
+  function usarImagem(s) {
+    if (imgSel) { trocarImg(imgSel, s); posImg(); }
+    else if (atual) { editar(atual.el); voltarSelecao(); D.execCommand('insertHTML', false, '<img src="' + s.url + '"' + (s.rel ? ' data-vge-src="' + s.rel + '"' : '') + ' style="max-width:100%;height:auto">'); }
+  }
   function cmd(c, v) {
-    if (!atual) return; voltarSelecao();
+    if (c === 'img-pronta') { usarImagem(v); return; }
+    const fw = editorDoIframe();
+    if (fw) {
+      // o seletor de arquivo precisa abrir aqui (o clique foi neste documento); a imagem vai pronta para o iframe
+      if (c === 'img') escolherImagem(s => fw.__vgEditorCmd('img-pronta', s)); else fw.__vgEditorCmd(c, v);
+      return;
+    }
+    if (c === 'img') {
+      if (imgSel) { const im = imgSel; escolherImagem(s => { trocarImg(im, s); posImg(); }); }
+      else if (atual) { const el = atual.el; escolherImagem(src => { editar(el); voltarSelecao(); D.execCommand('insertHTML', false, '<img src="' + src.url + '"' + (src.rel ? ' data-vge-src="' + src.rel + '"' : '') + ' style="max-width:100%;height:auto">'); }); }
+      else aviso('Clique no texto onde a imagem vai entrar, ou numa imagem para trocar.');
+      return;
+    }
+    if (c === 'imgdel') { if (imgSel) apagarImg(imgSel); return; }
+    if (c === 'imgorig') { if (imgSel) originalImg(imgSel); return; }
+    if (c === 'print') { window.print(); return; }
+    if (c === 'busca') { const t = prompt('Pesquisar na página:'); if (t && window.find) window.find(t); return; }
+    if (c === 'zoom') { const m = raiz(); m.style.zoom = v === '100' ? '' : (v / 100); return; }
+    if (!atual) { aviso('Clique num texto da página para editar.'); return; }
+    voltarSelecao();
     switch (c) {
       case 'undo': case 'redo': case 'bold': case 'italic': case 'underline': case 'outdent': case 'indent': D.execCommand(c); break;
       case 'print': window.print(); break;
@@ -466,7 +506,6 @@
       case 'dest': D.execCommand('styleWithCSS', false, true); D.execCommand('hiliteColor', false, v); tb.querySelector('s[data-k="dest"]').style.background = v; break;
       case 'link': { const a0 = noSel() && noSel().closest('a'); const u = prompt('Link (deixe vazio para tirar):', a0 ? a0.getAttribute('href') : 'https://'); voltarSelecao(); if (u === null) break; if (!u.trim() || u.trim() === 'https://') D.execCommand('unlink'); else if (!/^\s*javascript:/i.test(u)) D.execCommand('createLink', false, u.trim()); break; }
       case 'coment': { const rg = pendDaSelecao(); if (!rg) { aviso('Selecione o trecho que vai ganhar o balão.'); break; } abrirCaixaBalao(rg.getBoundingClientRect()); break; }
-      case 'img': escolherImagem(src => { voltarSelecao(); D.execCommand('insertHTML', false, '<img src="' + src.url + '" data-vge-src="' + src.rel + '" style="max-width:100%;height:auto">'); }); break;
       case 'alin': if (v) atual.el.style.textAlign = v === 'left' ? '' : v; selAlin.value = ''; break;
       case 'esp': if (v) atual.el.style.lineHeight = v; selEsp.value = ''; break;
       case 'checklist': lista('ul', true); break;
@@ -522,23 +561,12 @@
     return { url: dataUrl, rel };
   }
   function escolherImagem(fn) {
-    const box = D.createElement('div'); box.className = 'vg-n-ui vg-n-ed vge-ui on vge-escolhe';
-    box.innerHTML = '<div class="h">🖼 Imagem</div><div class="chips"><a data-a="pc">⬆ Do computador</a><a data-a="url">🔗 Por link</a><a data-a="x">Cancelar</a></div>';
-    const r = tb.getBoundingClientRect(); box.style.left = Math.max(10, innerWidth / 2 - 150) + 'px'; box.style.top = (r.bottom + 8) + 'px';
-    D.body.appendChild(box);
-    box.addEventListener('click', e => {
-      const a = e.target.closest('a'); if (!a) return; box.remove();
-      if (a.dataset.a === 'pc') {
-        inArq.value = ''; inArq.onchange = async () => { const f = inArq.files[0]; if (!f) return; try { fn(await subir(f)); } catch (_) { } }; inArq.click();
-      } else if (a.dataset.a === 'url') {
-        const u = prompt('Endereço da imagem (https://…):'); if (u && /^https?:\/\//i.test(u.trim())) fn({ url: u.trim(), rel: null, ext: true });
-      }
-    });
+    inArq.value = ''; inArq.onchange = async () => { const f = inArq.files[0]; if (!f) return; aviso('Enviando a imagem…'); try { fn(await subir(f)); } catch (_) { } }; inArq.click();
   }
-  const imgBar = D.createElement('div'); imgBar.id = 'vge-imgbar'; imgBar.className = 'vge-ui-tb';
-  imgBar.innerHTML = '<button data-i="trocar">🔁 Trocar</button><button data-i="menor" title="Diminuir">−</button><span class="w"></span><button data-i="maior" title="Aumentar">+</button><button data-i="orig">↺ Original</button><button data-i="del" class="del">🗑 Remover</button>';
-  const alca = D.createElement('div'); alca.className = 'vge-alca vge-ui';
-  let imgSel = null;
+
+  let imgSel = null, imgFoiMovida = false;
+  const moldura = D.createElement('div'); moldura.id = 'vge-moldura'; moldura.className = 'vge-ui';
+  moldura.innerHTML = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'].map(d => '<i data-d="' + d + '"></i>').join('') + '<span class="w"></span>';
   function itemImg(img) {
     if (img.dataset.vgi) return dados.i.find(x => x.id === img.dataset.vgi);
     const src0 = img.dataset.vgiSrc || img.getAttribute('src');
@@ -546,84 +574,108 @@
     const m = { id: 'g' + Date.now().toString(36), src: src0, n: Math.max(0, l.indexOf(img)) };
     img.dataset.vgi = m.id; img.dataset.vgiSrc = src0; dados.i.push(m); return m;
   }
-  function salvarImg(m) { m.d = Date.now(); agendar({ k: 'i', item: Object.assign({}, m) }); }
+  const doTexto = img => !!(img.dataset.vgeSrc || (img.closest('[data-vge]') && !img.dataset.vgi));
   function posImg() {
-    if (!imgSel) return; const r = imgSel.getBoundingClientRect();
-    imgBar.style.left = Math.max(10, Math.min(innerWidth - imgBar.offsetWidth - 10, r.left + r.width / 2 - imgBar.offsetWidth / 2)) + 'px';
-    imgBar.style.top = Math.max(10, r.top - imgBar.offsetHeight - 8) + 'px';
-    alca.style.left = (r.right - 7) + 'px'; alca.style.top = (r.bottom - 7) + 'px';
-    imgBar.querySelector('.w').textContent = Math.round(r.width) + ' px';
+    if (!imgSel) return;
+    if (!imgSel.isConnected) { soltarImg(); return; }
+    const r = imgSel.getBoundingClientRect();
+    Object.assign(moldura.style, { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px' });
+    moldura.querySelector('.w').textContent = Math.round(r.width) + ' × ' + Math.round(r.height);
   }
   function selecionarImg(img) {
     terminar(); soltarImg(); imgSel = img; img.classList.add('vge-sel');
-    // imagem dentro de um texto editado pelo editor: muda junto com o texto
-    imgBar.classList.add('on'); alca.classList.add('on'); posImg();
+    moldura.classList.add('on'); html.classList.add('vge-img'); posImg(); atualizarBarra();
   }
-  function soltarImg() { if (imgSel) imgSel.classList.remove('vge-sel'); imgSel = null; imgBar.classList.remove('on'); alca.classList.remove('on'); }
-  function larg(img, w) { img.style.width = w + 'px'; img.style.maxWidth = '100%'; img.style.height = 'auto'; }
+  function soltarImg() { if (imgSel) imgSel.classList.remove('vge-sel'); imgSel = null; moldura.classList.remove('on'); html.classList.remove('vge-img'); }
+  // posição e tamanho moram no style da imagem: width/height e translate (arrastar)
+  const desloc = img => { const m = /translate\((-?[\d.]+)px,\s*(-?[\d.]+)px\)/.exec(img.style.transform || ''); return m ? [+m[1], +m[2]] : [0, 0]; };
   function fimImg(img) {
-    const dono = img.closest('[data-vge]');
-    if (img.dataset.vgeSrc || (dono && !img.dataset.vgi)) {          // imagem posta pelo editor dentro de um texto: salva o texto
-      const el = dono || img.closest(BLOCO); if (el) { editar(el); terminar(); }
-      return;
-    }
-    const m = itemImg(img); m.w = img.style.width ? Math.round(parseFloat(img.style.width)) : 0; if (!m.w) delete m.w; salvarImg(m);
+    if (doTexto(img)) { const el = img.closest('[data-vge]') || img.closest(BLOCO); if (el) { editar(el); terminar(); } return; }
+    const m = itemImg(img), d = desloc(img);
+    m.w = img.style.width ? Math.round(parseFloat(img.style.width)) : 0;
+    m.h = img.style.height && img.style.height !== 'auto' ? Math.round(parseFloat(img.style.height)) : 0;
+    m.x = Math.round(d[0]); m.y = Math.round(d[1]);
+    ['w', 'h', 'x', 'y'].forEach(k => { if (!m[k]) delete m[k]; });
+    m.d = Date.now(); agendar({ k: 'i', item: Object.assign({}, m) });
   }
-  imgBar.addEventListener('mousedown', e => e.preventDefault());
-  imgBar.addEventListener('click', e => {
-    const b = e.target.closest('button'); if (!b || !imgSel) return; const img = imgSel;
-    const w = img.getBoundingClientRect().width;
-    if (b.dataset.i === 'menor') { larg(img, Math.max(40, Math.round(w * 0.9))); fimImg(img); }
-    else if (b.dataset.i === 'maior') { larg(img, Math.round(w * 1.1)); fimImg(img); }
-    else if (b.dataset.i === 'orig') {
-      if (img.dataset.vgeSrc) { img.style.width = ''; fimImg(img); }
-      else { const m = itemImg(img); dados.i = dados.i.filter(x => x.id !== m.id); aplicarImg(img, { src: m.src }); img.removeAttribute('data-vgi'); agendar({ k: 'i', del: 1, item: m }); }
+  function apagarImg(img) {
+    if (doTexto(img)) { const el = img.closest('[data-vge]') || img.closest(BLOCO); img.remove(); soltarImg(); if (el) { editar(el); terminar(); } return; }
+    const m = itemImg(img); m.del = 1; aplicarImg(img, m); m.d = Date.now(); agendar({ k: 'i', item: Object.assign({}, m) }); soltarImg();
+  }
+  function trocarImg(img, s) {
+    if (doTexto(img)) { img.src = s.url; if (s.rel) img.dataset.vgeSrc = s.rel; else img.removeAttribute('data-vge-src'); fimImg(img); return; }
+    const m = itemImg(img); m.ns = s.rel ? 'vge:' + s.rel : s.url; delete m.del; img.src = s.url; img.removeAttribute('srcset'); m.d = Date.now(); agendar({ k: 'i', item: Object.assign({}, m) });
+  }
+  function originalImg(img) {
+    if (doTexto(img)) { img.style.width = img.style.height = img.style.transform = ''; fimImg(img); posImg(); return; }
+    const m = itemImg(img); dados.i = dados.i.filter(x => x.id !== m.id); aplicarImg(img, { src: m.src }); img.style.height = img.style.transform = ''; img.removeAttribute('data-vgi'); agendar({ k: 'i', del: 1, item: m }); posImg();
+  }
+  // bolinhas: os cantos mantêm a proporção, as laterais esticam um lado só (como no Word)
+  moldura.addEventListener('mousedown', e => {
+    if (!imgSel) return; e.preventDefault(); e.stopPropagation();
+    const img = imgSel, h = e.target.closest('i[data-d]'), x0 = e.clientX, y0 = e.clientY, p0 = desloc(img), r0 = img.getBoundingClientRect();
+    if (!h) {                                                          // no meio: arrasta a imagem pela página
+      imgFoiMovida = false;
+      const mv = ev => { const dx = ev.clientX - x0, dy = ev.clientY - y0; if (Math.abs(dx) + Math.abs(dy) > 3) imgFoiMovida = true; img.style.transform = 'translate(' + Math.round(p0[0] + dx) + 'px,' + Math.round(p0[1] + dy) + 'px)'; moldura.classList.add('arrasta'); posImg(); };
+      const up = () => { removeEventListener('mousemove', mv); removeEventListener('mouseup', up); moldura.classList.remove('arrasta'); if (imgFoiMovida) fimImg(img); };
+      addEventListener('mousemove', mv); addEventListener('mouseup', up); return;
     }
-    else if (b.dataset.i === 'del') {
-      if (img.dataset.vgeSrc || (img.closest('[data-vge]') && !img.dataset.vgi)) { const el = img.closest('[data-vge]') || img.closest(BLOCO); img.remove(); soltarImg(); if (el) { editar(el); terminar(); } return; }
-      const m = itemImg(img); m.del = 1; aplicarImg(img, m); salvarImg(m); soltarImg(); return;
-    }
-    else if (b.dataset.i === 'trocar') {
-      escolherImagem(s => {
-        if (img.dataset.vgeSrc) { img.src = s.url; if (s.rel) img.dataset.vgeSrc = s.rel; else { img.removeAttribute('data-vge-src'); img.setAttribute('src', s.url); } fimImg(img); return; }
-        const m = itemImg(img); m.ns = s.rel ? 'vge:' + s.rel : s.url; delete m.del; img.src = s.url; img.removeAttribute('srcset'); salvarImg(m);
-      });
-    }
-    posImg();
-  });
-  // alça no canto: arrastar redimensiona
-  alca.addEventListener('mousedown', e => {
-    if (!imgSel) return; e.preventDefault(); const img = imgSel, x0 = e.clientX, w0 = img.getBoundingClientRect().width;
-    const mv = ev => { larg(img, Math.max(40, Math.round(w0 + ev.clientX - x0))); posImg(); };
+    const d = h.dataset.d, k = r0.height / r0.width;
+    const mv = ev => {
+      const dx = ev.clientX - x0, dy = ev.clientY - y0;
+      let w = r0.width, hh = r0.height;
+      if (d.includes('e')) w = r0.width + dx; if (d.includes('w')) w = r0.width - dx;
+      if (d.includes('s')) hh = r0.height + dy; if (d.includes('n')) hh = r0.height - dy;
+      if (d.length === 2) hh = w * k;
+      w = Math.max(30, w); hh = Math.max(20, hh);
+      img.style.maxWidth = 'none'; img.style.width = Math.round(w) + 'px'; img.style.height = Math.round(hh) + 'px'; img.style.objectFit = 'fill';
+      // puxando pela esquerda ou por cima, a borda oposta fica parada
+      const nx = p0[0] + (d.includes('w') ? r0.width - w : 0), ny = p0[1] + (d.includes('n') ? r0.height - hh : 0);
+      img.style.transform = nx || ny ? 'translate(' + Math.round(nx) + 'px,' + Math.round(ny) + 'px)' : '';
+      posImg();
+    };
     const up = () => { removeEventListener('mousemove', mv); removeEventListener('mouseup', up); fimImg(img); };
     addEventListener('mousemove', mv); addEventListener('mouseup', up);
   });
-  D.addEventListener('mousedown', e => { if (imgSel && e.target !== imgSel && !(e.target.closest && e.target.closest('#vge-imgbar,.vge-alca,.vge-escolhe'))) soltarImg(); }, true);
+  moldura.addEventListener('wheel', () => { moldura.style.pointerEvents = 'none'; setTimeout(() => { moldura.style.pointerEvents = ''; }, 150); }, { passive: true });
+  D.addEventListener('mousedown', e => { if (imgSel && !(e.target.closest && e.target.closest('#vge-moldura,#vge-tb,.vge-escolhe'))) soltarImg(); }, true);
+  D.addEventListener('keydown', e => {
+    if (!imgSel || atual || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName || '')) return;
+    if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); apagarImg(imgSel); }
+    else if (e.key === 'Escape') soltarImg();
+  }, true);
   addEventListener('scroll', posImg, { passive: true, capture: true }); addEventListener('resize', posImg);
 
-  st.textContent += '#vge-tb,#vge-imgbar{position:fixed;z-index:2147481600;display:none;align-items:center;gap:2px;padding:5px 8px;border-radius:22px;'
-    + 'font:500 13px/1 "Instrument Sans",system-ui,sans-serif;color:#1f2328;background:rgba(240,244,249,.92);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);'
-    + 'box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 0 0 1px rgba(16,22,40,.10),0 10px 30px -10px rgba(16,22,40,.35)}'
-    + '#vge-tb{top:10px;left:50%;transform:translateX(-50%);max-width:calc(100vw - 110px);overflow-x:auto;scrollbar-width:none}#vge-tb.on,#vge-imgbar.on{display:flex}'
-    + 'html.vge-editando #vge-aviso{display:none}'
-    + '#vge-tb button,#vge-imgbar button{flex:none;height:30px;min-width:30px;padding:0 6px;border:0;border-radius:6px;background:none;color:inherit;font:inherit;font-size:15px;cursor:pointer;display:grid;place-items:center}'
-    + '#vge-tb button:hover,#vge-imgbar button:hover,#vge-tb label.cor:hover{background:rgba(16,22,40,.08)}#vge-tb button.on{background:#d3e3fd;color:#0b57d0}'
-    + '#vge-tb svg{width:18px;height:18px}#vge-tb i{flex:none;width:1px;height:20px;background:rgba(16,22,40,.16);margin:0 5px}'
-    + '#vge-tb select{flex:none;height:30px;border:0;border-radius:6px;background:transparent;color:inherit;font:inherit;padding:0 4px;cursor:pointer;max-width:74px}#vge-tb select.lg{max-width:118px}#vge-tb select:hover{background:rgba(16,22,40,.08)}'
+  st.textContent += '#vge-tb{position:fixed;z-index:2147481600;left:0;right:0;top:0;height:46px;box-sizing:border-box;display:none;align-items:center;gap:2px;padding:0 54px 0 12px;overflow-x:auto;scrollbar-width:thin;'
+    + 'font:500 13px/1 "Instrument Sans",system-ui,sans-serif;color:#1f2328;background:#edf2fa;border-bottom:1px solid #c4c7c5;box-shadow:0 2px 8px rgba(0,0,0,.12)}'
+    + 'html.vge-on #vge-tb{display:flex}html.vge-on body{padding-top:46px!important}html.vge-on #vge-btn{top:8px;z-index:2147481700}html.vge-on #vge-aviso{display:none}html.vge-on #vge-aviso.msg{display:block;top:56px;right:auto;left:50%;transform:translateX(-50%);z-index:2147481700}'
+    + '#vge-tb button{flex:none;height:30px;min-width:30px;padding:0 6px;border:0;border-radius:6px;background:none;color:inherit;font:inherit;font-size:15px;cursor:pointer;display:grid;place-items:center}'
+    + '#vge-tb button:hover,#vge-tb label.cor:hover,#vge-tb select:hover{background:rgba(16,22,40,.08)}#vge-tb button.on{background:#d3e3fd;color:#0b57d0}'
+    + '#vge-tb svg{width:18px;height:18px}#vge-tb i{flex:none;width:1px;height:20px;background:rgba(16,22,40,.2);margin:0 5px}'
+    + '#vge-tb select{flex:none;height:30px;border:0;border-radius:6px;background:transparent;color:inherit;font:inherit;padding:0 4px;cursor:pointer;max-width:74px}#vge-tb select.lg{max-width:130px}'
     + '#vge-tb select option{color:#1f2328;background:#fff}'
     + '#vge-tb input[data-c=tam]{flex:none;width:34px;height:24px;text-align:center;border:1px solid rgba(16,22,40,.35);border-radius:5px;background:transparent;color:inherit;font:inherit}'
     + '#vge-tb label.cor{flex:none;position:relative;width:30px;height:30px;border-radius:6px;display:grid;place-items:center;cursor:pointer}#vge-tb label.cor .A{font-size:15px;font-weight:600;margin-top:-5px}'
     + '#vge-tb label.cor svg{width:16px;height:16px;margin-top:-5px}#vge-tb label.cor s{position:absolute;left:7px;right:7px;bottom:5px;height:4px;background:#e5484d;text-decoration:none}#vge-tb label.cor s[data-k=dest]{background:#ffe066}'
     + '#vge-tb input[type=color]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:0;padding:0}'
-    + ':root:not([data-theme="light"]) #vge-tb,:root:not([data-theme="light"]) #vge-imgbar{color:#e8eaed;background:rgba(32,35,40,.92);box-shadow:0 0 0 1px rgba(255,255,255,.10),0 10px 30px -10px rgba(0,0,0,.6)}'
-    + ':root:not([data-theme="light"]) #vge-tb button:hover,:root:not([data-theme="light"]) #vge-imgbar button:hover,:root:not([data-theme="light"]) #vge-tb select:hover,:root:not([data-theme="light"]) #vge-tb label.cor:hover{background:rgba(255,255,255,.10)}'
-    + ':root:not([data-theme="light"]) #vge-tb button.on{background:#004a77;color:#c2e7ff}:root:not([data-theme="light"]) #vge-tb i{background:rgba(255,255,255,.18)}:root:not([data-theme="light"]) #vge-tb input[data-c=tam]{border-color:rgba(255,255,255,.4)}'
-    + '#vge-imgbar{font-size:13px;gap:4px}#vge-imgbar button{font-size:13px;padding:0 9px}#vge-imgbar .w{min-width:54px;text-align:center;opacity:.75;font-size:12px}#vge-imgbar button.del{color:#d93025}'
-    + 'html.vge-on main img:hover,html.vge-on #main img:hover,html.vge-on #view img:hover,html.vge-on .main img:hover{outline:2px dashed rgba(243,154,198,.8);outline-offset:2px;cursor:pointer}'
-    + 'img.vge-sel{outline:2px solid #1a73e8!important;outline-offset:2px}'
-    + '.vge-alca{position:fixed;z-index:2147481600;width:14px;height:14px;border-radius:3px;background:#1a73e8;border:2px solid #fff;cursor:nwse-resize;display:none;box-shadow:0 1px 4px rgba(0,0,0,.4)}.vge-alca.on{display:block}'
+    + '#vge-tb .so-img{display:none!important}html.vge-img #vge-tb .so-img{display:flex!important}'
+    + 'html:not(.vge-editando) #vge-tb .so-txt{opacity:.4}'
+    + '#vge-tb button.txt{font-size:13px;padding:0 10px;display:flex;gap:6px;align-items:center;white-space:nowrap}#vge-tb button.txt svg{width:16px;height:16px}#vge-tb button.del{color:#d93025}'
+    + ':root:not([data-theme="light"]) #vge-tb{color:#e3e3e3;background:#1f2329;border-bottom-color:#3c4043;box-shadow:0 2px 10px rgba(0,0,0,.5)}'
+    + ':root:not([data-theme="light"]) #vge-tb button:hover,:root:not([data-theme="light"]) #vge-tb select:hover,:root:not([data-theme="light"]) #vge-tb label.cor:hover{background:rgba(255,255,255,.10)}'
+    + ':root:not([data-theme="light"]) #vge-tb button.on{background:#004a77;color:#c2e7ff}:root:not([data-theme="light"]) #vge-tb i{background:rgba(255,255,255,.2)}:root:not([data-theme="light"]) #vge-tb input[data-c=tam]{border-color:rgba(255,255,255,.4)}'
+    + ':root:not([data-theme="light"]) #vge-tb button.del{color:#f28b82}'
+    + 'html.vge-on main img,html.vge-on #main img,html.vge-on #view img,html.vge-on .main img{cursor:pointer}'
+    + 'html.vge-on main img:hover,html.vge-on #main img:hover,html.vge-on #view img:hover,html.vge-on .main img:hover{outline:1px dashed rgba(26,115,232,.8);outline-offset:2px}'
+    + '#vge-moldura{position:fixed;z-index:2147481500;display:none;box-sizing:border-box;border:1.5px dashed #1a73e8;cursor:move}#vge-moldura.on{display:block}'
+    + '#vge-moldura i{position:absolute;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #1a73e8;box-sizing:border-box;margin:-6px 0 0 -6px;box-shadow:0 1px 3px rgba(0,0,0,.35)}'
+    + '#vge-moldura i[data-d=nw]{left:0;top:0;cursor:nwse-resize}#vge-moldura i[data-d=n]{left:50%;top:0;cursor:ns-resize}#vge-moldura i[data-d=ne]{left:100%;top:0;cursor:nesw-resize}'
+    + '#vge-moldura i[data-d=e]{left:100%;top:50%;cursor:ew-resize}#vge-moldura i[data-d=se]{left:100%;top:100%;cursor:nwse-resize}#vge-moldura i[data-d=s]{left:50%;top:100%;cursor:ns-resize}'
+    + '#vge-moldura i[data-d=sw]{left:0;top:100%;cursor:nesw-resize}#vge-moldura i[data-d=w]{left:0;top:50%;cursor:ew-resize}'
+    + '#vge-moldura .w{position:absolute;left:50%;top:100%;transform:translate(-50%,12px);font:600 11px/1 system-ui,sans-serif;color:#fff;background:#1a73e8;border-radius:4px;padding:3px 6px;white-space:nowrap;opacity:0;transition:opacity .12s;pointer-events:none}'
+    + '#vge-moldura:hover .w,#vge-moldura.arrasta .w{opacity:1}'
     + 'ul.vge-check{list-style:none;padding-left:1.4em}ul.vge-check>li{position:relative}ul.vge-check>li::before{content:"☐";position:absolute;left:-1.3em}'
-    + '@media print{#vge-tb,#vge-imgbar,#vge-btn,#vge-aviso,.vge-alca{display:none!important}}';
+    + '@media print{#vge-tb,#vge-btn,#vge-aviso,#vge-moldura{display:none!important}html.vge-on body{padding-top:0!important}}';
 
   /* ---------- liga/desliga (o topo manda; as aulas em iframe seguem pelo storage) ---------- */
   function definir(on) {
@@ -648,7 +700,8 @@
     login.innerHTML = '<div class="h">✏️ Editor do site</div>'
       + '<input type="password" data-c="s" placeholder="Senha" autocomplete="current-password">'
       + (primeiro ? '<div class="mini">Primeiro uso: cole um token do GitHub com permissão de escrita (Contents) neste repositório. Ele fica guardado cifrado pela senha.</div><input type="password" data-c="t" placeholder="Token do GitHub (github_pat_…)">' : '')
-      + '<div class="erro"></div><div class="acoes"><span class="dica">Enter entra</span><a data-a="cancelar">Cancelar</a><a data-a="ok" class="pri">Entrar</a></div>';
+      + '<div class="erro"></div><div class="acoes"><span class="dica">Enter entra</span><a data-a="cancelar">Cancelar</a><a data-a="ok" class="pri">Entrar</a></div>'
+      + (LOCAL ? '<div class="mini" style="margin:10px 0 0">No PC (localhost) dá para testar tudo sem token: nada é salvo no GitHub.</div><div class="acoes"><a data-a="teste">🧪 Testar sem salvar</a></div>' : '');
     const b = D.getElementById('vge-btn').getBoundingClientRect(); posicionar(login, b, false);
     login.querySelector('input').focus();
   }
@@ -675,7 +728,7 @@
       esconder(login); localStorage.setItem(K_ON, '1'); definir(true);
     } catch (e) { er.textContent = 'Erro: ' + e.message; }
   }
-  login.addEventListener('click', e => { const a = e.target.closest('a'); if (!a) return; if (a.dataset.a === 'cancelar') esconder(login); else entrar(); });
+  login.addEventListener('click', e => { const a = e.target.closest('a'); if (!a) return; if (a.dataset.a === 'cancelar') esconder(login); else if (a.dataset.a === 'teste') { try { sessionStorage.setItem('vg-ed-teste', '1'); } catch (_) { } esconder(login); localStorage.setItem(K_ON, '1'); definir(true); aviso('🧪 Modo de teste: as mudanças ficam só nesta aba e não vão para o site.'); } else entrar(); });
   login.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); entrar(); } if (e.key === 'Escape') esconder(login); });
 
   function montarBotao() {
@@ -693,7 +746,9 @@
   }
 
   function iniciar() {
-    D.head.appendChild(st); D.body.append(tip, barra, caixa); if (ADMIN) D.body.append(tb, imgBar, alca, inArq);
+    if (!TOPO) st.textContent += '#vge-tb{display:none!important}html.vge-on body{padding-top:0!important}';
+    if (BASE && !D.getElementById('vge-fontes')) { const l = D.createElement('link'); l.id = 'vge-fontes'; l.rel = 'stylesheet'; l.href = BASE + 'fontes/fontes.css'; D.head.appendChild(l); }
+    D.head.appendChild(st); D.body.append(tip, barra, caixa); if (ADMIN) D.body.append(tb, moldura, inArq);
     const PC = !matchMedia('(max-width:1024px),(pointer:coarse)').matches;
     if (ADMIN && TOPO && PC) { montarBotao(); try { localStorage.setItem(K_ON, '0'); } catch (_) { } }
     else if (ADMIN) definir(localStorage.getItem(K_ON) === '1');

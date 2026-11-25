@@ -86,7 +86,7 @@
   }
   D.addEventListener('click', e => {
     const img = e.target;
-    if (!img || img.tagName !== 'IMG' || aberto || !pode(img) || !(img.currentSrc || img.src)) return;
+    if (!img || img.tagName !== 'IMG' || D.documentElement.classList.contains('vge-on') || aberto || !pode(img) || !(img.currentSrc || img.src)) return;
     e.preventDefault(); e.stopPropagation(); abrir(img);
   }, true);
 

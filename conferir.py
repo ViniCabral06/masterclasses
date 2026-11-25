@@ -58,6 +58,8 @@ def fim_do_master(s, pasta, aulas):
 ITENS = [
     ('Tema de vidro aplicado', tem(r'<!--vidro:cabeca-->|<!--vidro:'),
      'rode python publicar.py --local (o script põe o bloco do tema)'),
+    ('Editor do site (editor.js, caneta)', tem(r'_tema/editor\.js'),
+     'rode python publicar.py --local: o script inclui o _tema/editor.js (caneta, barra de edição, balões e imagens)'),
     ('Liquid glass (liquido.js)', tem(r'liquido\.js'),
      'rode python publicar.py --local: o script inclui o _tema/liquido.js; peça flutuante nova entra em SEL nesse arquivo'),
     ('Pele de liquid glass no tema', pele_de_vidro,
