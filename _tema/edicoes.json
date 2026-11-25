@@ -84,5 +84,19 @@
    }
   ],
   "b": []
+ },
+ "Patologia médica/aulas/aula4.html": {
+  "t": [
+   {
+    "id": "emwvjlher",
+    "tag": "figcaption",
+    "q": "Valvas cardíacas vistas de cima, com os grandes vasos removidos",
+    "pre": "m cordas tendíneas: mitral e tricúspide.",
+    "pos": "No esquema, com os átrios removidos para",
+    "r": "Valvas cardíacas vistas de cima, com os grandes vasos removidos<br><span style=\"color: rgb(9, 241, 195);\">Fonte:&nbsp;</span><span style=\"color: rgb(11, 16, 21); font-size: 16px; font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;;\">Beck, Groër e Monsen (1982) ou Thibodeau e Patton (2013).</span><ul class=\"XSq4R KI3fJ\" data-sfc-cp=\"\" jsaction=\"\" jscontroller=\"wiLEJc#NS0kde\" data-sfc-root=\"c\" jsuid=\"FQsded_30\" data-hveid=\"CAIIAQgvEAA\" data-complete=\"true\" data-processed=\"true\" style=\"font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; font-size: 16px; margin: 12px 0px 16px; border-bottom: 0px rgb(22, 23, 26);\"><li class=\"Z1qcYe\" data-sfc-cp=\"\" jsaction=\"\" jscontroller=\"oSLmPe#HokZ0d\" data-sfc-root=\"c\" jsuid=\"FQsded_33\" data-hveid=\"CAIIAQgvEAI\" data-complete=\"true\" data-sae=\"\" style=\"font-size: 16px; margin: 0px 0px 12px; border-bottom: 0px rgb(22, 23, 26);\"><span style=\"margin: 0px; border-bottom: 0px rgb(22, 23, 26);\"><!--TgQPHd|||[]--></span><!--TgQPHd|||[]--></li><!--TgQPHd|||[]--></ul><div class=\"yhAwj\" data-sfc-cp=\"\" jsaction=\"rcuQ6b:&amp;FQsded_3e|npT2md\" jscontroller=\"UTzWVc#U8DOt\" data-sfc-root=\"c\" jsuid=\"FQsded_3e\" data-complete=\"true\" data-processed=\"true\" data-sfc-inited=\"2\" style=\"font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);\"><!--TgQPHd|||[]--></div><div jsuid=\"FQsded_3f\" class=\"AHmQrc\" data-sfc-cp=\"\" jsaction=\"rcuQ6b:&amp;FQsded_3f|npT2md\" jscontroller=\"LkYPVc#wdvZmf\" data-sfc-root=\"c\" data-hveid=\"CAIIAQgwEAA\" data-processed=\"true\" data-complete=\"true\" data-sfc-inited=\"2\" style=\"font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);\"><div class=\"n6owBd awi2gc\" data-sfc-cp=\"\" jsaction=\"\" jscontroller=\"TDBkbc#Ml18Xb\" data-sfc-root=\"c\" jsuid=\"FQsded_3g\" data-hveid=\"CAIIAQgwEAE\" data-processed=\"true\" data-complete=\"true\" aria-owns=\"action-menu-parent-container\" style=\"font-size: 16px; margin: 12px 0px 16px; border-bottom: 0px rgb(22, 23, 26);\"></div></div>",
+    "d": 1795576058245
+   }
+  ],
+  "b": []
  }
 }
