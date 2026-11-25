@@ -30,7 +30,10 @@
   const norm = s => (s || '').replace(/\s+/g, ' ').trim();
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-  let dados = { t: [], b: [] };           // edições desta página: t = textos, b = balões
+  let dados = { t: [], b: [], i: [] };    // edições desta página: t = textos, b = balões, i = imagens
+  // imagem enviada pelo editor: guardada como "vge:edicoes-img/x.webp" e resolvida pela pasta do tema
+  const resolver = s => !s ? s : /^vge:/.test(s) ? (BASE || '') + s.slice(4) : s;
+  const resolverHtml = h => (h || '').replace(/(src=")vge:([^"]+)"/g, (_, a, r) => a + (BASE || '') + r + '" data-vge-src="' + r + '"');
   let ligado = false;
 
   /* ---------- aplicar edições (todo visitante) ---------- */
@@ -74,8 +77,16 @@
     try {
       for (const e of dados.t) {
         if (D.querySelector('[data-vge="' + e.id + '"]')) continue;
-        const el = acharEl(root, e); if (!el) continue;
-        el.innerHTML = e.r; el.dataset.vge = e.id;
+        let el = acharEl(root, e); if (!el) continue;
+        if (e.nt && e.nt !== el.tagName.toLowerCase()) el = trocarTag(el, e.nt);
+        el.innerHTML = resolverHtml(e.r); el.dataset.vge = e.id;
+        if (e.st != null) { if (e.st) el.setAttribute('style', e.st); else el.removeAttribute('style'); }
+      }
+      for (const m of dados.i) {
+        if (D.querySelector('img[data-vgi="' + m.id + '"]')) continue;
+        const l = [...root.querySelectorAll('img')].filter(x => x.getAttribute('src') === m.src && !x.dataset.vgi);
+        const img = l[Math.min(m.n || 0, l.length - 1)]; if (!img) continue;
+        img.dataset.vgi = m.id; aplicarImg(img, m);
       }
       for (const b of dados.b) {
         if (D.querySelector('mark.vge-bal[data-b="' + b.id + '"]')) continue;
@@ -88,7 +99,19 @@
       }
     } finally { aplicando = false; }
   }
-  let tAp = 0; const depois = () => { if (aplicando || (!dados.t.length && !dados.b.length)) return; clearTimeout(tAp); tAp = setTimeout(aplicar, 300); };
+  function trocarTag(el, tag) {
+    const n = D.createElement(tag);
+    [...el.attributes].forEach(a => n.setAttribute(a.name, a.value));
+    while (el.firstChild) n.appendChild(el.firstChild);
+    el.replaceWith(n); return n;
+  }
+  function aplicarImg(img, m) {
+    if (!img.dataset.vgiSrc) img.dataset.vgiSrc = img.getAttribute('src');
+    img.style.display = m.del ? 'none' : '';
+    if (m.ns) { img.src = resolver(m.ns); img.removeAttribute('srcset'); } else if (img.getAttribute('src') !== img.dataset.vgiSrc) img.setAttribute('src', img.dataset.vgiSrc);
+    if (m.w) { img.style.width = m.w + 'px'; img.style.maxWidth = '100%'; img.style.height = 'auto'; } else img.style.width = '';
+  }
+  let tAp = 0; const depois = () => { if (aplicando || (!dados.t.length && !dados.b.length && !dados.i.length)) return; clearTimeout(tAp); tAp = setTimeout(aplicar, 300); };
 
   async function carregar() {
     if (!BASE) return;
@@ -96,13 +119,28 @@
       const r = await fetch(BASE + 'edicoes.json', { cache: 'no-cache' });
       if (!r.ok) return;
       const j = await r.json(), p = j[PG] || {};
-      dados = { t: p.t || [], b: p.b || [] }; aplicar();
+      dados = { t: p.t || [], b: p.b || [], i: p.i || [] }; aplicar();
     } catch (_) { }
   }
 
   /* ---------- estilo ---------- */
   const st = D.createElement('style');
-  st.textContent = 'mark.vge-bal{background:none;color:inherit;border-bottom:2px dotted #f39ac6;cursor:help;-webkit-box-decoration-break:clone;box-decoration-break:clone}'
+  st.textContent = 'mark.vge-bal{background:none;color:inherit;text-decoration:underline dotted;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,var(--vg-acc,#ff6fb5) 75%,transparent);cursor:help;-webkit-box-decoration-break:clone;box-decoration-break:clone}'
+    + 'mark.vge-bal:hover,mark.vge-bal.on{text-decoration-style:solid;background:color-mix(in srgb,var(--vg-acc,#ff6fb5) 14%,transparent);border-radius:4px}'
+    // balão no mesmo visual das siglas (.vg-sgtip, do siglas.js); com o editor ligado, ganha Editar/Remover
+    + '.vge-tip{position:fixed;z-index:2147483600;left:0;top:0;max-width:min(300px,calc(100vw - 24px));padding:9px 13px 10px;border-radius:16px;pointer-events:none;'
+    + 'font:500 13.5px/1.4 "Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#eef4f6;'
+    + 'background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.04) 45%,rgba(255,255,255,.08)),rgba(12,16,22,.72);'
+    + '-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);'
+    + 'box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 0 0 1px rgba(255,255,255,.14),0 14px 34px -12px rgba(0,0,0,.55);'
+    + 'opacity:0;visibility:hidden;transform:translateY(4px) scale(.97);transform-origin:var(--o,50% 0);transition:opacity .16s ease,transform .22s cubic-bezier(.2,.8,.2,1)}'
+    + '.vge-tip.on{opacity:1;visibility:visible;transform:none}html.vge-on .vge-tip.on{pointer-events:auto}'
+    + '.vge-tip b{display:block;font:600 11px/1.2 "Instrument Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--vg-acc-ink,#ffb3d9);margin-bottom:3px}'
+    + '.vge-tip .txt{white-space:normal;overflow-wrap:anywhere}'
+    + '.vge-tip .chips{display:flex;gap:6px;margin-top:8px}.vge-tip .chips a{background:rgba(255,255,255,.14);color:inherit;border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;text-decoration:none}.vge-tip .chips a:hover{background:rgba(255,255,255,.24)}'
+    + ':root[data-theme="light"] .vge-tip{color:#14161c;background:linear-gradient(160deg,rgba(255,255,255,.75),rgba(255,255,255,.45)),rgba(250,251,253,.7);box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(16,22,40,.08),0 14px 34px -12px rgba(16,22,40,.35)}'
+    + ':root[data-theme="light"] .vge-tip b{color:var(--vg-acc-ink,#c2186f)}:root[data-theme="light"] .vge-tip .chips a{background:rgba(16,22,40,.08)}'
+    + '@media (prefers-reduced-motion:reduce){.vge-tip{transition:none}}'
     + '#vge-btn{position:fixed;right:10px;top:10px;z-index:2147481500;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0;'
     + 'border:1px solid rgba(127,127,127,.28);background:color-mix(in srgb,var(--vg-glass,rgba(255,255,255,.55)) 85%,transparent);color:inherit;opacity:.55;'
     + '-webkit-backdrop-filter:blur(12px) saturate(1.4);backdrop-filter:blur(12px) saturate(1.4);box-shadow:0 2px 10px rgba(0,0,0,.12);transition:opacity .15s,transform .15s}'
@@ -120,7 +158,7 @@
     + '@media (max-width:1024px),(pointer:coarse){#vge-btn,#vge-aviso{display:none!important}}';
 
   /* ---------- balão para todos ---------- */
-  const tip = D.createElement('div'); tip.className = 'vg-n-ui vg-n-tip vge-ui';
+  const tip = D.createElement('div'); tip.className = 'vge-tip vge-ui'; tip.setAttribute('role', 'tooltip');
   let tTip = 0, segura = false;
   function posicionar(el, rect, acima = true) {
     el.style.left = '0px'; el.style.top = '0px'; el.classList.add('on');
@@ -129,13 +167,21 @@
     if (acima && y < 10) y = rect.bottom + 8; if (!acima && y + h > innerHeight - 10) y = Math.max(10, rect.top - h - 8);
     el.style.left = x + 'px'; el.style.top = y + 'px';
   }
-  const esconder = el => el.classList.remove('on');
+  const esconder = el => { el.classList.remove('on'); if (el === tip) D.querySelectorAll('mark.vge-bal.on').forEach(x => x.classList.remove('on')); };
   function mostrarTip(m) {
     const b = dados.b.find(x => x.id === m.dataset.b); if (!b) return;
     tip.dataset.b = b.id;
-    tip.innerHTML = '<div class="txt">' + esc(b.t).replace(/\n/g, '<br>') + '</div>'
+    tip.innerHTML = '<b>' + esc(norm(b.q)) + '</b><div class="txt">' + esc(b.t).replace(/\n/g, '<br>') + '</div>'
       + (ligado ? '<div class="chips"><a data-a="editar">✎ Editar</a><a data-a="remover">✕ Remover</a></div>' : '');
-    posicionar(tip, m.getBoundingClientRect());
+    D.querySelectorAll('mark.vge-bal.on').forEach(x => x.classList.remove('on'));
+    D.querySelectorAll('mark.vge-bal[data-b="' + b.id + '"]').forEach(x => x.classList.add('on'));
+    tip.classList.remove('on'); tip.style.left = '0px'; tip.style.top = '0px';
+    const r = m.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+    const x = Math.max(12, Math.min(r.left + r.width / 2 - tw / 2, innerWidth - tw - 12));
+    let y = r.bottom + 8, baixo = true; if (y + th > innerHeight - 8) { y = r.top - th - 8; baixo = false; }
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    tip.style.setProperty('--o', (r.left + r.width / 2 - x) + 'px ' + (baixo ? '0' : '100%'));
+    tip.classList.add('on');
   }
   D.addEventListener('mouseover', e => { const m = e.target.closest && e.target.closest('mark.vge-bal'); if (m) { clearTimeout(tTip); mostrarTip(m); } });
   D.addEventListener('mouseout', e => { const m = e.target.closest && e.target.closest('mark.vge-bal'); if (m) tTip = setTimeout(() => { if (!segura) esconder(tip); }, 600); });
@@ -160,12 +206,13 @@
   function marcar(c) { const b = D.getElementById('vge-btn') || (window.top !== window && (() => { try { return window.top.document.getElementById('vge-btn'); } catch (_) { return null; } })()); if (!b) return; b.classList.remove('salvando', 'salvo', 'erro'); if (c) b.classList.add(c); }
   function agendar(op) { fila.push(op); marcar('salvando'); clearTimeout(tSalvar); tSalvar = setTimeout(enviar, 1200); }
   function aplicarOps(obj, ops) {
-    const p = obj[PG] || (obj[PG] = { t: [], b: [] }); p.t = p.t || []; p.b = p.b || [];
+    const p = obj[PG] || (obj[PG] = { t: [], b: [] }); p.t = p.t || []; p.b = p.b || []; p.i = p.i || [];
     for (const o of ops) {
       const l = p[o.k], i = l.findIndex(x => x.id === o.item.id);
       if (o.del) { if (i >= 0) l.splice(i, 1); } else if (i >= 0) l[i] = o.item; else l.push(o.item);
     }
-    if (!p.t.length && !p.b.length) delete obj[PG];
+    if (!p.i.length) delete p.i;
+    if (!p.t.length && !p.b.length && !p.i) delete obj[PG];
   }
   async function enviar() {
     if (enviando) { tSalvar = setTimeout(enviar, 800); return; }
@@ -198,7 +245,9 @@
     c.querySelectorAll('script,style,iframe,object,embed').forEach(x => x.remove());
     // tira o que os outros scripts põem por cima (grifos, siglas, ligações, balões): eles voltam sozinhos
     c.querySelectorAll('mark.vg-nota,mark.vge-bal,mark.vg-elo-alvo,.vg-sg,.vg-elo').forEach(x => { const p = x.parentNode; while (x.firstChild) p.insertBefore(x.firstChild, x); x.remove(); });
-    c.querySelectorAll('*').forEach(x => { [...x.attributes].forEach(a => { if (/^on/i.test(a.name) || (/^(href|src)$/i.test(a.name) && /^\s*javascript:/i.test(a.value))) x.removeAttribute(a.name); }); });
+    c.querySelectorAll('.vge-sel').forEach(x => x.classList.remove('vge-sel'));
+    c.querySelectorAll('img[data-vge-src]').forEach(x => { x.setAttribute('src', 'vge:' + x.dataset.vgeSrc); x.removeAttribute('data-vge-src'); });
+    c.querySelectorAll('*').forEach(x => { if (x.getAttribute('class') === '') x.removeAttribute('class'); [...x.attributes].forEach(a => { if (/^on/i.test(a.name) || (/^(href|src)$/i.test(a.name) && /^\s*javascript:/i.test(a.value))) x.removeAttribute(a.name); }); });
     c.normalize(); return c.innerHTML.trim();
   }
   let atual = null; // {el, antes, q, pre, pos, id}
@@ -207,30 +256,46 @@
     const root = raiz(), id = el.dataset.vge;
     const ex = id && dados.t.find(x => x.id === id);
     const c = ex ? { pre: ex.pre, pos: ex.pos } : contexto(root, el);
-    atual = { el, antes: el.innerHTML, limpoAntes: limpar(el), q: ex ? ex.q : norm(el.textContent), pre: c.pre, pos: c.pos, id: id || ('e' + Date.now().toString(36)), tag: el.tagName.toLowerCase() };
+    const tag0 = ex ? ex.tag : el.tagName.toLowerCase();
+    atual = { el, el0: el, antes: el.innerHTML, stAntes: el.getAttribute('style') || '', limpoAntes: limpar(el), q: ex ? ex.q : norm(el.textContent), pre: c.pre, pos: c.pos, id: id || ('e' + Date.now().toString(36)), tag: tag0, tagAntes: el.tagName.toLowerCase() };
     el.contentEditable = 'true'; el.classList.add('vge-ed'); el.focus();
+    mostrarBarraFmt();
   }
   function terminar(desfazer) {
     if (!atual) return; const a = atual; atual = null;
+    esconderBarraFmt();
     a.el.removeAttribute('contenteditable'); a.el.classList.remove('vge-ed');
     if (!a.el.getAttribute('class')) a.el.removeAttribute('class');
-    if (desfazer) { a.el.innerHTML = a.antes; return; }
-    const novo = limpar(a.el);
-    if (novo === a.limpoAntes) return;
+    if (desfazer) {
+      let el = a.el; if (el.tagName.toLowerCase() !== a.tagAntes) el = trocarTag(el, a.tagAntes);
+      el.innerHTML = a.antes; if (a.stAntes) el.setAttribute('style', a.stAntes); else el.removeAttribute('style'); return;
+    }
+    const novo = limpar(a.el), stNovo = a.el.getAttribute('style') || '', tagNova = a.el.tagName.toLowerCase();
+    if (novo === a.limpoAntes && stNovo === a.stAntes && tagNova === a.tagAntes) return;
     const item = { id: a.id, tag: a.tag, q: a.q, pre: a.pre, pos: a.pos, r: novo, d: Date.now() };
+    if (stNovo || a.stAntes) item.st = stNovo;
+    if (tagNova !== a.tag) item.nt = tagNova;
     const i = dados.t.findIndex(x => x.id === a.id); if (i >= 0) dados.t[i] = item; else dados.t.push(item);
     a.el.dataset.vge = a.id; agendar({ k: 't', item });
   }
-  D.addEventListener('focusout', e => { if (atual && e.target === atual.el) setTimeout(() => { if (atual && D.activeElement !== atual.el) terminar(); }, 0); });
+  // sai da edição ao clicar fora do texto (a barra de formatação e as caixinhas do editor não contam)
+  const DO_EDITOR = '.vge-ui,#vge-tb,#vge-btn,#vge-imgbar,.vge-alca';
+  D.addEventListener('mousedown', e => {
+    if (!atual || !e.target.closest) return;
+    if (atual.el.contains(e.target) || e.target.closest(DO_EDITOR)) return;
+    terminar();
+  }, true);
   D.addEventListener('keydown', e => {
-    if (!atual) return;
+    if (!atual || !atual.el.contains(e.target)) return;
     if (e.key === 'Escape') { e.preventDefault(); terminar(true); }
-    else if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); terminar(); }
+    else if (e.key === 'Enter' && !e.shiftKey && !(getSelection().anchorNode && getSelection().anchorNode.parentElement && getSelection().anchorNode.parentElement.closest('li'))) { e.preventDefault(); terminar(); }
+    else if ((e.ctrlKey || e.metaKey) && !e.shiftKey && /^[biu]$/i.test(e.key)) { e.preventDefault(); D.execCommand({ b: 'bold', i: 'italic', u: 'underline' }[e.key.toLowerCase()]); }
   }, true);
   // modo edição: clicar no conteúdo edita (e não aciona botões/alternativas do master)
   function noConteudo(t) { const root = raiz(); return root && root.contains(t) && !(t.closest && t.closest(FORA)); }
   D.addEventListener('click', e => {
-    if (!ligado || !e.target.closest || e.target.closest('.vge-ui,#vge-btn,mark.vge-bal')) return;
+    if (!ligado || !e.target.closest || e.target.closest(DO_EDITOR + ',mark.vge-bal')) return;
+    if (e.target.tagName === 'IMG' && noConteudo(e.target)) { e.preventDefault(); e.stopPropagation(); selecionarImg(e.target); return; }
     if (atual && atual.el.contains(e.target)) return;
     if (!noConteudo(e.target)) return;
     if (!getSelection().isCollapsed) return;
@@ -246,17 +311,20 @@
   const ta = caixa.querySelector('textarea');
   let pend = null, balEd = null;
   function aoSoltar(e) {
-    if (!ligado || atual || (e.target.closest && e.target.closest('.vge-ui'))) return;
-    setTimeout(() => {
-      const sel = getSelection(); if (!sel || sel.isCollapsed || !sel.rangeCount) { esconder(barra); return; }
-      const rg = sel.getRangeAt(0), root = raiz(), el = rg.commonAncestorContainer.nodeType === 1 ? rg.commonAncestorContainer : rg.commonAncestorContainer.parentNode;
-      const q = rg.toString(); if (q.trim().length < 2 || !root.contains(el) || el.closest(FORA)) { esconder(barra); return; }
-      const r0 = D.createRange(); r0.setStart(root, 0); r0.setEnd(rg.startContainer, rg.startOffset);
-      const ini = r0.toString().length, fim = ini + q.length, txt = root.textContent;
-      pend = { q, pre: txt.slice(Math.max(0, ini - 40), ini), pos: txt.slice(fim, fim + 40), ini, fim };
-      posicionar(barra, rg.getBoundingClientRect());
-    }, 60);
+    if (!ligado || atual || (e.target.closest && e.target.closest(DO_EDITOR))) return;
+    setTimeout(() => { const rg = pendDaSelecao(); if (!rg) { esconder(barra); return; } posicionar(barra, rg.getBoundingClientRect()); }, 60);
   }
+  // trecho selecionado → pend (âncora do balão); devolve o range ou null
+  function pendDaSelecao() {
+    const sel = getSelection(); if (!sel || sel.isCollapsed || !sel.rangeCount) return null;
+    const rg = sel.getRangeAt(0), root = raiz(), el = rg.commonAncestorContainer.nodeType === 1 ? rg.commonAncestorContainer : rg.commonAncestorContainer.parentNode;
+    const q = rg.toString(); if (q.trim().length < 2 || !root.contains(el) || (el.closest(FORA) && !el.closest('[contenteditable]'))) return null;
+    const r0 = D.createRange(); r0.setStart(root, 0); r0.setEnd(rg.startContainer, rg.startOffset);
+    const ini = r0.toString().length, fim = ini + q.length, txt = root.textContent;
+    pend = { q, pre: txt.slice(Math.max(0, ini - 40), ini), pos: txt.slice(fim, fim + 40), ini, fim };
+    return rg;
+  }
+  function abrirCaixaBalao(rect) { balEd = null; ta.value = ''; posicionar(caixa, rect, false); ta.focus(); }
   D.addEventListener('mouseup', aoSoltar); D.addEventListener('touchend', aoSoltar, { passive: true });
   barra.addEventListener('mousedown', e => e.preventDefault());
   barra.addEventListener('click', () => { if (!pend) return; balEd = null; ta.value = ''; const r = barra.getBoundingClientRect(); esconder(barra); posicionar(caixa, r, false); ta.focus(); });
@@ -280,10 +348,287 @@
     else if (b) { balEd = id; ta.value = b.t; const r = tip.getBoundingClientRect(); esconder(tip); posicionar(caixa, r, false); ta.focus(); }
   });
 
+  /* ---------- barra de formatação (no estilo do Google Docs), no topo enquanto edita um texto ---------- */
+  const ic = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">' + d + '</svg>';
+  const I = {
+    busca: ic('<circle cx="11" cy="11" r="6"/><path d="m20 20-4.2-4.2"/>'),
+    desf: ic('<path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/>'),
+    ref: ic('<path d="m15 14 5-5-5-5"/><path d="M20 9H10a6 6 0 0 0 0 12h3"/>'),
+    impr: ic('<path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/>'),
+    orto: ic('<path d="M4 15 7.5 5h1L12 15M5.2 12h5.6"/><path d="m13 17 3 3 5-7"/>'),
+    pincel: ic('<rect x="4" y="3" width="14" height="6" rx="1"/><path d="M18 6h2v5h-8v3"/><path d="M11 14h2v7h-2z"/>'),
+    link: ic('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>'),
+    coment: ic('<path d="M4 4h16v12H8l-4 4z"/><path d="M12 7v6M9 10h6"/>'),
+    img: ic('<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-9 9"/>'),
+    alinE: ic('<path d="M4 6h16M4 10h10M4 14h16M4 18h10"/>'), alinC: ic('<path d="M4 6h16M7 10h10M4 14h16M7 18h10"/>'),
+    alinD: ic('<path d="M4 6h16M10 10h10M4 14h16M10 18h10"/>'), alinJ: ic('<path d="M4 6h16M4 10h16M4 14h16M4 18h16"/>'),
+    esp: ic('<path d="M11 6h9M11 12h9M11 18h9"/><path d="m4 8 2-2 2 2M4 16l2 2 2-2M6 6v12"/>'),
+    check: ic('<path d="m3 7 2 2 3-4M3 17l2 2 3-4"/><path d="M11 7h10M11 17h10"/>'),
+    lista: ic('<circle cx="4.5" cy="7" r="1"/><circle cx="4.5" cy="17" r="1"/><path d="M9 7h12M9 17h12"/>'),
+    num: ic('<path d="M10 7h11M10 17h11"/><path d="M4 5h1.5v4M3.5 9h3M3.5 15.5a1.5 1.5 0 0 1 3 0c0 1.2-3 2-3 3.5h3"/>'),
+    menos: ic('<path d="M4 5h16M11 10h9M11 14h9M4 19h16"/><path d="m8 9-3 3 3 3"/>'),
+    mais: ic('<path d="M4 5h16M11 10h9M11 14h9M4 19h16"/><path d="m4 9 3 3-3 3"/>'),
+    limpa: ic('<path d="M6 5h12M12 5l-4 14"/><path d="m15 14 6 6M21 14l-6 6"/>'),
+    marca: ic('<path d="m14 4 6 6-8 8H6v-6z"/><path d="M3 21h8"/>')
+  };
+  const FONTES = ['Instrument Sans', 'Arial', 'Georgia', 'Times New Roman', 'Verdana', 'Trebuchet MS', 'Courier New', 'Instrument Serif'];
+  const ESTILOS = [['p', 'Texto normal'], ['h1', 'Título'], ['h2', 'Título 1'], ['h3', 'Título 2'], ['h4', 'Título 3']];
+  const tb = D.createElement('div'); tb.id = 'vge-tb'; tb.className = 'vge-ui-tb';
+  tb.innerHTML =
+    '<button data-c="busca" title="Pesquisar na página (Ctrl+F)">' + I.busca + '</button>'
+    + '<button data-c="undo" title="Desfazer (Ctrl+Z)">' + I.desf + '</button><button data-c="redo" title="Refazer (Ctrl+Y)">' + I.ref + '</button>'
+    + '<button data-c="print" title="Imprimir (Ctrl+P)">' + I.impr + '</button><button data-c="orto" title="Verificação ortográfica">' + I.orto + '</button>'
+    + '<button data-c="pincel" title="Pintar formatação">' + I.pincel + '</button>'
+    + '<select data-c="zoom" title="Zoom">' + [50, 75, 90, 100, 125, 150, 200].map(z => '<option value="' + z + '"' + (z === 100 ? ' selected' : '') + '>' + z + '%</option>').join('') + '</select><i></i>'
+    + '<select data-c="estilo" class="lg" title="Estilos">' + ESTILOS.map(e => '<option value="' + e[0] + '">' + e[1] + '</option>').join('') + '</select><i></i>'
+    + '<select data-c="fonte" class="lg" title="Fonte"><option value="">Fonte</option>' + FONTES.map(f => '<option style="font-family:\'' + f + '\'">' + f + '</option>').join('') + '</select><i></i>'
+    + '<button data-c="tam-" title="Diminuir tamanho da fonte">−</button><input data-c="tam" title="Tamanho da fonte" inputmode="numeric"><button data-c="tam+" title="Aumentar tamanho da fonte">+</button><i></i>'
+    + '<button data-c="bold" title="Negrito (Ctrl+B)"><b>B</b></button><button data-c="italic" title="Itálico (Ctrl+I)"><em style="font-family:Georgia,serif">I</em></button><button data-c="underline" title="Sublinhado (Ctrl+U)"><u>U</u></button>'
+    + '<label class="cor" title="Cor do texto"><span class="A">A</span><s data-k="cor"></s><input type="color" data-c="cor" value="#e5484d"></label>'
+    + '<label class="cor" title="Cor de destaque">' + I.marca + '<s data-k="dest"></s><input type="color" data-c="dest" value="#ffe066"></label><i></i>'
+    + '<button data-c="link" title="Inserir link (Ctrl+K)">' + I.link + '</button><button data-c="coment" title="Pôr balão de explicação no trecho">' + I.coment + '</button><button data-c="img" title="Inserir imagem">' + I.img + '</button><i></i>'
+    + '<select data-c="alin" class="ico" title="Alinhar"><option value="">⯀</option><option value="left">Esquerda</option><option value="center">Centro</option><option value="right">Direita</option><option value="justify">Justificado</option></select>'
+    + '<select data-c="esp" class="ico" title="Espaçamento entre linhas"><option value="">↕</option><option value="1">Simples</option><option value="1.15">1,15</option><option value="1.5">1,5</option><option value="2">Duplo</option></select>'
+    + '<button data-c="checklist" title="Lista de verificação">' + I.check + '</button><button data-c="ul" title="Lista com marcadores">' + I.lista + '</button><button data-c="ol" title="Lista numerada">' + I.num + '</button>'
+    + '<button data-c="outdent" title="Diminuir recuo">' + I.menos + '</button><button data-c="indent" title="Aumentar recuo">' + I.mais + '</button><button data-c="limpar" title="Limpar formatação (Ctrl+\\)">' + I.limpa + '</button>';
+  const selAlin = tb.querySelector('[data-c="alin"]'), selEsp = tb.querySelector('[data-c="esp"]');
+  selAlin.options[0].textContent = 'Alinhar'; selEsp.options[0].textContent = 'Espaço';
+  const inTam = tb.querySelector('[data-c="tam"]');
+  let rangeSalvo = null, pincel = null;
+  D.addEventListener('selectionchange', () => {
+    if (!atual) return; const s = getSelection(); if (!s.rangeCount) return;
+    const r = s.getRangeAt(0); if (atual.el.contains(r.commonAncestorContainer)) { rangeSalvo = r.cloneRange(); atualizarBarra(); }
+  });
+  function voltarSelecao() {
+    if (!atual) return false; atual.el.focus();
+    if (rangeSalvo) { const s = getSelection(); s.removeAllRanges(); s.addRange(rangeSalvo); }
+    return true;
+  }
+  const noSel = () => { const s = getSelection(); const n = s.anchorNode; return n ? (n.nodeType === 1 ? n : n.parentElement) : atual && atual.el; };
+  function atualizarBarra() {
+    if (!atual) return;
+    const el = noSel() || atual.el, cs = getComputedStyle(el);
+    inTam.value = Math.round(parseFloat(cs.fontSize) * 0.75); // px → pt, como no Docs
+    const est = tb.querySelector('[data-c="estilo"]'), t = atual.el.tagName.toLowerCase();
+    est.value = ESTILOS.some(e => e[0] === t) ? t : 'p';
+    const fam = (cs.fontFamily.split(',')[0] || '').replace(/["']/g, '').trim(), fs = tb.querySelector('[data-c="fonte"]');
+    fs.value = FONTES.includes(fam) ? fam : ''; fs.options[0].textContent = FONTES.includes(fam) ? 'Fonte' : (fam || 'Fonte');
+    ['bold', 'italic', 'underline'].forEach(c => { let v = false; try { v = D.queryCommandState(c); } catch (_) { } tb.querySelector('[data-c="' + c + '"]').classList.toggle('on', v); });
+    tb.querySelector('[data-c="orto"]').classList.toggle('on', atual.el.spellcheck);
+    tb.querySelector('[data-c="pincel"]').classList.toggle('on', !!pincel);
+  }
+  function mostrarBarraFmt() { tb.classList.add('on'); html.classList.add('vge-editando'); atualizarBarra(); }
+  function esconderBarraFmt() { tb.classList.remove('on'); html.classList.remove('vge-editando'); pincel = null; }
+  // embrulha a seleção num <span style> (tamanho em pt, pincel)
+  function embrulhar(estilo) {
+    const s = getSelection(); if (!s.rangeCount || s.isCollapsed) return null;
+    const r = s.getRangeAt(0); if (!atual.el.contains(r.commonAncestorContainer)) return null;
+    const sp = D.createElement('span'); Object.assign(sp.style, estilo);
+    sp.appendChild(r.extractContents()); r.insertNode(sp);
+    sp.querySelectorAll('span[style]').forEach(x => { Object.keys(estilo).forEach(k => x.style[k] = ''); if (!x.getAttribute('style')) { while (x.firstChild) x.parentNode.insertBefore(x.firstChild, x); x.remove(); } });
+    const nr = D.createRange(); nr.selectNodeContents(sp); s.removeAllRanges(); s.addRange(nr); rangeSalvo = nr.cloneRange();
+    return sp;
+  }
+  function mudarTam(pt) {
+    pt = Math.max(6, Math.min(96, Math.round(pt))); inTam.value = pt;
+    if (!voltarSelecao()) return;
+    if (getSelection().isCollapsed) atual.el.style.fontSize = pt + 'pt'; else embrulhar({ fontSize: pt + 'pt' });
+  }
+  function recuo(d) {
+    const li = noSel() && noSel().closest('li');
+    if (li && atual.el.contains(li)) { D.execCommand(d > 0 ? 'indent' : 'outdent'); return; }
+    const m = parseFloat(atual.el.style.marginLeft) || 0, n = Math.max(0, m + d * 36);
+    atual.el.style.marginLeft = n ? n + 'px' : '';
+  }
+  function lista(tipo, check) {
+    D.execCommand(tipo === 'ol' ? 'insertOrderedList' : 'insertUnorderedList');
+    const l = noSel() && noSel().closest('ul,ol'); if (l && atual.el.contains(l)) l.classList.toggle('vge-check', !!check);
+  }
+  function cmd(c, v) {
+    if (!atual) return; voltarSelecao();
+    switch (c) {
+      case 'undo': case 'redo': case 'bold': case 'italic': case 'underline': case 'outdent': case 'indent': D.execCommand(c); break;
+      case 'print': window.print(); break;
+      case 'busca': { const t = prompt('Pesquisar na página:'); if (t) window.find && window.find(t); break; }
+      case 'orto': atual.el.spellcheck = !atual.el.spellcheck; atual.el.blur(); voltarSelecao(); break;
+      case 'pincel': {
+        if (pincel) { pincel = null; break; }
+        const cs = getComputedStyle(noSel() || atual.el);
+        pincel = { fontWeight: cs.fontWeight, fontStyle: cs.fontStyle, textDecoration: cs.textDecorationLine === 'none' ? '' : cs.textDecorationLine, color: cs.color, fontFamily: cs.fontFamily, fontSize: cs.fontSize, backgroundColor: cs.backgroundColor === 'rgba(0, 0, 0, 0)' ? '' : cs.backgroundColor };
+        aviso('🖌 Pinte: selecione o trecho que vai receber a formatação.'); break;
+      }
+      case 'estilo': { const n = trocarTag(atual.el, v); atual.el = n; n.contentEditable = 'true'; n.focus(); rangeSalvo = null; break; }
+      case 'fonte': if (v) { D.execCommand('styleWithCSS', false, true); D.execCommand('fontName', false, v); } break;
+      case 'tam-': mudarTam((parseFloat(inTam.value) || 12) - 1); break;
+      case 'tam+': mudarTam((parseFloat(inTam.value) || 12) + 1); break;
+      case 'tam': mudarTam(parseFloat(v) || 12); break;
+      case 'cor': D.execCommand('styleWithCSS', false, true); D.execCommand('foreColor', false, v); tb.querySelector('s[data-k="cor"]').style.background = v; break;
+      case 'dest': D.execCommand('styleWithCSS', false, true); D.execCommand('hiliteColor', false, v); tb.querySelector('s[data-k="dest"]').style.background = v; break;
+      case 'link': { const a0 = noSel() && noSel().closest('a'); const u = prompt('Link (deixe vazio para tirar):', a0 ? a0.getAttribute('href') : 'https://'); voltarSelecao(); if (u === null) break; if (!u.trim() || u.trim() === 'https://') D.execCommand('unlink'); else if (!/^\s*javascript:/i.test(u)) D.execCommand('createLink', false, u.trim()); break; }
+      case 'coment': { const rg = pendDaSelecao(); if (!rg) { aviso('Selecione o trecho que vai ganhar o balão.'); break; } abrirCaixaBalao(rg.getBoundingClientRect()); break; }
+      case 'img': escolherImagem(src => { voltarSelecao(); D.execCommand('insertHTML', false, '<img src="' + src.url + '" data-vge-src="' + src.rel + '" style="max-width:100%;height:auto">'); }); break;
+      case 'alin': if (v) atual.el.style.textAlign = v === 'left' ? '' : v; selAlin.value = ''; break;
+      case 'esp': if (v) atual.el.style.lineHeight = v; selEsp.value = ''; break;
+      case 'checklist': lista('ul', true); break;
+      case 'ul': lista('ul'); break;
+      case 'ol': lista('ol'); break;
+      case 'limpar': D.execCommand('removeFormat'); D.execCommand('unlink'); break;
+      case 'zoom': { const m = raiz(); m.style.zoom = v === '100' ? '' : (v / 100); break; }
+    }
+    atualizarBarra();
+  }
+  tb.addEventListener('mousedown', e => { if (!e.target.closest('select,input')) e.preventDefault(); });
+  tb.addEventListener('click', e => { const b = e.target.closest('button[data-c]'); if (b) cmd(b.dataset.c); });
+  tb.addEventListener('change', e => { const c = e.target.dataset.c; if (c && c !== 'tam') cmd(c, e.target.value); });
+  tb.querySelectorAll('input[type=color]').forEach(x => x.addEventListener('input', e => cmd(e.target.dataset.c, e.target.value)));
+  inTam.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); cmd('tam', inTam.value); } });
+  D.addEventListener('keydown', e => {
+    if (!atual || !(e.ctrlKey || e.metaKey)) return;
+    if (e.key === 'k' || e.key === 'K') { e.preventDefault(); cmd('link'); }
+    else if (e.key === '\\') { e.preventDefault(); cmd('limpar'); }
+  }, true);
+  // pincel: a próxima seleção recebe a formatação copiada
+  D.addEventListener('mouseup', () => {
+    if (!atual || !pincel) return;
+    setTimeout(() => { const s = getSelection(); if (s.isCollapsed || !atual.el.contains(s.anchorNode)) return; const p = pincel; pincel = null; embrulhar(p); atualizarBarra(); }, 10);
+  });
+
+  /* ---------- imagens: enviar, trocar, remover, redimensionar ---------- */
+  const inArq = D.createElement('input'); inArq.type = 'file'; inArq.accept = 'image/*'; inArq.style.display = 'none';
+  function reduzir(file) {
+    return new Promise((ok, erro) => {
+      const im = new Image(), u = URL.createObjectURL(file);
+      im.onload = () => {
+        const k = Math.min(1, 1600 / Math.max(im.width, im.height)), c = D.createElement('canvas');
+        c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+        c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(u);
+        ok(c.toDataURL('image/webp', 0.86));
+      };
+      im.onerror = () => erro(new Error('imagem inválida')); im.src = u;
+    });
+  }
+  // sobe a imagem para _tema/edicoes-img/ e devolve {url (para mostrar já), rel}
+  async function subir(file) {
+    const dataUrl = await reduzir(file), id = 'i' + Date.now().toString(36), rel = 'edicoes-img/' + id + '.webp';
+    marcar('salvando');
+    while (enviando) await new Promise(r => setTimeout(r, 300));
+    enviando = true;
+    try {
+      const w = await gh('_tema/' + rel, { method: 'PUT', body: JSON.stringify({ message: 'Editor do site: imagem em ' + PG, content: dataUrl.split(',')[1], branch: 'main' }) });
+      if (!w.ok) throw new Error('imagem ' + w.status);
+      marcar(fila.length ? 'salvando' : 'salvo');
+    } catch (e) { marcar('erro'); aviso('A imagem não subiu (' + e.message + ').'); throw e; }
+    finally { enviando = false; }
+    return { url: dataUrl, rel };
+  }
+  function escolherImagem(fn) {
+    const box = D.createElement('div'); box.className = 'vg-n-ui vg-n-ed vge-ui on vge-escolhe';
+    box.innerHTML = '<div class="h">🖼 Imagem</div><div class="chips"><a data-a="pc">⬆ Do computador</a><a data-a="url">🔗 Por link</a><a data-a="x">Cancelar</a></div>';
+    const r = tb.getBoundingClientRect(); box.style.left = Math.max(10, innerWidth / 2 - 150) + 'px'; box.style.top = (r.bottom + 8) + 'px';
+    D.body.appendChild(box);
+    box.addEventListener('click', e => {
+      const a = e.target.closest('a'); if (!a) return; box.remove();
+      if (a.dataset.a === 'pc') {
+        inArq.value = ''; inArq.onchange = async () => { const f = inArq.files[0]; if (!f) return; try { fn(await subir(f)); } catch (_) { } }; inArq.click();
+      } else if (a.dataset.a === 'url') {
+        const u = prompt('Endereço da imagem (https://…):'); if (u && /^https?:\/\//i.test(u.trim())) fn({ url: u.trim(), rel: null, ext: true });
+      }
+    });
+  }
+  const imgBar = D.createElement('div'); imgBar.id = 'vge-imgbar'; imgBar.className = 'vge-ui-tb';
+  imgBar.innerHTML = '<button data-i="trocar">🔁 Trocar</button><button data-i="menor" title="Diminuir">−</button><span class="w"></span><button data-i="maior" title="Aumentar">+</button><button data-i="orig">↺ Original</button><button data-i="del" class="del">🗑 Remover</button>';
+  const alca = D.createElement('div'); alca.className = 'vge-alca vge-ui';
+  let imgSel = null;
+  function itemImg(img) {
+    if (img.dataset.vgi) return dados.i.find(x => x.id === img.dataset.vgi);
+    const src0 = img.dataset.vgiSrc || img.getAttribute('src');
+    const l = [...raiz().querySelectorAll('img')].filter(x => (x.dataset.vgiSrc || x.getAttribute('src')) === src0);
+    const m = { id: 'g' + Date.now().toString(36), src: src0, n: Math.max(0, l.indexOf(img)) };
+    img.dataset.vgi = m.id; img.dataset.vgiSrc = src0; dados.i.push(m); return m;
+  }
+  function salvarImg(m) { m.d = Date.now(); agendar({ k: 'i', item: Object.assign({}, m) }); }
+  function posImg() {
+    if (!imgSel) return; const r = imgSel.getBoundingClientRect();
+    imgBar.style.left = Math.max(10, Math.min(innerWidth - imgBar.offsetWidth - 10, r.left + r.width / 2 - imgBar.offsetWidth / 2)) + 'px';
+    imgBar.style.top = Math.max(10, r.top - imgBar.offsetHeight - 8) + 'px';
+    alca.style.left = (r.right - 7) + 'px'; alca.style.top = (r.bottom - 7) + 'px';
+    imgBar.querySelector('.w').textContent = Math.round(r.width) + ' px';
+  }
+  function selecionarImg(img) {
+    terminar(); soltarImg(); imgSel = img; img.classList.add('vge-sel');
+    // imagem dentro de um texto editado pelo editor: muda junto com o texto
+    imgBar.classList.add('on'); alca.classList.add('on'); posImg();
+  }
+  function soltarImg() { if (imgSel) imgSel.classList.remove('vge-sel'); imgSel = null; imgBar.classList.remove('on'); alca.classList.remove('on'); }
+  function larg(img, w) { img.style.width = w + 'px'; img.style.maxWidth = '100%'; img.style.height = 'auto'; }
+  function fimImg(img) {
+    const dono = img.closest('[data-vge]');
+    if (img.dataset.vgeSrc || (dono && !img.dataset.vgi)) {          // imagem posta pelo editor dentro de um texto: salva o texto
+      const el = dono || img.closest(BLOCO); if (el) { editar(el); terminar(); }
+      return;
+    }
+    const m = itemImg(img); m.w = img.style.width ? Math.round(parseFloat(img.style.width)) : 0; if (!m.w) delete m.w; salvarImg(m);
+  }
+  imgBar.addEventListener('mousedown', e => e.preventDefault());
+  imgBar.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || !imgSel) return; const img = imgSel;
+    const w = img.getBoundingClientRect().width;
+    if (b.dataset.i === 'menor') { larg(img, Math.max(40, Math.round(w * 0.9))); fimImg(img); }
+    else if (b.dataset.i === 'maior') { larg(img, Math.round(w * 1.1)); fimImg(img); }
+    else if (b.dataset.i === 'orig') {
+      if (img.dataset.vgeSrc) { img.style.width = ''; fimImg(img); }
+      else { const m = itemImg(img); dados.i = dados.i.filter(x => x.id !== m.id); aplicarImg(img, { src: m.src }); img.removeAttribute('data-vgi'); agendar({ k: 'i', del: 1, item: m }); }
+    }
+    else if (b.dataset.i === 'del') {
+      if (img.dataset.vgeSrc || (img.closest('[data-vge]') && !img.dataset.vgi)) { const el = img.closest('[data-vge]') || img.closest(BLOCO); img.remove(); soltarImg(); if (el) { editar(el); terminar(); } return; }
+      const m = itemImg(img); m.del = 1; aplicarImg(img, m); salvarImg(m); soltarImg(); return;
+    }
+    else if (b.dataset.i === 'trocar') {
+      escolherImagem(s => {
+        if (img.dataset.vgeSrc) { img.src = s.url; if (s.rel) img.dataset.vgeSrc = s.rel; else { img.removeAttribute('data-vge-src'); img.setAttribute('src', s.url); } fimImg(img); return; }
+        const m = itemImg(img); m.ns = s.rel ? 'vge:' + s.rel : s.url; delete m.del; img.src = s.url; img.removeAttribute('srcset'); salvarImg(m);
+      });
+    }
+    posImg();
+  });
+  // alça no canto: arrastar redimensiona
+  alca.addEventListener('mousedown', e => {
+    if (!imgSel) return; e.preventDefault(); const img = imgSel, x0 = e.clientX, w0 = img.getBoundingClientRect().width;
+    const mv = ev => { larg(img, Math.max(40, Math.round(w0 + ev.clientX - x0))); posImg(); };
+    const up = () => { removeEventListener('mousemove', mv); removeEventListener('mouseup', up); fimImg(img); };
+    addEventListener('mousemove', mv); addEventListener('mouseup', up);
+  });
+  D.addEventListener('mousedown', e => { if (imgSel && e.target !== imgSel && !(e.target.closest && e.target.closest('#vge-imgbar,.vge-alca,.vge-escolhe'))) soltarImg(); }, true);
+  addEventListener('scroll', posImg, { passive: true, capture: true }); addEventListener('resize', posImg);
+
+  st.textContent += '#vge-tb,#vge-imgbar{position:fixed;z-index:2147481600;display:none;align-items:center;gap:2px;padding:5px 8px;border-radius:22px;'
+    + 'font:500 13px/1 "Instrument Sans",system-ui,sans-serif;color:#1f2328;background:rgba(240,244,249,.92);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);'
+    + 'box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 0 0 1px rgba(16,22,40,.10),0 10px 30px -10px rgba(16,22,40,.35)}'
+    + '#vge-tb{top:10px;left:50%;transform:translateX(-50%);max-width:calc(100vw - 110px);overflow-x:auto;scrollbar-width:none}#vge-tb.on,#vge-imgbar.on{display:flex}'
+    + 'html.vge-editando #vge-aviso{display:none}'
+    + '#vge-tb button,#vge-imgbar button{flex:none;height:30px;min-width:30px;padding:0 6px;border:0;border-radius:6px;background:none;color:inherit;font:inherit;font-size:15px;cursor:pointer;display:grid;place-items:center}'
+    + '#vge-tb button:hover,#vge-imgbar button:hover,#vge-tb label.cor:hover{background:rgba(16,22,40,.08)}#vge-tb button.on{background:#d3e3fd;color:#0b57d0}'
+    + '#vge-tb svg{width:18px;height:18px}#vge-tb i{flex:none;width:1px;height:20px;background:rgba(16,22,40,.16);margin:0 5px}'
+    + '#vge-tb select{flex:none;height:30px;border:0;border-radius:6px;background:transparent;color:inherit;font:inherit;padding:0 4px;cursor:pointer;max-width:74px}#vge-tb select.lg{max-width:118px}#vge-tb select:hover{background:rgba(16,22,40,.08)}'
+    + '#vge-tb select option{color:#1f2328;background:#fff}'
+    + '#vge-tb input[data-c=tam]{flex:none;width:34px;height:24px;text-align:center;border:1px solid rgba(16,22,40,.35);border-radius:5px;background:transparent;color:inherit;font:inherit}'
+    + '#vge-tb label.cor{flex:none;position:relative;width:30px;height:30px;border-radius:6px;display:grid;place-items:center;cursor:pointer}#vge-tb label.cor .A{font-size:15px;font-weight:600;margin-top:-5px}'
+    + '#vge-tb label.cor svg{width:16px;height:16px;margin-top:-5px}#vge-tb label.cor s{position:absolute;left:7px;right:7px;bottom:5px;height:4px;background:#e5484d;text-decoration:none}#vge-tb label.cor s[data-k=dest]{background:#ffe066}'
+    + '#vge-tb input[type=color]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:0;padding:0}'
+    + ':root:not([data-theme="light"]) #vge-tb,:root:not([data-theme="light"]) #vge-imgbar{color:#e8eaed;background:rgba(32,35,40,.92);box-shadow:0 0 0 1px rgba(255,255,255,.10),0 10px 30px -10px rgba(0,0,0,.6)}'
+    + ':root:not([data-theme="light"]) #vge-tb button:hover,:root:not([data-theme="light"]) #vge-imgbar button:hover,:root:not([data-theme="light"]) #vge-tb select:hover,:root:not([data-theme="light"]) #vge-tb label.cor:hover{background:rgba(255,255,255,.10)}'
+    + ':root:not([data-theme="light"]) #vge-tb button.on{background:#004a77;color:#c2e7ff}:root:not([data-theme="light"]) #vge-tb i{background:rgba(255,255,255,.18)}:root:not([data-theme="light"]) #vge-tb input[data-c=tam]{border-color:rgba(255,255,255,.4)}'
+    + '#vge-imgbar{font-size:13px;gap:4px}#vge-imgbar button{font-size:13px;padding:0 9px}#vge-imgbar .w{min-width:54px;text-align:center;opacity:.75;font-size:12px}#vge-imgbar button.del{color:#d93025}'
+    + 'html.vge-on main img:hover,html.vge-on #main img:hover,html.vge-on #view img:hover,html.vge-on .main img:hover{outline:2px dashed rgba(243,154,198,.8);outline-offset:2px;cursor:pointer}'
+    + 'img.vge-sel{outline:2px solid #1a73e8!important;outline-offset:2px}'
+    + '.vge-alca{position:fixed;z-index:2147481600;width:14px;height:14px;border-radius:3px;background:#1a73e8;border:2px solid #fff;cursor:nwse-resize;display:none;box-shadow:0 1px 4px rgba(0,0,0,.4)}.vge-alca.on{display:block}'
+    + 'ul.vge-check{list-style:none;padding-left:1.4em}ul.vge-check>li{position:relative}ul.vge-check>li::before{content:"☐";position:absolute;left:-1.3em}'
+    + '@media print{#vge-tb,#vge-imgbar,#vge-btn,#vge-aviso,.vge-alca{display:none!important}}';
+
   /* ---------- liga/desliga (o topo manda; as aulas em iframe seguem pelo storage) ---------- */
   function definir(on) {
     ligado = !!on && !!tok(); html.classList.toggle('vge-on', ligado);
-    if (!ligado) { terminar(); esconder(barra); esconder(caixa); }
+    if (!ligado) { terminar(); soltarImg(); esconder(barra); esconder(caixa); }
   }
   addEventListener('storage', e => { if (e.key === K_ON || e.key === K_TOK) definir(localStorage.getItem(K_ON) === '1'); });
 
@@ -348,7 +693,7 @@
   }
 
   function iniciar() {
-    D.head.appendChild(st); D.body.append(tip, barra, caixa);
+    D.head.appendChild(st); D.body.append(tip, barra, caixa); if (ADMIN) D.body.append(tb, imgBar, alca, inArq);
     const PC = !matchMedia('(max-width:1024px),(pointer:coarse)').matches;
     if (ADMIN && TOPO && PC) { montarBotao(); try { localStorage.setItem(K_ON, '0'); } catch (_) { } }
     else if (ADMIN) definir(localStorage.getItem(K_ON) === '1');
