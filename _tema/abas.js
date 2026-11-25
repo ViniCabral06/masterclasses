@@ -408,7 +408,7 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
   function fechar() { if (!folha) return; folha = ''; html.classList.remove('vga-lista'); pintar(); }
 
   function monta(qual) {
-    const nome = (D.title || '').split(/\s[:—–-]\s|·|:/)[0].trim();
+    const nome = (D.title || '').replace(/^(🍅|☕|⏸)( ⏸)? \d+:\d\d · /u, '').split(/\s[:—–-]\s|·|:/)[0].trim();
     if (qual === 'sim') {
       const ss = avulso('sim');
       lista.innerHTML = `<div class="in"><h1>Simulados</h1><p class="s">Simulados e provas anteriores de ${esc(nome)}.</p>`
@@ -706,11 +706,20 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
     aj.innerHTML = '<div class="h">⚙️ Ajustes da matéria</div>'
       + '<button type="button" class="vga-aj" data-aj="sair" role="switch" aria-checked="true"><span class="tx">🥷 Modo foco<small>Desligar volta ao master com a barra lateral (recarrega a página)</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
       + '<button type="button" class="vga-aj" data-aj="tema" role="switch"><span class="tx">☀️ Tema claro<small>Liga o modo foco claro; desligado fica escuro</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
+      + '<button type="button" class="vga-aj" data-aj="pomo" role="switch" hidden><span class="tx">🍅 Pomodoro<small>Foco e pausa com alarme. Chame pelo tomatinho no canto.</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
       + '<button type="button" class="vga-aj" data-aj="pers"><span class="tx">🎨 Personalização<small>Tema claro ou escuro, fundo e cor de destaque</small></span><span aria-hidden="true">›</span></button><hr>';
     const pintaTema = () => { const b = aj.querySelector('[data-aj=tema]'), on = html.dataset.theme === 'light'; b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
     pintaTema(); new MutationObserver(pintaTema).observe(html, { attributes: true, attributeFilter: ['data-theme'] });
+    // 🍅 Pomodoro (_tema/pomodoro.js): a chave só aparece onde o script existe
+    const pintaPomo = () => { const b = aj.querySelector('[data-aj=pomo]'), P = window.VGPomo; b.hidden = !P; if (!P) return; const on = P.ligado(); b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
+    pintaPomo(); addEventListener('load', pintaPomo); addEventListener('vgpomo', pintaPomo);
     aj.addEventListener('click', e => {
       const b = e.target.closest('[data-aj]'); if (!b) return;
+      if (b.dataset.aj === 'pomo') {
+        const P = window.VGPomo; if (!P) return;
+        if (P.ligado()) P.desligar(); else { ajustes(false); P.ligar(); }
+        setTimeout(pintaPomo, 50); return;
+      }
       if (b.dataset.aj === 'tema') {
         // o botão de tema do master fica escondido no modo foco: clica nele direto
         const t = D.querySelector('[data-act="theme"],#btnTheme,.themebtn');
