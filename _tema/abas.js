@@ -23,7 +23,9 @@
   const fq = e => ((e && e.className && String(e.className).match(/vgf-g\d/)) || [''])[0];
   const LS = k => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
   const CAI = /⭐|o que mais (é|foi) cobrado|o que mais cai/i;
-  const limpa = s => s.replace(/^[\s•Q\d]+(?=[^\d\s])/, '').replace(/^⭐\s*/, '').trim();
+  // tira o selo da barra lateral ("1", "1.2", "•", "Q") do começo do título; o "Q" só sai quando é selo (antes de espaço ou maiúscula),
+  // para não comer o Q de "Questões da aula" e "Quiz final"
+  const limpa = s => s.replace(/^\s*(?:(?:•|\d+(?:\.\d+)*\.?|Q(?=[\sA-ZÀ-Ý]))\s*)+(?=\S)/, '').replace(/^⭐\s*/, '').replace(/^(\p{Extended_Pictographic}️?)(?=[^\s️])/u, '$1 ').trim();
   const tipoAvulso = t => /simulad|parciais|somativas|provas antigas|banco/i.test(t) ? 'sim' : /minha revis/i.test(t) ? 'notas' : /arena/i.test(t) ? 'arena' : 'rev';
 
   /* ---------- adaptadores ----------

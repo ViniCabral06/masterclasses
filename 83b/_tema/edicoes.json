@@ -1,0 +1,102 @@
+{
+ "Propedêutica de imagem/Propedeutica_Imagem_Masterclass.html": {
+  "t": [
+   {
+    "id": "emwvjhsq1",
+    "tag": "li",
+    "q": "TC acha a pneumonia de RX normal.",
+    "pre": "efato.Broncograma não existe no derrame.",
+    "pos": "Pneumocistose: vidro fosco peri-hilar no",
+    "r": "TC acha a pneumonia de RX normal;",
+    "d": 1795575847608
+   },
+   {
+    "id": "emwvjhw0m",
+    "tag": "li",
+    "q": "Broncograma não existe no derrame.",
+    "pre": "sibilidade, edema, hemorragia, artefato.",
+    "pos": "TC acha a pneumonia de RX normalPneumoci",
+    "r": "Broncograma não existe no derrame;",
+    "d": 1795575845503
+   },
+   {
+    "id": "emwvjhz3z",
+    "tag": "li",
+    "q": "Vidro fosco é inespecífico: viral, hipersensibilidade, edema, hemorragia, artefato.",
+    "pre": "ais branca, apaga os vasos, broncograma.",
+    "pos": "Broncograma não existe no derrame;TC ach",
+    "r": "Vidro fosco é inespecífico: viral, hipersensibilidade, edema, hemorragia, artefato;",
+    "d": 1795575849413
+   },
+   {
+    "id": "emwvji0i1",
+    "tag": "li",
+    "q": "Consolidação: mais branca, apaga os vasos, broncograma.",
+    "pre": "idro fosco central e peribroncovascular.",
+    "pos": "Vidro fosco é inespecífico: viral, hiper",
+    "r": "Consolidação: mais branca, apaga os vasos, broncograma;",
+    "d": 1795575851116
+   },
+   {
+    "id": "emwvji1u0",
+    "tag": "li",
+    "q": "IC: vidro fosco central e peribroncovascular.",
+    "pre": "-19: vidro fosco bilateral e periférico.",
+    "pos": "Consolidação: mais branca, apaga os vaso",
+    "r": "IC: vidro fosco central e peribroncovascular;",
+    "d": 1795575853842
+   },
+   {
+    "id": "emwvji3xx",
+    "tag": "li",
+    "q": "COVID-19: vidro fosco bilateral e periférico.",
+    "pre": "o: aumenta a densidade sem apagar vasos.",
+    "pos": "IC: vidro fosco central e peribroncovasc",
+    "r": "COVID-19: vidro fosco bilateral e periférico;",
+    "d": 1795575855490
+   },
+   {
+    "id": "emwvji6ds",
+    "tag": "li",
+    "q": "Pneumocistose: vidro fosco peri-hilar no HIV com CD4 < 200.",
+    "pre": "errame;TC acha a pneumonia de RX normal;",
+    "pos": "🔗 LIGA COM A AULA 4 · Consolidação, bro",
+    "r": "Pneumocistose: vidro fosco peri-hilar no HIV com CD4 &lt; 200;",
+    "d": 1795575862051
+   },
+   {
+    "id": "emwvjia9a",
+    "tag": "li",
+    "q": "Vidro fosco: aumenta a densidade sem apagar vasos.",
+    "pre": "ação: apaga os vasos; broncograma aéreo.",
+    "pos": "COVID-19: vidro fosco bilateral e perifé",
+    "r": "Vidro fosco: aumenta a densidade sem apagar vasos;",
+    "d": 1795575864083
+   },
+   {
+    "id": "emwvjibu1",
+    "tag": "li",
+    "q": "Consolidação: apaga os vasos; broncograma aéreo.",
+    "pre": "oscoConcluir segmentoPróximoPontos-chave",
+    "pos": "Vidro fosco: aumenta a densidade sem apa",
+    "r": "Consolidação: apaga os vasos; broncograma aéreo;",
+    "d": 1795575867113
+   }
+  ],
+  "b": []
+ },
+ "Patologia médica/aulas/aula4.html": {
+  "t": [
+   {
+    "id": "emwvjlher",
+    "tag": "figcaption",
+    "q": "Valvas cardíacas vistas de cima, com os grandes vasos removidos",
+    "pre": "m cordas tendíneas: mitral e tricúspide.",
+    "pos": "No esquema, com os átrios removidos para",
+    "r": "Valvas cardíacas vistas de cima, com os grandes vasos removidos<br><span style=\"color: rgb(9, 241, 195);\">Fonte: </span>Beck,<span style=\"color: rgb(169, 162, 162);\">&nbsp;</span>Groër Beck e Monsen (1982)",
+    "d": 1795576269364
+   }
+  ],
+  "b": []
+ }
+}

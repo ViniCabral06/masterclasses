@@ -117,7 +117,7 @@
   async function carregar() {
     if (!BASE) return;
     try {
-      const r = await fetch(BASE + 'edicoes.json', { cache: 'no-cache' });
+      const r = await fetch(BASE + 'edicoes.json?t=' + Date.now(), { cache: 'no-store' }); // sem a cópia de 10 min do GitHub Pages
       if (!r.ok) return;
       const j = await r.json(), p = j[PG] || {};
       dados = { t: p.t || [], b: p.b || [], i: p.i || [] }; aplicar();
@@ -148,7 +148,8 @@
     + '#vge-btn:hover{opacity:1;transform:scale(1.06)}#vge-btn svg{width:14px;height:14px}'
     + 'html.vge-on #vge-btn{opacity:1;background:#f39ac6;color:#2a0d1b;border-color:#f39ac6}'
     + '#vge-btn i{position:absolute;right:-2px;top:-2px;width:9px;height:9px;border-radius:50%;background:transparent}'
-    + '#vge-btn.salvando i{background:#f2c14e}#vge-btn.salvo i{background:#3fbf7f}#vge-btn.erro i{background:#e5484d}'
+    + '#vge-btn.salvando i,#vge-btn.publicando i{background:#f2c14e}#vge-btn.publicando i{animation:vgePisca 1s ease-in-out infinite}#vge-btn.salvo i{background:#3fbf7f}#vge-btn.erro i{background:#e5484d}'
+    + '@keyframes vgePisca{50%{opacity:.25}}'
     + 'html.vge-on .vg-n-barra{display:none!important}'
     + 'html.vge-on :is(' + BLOCO + '):not(.vge-ui *):hover{outline:1px dashed rgba(243,154,198,.7);outline-offset:2px;cursor:text}'
     + '[contenteditable].vge-ed{outline:2px solid #f39ac6!important;outline-offset:3px;border-radius:3px;cursor:text}'
@@ -207,8 +208,8 @@
     return fetch(API + caminho, Object.assign({ headers: h, cache: 'no-store' }, op || {}, op && op.body ? { headers: Object.assign(h, { 'Content-Type': 'application/json' }) } : {}));
   }
   let fila = [], tSalvar = 0, enviando = false;
-  function marcar(c) { const b = D.getElementById('vge-btn') || (window.top !== window && (() => { try { return window.top.document.getElementById('vge-btn'); } catch (_) { return null; } })()); if (!b) return; b.classList.remove('salvando', 'salvo', 'erro'); if (c) b.classList.add(c); }
-  function agendar(op) { fila.push(op); marcar('salvando'); clearTimeout(tSalvar); tSalvar = setTimeout(enviar, 1200); }
+  function marcar(c) { const b = D.getElementById('vge-btn') || (window.top !== window && (() => { try { return window.top.document.getElementById('vge-btn'); } catch (_) { return null; } })()); if (!b) return; b.classList.remove('salvando', 'publicando', 'salvo', 'erro'); if (c) b.classList.add(c); b.title = { salvando: 'Salvando no GitHub…', publicando: 'Salvo. O site está atualizando (cerca de 1 min): espere o verde para dar F5', salvo: 'No ar: pode dar F5', erro: 'Não salvou' }[c] || 'Editor do site'; }
+  function agendar(op) { fila.push(op); clearTimeout(tNoAr); marcar('salvando'); clearTimeout(tSalvar); tSalvar = setTimeout(enviar, 1200); }
   function aplicarOps(obj, ops) {
     const p = obj[PG] || (obj[PG] = { t: [], b: [] }); p.t = p.t || []; p.b = p.b || []; p.i = p.i || [];
     for (const o of ops) {
@@ -217,6 +218,24 @@
     }
     if (!p.i.length) delete p.i;
     if (!p.t.length && !p.b.length && !p.i) delete obj[PG];
+  }
+  // depois de salvar no GitHub, o site leva ~1 min para montar: amarelo até a mudança aparecer no ar, aí verde
+  let esperado = null, tNoAr = 0;
+  function esperarNoAr() {
+    clearTimeout(tNoAr);
+    if (LOCAL) { marcar('salvo'); if (!TESTE()) aviso('Salvo no GitHub. No localhost o site não muda: confira no site real em ~1 min.'); return; }
+    marcar('publicando'); const ini = Date.now();
+    const olha = async () => {
+      if (fila.length || enviando) return;                      // outra mudança na fila: ela recomeça a espera
+      try {
+        const r = await fetch(BASE + 'edicoes.json?t=' + Date.now(), { cache: 'no-store' });
+        const j = r.ok ? await r.json() : {};
+        if (JSON.stringify(j[PG] || null) === esperado) { marcar('salvo'); aviso('✅ No ar: pode dar F5.'); return; }
+      } catch (_) { }
+      if (Date.now() - ini > 6 * 60000) { marcar('salvo'); aviso('Salvo no GitHub; o site está demorando para atualizar. Tente o F5 daqui a pouco.'); return; }
+      tNoAr = setTimeout(olha, 8000);
+    };
+    tNoAr = setTimeout(olha, 15000);
   }
   async function enviar() {
     if (enviando) { tSalvar = setTimeout(enviar, 800); return; }
@@ -232,7 +251,7 @@
         const corpo = { message: 'Editor do site: ' + PG, content: b64(JSON.stringify(obj, null, 1) + '\n'), branch: 'main' };
         if (sha) corpo.sha = sha;
         const w = await gh(ARQ, { method: 'PUT', body: JSON.stringify(corpo) });
-        if (w.ok) { marcar(fila.length ? 'salvando' : 'salvo'); return; }
+        if (w.ok) { esperado = JSON.stringify(obj[PG] || null); if (!fila.length) esperarNoAr(); return; }
         if (w.status === 401 || w.status === 403 || w.status === 404) { sairToken(); throw new Error(w.status === 404 ? 'o token não tem permissão de escrita: crie outro marcando public_repo e entre de novo pela caneta' : 'o token não vale mais: entre de novo pela caneta'); }
         if (w.status !== 409 && w.status !== 422) throw new Error('escrita ' + w.status);
       }
@@ -390,8 +409,8 @@
     + '<select data-c="fonte" class="lg" title="Fonte"><option value="">Fonte</option>' + FONTES.map(f => '<option style="font-family:\'' + f + '\'">' + f + '</option>').join('') + '</select><i></i>'
     + '<button class="so-txt" data-c="tam-" title="Diminuir tamanho da fonte">−</button><input data-c="tam" title="Tamanho da fonte" inputmode="numeric"><button class="so-txt" data-c="tam+" title="Aumentar tamanho da fonte">+</button><i></i>'
     + '<button class="so-txt" data-c="bold" title="Negrito (Ctrl+B)"><b>B</b></button><button class="so-txt" data-c="italic" title="Itálico (Ctrl+I)"><em style="font-family:Georgia,serif">I</em></button><button class="so-txt" data-c="underline" title="Sublinhado (Ctrl+U)"><u>U</u></button>'
-    + '<label class="cor" title="Cor do texto"><span class="A">A</span><s data-k="cor"></s><input type="color" data-c="cor" value="#e5484d"></label>'
-    + '<label class="cor" title="Cor de destaque">' + I.marca + '<s data-k="dest"></s><input type="color" data-c="dest" value="#ffe066"></label><i></i>'
+    + '<button class="cor so-txt" data-pal="cor" title="Cor do texto"><span class="A">A</span><s data-k="cor"></s></button>'
+    + '<button class="cor so-txt" data-pal="dest" title="Cor de destaque">' + I.marca + '<s data-k="dest"></s></button><i></i>'
     + '<button class="so-txt" data-c="link" title="Inserir link (Ctrl+K)">' + I.link + '</button><button class="so-txt" data-c="coment" title="Pôr balão de explicação no trecho">' + I.coment + '</button><i></i>'
     + '<select data-c="alin" class="ico" title="Alinhar"><option value="">⯀</option><option value="left">Esquerda</option><option value="center">Centro</option><option value="right">Direita</option><option value="justify">Justificado</option></select>'
     + '<select data-c="esp" class="ico" title="Espaçamento entre linhas"><option value="">↕</option><option value="1">Simples</option><option value="1.15">1,15</option><option value="1.5">1,5</option><option value="2">Duplo</option></select>'
@@ -504,8 +523,8 @@
       case 'tam-': mudarTam((parseFloat(inTam.value) || 12) - 1); break;
       case 'tam+': mudarTam((parseFloat(inTam.value) || 12) + 1); break;
       case 'tam': mudarTam(parseFloat(v) || 12); break;
-      case 'cor': D.execCommand('styleWithCSS', false, true); D.execCommand('foreColor', false, v); tb.querySelector('s[data-k="cor"]').style.background = v; break;
-      case 'dest': D.execCommand('styleWithCSS', false, true); D.execCommand('hiliteColor', false, v); tb.querySelector('s[data-k="dest"]').style.background = v; break;
+      case 'cor': D.execCommand('styleWithCSS', false, true); D.execCommand('foreColor', false, v || getComputedStyle(atual.el).color); if (v) tb.querySelector('s[data-k="cor"]').style.background = v; break;
+      case 'dest': D.execCommand('styleWithCSS', false, true); D.execCommand('hiliteColor', false, v || 'transparent'); if (v) tb.querySelector('s[data-k="dest"]').style.background = v; break;
       case 'link': { const a0 = noSel() && noSel().closest('a'); const u = prompt('Link (deixe vazio para tirar):', a0 ? a0.getAttribute('href') : 'https://'); voltarSelecao(); if (u === null) break; if (!u.trim() || u.trim() === 'https://') D.execCommand('unlink'); else if (!/^\s*javascript:/i.test(u)) D.execCommand('createLink', false, u.trim()); break; }
       case 'coment': { const rg = pendDaSelecao(); if (!rg) { aviso('Selecione o trecho que vai ganhar o balão.'); break; } abrirCaixaBalao(rg.getBoundingClientRect()); break; }
       case 'alin': if (v) atual.el.style.textAlign = v === 'left' ? '' : v; selAlin.value = ''; break;
@@ -521,7 +540,60 @@
   tb.addEventListener('mousedown', e => { if (!e.target.closest('select,input')) e.preventDefault(); });
   tb.addEventListener('click', e => { const b = e.target.closest('button[data-c]'); if (b) cmd(b.dataset.c); });
   tb.addEventListener('change', e => { const c = e.target.dataset.c; if (c && c !== 'tam') cmd(c, e.target.value); });
-  tb.querySelectorAll('input[type=color]').forEach(x => x.addEventListener('input', e => cmd(e.target.dataset.c, e.target.value)));
+  /* paleta: as cores das matérias, do conteúdo dos masters e dos grifos de frequência, como no Docs */
+  const PAL = {
+    cor: [
+      ['Básicas', ['#000000', '#434343', '#666666', '#999999', '#cccccc', '#ffffff', '#e5484d', '#ff8a00', '#f5c400', '#2e7d32', '#00a3bf', '#2f6fd6', '#7f6bc4', '#d63384']],
+      ['Cores das matérias', ['#ff4d6d', '#ff6fb5', '#9a5bff', '#ffd93d', '#38f5a3', '#ffb547', '#5aa9ff', '#ff8a5b', '#9fd3ff', '#4fe0cf', '#b8f35a']],
+      ['Do texto dos masters', ['#b42318', '#c9503f', '#e0607a', '#b3314e', '#b4620a', '#d9822b', '#8a5a14', '#b89a1d', '#2f7d51', '#1b6e66', '#2f6fd6', '#4a5568', '#8f8a85', '#1f1a17']],
+      ['Frequência (grifos)', ['#3fb950', '#e3b341', '#f0883e', '#f85149', '#0b0b0b']]
+    ],
+    dest: [
+      ['Marca-texto', ['#ffe066', '#ffe3a3', '#fdf0bf', '#fcd9a8', '#ffd3ea', '#f6b6d0', '#f8bfb5', '#cfe9d4', '#d8f3e3', '#cfe9ff', '#e3d7ff', '#edf3f8']],
+      ['Cores das matérias', ['#ff4d6d', '#ff6fb5', '#9a5bff', '#ffd93d', '#38f5a3', '#ffb547', '#5aa9ff', '#ff8a5b', '#9fd3ff', '#4fe0cf', '#b8f35a']],
+      ['Frequência (grifos)', ['#3fb950', '#e3b341', '#f0883e', '#f85149', '#0b0b0b']]
+    ]
+  };
+  const pal = D.createElement('div'); pal.id = 'vge-pal'; pal.className = 'vge-ui';
+  const K_REC = 'vge-cores-rec';
+  const recentes = () => { try { return JSON.parse(localStorage.getItem(K_REC) || '[]'); } catch (_) { return []; } };
+  function usarCor(tipo, c) {
+    if (c) { try { const l = [c].concat(recentes().filter(x => x !== c)).slice(0, 10); localStorage.setItem(K_REC, JSON.stringify(l)); } catch (_) { } }
+    cmd(tipo, c); pal.classList.remove('on');
+  }
+  function abrirPaleta(btn) {
+    const tipo = btn.dataset.pal;
+    if (pal.classList.contains('on') && pal.dataset.tipo === tipo) { pal.classList.remove('on'); return; }
+    pal.dataset.tipo = tipo;
+    let acc = ''; try { acc = getComputedStyle(html).getPropertyValue('--vg-acc').trim(); } catch (_) { }
+    const amostra = c => '<button type="button" data-cor="' + c + '" title="' + c + '" style="background:' + c + '"></button>';
+    const grupos = (acc ? [['Desta matéria', [acc]]] : []).concat(PAL[tipo]);
+    const rec = recentes();
+    pal.innerHTML = '<button type="button" class="nenhuma" data-cor="">' + (tipo === 'cor' ? '↺ Automática (cor do texto)' : '⌀ Sem destaque') + '</button>'
+      + grupos.map(g => '<div class="g">' + g[0] + '</div><div class="am">' + g[1].map(amostra).join('') + '</div>').join('')
+      + (rec.length ? '<div class="g">Usadas por último</div><div class="am">' + rec.map(amostra).join('') + '</div>' : '')
+      + '<label class="pers">🎨 Personalizada…<input type="color" value="' + (tipo === 'cor' ? '#e5484d' : '#ffe066') + '"></label>';
+    const r = btn.getBoundingClientRect();
+    pal.style.left = Math.min(innerWidth - 250, Math.max(8, r.left)) + 'px'; pal.style.top = (r.bottom + 6) + 'px';
+    pal.classList.add('on');
+    pal.querySelector('input[type=color]').addEventListener('change', e => usarCor(tipo, e.target.value));
+  }
+  tb.addEventListener('click', e => { const b = e.target.closest('button[data-pal]'); if (b) abrirPaleta(b); });
+  pal.addEventListener('mousedown', e => { if (!e.target.closest('label.pers')) e.preventDefault(); });
+  pal.addEventListener('click', e => { const b = e.target.closest('button[data-cor]'); if (b) usarCor(pal.dataset.tipo, b.dataset.cor); });
+  D.addEventListener('mousedown', e => { if (pal.classList.contains('on') && !(e.target.closest && e.target.closest('#vge-pal,button[data-pal]'))) pal.classList.remove('on'); }, true);
+  st.textContent += '#vge-pal{position:fixed;z-index:2147481800;display:none;width:236px;padding:10px;box-sizing:border-box;border-radius:12px;background:#fff;color:#1f2328;'
+    + 'font:500 12px/1.2 "Instrument Sans",system-ui,sans-serif;box-shadow:0 0 0 1px rgba(16,22,40,.10),0 12px 32px -8px rgba(16,22,40,.35)}#vge-pal.on{display:block}'
+    + '#vge-pal .g{margin:9px 0 5px;font-size:11px;letter-spacing:.03em;opacity:.65}'
+    + '#vge-pal .am{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}'
+    + '#vge-pal .am button{width:22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.18);padding:0;cursor:pointer;transition:transform .1s}#vge-pal .am button:hover{transform:scale(1.18)}'
+    + '#vge-pal .nenhuma{display:block;width:100%;text-align:left;border:0;background:rgba(16,22,40,.06);color:inherit;font:inherit;padding:7px 9px;border-radius:8px;cursor:pointer}#vge-pal .nenhuma:hover{background:rgba(16,22,40,.12)}'
+    + '#vge-pal .pers{display:block;margin-top:10px;padding:7px 9px;border-radius:8px;cursor:pointer;position:relative}#vge-pal .pers:hover{background:rgba(16,22,40,.08)}'
+    + '#vge-pal .pers input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}'
+    + ':root:not([data-theme="light"]) #vge-pal{background:#2a2d33;color:#e3e3e3;box-shadow:0 0 0 1px rgba(255,255,255,.10),0 12px 32px -8px rgba(0,0,0,.7)}'
+    + ':root:not([data-theme="light"]) #vge-pal .am button{border-color:rgba(255,255,255,.25)}:root:not([data-theme="light"]) #vge-pal .nenhuma{background:rgba(255,255,255,.08)}'
+    + '#vge-tb button.cor{position:relative}#vge-tb button.cor .A{font-size:15px;font-weight:600;margin-top:-5px}#vge-tb button.cor svg{width:16px;height:16px;margin-top:-5px}'
+    + '#vge-tb button.cor s{position:absolute;left:7px;right:7px;bottom:5px;height:4px;background:#e5484d;text-decoration:none}#vge-tb button.cor s[data-k=dest]{background:#ffe066}';
   inTam.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); cmd('tam', inTam.value); } });
   D.addEventListener('keydown', e => {
     if (!atual || !(e.ctrlKey || e.metaKey)) return;
@@ -557,7 +629,7 @@
     try {
       const w = await gh('_tema/' + rel, { method: 'PUT', body: JSON.stringify({ message: 'Editor do site: imagem em ' + PG, content: dataUrl.split(',')[1], branch: 'main' }) });
       if (!w.ok) throw new Error('imagem ' + w.status);
-      marcar(fila.length ? 'salvando' : 'salvo');
+      marcar('salvando');
     } catch (e) { marcar('erro'); aviso('A imagem não subiu (' + e.message + ').'); throw e; }
     finally { enviando = false; }
     return { url: dataUrl, rel };
@@ -753,7 +825,7 @@
   function iniciar() {
     if (!TOPO) st.textContent += '#vge-tb{display:none!important}html.vge-on body{padding-top:0!important}';
     if (BASE && !D.getElementById('vge-fontes')) { const l = D.createElement('link'); l.id = 'vge-fontes'; l.rel = 'stylesheet'; l.href = BASE + 'fontes/fontes.css'; D.head.appendChild(l); }
-    D.head.appendChild(st); D.body.append(tip, barra, caixa); if (ADMIN) D.body.append(tb, moldura, inArq);
+    D.head.appendChild(st); D.body.append(tip, barra, caixa); if (ADMIN) D.body.append(tb, moldura, inArq, pal);
     const PC = !matchMedia('(max-width:1024px),(pointer:coarse)').matches;
     if (ADMIN && TOPO && PC) { montarBotao(); try { localStorage.setItem(K_ON, '0'); } catch (_) { } }
     else if (ADMIN) definir(localStorage.getItem(K_ON) === '1');
