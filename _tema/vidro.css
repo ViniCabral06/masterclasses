@@ -769,3 +769,23 @@ html.vga-on #vg-pomo{z-index:621}
 html.vga-on:not([data-vga-lado=t]):not([data-vga-lado=l]):not([data-vga-lado=r]) #vg-pomo-chama{bottom:calc(var(--vga-h,62px) + var(--vga-gap,14px) + 12px + env(safe-area-inset-bottom,0px))}
 html.vga-on:not([data-vga-lado=t]):not([data-vga-lado=l]):not([data-vga-lado=r]) #vg-pomo{bottom:calc(var(--vga-h,62px) + var(--vga-gap,14px) + 56px + env(safe-area-inset-bottom,0px))}
 @media (prefers-reduced-motion:reduce){#vg-pomo{animation:none}#vg-pomo-chama,#vg-pomo .vgp-corpo{transition:none}}
+
+/* ===== Correção alternativa por alternativa (_tema/correcao.js), igual à Patologia ===== */
+.vg-cor{margin-top:12px;padding:12px 14px 14px;border-radius:12px;border:1px solid #f2c1bb;background:#fdecea;color:#1f201d;font-family:inherit;text-align:left}
+.vg-cor>b{display:block;margin-bottom:10px;color:#b42318}
+.vg-cor ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.vg-cor li{display:flex;gap:10px;align-items:flex-start;margin:0}
+.vg-cor .pv-al{flex:none;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-top:1px;border-radius:999px;background:#b42318;color:#fff;font-weight:700;font-size:.85em}
+.vg-cor .pv-ab{min-width:0;flex:1}
+.vg-cor .pv-op{margin:0 0 4px;padding:6px 10px;border-radius:8px;background:#fff;color:#3a3c37;font-size:.94em;line-height:1.5}
+.vg-cor .pv-x{background:rgba(220,40,50,.16);color:#b42318;font-weight:600;border-radius:4px;padding:0 3px;text-decoration:underline wavy;text-decoration-color:rgba(220,40,50,.55);text-underline-offset:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.vg-cor .pv-pq{margin:0;line-height:1.55}
+.vg-cor .pv-pq::before{content:"Por quê: ";font-weight:700;color:#b42318}
+.vg-cor li.sua .pv-op{box-shadow:inset 3px 0 0 #b42318}
+.vg-cor .vg-cor-sua{font-style:normal;font-size:.78em;font-weight:700;color:#b42318;opacity:.8;margin-left:4px;white-space:nowrap}
+:root[data-theme="dark"] .vg-cor{background:rgba(180,35,24,.16);border-color:rgba(242,120,110,.35);color:#ece9e4}
+:root[data-theme="dark"] .vg-cor>b,:root[data-theme="dark"] .vg-cor .pv-pq::before,:root[data-theme="dark"] .vg-cor .pv-x,:root[data-theme="dark"] .vg-cor .vg-cor-sua{color:#ff9d93}
+:root[data-theme="dark"] .vg-cor .pv-op{background:rgba(0,0,0,.28);color:#d8d5cf}
+:root[data-theme="dark"] .vg-cor .pv-x{background:rgba(240,110,100,.2)}
+:root[data-theme="dark"] .vg-cor .pv-al{background:#d9483b}
+:root[data-theme="dark"] .vg-cor li.sua .pv-op{box-shadow:inset 3px 0 0 #ff9d93}

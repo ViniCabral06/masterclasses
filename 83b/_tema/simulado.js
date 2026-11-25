@@ -183,7 +183,7 @@
         if (!dn && !disc) h +='<button class="vgs-b sm" type="button" data-vgs="limpa" data-i="' + i + '"' + (a == null ? ' disabled' : '') + '>Limpar resposta</button>';
         h += '<button class="vgs-b sm" type="button" data-vgs="flag" data-i="' + i + '">' + (run.flag[i] ? 'Desmarcar revisão' : 'Marcar para revisar') + '</button></div>';
       }
-      if (dn) { var c = com(q, a); if (c) h += '<div class="vgs-com">' + (disc ? '<p><b>Resposta ideal</b></p>' : '') + c + '</div>'; }
+      if (dn) { var c = com(q, a); var cx = (!disc && window.VGCorrecao && String(c).indexOf('vg-cor') < 0 && (q.porque || VGCorrecao.tem(q))) ? VGCorrecao.bloco(q, { pick: a }) : ''; if (c || cx) h += '<div class="vgs-com">' + (disc ? '<p><b>Resposta ideal</b></p>' : '') + c + cx + '</div>'; }
       if (fim) h += '<div class="vgs-qf"><button class="vgs-b sm vgs-up" type="button" data-vgs="grade">↑ Voltar ao gabarito</button></div>';
       return h + '</div>';
     }
