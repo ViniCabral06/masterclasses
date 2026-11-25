@@ -123,8 +123,16 @@
 
   /* ===== bloco final: convite para ajudar (rodapé do master) ===== */
   function blocoFinal() {
-    if (window.VGP_HUB || document.querySelector('.vgp-fim')) return;
+    if (window.VGP_HUB) return;
     var alvo = document.querySelector('main,#main,#view,.main') || document.body;
+    /* se o texto rola dentro de um filho (ex.: Semiologia no celular: main flex com #view rolando),
+       o convite vai no fim desse filho; senão vira uma faixa fixa que tapa o texto */
+    for (var n = 0; n < 4; n++) {
+      var sc = [].filter.call(alvo.children, function (c) { return !c.classList.contains('vgp-fim') && /auto|scroll/.test(getComputedStyle(c).overflowY) && c.scrollHeight > c.clientHeight + 4; })[0];
+      if (!sc) break; alvo = sc;
+    }
+    var ja = document.querySelector('.vgp-fim');
+    if (ja) { if (ja.parentElement !== alvo) alvo.appendChild(ja); return; }
     var d = document.createElement('section'); d.className = 'vgp-fim';
     d.innerHTML = '<p class="vgp-k">Quer ajudar?</p><h3 class="vgp-t">Anotações ou provas antigas valem acesso grátis.</h3>' +
       '<p class="vgp-d">Se você tem anotações de aula ou provas antigas e quer ajudar a turma, fale com o Matheus ou com o Vinícius e negocie seu acesso grátis. No semestre que vem, o 5º período já vem quase todo pronto: ' + MATERIAS_5P + '.</p>' +

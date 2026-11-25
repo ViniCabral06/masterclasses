@@ -5,7 +5,7 @@ Copia só as matérias da vitrine (masters já processados: tema aplicado, image
 filtra o hub e põe a propaganda (_83b/propaganda.js) SÓ na cópia. Os arquivos do site normal não são tocados.
 Para a vitrine acompanhar uma atualização dos masters, rode de novo e publique com o publicar.py.
 """
-import json, re, shutil, sys
+import hashlib, json, re, shutil, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -164,6 +164,8 @@ def main():
     # tema (cópia) + propaganda, que só existe aqui
     shutil.copytree(ROOT / "_tema", OUT / "_tema")
     shutil.copy2(ROOT / "_83b" / "propaganda.js", OUT / "_tema" / "propaganda.js")
+    # versão no endereço (igual ao tema): quem abre recebe a propaganda nova na hora, sem cache velho
+    PV = hashlib.md5((ROOT / "_83b" / "propaganda.js").read_bytes()).hexdigest()[:8]
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
 
     # hub filtrado
@@ -172,7 +174,7 @@ def main():
     s = trocar(s, "document.getElementById('n-aul').textContent = N_AUL;", "document.getElementById('n-aul').textContent = N_AUL;" + HUB_FAIXA, "n-aul")
     s = trocar(s, "if (SUBJECTS.pato) { const P = SUBJECTS.pato, H = P.href;", "if (false) { const P = SUBJECTS.pato, H = P.href;", "grupo pato")
     s = trocar(s, "</style>", HUB_CSS + "</style>", "style")
-    s = trocar(s, '<script src="_tema/liquido.js', '<script src="_tema/propaganda.js"></script>\n<script src="_tema/liquido.js', "liquido")
+    s = trocar(s, '<script src="_tema/liquido.js', f'<script src="_tema/propaganda.js?v={PV}"></script>\n<script src="_tema/liquido.js', "liquido")
     s = trocar(s, "<head>", '<head>\n<meta name="robots" content="noindex">', "head")
     gravar(OUT / "index.html", s)
 
@@ -183,7 +185,7 @@ def main():
             sys.exit(f"gerar_83b: falta {pasta}/{arq}")
         dst.mkdir(parents=True, exist_ok=True)
         m = ler(src / arq)
-        tag = '<script defer src="../_tema/propaganda.js"></script>'
+        tag = f'<script defer src="../_tema/propaganda.js?v={PV}"></script>'
         m = trocar(m, H_FIM, tag + H_FIM, f"bloco do tema de {pasta}")
         if pasta == "Patologia médica":
             m = trocar(m, "const TABMAP = {}; TABS.forEach", PATO_FILTRO + "const TABMAP = {}; TABS.forEach", "TABMAP")
