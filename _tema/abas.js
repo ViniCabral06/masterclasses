@@ -129,7 +129,7 @@
     },
     pato: {
       grupos: () => $$('#tabbtns .grp[data-key]'),
-      aulas: () => AD.pato.grupos().filter(g => /^(aula|tgi)\d+$/.test(g.dataset.key)).sort((a, b) => { const T = typeof TABS !== 'undefined' ? TABS.map(x => x.key) : []; return T.indexOf(a.dataset.key) - T.indexOf(b.dataset.key); }).map(g => {
+      aulas: () => AD.pato.grupos().filter(g => /^(aula|tgi|pratica)\d+$/.test(g.dataset.key)).sort((a, b) => { const T = typeof TABS !== 'undefined' ? TABS.map(x => x.key) : []; return T.indexOf(a.dataset.key) - T.indexOf(b.dataset.key); }).map(g => {
         const k = g.dataset.key, h = $('.grp-h', g), t = (typeof TABS !== 'undefined' ? TABS : []).find(x => x.key === k) || {};
         const its = $$('.it[data-seg]', g), id = it => k + '/' + it.dataset.seg;
         const cai = its.find(it => CAI.test(txt(it))), ar = its.find(it => it.dataset.seg === 'arena');
@@ -137,7 +137,7 @@
           segs: its.filter(it => $('input', it)).map(it => ({ id: id(it), titulo: limpa(txt(it)), feito: $('input', it).checked, freq: fq(it) })),
           cai: cai ? id(cai) : null, arena: ar ? id(ar) : null };
       }),
-      avulsos: () => AD.pato.grupos().filter(g => !/^(aula|tgi)\d+$/.test(g.dataset.key) && g.dataset.key !== 'home').flatMap(g => {
+      avulsos: () => AD.pato.grupos().filter(g => !/^(aula|tgi|pratica)\d+$/.test(g.dataset.key) && g.dataset.key !== 'home').flatMap(g => {
         const k = g.dataset.key, its = $$('.it[data-seg]', g).filter(it => it.dataset.seg !== 'capa');
         const t = (typeof TABS !== 'undefined' ? TABS : []).find(x => x.key === k) || {};
         if (!its.length || t.group === 'pratica') return [{ id: k + '/', titulo: t.short || txt($('.grp-h', g)), tipo: t.group === 'pratica' ? 'pratica' : t.group === 'sim' && !/reta|flash/i.test(t.short || '') ? 'sim' : 'rev' }];
