@@ -706,6 +706,7 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
     aj.innerHTML = '<div class="h">⚙️ Ajustes da matéria</div>'
       + '<button type="button" class="vga-aj" data-aj="sair" role="switch" aria-checked="true"><span class="tx">🥷 Modo foco<small>Desligar volta ao master com a barra lateral (recarrega a página)</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
       + '<button type="button" class="vga-aj" data-aj="tema" role="switch"><span class="tx">☀️ Tema claro<small>Liga o modo foco claro; desligado fica escuro</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
+<<<<<<< Updated upstream
       + '<button type="button" class="vga-aj" data-aj="pomo" role="switch" hidden><span class="tx">🍅 Pomodoro<small>Foco e pausa com alarme. Chame pelo tomatinho no canto.</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
       + '<button type="button" class="vga-aj" data-aj="pers"><span class="tx">🎨 Personalização<small>Tema claro ou escuro, fundo e cor de destaque</small></span><span aria-hidden="true">›</span></button><hr>';
     const pintaTema = () => { const b = aj.querySelector('[data-aj=tema]'), on = html.dataset.theme === 'light'; b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
@@ -713,12 +714,25 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
     // 🍅 Pomodoro (_tema/pomodoro.js): a chave só aparece onde o script existe
     const pintaPomo = () => { const b = aj.querySelector('[data-aj=pomo]'), P = window.VGPomo; b.hidden = !P; if (!P) return; const on = P.ligado(); b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
     pintaPomo(); addEventListener('load', pintaPomo); addEventListener('vgpomo', pintaPomo);
+=======
+      + '<button type="button" class="vga-aj off" data-aj="pomo" role="switch" aria-checked="false" hidden><span class="tx">🍅 Pomodoro<small>20 min de foco e 5 de pausa, com despertador (ajustável)</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
+      + '<button type="button" class="vga-aj" data-aj="pers"><span class="tx">🎨 Personalização<small>Tema claro ou escuro, fundo e cor de destaque</small></span><span aria-hidden="true">›</span></button><hr>';
+    const pintaTema = () => { const b = aj.querySelector('[data-aj=tema]'), on = html.dataset.theme === 'light'; b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
+    pintaTema(); new MutationObserver(pintaTema).observe(html, { attributes: true, attributeFilter: ['data-theme'] });
+    // 🍅 o Pomodoro também liga daqui (o pomodoro.js carrega com defer, depois deste script)
+    const pintaPomo = () => { const b = aj.querySelector('[data-aj=pomo]'), P = window.VGPomo; b.hidden = !P; const on = !!(P && P.ligado()); b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
+    addEventListener('vgpomo', pintaPomo); addEventListener('load', pintaPomo); setTimeout(pintaPomo, 0);
+>>>>>>> Stashed changes
     aj.addEventListener('click', e => {
       const b = e.target.closest('[data-aj]'); if (!b) return;
       if (b.dataset.aj === 'pomo') {
         const P = window.VGPomo; if (!P) return;
         if (P.ligado()) P.desligar(); else { ajustes(false); P.ligar(); }
+<<<<<<< Updated upstream
         setTimeout(pintaPomo, 50); return;
+=======
+        pintaPomo(); return;
+>>>>>>> Stashed changes
       }
       if (b.dataset.aj === 'tema') {
         // o botão de tema do master fica escondido no modo foco: clica nele direto
