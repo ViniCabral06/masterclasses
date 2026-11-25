@@ -9,6 +9,15 @@
     "pos": "Pneumocistose: vidro fosco peri-hilar no",
     "r": "TC acha a pneumonia de RX normal",
     "d": 1795575843589
+   },
+   {
+    "id": "emwvjhw0m",
+    "tag": "li",
+    "q": "Broncograma não existe no derrame.",
+    "pre": "sibilidade, edema, hemorragia, artefato.",
+    "pos": "TC acha a pneumonia de RX normalPneumoci",
+    "r": "Broncograma não existe no derrame;",
+    "d": 1795575845503
    }
   ],
   "b": []
