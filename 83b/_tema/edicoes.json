@@ -81,9 +81,94 @@
     "pos": "Vidro fosco: aumenta a densidade sem apa",
     "r": "Consolidação: apaga os vasos; broncograma aéreo;",
     "d": 1795575867113
+   },
+   {
+    "id": "emww0ijc1",
+    "tag": "li",
+    "q": "1Faixa preta de líquido entre fígado e rim (liver = fígado, kidney = rim, spine = coluna)",
+    "pre": "sconder marcaçõesPositivo1FAST positivo.",
+    "pos": "Fonte: Slides da aula 13Esconder marcaçõ",
+    "r": "<span class=\"mk-n\" style=\"--c:#f5c542\">1</span><span>Faixa preta de líquido entre fígado e rim, no espaço de Morison (Espaço hepatorrenal)</span>",
+    "d": 1795604449297
+   },
+   {
+    "id": "emww0kpkt",
+    "tag": "li",
+    "q": "Rigler: ar dos dois lados da parede da alça.",
+    "pre": "diafragma no tórax PA = pneumoperitônio.",
+    "pos": "TC detecta pequenas quantidades e a caus",
+    "r": "<br>",
+    "d": 1795604532352
+   },
+   {
+    "id": "emww0kz8n",
+    "tag": "li",
+    "q": "TC detecta pequenos volumes.",
+    "pre": "s duas faces da parede da alça visíveis.",
+    "pos": "Pneumoperitônio + peritonite: cirurgia.A",
+    "r": "",
+    "d": 1795604543700
    }
   ],
-  "b": []
+  "b": [],
+  "i": [
+   {
+    "id": "gmww0hnqv",
+    "src": "_img/c4c7e4d0ea3358a3.webp",
+    "n": 0,
+    "w": 451,
+    "h": 295,
+    "d": 1795604458582
+   },
+   {
+    "id": "gmww0nswr",
+    "src": "_img/cb875ffa017baec4.webp",
+    "n": 0,
+    "w": 295,
+    "h": 299,
+    "d": 1795604689512
+   },
+   {
+    "id": "gmww0nzcx",
+    "src": "_img/c539172cab64ff35.webp",
+    "n": 0,
+    "w": 295,
+    "h": 319,
+    "d": 1795604681409
+   },
+   {
+    "id": "gmww0ovn8",
+    "src": "_img/c9bb99770e702ca3.webp",
+    "n": 0,
+    "w": 451,
+    "h": 348,
+    "d": 1795604733080
+   },
+   {
+    "id": "gmww0ozri",
+    "src": "_img/c01a4e19df41a888.webp",
+    "n": 0,
+    "w": 451,
+    "h": 349,
+    "d": 1795604728590
+   },
+   {
+    "id": "gmww0pb4x",
+    "src": "_img/c0496cffd02cc041.webp",
+    "n": 0,
+    "w": 451,
+    "h": 431,
+    "d": 1795604743329
+   },
+   {
+    "id": "gmww0pdt0",
+    "src": "_img/c3769b2b80cfe1b1.webp",
+    "n": 0,
+    "w": 445,
+    "h": 414,
+    "d": 1795604747758
+   }
+  ]
  },
  "Patologia médica/aulas/aula4.html": {
   "t": [

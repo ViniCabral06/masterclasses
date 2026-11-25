@@ -161,6 +161,11 @@ if (/^(huma|prev|img|lab|farmaco|micro|port|pato|semio|dic)$/.test(html.dataset.
   painel.insertAdjacentHTML('beforeend', `<div class="vp-sec vp-linha"><span><span class="vp-l">🥷 Modo foco</span><small>Direto ao ponto: aulas, busca e simulados numa barra, sem distrações. Recarrega a página.</small></span><button type="button" id="vp-ninja" class="vp-sw" role="switch" aria-label="Modo foco" aria-checked="${on}"></button></div>`);
   painel.querySelector('#vp-ninja').addEventListener('click', e => { e.stopPropagation(); store.set('vidro-modo-foco', !on); location.reload(); });
 }
+// 🍅 Pomodoro (_tema/pomodoro.js): a linha só aparece onde o script existe (TH IV e aulas ficam de fora)
+if (html.dataset.vidro !== 'th4' && !html.classList.contains('vidro-aula')) {
+  painel.insertAdjacentHTML('beforeend', `<div class="vp-sec vp-linha" data-sec="pomo" hidden><span><span class="vp-l">🍅 Pomodoro</span><small>Foco e pausa com alarme. Fica escondido: chame pelo tomatinho no canto.</small></span><button type="button" id="vp-pomo" class="vp-sw" role="switch" aria-label="Pomodoro" aria-checked="false"></button></div>`);
+  addEventListener('vgpomo', () => { if (!painel.hidden) pintarPainel(); });
+}
 document.body.append(painel);
 const temaBtnQualquer = () => themeBtn() || document.querySelector(THEME_SEL);
 function pintarPainel() {
@@ -173,6 +178,8 @@ function pintarPainel() {
   painel.querySelectorAll('[data-tema]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.tema === 'light') === luz)));
   painel.querySelectorAll('[data-fundo]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.fundo === fundo)));
   painel.querySelectorAll('[data-cor]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cor.toLowerCase() === cor.toLowerCase())));
+  const pomo = painel.querySelector('[data-sec="pomo"]');
+  if (pomo) { pomo.hidden = !window.VGPomo; if (window.VGPomo) pomo.querySelector('#vp-pomo').setAttribute('aria-checked', String(window.VGPomo.ligado())); }
   setFxLabel();
 }
 function abrirPainel(abre) {
@@ -200,6 +207,7 @@ painel.addEventListener('click', e => {
   caixaTons.hidden = true;
   if (b.dataset.cor != null && b.hasAttribute('data-cor')) { store.set('vidro-cor', b.dataset.cor || null); aplicarPrefs(); pintarPainel(); return; }
   if (b.id === 'vp-fx') setCalmo(!html.classList.contains('vidro-calmo'));
+  if (b.id === 'vp-pomo' && window.VGPomo) { const on = !window.VGPomo.ligado(); b.setAttribute('aria-checked', String(on)); if (on) { abrirPainel(false); window.VGPomo.ligar(); } else window.VGPomo.desligar(); }
 });
 function setCalmo(calm, semSalvar) {
   if (calm === html.classList.contains('vidro-calmo')) return;

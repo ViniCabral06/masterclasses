@@ -706,3 +706,66 @@ figcaption .fonte,.cap-solta .fonte{display:block;margin-top:.35em;font-size:.86
 @keyframes wgIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.vg-wg .wg-q{animation:none}}
 @media (max-width:600px){.vg-wg{margin:24px -6px;border-radius:16px}.vg-wg .wg-b{padding:14px}}
+
+/* ===================================================== 🍅 POMODORO (_tema/pomodoro.js)
+   Tomatinho discreto acima do botão Personalização; o cartão só abre ao chamar ou no fim de cada fase. */
+#vg-pomo-chama{position:fixed;right:20px;bottom:64px;z-index:94;width:34px;height:34px;padding:0;border:0;border-radius:50%;cursor:pointer;
+  display:grid;place-items:center;background:var(--vg-btn);-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);box-shadow:var(--vg-shadow);
+  opacity:.5;transition:opacity .25s,transform .3s cubic-bezier(.34,1.56,.64,1)}
+#vg-pomo-chama[hidden]{display:none}
+#vg-pomo-chama:hover,#vg-pomo-chama:focus-visible,#vg-pomo-chama[aria-expanded="true"]{opacity:1;transform:scale(1.08)}
+#vg-pomo-chama > svg{grid-area:1/1;width:20px;height:20px}
+#vg-pomo-chama .vgp-anel{width:34px;height:34px;transform:rotate(-90deg)}
+#vg-pomo-chama .vgp-anel circle{fill:none;stroke:var(--vg-control);stroke-width:2.5}
+#vg-pomo-chama .vgp-anel .vgp-prog{stroke:#d62828;stroke-linecap:round;stroke-dasharray:calc(var(--p,0) * 1) 100}
+#vg-pomo-chama.vgp-pausa .vgp-anel .vgp-prog{stroke:#4fae5b}
+#vg-pomo .vgp-corpo,#vg-pomo-chama .vgp-corpo{fill:#d62828;transition:fill .6s}
+#vidro-pers:not([hidden]) ~ #vg-pomo-chama{opacity:0;pointer-events:none}
+
+#vg-pomo{position:fixed;right:16px;bottom:108px;z-index:96;width:252px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 130px);overflow:auto;
+  padding:12px 14px 14px;border-radius:22px;font:500 13px/1.35 var(--vg-text);color:var(--vg-ink);
+  background:color-mix(in srgb,var(--vg-ground) 82%,transparent);-webkit-backdrop-filter:var(--vg-blur);backdrop-filter:var(--vg-blur);
+  box-shadow:var(--vg-shadow),0 0 0 1px var(--vg-edge);animation:vgp-in .22s cubic-bezier(.2,.8,.2,1)}
+#vg-pomo[hidden]{display:none}
+html.vidro-leve #vg-pomo{background:color-mix(in srgb,var(--vg-ground) 97%,var(--vg-ink))}
+@keyframes vgp-in{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+#vg-pomo .vgp-top{display:flex;align-items:center;gap:6px}
+#vg-pomo .vgp-fase{font-size:13.5px}
+#vg-pomo .vgp-ciclo{margin-right:auto;font-size:12px;color:var(--vg-muted)}
+#vg-pomo button{font:inherit;color:inherit;border:0;cursor:pointer}
+#vg-pomo .vgp-ic{width:28px;height:28px;border-radius:50%;background:transparent;color:var(--vg-muted);flex:none}
+#vg-pomo .vgp-ic:hover{background:var(--vg-btn);color:var(--vg-ink)}
+#vg-pomo .vgp-palco{display:grid;place-items:center;height:124px;margin:2px 0}
+#vg-pomo .vgp-palco > *{grid-area:1/1}
+#vg-pomo .vgp-palco canvas{width:120px;height:120px}
+#vg-pomo .vgp-plano svg{width:92px;height:92px}
+#vg-pomo .vgp-sapo{width:190px;height:auto;max-height:124px;object-fit:contain}
+#vg-pomo [hidden]{display:none!important}
+#vg-pomo .vgp-tempo{text-align:center;font:600 40px/1 var(--vg-text);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+#vg-pomo[data-fase="curta"] .vgp-tempo,#vg-pomo[data-fase="longa"] .vgp-tempo{color:#4fae5b}
+#vg-pomo .vgp-msg{min-height:0;margin:6px 0 0;text-align:center;font-size:12px;color:var(--vg-ink2)}
+#vg-pomo .vgp-msg:empty{display:none}
+#vg-pomo .vgp-ctl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+#vg-pomo .vgp-ctl button{height:32px;padding:0 12px;border-radius:999px;background:var(--vg-btn);font-size:12.5px;font-weight:600}
+#vg-pomo .vgp-ctl button:hover{background:var(--vg-btnh)}
+#vg-pomo .vgp-ctl .vgp-pri{background:var(--vg-acc);color:var(--vg-on-acc,#fff)}
+#vg-pomo .vgp-aj{display:grid;gap:8px;margin-top:8px}
+#vg-pomo .vgp-aj label{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px}
+#vg-pomo .vgp-aj label > span{display:flex;align-items:center;gap:5px;color:var(--vg-muted)}
+#vg-pomo .vgp-aj input[type=number],#vg-pomo .vgp-aj select{width:58px;height:28px;padding:0 6px;border-radius:8px;border:1px solid var(--vg-edge);background:var(--vg-btn);color:var(--vg-ink);font:inherit}
+#vg-pomo .vgp-aj select{width:auto}
+#vg-pomo .vgp-aj input[type=range]{width:120px;accent-color:var(--vg-acc)}
+#vg-pomo .vgp-aj .vgp-chk{justify-content:flex-start}
+#vg-pomo .vgp-aj .vgp-chk input{accent-color:var(--vg-acc)}
+#vg-pomo .vgp-aj small{font-size:11px;color:var(--vg-muted);text-align:center}
+@media (max-width:860px){
+  #vg-pomo-chama{right:14px;bottom:calc(56px + env(safe-area-inset-bottom));opacity:.7}
+  #vg-pomo{right:12px;bottom:calc(98px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--vg-ground) 97%,var(--vg-ink))}
+}
+@media (pointer:coarse){#vg-pomo-chama:hover{transform:none}}
+/* 🥷 modo foco (_tema/abas.js): fica por cima da lista e da barra de abas; com a barra embaixo, sobe acima dela */
+html.vga-on #vg-pomo-chama{z-index:620}
+html.vga-on #vg-pomo{z-index:621}
+html.vga-on:not([data-vga-lado=t]):not([data-vga-lado=l]):not([data-vga-lado=r]) #vg-pomo-chama{bottom:calc(var(--vga-h,62px) + var(--vga-gap,14px) + 12px + env(safe-area-inset-bottom,0px))}
+html.vga-on:not([data-vga-lado=t]):not([data-vga-lado=l]):not([data-vga-lado=r]) #vg-pomo{bottom:calc(var(--vga-h,62px) + var(--vga-gap,14px) + 56px + env(safe-area-inset-bottom,0px))}
+@media (prefers-reduced-motion:reduce){#vg-pomo{animation:none}#vg-pomo-chama,#vg-pomo .vgp-corpo{transition:none}}
