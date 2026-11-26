@@ -9,8 +9,11 @@
       var n = parseInt(c.slice(1), 16), lum = (.299 * (n >> 16) + .587 * (n >> 8 & 255) + .114 * (n & 255)) / 255;
       h.style.setProperty('--vgc', c); h.style.setProperty('--vgc-on', lum > .6 ? '#10151b' : '#ffffff'); h.dataset.vgcor = c;
     } else { h.style.removeProperty('--vgc'); h.style.removeProperty('--vgc-on'); delete h.dataset.vgcor; }
+    var fs = 100; try { fs = Number(JSON.parse(localStorage.getItem('vidro-fonte'))); } catch (_) { fs = 100; }
+    if (fs >= 85 && fs <= 135 && fs !== 100) { h.style.setProperty('--vg-fs', String(fs / 100)); h.dataset.vgfonte = String(fs); }
+    else { h.style.removeProperty('--vg-fs'); delete h.dataset.vgfonte; }
   }
-  aplicar(); addEventListener('storage', function (e) { if (!e.key || e.key.indexOf('vidro-') === 0) aplicar(); });
+  aplicar(); addEventListener('storage', function (e) { if (!e.key || e.key.indexOf('vidro-') === 0) aplicar(); }); addEventListener('vg-prefs', aplicar);
 })();
 /* Extras de todas as masterclasses (o publicar.py inclui este arquivo, também nas aulas separadas).
 

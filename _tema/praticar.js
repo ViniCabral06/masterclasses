@@ -1,11 +1,14 @@
-/* praticar.js — widgets "🎮 Pratique o raciocínio" (padrão Farmacologia/Patologia TGI) para qualquer master.
+/* praticar.js — widgets "🎮 Pratique o raciocínio" v2 (padrão Farmacologia/Patologia TGI) para qualquer master.
    O master declara os dados em window.VG_PRATICAR = [{seg, apos?, t, ic, tit, sub, ...}] e este arquivo
-   desenha cada widget no segmento certo (dentro de #prose / .prose / main), com XP uma vez por widget.
+   desenha cada widget no segmento certo (dentro de #prose / .prose / main), com XP e melhor placar salvo.
    Tipos:
      plantao     {casos:[{txt, perguntas:[{p, ops:[...], c, exp}]}]}  passo a passo, resposta só depois de escolher
      ordem       {itens:[na ordem certa], exp}                        toque na ordem; confere no fim
      classifique {cats:[...], cards:[[texto, iCat, porquê?], ...], exp?} um cartão por vez
      escore      {itens:[[rótulo, pontos], ...], faixas:[[min, texto], ...], nota?}
+     seta        {itens:[{p, c:'↑'|'↓'|'=', exp}], exp?}              preveja ↑ / = / ↓ em fisiopatologia/lab/fármaco
+     associar    {pares:[[esq, dir, exp?], ...], exp?}                ligue pares em duas colunas
+     hotspot     {img, alt?, passos:[{p, x, y, r?, exp}]}             clique na região certa da imagem (x, y, r em %)
    seg: o hash do segmento sem o # (Microbiologia "a3/s2"; Preventiva "a03/a03-2"). apos: regex (sem acento) do título h2/h3 depois do qual entra; sem apos, vai no fim.
    Regras do site: a certa nunca aparece antes de responder; alternativas equilibradas; nada de sigla em balão (.wg). */
 (function () {
@@ -22,15 +25,26 @@
   function emb(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
   function idDe(w, i) { return w.id || (w.seg + '#' + i); }
 
-  function concluir(w, raiz, nota) {
-    var id = raiz.dataset.wgid, badge = raiz.querySelector('.wg-xp');
-    if (!feitos[id]) {
+  function badgeTexto(st) {
+    if (!st) return '+' + XP + ' XP';
+    if (typeof st === 'object' && st.tot) return '✓ ' + st.melhor + '/' + st.tot;
+    return '✓ feito';
+  }
+  function concluir(w, raiz, nota, ok, tot) {
+    var id = raiz.dataset.wgid, badge = raiz.querySelector('.wg-xp'), prev = feitos[id];
+    var novo = !prev;
+    if (tot) {
+      var best = prev && typeof prev === 'object' ? Math.max(prev.melhor || 0, ok || 0) : (ok || 0);
+      feitos[id] = { ok: ok || 0, tot: tot, melhor: best, d: Date.now() };
+    } else if (!prev) {
       feitos[id] = 1;
-      try { localStorage.setItem(CHAVE, JSON.stringify(feitos)); } catch (e) {}
+    }
+    try { localStorage.setItem(CHAVE, JSON.stringify(feitos)); } catch (e) {}
+    if (novo) {
       if (typeof window.addXp === 'function') { try { window.addXp(XP, 'wg-' + id); } catch (e) {} }
       raiz.classList.add('wg-novo'); setTimeout(function () { raiz.classList.remove('wg-novo'); }, 900);
     }
-    badge.textContent = '✓ feito'; badge.classList.add('ok');
+    badge.textContent = badgeTexto(feitos[id]); badge.classList.add('ok');
     var fim = raiz.querySelector('.wg-fim'); if (fim) { fim.innerHTML = nota || ''; fim.hidden = !nota; }
   }
 
@@ -81,7 +95,7 @@
       var r = el('button', 'wg-btn', 'Refazer o plantão'); r.type = 'button';
       r.onclick = function () { ci = 0; acertos = 0; caso(); };
       b.appendChild(r);
-      concluir(w, raiz);
+      concluir(w, raiz, '', acertos, total);
     }
     caso();
   }
@@ -118,7 +132,7 @@
         fb.innerHTML = html;
         var r = el('button', 'wg-btn', 'Montar de novo'); r.type = 'button'; r.onclick = function () { delete b.dataset.r; montar(); };
         b.appendChild(r);
-        concluir(w, raiz);
+        concluir(w, raiz, '', certos, w.itens.length);
       };
     }
     montar();
@@ -157,7 +171,7 @@
       if (w.exp) b.appendChild(el('p', 'wg-dica', w.exp));
       var r = el('button', 'wg-btn', 'Embaralhar e jogar de novo'); r.type = 'button'; r.onclick = iniciar;
       b.appendChild(r);
-      concluir(w, raiz);
+      concluir(w, raiz, '', acertos, cards.length);
     }
     iniciar();
   }
@@ -185,13 +199,132 @@
     if (w.nota) b.appendChild(el('p', 'wg-dica', w.nota));
   }
 
-  var TIPOS = { plantao: plantao, ordem: ordem, classifique: classifique, escore: escore };
+  /* ---------- preveja ↑ / = / ↓ ---------- */
+  function seta(w, b, raiz) {
+    var k = 0, acertos = 0, ops = [['↑', '↑ Aumenta'], ['=', '= Mantém'], ['↓', '↓ Diminui']];
+    function passo() {
+      b.innerHTML = '';
+      if (k >= w.itens.length) {
+        b.appendChild(el('div', 'wg-placar', '<b>' + acertos + ' de ' + w.itens.length + '</b> previsões certas'));
+        if (w.exp) b.appendChild(el('p', 'wg-dica', w.exp));
+        var r = el('button', 'wg-btn', 'Refazer'); r.type = 'button'; r.onclick = function () { k = 0; acertos = 0; passo(); };
+        b.appendChild(r);
+        return concluir(w, raiz, '', acertos, w.itens.length);
+      }
+      var it = w.itens[k];
+      b.appendChild(el('div', 'wg-pass', 'Parâmetro ' + (k + 1) + ' de ' + w.itens.length));
+      b.appendChild(el('div', 'wg-carta', it.p));
+      var row = el('div', 'wg-ops wg-setas');
+      ops.forEach(function (op) {
+        var bt = el('button', 'wg-op', op[1]); bt.type = 'button';
+        bt.onclick = function () {
+          if (row.dataset.r) return; row.dataset.r = 1;
+          var ok = op[0] === it.c; if (ok) acertos++;
+          [].forEach.call(row.children, function (x, idx) { x.disabled = true; if (ops[idx][0] === it.c) x.classList.add('ok'); });
+          if (!ok) bt.classList.add('erro');
+          b.appendChild(el('div', 'wg-fb ' + (ok ? 'ok' : 'erro'), '<b>' + (ok ? 'Isso.' : 'É ' + it.c + '.') + '</b>' + (it.exp ? ' ' + it.exp : '')));
+          var nx = el('button', 'wg-btn', k < w.itens.length - 1 ? 'Próximo →' : 'Ver resultado'); nx.type = 'button';
+          nx.onclick = function () { k++; passo(); };
+          b.appendChild(nx);
+        };
+        row.appendChild(bt);
+      });
+      b.appendChild(row);
+    }
+    passo();
+  }
+
+  /* ---------- associar colunas ---------- */
+  function associar(w, b, raiz) {
+    function iniciar() {
+      b.innerHTML = '';
+      var esq = emb(w.pares.map(function (p, i) { return { i: i, t: p[0] }; }));
+      var dir = emb(w.pares.map(function (p, i) { return { i: i, t: p[1] }; }));
+      var selE = null, certos = 0, tentativas = 0, feitosP = {};
+      b.appendChild(el('div', 'wg-dica', 'Toque num item à esquerda e depois no par correspondente à direita.'));
+      var grid = el('div', 'wg-assoc'), cE = el('div', 'wg-col'), cD = el('div', 'wg-col');
+      var fb = el('div', 'wg-fb'); fb.hidden = true;
+      grid.appendChild(cE); grid.appendChild(cD); b.appendChild(grid); b.appendChild(fb);
+      esq.forEach(function (it) {
+        var bt = el('button', 'wg-op', it.t); bt.type = 'button'; bt.dataset.i = it.i;
+        bt.onclick = function () {
+          if (feitosP[it.i]) return;
+          [].forEach.call(cE.children, function (x) { x.classList.remove('sel'); });
+          selE = it.i; bt.classList.add('sel');
+        };
+        cE.appendChild(bt);
+      });
+      dir.forEach(function (it) {
+        var bt = el('button', 'wg-op', it.t); bt.type = 'button'; bt.dataset.i = it.i;
+        bt.onclick = function () {
+          if (selE === null || feitosP[it.i]) return;
+          tentativas++;
+          var be = cE.querySelector('[data-i="' + selE + '"]');
+          if (selE === it.i) {
+            feitosP[it.i] = 1; certos++;
+            be.classList.remove('sel'); be.classList.add('ok'); be.disabled = true;
+            bt.classList.add('ok'); bt.disabled = true; selE = null;
+            var ex = w.pares[it.i][2];
+            fb.hidden = false; fb.className = 'wg-fb ok'; fb.innerHTML = '<b>Certo!</b> ' + (ex || (w.pares[it.i][0] + ' → ' + w.pares[it.i][1]));
+            if (certos === w.pares.length) {
+              var erros = tentativas - certos;
+              b.appendChild(el('div', 'wg-placar', '<b>' + certos + ' de ' + w.pares.length + '</b> pares ligados' + (erros ? ' · ' + erros + ' tentativa(s) errada(s)' : ' sem errar!')));
+              var r = el('button', 'wg-btn', 'Embaralhar e jogar de novo'); r.type = 'button'; r.onclick = iniciar;
+              b.appendChild(r);
+              concluir(w, raiz, w.exp || '', Math.max(0, w.pares.length - erros), w.pares.length);
+            }
+          } else {
+            bt.classList.add('erro'); setTimeout(function () { bt.classList.remove('erro'); }, 500);
+            fb.hidden = false; fb.className = 'wg-fb erro'; fb.innerHTML = '<b>Não combina.</b> Tente outro par para <b>' + w.pares[selE][0] + '</b>.';
+          }
+        };
+        cD.appendChild(bt);
+      });
+    }
+    iniciar();
+  }
+
+  /* ---------- hotspot sobre imagem ---------- */
+  function hotspot(w, b, raiz) {
+    var k = 0, acertos = 0;
+    function passo() {
+      b.innerHTML = '';
+      if (k >= w.passos.length) {
+        b.appendChild(el('div', 'wg-placar', '<b>' + acertos + ' de ' + w.passos.length + '</b> achados localizados'));
+        var r = el('button', 'wg-btn', 'Refazer na imagem'); r.type = 'button'; r.onclick = function () { k = 0; acertos = 0; passo(); };
+        b.appendChild(r);
+        return concluir(w, raiz, '', acertos, w.passos.length);
+      }
+      var ps = w.passos[k], rad = ps.r || 11;
+      b.appendChild(el('div', 'wg-pass', 'Achado ' + (k + 1) + ' de ' + w.passos.length));
+      b.appendChild(el('div', 'wg-p', ps.p));
+      var wrap = el('div', 'wg-hs-wrap');
+      var img = el('img', 'wg-hs-img'); img.src = w.img; img.alt = w.alt || 'Imagem clínica'; img.setAttribute('data-nozoom', '');
+      wrap.appendChild(img); b.appendChild(wrap);
+      wrap.onclick = function (e) {
+        if (wrap.dataset.r) return; wrap.dataset.r = 1;
+        var rect = img.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width * 100, py = (e.clientY - rect.top) / rect.height * 100;
+        var dist = Math.hypot(px - ps.x, py - ps.y), ok = dist <= rad;
+        if (ok) acertos++;
+        var mk = el('span', 'wg-hs-pt ' + (ok ? 'ok' : 'erro')); mk.style.left = px + '%'; mk.style.top = py + '%'; wrap.appendChild(mk);
+        var alvo = el('span', 'wg-hs-alvo'); alvo.style.left = ps.x + '%'; alvo.style.top = ps.y + '%'; alvo.style.width = (rad * 2) + '%'; alvo.style.height = (rad * 2) + '%'; wrap.appendChild(alvo);
+        b.appendChild(el('div', 'wg-fb ' + (ok ? 'ok' : 'erro'), '<b>' + (ok ? 'Na mosca!' : 'Passou perto — veja o círculo verde.') + '</b>' + (ps.exp ? ' ' + ps.exp : '')));
+        var nx = el('button', 'wg-btn', k < w.passos.length - 1 ? 'Próximo achado →' : 'Ver resultado'); nx.type = 'button';
+        nx.onclick = function () { k++; passo(); };
+        b.appendChild(nx);
+      };
+    }
+    passo();
+  }
+
+  var TIPOS = { plantao: plantao, ordem: ordem, classifique: classifique, escore: escore, seta: seta, associar: associar, hotspot: hotspot };
 
   function widget(w, i) {
     var raiz = el('div', 'wg vg-wg'); raiz.dataset.wgid = idDe(w, i); raiz.setAttribute('data-nosiglas', '');
     var feito = feitos[raiz.dataset.wgid];
     raiz.innerHTML = '<div class="wg-h"><div class="wg-ic">' + (w.ic || '🎮') + '</div><div class="wg-tt"><b>' + w.tit + '</b><span>' + (w.sub || '') + '</span></div>' +
-      '<span class="wg-xp' + (feito ? ' ok' : '') + '">' + (feito ? '✓ feito' : '+' + XP + ' XP') + '</span></div><div class="wg-b"></div><div class="wg-fim" hidden></div>';
+      '<span class="wg-xp' + (feito ? ' ok' : '') + '">' + badgeTexto(feito) + '</span></div><div class="wg-b"></div><div class="wg-fim" hidden></div>';
     var corpo = raiz.querySelector('.wg-b');
     var abrir = el('button', 'wg-btn wg-start', 'Começar'); abrir.type = 'button';
     abrir.onclick = function () { abrir.remove(); TIPOS[w.t](w, corpo, raiz); };

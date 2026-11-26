@@ -1,0 +1,98 @@
+@titulo Flashcards · Semiologia Médica I
+@sub 12 aulas separadas · Cartas diretas, comparações X × Y, vinhetas relâmpago e lacunas (Cloze) com a frequência real nas provas (Parciais 80–82 e Somativas 77–82).
+
+# a1 | 📋 Aula 1 · Anamnese I
+O que compõe o **exame clínico** (e o que fica de fora)? :: **Anamnese + exame físico.** Exames complementares (ECG, laboratório, imagem) ficam **fora** do exame clínico. :: Caiu em 8 provas
+A **Queixa Principal (QP)** deve ser curta, única, entre aspas e escrita {{nas palavras do paciente}}, sem termo técnico nem diagnóstico. :: Ex.: "evacuação com sangue" — nunca "melena". :: Caiu em 5 provas
+A urgência médica dispensa a anamnese? :: **Não.** A anamnese fica curta e dirigida, mas sempre existe. :: Caiu em 2 somativas
+Sinal × Sintoma? :: **Sintoma:** subjetivo, relatado pelo paciente (anamnese).\n**Sinal:** objetivo, observado ou medido pelo examinador (exame físico).
+Homem saudável de 48 anos pede PSA de rastreio. Qual a conduta semiológica? :: **Decisão compartilhada:** explicar riscos e benefícios e decidir junto (nem negar de forma autoritária, nem pedir sem discutir). :: Caiu em 1 parcial
+
+# a2 | 📝 Aula 2 · Anamnese II
+O que entra na **HPP (antecedentes pessoais)**, mesmo quando o paciente diz "estou controlado"? :: **Tudo de interesse médico prévio:** doenças prévias/controladas (ex.: HAS controlada), cirurgias, internações, alergias, transfusões, traumas, vacinas, GPA e medicações em uso. :: Caiu em 7 provas
+Na **Revisão de Sistemas (RS / AE / IS)**, os sintomas são perguntados em ordem {{crânio-caudal}}, precedidos pelos {{sintomas gerais}}, e os negativos vão por extenso (evitar "NDN"). :: Caiu em 5 provas
+Tabagismo, etilismo, atividade física e sono entram em qual campo da anamnese? :: **Hábitos de Vida (HV)** — pegadinha clássica: **não** entram na HPP! :: Caiu em 2 parciais
+Carga tabágica: um paciente fuma **4 cigarros de palha/dia há 10 anos**. Qual a carga tabágica? :: **10 anos-maço.** Regra: **1 cigarro de palha = 5 industrializados** → 4 × 5 = 20 cig/dia (1 maço/dia) × 10 anos = 10 anos-maço. :: Caiu em 2 parciais
+Disfagia × Odinofagia? :: **Disfagia:** dificuldade para deglutir.\n**Odinofagia:** dor ao deglutir.
+Melena × Enterorragia × Hematoquezia? :: **Melena:** fezes pretas, pastosas, fétidas (HDA).\n**Enterorragia:** sangue vivo volumoso (HDB).\n**Hematoquezia:** sangue vivo misturado às fezes.
+
+# a3 | 🧍 Aula 3 · Exame Físico Geral
+Na Tetralogia de Fallot, a **posição de cócoras** aumenta a resistência vascular periférica e alivia o shunt {{direita → esquerda}}. :: Pegadinha: nunca é esquerda → direita! :: Caiu em 6 provas
+Biotipos (ângulo de Charpy, coração e ictus): Longilíneo × Normolíneo × Brevilíneo? :: **Longilíneo:** Charpy < 90°, coração vertical, ictus 6º EIC medial (predispõe a **pneumotórax espontâneo**).\n**Normolíneo:** ≈ 90°, 5º EIC LHC.\n**Brevilíneo:** > 90°, coração horizontal, ictus 4º EIC lateral. :: Caiu em 7 provas
+Como se chama a fácies normal na ectoscopia? :: **Fácies atípica** (ou **incaracterística**). :: Caiu em 5 provas
+Qual a temperatura que define **febre** e qual define **febrícula**? :: **Febre:** > 37,8 °C.\n**Febrícula:** 37,4 a 37,8 °C. :: Caiu em 5 provas
+"BEG, lúcido, corado, hidratado, afebril" pertence a qual parte do prontuário? :: **Exame Físico Geral / Ectoscopia** — nunca à Revisão de Sistemas. :: Caiu em 5 provas
+Quais achados caracterizam a **fácies cushingoide**? :: Face em **lua cheia**, rubor facial, acne e hirsutismo (excesso de corticoide / síndrome de Cushing). :: Caiu em 4 provas
+Paciente ganha **5 kg em poucas horas**. Qual o significado semiológico (e pesar é ectoscopia)? :: **Acúmulo de líquido** (edema/ascite), nunca gordura. E **pesar NÃO é ectoscopia** (exige instrumento). :: Caiu em 3 somativas
+Fronte olímpica, nariz em sela, mandíbula prognata e dentes de Hutchinson definem qual fácies e doença? :: **Fácies luética** — **sífilis congênita**. :: Caiu em 4 provas
+Exoftalmia e olhar de espanto definem a fácies {{hipertireoidea}}, enquanto boca entreaberta, face alongada e palato ogival definem a fácies {{adenoideana}}. :: Caiu em 2 parciais
+Dislalia × Disartria? :: **Dislalia:** troca de fonemas (ex.: "Cebolinha").\n**Disartria:** distúrbio motor da articulação da fala, com linguagem preservada. :: Caiu em 1 parcial
+Posição **genupeitoral (prece maometana)** sugere qual condição? :: **Derrame pericárdico** (alivia a compressão).
+Edema mole (Godet/cacifo) × Edema duro? :: **Mole (cacifo):** IC, insuficiência renal, cirrose/hipoalbuminemia.\n**Duro (sem cacifo):** linfedema e mixedema.
+
+# a4 | ⚡ Aula 4 · Semiologia da Dor
+Cólica biliar em hipocôndrio direito é classificada como dor {{nociceptiva (visceral)}} e {{aguda}}. :: Caiu em 4 provas
+A **dor psicogênica** é simulação/fingimento? :: **Não!** É sofrimento genuíno, sem substrato anatômico ou exame complementar confirmatório; diagnóstico de exclusão, ligada a transtornos do humor, manejo multiprofissional. :: Caiu em 4 provas
+Classificação temporal da dor nesta disciplina: existe dor "subaguda"? :: **Não existe "subaguda"!** Apenas **aguda (< 3 meses)** e **crônica (≥ 3 meses)**. Dor há 45 dias continua sendo **aguda**. :: Caiu em 3 provas
+Entorse de joelho gera qual tipo de dor (tempo e origem)? :: Dor **aguda**, **somática profunda** (músculo/osso/articulação, localização razoável). :: Caiu em 3 parciais
+Dor referida × Dor irradiada × Disseminação fascial? :: **Referida:** convergência no mesmo segmento medular (IAM → MSE/mandíbula; diafragma → ombro).\n**Irradiada:** segue trajeto de nervo ou raiz (ciatalgia).\n**Disseminação fascial:** segue planos de fáscia (gangrena de Fournier). :: Caiu em 5 provas
+Vinheta: Homem de 56 anos com dor precordial em aperto irradiando para MSE e mandíbula há 20 min. Classifique os dois componentes da dor. :: Precordial = **visceral**; MSE e mandíbula = **dor referida** (convergência medular). :: Caiu em 3 provas
+Dor em queimação/choque, com **alodinia**, respeitando um dermátomo (ex.: herpes-zóster) é qual tipo de dor? :: **Dor neuropática** (lesão do próprio sistema nervoso). :: Caiu em 3 provas
+
+# a5 | 🫀 Aula 5 · Exame Cardiovascular I
+Ictus cordis normal (normolíneo) × HVE? :: **Normal:** 5º EIC na LHC esquerda, 1–2 polpas.\n**HVE:** propulsivo, desviado para **baixo e para fora**, > 2 polpas (difuso se ≥ 3 polpas). :: Caiu em 5 somativas
+Quais são os **3 sinais semiológicos de HVD** no precórdio? :: 1. **Retração sistólica apical**\n2. **Levantamento em massa do precórdio** (impulsão paraesternal)\n3. **Pulsação epigástrica**.\n(Pegadinha: ictus propulsivo desviado é de HVE!) :: Caiu em 4 somativas
+Principal fator que determina a **fonese de B1** e exemplos de hiper × hipofonese? :: **Posição das cúspides AV no início da sístole** (mais abertas = B1 mais forte).\n**Hiper:** PR curto, taquicardia, febre, anemia, **EMt não calcificada**.\n**Hipo:** PR longo, **EMt calcificada**, IMt, IC grave, enfisema/derrame.
+B1 **variável** ocorre na {{fibrilação atrial}} e B1 **em canhão** ocorre no {{BAVT (bloqueio AV total)}}.
+Posição para auscultar **B3, B4 e estenose mitral** × posição para **insuficiência aórtica e atrito pericárdico**? :: **B3/B4/EMt:** decúbito lateral esquerdo (DLE) com **campânula**.\n**IAo / atrito:** sentado, inclinado para a frente, em **expiração**.
+
+# a6 | 💓 Aula 6 · Bulhas: Desdobramentos, B3 e B4
+Os 4 desdobramentos de **B2**: Fisiológico × BRD × CIA × BRE? :: **Fisiológico:** só na inspiração.\n**BRD:** persistente e variável (aumenta na inspiração; desdobra B1 e B2).\n**CIA:** persistente e **fixo**.\n**BRE:** **invertido/paradoxal** (só na **expiração** — some na inspiração!). :: Caiu em 7 provas
+Desdobramento **invertido (paradoxal) de B2** é ouvido em qual fase e qual sua causa clássica? :: Ouvido **apenas na expiração** (A2 atrasa e vem depois de P2). Causa clássica: **BRE (bloqueio de ramo esquerdo)**. :: Caiu em 7 provas
+No **BRD**, o desdobramento de B2 é {{persistente e variável}} (aumenta na inspiração); na **CIA**, é {{persistente e fixo}}. :: Caiu em 4 somativas
+**B3 (terceira bulha):** momento do ciclo, mecanismo, sobrecarga e quando pode ser fisiológica? :: **Início da diástole** (protodiastólica), fase de **enchimento ventricular rápido**, sobrecarga de **volume** (galope ventricular).\nPode ser **fisiológica** em crianças, atletas e **gestantes**. :: Caiu em 6 provas
+**B4 (quarta bulha):** momento do ciclo, mecanismo, sobrecarga e em qual arritmia ela DESAPARECE? :: **Final da diástole (pré-sistólica)**, coincide com a **contração atrial**, sobrecarga de **pressão** (VE rígido: EAo, HAS; galope atrial).\n**Desaparece na fibrilação atrial!** :: Caiu em 6 provas
+Vinheta: Paciente com estenose aórtica apresentava bulha acessória que **desapareceu ao entrar em fibrilação atrial**. Qual era essa bulha? :: **B4** — pois depende da contração atrial efetiva. :: Caiu em 4 somativas
+Ritmo tríplice × Ritmo de galope? :: **Ritmo tríplice** (B1 + B2 + B3 ou B4) **pode ser fisiológico** (ex.: B3 em gestante/atleta).\n**Ritmo de galope** é **sempre patológico** ("pedido de socorro do miocárdio"). :: Caiu em 4 somativas
+
+# a7 | 🩺 Aula 7 · Sopros e Pericárdio
+**Manobra de Rivero-Carvallo:** foco, respiração e o que diagnostica? :: Foco **tricúspide** (nunca mitral!) + **inspiração profunda** → aumenta retorno venoso ao VD → **aumenta sopro sistólico = insuficiência tricúspide**. :: Caiu em 7 provas
+Regra dos sopros (sistólico × diastólico) nas valvas semilunares e AV? :: **Semilunares (Ao/Pulm):** Estenose = **sistólico** · Insuficiência = **diastólico**.\n**AV (Mitral/Tricúspide):** Estenose = **diastólico** · Insuficiência = **sistólico**.\n(Todo sopro diastólico é patológico; frêmito a partir de **4+/6+**.)
+**Estenose aórtica (EAo):** tipo de sopro, irradiação, pulso e tríade clínica? :: Sopro **sistólico ejetivo (diamante)** no foco aórtico → **irradia para carótidas**; pulso ***parvus et tardus***; B4; tríade **angina + síncope + dispneia**. :: Caiu em 5 provas
+**Insuficiência mitral (IMt)** × **Estenose mitral (EMt)** na ausculta? :: **IMt:** sopro **holossistólico** no foco mitral → **irradia para axila**, B1 hipofonética, B3.\n**EMt:** **ruflar diastólico** (DLE + campânula), B1 hiperfonética (se não calcificada), estalido de abertura. :: Caiu em 3 somativas
+Na **Insuficiência Aórtica (IAo)**, o sopro é {{diastólico aspirativo}} (melhor no foco de Erb sentado/expiração), o pulso é de {{Corrigan (martelo d'água)}} e o ruflar apical na IAo grave chama-se sopro de {{Austin Flint}}.
+**Tamponamento cardíaco:** Tríade de Beck + pulso característico? :: **Hipotensão + hipofonese de bulhas + turgência jugular** (e **pulso paradoxal**: queda > 10 mmHg na PAS à inspiração).
+
+# a8 | 📈 Aula 8 · Ritmos, Pulsos e Pressão Arterial
+Pulso radial contado em **50 ppm** é {{bradisfigmia}}, enquanto FC auscultada em **55 bpm** é {{bradicardia}}. :: Normal de ambos: 60–100. Nunca troque os termos! :: Caiu em 9 provas
+Quais são os **5 achados clínicos clássicos da Fibrilação Atrial (FA)**? :: 1. Ritmo **irregularmente irregular**\n2. **Fonese variável de B1**\n3. **Ausência de B4**\n4. **Déficit de pulso** (FC > FP)\n5. **Poliúria** nas crises (liberação de ANP). :: Caiu em 6 somativas
+No **BAVT**, encontram-se FC baixa, B1 {{em canhão}}, onda *a* {{em canhão}} no pulso venoso jugular e síncope de {{Stokes-Adams}}.
+Erros na aferição da PA: o que acontece com **manguito estreito** ou **braço abaixo do coração**? :: **Superestimam a PA** (leitura falsamente alta). Manguito largo demais **subestima**. Diferença **> 20 mmHg entre braços** → pensar em **dissecção de aorta**.
+
+# a9 | 🚨 Aula 9 · Dor Torácica
+O que é **equivalente anginoso** e em quem é clássico? :: **Isquemia miocárdica SEM dor torácica típica** (dispneia súbita, sudorese, náusea, síncope) — clássico em **idosos e diabéticos** (neuropatia autonômica). :: Caiu em 7 provas
+O **sinal de Levine** consiste em {{punho cerrado sobre o precórdio}} e aponta fortemente para dor {{isquêmica coronariana}}. :: Caiu em 5 provas
+**Dissecção aguda da aorta:** caráter da dor, irradiação e achado de exame físico? :: Dor **súbita, já máxima no início**, **rasgante**, irradiação **interescapular (dorso)**, **diferença de PA (> 20 mmHg) e pulsos** entre os braços (risco: HAS, Marfan). :: Caiu em 4 somativas
+Dor torácica reproduzida à palpação da parede torácica exclui isquemia coronariana? :: **Não!** Costocondrite piora à palpação, mas palpação positiva **não exclui** SCA/IAM.
+
+# a10 | 💫 Aula 10 · Síncope
+Quais são os **sinais de alarme de síncope cardíaca**? :: Durante **esforço ou deitado**, **sem pródromos**, **sem esboço de defesa (trauma na queda)**, palpitação prévia, cardiopatia conhecida ou história familiar de morte súbita. :: Caiu em 6 provas
+Jovem em fila no calor sente tontura, náusea, palidez, sudorese e desmaia se apoiando antes de cair. É sinal de alarme cardíaco? :: **Não!** É **síncope vasovagal (reflexa)** — benigna, com pródromos e esboço de defesa. :: Caiu em 6 provas
+Qual critério define **hipotensão ortostática** ao ficar em pé? :: Queda **≥ 20 mmHg na PAS** ou **≥ 10 mmHg na PAD** ao assumir a posição ortostática.
+Síncope × Pré-síncope × Lipotimia? :: **Síncope:** perda súbita e transitória da consciência **e** do tônus postural com recuperação espontânea.\n**Pré-síncope:** sensação iminente sem perder consciência.\n**Lipotimia:** mal-estar/fraqueza sem perda completa da consciência.
+
+# a11 | 🫁 Aula 11 · Semiologia Respiratória I
+**Cianose central:** mecanismo, locais acometidos, resposta ao O₂ e por que é sinal tardio? :: Sangue arterial dessaturado (pulmão/shunt); acomete **língua/mucosas + extremidades (quentes)**; melhora com O₂ (exceto shunt D→E). É tardia pois exige **desoxi-Hb > 5 g/dL** (anemia grave dificulta ver!). :: Caiu em 5 provas
+Cianose **periférica** × **segmentar periférica**? :: **Periférica:** extremidades frias, mucosas róseas; melhora com aquecimento/massagem.\n**Segmentar:** um único membro por estase/dificuldade de retorno venoso (trombose); melhora ao elevar o membro. :: Caiu em 2 provas
+O que é **platipneia** (e em que condições ocorre)? :: Dispneia que **piora em pé e melhora deitado** (oposto da ortopneia) — ocorre em shunt intracardíaco/pulmonar e síndrome hepatopulmonar. :: Caiu em 5 somativas
+Ortopneia × DPN × Trepopneia? :: **Ortopneia:** piora deitado, alivia sentado (IC).\n**DPN:** acorda horas após deitar, melhora ao sentar (IC).\n**Trepopneia:** piora em um decúbito lateral, melhora no oposto (derrame pleural unilateral).
+Ritmos respiratórios: **Cheyne-Stokes** × **Biot** × **Kussmaul**? :: **Cheyne-Stokes:** amplitude cresce/decresce + apneia (IC grave, AVC).\n**Biot:** irregular + apneias sem padrão (lesão de tronco, HIC).\n**Kussmaul:** profunda e regular (acidose metabólica / CAD).
+Hemoptise × Hematêmese? :: **Hemoptise:** sai com tosse, vermelho vivo, espumosa (vias aéreas).\n**Hematêmese:** sai com vômito, escura/borra de café, restos alimentares (TGI alto).
+
+# a12 | 💨 Aula 12 · Semiologia Respiratória II
+**Claro pulmonar** é som normal de {{percussão}}, enquanto **broncovesicular** é som normal de {{ausculta}} (região esternal superior e interescapular). :: Pegadinha clássica da banca! :: Caiu em 6 provas
+**Derrame pleural** × **Pneumotórax** no exame físico (o que iguala e o que separa)? :: **Iguais:** expansibilidade ↓, **FTV ↓/abolido** e **MV ↓/abolido**.\n**Separa (percussão):** **maciça/submaciça** no derrame × **timpânica** no pneumotórax. :: Caiu em 7 provas
+Regra do **FTV** (frêmito toracovocal): o que aumenta e o que diminui? :: Afecções **pleurais são antipáticas** (diminuem FTV: derrame, pneumotórax); afecções do **parênquima são simpáticas** (aumentam FTV: consolidação/pneumonia).
+**Consolidação (pneumonia):** achados em FTV, percussão e ausculta? :: **FTV aumentado**, percussão **submaciça**, estertores finos, **sopro tubário** e broncofonia/pectorilóquia.
+**Asma:** padrão da crise, exame que mede melhora e sinal de gravidade na ausculta? :: Síndrome **obstrutiva**; jovem/atópico; **agudização súbita** (tosse noturna + sibilos); reversível; ***peak flow*** mede a melhora; **silêncio respiratório = sinal de gravidade**. :: Caiu em 6 provas
+**DPOC:** Congesto azulado × Soprador rosado? :: **Congesto azulado (bronquite crônica):** tosse produtiva volumosa, **cianose**, edema, sobrepeso.\n**Soprador rosado (enfisema):** magro, tórax em tonel, lábios franzidos, **sem cianose**. :: Caiu em 5 provas

@@ -39,6 +39,10 @@ function aplicarPrefs() {
     const n = parseInt(c.slice(1), 16), lum = (.299 * (n >> 16) + .587 * (n >> 8 & 255) + .114 * (n & 255)) / 255;
     html.style.setProperty('--vgc', c); html.style.setProperty('--vgc-on', lum > .6 ? '#10151b' : '#ffffff'); html.dataset.vgcor = c;
   } else { html.style.removeProperty('--vgc'); html.style.removeProperty('--vgc-on'); delete html.dataset.vgcor; }
+  const fs = Number(store.get('vidro-fonte', 100));
+  if (fs >= 85 && fs <= 135 && fs !== 100) { html.style.setProperty('--vg-fs', String(fs / 100)); html.dataset.vgfonte = String(fs); }
+  else { html.style.removeProperty('--vg-fs'); delete html.dataset.vgfonte; }
+  document.querySelectorAll('iframe').forEach(fr => { try { fr.contentWindow && fr.contentWindow.dispatchEvent(new Event('vg-prefs')); } catch (_) {} });
 }
 aplicarPrefs();
 // aparelho modesto (celular, poucos núcleos ou pouca memória): começa sem o fundo 3D, a menos que a pessoa tenha ligado
@@ -154,6 +158,7 @@ painel.innerHTML = `<div class="vp-top"><b>Personalização</b><button type="but
   <div class="vp-sec" data-sec="tema"><span class="vp-l">Tema</span><div class="vp-seg" role="group" aria-label="Tema"><button type="button" data-tema="light">☀ Claro</button><button type="button" data-tema="dark">☾ Escuro</button></div></div>
   <div class="vp-sec"><span class="vp-l">Fundo</span><div class="vp-fundos"><button type="button" data-fundo="grad"><i class="vp-pv grad"></i>Degradê</button><button type="button" data-fundo="liso"><i class="vp-pv liso"></i>Liso</button><div class="vp-tons" hidden role="group" aria-label="Cor do fundo liso"></div></div></div>
   <div class="vp-sec"><span class="vp-l">Cor de destaque</span><div class="vp-cores">${CORES.map(([c, n]) => `<button type="button" data-cor="${c}" title="${n}" aria-label="${n}"${c ? ` style="--c:${c}"` : ''}></button>`).join('')}</div></div>
+  <div class="vp-sec"><span class="vp-l">Tamanho do texto</span><div class="vp-fonte" role="group" aria-label="Tamanho do texto"><button type="button" data-fs="-5" aria-label="Diminuir texto">A−</button><button type="button" class="vp-fv" data-fs="0" title="Voltar ao tamanho padrão">100%</button><button type="button" data-fs="5" aria-label="Aumentar texto">A+</button></div></div>
   <div class="vp-sec vp-linha"><span><span class="vp-l">Efeitos 3D</span><small>Fundo animado. Desligado economiza bateria.</small></span><button type="button" id="vp-fx" class="vp-sw" role="switch" aria-label="Efeitos 3D"></button></div>`;
 // 🥷 Modo foco: abas embaixo, sem barra lateral nem enfeites (_tema/abas.js); vale para todos os masters que têm o adaptador
 if (/^(huma|prev|img|lab|farmaco|micro|port|pato|semio|dic)$/.test(html.dataset.vidro || '') && !html.classList.contains('vidro-aula')) {
@@ -166,6 +171,53 @@ if (html.dataset.vidro !== 'th4' && !html.classList.contains('vidro-aula')) {
   painel.insertAdjacentHTML('beforeend', `<div class="vp-sec vp-linha" data-sec="pomo" hidden><span><span class="vp-l">🍅 Pomodoro</span><small>Foco e pausa com alarme. Fica escondido: chame pelo tomatinho no canto.</small></span><button type="button" id="vp-pomo" class="vp-sw" role="switch" aria-label="Pomodoro" aria-checked="false"></button></div>`);
   addEventListener('vgpomo', () => { if (!painel.hidden) pintarPainel(); });
 }
+// 💾 Backup do progresso (todas as matérias): exporta/importa JSON sem token do editor nem benchmark da máquina
+const BKP_PULA = /^(vg-ed-tok|vg-ed-on|vidro-lento)$/;
+function bkpExportar() {
+  const dados = {};
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && !BKP_PULA.test(k)) dados[k] = localStorage.getItem(k);
+    }
+  } catch (_) {}
+  const n = Object.keys(dados).length;
+  const arq = { app: 'masterclasses-medicina', v: 1, data: new Date().toISOString(), itens: n, dados };
+  const blob = new Blob([JSON.stringify(arq, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'), url = URL.createObjectURL(blob);
+  const d = new Date(), pad = x => String(x).padStart(2, '0');
+  a.href = url; a.download = `masterclasses-backup-${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return n;
+}
+function bkpImportar(aoFim) {
+  const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'application/json,.json';
+  inp.onchange = () => {
+    const f = inp.files && inp.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const j = JSON.parse(String(r.result || ''));
+        if (!j || j.app !== 'masterclasses-medicina' || !j.dados || typeof j.dados !== 'object') throw new Error('formato');
+        const ks = Object.keys(j.dados).filter(k => !BKP_PULA.test(k));
+        if (!ks.length) throw new Error('vazio');
+        const dt = j.data ? new Date(j.data).toLocaleString('pt-BR') : 'data desconhecida';
+        if (!confirm(`Restaurar backup de ${dt} (${ks.length} itens)?\n\nIsso substitui o progresso salvo neste navegador.`)) return;
+        let ok = 0;
+        ks.forEach(k => { try { localStorage.setItem(k, String(j.dados[k])); ok++; } catch (_) {} });
+        if (aoFim) aoFim(`Restaurados ${ok} itens. Recarregando…`);
+        setTimeout(() => location.reload(), 400);
+      } catch (_) {
+        if (aoFim) aoFim('Arquivo inválido: escolha um backup exportado deste site.');
+      }
+    };
+    r.readAsText(f);
+  };
+  inp.click();
+}
+window.VGBackup = { exportar: bkpExportar, importar: bkpImportar };
+painel.insertAdjacentHTML('beforeend', `<div class="vp-sec"><span class="vp-l">Progresso (todas as matérias)</span><div class="vp-bkp"><button type="button" data-bkp="exp">⬇ Exportar</button><button type="button" data-bkp="imp">⬆ Importar</button></div><small class="vp-bkp-msg"></small></div>`);
 document.body.append(painel);
 const temaBtnQualquer = () => themeBtn() || document.querySelector(THEME_SEL);
 function pintarPainel() {
@@ -178,6 +230,10 @@ function pintarPainel() {
   painel.querySelectorAll('[data-tema]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.tema === 'light') === luz)));
   painel.querySelectorAll('[data-fundo]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.fundo === fundo)));
   painel.querySelectorAll('[data-cor]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cor.toLowerCase() === cor.toLowerCase())));
+  const fs = Number(store.get('vidro-fonte', 100)) || 100;
+  const fv = painel.querySelector('.vp-fv'); if (fv) fv.textContent = fs + '%';
+  const fm = painel.querySelector('[data-fs="-5"]'), fp = painel.querySelector('[data-fs="5"]');
+  if (fm) fm.disabled = fs <= 85; if (fp) fp.disabled = fs >= 135;
   const pomo = painel.querySelector('[data-sec="pomo"]');
   if (pomo) { pomo.hidden = !window.VGPomo; if (window.VGPomo) pomo.querySelector('#vp-pomo').setAttribute('aria-checked', String(window.VGPomo.ligado())); }
   setFxLabel();
@@ -206,6 +262,17 @@ painel.addEventListener('click', e => {
   }
   caixaTons.hidden = true;
   if (b.dataset.cor != null && b.hasAttribute('data-cor')) { store.set('vidro-cor', b.dataset.cor || null); aplicarPrefs(); pintarPainel(); return; }
+  if (b.dataset.fs != null) {
+    const d = Number(b.dataset.fs), cur = Number(store.get('vidro-fonte', 100)) || 100;
+    const prox = d === 0 ? 100 : Math.max(85, Math.min(135, cur + d));
+    store.set('vidro-fonte', prox); aplicarPrefs(); pintarPainel(); return;
+  }
+  if (b.dataset.bkp) {
+    const msg = painel.querySelector('.vp-bkp-msg');
+    if (b.dataset.bkp === 'exp') { const n = bkpExportar(); if (msg) msg.textContent = `Backup baixado (${n} itens salvos).`; }
+    else bkpImportar(t => { if (msg) msg.textContent = t; });
+    return;
+  }
   if (b.id === 'vp-fx') setCalmo(!html.classList.contains('vidro-calmo'));
   if (b.id === 'vp-pomo' && window.VGPomo) { const on = !window.VGPomo.ligado(); b.setAttribute('aria-checked', String(on)); if (on) { abrirPainel(false); window.VGPomo.ligar(); } else window.VGPomo.desligar(); }
 });

@@ -106,6 +106,21 @@ body.fundo #gl{opacity:.32}
 .crumbs button[aria-current="true"]{background:rgba(255,255,255,.14);color:var(--ink)}
 .crumbs button:hover{color:var(--ink)}
 .crumbs .sep{opacity:.35;font-size:12px}
+.bkp-btn{border:0;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;--r:999px;font-size:13.5px;font-weight:500;color:var(--ink-2);transition:color .2s,transform .2s}
+.bkp-btn:hover{color:var(--ink)}
+.bkp-btn:active{transform:scale(.96)}
+.bkp-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#bkp-dlg{position:fixed;inset:0;z-index:65;display:grid;place-items:center;padding:20px;background:rgba(4,6,10,.55);opacity:0;transition:opacity .22s ease}
+#bkp-dlg[hidden]{display:none}
+#bkp-dlg.on{opacity:1}
+#bkp-dlg .prop-box{width:min(480px,100%)}
+#bkp-dlg .bkp-acts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+#bkp-dlg .bkp-op{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:16px;border-radius:18px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:inherit;text-align:left;cursor:pointer;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+#bkp-dlg .bkp-op:hover,#bkp-dlg .bkp-op:focus-visible{transform:translateY(-2px);background:rgba(255,255,255,.1);border-color:var(--hub);outline:none}
+#bkp-dlg .bkp-op b{font-family:var(--display);font-size:18px}
+#bkp-dlg .bkp-op small{font-size:13px;color:var(--ink-2);line-height:1.4}
+#bkp-dlg .bkp-msg{margin-top:14px;font-size:13.5px;color:var(--hub);min-height:1.3em}
+@media (max-width:700px){.bkp-btn{margin-left:auto;padding:8px 12px;font-size:13px}#bkp-dlg .bkp-acts{grid-template-columns:1fr}}
 
 /* ---------- Stages ---------- */
 main{position:relative;z-index:10;height:100%}
@@ -271,6 +286,22 @@ main{position:relative;z-index:10;height:100%}
 
 /* subjects */
 .subjects-layout{display:block}
+.p-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 20px}
+.p-busca{position:relative;width:min(420px,100%)}
+.p-busca input{width:100%;height:44px;padding:0 16px 0 40px;border-radius:999px;border:1px solid var(--edge);background:rgba(255,255,255,.07);color:var(--ink);font:500 14.5px var(--text);outline:none;transition:border-color .2s,background .2s}
+.p-busca input::placeholder{color:var(--ink-3)}
+.p-busca input:focus{border-color:var(--hub);background:rgba(255,255,255,.11)}
+.p-busca svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;stroke:var(--ink-3);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.p-busca-res{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:40;max-height:min(420px,62vh);overflow:auto;border-radius:20px;padding:8px;
+  background:rgba(13,18,24,.96);border:1px solid var(--edge);box-shadow:0 24px 60px rgba(0,0,0,.65);display:none}
+.p-busca-res.on{display:block}
+.p-busca-st{padding:6px 10px;font-size:12px;color:var(--ink-3)}
+.p-busca-it{all:unset;box-sizing:border-box;display:block;width:100%;padding:9px 11px;border-radius:12px;cursor:pointer;transition:background .15s}
+.p-busca-it:hover,.p-busca-it:focus-visible{background:rgba(255,255,255,.09)}
+.p-busca-it small{display:block;font-size:11.5px;color:var(--tint,var(--hub));font-weight:600;margin-bottom:2px}
+.p-busca-it b{display:block;font-size:14.5px;font-weight:600;color:var(--ink)}
+.p-busca-it p{margin:3px 0 0;font-size:12.5px;color:var(--ink-2);line-height:1.4}
+.p-busca-it mark{background:color-mix(in srgb,var(--hub) 35%,transparent);color:var(--ink);border-radius:3px;padding:0 2px}
 .cards{margin-top:clamp(22px,4vh,44px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 /* última linha com só 2 cartões (hoje DIC IV e TH IV): centralizados, sob Propedêutica e Português */
 @media (min-width:1101px){.cards .card:nth-child(4n+1):nth-last-child(2){grid-column:2}}
@@ -439,6 +470,10 @@ main{position:relative;z-index:10;height:100%}
     <button data-nav="periodos">Períodos</button><span class="sep" data-c="p">/</span>
     <button data-nav="p4" data-c="p">4º período</button>
   </nav>
+  <button class="bkp-btn glass" id="bkp-open" type="button" title="Exportar ou restaurar seu progresso" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+    <span>Backup</span>
+  </button>
 </header>
 
 <main>
@@ -535,7 +570,14 @@ main{position:relative;z-index:10;height:100%}
   <section class="stage" id="s-p4" aria-labelledby="t-p4">
     <div class="wrap subjects-layout">
       <div>
-        <h2 id="t-p4" class="in">4º período</h2>
+        <div class="p-head">
+          <h2 id="t-p4" class="in">4º período</h2>
+          <div class="p-busca in" style="--i:1" data-periodo="4">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/></svg>
+            <input id="p4-q" type="search" placeholder="Buscar só no 4º período… (Ctrl+K)" aria-label="Buscar nas matérias do 4º período" autocomplete="off">
+            <div class="p-busca-res" id="p4-res" role="listbox"></div>
+          </div>
+        </div>
         <div class="cards" id="cards"></div>
       </div>
       <div class="specimen">
@@ -862,6 +904,119 @@ try{
   if(last){const r=document.getElementById('resume');r.hidden=false;r.href=last.href;r.textContent='Continuar: '+last.label;
     r.addEventListener('click',e=>{e.preventDefault();open(null,last.label,last.href,last.k)})}
 }catch(_){}
+
+/* ---------- backup do progresso (exportar / importar todas as matérias) ---------- */
+(function(){
+  const PULA=/^(vg-ed-tok|vg-ed-on|vidro-lento)$/;
+  document.body.insertAdjacentHTML('beforeend',`<div id="bkp-dlg" hidden>
+    <div class="prop-box glass" data-liquido role="dialog" aria-modal="true" aria-labelledby="bkp-t">
+      <button class="prop-x" type="button" aria-label="Fechar">×</button>
+      <h3 id="bkp-t">Backup do progresso</h3>
+      <p class="prop-sub" id="bkp-sub">Leve suas aulas concluídas, notas de simulados, grifos, flashcards e rendimento para outro aparelho ou navegador.</p>
+      <div class="bkp-acts">
+        <button class="bkp-op" type="button" data-bkp="exp"><b>⬇ Exportar (.json)</b><small>Baixa um arquivo com todo o seu progresso salvo aqui.</small></button>
+        <button class="bkp-op" type="button" data-bkp="imp"><b>⬆ Restaurar (.json)</b><small>Importa um arquivo de backup e substitui os dados deste navegador.</small></button>
+      </div>
+      <p class="bkp-msg" id="bkp-msg" role="status"></p>
+    </div></div>`);
+  const dlg=document.getElementById('bkp-dlg'), msg=document.getElementById('bkp-msg'), sub=document.getElementById('bkp-sub');
+  const btn=document.getElementById('bkp-open'); let volta=null;
+  const contar=()=>{let n=0;try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&!PULA.test(k))n++;}}catch(_){}return n;};
+  function abrir(){
+    const n=contar();
+    sub.textContent=n?`Você tem ${n} registros salvos neste navegador (aulas, simulados, grifos, flashcards e preferências).`:'Ainda não há progresso salvo neste navegador. Você pode restaurar um backup de outro aparelho.';
+    msg.textContent=''; volta=document.activeElement; dlg.hidden=false;
+    requestAnimationFrame(()=>dlg.classList.add('on'));
+    dlg.querySelector('[data-bkp="exp"]').focus({preventScroll:true});
+  }
+  function fechar(){ if(dlg.hidden)return; dlg.classList.remove('on'); setTimeout(()=>{dlg.hidden=true},220); if(volta&&volta.focus)volta.focus({preventScroll:true}); }
+  btn.addEventListener('click',abrir);
+  dlg.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(e.target===dlg||e.target.closest('.prop-x')) return fechar();
+    const op=e.target.closest('[data-bkp]'); if(!op) return;
+    if(op.dataset.bkp==='exp'){
+      const dados={}; try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&!PULA.test(k))dados[k]=localStorage.getItem(k);}}catch(_){}
+      const n=Object.keys(dados).length;
+      const arq={app:'masterclasses-medicina',v:1,data:new Date().toISOString(),itens:n,dados};
+      const blob=new Blob([JSON.stringify(arq,null,2)],{type:'application/json'});
+      const a=document.createElement('a'), url=URL.createObjectURL(blob), d=new Date(), pad=x=>String(x).padStart(2,'0');
+      a.href=url; a.download=`masterclasses-backup-${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}.json`;
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+      msg.textContent=`Backup baixado com ${n} registros.`;
+    } else {
+      const inp=document.createElement('input'); inp.type='file'; inp.accept='application/json,.json';
+      inp.onchange=()=>{
+        const f=inp.files&&inp.files[0]; if(!f) return;
+        const r=new FileReader();
+        r.onload=()=>{
+          try{
+            const j=JSON.parse(String(r.result||''));
+            if(!j||j.app!=='masterclasses-medicina'||!j.dados||typeof j.dados!=='object') throw new Error('formato');
+            const ks=Object.keys(j.dados).filter(k=>!PULA.test(k));
+            if(!ks.length) throw new Error('vazio');
+            const dt=j.data?new Date(j.data).toLocaleString('pt-BR'):'data desconhecida';
+            if(!confirm(`Restaurar backup de ${dt} (${ks.length} registros)?\n\nIsso substitui o progresso salvo neste navegador.`)) return;
+            let ok=0; ks.forEach(k=>{try{localStorage.setItem(k,String(j.dados[k]));ok++;}catch(_){}});
+            msg.textContent=`Restaurados ${ok} registros. Recarregando…`;
+            setTimeout(()=>location.reload(),450);
+          }catch(_){ msg.textContent='Arquivo inválido: escolha um backup exportado deste site.'; }
+        };
+        r.readAsText(f);
+      };
+      inp.click();
+    }
+  });
+  addEventListener('keydown',e=>{ if(!dlg.hidden&&e.key==='Escape'){ e.stopImmediatePropagation(); fechar(); } },true);
+})();
+
+/* ---------- busca isolada por período (4º período só busca em _tema/busca/p4.json) ---------- */
+(function(){
+  const inp=document.getElementById('p4-q'), res=document.getElementById('p4-res');
+  if(!inp||!res) return;
+  const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let idx=null, loading=false;
+  const fallback=()=>Object.entries(SUBJECTS).map(([k,s])=>({k,mat:s.name,aula:s.name,titulo:s.name,href:s.href,texto:s.desc+' '+s.tags.join(' ')}));
+  function carregar(){
+    if(idx||loading) return; loading=true;
+    fetch('_tema/busca/p4.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{
+      const base=Array.isArray(j)&&j.length?j.filter(x=>Object.prototype.hasOwnProperty.call(SUBJECTS,x.k)):fallback();
+      idx=base.map(x=>Object.assign({},x,{_n:norm(x.titulo+' '+x.aula+' '+x.mat+' '+x.texto)}));
+      if(inp.value.trim().length>=2) buscar();
+    }).catch(()=>{ idx=fallback().map(x=>Object.assign({},x,{_n:norm(x.titulo+' '+x.texto)})); if(inp.value.trim().length>=2) buscar(); });
+  }
+  function buscar(){
+    const q=inp.value.trim(), nq=norm(q);
+    if(nq.length<2){ res.classList.remove('on'); res.innerHTML=''; return; }
+    carregar();
+    if(!idx){ res.innerHTML='<div class="p-busca-st">Carregando índice do 4º período…</div>'; res.classList.add('on'); return; }
+    const hits=[];
+    for(const it of idx){
+      const pos=it._n.indexOf(nq); if(pos<0) continue;
+      const tNorm=norm(it.texto), ti=tNorm.indexOf(nq);
+      let tr='';
+      if(ti>=0){ const a=Math.max(0,ti-45), b=Math.min(it.texto.length,ti+nq.length+75); tr=(a?'…':'')+esc(it.texto.slice(a,ti))+'<mark>'+esc(it.texto.slice(ti,ti+nq.length))+'</mark>'+esc(it.texto.slice(ti+nq.length,b))+(b<it.texto.length?'…':''); }
+      hits.push({it,tr,prio:norm(it.titulo).includes(nq)?0:1});
+      if(hits.length>=40) break;
+    }
+    hits.sort((a,b)=>a.prio-b.prio);
+    res.innerHTML=`<div class="p-busca-st">${hits.length?hits.length+' resultado(s) no 4º período':'Nada encontrado no 4º período'}</div>`
+      +hits.slice(0,25).map(h=>`<button type="button" class="p-busca-it" style="--tint:var(--${h.it.k})" data-href="${esc(encodeURI(h.it.href))}" data-k="${esc(h.it.k)}" data-lbl="${esc(h.it.mat)}"><small>${esc(h.it.mat)} · ${esc(h.it.aula)}</small><b>${esc(h.it.titulo)}</b>${h.tr?'<p>'+h.tr+'</p>':''}</button>`).join('');
+    res.classList.add('on');
+  }
+  let tm=0;
+  inp.addEventListener('focus',carregar);
+  inp.addEventListener('input',()=>{ clearTimeout(tm); tm=setTimeout(buscar,120); });
+  inp.addEventListener('keydown',e=>{ if(e.key==='Escape'){ inp.value=''; res.classList.remove('on'); inp.blur(); } else if(e.key==='Enter'){ const f=res.querySelector('.p-busca-it'); if(f) f.click(); } });
+  res.addEventListener('click',e=>{
+    const b=e.target.closest('.p-busca-it'); if(!b) return;
+    res.classList.remove('on');
+    open(SUBJECTS[b.dataset.k], b.dataset.lbl, b.dataset.href, b.dataset.k);
+  });
+  document.addEventListener('pointerdown',e=>{ if(!e.target.closest('.p-busca')) res.classList.remove('on'); });
+  addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'&&current==='p4'){ e.preventDefault(); inp.focus(); inp.select(); } });
+})();
 
 /* ---------- brilho do vidro, tilt e cursor ---------- */
 const cursor=document.getElementById('cursor');

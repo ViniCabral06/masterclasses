@@ -12,7 +12,7 @@
   if (window.VGConc || !K || K === 'th4' || /[?&]vgindice/.test(location.search)) return;
   const CK = 'vg-conc', PAUSA = 30 * 60e3, MIN_SESS = 5 * 60, TICK = 15, INATIVO = 5 * 60e3, MIN = 3;
   const FAT = [['sono', '😴 Dormi bem'], ['cafe', '☕ Café'], ['cel', '📱 Celular longe'], ['exe', '🏃 Fiz exercício'], ['ans', '😰 Ansioso(a)'],
-    ['barulho', '🔊 Barulho'], ['musica', '🎧 Música'], ['fome', '🍽️ Com fome'], ['junto', '👥 Estudei com alguém']];
+    ['barulho', '🔊 Barulho'], ['musica', '🎧 Música'], ['fome', '🍽️ Com fome'], ['junto', '👥 Estudei com alguém'], ['pomo', '🍅 Com Pomodoro']];
   const LOC = [['casa', '🏠 Casa'], ['bib', '📚 Biblioteca'], ['fac', '🏫 Faculdade'], ['outro', '📍 Outro']];
   const FAIXAS = [['Madrugada', 0, 6], ['Manhã', 6, 12], ['Tarde', 12, 18], ['Noite', 18, 24]];
   const NOME = { farmaco: 'Farmacologia', micro: 'Microbiologia', pato: 'Patologia', semio: 'Semiologia', prev: 'Med Prev', huma: 'Humanização', lab: 'Prop. Laboratorial', img: 'Prop. de Imagem', port: 'Português', dic: 'DIC IV' };
@@ -43,14 +43,38 @@
     let a = d.atual;
     if (a && agora - a.ult > PAUSA) { fecha(d, a); a = null; }
     const ativo = !D.hidden && agora - ultMexida < INATIVO;
-    if (!a && ativo) a = d.atual = { id: agora.toString(36), ini: agora, ult: agora, ativo: 0, fora: 0, saidas: 0, segs: 0, ks: [K] };
+    if (!a && ativo) a = d.atual = { id: agora.toString(36), ini: agora, ult: agora, ativo: 0, fora: 0, saidas: 0, segs: 0, ks: [K], porMat: {}, pomo: false, pomos: 0 };
     if (a) {
-      if (ativo) { a.ativo += TICK; a.ult = agora; }
+      if (ativo) {
+        a.ativo += TICK; a.ult = agora;
+        a.porMat = a.porMat || {}; a.porMat[K] = (a.porMat[K] || 0) + TICK;
+      }
       if (!a.ks.includes(K)) a.ks.push(K);
+      /* integra com Pomodoro (_tema/pomodoro.js): se o foco está rodando, marca a sessão automaticamente */
+      try {
+        const pm = JSON.parse(localStorage.getItem('vg-pomo') || 'null');
+        if (pm && pm.on && pm.e && pm.e.fase === 'foco' && pm.e.fim != null) {
+          a.pomo = true; a.fat = a.fat || [];
+          if (!a.fat.includes('pomo')) a.fat.push('pomo');
+        }
+      } catch (_) {}
     }
     grava(d);
     if (!aberto) checkin();
   }
+  /* conta focos concluídos do Pomodoro */
+  addEventListener('vgpomo', ev => {
+    const det = ev.detail || {};
+    if (det.fase === 'curta' || det.fase === 'longa') {
+      const d = ler();
+      if (d.atual) {
+        d.atual.pomo = true; d.atual.pomos = (d.atual.pomos || 0) + 1;
+        d.atual.fat = d.atual.fat || [];
+        if (!d.atual.fat.includes('pomo')) d.atual.fat.push('pomo');
+        grava(d);
+      }
+    }
+  });
   D.addEventListener('visibilitychange', () => {
     const d = ler(), a = d.atual; if (!a) return;
     if (D.hidden) saiuEm = Date.now();
@@ -164,7 +188,18 @@
     const sa = fat.filter(f => f.ok).sort((a, b) => b.difSaidas - a.difSaidas)[0];
     if (sa && sa.difSaidas >= 1) fr.push(`Com <b>${sa.r}</b> você sai da aba ${sa.difSaidas.toFixed(1).replace(".", ",")} vezes a mais por hora.`);
     if (loc.length >= 2) { const l = loc.sort((a, b) => b.nota - a.nota); fr.push(`Melhor lugar até agora: <b>${l[0].r}</b> (nota ${l[0].nota.toFixed(1).replace(".", ",")}).`); }
-    return { com, tot, faixas, fat, fr };
+    /* tempo estudado por matéria */
+    const pm = {};
+    sess.forEach(s => {
+      if (s.porMat && Object.keys(s.porMat).length) {
+        Object.entries(s.porMat).forEach(([k, v]) => { pm[k] = (pm[k] || 0) + v; });
+      } else if (s.ks && s.ks.length) {
+        const div = s.ativo / s.ks.length;
+        s.ks.forEach(k => { pm[k] = (pm[k] || 0) + div; });
+      }
+    });
+    const mats = Object.entries(pm).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ k, nome: NOME[k] || k, seg: v }));
+    return { com, tot, faixas, fat, fr, mats };
   }
 
   /* ---------- dados de exemplo (só para ver o painel cheio; não são gravados) ---------- */
@@ -205,6 +240,7 @@
 ${A.fr.length ? `<ul class="vgc-frases">${A.fr.map(x => `<li>${x}</li>`).join('')}</ul>` : `<p class="vgc-falta" style="margin-top:12px">Ainda não dá para tirar conclusões: cada comparação precisa de pelo menos ${MIN} sessões avaliadas de cada lado. Continue estudando e respondendo o "Como foi?" no fim de cada sessão.</p>`}
 <h3>Quando você rende mais</h3>
 ${A.faixas.map(x => `<div class="vgc-row"><span>${x.n}</span>${barF(x.q ? x.nota : null, 5, x.q ? `${x.nota.toFixed(1).replace(".", ",")} · ${x.q} sess.` : 'sem dados')}</div>`).join('')}
+${A.mats.length ? `<h3>Tempo por matéria</h3>${A.mats.map(m => `<div class="vgc-row"><span>${esc(m.nome)}</span>${barF(m.seg, A.mats[0].seg, dur(m.seg))}</div>`).join('')}` : ''}
 <h3>O que ajuda e o que atrapalha <span class="vgc-sub" style="font-weight:400">(nota com o fator − sem ele)</span></h3>
 ${A.fat.map(x => x.ok
   ? `<div class="vgc-row"><span>${x.r}</span><div class="vgc-bar dif"><i class="${x.dif < 0 ? 'neg' : 'pos'}" style="width:${50 * Math.abs(x.dif) / maxDif}%"></i></div><small>${x.dif > 0 ? '+' : ''}${x.dif.toFixed(1).replace(".", ",")}</small></div>`

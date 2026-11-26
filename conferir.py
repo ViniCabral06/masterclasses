@@ -144,7 +144,10 @@ def conferir(f):
 
 
 def main(args):
-    alvos = [Path(a).resolve() for a in args] or masters()
+    if "--auditar" in args:
+        import auditar
+        return auditar.main([a for a in args if a != "--auditar"])
+    alvos = [Path(a).resolve() for a in args if not a.startswith("--")] or masters()
     total = 0
     for f in alvos:
         if not f.exists():

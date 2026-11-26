@@ -1,7 +1,7 @@
 @titulo Flashcards · Patologia Médica I
 @sub Tudo da revisão final em cartas: os quatro sistemas e as pegadinhas que mais caem. Toque para virar, marque se sabia; as que você errar voltam em "Só as que errei". Parcial = cardio e pulmão; somativa = tubo digestivo, fígado e pâncreas, mais a revisão de cardio e pulmão.
 
-# cardio | 🫀 Cardiovascular
+# cardio | 🫀 Cardiovascular | aula1,aula2,aula3,aula4
 Qual é a sequência da aterosclerose, da lesão à placa? :: Lesão endotelial (HAS, tabaco, LDL, DM) → LDL entra na íntima e **oxida** → monócitos viram **macrófagos espumosos** → **estria lipídica** → músculo liso migra e faz matriz: **placa fibrogordurosa** → complicação.
 Quais são as complicações da placa aterosclerótica? :: **Ruptura, trombose, hemorragia, calcificação e aneurisma.**
 Placa estável × instável: capa fibrosa, núcleo lipídico e inflamação? :: **Estável:** capa espessa, núcleo pequeno, pouca inflamação → angina estável.\n**Instável:** capa **fina**, núcleo **grande**, muitos macrófagos e linfócitos T → síndrome coronariana aguda.
@@ -27,7 +27,7 @@ Endocardite aguda × subaguda: agente, válvula e vegetação? :: **Aguda:** S. 
 Estenose aórtica calcificada: quem e marca? :: Idoso, **degenerativa**. Calcificação nas cúspides e **hipertrofia concêntrica**.
 Prolapso mitral: mecanismo e marca? :: **Degeneração mixomatosa**; cúspides **em balão**.
 
-# resp | 🫁 Respiratório
+# resp | 🫁 Respiratório | aula5,aula6,aula7,aula8
 Qual é a cadeia do TEP ao infarto pulmonar? :: **Tríade de Virchow** (estase, lesão endotelial, hipercoagulabilidade) → trombo em **veia profunda de MMII** → êmbolo na artéria pulmonar. :: Caiu em 3 somativas
 Por que o TEP nem sempre infarta o pulmão? :: Pela **dupla circulação**: só infarta se a **brônquica também falha** (IC, por exemplo).
 Como é o infarto pulmonar? :: **Hemorrágico**, em **cunha**, periférico, com a base na **pleura**.
@@ -47,7 +47,7 @@ Carcinoma de grandes células: marca? :: **Indiferenciado**, diagnóstico de **e
 Lesões precursoras do câncer de pulmão? :: **Escamoso:** metaplasia escamosa → displasia → carcinoma in situ.\n**Adeno:** hiperplasia adenomatosa atípica.
 Tumor de Pancoast: o que é? :: Tumor do **ápice** do pulmão (sulco superior), que invade estruturas vizinhas. :: Caiu em 2 somativas
 
-# tubo | 🍽️ Tubo digestivo
+# tubo | 🍽️ Tubo digestivo | tgi1,tgi2,tgi3,tgi4
 Mallory-Weiss × Boerhaave? :: **Mallory-Weiss:** laceração **longitudinal da mucosa**; hematêmese após vômitos.\n**Boerhaave:** ruptura **transmural**; mediastinite, grave.
 Qual é a sequência da DRGE ao câncer? :: DRGE → esofagite → **Barrett** → displasia → **adenocarcinoma** (terço distal).
 O que define o esôfago de Barrett? :: **Metaplasia intestinal com células caliciformes.** :: Caiu em 4 somativas
@@ -71,7 +71,7 @@ Polipose adenomatosa familiar: gene e marca? :: Gene **APC**; **centenas de pól
 Adenocarcinoma de cólon direito × esquerdo? :: **Direito:** exofítico; **anemia**, massa.\n**Esquerdo:** **anular**; **obstrução**, mudança do hábito. :: Caiu em 4 somativas
 As duas vias do câncer colorretal? :: **APC e beta-catenina** (sequência adenoma-carcinoma) e **instabilidade de microssatélites** (Lynch).
 
-# figado | 🩸 Fígado, vias biliares e pâncreas
+# figado | 🩸 Fígado, vias biliares e pâncreas | tgi5,tgi6,pratica2
 Congestão passiva crônica: causa e marca? :: **IC direita.** Fígado em **noz-moscada**, **necrose centrolobular**. :: Caiu em 2 somativas
 Budd-Chiari: causa e marca? :: **Trombose das veias hepáticas** (policitemia, gravidez, anticoncepcional). **Hepatomegalia dolorosa e ascite.** :: Caiu em 5 somativas
 Como se forma a cirrose? :: Agressão crônica (álcool, vírus) → **fibrose em septos** → **nódulos de regeneração**. Resultado: hipertensão portal + insuficiência hepática.

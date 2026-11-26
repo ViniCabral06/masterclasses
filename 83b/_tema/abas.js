@@ -541,6 +541,19 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
   const buscaAberta = () => !!(bx && bx.classList.contains('on'));
   async function criaIndice() {
     if (IDX) return; IDX = [];
+    /* 1º tenta o índice estático pré-gerado em _tema/busca/<K>.json (instantâneo, sem abrir iframe oculto) */
+    try {
+      const sc = D.querySelector('script[src*="_tema/abas.js"]');
+      const base = sc ? new URL('.', sc.src).href : '_tema/';
+      const r = await fetch(base + 'busca/' + encodeURIComponent(K) + '.json', { cache: 'no-cache' });
+      if (r.ok) {
+        const arr = await r.json();
+        if (Array.isArray(arr) && arr.length) {
+          arr.forEach(x => IDX.push({ id: x.id, titulo: x.titulo, aula: x.aula, texto: x.texto, n: norm(x.texto) }));
+          idxN = -1; if (buscaAberta()) roda(); return;
+        }
+      }
+    } catch (_) {}
     if (K === 'pato') { // Patologia: cada aula é um arquivo (aulas/<aula>.html), lido direto, sem cópia escondida
       const T = alvos(), porAula = {}; idxN = T.length;
       T.forEach(t => { const k = t.id.split('/')[0]; (porAula[k] = porAula[k] || []).push(t); });
@@ -707,18 +720,35 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
       + '<button type="button" class="vga-aj" data-aj="sair" role="switch" aria-checked="true"><span class="tx">🥷 Modo foco<small>Desligar volta ao master com a barra lateral (recarrega a página)</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
       + '<button type="button" class="vga-aj" data-aj="tema" role="switch"><span class="tx">☀️ Tema claro<small>Liga o modo foco claro; desligado fica escuro</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
       + '<button type="button" class="vga-aj" data-aj="pomo" role="switch" hidden><span class="tx">🍅 Pomodoro<small>Foco e pausa com alarme. Chame pelo tomatinho no canto.</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
-      + '<button type="button" class="vga-aj" data-aj="pers"><span class="tx">🎨 Personalização<small>Tema claro ou escuro, fundo e cor de destaque</small></span><span aria-hidden="true">›</span></button><hr>';
+      + '<button type="button" class="vga-aj" data-aj="reta" hidden><span class="tx">🔥 Modo Reta Final<small>Plano automático até a data da prova, pelo que mais cai</small></span><span aria-hidden="true">›</span></button>'
+      + '<button type="button" class="vga-aj" data-aj="flash" hidden><span class="tx">🃏 Flashcards<small>Revisão espaçada e lacunas da matéria</small></span><span aria-hidden="true">›</span></button>'
+      + '<button type="button" class="vga-aj" data-aj="val" hidden><span class="tx">🧪 Valores de referência<small>Hemograma, eletrólitos, gasometria, fígado e rim (Alt+V)</small></span><span aria-hidden="true">›</span></button>'
+      + '<button type="button" class="vga-aj" data-aj="conc" hidden><span class="tx">📊 Meu rendimento<small>Tempo ativo, horários e fatores que ajudam ou atrapalham</small></span><span aria-hidden="true">›</span></button>'
+      + '<button type="button" class="vga-aj" data-aj="pers"><span class="tx">🎨 Personalização<small>Tema claro ou escuro, fundo, fonte, cor e backup</small></span><span aria-hidden="true">›</span></button><hr>';
     const pintaTema = () => { const b = aj.querySelector('[data-aj=tema]'), on = html.dataset.theme === 'light'; b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
     pintaTema(); new MutationObserver(pintaTema).observe(html, { attributes: true, attributeFilter: ['data-theme'] });
     // 🍅 Pomodoro (_tema/pomodoro.js): a chave só aparece onde o script existe
     const pintaPomo = () => { const b = aj.querySelector('[data-aj=pomo]'), P = window.VGPomo; b.hidden = !P; if (!P) return; const on = P.ligado(); b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
-    pintaPomo(); addEventListener('load', pintaPomo); addEventListener('vgpomo', pintaPomo);
+    const pintaExtras = () => {
+      const c = aj.querySelector('[data-aj=conc]'); if (c) c.hidden = !window.VGConc;
+      const r = aj.querySelector('[data-aj=reta]'); if (r) r.hidden = !window.VGRetaFinal;
+      const v = aj.querySelector('[data-aj=val]'); if (v) v.hidden = !window.VGValores;
+      const f = aj.querySelector('[data-aj=flash]'); if (f) f.hidden = !(window.VGFlash && VGFlash.disponivel && VGFlash.disponivel());
+    };
+    pintaPomo(); pintaExtras(); addEventListener('load', () => { pintaPomo(); pintaExtras(); }); addEventListener('vgpomo', pintaPomo); D.addEventListener('vg-flash-pronto', pintaExtras);
     aj.addEventListener('click', e => {
       const b = e.target.closest('[data-aj]'); if (!b) return;
       if (b.dataset.aj === 'pomo') {
         const P = window.VGPomo; if (!P) return;
         if (P.ligado()) P.desligar(); else { ajustes(false); P.ligar(); }
         setTimeout(pintaPomo, 50); return;
+      }
+      if (b.dataset.aj === 'reta') { if (window.VGRetaFinal) { ajustes(false); VGRetaFinal.abrir(); } return; }
+      if (b.dataset.aj === 'flash') { if (window.VGFlash) { ajustes(false); VGFlash.abrirModal(K); } return; }
+      if (b.dataset.aj === 'val') { if (window.VGValores) { ajustes(false); VGValores.abrir(); } return; }
+      if (b.dataset.aj === 'conc') {
+        if (window.VGConc && VGConc.abrir) { ajustes(false); VGConc.abrir(); }
+        return;
       }
       if (b.dataset.aj === 'tema') {
         // o botão de tema do master fica escondido no modo foco: clica nele direto
@@ -738,7 +768,11 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
     { const p = D.querySelector('.vgf-panel'); if (p) { p.open = true; aj.appendChild(p); } setTimeout(pintar, 0); new MutationObserver(() => pintar()).observe(aj, { childList: true }); }
     aj.addEventListener('change', () => setTimeout(() => { if (folha === 'aulas') monta('aulas'); }, 30));
     D.addEventListener('pointerdown', e => { if (ajAberto() && !aj.contains(e.target) && !e.target.closest('#vg-abas [data-k=ajustes]')) ajustes(false); });
-    addEventListener('keydown', e => { if (e.key === 'Escape' && ajAberto()) ajustes(false); if (e.key === 'Escape' && buscaAberta()) busca(false); });
+    addEventListener('keydown', e => {
+      if (e.key === 'Escape' && ajAberto()) ajustes(false);
+      if (e.key === 'Escape' && buscaAberta()) busca(false);
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); ajustes(false); busca(true); }
+    });
     D.addEventListener('pointerdown', e => { if (buscaAberta() && !bx.contains(e.target) && !e.target.closest('#vg-abas [data-k=busca]')) busca(false); });
     const bAulas = bar.querySelector('[data-k=aulas]');
     const mostra = () => {

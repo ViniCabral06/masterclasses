@@ -132,7 +132,7 @@ def bloco_cabeca(m, rel):
            "window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();")
     forcar = "<script>document.documentElement.dataset.vidro=%s;%s</script>" % (json.dumps(k), pos)
     return (f"{H_INI}\n{forcar}\n{FONTES}\n<link rel=\"stylesheet\" href=\"{rel}/vidro.css?v={ver('vidro.css')}\">\n{IMPORTMAP}\n"
-            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/editor.js?v={ver('editor.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script src=\"{rel}/correcao.js?v={ver('correcao.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/flashcards.js?v={ver('flashcards.js')}\"></script><script defer src=\"{rel}/revisao.js?v={ver('revisao.js')}\"></script><script defer src=\"{rel}/foco.js?v={ver('foco.js')}\"></script><script defer src=\"{rel}/concentracao.js?v={ver('concentracao.js')}\"></script><script defer src=\"{rel}/elos.js?v={ver('elos.js')}\" data-v=\"{ver('elos.json')}\"></script><script defer src=\"{rel}/abas.js?v={ver('abas.js')}\"></script><script defer src=\"{rel}/siglas.js?v={ver('siglas.js')}\"></script><script defer src=\"{rel}/praticar.js?v={ver('praticar.js')}\"></script><script defer src=\"{rel}/pomodoro-motor.js?v={ver('pomodoro-motor.js')}\"></script><script defer src=\"{rel}/pomodoro.js?v={ver('pomodoro.js')}\"></script>\n{H_FIM}")
+            f"<script defer src=\"{rel}/modelos.js?v={ver('modelos.js')}\"></script><script defer src=\"{rel}/palco.js?v={ver('palco.js')}\"></script><script defer src=\"{rel}/vidro.js?v={ver('vidro.js')}\"></script><script defer src=\"{rel}/notas.js?v={ver('notas.js')}\"></script><script defer src=\"{rel}/editor.js?v={ver('editor.js')}\"></script><script defer src=\"{rel}/segmentos.js?v={ver('segmentos.js')}\"></script><script defer src=\"{rel}/extras.js?v={ver('extras.js')}\"></script><script defer src=\"{rel}/memes.js?v={ver('memes.js')}\"></script><script defer src=\"{rel}/liquido.js?v={ver('liquido.js')}\"></script><script src=\"{rel}/correcao.js?v={ver('correcao.js')}\"></script><script defer src=\"{rel}/simulado.js?v={ver('simulado.js')}\"></script><script defer src=\"{rel}/flashcards.js?v={ver('flashcards.js')}\"></script><script defer src=\"{rel}/revisao.js?v={ver('revisao.js')}\"></script><script defer src=\"{rel}/foco.js?v={ver('foco.js')}\"></script><script defer src=\"{rel}/concentracao.js?v={ver('concentracao.js')}\"></script><script defer src=\"{rel}/valores.js?v={ver('valores.js')}\"></script><script defer src=\"{rel}/retafinal.js?v={ver('retafinal.js')}\"></script><script defer src=\"{rel}/elos.js?v={ver('elos.js')}\" data-v=\"{ver('elos.json')}\"></script><script defer src=\"{rel}/abas.js?v={ver('abas.js')}\"></script><script defer src=\"{rel}/siglas.js?v={ver('siglas.js')}\"></script><script defer src=\"{rel}/praticar.js?v={ver('praticar.js')}\"></script><script defer src=\"{rel}/pomodoro-motor.js?v={ver('pomodoro-motor.js')}\"></script><script defer src=\"{rel}/pomodoro.js?v={ver('pomodoro.js')}\"></script>\n{H_FIM}")
 
 
 def bloco_corpo(m):
@@ -380,7 +380,7 @@ def otimizar_fonte(m):
 
 
 def arquivos_do_site(ms):
-    fixos = [".gitignore", ".nojekyll", "index.html", "83b", "_83b", "gerar_83b.py", "publicar.py", "conferir.py", "elos.py", "LEIAME.md", "CLAUDE.md", "AGENTS.md", ".claude/skills", "_tema", "Resumos"]
+    fixos = [".gitignore", ".nojekyll", "index.html", "83b", "_83b", "gerar_83b.py", "gerar_busca.py", "publicar.py", "conferir.py", "auditar.py", "mesclar_edicoes.py", "elos.py", "LEIAME.md", "CLAUDE.md", "AGENTS.md", ".claude/skills", "_tema", "Resumos"]
     out = [f for f in fixos if (ROOT / f).exists()]
     for m in ms:
         src = ROOT / m["arquivo"]
@@ -432,6 +432,12 @@ def main():
         otimizar_fonte(m)
         foco_das_aulas(m)
     versionar_hub()
+    # índices estáticos de busca (isolados por matéria e por período)
+    try:
+        import gerar_busca
+        gerar_busca.gerar()
+    except Exception as e:
+        print("(não consegui gerar os índices de busca:", e, ")")
     (ROOT / ".nojekyll").touch()
     # compara cada master com o padrão do site (skill masterclass-medica, seção L); só avisa, não impede
     try:
