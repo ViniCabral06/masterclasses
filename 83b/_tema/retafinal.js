@@ -26,7 +26,7 @@
     const cad = (selGrp, selHead, selIt, selTit, fnKey, fnDone, fnIr) => {
       $$(selGrp).forEach(g => {
         const h = $(selHead, g), ak = fnKey(g); if (!h || !ak) return;
-        const nomeAula = txt(h).replace(/\s*\d+\/\d+\s*$/, '').trim();
+        const nomeAula = txt(h).replace(/(\s*\d+\s*(\/|de)\s*\d+(\s*segmentos?)?)+\s*$/i, '').trim(); // tira os contadores "3/8" e "0 de 5 segmentos" (a Microbiologia tem os dois)
         const fqA = fqNum(h);
         const segs = $$(selIt, g).map(it => {
           const tEl = selTit ? $(selTit, it) : it;

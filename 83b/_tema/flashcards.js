@@ -718,7 +718,7 @@
           cont.appendChild(row);
         }
         var na = estaNaLista(S, ba.id);
-        row.dataset.bid = ba.id;
+        if (row.dataset.bid !== ba.id) row.dataset.bid = ba.id;
         var bOpen = row.querySelector('.vgfc-fa-open');
         var bAdd = row.querySelector('.vgfc-fa-add');
         var tOpen = 'Esta aula (' + ba.cards.length + ')';
@@ -751,7 +751,7 @@
         });
         alvo.appendChild(bar);
       }
-      bar.dataset.bid = ba.id;
+      if (bar.dataset.bid !== ba.id) bar.dataset.bid = ba.id;
       var tit = '🃏 ' + ba.t;
       var sub = ba.cards.length + ' cartas prontas · ' + (na2 ? 'já estão na sua lista da disciplina' : 'adicione à lista da disciplina quando terminar esta aula');
       if (bar.querySelector('.t b').textContent !== tit) bar.querySelector('.t b').textContent = tit;

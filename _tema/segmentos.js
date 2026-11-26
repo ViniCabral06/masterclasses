@@ -95,12 +95,14 @@
   function humaPrev() {
     D.querySelectorAll('main section.section').forEach(sec => {
       const eb = sec.querySelector('.eyebrow'), h2 = sec.querySelector('h2'); if (!eb || !h2) return;
-      const m = /^Segmento\s+(\d+)$/.exec(txt(eb)); if (m) eb.dataset.vgx = m[1];
+      /* só grava quando muda: classList.add e dataset regravam o atributo mesmo igual, e o observer
+         de 'class' abaixo chamaria run() de novo a cada 80 ms, para sempre */
+      const m = /^Segmento\s+(\d+)$/.exec(txt(eb)); if (m && eb.dataset.vgx !== m[1]) eb.dataset.vgx = m[1];
       const lh = D.querySelector('[data-lesson-h="' + sec.id.split('-')[0] + '"]');
-      const cnt = lh && /\/(\d+)/.exec(txt(lh.querySelector('.cnt'))); if (cnt) sec.dataset.vgy = cnt[1];
+      const cnt = lh && /\/(\d+)/.exec(txt(lh.querySelector('.cnt'))); if (cnt && sec.dataset.vgy !== cnt[1]) sec.dataset.vgy = cnt[1];
       const aula = lh ? txt(lh.querySelector('.lbl')).replace(/\s+/g, ' ') : '';
       if (eb.dataset.vgx) {
-        eb.classList.add('vg-crumb'); const t = tit(h2).replace(new RegExp('^' + STAR + '\\s*'), '');
+        if (!eb.classList.contains('vg-crumb')) eb.classList.add('vg-crumb'); const t = tit(h2).replace(new RegExp('^' + STAR + '\\s*'), '');
         if (!eb.dataset.vgDone || eb.dataset.vgDone !== t) { eb.innerHTML = (aula ? aula.replace(/[<>&]/g, '') + '<span>›</span>' : '') + '<b>' + eb.dataset.vgx + '. ' + t.replace(/[<>&]/g, '') + '</b>'; eb.dataset.vgDone = t; }
         if (sec.dataset.vgy) setXY(h2, +eb.dataset.vgx, +sec.dataset.vgy);
       }

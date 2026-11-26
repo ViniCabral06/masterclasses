@@ -162,6 +162,8 @@ O site é usado em celular e PC fraco.
 - Não ponha `backdrop-filter` em caixas de conteúdo, só em barras fixas.
 - Não embuta imagens em base64 sem passar pelo script.
 - Teste no tamanho de celular antes de publicar uma mudança visual.
+- **`MutationObserver` sempre idempotente**: toda função chamada por um `MutationObserver` só deve escrever no DOM (`innerHTML`, `textContent`, `className`, `setAttribute`, `appendChild`) se o valor for diferente do atual (compare antes ou guarde o último valor em `data-*`). Prefira observar um alvo menor que `document.documentElement` e use debounce quando couber.
+- **Teste no navegador após mexer em `_tema/`**: depois de alterar qualquer script em `_tema/`, abra um master no navegador e confirme que a página responde normalmente (aulas abrem) e que não há mutações contínuas com a página parada.
 
 ## Créditos
 
