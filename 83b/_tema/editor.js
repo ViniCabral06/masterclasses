@@ -84,7 +84,7 @@
       }
       for (const m of dados.i) {
         if (D.querySelector('img[data-vgi="' + m.id + '"]')) continue;
-        const l = [...root.querySelectorAll('img')].filter(x => x.getAttribute('src') === m.src && !x.dataset.vgi);
+        const l = [...root.querySelectorAll('img')].filter(x => x.getAttribute('src') === m.src && !x.dataset.vgi && !x.closest('.rx-r1h'));
         const img = l[Math.min(m.n || 0, l.length - 1)]; if (!img) continue;
         img.dataset.vgi = m.id; aplicarImg(img, m);
       }

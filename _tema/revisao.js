@@ -87,8 +87,17 @@ function esquemaDe(l){
     if(m)return '<div class="rx-esq"><div class="rx-esqt">Esquema da aula</div>'+m.slice(m.indexOf('</h3>')+5).replace(/<\/section>/g,'')+'</div>';
   }
   const S=(XD.sinais||[]).filter(s=>s.aula===l.id);
-  if(S.length)return '<div class="rx-esq"><div class="rx-esqt">'+(V==='lab'?'Valores para saber de cabeça':'Sinais e conceitos para reconhecer')+'</div><div class="table"><table class="rx-tab"><tbody>'+S.map(s=>'<tr><th scope="row">'+E(s.t)+'</th><td>'+E(s.d)+'</td></tr>').join('')+'</tbody></table></div></div>';
-  return '';
+  const sin=S.length?'<div class="rx-esq"><div class="rx-esqt">'+(V==='lab'?'Valores para saber de cabeça':'Sinais e conceitos para reconhecer')+'</div><div class="table"><table class="rx-tab"><tbody>'+S.map(s=>'<tr><th scope="row">'+E(s.t)+'</th><td>'+E(s.d)+'</td></tr>').join('')+'</tbody></table></div></div>':'';
+  return r1h(l)+sin;
+}
+/* Revisão em 1 hora: imagens de exame, tabelas e fluxogramas de cada aula (campo r1h do extra-data do master) */
+function r1h(l){
+  const R=(XD.r1h||{})[l.id];if(!R)return '';
+  let h='';
+  if((R.imgs||[]).length)h+='<div class="rx-esq"><div class="rx-esqt">🖼️ Imagens para reconhecer</div><div class="rx-imgs">'+R.imgs.map(i=>'<figure><img src="'+E(i.src)+'" alt="'+E(i.t)+'" loading="lazy" decoding="async"><figcaption>'+E(i.t)+'</figcaption></figure>').join('')+'</div><p class="rx-fonte">Fonte: slides da Aula '+E(l.number)+'. Toque na imagem para ampliar.</p></div>';
+  (R.tabs||[]).forEach(t=>{h+='<div class="rx-esq"><div class="rx-esqt">📋 '+E(t.t)+'</div><div class="table"><table class="rx-tab">'+(t.h?'<thead><tr>'+t.h.map(c=>'<th>'+E(c)+'</th>').join('')+'</tr></thead>':'')+'<tbody>'+t.r.map(r=>'<tr>'+r.map((c,i)=>i?'<td>'+E(c)+'</td>':'<th scope="row">'+E(c)+'</th>').join('')+'</tr>').join('')+'</tbody></table></div></div>'});
+  (R.fluxos||[]).forEach(f=>{h+='<div class="rx-esq"><div class="rx-esqt">🔀 '+E(f.t)+'</div><ol class="rx-flux">'+f.p.map(p=>'<li>'+E(p)+'</li>').join('')+'</ol></div>'});
+  return '<div class="rx-r1h">'+h+'</div>';
 }
 let XD={};try{const el=document.getElementById('extra-data');if(el)XD=JSON.parse(el.textContent)}catch(e){}
 let usadas=new Set();
@@ -209,6 +218,17 @@ details.rx-aula[open]>summary.rx-hd::after{transform:rotate(90deg)}
 .rx-esqt{font:700 12px var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .rx-esq .table,.rx-c .table{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .rx-tab{width:100%;font-size:14.5px}.rx-tab th[scope=row]{font-weight:600;text-align:left}
+.rx-r1h{display:grid;gap:14px;margin:0 0 14px}
+.rx-imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:10px;margin:4px 0 0}
+.rx-imgs figure{margin:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--ground,#fff);display:flex;flex-direction:column;min-width:0}
+.rx-imgs img{display:block;width:100%;height:150px;object-fit:contain;background:#0d0f0e;cursor:zoom-in}
+.rx-imgs figcaption{font:500 13px/1.4 var(--sans);padding:8px 10px;color:var(--ink)}
+.rx-fonte{font:400 12px var(--sans);color:var(--muted);margin:6px 0 0}
+.rx-flux{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:6px 0 2px;padding:0;list-style:none;counter-reset:fx}
+.rx-flux li{counter-increment:fx;flex:1 1 170px;min-width:0;border:1px solid var(--accent);background:var(--accent-soft);border-radius:12px;padding:8px 10px 8px 34px;position:relative;font:500 14px/1.4 var(--sans)}
+.rx-flux li::before{content:counter(fx);position:absolute;left:9px;top:8px;width:18px;height:18px;border-radius:50%;background:var(--accent);color:var(--on-ink,#fff);font:700 11px/18px var(--sans);text-align:center}
+.rx-flux li:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:700;z-index:1}
+@media (max-width:640px){.rx-flux{flex-direction:column}.rx-flux li{flex:none}.rx-flux li:not(:last-child)::after{content:"↓";right:auto;left:14px;top:auto;bottom:-15px;transform:none}.rx-flux{gap:12px}.rx-imgs{grid-template-columns:repeat(2,minmax(0,1fr))}.rx-imgs img{height:120px}}
 .rx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:14px}
 .rx-c{border:1px solid var(--border);border-radius:18px;padding:14px 16px;background:var(--surface);min-width:0}
 .rx-c.foco{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
