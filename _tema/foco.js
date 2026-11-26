@@ -218,9 +218,10 @@ html[data-theme="dark"] .vgf-leg i.g5{background:#000;box-shadow:0 0 0 1.5px #ff
         salva(); aplica();
       });
       painel.addEventListener('toggle', e => { // captura: pega também o "Marcar as aulas" de dentro
-        if (e.target === painel) cfg.painel = painel.open; else if (e.target.classList.contains('vgf-pv')) cfg.pvAberto = e.target.open; salva();
+        if (e.target !== painel && e.target.classList.contains('vgf-pv')) { cfg.pvAberto = e.target.open; salva(); }
       }, true);
-      painel.open = !!cfg.painel;
+      // o painel sempre abre fechado na barra lateral (não guarda aberto/fechado: o 🥷 modo foco abre ele em Ajustes e isso ficava salvo)
+      painel.open = false;
     }
     if (window.VGFocoHost) window.VGFocoHost.appendChild(painel); else nav.parentElement.insertBefore(painel, nav);
   }
