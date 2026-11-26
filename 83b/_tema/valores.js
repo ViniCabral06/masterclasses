@@ -4,7 +4,7 @@
 (function () {
   'use strict';
   const D = document, html = D.documentElement, K = html.dataset.vidro || '';
-  if (window.VGValores || !K || html.classList.contains('vidro-aula') || window.__vgIndex) return;
+  if (window.VGValores || !K || K === 'th4' || K === 'dic' || html.classList.contains('vidro-aula') || window.__vgIndex) return;
 
   const CATS = [
     {

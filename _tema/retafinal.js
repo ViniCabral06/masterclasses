@@ -9,7 +9,7 @@
 (function () {
   'use strict';
   const D = document, html = D.documentElement, K = html.dataset.vidro || '';
-  if (window.VGRetaFinal || !K || K === 'th4' || html.classList.contains('vidro-aula') || window.__vgIndex) return;
+  if (window.VGRetaFinal || !K || K === 'th4' || K === 'dic' || html.classList.contains('vidro-aula') || window.__vgIndex) return;
 
   const CK = 'vg-reta:' + K;
   const $ = (s, r) => (r || D).querySelector(s), $$ = (s, r) => [...(r || D).querySelectorAll(s)];

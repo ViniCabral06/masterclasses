@@ -152,14 +152,12 @@
       var mm = g.match(/^(a\d+|vir)\b/i);
       return mm ? mm[1].toLowerCase() : '';
     }
-    /* 4) Farmacologia: seção/pane visível com prefixo k/m/n/p/r/s/v/d/u/g/l */
+    /* 4) Farmacologia: .pane.active (id="pane-k1") ou .it.active[data-id="k1"] */
     if (K === 'farmaco') {
-      var fp = D.querySelector('section.on,section.active,.pane.on,.pane.active,section[id]:not([hidden])');
-      var fid = (fp && fp.id) || location.hash.replace(/^#/, '');
-      if (!fid) {
-        var fit = D.querySelector('.it.active,.it.on');
-        if (fit) fid = fit.dataset.id || fit.dataset.go || (fit.getAttribute('href') || '').replace(/^#/, '');
-      }
+      var fit = D.querySelector('.it.active[data-id],.it.on[data-id]');
+      var fp = D.querySelector('.pane.active,.pane.on,section.on,section.active');
+      var fid = (fit && fit.getAttribute('data-id')) || (fp && fp.id) || location.hash.replace(/^#/, '');
+      fid = String(fid || '').replace(/^pane-/, '');
       var mf = fid.match(/^([kmnprsvdugl])(?:\d|quiz|-cob)/i);
       return mf ? mf[1].toLowerCase() : '';
     }
@@ -677,8 +675,8 @@
       return D.querySelector('main section.section:not([hidden])');
     }
     if (K === 'micro' || K === 'semio') return D.querySelector('#view .page');
-    if (K === 'farmaco') return D.querySelector('section.on,section.active,.pane.on,.pane.active');
-    if (K === 'dic') return D.querySelector('main .page,main section:not([hidden])');
+    if (K === 'farmaco') return D.querySelector('.pane.active,.pane.on,section.on,section.active');
+    if (K === 'port') return D.querySelector('main section.on,main .pane.active,main .page,main');
     return null;
   }
 
@@ -765,7 +763,7 @@
   }
 
   function iniciarAuto() {
-    if (!K || K === 'th4' || window.__vgIndex) return;
+    if (!K || K === 'th4' || K === 'dic' || window.__vgIndex) return;
     /* em iframes de aula, só roda para Patologia (onde cada aula é um iframe separado) */
     if (html.classList.contains('vidro-aula') && K !== 'pato') return;
     buscarDados(K).then(function (d) {
