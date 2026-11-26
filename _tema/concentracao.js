@@ -10,7 +10,7 @@
 (function () {
   const D = document, html = D.documentElement, K = html.dataset.vidro || '';
   if (window.VGConc || !K || K === 'th4' || /[?&]vgindice/.test(location.search)) return;
-  const CK = 'vg-conc', PAUSA = 30 * 60e3, MIN_SESS = 5 * 60, TICK = 15, INATIVO = 90e3, MIN = 3;
+  const CK = 'vg-conc', PAUSA = 30 * 60e3, MIN_SESS = 5 * 60, TICK = 15, INATIVO = 5 * 60e3, MIN = 3;
   const FAT = [['sono', '😴 Dormi bem'], ['cafe', '☕ Café'], ['cel', '📱 Celular longe'], ['exe', '🏃 Fiz exercício'], ['ans', '😰 Ansioso(a)'],
     ['barulho', '🔊 Barulho'], ['musica', '🎧 Música'], ['fome', '🍽️ Com fome'], ['junto', '👥 Estudei com alguém']];
   const LOC = [['casa', '🏠 Casa'], ['bib', '📚 Biblioteca'], ['fac', '🏫 Faculdade'], ['outro', '📍 Outro']];
@@ -25,10 +25,13 @@
 
   /* ---------- coleta ---------- */
   let ultMexida = Date.now(), saiuEm = 0;
+  // ler também é estudar: qualquer sinal de presença (mouse passando, seleção, rolagem) mantém a sessão ativa
+  const EVS = ['pointerdown', 'pointermove', 'mousemove', 'keydown', 'scroll', 'wheel', 'touchstart', 'touchmove', 'selectionchange', 'focus'];
   const mexeu = () => { ultMexida = Date.now(); };
-  ['pointerdown', 'keydown', 'scroll', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, mexeu, { passive: true, capture: true }));
+  EVS.forEach(ev => addEventListener(ev, mexeu, { passive: true, capture: true }));
+  D.addEventListener('selectionchange', mexeu);
   // aulas em iframe (Patologia): mexida dentro da aula também conta
-  const ligaIframes = () => D.querySelectorAll('iframe').forEach(f => { try { const d = f.contentDocument; if (d && !d.__vgc) { d.__vgc = 1; ['pointerdown', 'keydown', 'scroll', 'wheel', 'touchstart'].forEach(ev => d.addEventListener(ev, mexeu, { passive: true, capture: true })); } } catch (e) {} });
+  const ligaIframes = () => D.querySelectorAll('iframe').forEach(f => { try { const d = f.contentDocument; if (d && !d.__vgc) { d.__vgc = 1; EVS.forEach(ev => d.addEventListener(ev, mexeu, { passive: true, capture: true })); } } catch (e) {} });
   D.addEventListener('load', e => { if (e.target && e.target.tagName === 'IFRAME') ligaIframes(); }, true);
 
   function fecha(d, a) { // encerra a sessão a; só guarda se teve tempo ativo suficiente
