@@ -197,5 +197,19 @@
     "d": 1795652162651
    }
   ]
+ },
+ "Patologia médica/aulas/aula1.html": {
+  "t": [
+   {
+    "id": "emwxjb2g4",
+    "tag": "figcaption",
+    "q": "Esquema das três túnicas de uma artéria",
+    "pre": "ologia vascular é erro de compartimento.",
+    "pos": "Observe na imagem a sequência de dentro ",
+    "r": "Esquema das três túnicas de uma artéria<br><span style=\"color: rgb(79, 224, 207);\">Fonte:&nbsp;</span><span class=\"rQesXe MPyX\" data-sfc-cp=\"\" jsaction=\"\" jscontroller=\"tP2kf#s32ZS\" data-sfc-root=\"c\" jsuid=\"Nkmilf_c\" style=\"font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(10, 10, 10);\"><span data-subtree=\"aimfl,mfl\" style=\"margin: 0px; border-bottom: 0px rgb(10, 10, 10);\">Histologia Básica: Texto &amp; Atlas</span><!--TgQPHd|||[]--></span>",
+    "d": 1795696484345
+   }
+  ],
+  "b": []
  }
 }
