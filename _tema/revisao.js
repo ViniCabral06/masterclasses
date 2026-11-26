@@ -22,8 +22,7 @@ const CFG={
       foco:['a08-1','a11-1','a12-1','a13-1','a08-5','a14-1','a09-1','a10-1'],
       grupos:[
       {t:'🎯 Foco da professora: a matéria nova',ids:['a08','a09','a10','a11','a12','a13','a14'],open:true,badge:['🎯 Foco da professora','foco']},
-      {t:'Também cai',ids:['a07'],open:true,nota:'Dislipidemia: a professora avisou cerca de 1 questão.'},
-      {t:'Matéria passada: entra como valor no enunciado',ids:['a01','a02','a03','a04','a05','a06'],open:false,nota:'Saiba ler o valor de cabeça (Hb, VCM, plaquetas, creatinina). PCR, VHS e procalcitonina agora estão na Aula 11.'}]}},
+      {t:'Também cai',ids:['a07'],open:true,nota:'Dislipidemia: a professora avisou cerca de 1 questão.'}]}},
   img:{nome:'Propedêutica de imagem',
     par:{sub:'Aulas 1 a 7 · tórax',ids:['a01','a02','a03','a04','a05','a06','a07'],g:'somativas',prova:'Somativas 77 a 82'},
     som:{sub:'Semestre inteiro',g:'somativas',prova:'Somativas 77 a 82',grupos:[
