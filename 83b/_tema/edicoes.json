@@ -197,5 +197,281 @@
     "d": 1795652162651
    }
   ]
+ },
+ "Patologia médica/aulas/aula1.html": {
+  "t": [
+   {
+    "id": "emwxjb2g4",
+    "tag": "figcaption",
+    "q": "Esquema das três túnicas de uma artéria",
+    "pre": "ologia vascular é erro de compartimento.",
+    "pos": "Observe na imagem a sequência de dentro ",
+    "r": "Esquema das três túnicas de uma artéria<br><span style=\"color: rgb(79, 224, 207);\">Fonte:&nbsp;</span><span class=\"rQesXe MPyX\" data-sfc-cp=\"\" jsaction=\"\" jscontroller=\"tP2kf#s32ZS\" data-sfc-root=\"c\" jsuid=\"Nkmilf_c\" style=\"font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(10, 10, 10);\"><span data-subtree=\"aimfl,mfl\" style=\"margin: 0px; border-bottom: 0px rgb(10, 10, 10);\"><span style=\"font-size: 11pt;\"><span style=\"font-size: 10pt;\">Histologia Básica: Texto &amp; Atlas</span></span></span><!--TgQPHd|||[]--></span>",
+    "d": 1795696543522
+   },
+   {
+    "id": "emwxjdzju",
+    "tag": "figcaption",
+    "q": "Histologia de artéria muscular em HE",
+    "pre": "as (nervi vascularis) e os vasa vasorum.",
+    "pos": "Nesta lâmina, identifique a lâmina elást",
+    "r": "Histologia de artéria muscular em HE<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(79, 224, 207);\">Fonte: </span><span class=\"rQesXe MPyX\" data-sfc-cp=\"\" jsaction=\"\" jscontroller=\"tP2kf#s32ZS\" data-sfc-root=\"c\" jsuid=\"Nkmilf_c\" style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(10, 10, 10);\"><span data-subtree=\"aimfl,mfl\" style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); margin: 0px; border-bottom: 0px rgb(10, 10, 10);\"><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-size: 11pt;\"><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-size: 10pt;\">Histologia Básica: Texto &amp; Atlas</span></span></span></span>",
+    "d": 1795696595963
+   },
+   {
+    "id": "emwxjfufa",
+    "tag": "figcaption",
+    "q": "Distribuição da aterosclerose no organismo",
+    "pre": "oce. Onde a placa se instala — e por quê",
+    "pos": "Na figura, as marcas amarelas indicam os",
+    "r": "Distribuição da aterosclerose no organismo<br><span style=\"color: rgb(79, 224, 207);\">Fonte: </span><span style=\"color: rgb(153, 153, 153);\">Junqueira e Carneiro, 2023</span><div class=\"yhAwj\" data-sfc-cp=\"\" jsaction=\"rcuQ6b:&amp;u7RS4e_2t|npT2md\" jscontroller=\"UTzWVc#U8DOt\" data-sfc-root=\"c\" jsuid=\"u7RS4e_2t\" data-complete=\"true\" data-processed=\"true\" data-sfc-inited=\"2\" style=\"font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);\"><!--TgQPHd|||[]--></div><div jsuid=\"u7RS4e_2u\" class=\"AHmQrc\" data-sfc-cp=\"\" jsaction=\"rcuQ6b:&amp;u7RS4e_2u|npT2md\" jscontroller=\"LkYPVc#wdvZmf\" data-sfc-root=\"c\" data-hveid=\"CAIIJRAA\" data-complete=\"true\" data-processed=\"true\" data-sfc-inited=\"2\" style=\"font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);\"><div class=\"n6owBd awi2gc\" data-sfc-cp=\"\" jsaction=\"\" jscontroller=\"TDBkbc#Ml18Xb\" data-sfc-root=\"c\" jsuid=\"u7RS4e_2v\" data-hveid=\"CAIIJRAB\" data-complete=\"true\" data-processed=\"true\" aria-owns=\"action-menu-parent-container\" style=\"font-size: 16px; margin: 12px 0px 16px; border-bottom: 0px rgb(22, 23, 26);\"></div></div>",
+    "d": 1795696775526,
+    "st": "font-size: 10pt;"
+   },
+   {
+    "id": "emwxjj9lf",
+    "tag": "figcaption",
+    "q": "Aorta de necropsia com placas ateromatosas",
+    "pre": " caso clínico da aorta (slides iniciais)",
+    "pos": "Este é o achado que o professor apresent",
+    "r": "Aorta de necropsia com placas ateromatosas<br><span style=\"color: rgb(79, 224, 207);\"></span><span style=\"font-size: 10pt;\"><span style=\"color: rgb(79, 224, 207);\">Fonte: </span><span style=\"color: rgb(153, 153, 153);\">Anatpat-UNICAMP (peça C-25A)</span></span><span style=\"color: rgb(153, 153, 153);\"></span>",
+    "d": 1795696967983
+   },
+   {
+    "id": "emwxjkay2",
+    "tag": "figcaption",
+    "q": "Aneurisma sacular de aorta abdominal",
+    "pre": "co macroscópico: aterosclerose de aorta.",
+    "pos": "O segundo tempo do mesmo caso: dilatação",
+    "r": "Aneurisma sacular de aorta abdominal<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(79, 224, 207);\"></span><span style=\"font-size: 10pt;\"><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(153, 153, 153);\">Anatpat-UNICAMP (peça C-46)</span></span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(153, 153, 153);\"></span>",
+    "d": 1795696965045
+   },
+   {
+    "id": "emwxjlq4n",
+    "tag": "figcaption",
+    "q": "Aneurisma aberto com trombo mural",
+    "pre": " segmento adjacente, à esquerda na peça.",
+    "pos": "Aberto, o saco aneurismático revela mate",
+    "r": "Aneurisma aberto com trombo mural<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(79, 224, 207);\"></span><span style=\"font-size: 10pt;\"><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(153, 153, 153);\">Anatpat-UNICAMP (peça C-46)</span></span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(153, 153, 153);\"></span>",
+    "d": 1795696959951
+   },
+   {
+    "id": "emwxjo9d8",
+    "tag": "figcaption",
+    "q": "Patogênese — lesão endotelial crônica e adesão de monócitos",
+    "pre": "ento inicial\" e \"qual célula faz o quê\".",
+    "pos": "Passo 1 — Lesão endotelial crônica. Não ",
+    "r": "Patogênese — lesão endotelial crônica e adesão de monócitos<br><span style=\"font-family: Calibri;\"><span style=\"color: rgb(79, 224, 207);\">Fonte: </span><span style=\"color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span></span>",
+    "d": 1795697115345
+   },
+   {
+    "id": "emwxjpdip",
+    "tag": "figcaption",
+    "q": "Patogênese — ativação de macrófagos, recrutamento de CML e estria gordurosa",
+    "pre": "tas aderem a áreas de endotélio desnudo.",
+    "pos": "Passo 4 — Do infiltrado à estria gorduro",
+    "r": "Patogênese — ativação de macrófagos, recrutamento de CML e estria gordurosa<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697127673
+   },
+   {
+    "id": "emwxjpff3",
+    "tag": "figcaption",
+    "q": "Patogênese — proliferação de CML, deposição de matriz e ateroma fibroadiposo",
+    "pre": "produzir colágeno e matriz extracelular.",
+    "pos": "Passo 6 — Placa constituída. O resultado",
+    "r": "Patogênese — proliferação de CML, deposição de matriz e ateroma fibroadiposo<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697131024
+   },
+   {
+    "id": "emwxjqnhn",
+    "tag": "figcaption",
+    "q": "Estrias lipídicas em aorta, com coloração pelo Sudan à direita",
+    "pre": "etamente elevadas, e sem obstruir a luz.",
+    "pos": "À esquerda, a aorta em HE/natural: note ",
+    "r": "Estrias lipídicas em aorta, com coloração pelo Sudan à direita<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697259557
+   },
+   {
+    "id": "emwxjrnxd",
+    "tag": "figcaption",
+    "q": "Histologia da estria lipídica — células espumosas subendoteliais",
+    "pre": " doença é maior do que o olho nu mostra.",
+    "pos": "Na microscopia, procure logo abaixo do e",
+    "r": "Histologia da estria lipídica — células espumosas subendoteliais<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697255734
+   },
+   {
+    "id": "emwxjs96z",
+    "tag": "figcaption",
+    "q": "Aorta com placas ateromatosas comparada a aorta pouco acometida",
+    "pre": "fluentes, de coloração branco-amarelada.",
+    "pos": "Comparação direta e muito didática. Na p",
+    "r": "Aorta com placas ateromatosas comparada a aorta pouco acometida<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697263426
+   },
+   {
+    "id": "emwxjsown",
+    "tag": "figcaption",
+    "q": "Esquema da placa ateromatosa — capa fibrosa e centro necrótico",
+    "pre": "esentérica. Os três componentes da placa",
+    "pos": "Capa fibrosa — o teto. Colágeno, CML de ",
+    "r": "Esquema da placa ateromatosa — capa fibrosa e centro necrótico<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697299519
+   },
+   {
+    "id": "emwxjt40q",
+    "tag": "figcaption",
+    "q": "Histologia panorâmica de placa ateromatosa",
+    "pre": "transição da placa\", está falando disso.",
+    "pos": "Na visão panorâmica, oriente-se por três",
+    "r": "Histologia panorâmica de placa ateromatosa<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697302272
+   },
+   {
+    "id": "emwxjtknf",
+    "tag": "figcaption",
+    "q": "Detalhe da capa fibrosa e macrófagos xantomatosos",
+    "pre": "a o oposto, um padrão típico do ateroma.",
+    "pos": "Em maior aumento: acima e à esquerda, a ",
+    "r": "Detalhe da capa fibrosa e macrófagos xantomatosos<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697329158
+   },
+   {
+    "id": "emwxjtqwe",
+    "tag": "figcaption",
+    "q": "Células espumosas e cristais de colesterol",
+    "pre": "tamente onde as metaloproteinases atuam.",
+    "pos": "Fendas de cristais de colesterol no cent",
+    "r": "Células espumosas e cristais de colesterol<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697331388
+   },
+   {
+    "id": "emwxjtslp",
+    "tag": "figcaption",
+    "q": "Fendas de cristais de colesterol no centro necrótico",
+    "pre": "atologia - bases patológicas das doenças",
+    "pos": "Nas duas imagens acima, o achado a trein",
+    "r": "Fendas de cristais de colesterol no centro necrótico<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697333026
+   },
+   {
+    "id": "emwxjunpr",
+    "tag": "figcaption",
+    "q": "Lâmina de aterosclerose com anotações da aula",
+    "pre": ": não basta a placa, é preciso o trombo.",
+    "pos": "Esta é a lâmina do roteiro prático, com ",
+    "r": "Lâmina de aterosclerose com anotações da aula<br><span style=\"font-family: &quot;Instrument Sans&quot;;\">Fonte: Acervo de lâminas FCMMG&nbsp;</span>",
+    "d": 1795697408651
+   },
+   {
+    "id": "emwxjvg80",
+    "tag": "figcaption",
+    "q": "Placa com trombo — histologia",
+    "pre": "rombo é sangue coagulado sobre a parede.",
+    "pos": "Na lâmina, a luz residual está ocupada p",
+    "r": "Placa com trombo — histologia<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697411946
+   },
+   {
+    "id": "emwxjvroz",
+    "tag": "figcaption",
+    "q": "Placa ateromatosa com calcificação",
+    "pre": " mais antiga a placa, maior tende a ser.",
+    "pos": "À direita da imagem, dentro da placa, no",
+    "r": "Placa ateromatosa com calcificação<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697437093
+   },
+   {
+    "id": "emwxjw262",
+    "tag": "figcaption",
+    "q": "Duas coronárias em HE — placa estável e placa instável",
+    "pre": "remodelamento de Glagov visto na lâmina.",
+    "pos": "Nesta dupla, a pergunta é qual tem mais ",
+    "r": "Duas coronárias em HE — placa estável e placa instável<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697440143
+   },
+   {
+    "id": "emwxjw4is",
+    "tag": "figcaption",
+    "q": "Duas coronárias em corte transversal",
+    "pre": "fina + núcleo grande + muita inflamação.",
+    "pos": "A pergunta do slide — \"qual coronária ap",
+    "r": "Duas coronárias em corte transversal<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697443555
+   },
+   {
+    "id": "emwxjw75n",
+    "tag": "figcaption",
+    "q": "Esquema de placa com grande núcleo lipídico e capa fibrosa fina",
+    "pre": "mitente, isquemia previsível ao esforço.",
+    "pos": "Placa instável (\"mole\", vulnerável): pre",
+    "r": "Esquema de placa com grande núcleo lipídico e capa fibrosa fina<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697445362
+   },
+   {
+    "id": "emwxjw8v2",
+    "tag": "figcaption",
+    "q": "Esquema de placa com capa fibrosa espessa e pequeno núcleo lipídico",
+    "pre": "rConcluir segmentoPróximo As duas placas",
+    "pos": "Placa estável (\"dura\"): predomina o comp",
+    "r": "Esquema de placa com capa fibrosa espessa e pequeno núcleo lipídico<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697475556
+   },
+   {
+    "id": "emwxjwvuc",
+    "tag": "figcaption",
+    "q": "Placa ateromatosa ulcerada com trombo",
+    "pre": "4. Trombose — a complicação mais temida.",
+    "pos": "Aorta com placas confluentes, superfície",
+    "r": "Placa ateromatosa ulcerada com trombo<br><span style=\"color: rgb(79, 224, 207);\">Fonte: </span><span style=\"color: rgb(102, 102, 102);\">UNICAMP ([s.d.])</span>",
+    "d": 1795697497687
+   },
+   {
+    "id": "emwxjxh42",
+    "tag": "figcaption",
+    "q": "Trombo sobre aterosclerose em aorta",
+    "pre": "aderido — trombo sobre a lesão ulcerada.",
+    "pos": "Aqui a distinção está rotulada: as setas",
+    "r": "Trombo sobre aterosclerose em aorta<br><span style=\"color: rgb(102, 102, 102);\">UNICAMP ([s.d.])</span>",
+    "d": 1795697509580
+   },
+   {
+    "id": "emwxjxzi3",
+    "tag": "figcaption",
+    "q": "Aneurisma de aorta abdominal — fechado e aberto",
+    "pre": "radação de matriz por metaloproteinases.",
+    "pos": "À esquerda, o aneurisma fechado: dilataç",
+    "r": "Aneurisma de aorta abdominal — fechado e aberto<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(79, 224, 207);\">Fonte: </span><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-family: Calibri; color: rgb(102, 102, 102);\">Robbins &amp; Cotran: Patologia - bases patológicas das doenças</span>",
+    "d": 1795697559636
+   },
+   {
+    "id": "emwxjz5pa",
+    "tag": "figcaption",
+    "q": "Esquema das camadas do coração e do pericárdio",
+    "pre": "ensa dilatando (parede fina). As camadas",
+    "pos": "De dentro para fora: endocárdio (endotél",
+    "r": "Esquema das camadas do coração e do pericárdio<br><span class=\"rQesXe MPyX\" data-sfc-cp=\"\" jsaction=\"\" jscontroller=\"tP2kf#s32ZS\" data-sfc-root=\"c\" jsuid=\"YdXgme_97\" data-complete=\"true\" style=\"font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; font-size: 16px; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);\"></span><span style=\"font-size: 11pt;\"><span style=\"font-size: 10pt;\"><span class=\"rQesXe MPyX\" data-sfc-cp=\"\" jsaction=\"\" jscontroller=\"tP2kf#s32ZS\" data-sfc-root=\"c\" jsuid=\"YdXgme_97\" data-complete=\"true\" style=\"font-family: &quot;Google Sans&quot;, Arial, sans-serif, &quot;Noto Color Emoji&quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);\"><span style=\"color: rgb(79, 224, 207);\">Fonte:</span><!--TgQPHd|||[]--></span> Adaptado de Vecteezy ([202-?]).</span></span>",
+    "d": 1795697630100
+   },
+   {
+    "id": "emwxk0hfc",
+    "tag": "figcaption",
+    "q": "Endocárdio em maior aumento",
+    "pre": "errada em prova de histologia/patologia.",
+    "pos": "No endocárdio, identifique a superfície ",
+    "r": "Endocárdio em maior aumento<br><span style=\"color: rgb(79, 224, 207);\">Fonte:</span> CONTAMINA GONZALVO, P. <span style=\"font-weight: bold;\">Atlas de Histología</span>",
+    "d": 1795697701106
+   },
+   {
+    "id": "emwxk1sle",
+    "tag": "figcaption",
+    "q": "Epicárdio e cavidade pericárdica",
+    "pre": "idamente mais eosinofílicas e volumosas.",
+    "pos": "No epicárdio, o achado que orienta é a c",
+    "r": "Epicárdio e cavidade pericárdica<br><span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); color: rgb(79, 224, 207);\">Fonte:</span> CONTAMINA GONZALVO, P. <span style=\"scrollbar-color: rgba(11, 16, 21, 0.22) rgba(0, 0, 0, 0); font-weight: bold;\">Atlas de Histología</span>",
+    "d": 1795697706279
+   }
+  ],
+  "b": []
  }
 }
