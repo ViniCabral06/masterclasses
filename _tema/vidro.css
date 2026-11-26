@@ -158,11 +158,6 @@ html.vg-puro #vidro-pers .vp-pv.liso{background:#000}
 #vidro-pers .vp-fonte button:hover:not(:disabled){background:var(--vg-btnh)}
 #vidro-pers .vp-fonte button:disabled{opacity:.38;cursor:default}
 #vidro-pers .vp-fonte .vp-fv{font-size:13px;font-variant-numeric:tabular-nums;font-weight:600}
-#vidro-pers .vp-bkp{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-#vidro-pers .vp-bkp button{height:34px;border-radius:12px;background:var(--vg-hov);box-shadow:inset 0 0 0 1px var(--vg-edge);font-weight:600;font-size:12.5px}
-#vidro-pers .vp-bkp button:hover{background:var(--vg-btnh)}
-#vidro-pers .vp-bkp-msg{display:block;margin-top:6px;font-size:11.5px;color:var(--vg-muted)}
-#vidro-pers .vp-bkp-msg:empty{display:none}
 @media (max-width:860px){#vidro-pers{right:12px;bottom:calc(58px + env(safe-area-inset-bottom))}}
 @media (prefers-reduced-motion:reduce){html.vidro-ready body > #vidro-pers{animation:none!important}#vidro-pers .vp-sw,#vidro-pers .vp-sw::after{transition:none}}
 #vidro-home{position:fixed;left:50%;bottom:16px;z-index:95;transform:translateX(-50%) translateY(80px);opacity:0;height:40px;padding:0 16px;border-radius:999px;

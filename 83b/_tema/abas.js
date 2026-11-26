@@ -724,7 +724,7 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
       + '<button type="button" class="vga-aj" data-aj="flash" hidden><span class="tx">🃏 Flashcards<small>Revisão espaçada e lacunas da matéria</small></span><span aria-hidden="true">›</span></button>'
       + '<button type="button" class="vga-aj" data-aj="val" hidden><span class="tx">🧪 Valores de referência<small>Hemograma, eletrólitos, gasometria, fígado e rim (Alt+V)</small></span><span aria-hidden="true">›</span></button>'
       + '<button type="button" class="vga-aj" data-aj="conc" hidden><span class="tx">📊 Meu rendimento<small>Tempo ativo, horários e fatores que ajudam ou atrapalham</small></span><span aria-hidden="true">›</span></button>'
-      + '<button type="button" class="vga-aj" data-aj="pers"><span class="tx">🎨 Personalização<small>Tema claro ou escuro, fundo, fonte, cor e backup</small></span><span aria-hidden="true">›</span></button><hr>';
+      + '<button type="button" class="vga-aj" data-aj="pers"><span class="tx">🎨 Personalização<small>Tema claro ou escuro, fundo, fonte e cor</small></span><span aria-hidden="true">›</span></button><hr>';
     const pintaTema = () => { const b = aj.querySelector('[data-aj=tema]'), on = html.dataset.theme === 'light'; b.setAttribute('aria-checked', String(on)); b.classList.toggle('off', !on); };
     pintaTema(); new MutationObserver(pintaTema).observe(html, { attributes: true, attributeFilter: ['data-theme'] });
     // 🍅 Pomodoro (_tema/pomodoro.js): a chave só aparece onde o script existe

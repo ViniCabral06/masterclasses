@@ -171,53 +171,6 @@ if (html.dataset.vidro !== 'th4' && !html.classList.contains('vidro-aula')) {
   painel.insertAdjacentHTML('beforeend', `<div class="vp-sec vp-linha" data-sec="pomo" hidden><span><span class="vp-l">🍅 Pomodoro</span><small>Foco e pausa com alarme. Fica escondido: chame pelo tomatinho no canto.</small></span><button type="button" id="vp-pomo" class="vp-sw" role="switch" aria-label="Pomodoro" aria-checked="false"></button></div>`);
   addEventListener('vgpomo', () => { if (!painel.hidden) pintarPainel(); });
 }
-// 💾 Backup do progresso (todas as matérias): exporta/importa JSON sem token do editor nem benchmark da máquina
-const BKP_PULA = /^(vg-ed-tok|vg-ed-on|vidro-lento)$/;
-function bkpExportar() {
-  const dados = {};
-  try {
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (k && !BKP_PULA.test(k)) dados[k] = localStorage.getItem(k);
-    }
-  } catch (_) {}
-  const n = Object.keys(dados).length;
-  const arq = { app: 'masterclasses-medicina', v: 1, data: new Date().toISOString(), itens: n, dados };
-  const blob = new Blob([JSON.stringify(arq, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a'), url = URL.createObjectURL(blob);
-  const d = new Date(), pad = x => String(x).padStart(2, '0');
-  a.href = url; a.download = `masterclasses-backup-${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}.json`;
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-  return n;
-}
-function bkpImportar(aoFim) {
-  const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'application/json,.json';
-  inp.onchange = () => {
-    const f = inp.files && inp.files[0]; if (!f) return;
-    const r = new FileReader();
-    r.onload = () => {
-      try {
-        const j = JSON.parse(String(r.result || ''));
-        if (!j || j.app !== 'masterclasses-medicina' || !j.dados || typeof j.dados !== 'object') throw new Error('formato');
-        const ks = Object.keys(j.dados).filter(k => !BKP_PULA.test(k));
-        if (!ks.length) throw new Error('vazio');
-        const dt = j.data ? new Date(j.data).toLocaleString('pt-BR') : 'data desconhecida';
-        if (!confirm(`Restaurar backup de ${dt} (${ks.length} itens)?\n\nIsso substitui o progresso salvo neste navegador.`)) return;
-        let ok = 0;
-        ks.forEach(k => { try { localStorage.setItem(k, String(j.dados[k])); ok++; } catch (_) {} });
-        if (aoFim) aoFim(`Restaurados ${ok} itens. Recarregando…`);
-        setTimeout(() => location.reload(), 400);
-      } catch (_) {
-        if (aoFim) aoFim('Arquivo inválido: escolha um backup exportado deste site.');
-      }
-    };
-    r.readAsText(f);
-  };
-  inp.click();
-}
-window.VGBackup = { exportar: bkpExportar, importar: bkpImportar };
-painel.insertAdjacentHTML('beforeend', `<div class="vp-sec"><span class="vp-l">Progresso (todas as matérias)</span><div class="vp-bkp"><button type="button" data-bkp="exp">⬇ Exportar</button><button type="button" data-bkp="imp">⬆ Importar</button></div><small class="vp-bkp-msg"></small></div>`);
 document.body.append(painel);
 const temaBtnQualquer = () => themeBtn() || document.querySelector(THEME_SEL);
 function pintarPainel() {
@@ -266,12 +219,6 @@ painel.addEventListener('click', e => {
     const d = Number(b.dataset.fs), cur = Number(store.get('vidro-fonte', 100)) || 100;
     const prox = d === 0 ? 100 : Math.max(85, Math.min(135, cur + d));
     store.set('vidro-fonte', prox); aplicarPrefs(); pintarPainel(); return;
-  }
-  if (b.dataset.bkp) {
-    const msg = painel.querySelector('.vp-bkp-msg');
-    if (b.dataset.bkp === 'exp') { const n = bkpExportar(); if (msg) msg.textContent = `Backup baixado (${n} itens salvos).`; }
-    else bkpImportar(t => { if (msg) msg.textContent = t; });
-    return;
   }
   if (b.id === 'vp-fx') setCalmo(!html.classList.contains('vidro-calmo'));
   if (b.id === 'vp-pomo' && window.VGPomo) { const on = !window.VGPomo.ligado(); b.setAttribute('aria-checked', String(on)); if (on) { abrirPainel(false); window.VGPomo.ligar(); } else window.VGPomo.desligar(); }
