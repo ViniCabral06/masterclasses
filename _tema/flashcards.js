@@ -760,6 +760,66 @@
       var cBtn = 'vgfc-ab-add ' + (na2 ? 'ok' : 'pri');
       if (btAdd.className !== cBtn) btAdd.className = cBtn; /* regravar igual também dispara o observer de 'class' */
     }
+    /* 3) Item "🃏 Flashcards" na aba "Reta final / Revisão final" da barra lateral (quando não existir nativamente) */
+    poeItemSidebar(d, st);
+  }
+
+  function poeItemSidebar(d, st) {
+    if (html.classList.contains('vidro-aula')) return;
+    var side = D.querySelector('aside, #sb, #sidebar, #side, nav.sb-nav, #nav, .s-nav');
+    if (!side) return;
+    var lbl = (!st.tudo && st.aulas === 0) ? 'montar' : (st.hoje ? st.hoje + ' hoje' : 'em dia');
+    var ja = side.querySelector('.vgfc-sb-it');
+    if (ja) {
+      var sm = ja.querySelector('.vgfc-sb-c');
+      if (sm && sm.textContent !== lbl) sm.textContent = lbl;
+      return;
+    }
+    /* se a matéria já tem item nativo "Flashcards" na sidebar (Patologia, Humanização, Português), não duplica */
+    var itens = side.querySelectorAll('.it, .sb, button, a');
+    for (var i = 0; i < itens.length; i++) {
+      if (/\bflashcards\b/i.test(itens[i].textContent || '')) return;
+    }
+    /* encontra o grupo "Reta final" ou "Revisão final" */
+    var alvoBox = null, refItem = null;
+    var grps = side.querySelectorAll('.grp, .sb-bloco, details, section');
+    for (var g = 0; g < grps.length; g++) {
+      var hd = grps[g].querySelector('.grp-h, .sb-bloco-h, summary, .gh, h3, h4');
+      if (hd && /reta\s*final|revis[aã]o\s*final/i.test(hd.textContent || '')) {
+        alvoBox = grps[g].querySelector('.grp-items, .grp-b, .sb-bloco-c, .items') || grps[g];
+        refItem = alvoBox.querySelector('.it, button, a');
+        break;
+      }
+    }
+    /* fallback: item solto "Revisão final" / "Minha revisão" (Microbiologia / Semiologia) */
+    if (!alvoBox) {
+      for (var j = 0; j < itens.length; j++) {
+        if (/^(?:🔁\s*)?(?:revis[aã]o\s*final|reta\s*final|minha\s*revis[aã]o)/i.test((itens[j].textContent || '').trim())) {
+          alvoBox = itens[j].parentElement;
+          refItem = itens[j];
+          break;
+        }
+      }
+    }
+    if (!alvoBox) return;
+    var el = D.createElement(refItem && refItem.tagName === 'BUTTON' ? 'button' : 'div');
+    if (el.tagName === 'BUTTON') el.type = 'button';
+    el.className = (refItem ? refItem.className.replace(/\b(?:active|on|isdone)\b/g, '').trim() + ' ' : 'it ') + 'vgfc-sb-it';
+    el.setAttribute('role', 'button');
+    el.tabIndex = 0;
+    var temNo = refItem && refItem.querySelector('.no');
+    var temLb = refItem && refItem.querySelector('.lb');
+    if (temLb) {
+      el.innerHTML = '<span class="lb">🃏 Flashcards</span><small class="vgfc-sb-c" style="opacity:.7;font-size:11.5px;margin-left:auto">' + lbl + '</small>';
+    } else if (temNo) {
+      el.innerHTML = '<span class="no">🃏</span><span class="x">Flashcards</span><small class="vgfc-sb-c" style="opacity:.7;font-size:11.5px;margin-left:auto">' + lbl + '</small>';
+    } else {
+      el.innerHTML = '<span class="x">🃏 Flashcards</span><small class="vgfc-sb-c" style="opacity:.7;font-size:11.5px;margin-left:auto">' + lbl + '</small>';
+    }
+    var abre = function (e) { e.preventDefault(); e.stopPropagation(); abrirModal(K); };
+    el.addEventListener('click', abre);
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') abre(e); });
+    alvoBox.appendChild(el);
   }
 
   function iniciarAuto() {
