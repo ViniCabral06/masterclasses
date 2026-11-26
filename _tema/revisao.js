@@ -85,9 +85,11 @@ function esquemaDe(l){
     const m=ESQUEMAS.split('<h3>').slice(1).find(p=>new RegExp('^Aula '+l.number+'\\b').test(p));
     if(m)return '<div class="rx-esq"><div class="rx-esqt">Esquema da aula</div>'+m.slice(m.indexOf('</h3>')+5).replace(/<\/section>/g,'')+'</div>';
   }
+  return sinaisDe(l);
+}
+function sinaisDe(l){
   const S=(XD.sinais||[]).filter(s=>s.aula===l.id);
-  const sin=S.length?'<div class="rx-esq"><div class="rx-esqt">'+(V==='lab'?'Valores para saber de cabeça':'Sinais e conceitos para reconhecer')+'</div><div class="table"><table class="rx-tab"><tbody>'+S.map(s=>'<tr><th scope="row">'+E(s.t)+'</th><td>'+E(s.d)+'</td></tr>').join('')+'</tbody></table></div></div>':'';
-  return r1h(l)+sin;
+  return S.length?'<div class="rx-esq"><div class="rx-esqt">'+(V==='lab'?'🧮 Valores para saber de cabeça':'🔎 Sinais e conceitos para reconhecer')+'</div><div class="table"><table class="rx-tab"><tbody>'+S.map(s=>'<tr><th scope="row">'+E(s.t)+'</th><td>'+E(s.d)+'</td></tr>').join('')+'</tbody></table></div></div>':'';
 }
 /* Revisão em 1 hora: imagens de exame, tabelas e fluxogramas de cada aula (campo r1h do extra-data do master) */
 function r1h(l){
@@ -142,6 +144,38 @@ function revisaoNova(){
 }
 const PG_RAIO=window.XPAGES&&XPAGES.repetem?'repetem':window.XPAGES&&XPAGES.raiox?'raiox':'cair';
 
+/* ---------- ⏰ Revisão em 1 hora (Imagem e Laboratorial): imagens, tabelas, fluxogramas e o essencial de cada aula ---------- */
+function horaPonto(l,s,g){
+  const rs=refsOf(s),n=nExam(rs,g),foco=bloco==='som'&&C.som.foco&&C.som.foco.includes(s.id);
+  return '<div class="hx-p'+(n>=2?' quente':'')+'"><h4>'+lk(l.id,s.title,s.id)+'</h4><div class="hx-chips">'+chip(n,g)+(foco?'<span class="rx-chip foco">🎯 foco</span>':'')+'</div>'+
+   ((s.keys||[]).length?'<ul>'+s.keys.slice(0,3).map(k=>'<li>'+E(k)+'</li>').join('')+'</ul>':'')+(s.trap?'<p class="rx-trap"><b>⚠️</b> '+E(s.trap)+'</p>':'')+'</div>';
+}
+function horaAula(l,g,min,fechada){
+  const n=l.sections.reduce((t,s)=>t+refsOf(s).filter(x=>x.group===g).length,0);
+  const pts=l.sections.map(s=>({s,n:nExam(refsOf(s),g)})).sort((a,b)=>b.n-a.n).map(o=>horaPonto(l,o.s,g)).join('');
+  const cab='<span class="rx-num">Aula '+l.number+' · ≈ '+min+' min</span><h3>'+E(l.title)+'</h3><span class="rx-n">'+(n?n+(n>1?' questões':' questão')+(g==='parciais'?' nas parciais':' nas somativas'):'nunca caiu'+(g==='parciais'?' nas parciais':' nas somativas'))+'</span>';
+  const corpo=(l.review?'<p class="rx-lema">'+E(l.review)+'</p>':'')+r1h(l)+sinaisDe(l)+'<div class="rx-esq"><div class="rx-esqt">✅ Pontos para gravar · do que mais caiu ao que menos caiu</div><div class="hx-pts">'+pts+'</div></div><p class="rx-acts">'+lk(l.id,'Estudar a Aula '+l.number)+' '+lk(l.id,'⭐ O que mais é cobrado',l.id+'-revisao')+'</p>';
+  return fechada?'<details class="rx-aula" id="hx-'+l.id+'"><summary class="rx-hd">'+cab+'</summary>'+corpo+'</details>':'<section class="rx-aula" id="hx-'+l.id+'"><div class="rx-hd">'+cab+'</div>'+corpo+'</section>';
+}
+function horaNova(){
+  const B=C[bloco],g=B.g;
+  const sw='<div class="rx-sw" role="group" aria-label="Qual prova">'+[['par','📘 Parcial',C.par.sub],['som','📕 Somativa',C.som.sub]].map(([k,t,d])=>'<button type="button" data-rxb="'+k+'" class="'+(bloco===k?'on':'')+'" aria-pressed="'+(bloco===k)+'"><b>'+t+'</b><span>'+E(d)+'</span></button>').join('')+'</div>';
+  const grupos=bloco==='par'?[{t:'',ids:C.par.ids,open:true}]:C.som.grupos;
+  const ls=ids=>ids.map(i=>lesById[i]).filter(Boolean);
+  const abertas=grupos.filter(gr=>gr.open).flatMap(gr=>ls(gr.ids));
+  const min=Math.max(3,Math.round(60/Math.max(1,abertas.length)));
+  const mapa='<nav class="rx-mapa" aria-label="Aulas">'+grupos.flatMap(gr=>ls(gr.ids)).map(l=>lk('hora','Aula '+l.number+' · '+l.title,'hx-'+l.id)).join('')+'</nav>';
+  let h=(typeof hero==='function'?hero('Revisão expressa · '+(bloco==='par'?'Parcial':'Somativa'),'Revisão em 1 hora',(V==='img'?'Em cada aula: as imagens de exame para reconhecer, as tabelas e os fluxogramas, e os pontos-chave':'Em cada aula: as tabelas, os fluxogramas e os valores para saber de cabeça, e os pontos-chave')+' com as pegadinhas, do tema que mais caiu ao que menos caiu. Cerca de '+min+' minutos por aula.'):'')+'<section class="section rx">'+sw;
+  if(bloco==='som'&&C.som.aviso)h+='<div class="panel rx-aviso"><b>🎯 O que a professora avisou</b><p>'+C.som.aviso+'</p></div>';
+  h+=mapa;
+  grupos.forEach(gr=>{const L=ls(gr.ids);if(!L.length)return;
+    if(gr.t)h+='<h2 class="rx-gt">'+E(gr.t)+'</h2>'+(gr.nota?'<p class="rx-lema">'+E(gr.nota)+'</p>':'');
+    h+=L.map(l=>horaAula(l,g,min,!gr.open)).join('');
+  });
+  h+='<p class="rx-acts">'+lk('revisao','📚 Revisão final, com as questões de prova')+' '+lk('simulados','Fazer as provas anteriores como simulado')+'</p></section>';
+  return h;
+}
+
 /* ---------- ⭐ O que mais é cobrado (por aula) ---------- */
 const velhoMais=typeof maisCobrado==='function'?maisCobrado:null;
 /* Foco de estudo (foco.js): "Somativas" mostra só o que caiu em somativas; "Parciais", só parciais; "Todas", tudo */
@@ -179,6 +213,7 @@ window.review=revisaoNova;try{review=revisaoNova}catch(e){}
 if(velhoMais){window.maisCobrado=maisNovo;try{maisCobrado=maisNovo}catch(e){}}
 if(window.XPAGES){
   XPAGES.revisao=revisaoNova;
+  if(XPAGES.hora&&(V==='img'||V==='lab'))XPAGES.hora=horaNova;
   if(XPAGES.raiox){const r0=XPAGES.raiox;XPAGES.raiox=a=>r0(a)+repetidas()}
   if(XPAGES.repetem)XPAGES.repetem=()=>(typeof hero==='function'?hero('Banca repetida','Questões que se repetem','Questões que voltaram em provas diferentes. Domine estas primeiro.'):'')+repetidas();
 }
@@ -218,6 +253,14 @@ details.rx-aula[open]>summary.rx-hd::after{transform:rotate(90deg)}
 .rx-esq .table,.rx-c .table{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .rx-tab{width:100%;font-size:14.5px}.rx-tab th[scope=row]{font-weight:600;text-align:left}
 .rx-r1h{display:grid;gap:14px;margin:0 0 14px}
+.hx-pts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:10px;margin:4px 0 0}
+.hx-p{border:1px solid var(--border);border-radius:14px;padding:12px 14px;background:var(--surface);min-width:0}
+.hx-p.quente{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.hx-p h4{margin:0 0 6px;font:650 16.5px/1.3 var(--sans)}.hx-p h4 a{color:var(--ink);text-decoration:none;font:inherit}
+.hx-chips{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 6px}
+.hx-p ul{margin:0;padding-left:18px}.hx-p li{margin:2px 0;font:400 14.5px/1.5 var(--sans)}
+.hx-p .rx-trap{margin:8px 0 0;font-size:13.5px}
+.hx-p li:empty,.rx-keys li:empty{display:none}
 .rx-imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:10px;margin:4px 0 0}
 .rx-imgs figure{margin:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--ground,#fff);display:flex;flex-direction:column;min-width:0}
 .rx-imgs img{display:block;width:100%;height:150px;object-fit:contain;background:#0d0f0e;cursor:zoom-in}
@@ -261,5 +304,5 @@ details.rx-q>summary{cursor:pointer;font:600 14px var(--sans);color:var(--ink)}
 `;document.head.appendChild(css);
 
 const [pg,an]=(location.hash.slice(1)||'').split('/');
-if(pg==='revisao'||pg==='cair'||pg==='raiox'||pg==='repetem'||(an&&/-revisao$/.test(an)))render({scroll:!!an&&pg!=='revisao'});
+if(pg==='revisao'||pg==='hora'||pg==='cair'||pg==='raiox'||pg==='repetem'||(an&&/-revisao$/.test(an)))render({scroll:!!an&&pg!=='revisao'});
 })();
