@@ -905,6 +905,7 @@ details.rvaula[open]>summary.rvhd::after{transform:rotate(90deg)}
 
 
 
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="semio";if(/[?&]vgindice=/.test(location.search)){window.__vgIndex=1;try{Storage.prototype.setItem=Storage.prototype.removeItem=Storage.prototype.clear=function(){}}catch(e){}}(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -947,6 +948,7 @@ details.rvaula[open]>summary.rvhd::after{transform:rotate(90deg)}
 <div id="vidro-load" style="--vl:#ffd93d" role="status" aria-label="Carregando Semiologia Médica I"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/></svg></div><div class="vl-t">Semiologia Médica I</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
 
 
 
@@ -1591,11 +1593,11 @@ function vgListaMontar(){
     return {id:'pv-'+P,tag:som?'Somativa · reconstruída':P==='EDS'?'Estudo Dirigido · somativa':P==='ED'?'Estudo Dirigido':'Prova parcial',titulo:PNAME(P),
       desc:som?`${qs.length} questões reconstruídas das justificativas oficiais; o gabarito é o oficial.`:P==='EDS'?`${qs.length} questões do estudo dirigido que o professor passou para a somativa; enunciado original, alternativas erradas reconstruídas.`:`${qs.length} questões${d.length?' + '+d.length+' discursiva'+(d.length>1?'s':''):''}, com o texto original da prova.`,
       qs:()=>qs.concat(d).map(vgQ)}});
-  if(LIB.length)provas.unshift({id:'pv-lib',tag:'Liberadas pelo professor',titulo:'🎯 Questões liberadas',desc:`${LIB.length} questões da prova que o professor não aplicou, com o texto dele. Treine até acertar todas.`,qs:()=>LIB.map(vgQ)});
+  const lib=LIB.length?[{id:'pv-lib',tag:'Liberadas pelo professor',titulo:'🎯 Questões liberadas',desc:`${LIB.length} questões da prova que o professor não aplicou, com o texto dele. Treine até acertar todas.`,qs:()=>LIB.map(vgQ)}]:[];
   const extras=Object.keys(PRESETS).map(k=>({id:'pre-'+k,tag:PRESETS[k].tag,titulo:PRESETS[k].nome,desc:PRESETS[k].desc,sorteio:true,n:PRESETS[k].n||30,qs:()=>buildSim(k,'',null,PRESETS[k].n||30).map(vgQ)}))
     .concat([{id:'nucleo',tag:'O que vai cair',titulo:'Núcleo · '+nuc.length+' questões',desc:'Os assuntos que caíram em 3 provas ou mais, em ordem aleatória.',sorteio:true,n:nuc.length,qs:()=>sample(nuc.map(c=>QMAP.get(c.rep)).filter(Boolean),999).map(vgQ)},
       {id:'mist',tag:'Das provas',titulo:'Mistão das provas · 30',desc:'30 questões sorteadas de todas as provas do acervo (somativas, parciais e Estudo Dirigido).',sorteio:true,n:30,qs:()=>sample(PQ.concat(PAR),30).map(vgQ)}]);
-  VGSim.lista(host,{chave:'semio-lista',grupos:[{titulo:'Provas anteriores',sub:'A prova inteira, como caiu.',itens:provas},{titulo:'Simulados',sub:'Montados por nós, no formato da prova.',itens:extras}],aoDesenhar:h=>hydrate(h),aoFim:vgFimMicro});
+  VGSim.lista(host,{chave:'semio-lista',grupos:(lib.length?[{titulo:'🎯 Liberadas pelo professor',sub:'As questões da prova que ele não aplicou. Treine até acertar todas.',itens:lib}]:[]).concat([{titulo:'Provas anteriores',sub:'A prova inteira, como caiu.',itens:provas},{titulo:'Simulados',sub:'Montados por nós, no formato da prova.',itens:extras}]),aoDesenhar:h=>hydrate(h),aoFim:vgFimMicro});
   return true;
 }
 function simBind(){
