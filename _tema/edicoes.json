@@ -234,8 +234,8 @@
     "q": "Aorta de necropsia com placas ateromatosas",
     "pre": " caso clínico da aorta (slides iniciais)",
     "pos": "Este é o achado que o professor apresent",
-    "r": "Aorta de necropsia com placas ateromatosas<br><span style=\"color: rgb(79, 224, 207);\">Fonte: </span><span style=\"color: rgb(153, 153, 153);\">Anatpat-UNICAMP (peça C-25A)</span>",
-    "d": 1795696881833
+    "r": "Aorta de necropsia com placas ateromatosas<br><span style=\"color: rgb(79, 224, 207);\"></span><span style=\"font-size: 10pt;\"><span style=\"color: rgb(79, 224, 207);\">Fonte: </span><span style=\"color: rgb(153, 153, 153);\">Anatpat-UNICAMP (peça C-25A)</span></span><span style=\"color: rgb(153, 153, 153);\"></span>",
+    "d": 1795696967983
    },
    {
     "id": "emwxjkay2",
