@@ -759,7 +759,8 @@
       var btAdd = bar.querySelector('.vgfc-ab-add');
       var tBtn = na2 ? '✓ Na lista da disciplina' : '+ Adicionar à lista da disciplina';
       if (btAdd.textContent !== tBtn) btAdd.textContent = tBtn;
-      btAdd.className = 'vgfc-ab-add ' + (na2 ? 'ok' : 'pri');
+      var cBtn = 'vgfc-ab-add ' + (na2 ? 'ok' : 'pri');
+      if (btAdd.className !== cBtn) btAdd.className = cBtn; /* regravar igual também dispara o observer de 'class' */
     }
   }
 

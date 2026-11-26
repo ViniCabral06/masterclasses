@@ -234,7 +234,8 @@
         b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); abrir(); });
         (p.querySelector('.vgf-b') || p).appendChild(b);
       }
-      b.innerHTML = '<span>🔥 Modo Reta Final</span><small>' + tag + '</small>';
+      /* só reescreve quando muda: o innerHTML gera mutação childList, que chamaria o observer de novo (laço infinito) */
+      if (b.dataset.tag !== tag) { b.dataset.tag = tag; b.innerHTML = '<span>🔥 Modo Reta Final</span><small>' + tag + '</small>'; }
     });
   }
   new MutationObserver(atualizaBotaoFoco).observe(D.documentElement, { childList: true, subtree: true });
