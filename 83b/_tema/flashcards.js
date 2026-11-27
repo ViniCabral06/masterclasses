@@ -184,6 +184,19 @@
       var mp2 = String(src || '').match(/\b(?:a|aula\s*)(\d+)\b/i);
       return mp2 ? 'a' + mp2[1] : '';
     }
+    /* 7) Fallback automático para qualquer matéria nova (padrão Microbiologia ou Caderno) */
+    var itGo = D.querySelector('.it.active[data-go],.it.on[data-go]');
+    if (itGo && itGo.dataset.go) {
+      var mg = itGo.dataset.go.match(/^(a\d+)\b/i);
+      if (mg) return mg[1].toLowerCase();
+    }
+    var secGen = D.querySelector('main section.section:not([hidden])');
+    if (secGen && secGen.id) {
+      var msGen = secGen.id.match(/^(a\d+)/i);
+      if (msGen) return msGen[1].toLowerCase();
+    }
+    var mhGen = location.hash.match(/#?(a\d+)\b/i);
+    if (mhGen) return mhGen[1].toLowerCase();
     return '';
   }
 
@@ -677,7 +690,8 @@
     if (K === 'micro' || K === 'semio') return D.querySelector('#view .page');
     if (K === 'farmaco') return D.querySelector('.pane.active,.pane.on,section.on,section.active');
     if (K === 'port') return D.querySelector('main section.on,main .pane.active,main .page,main');
-    return null;
+    /* fallback automático para matérias novas (padrão Caderno ou Microbiologia) */
+    return D.querySelector('main section.section:not([hidden])') || D.querySelector('#view .page') || D.querySelector('main .pane.active,main section.active,main .page');
   }
 
   function atualizaInterfaceAula(d) {

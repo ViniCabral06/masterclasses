@@ -3,6 +3,7 @@
 Uso:
   python conferir.py              confere todos os masters do hub (SUBJECTS no index.html)
   python conferir.py pasta/x.html confere só esse arquivo
+  python conferir.py --auditar    roda também a auditoria automatizada (auditar.py: equilíbrio, imagens, porquês, flashcards)
 
 Para cada item que falta, diz o que fazer e qual master serve de modelo. Rode antes de publicar um
 master novo (seja do Vinícius ou do Matheus) e corrija o que ele marcar. O publicar.py roda isto
@@ -55,6 +56,20 @@ def fim_do_master(s, pasta, aulas):
                                                  r'Simulad', r'Minha revis[aã]o'))
 
 
+def tem_flashcards(s, pasta, aulas):
+    """Matéria teórica/clínica entra com baralho por aula em _tema/flash/<chave>.txt e _tema/flashcards.js."""
+    k = CHAVE.get(pasta.name)
+    if not k:
+        return True
+    arq = ROOT / '_tema' / 'flash' / f'{k}.txt'
+    return arq.exists() and arq.stat().st_size > 0 and bool(re.search(r'_tema/flashcards\.js', s, re.I))
+
+
+def tem_ferramentas_estudo(s, pasta, aulas):
+    """Modo Reta Final (_tema/retafinal.js) e Valores de Referência (_tema/valores.js) incluídos pelo publicar.py."""
+    return bool(re.search(r'_tema/retafinal\.js', s, re.I) and re.search(r'_tema/valores\.js', s, re.I))
+
+
 ITENS = [
     ('Tema de vidro aplicado', tem(r'<!--vidro:cabeca-->|<!--vidro:'),
      'rode python publicar.py --local (o script põe o bloco do tema)'),
@@ -74,6 +89,14 @@ ITENS = [
     ('Seções finais (revisão final, o que vai cair, simulados, minha revisão)', fim_do_master,
      'feche o master como a Microbiologia: Revisão final (revisão em 1 hora com esquemas), O que vai cair, '
      'Simulados com as provas anteriores e Minha revisão'),
+    ('Simulado padrão (_tema/simulado.js)', tem(r'_tema/simulado\.js'),
+     'rode python publicar.py --local e monte a aba Simulados em VGSim.lista (inclui Monte seu simulado, riscar alternativas, '
+     'Valores e filtros na correção); veja a skill /simulados-masterclass'),
+    ('Flashcards por aula (_tema/flash/<chave>.txt)', tem_flashcards,
+     'crie o baralho por aula em _tema/flash/<chave>.txt (@titulo, @sub, # id | título, Frente :: Verso :: Frequência) '
+     'e rode python publicar.py --local (_tema/flashcards.js); veja a seção L.3 da skill masterclass-medica'),
+    ('Modo Reta Final e Valores de Referência', tem_ferramentas_estudo,
+     'rode python publicar.py --local (inclui _tema/retafinal.js e _tema/valores.js); veja a seção L.3 da skill'),
     ('Correção alternativa por alternativa', tem(r'<!--porque:inicio-->', r'VGCorrecao\.bloco', r'class="pv-alts'),
      'toda questão mostra "Por que as outras alternativas estão erradas" pelo _tema/correcao.js: dê porque e trecho a cada '
      'questão (py exportar_questoes.py → outro modelo → py conferir_porques.py → py importar_porques.py) e chame '
@@ -106,8 +129,12 @@ ITENS = [
 DISPENSA = {
     'TH4_Masterclass_OSCE.html': ({'Blocos parcial / somativa', 'Questões só de prova por capítulo', 'Aviso "nunca caiu"',
                                    'Página "O que mais cai"',
-                                   'Origem de cada questão marcada', 'Seções finais (revisão final, o que vai cair, simulados, minha revisão)', 'Correção alternativa por alternativa'}, 'prova prática (OSCE), sem provas escritas'),
-    'DIC_IV_Masterclass.html': ({'Crédito Vinícius e Matheus', 'Correção alternativa por alternativa'}, 'master do Thiaginho: o crédito é "Made by Thiaginho"; os exercícios dele não são múltipla escolha no formato do site'),
+                                   'Origem de cada questão marcada', 'Seções finais (revisão final, o que vai cair, simulados, minha revisão)',
+                                   'Simulado padrão (_tema/simulado.js)', 'Flashcards por aula (_tema/flash/<chave>.txt)',
+                                   'Modo Reta Final e Valores de Referência', 'Correção alternativa por alternativa'}, 'prova prática (OSCE), sem provas escritas'),
+    'DIC_IV_Masterclass.html': ({'Crédito Vinícius e Matheus', 'Correção alternativa por alternativa',
+                                 'Flashcards por aula (_tema/flash/<chave>.txt)', 'Modo Reta Final e Valores de Referência'},
+                                'master do Thiaginho: o crédito é "Made by Thiaginho"; os exercícios dele não são múltipla escolha no formato do site'),
 }
 
 

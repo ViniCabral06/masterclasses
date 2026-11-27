@@ -359,6 +359,12 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
 #vg-lista h1{margin:0 0 6px;font:400 34px/1.1 var(--vg-display,var(--serif,serif));letter-spacing:-.01em;color:var(--ink,inherit)}
 #vg-lista h2{margin:28px 0 10px;font:600 12px/1 var(--vg-text,system-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,var(--ink-2,#8a94a3))}
 #vg-lista p.s{margin:0 0 18px;color:var(--ink-2,inherit);font-size:14.5px}
+#vg-lista .vga-partes{display:flex;gap:4px;max-width:440px;margin:10px 0 14px;padding:4px;border-radius:999px;background:var(--surface,rgba(127,127,127,.08));border:1px solid var(--border,rgba(127,127,127,.2))}
+#vg-lista .vga-partes a{flex:1;min-width:0;text-align:center;padding:8px 6px;border-radius:999px;font:600 13.5px/1.2 var(--vg-text,system-ui,sans-serif);color:var(--muted,var(--ink-2,#8a94a3));text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background-color .2s,color .2s}
+#vg-lista .vga-partes a:hover{color:var(--ink,inherit)}
+#vg-lista .vga-partes a:focus-visible{outline:2px solid var(--vg-acc,#5aa9ff);outline-offset:2px}
+#vg-lista .vga-partes a[aria-current=page]{background:var(--vg-acc,var(--accent,#e0407b));color:#fff}
+html[data-theme=light] #vg-lista .vga-partes{background-color:#fff;border-color:rgba(0,0,0,.1)}
 .vga-l{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:16px;width:100%;margin:0 0 10px;padding:16px 18px;border-radius:14px;
   background:var(--surface,rgba(127,127,127,.08));border:1px solid var(--border,rgba(127,127,127,.2));transition:background-color .15s ease,border-color .15s ease}
 .vga-l:hover{background:var(--surface-2,rgba(127,127,127,.14))}
@@ -422,7 +428,10 @@ html[data-theme=light] .vga-l:hover{background-color:#f1f3f2}
         + `<span class="n">${n}</span><span class="tx"><b>${esc(a.nome)}</b><small>${a.rot ? esc(a.rot) + ' · ' : ''}${tot} ${tot === 1 ? 'segmento' : 'segmentos'}</small></span>`
         + `<span class="ct"><span class="f${f ? ' g' : ''}">${f}</span>/${tot}</span></button>`;
     };
-    lista.innerHTML = `<div class="in"><h1>${esc(nome || 'Aulas')}</h1><p class="s">Escolha a aula. Ela abre no segmento em que você parou.</p>`
+    /* seletor de partes da barra lateral (.sb-partes: Matéria / Prática 1 / Prática 2 na Patologia, Laboratorial / Imagem na Propedêutica), copiado para baixo do título */
+    const sp = $('.sb-partes'), partes = sp ? `<nav class="vga-partes" aria-label="${esc(sp.getAttribute('aria-label') || 'Trocar de parte')}">`
+      + $$('a', sp).map(a => `<a href="${esc(a.getAttribute('href'))}"${a.getAttribute('aria-current') === 'page' ? ' aria-current="page"' : ''}>${esc(a.textContent.trim())}</a>`).join('') + '</nav>' : '';
+    lista.innerHTML = `<div class="in"><h1>${esc(nome || 'Aulas')}</h1>${partes}<p class="s">Escolha a aula. Ela abre no segmento em que você parou.</p>`
       + porProva(L).map(g => (g.t ? '<div class="vga-div"><span>' + esc(g.t) + '</span></div>' : '') + g.a.map(([a, i]) => item(a, i + 1)).join('')).join('')
       + (rev.length ? '<h2>Revisão</h2>' + rev.map(x => `<button type="button" class="vga-l sm" data-id="${esc(x.id)}"><span class="tx"><b>${esc(x.titulo)}</b></span><span class="ct">→</span></button>`).join('') : '')
       + (prat.length ? '<h2>🔬 Provas práticas</h2>' + prat.map(x => `<button type="button" class="vga-l sm" data-id="${esc(x.id)}"><span class="tx"><b>${esc(x.titulo)}</b></span><span class="ct">→</span></button>`).join('') : '')

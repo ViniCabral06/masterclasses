@@ -107,12 +107,13 @@ Estas regras vieram do uso real da skill (Farmacologia, Aulas 6–9). Valem para
   - Exemplo: o slide "Enterobacterales – Espécies de maior importância médica" tem uma foto de bacilos à esquerda e a lista de espécies à direita. Errado: a foto do slide inteiro com uma legenda que repete a lista. Certo: só a foto dos bacilos (com a fonte), e embaixo a lista escrita (*Escherichia coli*; *Klebsiella pneumoniae*, *K. oxytoca*, *K. aerogenes*; *Enterobacter*…), com as grifadas no slide em destaque.
 • Se o slide tem uma imagem (foto clínica, lâmina, gráfico, esquema, tabela desenhada), use **só a imagem**, recortada sem título, bullets, logo, rodapé ou numeração do slide. Se ela não sair limpa com pdfimages, rasterize e recorte só a área da figura.
 • Slide que é só texto não vira imagem: vira texto, lista, tabela ou esquema em HTML.
-• **Sempre a fonte embaixo de cada imagem**, na legenda (`<figcaption>`), depois do "o que olhar":
-  - figura de livro citada no slide: "Fonte: Rang & Dale, Farmacologia, 9ª ed., cap. 13" (não invente número de figura; sem certeza, cite só o capítulo);
-  - figura sem origem indicada no slide: "Fonte: slides da aula N, Prof. X";
-  - imagem da internet: autor ou instituição, título e link (ex.: "Fonte: Wikimedia Commons, Fulano, CC BY-SA 4.0, <link>");
+• **Fonte confirmada embaixo de cada imagem + página de Referências**, na legenda (`<figcaption>`), depois do "o que olhar":
+  - figura de livro citada ou confirmada: "Fonte: Robbins Patologia Básica, 10ª ed., Fig. 10-4" ou "Fonte: Rang & Dale, Farmacologia, 9ª ed., cap. 13" (não invente número de figura; sem certeza, cite só o capítulo);
+  - imagem da internet: autor ou instituição, título e link/licença (ex.: "Fonte: Wikimedia Commons, Fulano, CC BY-SA 4.0, <link>", Unicamp, WebPath etc.);
   - artigo: autores, título, revista, ano e DOI ou link;
-  - esquema feito por nós: "Esquema próprio, baseado em [livro/artigo/aula]".
+  - esquema feito por nós: "Esquema próprio, baseado em [livro/artigo/aula]";
+  - **imagem sem origem identificada/confirmada: deixe sem linha de fonte** (nunca invente fonte, livro ou número de figura);
+  - **página/seção "Referências" no fim de cada aula** (modelo: Patologia), listando apenas as fontes confirmadas daquela aula.
 • **Crie esquemas quando ajudarem**: fluxogramas, tabelas comparativas, linhas do tempo, mapas de mecanismo, em HTML/CSS/SVG no visual do tema (claro e escuro). Quando valer a pena, faça interativo, como já existe em outros masters: hotspots, revelar etapa por etapa, arrastar para classificar, simulador com botões ou sliders (ver seção D).
 • **Vá além do slide**: quando a figura do slide for ruim, pequena ou faltar, pesquise na internet, em livro de referência (o citado pelo professor primeiro) e em artigos outras imagens e esquemas melhores. Prefira fontes de uso livre (Wikimedia Commons, OpenStax, PubMed Central com licença aberta, sites de sociedades e do Ministério da Saúde). Toda imagem ou dado trazido de busca entra com a referência na legenda; o que for acréscimo nosso leva "■ EXTRA:".
 • Se não achar imagem boa nem conseguir fazer um esquema, descreva em texto e avise o usuário que faltou a figura. Mesmo assim, nunca use o slide inteiro.
@@ -125,7 +126,7 @@ Estas regras vieram do uso real da skill (Farmacologia, Aulas 6–9). Valem para
 
 ## D. Gamificação (gamificar bastante tudo)
 • Todo gráfico ou figura importante vira um widget interativo, não só imagem: explorar com hotspots, desafio “clique no ponto certo”, simulador com sliders/botões e MISSÕES, card game de classificação (com sequência e recorde), plantão com casos clínicos (escolher a conduta), “monte o gráfico” curva a curva, “preveja ↑/↓/=” etc.
-• **🎮 Pratique o raciocínio (regra)**: quase toda aula ganha de 3 a 6 widgets que fazem a pessoa USAR o raciocínio do segmento, não só reler. Use o motor pronto `_tema/praticar.js`, com os dados em `window.VG_PRATICAR` (bloco `<!--praticar:inicio-->…<!--praticar:fim-->` antes do `</body>`). Tipos: `plantao` (pacientes, com hipótese → mecanismo → conduta, uma decisão por vez), `ordem` (monte a patogênese ou o fluxo), `classifique` (cartões em 2 a 5 categorias: "X ou Y?", "qual estrutura/fator/fármaco?") e `escore` (calculadora clínica da aula). Prefira o plantão quando a aula tiver conduta; o classifique para comparações que caem em prova; a ordem para cadeias causais. Cada resposta traz o porquê curto. A certa nunca aparece antes da escolha e nunca é a mais longa (seção E). Modelo: Microbiologia. Widgets sob medida (simulador, hotspot na figura) continuam bem-vindos quando a figura pedir.
+• **🎮 Pratique o raciocínio (regra)**: quase toda aula ganha de 3 a 6 widgets que fazem a pessoa USAR o raciocínio do segmento, não só reler. Use o motor pronto `_tema/praticar.js` (v2), com os dados em `window.VG_PRATICAR` (bloco `<!--praticar:inicio-->…<!--praticar:fim-->` antes do `</body>`). Tipos disponíveis: `plantao` (pacientes, com hipótese → mecanismo → conduta, uma decisão por vez), `ordem` (monte a patogênese ou o fluxo), `classifique` (cartões em 2 a 5 categorias: "X ou Y?", "qual estrutura/fator/fármaco?"), `escore` (calculadora clínica da aula), `preveja` (prever direção ↑ / = / ↓ de parâmetros), `associar` (ligar pares entre duas colunas) e `hotspot` (clicar no ponto certo sobre uma imagem/exame/lâmina). Prefira o plantão quando a aula tiver conduta; o classifique para comparações que caem em prova; a ordem para cadeias causais; preveja/associar/hotspot para fisiopatologia, correlações e achados visuais. Cada resposta traz o porquê curto. A certa nunca aparece antes da escolha e nunca é a mais longa (seção E). Modelo: Microbiologia. Widgets sob medida (simulador com sliders) continuam bem-vindos quando a figura pedir.
 • Sistema de XP (acerto de primeira, missões, discursivas autoavaliadas), níveis (de Calouro até o nome do professor) e uma aba “Arena” listando todos os widgets com o XP de cada um.
 • Resets: por widget, por seção de questões e um botão global “Zerar todas as respostas do material” (com confirmação em dois cliques), que mantém grifos e “estudado”. Nunca use location.reload num reset — reconstrua o widget (isso já travou o plantão uma vez).
 
@@ -160,8 +161,8 @@ Estas regras vieram do uso real da skill (Farmacologia, Aulas 6–9). Valem para
 • A revisão final (resumo, V/F, checklist, casos em tabela, treino “só o caso”, ranking de frequência, verdades absolutas, pegadinhas) ganha uma seção para cada aula nova.
 
 ## G. Simulados
-• Simulados no formato da prova (ex.: 30 objetivas), com cronômetro (3 min/questão, mostrando o tempo estourado), sem gabarito até entregar, marcação 🚩 para revisar, grade de navegação, nota, acerto por aula, correção comentada e link para o ponto fraco.
-• Simulado aleatório que sorteia do banco inteiro do material, com filtro por aula e número de questões.
+• Todo simulado roda no motor padrão `_tema/simulado.js` (`VGSim.lista` em matéria nova; veja a skill `/simulados-masterclass`). Nada de tela de início, cronômetro, placar ou correção próprios.
+• O motor padrão já entrega: lista com "Provas anteriores" + "Simulados", **🎲 Monte seu simulado** unificado (combinar temas, filtrar *todas*, *só de prova*, *só as que errei* ou *inéditas* e escolher quantidade), cronômetro (3 min/questão, mostrando o tempo estourado), **riscar alternativas** (eliminação), botão **🧪 Valores** (`Alt+V`), marcação 🚩 para revisar, grade "Seu gabarito", autoavaliação nas dissertativas, **filtros na correção** (todas, só erradas, em branco, marcadas 🚩, por tema), **Refazer só as erradas**, desempenho por tema, "Copiar resultado" e **"Copiar histórico acumulado"**.
 
 ## H. Interface e robustez técnica
 • Botão de TELA CHEIA (⛶) sempre visível: na barra lateral (inclusive recolhida) e na barra superior do celular. Usa a Fullscreen API; onde o navegador não permite (iPhone), vira “modo foco”, que esconde o supérfluo e amplia a área de leitura. O mesmo botão sai da tela cheia (✕), e Esc também funciona.
@@ -394,3 +395,44 @@ Robustez
 Questões de simulado (data-sim) não têm meme.
 Ao adicionar memes novos, acrescente ao array sem quebrar os já sorteados.
 Teste no navegador: o slot trancado anima a cada clique, gabaritar abre o modal, recarregar a página mantém o meme liberado e não há erros no console.
+
+---
+
+# L. Padrão oficial do site para matéria nova (checklist obrigatório)
+
+Todo master novo (de qualquer período, seja do Vinícius ou do Matheus) nasce integrado ao site e segue este padrão completo (modelo principal: **Microbiologia**, somado às ferramentas globais de `_tema/`). O `conferir.py` e o `auditar.py` validam estes itens; nunca dê um master por pronto com pendência sem listar o que falta.
+
+## L.1 Registro, tema e navegação
+- **Hub (`index.html`)**: registrar a matéria em `SUBJECTS` (com `name`, `href`, `desc`, `tags` e `periodo` quando for período diferente do 4º, para o `gerar_busca.py` gerar `p<N>.json` isolado).
+- **Tema de vidro e Liquid glass**: rodar `python publicar.py --local` (injeta todos os scripts do `_tema/` com `?v=...` e otimiza imagens para `_img/` em WebP) e criar a **pele do master no `_tema/vidro.css`** (cor em `--vg-acc` + barra lateral e barra do celular com `backdrop-filter`).
+- **Estrutura base**: conteúdo dentro de `<main>` (ou `#main`, `#view`, `.main`), botão de tema claro/escuro (`data-act="theme"`, `id="btnTheme"` ou `.themebtn`), botão de tela cheia, crédito "by Vinícius Cabral e Matheus Tavares" (exceto autoria própria registrada em `CREDITOS`/`DISPENSA`).
+- **Primeira visita e sidebar**: se `window.VIDRO_NOVO` for verdadeiro, abrir a **página de boas-vindas** com todos os grupos da sidebar fechados; aulas agrupadas em blocos recolhíveis (**Parcial / Somativa / Pós-somativa**); painel **🎯 Foco de estudo** sempre abre fechado na barra lateral.
+- **Adaptadores (quando necessário)**: incluir adaptador da nova chave em `_tema/foco.js` (`AD`), `_tema/abas.js` (`AD`), `_tema/siglas.js` (`MAT`/`QUESTAO`, se houver sigla específica ou classe nova de questão) e `elos.py`/`_tema/elos.js` (para matérias clínicas/Preventiva). Em `_tema/flashcards.js` e `_tema/retafinal.js`, matérias novas no padrão Microbiologia ou Caderno já são detectadas automaticamente.
+
+## L.2 Conteúdo, imagens, questões e provas
+- **Slides e imagens (seção B.1)**: nunca foto do slide inteiro; recortar só a figura e reescrever o texto/tabelas em HTML. Colocar **fonte confirmada** na legenda (`<figcaption>`); **imagens sem origem identificada ficam sem linha de fonte** (nunca inventar). Fechar cada aula com seção/página **Referências** contendo só as fontes confirmadas.
+- **Provas e origem (seções E e F)**: espelho completo (padrão S83+) = cópia na íntegra (`📝 Das provas`); só justificativa = questão reconstruída (`📝 Questão de prova · reconstruída da justificativa`, nunca foto de justificativa e nunca vazar letra certa antes da resposta); autorais recolhidas (`✍️ Autoral`). Capítulo sem prova mostra o aviso "nunca caiu" antes das autorais.
+- **Sem repetição e com grifo no texto**: cada questão de prova aparece uma vez no segmento ("também caiu em ..."), e todo segmento com questão de prova tem `<mark>` de frequência no conteúdo cobrado.
+- **Qualidade das questões (seção E)**: **alternativas equilibradas** em toda questão nossa (autorais, reconstruídas, quiz, Arena, simulados) + **correção alternativa por alternativa** (`_tema/correcao.js`, campos `porque` e `trecho` em toda questão de múltipla escolha).
+- **Siglas com balão**: conferir siglas novas da matéria em `_tema/siglas.js` (nunca em caixas de questão).
+
+## L.3 Ferramentas de estudo obrigatórias no padrão
+- **🃏 Flashcards por aula (`_tema/flash/<chave>.txt`)**: obrigatório em toda matéria teórica/clínica nova (exceções práticas entram em `DISPENSA` no `conferir.py`). Formato do arquivo:
+  - cabeçalho `@titulo ...` e `@sub ...`;
+  - blocos por aula `# <id-da-aula> | <título da aula>` (usando o mesmo id da aula no master, ex.: `a1`, `a2`, `aula1`);
+  - cartas `Frente :: Verso :: Frequência` (ex.: `Caiu em 3 somativas`), com suporte a **Cloze** (`{{lacuna}}`), negrito/itálico/código e imagens `![legenda](caminho)`.
+  - O `_tema/flashcards.js` v3 liga automaticamente: repetição espaçada (SRS), faixa contextual dentro de cada aula ("🃏 Flashcards desta aula" + "+ Adicionar à lista da disciplina", desbloqueio progressivo sem spoiler + opção "Liberar todos"), botão no Foco de estudo, item "🃏 Flashcards" em Reta final / Revisão final da sidebar e atalho nos Ajustes do Modo Foco.
+- **🎮 Pratique o raciocínio (`_tema/praticar.js` v2)**: 3 a 6 widgets por aula em `window.VG_PRATICAR` (`plantao`, `ordem`, `classifique`, `escore`, `preveja`, `associar`, `hotspot`).
+- **⏱️ Simulados (`_tema/simulado.js`)**: usar `VGSim.lista` com "Provas anteriores" + "Simulados"; o motor já adiciona **🎲 Monte seu simulado**, **riscar alternativas**, botão **🧪 Valores**, **filtros na correção**, **Refazer só as erradas**, autoavaliação dissertativa e **Copiar histórico acumulado**.
+- **🔥 Modo Reta Final (`_tema/retafinal.js`)**: cronograma reverso automático até a data da prova priorizando o que mais cai (acessível pelo Foco de estudo e Modo Foco).
+- **🧪 Valores de Referência (`_tema/valores.js`, `Alt+V`)**: gaveta rápida de exames disponível na matéria e nos simulados.
+- **🔍 Busca instantânea isolada por período (`gerar_busca.py`)**: índices estáticos `_tema/busca/<chave>.json` (Modo Foco `Ctrl+K`) e `_tema/busca/p<N>.json` (Hub `Ctrl+K`), gerados automaticamente pelo `publicar.py`.
+- **🖍️ Grifos e anotações v2 (`_tema/notas.js`)**: 3 cores pessoais (Rosa = Importante, Lilás = Dúvida/Revisar, Azul = Decorar/Fórmula) + exportar notas em Markdown.
+- **📊 Meu rendimento (`_tema/concentracao.js`)** + **🍅 Pomodoro (`_tema/pomodoro.js`)** + **Editor ao vivo (`_tema/editor.js` + `mesclar_edicoes.py`)**: incluídos automaticamente pelo `publicar.py`.
+- **Seções finais e recompensas**: cada aula fecha com quiz, **"⭐ O que mais é cobrado"** (seguindo o modo do Foco de estudo) e Arena; o master fecha com **Revisão final** (revisão em 1 hora com esquemas, tabelas e fluxogramas), **O que vai cair / Raio-X**, **Simulados**, **Flashcards** e **Minha revisão**; memes em `<pasta>/_img/memes.json` (~60).
+
+## L.4 Validação antes de dar por pronto
+1. `python publicar.py --local` — aplica tema, otimiza imagens, gera índices de busca e atualiza a vitrine se aplicável.
+2. `python conferir.py` — **0 pendências** (se algum item não se aplica, registrar em `DISPENSA` com motivo).
+3. `python auditar.py --detalhes` (ou `python conferir.py --auditar --detalhes`) — conferir 0 imagens quebradas, legendas/fontes, 0 alternativas desequilibradas em questões nossas, cobertura de `VG_PORQUE` e flashcards, 0 edições órfãs.
+4. Testar no navegador (desktop + celular, claro + escuro): abertura das aulas, faixa de flashcards da aula, Modo Reta Final, Valores (`Alt+V`), Simulado / Monte seu simulado, Modo Foco (`Ctrl+K`) e ausência de laço contínuo em `MutationObserver`.

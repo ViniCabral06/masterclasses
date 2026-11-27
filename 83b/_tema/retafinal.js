@@ -78,6 +78,17 @@
           segs: sbs.map(s => ({ aulaKey: ak, aula: nomeAula, titulo: txt(s), feito: !!dn[ak + ':' + s.dataset.sg], fq: fqNum(s) || fqA, ir: () => { if (!b.classList.contains('on')) b.click(); setTimeout(() => s.click(), 30); } }))
         });
       });
+    } else {
+      /* fallback automático para qualquer matéria nova (padrão Caderno ou Microbiologia) */
+      if ($('#nav .grp[data-lesson]')) {
+        cad('#nav .grp[data-lesson]', '.grp-h', '.it[data-seg]', '.x', g => g.dataset.lesson,
+          it => !!($('input', it) && $('input', it).checked),
+          it => { const h = it.getAttribute('href'); if (h) location.hash = h; else it.click(); });
+      } else if ($('#nav .grp[data-g]')) {
+        cad('#nav .grp[data-g]', '.gh', '.it[data-go]', '.lb', g => /^a\d+$/.test(g.dataset.g) ? g.dataset.g : '',
+          it => it.classList.contains('done'),
+          it => { location.hash = '#' + it.dataset.go; });
+      }
     }
     return out;
   }

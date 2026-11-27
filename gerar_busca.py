@@ -32,8 +32,9 @@ def materias_hub():
         href = re.search(r'href\s*:\s*"([^"]+)"', corpo)
         desc = re.search(r'desc\s*:\s*"([^"]+)"', corpo)
         tags = re.findall(r'"([^"]+)"', (re.search(r'tags\s*:\s*\[([^\]]*)\]', corpo) or [None, ""])[1]) if re.search(r'tags\s*:\s*\[', corpo) else []
+        per = re.search(r'periodo\s*:\s*(\d+)', corpo)
         if nome and href:
-            out.append({"k": k, "nome": nome.group(1), "href": href.group(1), "desc": desc.group(1) if desc else "", "tags": tags, "periodo": 4})
+            out.append({"k": k, "nome": nome.group(1), "href": href.group(1), "desc": desc.group(1) if desc else "", "tags": tags, "periodo": int(per.group(1)) if per else 4})
     return out
 
 
