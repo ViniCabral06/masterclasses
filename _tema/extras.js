@@ -17,9 +17,9 @@
 })();
 /* Extras de todas as masterclasses (o publicar.py inclui este arquivo, também nas aulas separadas).
 
-   1. Ampliar imagem: clicar numa figura do conteúdo (segmento, "O que mais é cobrado", questão) abre a
-      imagem grande, sem sair da página. Fecha com Esc, clique fora ou ✕. Clicar na imagem aberta
-      alterna entre "caber na tela" e "tamanho real" (com rolagem).
+   1. Ampliar imagem: clicar numa figura do conteúdo (segmento, "O que mais é cobrado", questão) abre o
+      visualizador em tela cheia: slider de zoom, roda do mouse, pinça, arrastar até os cantos e mini-mapa.
+      Fecha com Esc, toque fora da imagem ou ✕. window.VGZoom.abrir(src, legenda) abre por código.
       Master com visualizador próprio pode desligar: <html data-zoom="proprio">.
       Imagem específica fica de fora com data-nozoom.
    2. Crédito no canto: se a página não mostra "Vinícius" e "Matheus" em lugar nenhum, aparece um
@@ -29,27 +29,46 @@
   const D = document, html = D.documentElement;
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- 1. Ampliar imagem ---------- */
+  /* ---------- 1. Ampliar imagem (visualizador com zoom) ----------
+     Abre a imagem em tela cheia com: slider de zoom (100% a 1000%), botões − / +, roda do mouse (aproxima onde o
+     cursor está), arrastar para mover até os cantos, pinça no celular, duplo clique / duplo toque (aproxima ou volta),
+     mini-mapa com o pedaço visível (dá para arrastar nele) e teclado (+ − 0, setas, Esc).
+     Nas aulas abertas em iframe, abre no master (tela inteira), se ele tiver o extras.js. */
   const FORA = 'a,button,nav,aside,.sidebar,#sidebar,#side,.sb,[data-nozoom],.vg-zoom,' +
     '[class*="meme"],[class*="Meme"],.ms-wrap,.ms-thumb,.teaser,.lock,.mimg,.mc,dialog';
+  const MAX = 10;
   const css = D.createElement('style');
   css.textContent = `
 .vg-zoomable{cursor:zoom-in}
-.vg-zoom{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;
-  background:rgba(4,6,10,.88);padding:max(16px,env(safe-area-inset-top)) 16px 16px;opacity:0;transition:opacity .2s cubic-bezier(.23,1,.32,1)}
+.vg-zoom{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;background:rgba(4,6,10,.92);
+  opacity:0;transition:opacity .2s cubic-bezier(.23,1,.32,1);font:14px/1.45 system-ui,sans-serif;color:#e8ecf1;-webkit-user-select:none;user-select:none}
 .vg-zoom.on{opacity:1}
-.vg-zoom .vz-box{max-width:100%;max-height:100%;overflow:auto;display:flex;flex-direction:column;align-items:center;gap:10px;
-  transform:scale(.96);transition:transform .25s cubic-bezier(.23,1,.32,1)}
-.vg-zoom.on .vz-box{transform:scale(1)}
-.vg-zoom img{display:block;max-width:min(96vw,1600px);max-height:84vh;object-fit:contain;border-radius:10px;background:#fff;cursor:zoom-in}
-.vg-zoom.real img{max-width:none;max-height:none;cursor:zoom-out}
-.vg-zoom.real .vz-box{align-items:flex-start;width:100%;height:100%}
-.vg-zoom .vz-cap{max-width:min(92vw,900px);color:#e8ecf1;font:14px/1.5 system-ui,sans-serif;text-align:center}
-.vg-zoom .vz-x{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);
-  background:rgba(20,24,30,.8);color:#fff;font:22px/1 system-ui;cursor:pointer}
+.vg-zoom .vz-palco{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:none;cursor:grab}
+.vg-zoom .vz-palco.arr{cursor:grabbing}
+.vg-zoom .vz-palco>img{position:absolute;left:0;top:0;max-width:none;max-height:none;transform-origin:0 0;will-change:transform;
+  border-radius:6px;background:#fff;-webkit-user-drag:none;pointer-events:none}
+.vg-zoom.pix .vz-palco>img{image-rendering:pixelated}
+.vg-zoom .vz-pe{flex:none;display:flex;flex-direction:column;align-items:center;gap:8px;padding:8px 12px max(12px,env(safe-area-inset-bottom))}
+.vg-zoom .vz-cap{max-width:min(92vw,900px);text-align:center;color:#d5dbe2;max-height:4.4em;overflow:auto}
+.vg-zoom .vz-bar{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(22,26,32,.72);
+  border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3)}
+.vg-zoom .vz-bar button{width:36px;height:36px;flex:none;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;font:600 20px/1 system-ui;cursor:pointer;display:grid;place-items:center;transition:background .15s,transform .1s}
+.vg-zoom .vz-bar button:hover{background:rgba(255,255,255,.2)}
+.vg-zoom .vz-bar button:active{transform:scale(.95)}
+.vg-zoom .vz-bar .vz-fit{width:auto;padding:0 12px;border-radius:999px;font-size:12.5px;font-weight:600}
+.vg-zoom .vz-sl{width:min(42vw,260px);accent-color:#7fd1a8;cursor:pointer}
+.vg-zoom .vz-pc{min-width:48px;text-align:right;font-variant-numeric:tabular-nums;font-size:12.5px;color:#c4ccd5}
+.vg-zoom .vz-x{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);
+  background:rgba(20,24,30,.75);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;font:22px/1 system-ui;cursor:pointer}
 .vg-zoom .vz-x:active{transform:scale(.97)}
-.vg-zoom .vz-dica{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);color:#aab4c0;font:12px system-ui;pointer-events:none}
-@media (prefers-reduced-motion:reduce){.vg-zoom,.vg-zoom .vz-box{transition:none;transform:none}}
+.vg-zoom .vz-mapa{position:absolute;right:12px;bottom:12px;z-index:1;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.3);
+  background:#000;box-shadow:0 6px 20px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .2s;touch-action:none;cursor:pointer}
+.vg-zoom .vz-mapa.on{opacity:1;pointer-events:auto}
+.vg-zoom .vz-mapa img{display:block;width:100%;height:100%;opacity:.75;pointer-events:none}
+.vg-zoom .vz-mapa i{position:absolute;border:2px solid #7fd1a8;box-shadow:0 0 0 999px rgba(0,0,0,.35);border-radius:2px;pointer-events:none}
+.vg-zoom .vz-dica{font-size:12px;color:#8f9aa6;text-align:center}
+@media (max-width:560px){.vg-zoom .vz-sl{width:34vw}.vg-zoom .vz-dica{display:none}}
+@media (prefers-reduced-motion:reduce){.vg-zoom{transition:none}}
 .vg-credito{position:fixed;left:10px;bottom:8px;z-index:50;font:11px/1.3 system-ui,sans-serif;color:var(--muted,#8a94a3);
   opacity:.75;pointer-events:none;letter-spacing:.01em}
 @media print{.vg-credito{position:static;opacity:1}}`;
@@ -65,27 +84,168 @@
   function fechar() {
     if (!aberto) return; const z = aberto; aberto = null;
     z.classList.remove('on'); setTimeout(() => z.remove(), RM ? 0 : 200);
-    D.removeEventListener('keydown', tecla, true);
+    D.removeEventListener('keydown', z._tecla, true); removeEventListener('resize', z._resize);
+    html.style.overflow = z._ov || '';
     if (voltar && voltar.focus) try { voltar.focus({ preventScroll: true }); } catch (_) { }
   }
-  function tecla(e) { if (e.key === 'Escape') { e.stopPropagation(); e.preventDefault(); fechar(); } else if (e.key === 'Tab') { e.preventDefault(); aberto.querySelector('.vz-x').focus(); } }
-  function abrir(img) {
+  function abrirSrc(src, txt) {
+    if (aberto) fechar();
     voltar = D.activeElement;
+    const toque = matchMedia('(pointer:coarse)').matches;
+    const z = D.createElement('div'); z.className = 'vg-zoom'; z.setAttribute('role', 'dialog'); z.setAttribute('aria-modal', 'true'); z.setAttribute('aria-label', 'Imagem ampliada');
+    z.innerHTML = '<div class="vz-palco"><img alt=""><div class="vz-mapa" aria-hidden="true"><img alt=""><i></i></div></div>' +
+      '<div class="vz-pe"><div class="vz-cap" hidden></div><div class="vz-bar" data-liquido>' +
+      '<button type="button" class="vz-menos" aria-label="Diminuir zoom">−</button>' +
+      '<input class="vz-sl" type="range" min="0" max="1000" value="0" aria-label="Zoom">' +
+      '<button type="button" class="vz-mais" aria-label="Aumentar zoom">+</button>' +
+      '<span class="vz-pc">100%</span><button type="button" class="vz-fit" aria-label="Ajustar à tela">Ajustar</button></div>' +
+      '<div class="vz-dica">' + (toque ? 'Pinça ou slider para ampliar · arraste para ver os cantos · toque duplo aproxima' :
+        'Roda do mouse ou slider para ampliar · arraste para ver os cantos · duplo clique aproxima · Esc fecha') + '</div></div>' +
+      '<button type="button" class="vz-x" aria-label="Fechar" data-liquido>✕</button>';
+    const palco = z.querySelector('.vz-palco'), big = palco.querySelector(':scope > img'), mapa = z.querySelector('.vz-mapa'),
+      mini = mapa.querySelector('img'), jan = mapa.querySelector('i'), sl = z.querySelector('.vz-sl'), pc = z.querySelector('.vz-pc');
+    big.src = src; mini.src = src;
+    if (txt) { const c = z.querySelector('.vz-cap'); c.textContent = txt; c.hidden = false; }
+
+    let W = 0, H = 0, fit = 1, s = 1, x = 0, y = 0, raf = 0;
+    const PW = () => palco.clientWidth, PH = () => palco.clientHeight;
+    function prender() {
+      const w = W * s, h = H * s, pw = PW(), ph = PH();
+      x = w <= pw ? (pw - w) / 2 : Math.min(0, Math.max(pw - w, x));
+      y = h <= ph ? (ph - h) / 2 : Math.min(0, Math.max(ph - h, y));
+    }
+    function desenhar() {
+      raf = 0; if (!W) return; prender();
+      big.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) scale(' + s.toFixed(4) + ')';
+      const m = s / fit;
+      if (D.activeElement !== sl) sl.value = String(Math.round(Math.log(m) / Math.log(MAX) * 1000));
+      pc.textContent = Math.round(m * 100) + '%';
+      z.classList.toggle('pix', s > 2.5);
+      const w = W * s, h = H * s, pw = PW(), ph = PH(), mostra = w > pw + 1 || h > ph + 1;
+      mapa.classList.toggle('on', mostra);
+      if (mostra) {
+        const mw = mapa.clientWidth, mh = mapa.clientHeight;
+        jan.style.left = (-x / w * mw) + 'px'; jan.style.top = (-y / h * mh) + 'px';
+        jan.style.width = (Math.min(1, pw / w) * mw) + 'px'; jan.style.height = (Math.min(1, ph / h) * mh) + 'px';
+      }
+    }
+    const pedir = () => { if (!raf) raf = requestAnimationFrame(desenhar); };
+    function zoomEm(ns, cx, cy) {
+      ns = Math.max(fit, Math.min(fit * MAX, ns));
+      if (cx == null) { cx = PW() / 2; cy = PH() / 2; }
+      x = cx - (cx - x) * ns / s; y = cy - (cy - y) * ns / s; s = ns; pedir();
+    }
+    function medir(manter) {
+      if (!W) return;
+      const rel = s / fit, pw = PW(), ph = PH();
+      fit = Math.min((pw - 24) / W, (ph - 24) / H);
+      if (!(fit > 0)) fit = 1;
+      const lado = innerWidth < 560 ? 96 : 150, mw = W >= H ? lado : lado * W / H;
+      mapa.style.width = mw + 'px'; mapa.style.height = (mw * H / W) + 'px';
+      if (manter) { s = fit * rel; } else { s = fit; x = (pw - W * s) / 2; y = (ph - H * s) / 2; }
+      desenhar();
+    }
+    function pronto() { W = big.naturalWidth; H = big.naturalHeight; big.style.width = W + 'px'; big.style.height = H + 'px'; medir(false); }
+    if (big.complete && big.naturalWidth) requestAnimationFrame(pronto); else big.addEventListener('load', pronto, { once: true });
+
+    // controles
+    sl.addEventListener('input', () => zoomEm(fit * Math.pow(MAX, sl.value / 1000)));
+    z.querySelector('.vz-mais').addEventListener('click', () => zoomEm(s * 1.5));
+    z.querySelector('.vz-menos').addEventListener('click', () => zoomEm(s / 1.5));
+    z.querySelector('.vz-fit').addEventListener('click', () => medir(false));
+    z.querySelector('.vz-x').addEventListener('click', fechar);
+    palco.addEventListener('wheel', e => {
+      e.preventDefault();
+      const r = palco.getBoundingClientRect(), d = e.deltaY * (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? 400 : 1);
+      zoomEm(s * Math.exp(-d * 0.0018), e.clientX - r.left, e.clientY - r.top);
+    }, { passive: false });
+
+    // arrastar, pinça, duplo toque/clique, toque fora da imagem fecha
+    const pts = new Map(); let ini = null, andou = 0, ultimo = { t: 0, x: 0, y: 0 };
+    const local = e => { const r = palco.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+    function base() {
+      const v = [...pts.values()];
+      if (v.length >= 2) { const a = v[0], b = v[1]; ini = { d: Math.hypot(a.x - b.x, a.y - b.y) || 1, mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2, s, x, y }; }
+      else if (v.length === 1) ini = { px: v[0].x, py: v[0].y, x, y };
+      else ini = null;
+    }
+    palco.addEventListener('pointerdown', e => {
+      if (e.target.closest('.vz-mapa') || e.button > 0) return;
+      try { palco.setPointerCapture(e.pointerId); } catch (_) { }
+      pts.set(e.pointerId, local(e)); if (pts.size === 1) andou = 0; base(); palco.classList.add('arr');
+    });
+    palco.addEventListener('pointermove', e => {
+      if (!pts.has(e.pointerId)) return;
+      pts.set(e.pointerId, local(e));
+      const v = [...pts.values()];
+      if (v.length >= 2 && ini && ini.d) {
+        const a = v[0], b = v[1], d = Math.hypot(a.x - b.x, a.y - b.y), mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+        const ns = Math.max(fit, Math.min(fit * MAX, ini.s * d / ini.d));
+        x = mx - (ini.mx - ini.x) * ns / ini.s; y = my - (ini.my - ini.y) * ns / ini.s; s = ns; andou += 10; pedir();
+      } else if (v.length === 1 && ini && ini.px != null) {
+        const dx = v[0].x - ini.px, dy = v[0].y - ini.py; andou = Math.max(andou, Math.hypot(dx, dy));
+        x = ini.x + dx; y = ini.y + dy; pedir();
+      }
+    });
+    function solta(e) {
+      if (!pts.has(e.pointerId)) return;
+      const p = pts.get(e.pointerId); pts.delete(e.pointerId);
+      prender(); base();
+      if (!pts.size) palco.classList.remove('arr');
+      if (pts.size || andou > 6 || e.type === 'pointercancel') return;
+      const agora = Date.now();
+      if (agora - ultimo.t < 320 && Math.hypot(p.x - ultimo.x, p.y - ultimo.y) < 30) {
+        ultimo.t = 0; if (s > fit * 1.05) medir(false); else zoomEm(fit * 3, p.x, p.y); return;
+      }
+      ultimo = { t: agora, x: p.x, y: p.y };
+      const dentro = p.x >= x && p.x <= x + W * s && p.y >= y && p.y <= y + H * s;
+      if (!dentro) setTimeout(() => { if (ultimo.t === agora && aberto === z) fechar(); }, 330);
+    }
+    palco.addEventListener('pointerup', solta); palco.addEventListener('pointercancel', solta);
+    palco.addEventListener('dblclick', e => e.preventDefault());
+
+    // mini-mapa: clicar ou arrastar leva a janela até lá
+    function irMapa(e) {
+      const r = mapa.getBoundingClientRect(), fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+      x = PW() / 2 - fx * W * s; y = PH() / 2 - fy * H * s; pedir();
+    }
+    mapa.addEventListener('pointerdown', e => { e.stopPropagation(); try { mapa.setPointerCapture(e.pointerId); } catch (_) { } mapa._on = true; irMapa(e); });
+    mapa.addEventListener('pointermove', e => { if (mapa._on) irMapa(e); });
+    mapa.addEventListener('pointerup', () => { mapa._on = false; });
+
+    z._tecla = e => {
+      const k = e.key;
+      if (k === 'Escape') { e.stopPropagation(); e.preventDefault(); fechar(); return; }
+      if (k === 'Tab') { if (!z.contains(D.activeElement)) { e.preventDefault(); z.querySelector('.vz-x').focus(); } return; }
+      if (D.activeElement === sl && /Arrow/.test(k)) return;
+      const passo = 80;
+      if (k === '+' || k === '=') zoomEm(s * 1.4);
+      else if (k === '-' || k === '_') zoomEm(s / 1.4);
+      else if (k === '0') medir(false);
+      else if (k === 'ArrowLeft') { x += passo; pedir(); } else if (k === 'ArrowRight') { x -= passo; pedir(); }
+      else if (k === 'ArrowUp') { y += passo; pedir(); } else if (k === 'ArrowDown') { y -= passo; pedir(); }
+      else return;
+      e.preventDefault(); e.stopPropagation();
+    };
+    z._resize = () => medir(true);
+    z._ov = html.style.overflow; html.style.overflow = 'hidden';
+    D.body.appendChild(z); aberto = z;
+    D.addEventListener('keydown', z._tecla, true); addEventListener('resize', z._resize);
+    requestAnimationFrame(() => { z.classList.add('on'); z.querySelector('.vz-x').focus({ preventScroll: true }); });
+  }
+  window.VGZoom = { abrir: abrirSrc };
+  function abrir(img) {
     const fig = img.closest('figure'), cap = fig && fig.querySelector('figcaption');
     let legenda = cap ? cap.cloneNode(true) : null;
     if (legenda) legenda.querySelectorAll('button,a').forEach(b => b.remove());
-    const z = D.createElement('div'); z.className = 'vg-zoom'; z.setAttribute('role', 'dialog'); z.setAttribute('aria-modal', 'true'); z.setAttribute('aria-label', 'Imagem ampliada');
-    z.innerHTML = '<div class="vz-box"><img alt=""></div><button type="button" class="vz-x" aria-label="Fechar">✕</button><span class="vz-dica">Toque na imagem para ver no tamanho real · Esc fecha</span>';
-    const big = z.querySelector('img'); big.src = img.currentSrc || img.src; big.alt = img.alt || '';
-    const txt = legenda ? legenda.textContent.trim() : (img.alt || '').trim();
-    if (txt && !/^imagem da questão$/i.test(txt)) { const p = D.createElement('div'); p.className = 'vz-cap'; p.textContent = txt; z.querySelector('.vz-box').appendChild(p); }
-    z.addEventListener('click', e => {
-      if (e.target === big) { z.classList.toggle('real'); return; }
-      fechar();
-    });
-    D.body.appendChild(z); aberto = z;
-    D.addEventListener('keydown', tecla, true);
-    requestAnimationFrame(() => { z.classList.add('on'); z.querySelector('.vz-x').focus({ preventScroll: true }); });
+    let txt = (legenda ? legenda.textContent : (img.dataset.caption || img.alt || '')).replace(/\s+/g, ' ').trim();
+    if (/^imagem da questão$/i.test(txt)) txt = '';
+    const src = img.currentSrc || img.src;
+    // aula dentro do master (iframe): abre no master, em tela inteira
+    if (window.top !== window) {
+      try { const T = window.top; if (T.VGZoom && T.document.documentElement.dataset.zoom !== 'proprio') { T.VGZoom.abrir(new URL(src, location.href).href, txt); return; } } catch (_) { }
+    }
+    abrirSrc(src, txt);
   }
   D.addEventListener('click', e => {
     const img = e.target;
