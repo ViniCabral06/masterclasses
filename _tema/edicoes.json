@@ -473,5 +473,20 @@
    }
   ],
   "b": []
+ },
+ "Patologia médica/aulas/pratica2.html": {
+  "t": [
+   {
+    "id": "emwzj058d",
+    "tag": "th",
+    "q": "Local",
+    "pre": "um achado de cada lado.CCEAdenocarcinoma",
+    "pos": "Terço médioTerço distal / JEG PrecursorD",
+    "r": "Local",
+    "d": 1795816900704,
+    "st": "text-align: center;"
+   }
+  ],
+  "b": []
  }
 }
