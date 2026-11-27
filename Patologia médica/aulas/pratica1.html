@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-tone="gi" data-theme="dark">
-<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=728144c6"><script defer src="../../_tema/notas.js?v=ba3865ff"></script><script defer src="../../_tema/editor.js?v=54019c0c"></script><script defer src="../../_tema/segmentos.js?v=7b9e3844"></script><script defer src="../../_tema/extras.js?v=d3287083"></script><script defer src="../../_tema/memes.js?v=86e20ff2"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><script src="../../_tema/correcao.js?v=d81fe2d2"></script><script defer src="../../_tema/simulado.js?v=4616e92a"></script><script defer src="../../_tema/flashcards.js?v=4c60ee3a"></script><script defer src="../../_tema/siglas.js?v=bb26111b"></script><script defer src="../../_tema/praticar.js?v=6a32433a"></script><!--/vidro:cabeca-->
+<head><!--vidro:cabeca--><script>document.documentElement.dataset.vidro="pato";document.documentElement.classList.add('vidro-aula','vidro-ready')</script><link rel="stylesheet" href="../../_tema/vidro.css?v=728144c6"><script defer src="../../_tema/notas.js?v=ba3865ff"></script><script defer src="../../_tema/editor.js?v=54019c0c"></script><script defer src="../../_tema/segmentos.js?v=7b9e3844"></script><script defer src="../../_tema/extras.js?v=d3287083"></script><script defer src="../../_tema/memes.js?v=cf50e415"></script><script defer src="../../_tema/liquido.js?v=727b02a3"></script><script src="../../_tema/correcao.js?v=d81fe2d2"></script><script defer src="../../_tema/simulado.js?v=4616e92a"></script><script defer src="../../_tema/flashcards.js?v=4c60ee3a"></script><script defer src="../../_tema/siglas.js?v=bb26111b"></script><script defer src="../../_tema/praticar.js?v=6a32433a"></script><!--/vidro:cabeca-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Prática 1 · Cardio e pulmão · Patologia I</title>
@@ -2309,7 +2309,7 @@ function viewTopic(id){
   if(lams.length) h+=`<div class="secttl"><h3>Lâminas e peças do tema</h3><span>${lams.length} imagens · ligue "Esconder diagnósticos" para treinar</span></div><div class="gal">${lams.map(l=>lamCard(l.k)).join('')}</div>`;
   const qs=Object.values(QS).filter(q=>q.tp===id||(q.src==='R'&&q.tp2===id)).sort((x,y)=>{const o=s=>/^\d\d$/.test(s)?0:s==='R'?1:s==='M'?2:s==='B'?3:4;return o(x.src)-o(y.src)||String(y.src).localeCompare(String(x.src))||(+x.n||0)-(+y.n||0);});
   if(t.quiz){const ok=qs.filter(q=>S.mark[q.id]==='ok').length,no=qs.filter(q=>S.mark[q.id]==='no').length;h+=`<div class="score" style="margin-top:16px"><span>Pontuação: <b style="color:var(--ok)">${ok}</b>/${qs.length}</span><span><b style="color:var(--bad)">${no}</b> erradas</span><span><b>${qs.length-ok-no}</b> sem responder</span><button class="chip" id="qzReset">zerar quiz</button></div>`;}
-  if(qs.length) h+=`<div class="secttl"><h3>${id.startsWith('R.')?(t.quiz?'Quiz':'Questão da revisão + fixação'):'Teste-se'}</h3><span>${id.startsWith('R.')?'responda antes de abrir o gabarito':'provas 79–82 primeiro, depois monitores e banco; autorais no fim, recolhidas'}${qs.some(q=>q.miss)?' · nas provas 80–82 as imagens são do material (não oficiais) e a associação feita por IA pode ter erros':''}</span></div>${qs.filter(q=>q.src!=='X').map(q=>qcard(q.id)).join('')}`+((a,m)=>a.length?`<details class="pv-aut"${m?' open':''}><summary>✍️ Autorais (${a.length})</summary>${a.map(q=>qcard(q.id)).join('')}</details>`:'')(qs.filter(q=>q.src==='X'),!qs.some(q=>q.src!=='X'));
+  if(qs.length) h+=`<div class="secttl"><h3>${id.startsWith('R.')?(t.quiz?'Quiz':'Questão da revisão + fixação'):'Teste-se'}</h3><span>${id.startsWith('R.')?'responda antes de abrir o gabarito':'provas 79–82 primeiro, depois monitores e banco; autorais no fim, recolhidas'}${qs.some(q=>q.miss)?' · nas provas 80–82 as imagens são do material (não oficiais) e a associação feita por IA pode ter erros':''}</span></div><div class="pv-box">${qs.filter(q=>q.src!=='X').map(q=>qcard(q.id)).join('')}</div>`+((a,m)=>a.length?`<details class="pv-aut"${m?' open':''}><summary>✍️ Autorais (${a.length})</summary><div class="pv-box">${a.map(q=>qcard(q.id)).join('')}</div></details>`:'')(qs.filter(q=>q.src==='X'),!qs.some(q=>q.src!=='X'));
   h+=pager('t:'+id);
   return h;
 }
@@ -2354,7 +2354,7 @@ function viewSim(p){
   let h=pageHead('📝 Simulados',esc(nm),sub,'s:'+p);
   if(['80','81','82'].includes(p)) h+=AVISO;
   h+=`<div class="score"><span><b>${qs.length}</b> questões</span><span><b style="color:var(--ok)">${ok}</b> acertei</span><span><b style="color:var(--bad)">${no}</b> errei</span><span><b>${qs.length-ok-no}</b> sem marcar</span></div>`;
-  h+=qs.map(q=>qcard(q.id)).join('')+pager('s:'+p);
+  h+='<div class="pv-box">'+qs.map(q=>qcard(q.id)).join('')+'</div>'+pager('s:'+p);
   return h;
 }
 
@@ -2403,7 +2403,7 @@ function viewRev(id){
   if(id==='check'){h+=`<div class="card chk">${REV.check.map((c,i)=>`<label class="${S.chk[i]?'on':''}"><input type="checkbox" data-ck="${i}" ${S.chk[i]?'checked':''}><span>${esc(c)}</span></label>`).join('')}</div>`;}
   if(id==='casos'){h+=`<div class="filters"><span class="chip" id="casoTog">Modo treino: esconder achados e distratores</span></div><div class="card" style="padding:18px"><table class="cmp cases"><tr><th>Aula</th><th>Diagnóstico</th><th>Vinheta modelo</th><th>Obrigatório pra fechar</th><th>Distrator / pegadinha</th></tr>${REV.casos.map(c=>`<tr><td>${c[0]}</td><td><b>${c[1]}</b></td><td>${c[2]}</td><td>${c[3]}</td><td>${c[4]}</td></tr>`).join('')}</table></div>`;}
   if(id==='socaso'){REV.soCaso.forEach((q,i)=>{Q('SC'+i,{src:'C',n:i+1,ctx:q.q,mc:q.o,correct:q.c,gab:[('ABCDE'[q.c])+') '+q.o[q.c]+' — '+q.e]});});
-    h+=REV.soCaso.map((q,i)=>qcard('SC'+i)).join('').replace(/Banco prova prática · |Prova C · Questão /g,'Caso ');}
+    h+='<div class="pv-box">'+REV.soCaso.map((q,i)=>qcard('SC'+i)).join('').replace(/Banco prova prática · |Prova C · Questão /g,'Caso ')+'</div>';}
   if(id==='abertas'){h+=`<div class="card reading"><h3>Técnica para a questão aberta</h3><ol><li><b>Responda item por item</b> (A, B, C) — a correção é por item.</li><li><b>"Cite 2" = 2.</b> Nem 1, nem 5 (item errado no meio da lista pode anular).</li><li><b>Use o termo técnico exato</b>: "fibrose endomisial", "hipertrofia concêntrica", "lesão da barreira alvéolo-capilar".</li><li><b>Não reescreva o enunciado.</b></li><li><b>Mecanismo = cadeia causa → efeito</b> em uma linha.</li><li><b>Tempo do IAM</b>: intervalo + achado que justifica.</li></ol>
   <h3>Banco de frases prontas</h3><div class="phr">
   <div><b>Edema cardiogênico</b>Aumento da pressão hidrostática nos capilares pulmonares por IC esquerda, com transudato acelular nos alvéolos.</div>

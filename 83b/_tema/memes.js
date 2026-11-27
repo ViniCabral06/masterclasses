@@ -19,10 +19,12 @@
   const KEY = 'vidro-memes:' + pasta;
 
   const GRUPO = '.pv-box,#quizlist,.qzone,.qsection,.quiz,.quizlist';
-  const ITEM = '.q:not(.q-open),.qcard,fieldset.quiz-item';
+  const ITEM = '.q:not(.q-open),.qcard,fieldset.quiz-item,.qc';
   // DIC IV: .q.answered, a certa ganha .opt.ok e a marcada errada .opt.no
-  const CERTO = '.is-correct[aria-pressed="true"],.option.right input:checked,.option.right:has(input:checked),.selected-correct,.opt.ok';
-  const ERRADO = '.is-wrong,.option.wrong,.selected-incorrect,.opt.no';
+  // questões abertas com autoavaliação (Patologia, práticas): "Acertei" conta como certa; "Parcial" e "Errei", como errada
+  //   Prática 2: .dq-av button.on[data-v=ok|par|no] · Prática 1: [data-mk=ok|no].on
+  const CERTO = '.is-correct[aria-pressed="true"],.option.right input:checked,.option.right:has(input:checked),.selected-correct,.opt.ok,.dq-av button.on[data-v="ok"],[data-mk="ok"].on';
+  const ERRADO = '.is-wrong,.option.wrong,.selected-incorrect,.opt.no,.dq-av button.on[data-v="par"],.dq-av button.on[data-v="no"],[data-mk="no"].on';
   const RESPONDIDA = el => el.classList.contains('done') || el.classList.contains('answered') || !!el.querySelector('.qoption[disabled],.option.right,.option.wrong,' + ERRADO + ',' + CERTO);
 
   const TAUNT = ['Ei! Clicar não libera 😤', 'Insistir não abre. Acertar abre.', 'Tá trancado. As questões estão logo acima ☝️',
