@@ -1,0 +1,139 @@
+{
+  "materia": "micro",
+  "segs": {
+    "a1/s1": {
+      "m": [
+        {
+          "id": "micro-a1s1-m4",
+          "enun": "<p>Um paciente jovem recebe diagnóstico de pneumonia atípica por <i>Mycoplasma pneumoniae</i> e inicia amoxicilina sem melhora clínica após 72 horas. O preceptor explica que esse microrganismo constitui uma exceção estrutural clássica entre os procariotos.</p>",
+          "cmd": "Qual característica de <i>Mycoplasma</i> explica simultaneamente sua particularidade de membrana e a falha dos betalactâmicos?",
+          "alts": [
+            "Presença de parede espessa de quitina e ausência completa de ribossomos 70S no citoplasma.",
+            "Ausência de parede celular de peptideoglicano e incorporação de colesterol na membrana.",
+            "Presença de núcleo delimitado por membrana e substituição do colesterol por ergosterol.",
+            "Ausência de membrana citoplasmática e dependência obrigatória de ribossomos 80S humanos."
+          ],
+          "gab": 1,
+          "com": [
+            "Quitina é componente de fungos (eucariotos), e Mycoplasma mantém ribossomos 70S típicos de bactérias.",
+            "Mycoplasma não possui parede de peptideoglicano (por isso betalactâmicos falham) e é a exceção bacteriana que incorpora esteróis (colesterol) na membrana.",
+            "Núcleo delimitado e ergosterol caracterizam fungos (eucariotos), não bactérias como Mycoplasma.",
+            "Mycoplasma possui membrana plasmática (com colesterol) e ribossomos 70S próprios, não dependendo dos 80S humanos."
+          ],
+          "porque": [
+            "Quitina pertence à parede fúngica (eucarioto) e Mycoplasma conserva ribossomos 70S bacterianos funcionais.",
+            "",
+            "Núcleo delimitado por membrana e ergosterol são marcas de fungos eucarióticos, não de bactérias.",
+            "Mycoplasma tem membrana citoplasmática própria estabilizada por colesterol e sintetiza proteínas com ribossomos 70S."
+          ],
+          "trecho": [
+            "parede espessa de quitina",
+            "",
+            "ergosterol",
+            "Ausência de membrana citoplasmática"
+          ],
+          "ref": "Aula 1 · Segmento 1 — Célula procariótica, ribossomo e plasmídeos",
+          "hab": [
+            {
+              "t": "Recordou que Mycoplasma é a exceção bacteriana sem parede de peptideoglicano e com colesterol na membrana.",
+              "tag": "Exceção Mycoplasma",
+              "open": {
+                "p": "Qual é a dupla exceção estrutural clássica de Mycoplasma em relação às demais bactérias?",
+                "r": "Não possui parede celular de peptideoglicano e incorpora colesterol (esteróis) em sua membrana citoplasmática.",
+                "chaves": ["sem parede", "peptideoglicano", "colesterol"]
+              }
+            },
+            {
+              "t": "Associou a ausência de parede de peptideoglicano à ineficácia intrínseca dos betalactâmicos.",
+              "tag": "Alvo dos betalactâmicos",
+              "open": {
+                "p": "Por que antibióticos betalactâmicos (como amoxicilina) não funcionam contra Mycoplasma?",
+                "r": "Porque betalactâmicos inibem a síntese da parede de peptideoglicano, estrutura ausente no Mycoplasma.",
+                "chaves": ["peptideoglicano", "parede", "ausente"]
+              }
+            }
+          ]
+        },
+        {
+          "id": "micro-a1s1-m5",
+          "enun": "<p>Sobre as diferenças estruturais e genéticas entre células procarióticas e eucarióticas que embasam a toxicidade seletiva antimicrobiana, analise as afirmativas:</p><p>I. O cromossomo bacteriano típico é único, circular e desprovido de histonas verdadeiras.<br>II. Os ribossomos bacterianos são 70S (50S + 30S), diferindo dos citoplasmáticos humanos 80S (60S + 40S).<br>III. A divisão bacteriana ocorre por fissão binária, permitindo multiplicação rápida e rápida seleção de mutantes.<br>IV. A ausência de membrana nuclear nas bactérias impede que carreguem DNA extracromossômico em plasmídeos.</p>",
+          "cmd": "Assinale a alternativa que indica apenas as afirmativas corretas:",
+          "alts": [
+            "Apenas I, II e IV estão corretas.",
+            "Apenas II, III e IV estão corretas.",
+            "Apenas I, II e III estão corretas.",
+            "Todas as afirmativas I, II, III e IV estão corretas."
+          ],
+          "gab": 2,
+          "com": [
+            "Inclui a IV, que é falsa: bactérias possuem plasmídeos livres no citoplasma exatamente fora do cromossomo.",
+            "Exclui a I (verdadeira) e inclui a IV (falsa).",
+            "I, II e III resumem exatamente cromossomo circular sem histonas, ribossomos 70S × 80S e fissão binária rápida; IV é falsa.",
+            "Considera a IV correta, negando a existência de plasmídeos em procariotos."
+          ],
+          "porque": [
+            "A afirmativa IV é falsa: a ausência de membrana nuclear não impede plasmídeos, que são DNA extracromossômico circular típico de bactérias.",
+            "Deixa de fora a afirmativa I (correta) e inclui a IV, que contradiz a existência de plasmídeos bacterianos.",
+            "",
+            "Inclui a afirmativa IV como verdadeira, embora plasmídeos sejam característicos das bactérias."
+          ],
+          "trecho": [
+            "II e IV estão corretas",
+            "III e IV estão corretas",
+            "",
+            "I, II, III e IV estão corretas"
+          ],
+          "ref": "Aula 1 · Segmento 1 — Célula procariótica, ribossomo e plasmídeos",
+          "hab": [
+            {
+              "t": "Reconheceu a composição dos ribossomos bacterianos (70S = 50S + 30S) em contraste com os eucarióticos (80S = 60S + 40S).",
+              "tag": "Ribossomos 70S × 80S",
+              "open": {
+                "p": "Quais são as subunidades do ribossomo bacteriano (70S) e do ribossomo citoplasmático humano (80S)?",
+                "r": "Bactéria: 70S = 50S + 30S. Célula humana (citoplasma): 80S = 60S + 40S.",
+                "chaves": ["50S", "30S", "60S", "40S"]
+              }
+            },
+            {
+              "t": "Relacionou a fissão binária e a multiplicação rápida à disseminação acelerada de mutações e plasmídeos de resistência.",
+              "tag": "Fissão binária e resistência",
+              "open": {
+                "p": "Qual é o impacto clínico de as bactérias se dividirem rapidamente por fissão binária?",
+                "r": "Permite que uma única mutação ou plasmídeo de resistência se espalhe rapidamente em poucas horas no paciente ou no ambiente hospitalar.",
+                "chaves": ["mutação", "plasmídeo", "resistência", "rapidamente"]
+              }
+            }
+          ]
+        }
+      ],
+      "a": {
+        "id": "micro-a1s1-ab",
+        "enun": "<p>Explique o princípio da <b>toxicidade seletiva</b> dos antibióticos citando <b>dois alvos estruturais</b> presentes na célula bacteriana que diferem da célula humana, e explique por que <b>plasmídeos R</b> representam risco clínico mesmo não sendo essenciais à sobrevivência basal da bactéria.</p>",
+        "resp": "A toxicidade seletiva ocorre porque os antibióticos atingem estruturas exclusivas ou diferentes nas bactérias sem lesar as células humanas, como a parede celular de peptideoglicano (ausente em humanos) e os ribossomos 70S (50S+30S, contra 80S humanos). Os plasmídeos R são DNA circular extracromossômico dispensável em condições basais, mas conferem vantagem seletiva sob antibiótico (resistência) e podem ser transferidos horizontalmente entre bactérias (ex.: conjugação), espalhando multirresistência rapidamente.",
+        "chaves": ["peptideoglicano", "70S", "80S", "extracromossômico", "conjugação"],
+        "lim": 500,
+        "ref": "Aula 1 · Segmento 1 — Célula procariótica, ribossomo e plasmídeos",
+        "hab": [
+          {
+            "t": "Articulou toxicidade seletiva a alvos diferenciais entre procariotos e eucariotos (peptideoglicano e ribossomo 70S).",
+            "tag": "Toxicidade seletiva",
+            "open": {
+              "p": "Cite dois alvos estruturais da célula bacteriana que garantem toxicidade seletiva aos antibióticos frente às células humanas.",
+              "r": "Parede celular de peptideoglicano (ausente em humanos) e ribossomos 70S (humanos usam 80S no citoplasma).",
+              "chaves": ["peptideoglicano", "70S"]
+            }
+          },
+          {
+            "t": "Explicou a importância clínica dos plasmídeos R (não essenciais, mas transferíveis horizontalmente sob pressão seletiva).",
+            "tag": "Plasmídeos R",
+            "open": {
+              "p": "Se plasmídeos R não são essenciais para a bactéria sobreviver, por que são tão relevantes na prática hospitalar?",
+              "r": "Porque carregam genes de resistência que dão vantagem seletiva na presença de antibióticos e podem ser transferidos entre bactérias (ex.: conjugação).",
+              "chaves": ["resistência", "vantagem seletiva", "transferidos"]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

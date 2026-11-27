@@ -468,7 +468,7 @@
   var QUESTAO = '.q,.qs,.qh,.qblock,.qcard,.qbank,.qb,.qset,.bk,.wg,.qzone,.quiz,.quiz-item,.mcq,.stem,.q-stem,.qenun,.qcmd,.qcom,.qfb,.qfoot,.qimgs,' +
              '.q-why,.q-verdict,.pv-box,.pv-item,.pv-just,.transcription,.gabrev,.opt,.opts,.alt,.alts,.option,.lx-opts,.rl-opts,.wopts,' +
              '.dq,.model,.ai-out,.gabarito,article.d,.prose:has(.q-source),' +
-             '.vgsim,.vgfc,.rx-q,.rx-rep,.arena,[class*="arena"],[data-sim]';
+             '.vgsim,.vgfc,.vgq-ov,.vgq-cta,.vgq-pmod,.rx-q,.rx-rep,.arena,[class*="arena"],[data-sim]';
   var PULA = 'script,style,svg,button,select,textarea,input,code,pre,abbr,a,kbd,.vg-sg,.q-source,.q-num,.opt-letter,nav,aside,header,' +
              '.sidebar,.nav,.toc,.mc-chip,#mc-tooltip,.vg-sgtip,#vg-abas,#vg-lista,#vg-busca,#vg-ajustes,#vg-canto,.vg-n-ui,[contenteditable],[data-nosiglas],' + QUESTAO;
   var BLOCO = 'p,li,td,th,dd,dt,figcaption,blockquote,h1,h2,h3,h4,h5,.opt-text,.q-stem,div';

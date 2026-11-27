@@ -1,0 +1,4081 @@
+{
+  "materia": "huma",
+  "byHash": {
+    "7b2a7045": [
+      {
+        "t": "Contrastou o foco da ênfase biomédica (fatos biológicos e tecnologia) com o da ênfase biopsicossocial (acesso qualitativo e relação clínica).",
+        "tag": "Biomédica × Biopsicossocial",
+        "open": {
+          "p": "Qual é o foco predominante da ênfase biomédica em comparação à ênfase biopsicossocial?",
+          "r": "A biomédica privilegia fatos biológicos e densidade tecnológica; a biopsicossocial amplia o acesso qualitativo, o vínculo e a integralidade da pessoa.",
+          "chaves": [
+            "fatos biológicos",
+            "acesso qualitativo",
+            "vínculo"
+          ]
+        }
+      },
+      {
+        "t": "Evitou atribuir à abordagem biomédica objetivos relacionais próprios do paradigma biopsicossocial.",
+        "tag": "Foco do encontro clínico",
+        "open": {
+          "p": "Por que usar apenas a lente biomédica tende a empobrecer a relação médico-paciente?",
+          "r": "Porque reduz o encontro à identificação de lesões e procedimentos técnicos, deixando de fora subjetividade, rede de apoio e contexto de vida.",
+          "chaves": [
+            "lesões",
+            "subjetividade",
+            "contexto"
+          ]
+        }
+      }
+    ],
+    "3301a118": [
+      {
+        "t": "Reconheceu postura centrada no médico (ênfase biomédica) diante de interrupções, jargão técnico e deslegitimação da fala do familiar.",
+        "tag": "Cuidado centrado no médico",
+        "open": {
+          "p": "Quais sinais de comunicação numa consulta denunciam um cuidado centrado no médico em vez de centrado na pessoa?",
+          "r": "Interromper o paciente ou familiar, usar jargão técnico sem traduzir e restringir a conversa apenas à doença biológica ('o que importa é a doença').",
+          "chaves": [
+            "interromper",
+            "jargão",
+            "doença biológica"
+          ]
+        }
+      },
+      {
+        "t": "Compreendeu que o acolhimento e a comunicação não verbal integram todo o encontro clínico, não apenas a recepção.",
+        "tag": "Acolhimento clínico",
+        "open": {
+          "p": "O acolhimento se restringe à recepção do serviço de saúde?",
+          "r": "Não. Acolher é uma postura ética e comunicacional de toda a equipe durante todo o encontro clínico, incluindo escuta qualificada e legitimação do familiar.",
+          "chaves": [
+            "não",
+            "toda a equipe",
+            "escuta"
+          ]
+        }
+      }
+    ],
+    "3551a622": [
+      {
+        "t": "Associou a inclusão de aspectos socioeconômicos e da rede familiar no plano terapêutico ao cuidado centrado na pessoa e à corresponsabilidade.",
+        "tag": "Rede sociofamiliar",
+        "open": {
+          "p": "Quando incluir um familiar (com concordância do paciente) fortalece o cuidado centrado na pessoa em vez de ser paternalismo?",
+          "r": "Quando respeita a autonomia do usuário, considera limitações financeiras/culturais da rotina doméstica e promove corresponsabilidade no plano terapêutico.",
+          "chaves": [
+            "autonomia",
+            "corresponsabilidade",
+            "rotina"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu envolvimento pactuado da família de violação de sigilo ou paternalismo.",
+        "tag": "Autonomia × Paternalismo",
+        "open": {
+          "p": "O que diferencia uma conduta paternalista de uma conduta alinhada ao cuidado centrado na pessoa?",
+          "r": "No paternalismo o médico decide pelo paciente ignorando sua autonomia e contexto; no cuidado centrado na pessoa há escuta, respeito às condições reais e decisão pactuada.",
+          "chaves": [
+            "autonomia",
+            "escuta",
+            "pactuada"
+          ]
+        }
+      }
+    ],
+    "d53f81a7": [
+      {
+        "t": "Identificou o modelo biomédico quando a consulta se limita a exame físico e medicação sem investigar sofrimento e contexto.",
+        "tag": "Identificação de modelo",
+        "open": {
+          "p": "Em um caso de cefaleia e insônia atendido só com exame físico rápido e prescrição, qual modelo de atenção predominou?",
+          "r": "O modelo biomédico (centrado na doença), que foca sinais físicos e prescrição sem explorar fatores emocionais, familiares ou sociais.",
+          "chaves": [
+            "biomédico",
+            "centrado na doença",
+            "fatores emocionais"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou queixas físicas recorrentes como cefaleia e insônia à necessidade de escuta ampliada.",
+        "tag": "Escuta ampliada",
+        "open": {
+          "p": "Por que queixas como cefaleia frequente e insônia exigem ir além do exame físico isolado?",
+          "r": "Porque frequentemente expressam sobrecarga emocional, estresse laboral ou vulnerabilidade social que não se resolvem apenas com prescrição sintomática.",
+          "chaves": [
+            "sobrecarga",
+            "emocional",
+            "social"
+          ]
+        }
+      }
+    ],
+    "4506083c": [
+      {
+        "t": "Diferenciou a comunicação não verbal da comunicação verbal baseada em fala ou escrita.",
+        "tag": "Comunicação não verbal",
+        "open": {
+          "p": "O que diferencia a comunicação não verbal da verbal e quais são dois exemplos clássicos?",
+          "r": "A comunicação não verbal ocorre sem palavras faladas ou escritas, expressando-se por sinais corporais como postura e gestos.",
+          "chaves": [
+            "postura",
+            "gestos",
+            "sem palavras"
+          ]
+        }
+      },
+      {
+        "t": "Descartou alternativas que misturavam elementos não verbais com oratória ou escrita.",
+        "tag": "Comunicação verbal e escrita",
+        "open": {
+          "p": "Por que oratória e escrita são classificadas como formas de comunicação verbal?",
+          "r": "Porque ambas utilizam palavras — faladas no caso da oratória e registradas graficamente no caso da escrita — para transmitir mensagens.",
+          "chaves": [
+            "palavras",
+            "oratória",
+            "escrita"
+          ]
+        }
+      }
+    ],
+    "fb2ad5ff": [
+      {
+        "t": "Identificou acolhimento, vínculo e integralidade como pilares favorecidos pela comunicação efetiva.",
+        "tag": "Pilares da humanização",
+        "open": {
+          "p": "Quais três aspectos centrais da humanização do atendimento são favorecidos pela comunicação efetiva?",
+          "r": "A comunicação efetiva favorece o acolhimento, a formação de vínculo e a integralidade do cuidado.",
+          "chaves": [
+            "acolhimento",
+            "vínculo",
+            "integralidade"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou a comunicação efetiva à autonomia do usuário para o autocuidado e negociação terapêutica.",
+        "tag": "Autonomia e autocuidado",
+        "open": {
+          "p": "De que maneira a comunicação na relação terapêutica fortalece o papel do usuário ou cuidador?",
+          "r": "Ela promove autonomia para negociar o tratamento e cria condições favoráveis ao autocuidado e ao cuidado da criança sob sua responsabilidade.",
+          "chaves": [
+            "autonomia",
+            "negociação",
+            "autocuidado"
+          ]
+        }
+      }
+    ],
+    "a377afd3": [
+      {
+        "t": "Identificou o apoio ao enfrentamento do estresse e o protagonismo do paciente como focos da comunicação terapêutica.",
+        "tag": "Comunicação terapêutica",
+        "open": {
+          "p": "Qual é o objetivo central da comunicação terapêutica entre profissionais de saúde e usuários?",
+          "r": "Ajudar o paciente a enfrentar situações de estresse, superar bloqueios e tornar-se ativo no próprio processo de cuidado.",
+          "chaves": [
+            "estresse",
+            "ativo",
+            "cuidado"
+          ]
+        }
+      },
+      {
+        "t": "Rejeitou modelos autoritários, puramente tecnológicos ou focados apenas em dados clínicos.",
+        "tag": "Participação ativa do usuário",
+        "open": {
+          "p": "Por que uma comunicação unidirecional ou restrita a informações clínicas contraria a comunicação terapêutica?",
+          "r": "Porque a comunicação terapêutica exige interação humana, acolhimento dos aspectos emocionais e envolvimento ativo do paciente.",
+          "chaves": [
+            "interação",
+            "emocional",
+            "ativo"
+          ]
+        }
+      }
+    ],
+    "fa62caab": [
+      {
+        "t": "Associou a comunicação eficaz à construção de vínculos, qualidade do cuidado e adesão ao tratamento.",
+        "tag": "Adesão ao tratamento",
+        "open": {
+          "p": "Quais impactos positivos a comunicação eficaz produz na assistência em saúde segundo Coriolano-Marini et al.?",
+          "r": "Ela fortalece vínculos, melhora a qualidade do atendimento e a adesão aos tratamentos, promovendo uma experiência de saúde mais positiva.",
+          "chaves": [
+            "vínculos",
+            "adesão",
+            "qualidade"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que barreiras linguísticas e falta de formação exigem treinamento em habilidades comunicativas.",
+        "tag": "Treinamento em comunicação",
+        "open": {
+          "p": "Quais obstáculos comunicativos são apontados na prática em saúde e qual medida é indicada para superá-los?",
+          "r": "São apontadas barreiras linguísticas e falta de formação em habilidades comunicativas, indicando-se o investimento em treinamento.",
+          "chaves": [
+            "barreiras linguísticas",
+            "formação",
+            "treinamento"
+          ]
+        }
+      }
+    ],
+    "e01ab941": [
+      {
+        "t": "Identificou rodas de conversa, incentivo a redes sociais e gestão de conflitos como dispositivos de inclusão da PNH.",
+        "tag": "Dispositivos de inclusão",
+        "open": {
+          "p": "Quais ferramentas práticas a Política Nacional de Humanização utiliza para efetivar a inclusão nos serviços?",
+          "r": "Utiliza rodas de conversa, incentivo às redes e movimentos sociais e a gestão coletiva dos conflitos gerados pelas diferenças.",
+          "chaves": [
+            "rodas de conversa",
+            "movimentos sociais",
+            "gestão de conflitos"
+          ]
+        }
+      },
+      {
+        "t": "Compreendeu que a humanização ocorre de forma coletiva e compartilhada, integrando diferentes saberes e sujeitos.",
+        "tag": "Construção coletiva na PNH",
+        "open": {
+          "p": "Por que excluir usuários por escolaridade ou limitar a ação a escutas pontuais contradiz a inclusão na PNH?",
+          "r": "Porque humanizar requer construção coletiva e compartilhada, incluindo as diferenças nos processos de gestão e de cuidado.",
+          "chaves": [
+            "coletiva",
+            "compartilhada",
+            "diferenças"
+          ]
+        }
+      }
+    ],
+    "a35d798a": [
+      {
+        "t": "Reconheceu que a defesa dos direitos dos usuários garante conhecimento e cumprimento de leis da recepção à alta.",
+        "tag": "Direitos dos usuários",
+        "open": {
+          "p": "O que preconiza a diretriz de defesa dos direitos dos usuários na Política Nacional de Humanização?",
+          "r": "Que os serviços incentivem o conhecimento dos direitos garantidos por lei aos usuários e assegurem seu cumprimento da recepção até a alta.",
+          "chaves": [
+            "direitos",
+            "lei",
+            "recepção até a alta"
+          ]
+        }
+      },
+      {
+        "t": "Identificou a troca de definições ao reconhecer a clínica ampliada como abordagem singular do sofrimento e saúde-doença.",
+        "tag": "Clínica ampliada",
+        "open": {
+          "p": "Qual é a finalidade da diretriz de clínica ampliada e compartilhada segundo a PNH?",
+          "r": "Contribuir para uma abordagem clínica do adoecimento e do sofrimento que considere a singularidade do sujeito e a complexidade do processo saúde-doença.",
+          "chaves": [
+            "singularidade",
+            "sofrimento",
+            "saúde-doença"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou gestão participativa (inclusão na análise de contextos) de valorização do trabalhador (decisão sobre seu trabalho).",
+        "tag": "Cogestão e valorização",
+        "open": {
+          "p": "Como se distinguem a cogestão e a valorização do trabalhador nas diretrizes da PNH?",
+          "r": "A cogestão inclui novos sujeitos na análise de contextos e decisões políticas da gestão, enquanto a valorização dá visibilidade à experiência dos trabalhadores e os inclui nas decisões sobre os processos de trabalho.",
+          "chaves": [
+            "cogestão",
+            "trabalhadores",
+            "tomada de decisão"
+          ]
+        }
+      }
+    ],
+    "4d41594": [
+      {
+        "t": "Identificou a ativação de dispositivos de humanização na atenção e na gestão como objetivo principal da PNH.",
+        "tag": "Objetivo da PNH",
+        "open": {
+          "p": "Qual é o objetivo central da Política Nacional de Humanização ao estimular a comunicação no SUS?",
+          "r": "Ativar dispositivos que favoreçam ações de humanização tanto na atenção à saúde quanto na gestão dos serviços brasileiros.",
+          "chaves": [
+            "dispositivos",
+            "atenção",
+            "gestão"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou o enfrentamento das relações de poder à promoção de autonomia e corresponsabilidade no cuidado.",
+        "tag": "Autonomia e corresponsabilidade",
+        "open": {
+          "p": "O que a PNH enfrenta para evitar práticas desumanizadoras e o que busca fortalecer em trabalhadores e usuários?",
+          "r": "Enfrenta relações de poder, trabalho e afeto desumanizadoras para fortalecer a autonomia e a corresponsabilidade profissional e no cuidado de si.",
+          "chaves": [
+            "relações de poder",
+            "autonomia",
+            "corresponsabilidade"
+          ]
+        }
+      }
+    ],
+    "5804a4d7": [
+      {
+        "t": "Reconheceu a comunicação entre trabalhadores, usuários e gestores como motor de mudanças e recurso para produzir saúde.",
+        "tag": "Tríplice inclusão na PNH",
+        "open": {
+          "p": "O que justifica a aposta do HumanizaSUS na inclusão conjunta de trabalhadores, usuários e gestores?",
+          "r": "A comunicação entre esses três atores gera perturbação e inquietação consideradas o motor de mudanças e um recurso para produzir saúde.",
+          "chaves": [
+            "comunicação",
+            "motor de mudanças",
+            "três atores"
+          ]
+        }
+      },
+      {
+        "t": "Descartou visões fragmentadas ou hierárquicas que subordinam a clínica às decisões exclusivas de gestores.",
+        "tag": "Crítica à fragmentação",
+        "open": {
+          "p": "Por que a fragmentação do trabalho ou a submissão exclusiva aos gestores contraria a lógica do HumanizaSUS?",
+          "r": "Porque a PNH propõe inclusão e decisão compartilhada entre os atores, recusando a fragmentação e o monopólio decisório.",
+          "chaves": [
+            "compartilhada",
+            "fragmentação",
+            "hierarquia"
+          ]
+        }
+      }
+    ],
+    "bbe0832f": [
+      {
+        "t": "Identificou barreiras linguísticas, culturais e emocionais como os principais obstáculos à comunicação eficaz em saúde.",
+        "tag": "Barreiras na comunicação",
+        "open": {
+          "p": "Quais são os principais obstáculos capazes de prejudicar a comunicação eficaz no atendimento em saúde?",
+          "r": "São as barreiras linguísticas, culturais e emocionais que dificultam a compreensão entre profissionais, pacientes e acompanhantes.",
+          "chaves": [
+            "linguísticas",
+            "culturais",
+            "emocionais"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou obstáculos reais da comunicação de elementos como a presença de acompanhantes ou o uso de tecnologia.",
+        "tag": "Papel de acompanhantes",
+        "open": {
+          "p": "Por que a presença de acompanhantes não configura por si só um obstáculo à comunicação em saúde?",
+          "r": "Porque acompanhantes atuam como rede de apoio e facilitam a compreensão das informações e necessidades do paciente.",
+          "chaves": [
+            "apoio",
+            "compreensão",
+            "acompanhantes"
+          ]
+        }
+      }
+    ],
+    "f21d7d40": [
+      {
+        "t": "Reconheceu que incluir familiares na comunicação garante alinhamento e informação compartilhada sobre o cuidado.",
+        "tag": "Alinhamento no cuidado",
+        "open": {
+          "p": "Qual é a importância prática de incluir acompanhantes e familiares na comunicação sobre o tratamento?",
+          "r": "Garantir que todos os envolvidos estejam alinhados e informados sobre o cuidado, favorecendo o entendimento das necessidades do paciente.",
+          "chaves": [
+            "alinhados",
+            "informados",
+            "cuidado"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu o apoio participativo da família da substituição da autonomia decisória ou do diálogo direto com o paciente.",
+        "tag": "Apoio familiar e autonomia",
+        "open": {
+          "p": "Incluir familiares na comunicação significa evitar o diálogo direto com o paciente ou decidir por ele? Explique.",
+          "r": "Não; a participação familiar oferece apoio psicológico e clareza comunicativa, sem substituir a comunicação direta nem a autonomia do paciente.",
+          "chaves": [
+            "apoio psicológico",
+            "comunicação direta",
+            "autonomia"
+          ]
+        }
+      }
+    ],
+    "348e911e": [
+      {
+        "t": "Associou o acolhimento inicial falho na UBS ao sentido da integralidade voltado aos modos de organizar as práticas.",
+        "tag": "Sentidos da integralidade",
+        "open": {
+          "p": "Qual dos três sentidos da integralidade foi descumprido quando um paciente com sinais graves ficou aguardando na recepção?",
+          "r": "Foi descumprido o olhar voltado aos modos de organizar as práticas de saúde no serviço.",
+          "chaves": [
+            "modos de organizar",
+            "práticas",
+            "integralidade"
+          ]
+        }
+      },
+      {
+        "t": "Identificou que a falha decorreu da falta de articulação entre demanda programada e demanda espontânea.",
+        "tag": "Demanda programada e espontânea",
+        "open": {
+          "p": "No caso clínico apresentado, qual desarticulação organizacional ocorreu no atendimento da UBS?",
+          "r": "Faltou articulação entre a demanda programada (consultas em curso) e a demanda espontânea de urgência apresentada na chegada.",
+          "chaves": [
+            "demanda programada",
+            "demanda espontânea",
+            "articulação"
+          ]
+        }
+      }
+    ],
+    "a0e3ed89": [
+      {
+        "t": "Identificou o técnico de enfermagem como o profissional que exerceu responsabilização ao intervir e acompanhar o caso até o SAMU.",
+        "tag": "Responsabilização no cuidado",
+        "open": {
+          "p": "Qual profissional exemplificou a responsabilização pelo atendimento no caso de Jeferson e por quê?",
+          "r": "O técnico de enfermagem, pois entendeu a gravidade, realizou intervenção precoce na sala de observação, solicitou avaliação médica urgente e monitorou o paciente até a chegada do SAMU.",
+          "chaves": [
+            "técnico de enfermagem",
+            "intervenção precoce",
+            "monitoramento"
+          ]
+        }
+      },
+      {
+        "t": "Descartou profissionais ausentes no relato ou condutas iniciais limitadas à espera sem avaliação de gravidade.",
+        "tag": "Classificação de risco",
+        "open": {
+          "p": "Por que a orientação inicial da recepcionista de aguardar não caracteriza responsabilização nem acolhimento adequado?",
+          "r": "Porque o paciente apresentava sinais de alarme (febre alta, calafrios e falta de ar) e permaneceu em espera até piorar, sem avaliação imediata de risco.",
+          "chaves": [
+            "gravidade",
+            "espera",
+            "avaliação de risco"
+          ]
+        }
+      }
+    ],
+    "d8bfb50a": [
+      {
+        "t": "Reconheceu o trabalho articulado da equipe na UBS e com o SAMU como um fazer coletivo em defesa da vida.",
+        "tag": "Fazer coletivo em saúde",
+        "open": {
+          "p": "De que forma o atendimento a um paciente grave na UBS exemplifica o 'fazer coletivo' em defesa da vida?",
+          "r": "Pela atuação articulada de diferentes profissionais (recepção, enfermagem, médico e SAMU) que compartilham o cuidado e priorizam a proteção à vida diante da gravidade.",
+          "chaves": [
+            "atuação articulada",
+            "diferentes profissionais",
+            "defesa da vida"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou o encaminhamento da UBS ao hospital via SAMU à articulação entre mais de um nível de atenção.",
+        "tag": "Integralidade entre níveis",
+        "open": {
+          "p": "Como a integralidade se expressa quando um usuário inicia o atendimento na UBS e é transferido via SAMU para o hospital?",
+          "r": "Pela continuidade da assistência através de ações integradas em mais de um nível de atenção (atenção básica, urgência móvel e atenção hospitalar).",
+          "chaves": [
+            "níveis de atenção",
+            "continuidade",
+            "integração"
+          ]
+        }
+      }
+    ],
+    "aa692e54": [
+      {
+        "t": "Identificou a percepção precoce da gravidade clínica pela equipe como o modo de identificar situações de risco.",
+        "tag": "Identificação de risco",
+        "open": {
+          "p": "Por que identificar rapidamente situações de risco na sala de espera é uma prática ligada à integralidade?",
+          "r": "Porque o olhar ampliado dos profissionais permite reconhecer vulnerabilidades e gravidade clínica além da ordem de chegada, garantindo intervenção oportuna.",
+          "chaves": [
+            "situações de risco",
+            "olhar ampliado",
+            "intervenção oportuna"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou ações orientadas pela integralidade de práticas fragmentadas ou meramente burocráticas no serviço.",
+        "tag": "Superação da fragmentação",
+        "open": {
+          "p": "O que diferencia uma prática orientada pela integralidade de uma atuação fragmentada diante de um paciente agudo?",
+          "r": "Na integralidade, a equipe supera rotinas rígidas e isoladas para responder de forma resolutiva ao risco do paciente, evitando a fragmentação das atividades.",
+          "chaves": [
+            "fragmentação",
+            "resolutiva",
+            "risco"
+          ]
+        }
+      }
+    ],
+    "727e9a39": [
+      {
+        "t": "Classificou a aplicação do protocolo clínico pela médica como uso de tecnologia leve-dura no cuidado.",
+        "tag": "Tecnologia leve-dura",
+        "open": {
+          "p": "Por que o uso de protocolos clínicos e saberes estruturados na consulta médica é classificado como tecnologia leve-dura?",
+          "r": "Porque envolve conhecimentos técnicos e clínicos bem estruturados aplicados pelo profissional, sem depender apenas de equipamentos físicos nem se resumir ao vínculo.",
+          "chaves": [
+            "saberes estruturados",
+            "protocolos",
+            "conhecimento técnico"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou tecnologias leves baseadas em escuta e vínculo das tecnologias duras e leve-duras apresentadas.",
+        "tag": "Tecnologias em saúde",
+        "open": {
+          "p": "Como se diferenciam as tecnologias leve, leve-dura e dura no encontro entre profissional e paciente?",
+          "r": "A tecnologia leve refere-se às relações (escuta, acolhimento e vínculo); a leve-dura, aos saberes estruturados e protocolos clínicos; e a dura, a equipamentos e insumos materiais.",
+          "chaves": [
+            "relações",
+            "saberes estruturados",
+            "equipamentos"
+          ]
+        }
+      }
+    ],
+    "a938886d": [
+      {
+        "t": "Identificou na sugestão e explicação da consulta psicológica uma relação de pactuação com a autonomia da paciente.",
+        "tag": "Pactuação no cuidado",
+        "open": {
+          "p": "O que caracteriza a pactuação no cuidado quando o profissional propõe um encaminhamento ao paciente?",
+          "r": "Dialogar, esclarecer dúvidas sobre a proposta e respeitar o tempo e a decisão do paciente, tratando-o como sujeito ativo e corresponsável pelo cuidado.",
+          "chaves": [
+            "diálogo",
+            "autonomia",
+            "corresponsável"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou a postura dialogada da farmacêutica de condutas prescritivas unilaterais sem participação do usuário.",
+        "tag": "Autonomia do usuário",
+        "open": {
+          "p": "Por que explicar uma conduta e permitir que o paciente reflita sobre ela difere do modelo prescritivo tradicional?",
+          "r": "Porque substitui a imposição unilateral de ordens pelo compartilhamento de decisões, reconhecendo o usuário como alguém com quem se constroem acordos.",
+          "chaves": [
+            "compartilhamento",
+            "decisões",
+            "acordos"
+          ]
+        }
+      }
+    ],
+    "69067cb7": [
+      {
+        "t": "Reconheceu o estímulo à participação da paciente na decisão sobre o atendimento psicológico como eixo do cuidado.",
+        "tag": "Tomada de decisão",
+        "open": {
+          "p": "Como o profissional pode estimular a participação do paciente na tomada de decisão terapêutica?",
+          "r": "Apresentando opções de cuidado de forma clara, respondendo às dúvidas e permitindo que o paciente decida se deseja aderir à proposta.",
+          "chaves": [
+            "opções",
+            "dúvidas",
+            "decisão"
+          ]
+        }
+      },
+      {
+        "t": "Descartou alternativas incompatíveis ao notar ausência de plano inicial abrangente ou envolvimento familiar no caso.",
+        "tag": "Análise crítica clínica",
+        "open": {
+          "p": "Em que momento do atendimento de Maria faltou um plano terapêutico abrangente desde o início?",
+          "r": "Na consulta médica inicial, que se restringiu ao exame físico e à prescrição protocolar sem considerar o contexto emocional e laboral da paciente.",
+          "chaves": [
+            "consulta médica",
+            "protocolar",
+            "contexto"
+          ]
+        }
+      }
+    ],
+    "3161c791": [
+      {
+        "t": "Associou a escuta sensível ao olhar triste e ao desabafo de Maria à valorização da subjetividade e comunicação.",
+        "tag": "Subjetividade e comunicação",
+        "open": {
+          "p": "Como a atenção à subjetividade transforma um atendimento originalmente focado apenas em sintomas físicos?",
+          "r": "Ao perceber sinais emocionais e abrir espaço para a comunicação, o profissional acolhe angústias e demandas psicossociais ligadas ao sofrimento do paciente.",
+          "chaves": [
+            "sinais emocionais",
+            "comunicação",
+            "demandas psicossociais"
+          ]
+        }
+      },
+      {
+        "t": "Contrastou a abordagem restrita a fatos biológicos e tecnologias duras com o acolhimento comunicativo.",
+        "tag": "Modelo biopsicossocial",
+        "open": {
+          "p": "Qual é a limitação de uma conduta clínica que valoriza apenas os fatos biológicos?",
+          "r": "Ela ignora fatores emocionais, sociais e familiares ligados ao adoecimento, reduzindo a resolutividade e o vínculo com o paciente.",
+          "chaves": [
+            "fatores emocionais",
+            "sociais",
+            "vínculo"
+          ]
+        }
+      }
+    ],
+    "311779e0": [
+      {
+        "t": "Identificou as interrupções e o encerramento abrupto da consulta como barreiras comunicacionais na perspectiva do paciente.",
+        "tag": "Barreiras na comunicação",
+        "open": {
+          "p": "De que maneira interrupções frequentes e o encerramento abrupto prejudicam a consulta na perspectiva do paciente?",
+          "r": "Impedem que o paciente expresse suas dúvidas, expectativas e histórico prévio de tratamento, gerando desvalorização e quebra da escuta.",
+          "chaves": [
+            "dúvidas",
+            "expectativas",
+            "escuta"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu obstáculos à fala do paciente durante a consulta de desfechos posteriores ou concordância clínica.",
+        "tag": "Perspectiva do paciente",
+        "open": {
+          "p": "Por que o caso de Ana evidencia ausência de concordância sobre o ponto principal da consulta?",
+          "r": "Enquanto o médico reduziu a queixa à ausência de gravidade orgânica, a paciente buscava acolhimento para o impacto emocional, laboral e para opções já tentadas.",
+          "chaves": [
+            "concordância",
+            "impacto emocional",
+            "acolhimento"
+          ]
+        }
+      }
+    ],
+    "be7856d5": [
+      {
+        "t": "Identificou a redução de processos legais contra serviços como benefício direto de uma boa relação médico-paciente.",
+        "tag": "Segurança e litigância",
+        "open": {
+          "p": "Por que uma boa relação médico-paciente contribui para reduzir processos legais contra os serviços de saúde?",
+          "r": "Porque a comunicação clara, a transparência e o vínculo de confiança alinham expectativas, evitam falhas de entendimento e diminuem conflitos.",
+          "chaves": [
+            "vínculo de confiança",
+            "comunicação clara",
+            "conflitos"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou indicadores positivos ampliados pelo bom vínculo dos eventos adversos que são reduzidos por ele.",
+        "tag": "Impacto do vínculo",
+        "open": {
+          "p": "Como uma relação médico-paciente sólida afeta a satisfação da equipe, a alocação de recursos e os custos evitáveis?",
+          "r": "Ela aumenta a satisfação profissional e a eficiência no uso de recursos, enquanto reduz desperdícios de medicações, reinternações, visitas extras e litígios.",
+          "chaves": [
+            "eficiência",
+            "satisfação",
+            "desperdícios"
+          ]
+        }
+      }
+    ],
+    "e1dbe510": [
+      {
+        "t": "Reconheceu a escuta ativa como técnica essencial para compreender necessidades do paciente e tornar a comunicação eficaz.",
+        "tag": "Escuta ativa clínica",
+        "open": {
+          "p": "Qual é a função da escuta ativa na interação entre médico e paciente?",
+          "r": "Permitir que o médico compreenda com profundidade as preocupações e necessidades do paciente, promovendo uma comunicação mais eficaz e empática.",
+          "chaves": [
+            "preocupações",
+            "necessidades",
+            "eficaz"
+          ]
+        }
+      },
+      {
+        "t": "Identificou como falsa a negação do impacto da comunicação não verbal na interação entre médico e paciente.",
+        "tag": "Comunicação não verbal",
+        "open": {
+          "p": "Qual é o papel da comunicação não verbal, como expressões faciais e gestos, durante a consulta médica?",
+          "r": "Ela influencia diretamente a percepção de acolhimento, atenção e confiança pelo paciente, podendo reforçar ou contradizer a fala do profissional.",
+          "chaves": [
+            "expressões faciais",
+            "acolhimento",
+            "confiança"
+          ]
+        }
+      },
+      {
+        "t": "Validou a inclusão do acompanhante nas discussões sobre o tratamento para esclarecer dúvidas e apoiar o cuidado.",
+        "tag": "Inclusão do acompanhante",
+        "open": {
+          "p": "Por que incluir o acompanhante nas discussões sobre o tratamento favorece o cuidado ao paciente?",
+          "r": "Porque ajuda a esclarecer dúvidas, fortalece a rede de apoio e melhora a compreensão e o seguimento das orientações terapêuticas.",
+          "chaves": [
+            "dúvidas",
+            "rede de apoio",
+            "compreensão"
+          ]
+        }
+      }
+    ],
+    "e8202b7b": [
+      {
+        "t": "Associou a comunicação eficaz e a escuta ativa ao aumento da satisfação do paciente e da adesão ao tratamento.",
+        "tag": "Adesão ao tratamento",
+        "open": {
+          "p": "De que forma a comunicação eficaz e a escuta ativa influenciam a adesão terapêutica do paciente?",
+          "r": "Ao garantir compreensão das orientações e acolher preocupações, aumentam a confiança, a satisfação e o seguimento correto do tratamento.",
+          "chaves": [
+            "compreensão",
+            "confiança",
+            "satisfação"
+          ]
+        }
+      },
+      {
+        "t": "Julgou falsa a afirmação de que a comunicação não verbal não influencia a percepção do paciente sobre o médico.",
+        "tag": "Linguagem não verbal",
+        "open": {
+          "p": "Por que é incorreto afirmar que a comunicação não verbal não afeta a percepção do paciente sobre o médico?",
+          "r": "Porque postura, olhar, gestos e expressões faciais comunicam empatia ou distanciamento, moldando a avaliação do paciente sobre o atendimento.",
+          "chaves": [
+            "postura",
+            "empatia",
+            "percepção"
+          ]
+        }
+      },
+      {
+        "t": "Rejeitou a ideia de irrelevância da comunicação interprofissional, ligando-a diretamente à segurança do paciente.",
+        "tag": "Comunicação interprofissional",
+        "open": {
+          "p": "Qual é a importância da comunicação interprofissional para a segurança do paciente?",
+          "r": "Ela garante trabalho integrado entre os membros da equipe de saúde, reduzindo erros de conduta, omissões e falhas na continuidade do cuidado.",
+          "chaves": [
+            "trabalho integrado",
+            "reduzindo erros",
+            "continuidade"
+          ]
+        }
+      }
+    ],
+    "8c043a0": [
+      {
+        "t": "Identificou a gestão compartilhada e o protagonismo de trabalhadores e usuários como princípios centrais da PNH.",
+        "tag": "Princípios da PNH",
+        "open": {
+          "p": "O que significam gestão compartilhada e protagonismo dos sujeitos na Política Nacional de Humanização (PNH)?",
+          "r": "Significam incluir trabalhadores e usuários de forma corresponsável nas decisões sobre o cuidado e os serviços, fortalecendo sua autonomia.",
+          "chaves": [
+            "corresponsável",
+            "autonomia",
+            "decisões"
+          ]
+        }
+      },
+      {
+        "t": "Descartou abordagens tecnicistas centradas apenas em exames, aceleração diagnóstica ou exclusão da escuta no SUS.",
+        "tag": "Acolhimento versus tecnicismo",
+        "open": {
+          "p": "Por que priorizar apenas o volume de exames ou a rapidez diagnóstica sem acolhimento contraria a PNH?",
+          "r": "Porque a PNH busca transformar as práticas de cuidado valorizando escuta, vínculo e integralidade, e não apenas a produtividade técnica isolada.",
+          "chaves": [
+            "escuta",
+            "vínculo",
+            "integralidade"
+          ]
+        }
+      }
+    ],
+    "6e3f88a7": [
+      {
+        "t": "Reconheceu a qualificação das relações entre profissionais, pacientes e familiares com acolhimento como objetivo da PNH.",
+        "tag": "Objetivo da PNH",
+        "open": {
+          "p": "Qual é o objetivo principal da Política Nacional de Humanização (PNH) nas práticas de cuidado do SUS?",
+          "r": "Melhorar a qualidade das relações entre profissionais de saúde, pacientes e familiares, promovendo um atendimento acolhedor e humanizado.",
+          "chaves": [
+            "relações",
+            "acolhedor",
+            "humanizado"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou a proposta da PNH de metas como corte de custos, centralização decisória ou hierarquia assistencial.",
+        "tag": "Descentralização na PNH",
+        "open": {
+          "p": "Por que centralizar decisões em gestores e focar apenas na redução de custos não representa o objetivo da PNH?",
+          "r": "Porque a PNH propõe democratizar a gestão e qualificar o cuidado humano e relacional no SUS, em oposição à centralização vertical e ao foco financeiro.",
+          "chaves": [
+            "democratizar",
+            "relacional",
+            "cuidado"
+          ]
+        }
+      }
+    ],
+    "81f315b8": [
+      {
+        "t": "Identificou o papel do emissor na codificação da mensagem ao não adaptar a linguagem ao repertório do paciente",
+        "tag": "Codificação pelo profissional",
+        "open": {
+          "p": "No processo de comunicação em saúde, em que consiste uma falha de codificação cometida pelo profissional?",
+          "r": "Ocorre quando o profissional elabora a mensagem com termos técnicos e complexos sem adaptá-los ao conhecimento do paciente, dificultando a compreensão.",
+          "chaves": [
+            "codificação",
+            "termos técnicos",
+            "conhecimento"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou falha de codificação pelo profissional de falhas na decodificação pelo paciente ou de ruído no canal",
+        "tag": "Etapas da comunicação",
+        "open": {
+          "p": "Qual a diferença entre uma falha de codificação e uma falha provocada por ambiente ruidoso na comunicação clínica?",
+          "r": "A falha de codificação está na formulação inadequada da mensagem pelo emissor, enquanto o ambiente ruidoso interfere no canal e prejudica a transmissão.",
+          "chaves": [
+            "emissor",
+            "canal",
+            "ruído"
+          ]
+        }
+      }
+    ],
+    "5590a01": [
+      {
+        "t": "Reconheceu que a humanização prioriza relações acolhedoras, dignidade humana e integração de aspectos físicos e emocionais",
+        "tag": "Princípios da humanização",
+        "open": {
+          "p": "Como a Cartilha Nacional de Humanização orienta a relação entre profissionais de saúde e pacientes?",
+          "r": "Propõe relações mais acolhedoras e respeitosas, centradas na dignidade humana e na integração dos aspectos físicos e emocionais do usuário.",
+          "chaves": [
+            "dignidade",
+            "acolhedoras",
+            "emocionais"
+          ]
+        }
+      },
+      {
+        "t": "Identificou como falsa a negação da prioridade da participação da comunidade e dos usuários na gestão e controle social",
+        "tag": "Controle social na PNH",
+        "open": {
+          "p": "Qual é a posição da Cartilha Nacional de Humanização quanto à participação de usuários e comunidade na gestão em saúde?",
+          "r": "A participação da comunidade e dos usuários nos processos de gestão e controle social é uma prioridade nas práticas humanizadas.",
+          "chaves": [
+            "participação",
+            "gestão",
+            "controle social"
+          ]
+        }
+      }
+    ],
+    "f8d91c3": [
+      {
+        "t": "Descartou a definição reducionista de integralidade restrita apenas a serviços médicos sem considerar aspectos sociais e emocionais",
+        "tag": "Conceito de integralidade",
+        "open": {
+          "p": "Por que a integralidade na PNH não se restringe apenas à oferta de serviços médicos?",
+          "r": "Porque exige cuidado centrado nas necessidades amplas do indivíduo, valorizando aspectos sociais, emocionais e a subjetividade do paciente.",
+          "chaves": [
+            "integralidade",
+            "sociais",
+            "emocionais"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu equidade de tratamento uniforme ao reconhecer a necessidade de respeitar as particularidades de cada paciente",
+        "tag": "Equidade em saúde",
+        "open": {
+          "p": "Por que tratar todos os pacientes da mesma forma contraria o princípio da equidade?",
+          "r": "Porque a equidade consiste em atender cada pessoa conforme suas particularidades e necessidades singulares, e não de modo uniforme.",
+          "chaves": [
+            "equidade",
+            "particularidades",
+            "necessidades"
+          ]
+        }
+      }
+    ],
+    "c2835b01": [
+      {
+        "t": "Associou a incapacidade do usuário de compreender a informação recebida a uma falha na etapa de decodificação",
+        "tag": "Decodificação pelo usuário",
+        "open": {
+          "p": "Quando o usuário não consegue entender o que lhe foi informado no atendimento, em qual parte do processo comunicativo ocorreu a falha?",
+          "r": "Ocorreu na decodificação, etapa em que o receptor interpreta e atribui significado à mensagem recebida.",
+          "chaves": [
+            "decodificação",
+            "receptor",
+            "entender"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou as barreiras de decodificação do receptor das etapas de codificação pelo emissor e de transmissão pelo canal",
+        "tag": "Barreiras da comunicação",
+        "open": {
+          "p": "Como distinguir uma falha de decodificação de uma falha no canal na comunicação em saúde?",
+          "r": "Na decodificação o receptor não consegue interpretar a mensagem por diferenças de linguagem ou limitações orgânicas, enquanto no canal a falha está no meio de transmissão.",
+          "chaves": [
+            "decodificação",
+            "canal",
+            "interpretar"
+          ]
+        }
+      }
+    ],
+    "507c2467": [
+      {
+        "t": "Relacionou a demora no atendimento da queixa aguda durante consulta agendada ao olhar dos modos de organizar as práticas",
+        "tag": "Olhares da integralidade",
+        "open": {
+          "p": "Nos três olhares da integralidade, qual deles avalia a organização do fluxo de atendimento diante de uma urgência na UBS?",
+          "r": "O olhar dos modos de organizar as práticas, que analisa como os serviços estruturam o processo de trabalho para responder às necessidades dos usuários.",
+          "chaves": [
+            "modos de organizar",
+            "práticas",
+            "fluxo"
+          ]
+        }
+      },
+      {
+        "t": "Identificou a falta de articulação entre demanda programada e demanda espontânea na condução inicial do caso de Marcos",
+        "tag": "Demanda programada e espontânea",
+        "open": {
+          "p": "Qual falha organizacional ocorreu quando Marcos teve de insistir para ter sua cefaleia intensa avaliada apesar de estar em consulta agendada?",
+          "r": "Houve falta de articulação entre a demanda programada (consulta de rotina) e a demanda espontânea (urgência hipertensiva apresentada na espera).",
+          "chaves": [
+            "demanda programada",
+            "demanda espontânea",
+            "articulação"
+          ]
+        }
+      }
+    ],
+    "9f54301b": [
+      {
+        "t": "Identificou a atuação resolutiva do técnico de enfermagem ao intervir diante da queixa e reavaliar o paciente após medicação",
+        "tag": "Atuação da equipe",
+        "open": {
+          "p": "No caso de Marcos, quais ações caracterizaram a conduta resolutiva e contínua do técnico de enfermagem?",
+          "r": "Ele interveio diante da queixa persistente aferindo a pressão arterial, administrou a medicação prescrita e retornou para verificar os sinais vitais.",
+          "chaves": [
+            "técnico de enfermagem",
+            "queixa",
+            "sinais vitais"
+          ]
+        }
+      },
+      {
+        "t": "Excluiu alternativas com profissionais ausentes no relato ou atribuições incompatíveis com a conduta da recepção",
+        "tag": "Leitura do caso clínico",
+        "open": {
+          "p": "Por que não se pode atribuir à recepcionista um acompanhamento resolutivo de Marcos desde sua chegada?",
+          "r": "Porque ela apenas o orientou a aguardar o horário agendado mesmo diante da dor de cabeça intensa, sem investigar a gravidade do quadro.",
+          "chaves": [
+            "recepcionista",
+            "aguardar",
+            "gravidade"
+          ]
+        }
+      }
+    ],
+    "effe4102": [
+      {
+        "t": "Associou a identificação da situação de risco pelo técnico de enfermagem à expressão do olhar dos modos de organizar as práticas",
+        "tag": "Identificação de risco",
+        "open": {
+          "p": "De que modo o eixo dos modos de organizar as práticas apareceu na resolução do atendimento de Marcos na UBS?",
+          "r": "Apareceu quando o técnico de enfermagem identificou a situação de risco pela aferição da pressão arterial e acionou o atendimento médico imediato.",
+          "chaves": [
+            "situação de risco",
+            "modos de organizar",
+            "técnico"
+          ]
+        }
+      },
+      {
+        "t": "Descartou ações preventivas, coletivas ou em diversos níveis de atenção por não constarem na assistência descrita",
+        "tag": "Limites da atenção prestada",
+        "open": {
+          "p": "Por que não é possível afirmar que o atendimento imediato de Marcos incluiu ações coletivas ou diversos níveis de atenção?",
+          "r": "Porque o episódio descrito restringiu-se ao atendimento individual e emergencial dentro da própria UBS, sem intervenção coletiva ou encaminhamento a outro nível.",
+          "chaves": [
+            "individual",
+            "UBS",
+            "coletivas"
+          ]
+        }
+      }
+    ],
+    "9e0f25dc": [
+      {
+        "t": "Reconheceu que a estabilização da urgência hipertensiva configurou cuidado curativo e individual, aplicando parcialmente a integralidade",
+        "tag": "Cuidado curativo e individual",
+        "open": {
+          "p": "Por que o atendimento prestado a Marcos na UBS representa apenas uma aplicação parcial da integralidade?",
+          "r": "Porque se concentrou no cuidado curativo e individual da urgência hipertensiva, sem abranger dimensões preventivas, coletivas ou de reabilitação.",
+          "chaves": [
+            "curativo",
+            "individual",
+            "parcial"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou o cuidado curativo e individual executado na crise dos componentes preventivos, coletivos e de reabilitação ausentes",
+        "tag": "Dimensões do cuidado",
+        "open": {
+          "p": "Quais dimensões assistenciais ficaram de fora da abordagem imediata descrita no caso de Marcos?",
+          "r": "Ficaram de fora as ações de prevenção, o cuidado coletivo e as medidas de reabilitação.",
+          "chaves": [
+            "preventivo",
+            "coletivo",
+            "reabilitação"
+          ]
+        }
+      }
+    ],
+    "bb857d91": [
+      {
+        "t": "Classificou o uso de conhecimento clínico e protocolo na consulta médica como tecnologia leve-dura",
+        "tag": "Tecnologia leve-dura",
+        "open": {
+          "p": "Por que a aplicação do conhecimento clínico por meio de protocolo pela médica é classificada como tecnologia leve-dura?",
+          "r": "Porque utiliza saberes estruturados da clínica e normas protocolares para conduzir o exame físico e a prescrição.",
+          "chaves": [
+            "leve-dura",
+            "conhecimento clínico",
+            "protocolo"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu a escuta atenta e o acolhimento (tecnologia leve) da simples entrega de medicamentos ou aplicação de protocolos",
+        "tag": "Tecnologia leve",
+        "open": {
+          "p": "O que caracteriza a tecnologia leve na atuação em saúde evidenciada pela farmacêutica no caso de Joana?",
+          "r": "Consiste nas práticas relacionais como escuta atenta, acolhimento da angústia, vínculo e esclarecimento de dúvidas no encontro com a usuária.",
+          "chaves": [
+            "tecnologia leve",
+            "escuta",
+            "acolhimento"
+          ]
+        }
+      },
+      {
+        "t": "Descartou a confusão dos distratores entre escuta qualificada e tecnologia dura no cuidado à mãe e ao bebê",
+        "tag": "Tecnologia dura",
+        "open": {
+          "p": "Por que a escuta qualificada não pode ser classificada como tecnologia dura?",
+          "r": "Porque tecnologia dura refere-se a equipamentos, máquinas e insumos materiais, enquanto a escuta qualificada é uma tecnologia relacional (leve).",
+          "chaves": [
+            "tecnologia dura",
+            "equipamentos",
+            "relacional"
+          ]
+        }
+      }
+    ],
+    "be41cb71": [
+      {
+        "t": "Reconheceu o estabelecimento de pactuação quando a farmacêutica tratou Joana como interlocutora válida ao orientar o encaminhamento",
+        "tag": "Pactuação e interlocução",
+        "open": {
+          "p": "Como a conduta da farmacêutica com Joana demonstra o estabelecimento de pactuação e reconhecimento de interlocutora válida?",
+          "r": "Ela ouviu atentamente o relato sobre o parto domiciliar e os sintomas prévios, tirou dúvidas e propôs em diálogo a nova avaliação e o encaminhamento.",
+          "chaves": [
+            "pactuação",
+            "interlocutora válida",
+            "diálogo"
+          ]
+        }
+      },
+      {
+        "t": "Contrastou a postura dialógica da farmacêutica com a falta de acompanhamento desde a chegada e a recusa de escuta pela médica",
+        "tag": "Abertura ao relato",
+        "open": {
+          "p": "Qual diferença entre a médica e a farmacêutica explica por que somente a segunda estabeleceu pactuação com Joana?",
+          "r": "A médica não deu abertura para Joana detalhar episódios anteriores de inchaço, ao passo que a farmacêutica acolheu sua fala e construiu com ela a conduta.",
+          "chaves": [
+            "abertura",
+            "médica",
+            "farmacêutica"
+          ]
+        }
+      }
+    ],
+    "ce3de808": [
+      {
+        "t": "Identificou que a participação materna foi considerada pela farmacêutica na decisão de buscar atendimento especializado",
+        "tag": "Participação na decisão",
+        "open": {
+          "p": "De que forma a participação de Joana contribuiu para a tomada de decisão sobre o atendimento especializado em hematologia?",
+          "r": "Ao relatar à farmacêutica o inchaço nos pés e mãos do bebê e a ausência do teste do pezinho, suas informações fundamentaram a indicação de nova avaliação.",
+          "chaves": [
+            "participação",
+            "decisão",
+            "atendimento especializado"
+          ]
+        }
+      },
+      {
+        "t": "Rejeitou afirmações falsas sobre plano médico abrangente, interlocução constante ou classificação de protocolos como tecnologia leve",
+        "tag": "Crítica ao atendimento",
+        "open": {
+          "p": "Por que não é correto afirmar que o plano terapêutico da médica foi abrangente e que Joana sempre foi vista como interlocutora válida?",
+          "r": "Porque a médica fez um exame físico rápido e seguiu protocolo sem dar abertura ao relato de Joana sobre sintomas anteriores do filho.",
+          "chaves": [
+            "protocolo",
+            "abertura",
+            "interlocutora"
+          ]
+        }
+      }
+    ],
+    "66784a71": [
+      {
+        "t": "Associou a atenção à angústia de Joana e a escuta de seu relato ao princípio da valorização da subjetividade",
+        "tag": "Valorização da subjetividade",
+        "open": {
+          "p": "Qual atitude da farmacêutica no atendimento a Joana e Luiz expressa a valorização da subjetividade?",
+          "r": "Perceber a angústia materna, ouvir atentamente suas preocupações e esclarecer suas dúvidas considerando sua realidade e história de parto domiciliar.",
+          "chaves": [
+            "subjetividade",
+            "angústia",
+            "escuta"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu a valorização da subjetividade da abordagem centrada apenas em fatos biológicos, acesso numérico ou tecnologias duras",
+        "tag": "Subjetividade versus biologicismo",
+        "open": {
+          "p": "Qual a limitação de uma assistência focada apenas nos fatos biológicos e nas tecnologias duras em comparação à valorização da subjetividade?",
+          "r": "Ela reduz o cuidado ao sintoma imediato e ignora a vivência, os medos e o contexto do usuário, que muitas vezes trazem pistas clínicas essenciais.",
+          "chaves": [
+            "fatos biológicos",
+            "subjetividade",
+            "contexto"
+          ]
+        }
+      }
+    ],
+    "651a50b8": [
+      {
+        "t": "Identificou no relato clínico a atitude comunicacional inadequada do médico na perspectiva do paciente e do familiar.",
+        "tag": "Escuta e interrupção",
+        "open": {
+          "p": "No atendimento ao paciente e seu cuidador, por que interromper a fala do acompanhante evidencia falha comunicacional?",
+          "r": "Porque impede que o familiar exponha dúvidas e impactos do cuidado em casa, comprometendo a escuta qualificada e a perspectiva do cuidador.",
+          "chaves": [
+            "escuta",
+            "acompanhante",
+            "dúvidas"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu o comportamento observado diretamente na consulta de possíveis desfechos indiretos do mau atendimento.",
+        "tag": "Fato clínico observado",
+        "open": {
+          "p": "Como diferenciar a evidência direta da falha comunicacional na consulta de desfechos futuros como a não adesão?",
+          "r": "A evidência direta é o comportamento observado na interação, como interromper o familiar, enquanto a não adesão é uma possível consequência posterior.",
+          "chaves": [
+            "interação",
+            "comportamento",
+            "consequência"
+          ]
+        }
+      }
+    ],
+    "15329bd1": [
+      {
+        "t": "Avaliou o vínculo estabelecido no atendimento como apressado, unilateral e sem espaço para acolhimento ao cuidador.",
+        "tag": "Relação médico-paciente",
+        "open": {
+          "p": "Que tipo de vínculo se estabelece quando o médico faz anamnese breve, interrompe o cuidador e não acolhe dúvidas?",
+          "r": "Estabelece-se uma relação médico-paciente frágil, unilateral e insatisfatória, sem escuta nem compartilhamento de decisões.",
+          "chaves": [
+            "vínculo",
+            "unilateral",
+            "insatisfatória"
+          ]
+        }
+      },
+      {
+        "t": "Associou a deterioração da relação médico-paciente a uma consequência institucional negativa para os serviços de saúde.",
+        "tag": "Consequências da má comunicação",
+        "open": {
+          "p": "Qual é uma consequência negativa para o serviço de saúde associada a relações médico-paciente marcadas por falhas de comunicação?",
+          "r": "O aumento de processos legais contra profissionais e serviços de saúde, decorrente da insatisfação e da quebra de confiança.",
+          "chaves": [
+            "processos legais",
+            "serviços",
+            "confiança"
+          ]
+        }
+      }
+    ],
+    "a41f8be7": [
+      {
+        "t": "Reconheceu contato visual, acenos positivos e postura corporal aberta como expressões comunicativas sem uso de palavras.",
+        "tag": "Linguagem corporal clínica",
+        "open": {
+          "p": "Quais sinais corporais sem uso de palavras demonstram atenção e acolhimento durante a anamnese?",
+          "r": "Contato visual, acenos afirmativos com a cabeça e postura corporal aberta, mantendo a escuta sem interrupções.",
+          "chaves": [
+            "contato visual",
+            "postura",
+            "acenos"
+          ]
+        }
+      },
+      {
+        "t": "Classificou o conjunto de atitudes posturais e gestuais observadas no atendimento como componente de comunicação não-verbal.",
+        "tag": "Comunicação não-verbal",
+        "open": {
+          "p": "Qual componente da comunicação engloba contato visual, expressões faciais e postura corporal do profissional?",
+          "r": "A comunicação não-verbal, fundamental para transmitir empatia, interesse e validação ao paciente durante a consulta.",
+          "chaves": [
+            "não-verbal",
+            "empatia",
+            "postura"
+          ]
+        }
+      }
+    ],
+    "64d359d2": [
+      {
+        "t": "Identificou que o uso de jargões técnicos incompatíveis com a escolaridade do paciente gerou incompreensão da orientação.",
+        "tag": "Adequação da linguagem",
+        "open": {
+          "p": "Por que utilizar termos como dislipidemia e esteatose hepática falha ao orientar um paciente de baixa escolaridade?",
+          "r": "Porque o jargão técnico cria barreira semântica e impede que o receptor compreenda o significado do diagnóstico.",
+          "chaves": [
+            "jargão",
+            "compreensão",
+            "barreira"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou a escolha inadequada dos termos pelo emissor à falha na etapa de codificação da mensagem.",
+        "tag": "Codificação da mensagem",
+        "open": {
+          "p": "Em qual etapa do processo comunicacional ocorre falha quando o emissor escolhe termos técnicos inacessíveis ao receptor?",
+          "r": "Na codificação da mensagem, pois cabe ao emissor traduzir o conteúdo clínico em linguagem acessível ao paciente.",
+          "chaves": [
+            "codificação",
+            "emissor",
+            "linguagem"
+          ]
+        }
+      }
+    ],
+    "17bb450": [
+      {
+        "t": "Associou a tradução do raciocínio clínico do médico em orientações verbais à etapa de codificação.",
+        "tag": "Codificação pelo emissor",
+        "open": {
+          "p": "O que caracteriza a etapa de codificação na comunicação entre médico e paciente?",
+          "r": "É o processo em que o emissor transforma suas ideias e raciocínio clínico em símbolos e palavras compreensíveis.",
+          "chaves": [
+            "codificação",
+            "emissor",
+            "palavras"
+          ]
+        }
+      },
+      {
+        "t": "Associou a interpretação das orientações pelo paciente conforme seus valores e experiências à etapa de decodificação.",
+        "tag": "Decodificação pelo receptor",
+        "open": {
+          "p": "Como ocorre a etapa de decodificação pelo paciente durante uma consulta médica?",
+          "r": "O receptor interpreta a mensagem recebida atribuindo-lhe sentido sob a influência de seus valores e experiências prévias.",
+          "chaves": [
+            "decodificação",
+            "receptor",
+            "experiências"
+          ]
+        }
+      }
+    ],
+    "54168a13": [
+      {
+        "t": "Identificou condutas empáticas essenciais na comunicação de notícias difíceis, como privacidade, tom calmo e respeito ao silêncio.",
+        "tag": "Comunicação de más notícias",
+        "open": {
+          "p": "Quais condutas favorecem a comunicação adequada de uma notícia difícil aos familiares?",
+          "r": "Escolher local reservado, usar tom de voz calmo, sustentar o silêncio após a fala e permitir a expressão livre de emoções.",
+          "chaves": [
+            "local reservado",
+            "silêncio",
+            "emoções"
+          ]
+        }
+      },
+      {
+        "t": "Conectou a postura acolhedora e respeitosa diante do sofrimento familiar ao conceito de humanização da assistência.",
+        "tag": "Humanização da assistência",
+        "open": {
+          "p": "Qual conceito fundamental é exemplificado pelo acolhimento emocional e respeito ao ritmo da família diante de uma notícia difícil?",
+          "r": "A humanização da assistência, que valoriza o cuidado integral, a empatia e a singularidade dos sujeitos envolvidos.",
+          "chaves": [
+            "humanização",
+            "empatia",
+            "cuidado"
+          ]
+        }
+      }
+    ],
+    "9646c0bb": [
+      {
+        "t": "Diferenciou o conceito de ambiência na PNH de reformas meramente estéticas, hoteleiras ou voltadas ao isolamento.",
+        "tag": "Conceito de ambiência",
+        "open": {
+          "p": "Por que a ambiência na PNH não se reduz ao conforto hoteleiro ou à estética do espaço físico?",
+          "r": "Porque articula o espaço físico com as relações sociais, o acolhimento e a organização do cuidado em saúde.",
+          "chaves": [
+            "estética",
+            "relações",
+            "cuidado"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a diretriz de ambiência busca facilitar encontros entre sujeitos e favorecer a reflexão sobre o processo de trabalho.",
+        "tag": "Ambiência na PNH",
+        "open": {
+          "p": "Como a Política Nacional de Humanização (PNH) define a diretriz de ambiência?",
+          "r": "Como um espaço que favorece a reflexão sobre o processo de trabalho e a facilitação de encontros entre sujeitos.",
+          "chaves": [
+            "encontros",
+            "sujeitos",
+            "processo de trabalho"
+          ]
+        }
+      }
+    ],
+    "c6471531": [
+      {
+        "t": "Reconheceu que o método da PNH busca superar a hierarquização rígida e a separação entre gestão, atenção e categorias profissionais.",
+        "tag": "Superação da fragmentação",
+        "open": {
+          "p": "O que a diretriz da transversalidade na PNH busca superar nos serviços de saúde?",
+          "r": "Busca superar a fragmentação corporativa, as hierarquias rígidas e a separação entre gestão, assistência e diferentes saberes.",
+          "chaves": [
+            "hierarquia",
+            "fragmentação",
+            "saberes"
+          ]
+        }
+      },
+      {
+        "t": "Definiu a diretriz da transversalidade como ampliação do diálogo e quebra de fronteiras entre saberes, poderes e sujeitos.",
+        "tag": "Transversalidade na PNH",
+        "open": {
+          "p": "Qual é a definição da diretriz de transversalidade na Política Nacional de Humanização?",
+          "r": "É a ampliação do diálogo e a quebra de fronteiras entre diferentes saberes, poderes e sujeitos na gestão e no cuidado.",
+          "chaves": [
+            "diálogo",
+            "fronteiras",
+            "saberes"
+          ]
+        }
+      }
+    ],
+    "9e40c9d3": [
+      {
+        "t": "Identificou na conduta do gestor a exclusão da equipe multiprofissional e dos usuários das decisões sobre o serviço.",
+        "tag": "Exclusão dos coletivos",
+        "open": {
+          "p": "Qual falha participativa ocorre quando um gestor restringe apenas aos médicos a definição de metas de uma UBS?",
+          "r": "Exclui os demais trabalhadores da equipe multiprofissional e os usuários da construção compartilhada das decisões de saúde.",
+          "chaves": [
+            "equipe",
+            "usuários",
+            "decisões"
+          ]
+        }
+      },
+      {
+        "t": "Associou a restrição decisória ao princípio negligenciado do protagonismo, corresponsabilidade e autonomia dos sujeitos.",
+        "tag": "Protagonismo e corresponsabilidade",
+        "open": {
+          "p": "Qual princípio da PNH é negligenciado quando trabalhadores e usuários são impedidos de participar das decisões do serviço?",
+          "r": "O princípio do protagonismo, corresponsabilidade e autonomia dos sujeitos e dos coletivos.",
+          "chaves": [
+            "protagonismo",
+            "corresponsabilidade",
+            "autonomia"
+          ]
+        }
+      }
+    ],
+    "a7eded68": [
+      {
+        "t": "Reconheceu a substituição da fila por ordem de chegada pela priorização baseada em critérios de gravidade e vulnerabilidade.",
+        "tag": "Priorização por gravidade",
+        "open": {
+          "p": "Por que substituir a ordem de chegada por critérios de gravidade e vulnerabilidade melhora o atendimento em uma UPA?",
+          "r": "Porque garante atendimento prioritário aos casos mais graves ou vulneráveis, evitando demoras críticas pela ordem burocrática da fila.",
+          "chaves": [
+            "gravidade",
+            "vulnerabilidade",
+            "prioridade"
+          ]
+        }
+      },
+      {
+        "t": "Identificou a estratégia que combina escuta qualificada e ordenação clínica da espera como acolhimento com classificação de risco.",
+        "tag": "Classificação de risco",
+        "open": {
+          "p": "Como se denomina a estratégia da PNH que usa escuta qualificada e critérios de gravidade para priorizar o tempo de espera?",
+          "r": "Acolhimento com classificação de risco.",
+          "chaves": [
+            "acolhimento",
+            "classificação de risco",
+            "escuta qualificada"
+          ]
+        }
+      }
+    ],
+    "27131da6": [
+      {
+        "t": "Identificou que a divergência informacional entre acompanhante e família extensa eleva conflitos e riscos à segurança do paciente.",
+        "tag": "Ruído e segurança clínica",
+        "open": {
+          "p": "Como a divergência de informações entre acompanhante principal e família extensa ameaça a segurança do paciente internado?",
+          "r": "Gera sobrecarga do cuidador, desconfiança e falhas na execução do plano terapêutico, elevando o risco de eventos adversos.",
+          "chaves": [
+            "divergência",
+            "sobrecarga",
+            "eventos adversos"
+          ]
+        }
+      },
+      {
+        "t": "Selecionou o compartilhamento sistemático de informações com validação da compreensão e integração do acompanhante como estratégia segura.",
+        "tag": "Comunicação com a família",
+        "open": {
+          "p": "Qual estratégia de comunicação clínica reduz conflitos familiares e riscos de eventos adversos em internações complexas?",
+          "r": "Implementar o compartilhamento sistemático de informações com a família, validando a compreensão e integrando o acompanhante.",
+          "chaves": [
+            "compartilhamento",
+            "validando",
+            "acompanhante"
+          ]
+        }
+      }
+    ],
+    "ab5252c2": [
+      {
+        "t": "Avaliou que expulsar ou ignorar o acompanhante rompe o vínculo, enquanto debater detalhes durante o ato técnico compromete a segurança.",
+        "tag": "Equilíbrio na tríade clínica",
+        "open": {
+          "p": "Por que ignorar o acompanhante ou responder detalhadamente durante um procedimento invasivo são posturas inadequadas?",
+          "r": "Ignorar ou expulsar gera angústia e quebra de vínculo, enquanto debater detalhes técnicos durante o ato desvia o foco da segurança e do paciente.",
+          "chaves": [
+            "vínculo",
+            "segurança",
+            "foco"
+          ]
+        }
+      },
+      {
+        "t": "Escolheu acolher e validar as dúvidas do acompanhante pactuando momento oportuno sem perder a centralidade no paciente.",
+        "tag": "Centralidade no paciente",
+        "open": {
+          "p": "Como o profissional deve manejar perguntas técnicas ansiosas de um acompanhante durante a preparação de um procedimento?",
+          "r": "Acolher a preocupação, validar as dúvidas e definir momentos específicos para o diálogo, mantendo a centralidade no paciente.",
+          "chaves": [
+            "acolher",
+            "momentos",
+            "centralidade"
+          ]
+        }
+      }
+    ],
+    "c8a85d36": [
+      {
+        "t": "Identificou o sentido da integralidade ligado à organização das práticas e dos serviços",
+        "tag": "Organização das práticas",
+        "open": {
+          "p": "Nos três sentidos da integralidade de Mattos (2001), o que caracteriza uma falha no modo de organizar as práticas na UBS?",
+          "r": "Ocorre quando o serviço prioriza fluxos burocráticos, senhas e agendas rígidas em vez de acolher as necessidades de saúde do usuário.",
+          "chaves": [
+            "burocrático",
+            "agenda rígida",
+            "acolhimento",
+            "necessidades"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu o entrave organizacional da recepção dos outros sentidos da integralidade",
+        "tag": "Sentidos da integralidade",
+        "open": {
+          "p": "Por que a recusa inicial da recepção por falta de senha não configura falha nas respostas governamentais a problemas específicos?",
+          "r": "Porque o problema não é ausência de política ou protocolo estatal específico, mas a organização local do acesso e do acolhimento na unidade.",
+          "chaves": [
+            "organização local",
+            "acolhimento",
+            "política",
+            "acesso"
+          ]
+        }
+      }
+    ],
+    "f9e1188e": [
+      {
+        "t": "Reconheceu a redução da consulta médica ao enfoque estritamente biológico",
+        "tag": "Dimensão subjetiva",
+        "open": {
+          "p": "Por que tratar o colesterol e renovar anti-hipertensivos sem escutar o luto da paciente viola o traço da boa medicina na integralidade?",
+          "r": "Porque o profissional se limita à eficácia biológica e aos indicadores clínicos, ignorando a dimensão subjetiva e o sofrimento da pessoa.",
+          "chaves": [
+            "biológica",
+            "subjetiva",
+            "sofrimento",
+            "escuta"
+          ]
+        }
+      },
+      {
+        "t": "Rejeitou a justificativa de que o risco cardiovascular ou a falta de tempo legitimam a postura reducionista",
+        "tag": "Postura clínica integral",
+        "open": {
+          "p": "A alta prevalência de risco cardiovascular ou o tempo curto justificam ignorar demandas subjetivas durante a consulta? Explique.",
+          "r": "Não; a integralidade exige postura clínica aberta para além dos parâmetros biomédicos, não sendo legitimada pela priorização exclusiva de riscos biológicos.",
+          "chaves": [
+            "integralidade",
+            "postura clínica",
+            "biomédico",
+            "subjetivo"
+          ]
+        }
+      }
+    ],
+    "48e55485": [
+      {
+        "t": "Compreendeu a integralidade como articulação entre promoção, prevenção, restauração e reabilitação",
+        "tag": "Ações de saúde",
+        "open": {
+          "p": "Quais quatro dimensões do cuidado devem ser integradas para respeitar a integralidade de forma completa?",
+          "r": "Promover, prevenir, restaurar e reabilitar a saúde, superando um cuidado restrito apenas a ações curativas ou apenas preventivas.",
+          "chaves": [
+            "promover",
+            "prevenir",
+            "restaurar",
+            "reabilitar"
+          ]
+        }
+      },
+      {
+        "t": "Associou o cuidado integral à garantia de acesso aos diversos níveis de atenção",
+        "tag": "Níveis de atenção",
+        "open": {
+          "p": "Por que alternativas restritas a um fazer puramente individual ou curativo são insuficientes para expressar a integralidade?",
+          "r": "Porque a integralidade completa exige articulação entre ações individuais e coletivas com acesso garantido aos diversos níveis de atenção.",
+          "chaves": [
+            "níveis de atenção",
+            "acesso",
+            "individual",
+            "coletivo"
+          ]
+        }
+      }
+    ],
+    "9f3d0659": [
+      {
+        "t": "Relacionou o modo de organizar as práticas à articulação entre demanda programada e espontânea",
+        "tag": "Demanda programada e espontânea",
+        "open": {
+          "p": "No sentido da integralidade voltado ao modo de organizar as práticas, como a UBS deve lidar com quem chega fora do agendamento?",
+          "r": "Deve articular a demanda programada com a demanda espontânea, evitando barreiras rígidas de senhas e horários.",
+          "chaves": [
+            "demanda programada",
+            "demanda espontânea",
+            "articular",
+            "acesso"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou a organização do serviço da postura clínica individual de escuta na consulta",
+        "tag": "Organização vs postura clínica",
+        "open": {
+          "p": "Qual a diferença entre articular demandas no serviço e oferecer escuta além da demanda explícita nos sentidos da integralidade?",
+          "r": "Articular demanda programada e espontânea refere-se ao modo de organizar as práticas do serviço, enquanto ampliar a escuta na consulta pertence ao traço da boa medicina.",
+          "chaves": [
+            "organizar as práticas",
+            "boa medicina",
+            "serviço",
+            "escuta"
+          ]
+        }
+      }
+    ],
+    "d2205288": [
+      {
+        "t": "Classificou a escuta ativa do relato sobre o luto como tecnologia leve",
+        "tag": "Tecnologia leve",
+        "open": {
+          "p": "Na classificação das tecnologias em saúde, por que interromper anotações para ouvir a rotina e o luto do paciente é tecnologia leve?",
+          "r": "Porque tecnologias leves são tecnologias relacionais baseadas na escuta, no acolhimento e na construção de vínculo durante o encontro.",
+          "chaves": [
+            "relacional",
+            "escuta",
+            "vínculo",
+            "acolhimento"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou equipamentos como o glicosímetro de saberes estruturados como protocolos clínicos",
+        "tag": "Tecnologia dura e leve-dura",
+        "open": {
+          "p": "Como se classificam, respectivamente, o uso do glicosímetro e a aplicação de um protocolo clínico de manejo do diabetes?",
+          "r": "O glicosímetro é tecnologia dura (equipamento material) e o protocolo clínico é tecnologia leve-dura (saber técnico estruturado).",
+          "chaves": [
+            "dura",
+            "leve-dura",
+            "equipamento",
+            "saber estruturado"
+          ]
+        }
+      }
+    ],
+    "76c7845f": [
+      {
+        "t": "Reconheceu a pactuação compartilhada e o respeito ao usuário como interlocutor válido na criação do vínculo",
+        "tag": "Vínculo e pactuação",
+        "open": {
+          "p": "De que forma reconhecer o paciente como interlocutor válido contribui para estabelecer vínculo no cuidado em saúde?",
+          "r": "Permite construir uma pactuação compartilhada do plano de cuidados, respeitando a realidade e a autonomia do paciente.",
+          "chaves": [
+            "interlocutor válido",
+            "pactuação",
+            "autonomia",
+            "plano de cuidados"
+          ]
+        }
+      },
+      {
+        "t": "Verificou a coerência factual dos sujeitos e ações descritos no caso clínico",
+        "tag": "Leitura crítica do caso",
+        "open": {
+          "p": "No caso de Antenor, por que alternativas que citam atuação médica ou encaminhamento a outro nível de atenção estão incorretas?",
+          "r": "Porque a escuta, o plano com a vizinha e o agendamento da visita domiciliar foram conduzidos pelo enfermeiro na própria atenção primária.",
+          "chaves": [
+            "enfermeiro",
+            "visita domiciliar",
+            "atenção primária",
+            "escuta"
+          ]
+        }
+      }
+    ],
+    "de0953ca": [
+      {
+        "t": "Identificou a aplicação do modelo biopsicossocial ao integrar dados clínicos, luto e rede de apoio",
+        "tag": "Modelo biopsicossocial",
+        "open": {
+          "p": "Quais elementos da conduta do enfermeiro com Antenor caracterizam o modelo biopsicossocial em vez do modelo biomédico?",
+          "r": "Além de aferir a glicemia e ajustar a dieta, ele investigou a rotina, acolheu o luto pela perda da irmã e incluiu uma vizinha e visita domiciliar no plano.",
+          "chaves": [
+            "biopsicossocial",
+            "luto",
+            "rede de apoio",
+            "rotina"
+          ]
+        }
+      },
+      {
+        "t": "Checou a correspondência entre o modelo de atenção adotado e o profissional atuante",
+        "tag": "Agente do cuidado",
+        "open": {
+          "p": "Por que o ajuste dietético seguido da escuta do contexto familiar pelo enfermeiro não caracteriza um modelo biomédico?",
+          "r": "Porque o modelo biomédico foca apenas na doença e em parâmetros biológicos, enquanto o enfermeiro articulou dimensões biológicas, psicológicas e sociais.",
+          "chaves": [
+            "biomédico",
+            "biológico",
+            "psicológico",
+            "social"
+          ]
+        }
+      }
+    ],
+    "ce8dd269": [
+      {
+        "t": "Associou a adaptação do plano terapêutico ao contexto de vida do usuário à Clínica Ampliada",
+        "tag": "Clínica Ampliada",
+        "open": {
+          "p": "Como a atuação do ACS com Jorge exemplifica a diretriz da Clínica Ampliada na Política Nacional de Humanização?",
+          "r": "Ao validar as limitações da situação de rua e negociar tomadas assistidas, água e repouso na UBS, ele construiu um plano terapêutico viável e compartilhado.",
+          "chaves": [
+            "Clínica Ampliada",
+            "contexto de vida",
+            "plano terapêutico",
+            "compartilhado"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu a prescrição protocolar rígida do uso de tecnologias leves na construção do cuidado",
+        "tag": "Tecnologias na PNH",
+        "open": {
+          "p": "Por que a prescrição isolada de repouso pelo médico não configura cuidado centrado no paciente nem uso predominante de tecnologia leve?",
+          "r": "Porque seguiu um protocolo rígido ignorando a realidade social de Jorge, enquanto a tecnologia leve exige escuta e construção relacional do cuidado.",
+          "chaves": [
+            "protocolo",
+            "realidade social",
+            "tecnologia leve",
+            "escuta"
+          ]
+        }
+      }
+    ],
+    "82decc33": [
+      {
+        "t": "Relacionou o modelo biopsicossocial à valorização da subjetividade e das condições concretas de vida",
+        "tag": "Valorização da subjetividade",
+        "open": {
+          "p": "Por que a valorização da subjetividade é critério central para caracterizar o modelo biopsicossocial no caso de Jorge?",
+          "r": "Porque reconhece os sentimentos, as limitações e a vivência em situação de rua do sujeito, integrando-os ao cuidado além da lesão física.",
+          "chaves": [
+            "subjetividade",
+            "biopsicossocial",
+            "limitações",
+            "cuidado"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou o modelo biopsicossocial do enfoque biomédico e de medidas meramente quantitativas",
+        "tag": "Biomédico vs biopsicossocial",
+        "open": {
+          "p": "Por que focar apenas em fatos biológicos, acesso quantitativo ou tecnologias leve-duras não garante um atendimento biopsicossocial?",
+          "r": "Porque esses elementos não incorporam a dimensão psicossocial nem a singularidade do usuário na construção do plano terapêutico.",
+          "chaves": [
+            "fatos biológicos",
+            "singularidade",
+            "psicossocial",
+            "tecnologias leve-duras"
+          ]
+        }
+      }
+    ],
+    "5f427509": [
+      {
+        "t": "Identificou a interrupção da fala e a falta de esclarecimentos como barreiras comunicacionais ao vínculo",
+        "tag": "Comunicação e vínculo",
+        "open": {
+          "p": "Quais atitudes do médico prejudicaram o acolhimento e a comunicação durante a consulta de Maria?",
+          "r": "Interromper repetidamente as falas da paciente e de sua acompanhante, naturalizar o cansaço e não esclarecer sobre a natureza do sofrimento puerperal.",
+          "chaves": [
+            "interrupção",
+            "acompanhante",
+            "esclarecimento",
+            "acolhimento"
+          ]
+        }
+      },
+      {
+        "t": "Rejeitou interpretações que culpabilizam a paciente ou a acompanhante pela ruptura do diálogo",
+        "tag": "Escuta da rede familiar",
+        "open": {
+          "p": "Como a participação da acompanhante deve ser acolhida em uma consulta puerperal humanizada?",
+          "r": "Como parte da rede de apoio da puérpera, tendo suas dúvidas ouvidas e respondidas com clareza, sem ser tratada como contestação à autoridade médica.",
+          "chaves": [
+            "acompanhante",
+            "rede de apoio",
+            "escuta",
+            "clareza"
+          ]
+        }
+      }
+    ],
+    "1f048642": [
+      {
+        "t": "Associou a validação da subjetividade e a discussão do plano de cuidado à mitigação de eventos adversos",
+        "tag": "Gestão de riscos",
+        "open": {
+          "p": "Sob a ótica da gestão e segurança do cuidado, como a postura da enfermeira reduz riscos clínicos e legais no caso de Maria?",
+          "r": "Ao validar a subjetividade, explicar sobre disforia e depressão pós-parto e discutir o plano de cuidado, reduz riscos de agravamento, eventos adversos e processos legais.",
+          "chaves": [
+            "eventos adversos",
+            "processos legais",
+            "subjetividade",
+            "plano de cuidado"
+          ]
+        }
+      },
+      {
+        "t": "Percebeu que agilizar o atendimento ignorando sinais de sofrimento psíquico compromete a segurança clínica",
+        "tag": "Segurança do paciente",
+        "open": {
+          "p": "Por que priorizar apenas o ganho de peso do recém-nascido para agilizar a consulta não representa eficiência assistencial?",
+          "r": "Porque deixa sem rastreio e manejo um possível quadro de depressão pós-parto, elevando o risco clínico para a mãe e para o bebê.",
+          "chaves": [
+            "eficiência",
+            "depressão pós-parto",
+            "risco",
+            "segurança"
+          ]
+        }
+      }
+    ],
+    "91ac6e90": [
+      {
+        "t": "Identificou a recusa por término de horário da triagem como falha na organização dos serviços",
+        "tag": "Organização dos serviços",
+        "open": {
+          "p": "Nos sentidos da integralidade de Mattos (2001), o que revela a recusa da recepção em atender Marcos pelo fim do horário de triagem?",
+          "r": "Evidencia uma organização de serviços burocrática e rígida, que impede o acesso ao não acolher a demanda espontânea.",
+          "chaves": [
+            "organização de serviços",
+            "burocrática",
+            "demanda espontânea",
+            "acolhimento"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou a barreira organizacional da recepção da postura clínica individual e das políticas ministeriais",
+        "tag": "Três sentidos de Mattos",
+        "open": {
+          "p": "Como distinguir, no caso de Marcos, a falha na organização do serviço da falha na postura clínica do médico segundo Mattos (2001)?",
+          "r": "A restrição de horário na triagem refere-se ao modo de organizar os serviços, enquanto interromper o relato do paciente na consulta refere-se ao traço da boa medicina.",
+          "chaves": [
+            "organização",
+            "triagem",
+            "boa medicina",
+            "postura clínica"
+          ]
+        }
+      }
+    ],
+    "ceb67877": [
+      {
+        "t": "Identificou o sentido da integralidade ligado ao olhar ampliado do profissional sobre o sujeito.",
+        "tag": "Integralidade na prática",
+        "open": {
+          "p": "No atendimento clínico, o que significa adotar o sentido da integralidade voltado às práticas dos profissionais?",
+          "r": "Significa ir além do sintoma físico e considerar as dimensões emocionais, psicológicas e sociais que integram o adoecimento do usuário.",
+          "chaves": [
+            "dimensões emocionais",
+            "contexto social",
+            "além do sintoma"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu a restrição na recepção e o improviso do encaixe como falhas na organização do serviço.",
+        "tag": "Organização dos serviços",
+        "open": {
+          "p": "Como a organização de uma unidade de saúde pode comprometer a integralidade antes mesmo da consulta médica?",
+          "r": "Ao criar barreiras de acesso na recepção, como encerrar a triagem precocemente e adiar o atendimento de usuários em sofrimento agudo.",
+          "chaves": [
+            "barreira de acesso",
+            "organização do serviço",
+            "triagem"
+          ]
+        }
+      }
+    ],
+    "933521a3": [
+      {
+        "t": "Articulou o alívio da queixa física ao acolhimento do sofrimento ligado ao desemprego.",
+        "tag": "Abordagem integral clínica",
+        "open": {
+          "p": "Diante de dor física associada a sofrimento por desemprego, qual deve ser a postura clínica orientada pela integralidade?",
+          "r": "Avaliar e tratar o sintoma físico enquanto se acolhe o sofrimento emocional e social, sem reduzir a consulta à prescrição isolada.",
+          "chaves": [
+            "acolher o sofrimento",
+            "sintoma físico",
+            "integralidade"
+          ]
+        }
+      },
+      {
+        "t": "Priorizou o plano de cuidado compartilhado e articulado em vez de encaminhamentos fragmentados.",
+        "tag": "Plano de cuidado compartilhado",
+        "open": {
+          "p": "Por que apenas encaminhar um paciente a especialidades distintas para corpo e mente contraria o princípio da integralidade?",
+          "r": "Porque fragmenta o cuidado; a integralidade exige construir um plano compartilhado com o usuário e articular o acompanhamento na equipe.",
+          "chaves": [
+            "plano compartilhado",
+            "fragmentação",
+            "acompanhamento articulado"
+          ]
+        }
+      }
+    ],
+    "330024e4": [
+      {
+        "t": "Identificou que a recusa na recepção decorreu da falta de fluxo para quem busca o serviço sem agendamento.",
+        "tag": "Acesso à demanda espontânea",
+        "open": {
+          "p": "Qual falha organizacional impede o atendimento oportuno de quem procura a atenção básica com dor intensa sem consulta marcada?",
+          "r": "A ausência de acolhimento organizado para a demanda espontânea, restringindo o acesso apenas às vagas agendadas ou de triagem limitada.",
+          "chaves": [
+            "demanda espontânea",
+            "acolhimento",
+            "acesso"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou a integralidade na organização das práticas à integração entre demanda programada e espontânea.",
+        "tag": "Organização das práticas",
+        "open": {
+          "p": "Qual medida organizacional responde melhor ao princípio da integralidade em unidades que fecham a triagem cedo?",
+          "r": "Articular a demanda programada com a demanda espontânea, assegurando acolhimento e avaliação das necessidades de quem chega sem agendamento.",
+          "chaves": [
+            "demanda programada",
+            "demanda espontânea",
+            "avaliação das necessidades"
+          ]
+        }
+      }
+    ],
+    "86b46a1": [
+      {
+        "t": "Diferenciou as tecnologias dura, leve-dura e leve nas etapas descritas durante a consulta.",
+        "tag": "Tecnologias em saúde",
+        "open": {
+          "p": "Como se classificam o uso do esfigmomanômetro, a consulta ao protocolo clínico e a escuta com vínculo segundo os tipos de tecnologia em saúde?",
+          "r": "O aparelho é tecnologia dura, o protocolo clínico estruturado é tecnologia leve-dura e a escuta qualificada com vínculo é tecnologia leve.",
+          "chaves": [
+            "tecnologia dura",
+            "tecnologia leve-dura",
+            "tecnologia leve"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu a interrupção do prontuário para escutar a rotina medicamentosa como tecnologia leve.",
+        "tag": "Tecnologia leve relacional",
+        "open": {
+          "p": "Por que parar de preencher o prontuário para investigar como a paciente toma os remédios exemplifica uma tecnologia leve?",
+          "r": "Porque mobiliza escuta ativa, diálogo e vínculo no encontro relacional para reconhecer necessidades singulares que orientam o cuidado.",
+          "chaves": [
+            "escuta",
+            "vínculo",
+            "necessidades singulares"
+          ]
+        }
+      }
+    ],
+    "9e2553d3": [
+      {
+        "t": "Contrastou o modelo biopsicossocial com abordagens restritas ao controle biológico ou à prevenção isolada.",
+        "tag": "Modelos de atenção",
+        "open": {
+          "p": "O que distingue o modelo biopsicossocial do modelo biomédico na condução de uma doença crônica como a hipertensão?",
+          "r": "Enquanto o biomédico foca apenas nos dados orgânicos e no protocolo, o biopsicossocial integra aspectos clínicos, subjetivos, familiares e sociais.",
+          "chaves": [
+            "biopsicossocial",
+            "biomédico",
+            "fatores sociais"
+          ]
+        }
+      },
+      {
+        "t": "Identificou a articulação entre quadro clínico, analfabetismo, luto e rede familiar como prática biopsicossocial.",
+        "tag": "Modelo biopsicossocial",
+        "open": {
+          "p": "Quais elementos da conduta compartilhada com uma paciente idosa demonstram a aplicação do modelo biopsicossocial?",
+          "r": "Integrar a aferição clínica às dificuldades pessoais (como não saber ler e o luto) e acionar apoio familiar e comunitário no plano de cuidado.",
+          "chaves": [
+            "condição clínica",
+            "apoio social",
+            "cuidado compartilhado"
+          ]
+        }
+      }
+    ],
+    "ab120cdd": [
+      {
+        "t": "Identificou a Clínica Ampliada na adaptação das orientações respiratórias à realidade de rua e reciclagem.",
+        "tag": "Clínica Ampliada",
+        "open": {
+          "p": "Como a Clínica Ampliada se manifesta quando o profissional orienta uma trabalhadora em situação de rua com asma?",
+          "r": "Quando o profissional reconhece os limites impostos pelo trabalho e pela moradia e constrói orientações viáveis em vez de prescrever medidas impossíveis.",
+          "chaves": [
+            "contexto de vida",
+            "plano viável",
+            "Clínica Ampliada"
+          ]
+        }
+      },
+      {
+        "t": "Associou a escuta na farmácia e a pactuação com a paciente e a agente comunitária à tecnologia leve.",
+        "tag": "Tecnologia leve",
+        "open": {
+          "p": "Qual tecnologia em saúde foi central para viabilizar o tratamento da asma fora do consultório, e por quê?",
+          "r": "A tecnologia leve, pois o cuidado se construiu pela escuta empática, acolhimento das condições de vida e pactuação compartilhada do acompanhamento.",
+          "chaves": [
+            "tecnologia leve",
+            "escuta",
+            "pactuação"
+          ]
+        }
+      }
+    ],
+    "53f0ced": [
+      {
+        "t": "Reconheceu que adequar a conduta clínica ao contexto ocupacional torna o tratamento exequível.",
+        "tag": "Contexto de vida",
+        "open": {
+          "p": "Por que apenas repetir a recomendação padronizada de evitar poeira falha diante de quem trabalha com reciclagem e vive na rua?",
+          "r": "Porque desconsidera a realidade concreta da usuária; integrar a condição clínica ao contexto de vida é essencial para oferecer proteção possível.",
+          "chaves": [
+            "contexto de vida",
+            "condição clínica",
+            "exequível"
+          ]
+        }
+      },
+      {
+        "t": "Valorizou a participação ativa da usuária na definição do plano como base para sua adesão.",
+        "tag": "Pactuação e adesão",
+        "open": {
+          "p": "Qual papel a participação da paciente desempenha na construção de um plano terapêutico efetivo?",
+          "r": "Permite validar o que é possível cumprir no cotidiano, gerando compreensão, engajamento e maior adesão ao cuidado pactuado.",
+          "chaves": [
+            "participação",
+            "adesão",
+            "plano possível"
+          ]
+        }
+      }
+    ],
+    "bbd5ce68": [
+      {
+        "t": "Identificou a realização de toque vaginal sem explicação prévia nem autorização como violação ética.",
+        "tag": "Consentimento e informação",
+        "open": {
+          "p": "Que exigência ética básica deixa de ser cumprida quando um profissional realiza um exame íntimo sem explicar ou pedir autorização?",
+          "r": "O dever de informar previamente o procedimento e obter o consentimento livre e esclarecido da paciente antes de intervir em seu corpo.",
+          "chaves": [
+            "explicação prévia",
+            "consentimento",
+            "autonomia"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu a desqualificação das perguntas e o afastamento imposto da acompanhante como autoritarismo.",
+        "tag": "Autoritarismo na assistência",
+        "open": {
+          "p": "Por que impedir questionamentos da gestante e excluir sua acompanhante sob o argumento de autoridade médica fere o cuidado humanizado?",
+          "r": "Porque desrespeita os direitos da usuária, inibe seu protagonismo e substitui a relação de confiança por coerção e constrangimento.",
+          "chaves": [
+            "desqualificação",
+            "autoridade profissional",
+            "direitos da gestante"
+          ]
+        }
+      }
+    ],
+    "6e3fbedc": [
+      {
+        "t": "Contrastou o cerceamento da autonomia pelo primeiro profissional com a decisão compartilhada pela segunda médica.",
+        "tag": "Autonomia da gestante",
+        "open": {
+          "p": "Como a conduta da segunda médica promoveu a autonomia da gestante em contraste com o primeiro atendimento?",
+          "r": "Ela apresentou os achados clínicos, perguntou como a gestante desejava participar das decisões e esclareceu cada procedimento buscando consentimento.",
+          "chaves": [
+            "autonomia",
+            "esclarecimento",
+            "consentimento"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o acolhimento da acompanhante e o respeito ao diálogo como pilares do cuidado obstétrico humanizado.",
+        "tag": "Acolhimento e acompanhante",
+        "open": {
+          "p": "Qual a importância de acolher a acompanhante e validar as dúvidas da gestante durante a avaliação na maternidade?",
+          "r": "Garante suporte emocional, fortalece a segurança da mulher e assegura transparência e participação ativa nas escolhas sobre o parto.",
+          "chaves": [
+            "acolhimento",
+            "acompanhante",
+            "participação"
+          ]
+        }
+      }
+    ],
+    "c8a714e9": [
+      {
+        "t": "Diferenciou cortesia superficial no trato de uma escuta integral voltada ao sofrimento do paciente.",
+        "tag": "Limites da cortesia",
+        "open": {
+          "p": "Por que manter um tom polido e educado durante a consulta não basta para caracterizar cuidado centrado na pessoa?",
+          "r": "Porque a cortesia formal não substitui a escuta ativa das queixas subjetivas e sociais; ignorar o estresse relatado esvazia a integralidade.",
+          "chaves": [
+            "polidez",
+            "escuta ativa",
+            "integralidade"
+          ]
+        }
+      },
+      {
+        "t": "Classificou o foco exclusivo na prescrição para hipertensão como expressão do modelo biomédico.",
+        "tag": "Modelo biomédico",
+        "open": {
+          "p": "O que caracteriza a ênfase biomédica em uma consulta na qual o médico trata a hipertensão, mas ignora cansaço e estresse ocupacional?",
+          "r": "O isolamento do dado biológico e farmacológico em detrimento da dimensão subjetiva e das condições de trabalho no plano terapêutico.",
+          "chaves": [
+            "ênfase biomédica",
+            "fato biológico",
+            "dimensão subjetiva"
+          ]
+        }
+      }
+    ],
+    "377a395b": [
+      {
+        "t": "Identificou o ruído comunicativo gerado pela contradição entre fala calma e postura corporal distante.",
+        "tag": "Comunicação verbal e não-verbal",
+        "open": {
+          "p": "Como o comportamento não-verbal de um médico pode comprometer a comunicação de um diagnóstico grave mesmo com tom de voz calmo?",
+          "r": "A falta de contato visual e o foco na tela do computador contradizem a calma verbal, geram frieza e criam ruído na recepção da mensagem.",
+          "chaves": [
+            "ruído",
+            "comunicação não-verbal",
+            "contato visual"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu a palidez, o tremor e o silêncio do paciente como respostas na via de mão dupla.",
+        "tag": "Comunicação de mão dupla",
+        "open": {
+          "p": "Na comunicação entendida como via de mão dupla, o que significam o silêncio, a palidez e o tremor do paciente diante de uma má notícia?",
+          "r": "São sinais não-verbais que expressam o impacto emocional da mensagem e funcionam como retorno comunicativo que o médico deve perceber e acolher.",
+          "chaves": [
+            "via de mão dupla",
+            "reação corporal",
+            "retorno comunicativo"
+          ]
+        }
+      }
+    ],
+    "8d157a97": [
+      {
+        "t": "Identificou o uso de jargão técnico sem explicação e sem espaço para dúvidas como falha de comunicação verbal.",
+        "tag": "Clareza na comunicação",
+        "open": {
+          "p": "Por que entregar um pedido de exame com termos técnicos sem traduzi-los ao paciente configura uma falha na comunicação médica?",
+          "r": "Porque a comunicação verbal eficaz exige linguagem acessível e abertura para perguntas, assegurando que o usuário compreenda seu quadro.",
+          "chaves": [
+            "jargão técnico",
+            "linguagem acessível",
+            "abertura para dúvidas"
+          ]
+        }
+      },
+      {
+        "t": "Associou a ausência de esclarecimento ao sofrimento psíquico iatrogênico e ao risco para o bem-estar.",
+        "tag": "Iatrogenia comunicativa",
+        "open": {
+          "p": "Qual é o impacto iatrogênico possível quando o paciente sai da consulta sem entender um termo médico assustador no pedido de exame?",
+          "r": "O ruído comunicativo pode levá-lo a buscar informações isoladas e desenvolver ansiedade severa, causando sofrimento psíquico evitável.",
+          "chaves": [
+            "sofrimento psíquico",
+            "iatrogênico",
+            "segurança do paciente"
+          ]
+        }
+      }
+    ],
+    "9c70307b": [
+      {
+        "t": "Reconheci o Colegiado Gestor como dispositivo de cogestão da diretriz de gestão participativa na PNH",
+        "tag": "Cogestão e Colegiado Gestor",
+        "open": {
+          "p": "Na PNH, qual é o papel do Colegiado Gestor e a qual diretriz ele se vincula?",
+          "r": "O Colegiado Gestor é um dispositivo de cogestão que reúne trabalhadores, gestores e usuários para decisões compartilhadas (como o orçamento), materializando a diretriz de gestão participativa.",
+          "chaves": [
+            "cogestão",
+            "gestão participativa",
+            "dispositivo"
+          ]
+        }
+      },
+      {
+        "t": "Relacionei a classificação de risco à diretriz do acolhimento por critérios de gravidade e vulnerabilidade",
+        "tag": "Acolhimento e Classificação",
+        "open": {
+          "p": "A qual diretriz da PNH pertence a classificação de risco e qual critério ela adota para ordenar o fluxo?",
+          "r": "Pertence à diretriz do acolhimento e ordena a assistência por critérios éticos de vulnerabilidade e gravidade clínica, em oposição ao atendimento por ordem de chegada.",
+          "chaves": [
+            "acolhimento",
+            "vulnerabilidade",
+            "gravidade"
+          ]
+        }
+      }
+    ],
+    "9f34967e": [
+      {
+        "t": "Identifiquei 'contagiar gestores, trabalhadores e usuários' como um propósito da PNH",
+        "tag": "Propósitos da PNH",
+        "open": {
+          "p": "Na estrutura conceitual da PNH, como é classificada a meta de 'contagiar' gestores, trabalhadores e usuários?",
+          "r": "É classificada como um propósito da PNH, voltado a disseminar e incorporar os princípios e práticas do HumanizaSUS nos serviços.",
+          "chaves": [
+            "propósito",
+            "contagiar",
+            "PNH"
+          ]
+        }
+      },
+      {
+        "t": "Classifiquei a Ambiência e a Clínica Ampliada e Compartilhada como diretrizes da PNH",
+        "tag": "Diretrizes da PNH",
+        "open": {
+          "p": "Na organização do HumanizaSUS, em qual categoria se enquadram a Ambiência e a Clínica Ampliada e Compartilhada?",
+          "r": "Enquadram-se como diretrizes da PNH, que orientam as práticas de atenção e gestão nos serviços de saúde, como nas UBS.",
+          "chaves": [
+            "diretrizes",
+            "Ambiência",
+            "Clínica Ampliada"
+          ]
+        }
+      },
+      {
+        "t": "Reconheci a ampliação da formação e produção de conhecimento como macro-objetivo da PNH",
+        "tag": "Macro-objetivos da PNH",
+        "open": {
+          "p": "Como a PNH classifica a meta de ampliar processos de formação e produção de conhecimento sobre humanização?",
+          "r": "Classifica como um macro-objetivo da PNH, voltado a fortalecer a formação profissional e o desenvolvimento de saberes em humanização.",
+          "chaves": [
+            "macro-objetivo",
+            "formação",
+            "conhecimento"
+          ]
+        }
+      }
+    ],
+    "4fd258c5": [
+      {
+        "t": "Compreendi que o modo de gerir e o modo de cuidar são interdependentes na PNH",
+        "tag": "Atenção e Gestão",
+        "open": {
+          "p": "O que define o princípio da indissociabilidade entre atenção e gestão na PNH?",
+          "r": "Define que as decisões administrativas de gestão impactam diretamente o cuidado prestado, pois o modo de gerir e o modo de cuidar são processos interdependentes.",
+          "chaves": [
+            "indissociabilidade",
+            "atenção",
+            "gestão"
+          ]
+        }
+      },
+      {
+        "t": "Relacionei decisões unilaterais de gestão ao prejuízo na escuta clínica e participação familiar",
+        "tag": "Impacto da Gestão Unilateral",
+        "open": {
+          "p": "Por que alterar unilateralmente o fluxo para reduzir custos viola a PNH quando compromete a escuta e proíbe acompanhantes?",
+          "r": "Porque prejudica a qualidade assistencial e a corresponsabilização dos familiares pelo cuidado, demonstrando falha direta na integração entre gestão e atenção.",
+          "chaves": [
+            "escuta",
+            "acompanhantes",
+            "corresponsabilização"
+          ]
+        }
+      }
+    ],
+    "552742cb": [
+      {
+        "t": "Classifiquei softwares, prontuário eletrônico e telemonitoramento como tecnologias duras",
+        "tag": "Tecnologias Duras (Merhy)",
+        "open": {
+          "p": "Na cartografia do trabalho vivo em saúde de Merhy, como se classificam o prontuário eletrônico e a plataforma de telemonitoramento?",
+          "r": "Classificam-se como tecnologias duras, por consistirem em instrumentos materiais, máquinas, softwares e equipamentos digitais.",
+          "chaves": [
+            "tecnologias duras",
+            "prontuário eletrônico",
+            "equipamentos"
+          ]
+        }
+      },
+      {
+        "t": "Identifiquei diretrizes e protocolos clínicos como tecnologias leve-duras no trabalho em saúde",
+        "tag": "Tecnologias Leve-Duras",
+        "open": {
+          "p": "Segundo Merhy, em qual categoria de tecnologia entram as diretrizes e protocolos clínicos que guiam o diagnóstico?",
+          "r": "Entram nas tecnologias leve-duras, que correspondem aos saberes técnicos bem estruturados aplicados pelo profissional durante a consulta.",
+          "chaves": [
+            "leve-duras",
+            "protocolos",
+            "saberes"
+          ]
+        }
+      },
+      {
+        "t": "Reconheci a escuta ativa, empatia e acolhimento como tecnologias leves na relação clínica",
+        "tag": "Tecnologias Leves (Merhy)",
+        "open": {
+          "p": "O que representa a escuta ativa, empática e acolhedora para pactuar autocuidado na classificação de Merhy?",
+          "r": "Representa as tecnologias leves, baseadas nas relações humanas, no vínculo, no acolhimento e na negociação terapêutica no encontro clínico.",
+          "chaves": [
+            "tecnologias leves",
+            "escuta ativa",
+            "acolhimento"
+          ]
+        }
+      }
+    ],
+    "c5e41703": [
+      {
+        "t": "Associei o distanciamento na consulta ao modelo centrado no médico e na ênfase biomédica",
+        "tag": "Ênfase Biomédica e Vínculo",
+        "open": {
+          "p": "Por que a consulta centrada em dados bioquímicos e progressão tumoral gera distanciamento com a mãe acompanhante?",
+          "r": "Porque reflete um cuidado centrado no médico e de ênfase biomédica, que valoriza a doença em detrimento do sujeito e desconsidera o sofrimento subjetivo.",
+          "chaves": [
+            "biomédica",
+            "centrado no médico",
+            "sujeito"
+          ]
+        }
+      },
+      {
+        "t": "Reconheci que o rótulo de 'acompanhante difícil' expressa uma via de mão dupla relacional",
+        "tag": "Relações Difíceis na Clínica",
+        "open": {
+          "p": "Na análise de Cruvinel e Grosseman sobre relações difíceis, o que evidencia rotular o acompanhante como 'difícil'?",
+          "r": "Evidencia uma via de mão dupla na relação clínica, na qual o próprio profissional falha em construir vínculo e alinhar a comunicação diante do sofrimento familiar.",
+          "chaves": [
+            "via de mão dupla",
+            "vínculo",
+            "difícil"
+          ]
+        }
+      }
+    ],
+    "d36d3f00": [
+      {
+        "t": "Identifiquei a abordagem biopsicossocial e o fortalecimento do vínculo triádico na consulta",
+        "tag": "Vínculo Triádico Biopsicossocial",
+        "open": {
+          "p": "Qual é o efeito imediato na relação clínica ao acolher a cuidadora, explorar o contexto de vida e pactuar metas conjuntas?",
+          "r": "Promove a transição da ênfase biomédica para a biopsicossocial, fortalecendo o vínculo triádico entre médico, paciente e acompanhante.",
+          "chaves": [
+            "biopsicossocial",
+            "vínculo triádico",
+            "cuidadora"
+          ]
+        }
+      },
+      {
+        "t": "Relacionei a comunicação centrada na pessoa à redução de exames, custos e sofrimento",
+        "tag": "Desfechos do Cuidado Centrado",
+        "open": {
+          "p": "Quais resultados mensuráveis as evidências científicas atribuem à comunicação clínica centrada na pessoa com paciente e família?",
+          "r": "Maior adesão e resposta terapêutica, além de redução mensurável na solicitação de exames complementares, no sofrimento mental e nos custos assistenciais.",
+          "chaves": [
+            "adesão",
+            "exames",
+            "custos"
+          ]
+        }
+      }
+    ],
+    "1f7d22b8": [
+      {
+        "t": "Selecionei curvas de crescimento específicas para síndrome de Down na puericultura",
+        "tag": "Curvas Específicas na Puericultura",
+        "open": {
+          "p": "Em que tipo de gráfico devem ser plotados peso e comprimento de um lactente com síndrome de Down?",
+          "r": "Devem ser plotados em curvas de crescimento específicas para síndrome de Down, e não nas curvas padrão da OMS.",
+          "chaves": [
+            "síndrome de Down",
+            "curvas específicas",
+            "crescimento"
+          ]
+        }
+      },
+      {
+        "t": "Determinei que a plotagem na curva específica deve ocorrer desde o nascimento",
+        "tag": "Início do Acompanhamento",
+        "open": {
+          "p": "A partir de que momento da vida se utilizam as curvas específicas para síndrome de Down?",
+          "r": "Desde o nascimento, sem esperar os dois anos de idade nas curvas da OMS e sem aplicar correções sobre curvas gerais.",
+          "chaves": [
+            "nascimento",
+            "OMS",
+            "específicas"
+          ]
+        }
+      }
+    ],
+    "37448827": [
+      {
+        "t": "Associei a Comunicação Não Violenta à compreensão das necessidades para resolver conflitos",
+        "tag": "CNV em Equipe",
+        "open": {
+          "p": "Qual é o principal benefício esperado ao conduzir uma reunião de equipe acalorada com Comunicação Não Violenta?",
+          "r": "Compreender profundamente as necessidades de todos os envolvidos, facilitando a resolução do conflito de maneira construtiva.",
+          "chaves": [
+            "necessidades",
+            "resolução",
+            "conflito"
+          ]
+        }
+      },
+      {
+        "t": "Descartei a ideia de que a CNV suprime sentimentos ou dispensa a escuta das partes",
+        "tag": "Mitos sobre CNV",
+        "open": {
+          "p": "Na gestão de conflitos em equipe, a CNV busca evitar sentimentos ou impor a opinião do mais experiente?",
+          "r": "Não; ela valoriza a escuta de todas as partes e o reconhecimento dos sentimentos para revelar necessidades e construir acordos.",
+          "chaves": [
+            "sentimentos",
+            "escuta",
+            "necessidades"
+          ]
+        }
+      }
+    ],
+    "c4056dfc": [
+      {
+        "t": "Apliquei a CNV para identificar as necessidades de paciente e familiar diante de desacordos",
+        "tag": "Mediação Clínica com CNV",
+        "open": {
+          "p": "De que forma a Comunicação Não Violenta contribui quando paciente e familiar discordam sobre manter um tratamento?",
+          "r": "Contribui para entender as necessidades de cada envolvido e, a partir disso, resolver o desacordo de modo construtivo.",
+          "chaves": [
+            "necessidades",
+            "desacordo",
+            "mediação"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciei mediação por CNV de imposição técnica ou escolha de um lado certo",
+        "tag": "Postura na Mediação",
+        "open": {
+          "p": "Ao mediar um conflito familiar usando CNV, o médico deve definir quem está certo ou neutralizar as emoções?",
+          "r": "Não; a mediação com CNV não aponta vencedores nem suprime emoções, mas acolhe os sentimentos para compreender as necessidades de ambos.",
+          "chaves": [
+            "emoções",
+            "necessidades",
+            "certo"
+          ]
+        }
+      }
+    ],
+    "43150a7e": [
+      {
+        "t": "Identifiquei os quatro componentes da CNV: observação, sentimento, necessidade e pedido",
+        "tag": "Componentes da CNV",
+        "open": {
+          "p": "Quais são os quatro componentes da Comunicação Não Violenta propostos por Marshall Rosenberg?",
+          "r": "Observação, sentimento, necessidade e pedido.",
+          "chaves": [
+            "observação",
+            "sentimento",
+            "necessidade",
+            "pedido"
+          ]
+        }
+      },
+      {
+        "t": "Distingui observação e pedido de julgamentos, interpretações, críticas e exigências",
+        "tag": "Prática dos Componentes",
+        "open": {
+          "p": "Na CNV, o que caracteriza uma observação e um pedido em contraste com julgamentos e ordens?",
+          "r": "A observação relata fatos concretos sem julgamentos ou avaliações, e o pedido expressa o que se deseja de forma clara e acionável, sem exigir ou ordenar.",
+          "chaves": [
+            "fatos",
+            "julgamentos",
+            "acionável",
+            "ordem"
+          ]
+        }
+      }
+    ],
+    "190e9e90": [
+      {
+        "t": "Identifiquei a ortotanásia pela suspensão de medidas fúteis e foco no alívio do sofrimento",
+        "tag": "Ortotanásia e Terminalidade",
+        "open": {
+          "p": "Que conduta define a suspensão de tratamentos modificadores da doença e o foco no conforto em paciente terminal que recusa intubação?",
+          "r": "Define a ortotanásia, que permite que a morte siga seu curso natural sem meios artificiais que apenas prolongariam o morrer, respeitando a autonomia do paciente.",
+          "chaves": [
+            "ortotanásia",
+            "curso natural",
+            "autonomia"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciei ortotanásia de eutanásia, distanásia e mistanásia nos cuidados de fim de vida",
+        "tag": "Bioética na Terminalidade",
+        "open": {
+          "p": "Qual é a diferença central entre ortotanásia e distanásia na abordagem do paciente sem perspectiva de cura?",
+          "r": "A ortotanásia evita prolongar artificialmente o morrer e prioriza o alívio do sofrimento, enquanto a distanásia insiste em medidas fúteis que apenas prolongam a agonia.",
+          "chaves": [
+            "ortotanásia",
+            "distanásia",
+            "prolongar"
+          ]
+        }
+      }
+    ],
+    "b265b09b": [
+      {
+        "t": "Reconheci a composição multiprofissional como requisito para a equipe de cuidados paliativos",
+        "tag": "Equipe Multiprofissional",
+        "open": {
+          "p": "Qual é a composição adequada da equipe ao implantar um serviço hospitalar de cuidados paliativos?",
+          "r": "Uma equipe multiprofissional (incluindo médicos, enfermeiros, psicólogos, assistentes sociais e outros profissionais), pois médico e enfermeiro sozinhos não bastam para o cuidado integral.",
+          "chaves": [
+            "multiprofissional",
+            "integral",
+            "psicólogos"
+          ]
+        }
+      },
+      {
+        "t": "Relacionei os cuidados paliativos às dimensões física, emocional, social e espiritual",
+        "tag": "Dimensões dos Cuidados Paliativos",
+        "open": {
+          "p": "Quais dimensões de necessidades do paciente e da família justificam a atuação multidisciplinar em cuidados paliativos?",
+          "r": "As necessidades físicas, emocionais, sociais e espirituais, atendidas de forma integral e personalizada ao longo do cuidado, e não apenas na fase final de vida.",
+          "chaves": [
+            "físicas",
+            "emocionais",
+            "sociais",
+            "espirituais"
+          ]
+        }
+      }
+    ],
+    "9cb6e7f1": [
+      {
+        "t": "Identificou o objetivo central dos cuidados paliativos voltado ao conforto e à dignidade.",
+        "tag": "Objetivo dos paliativos",
+        "open": {
+          "p": "Qual é o objetivo central dos cuidados paliativos em relação ao paciente e à família?",
+          "r": "Atender às necessidades holísticas do paciente e de sua família, promovendo conforto e dignidade.",
+          "chaves": [
+            "conforto",
+            "dignidade",
+            "família"
+          ]
+        }
+      },
+      {
+        "t": "Descartou ideias equivocadas de prolongar a vida a qualquer custo, abreviar a vida ou focar só na dor física.",
+        "tag": "Limites e abordagem holística",
+        "open": {
+          "p": "Por que os cuidados paliativos não visam prolongar a vida a qualquer custo, abreviá-la ou tratar apenas a dor física?",
+          "r": "Porque buscam um cuidado integral (holístico) voltado ao conforto e à dignidade, sem suporte invasivo fútil nem abreviação da vida.",
+          "chaves": [
+            "holísticas",
+            "dor física",
+            "conforto"
+          ]
+        }
+      }
+    ],
+    "fbc5d128": [
+      {
+        "t": "Reconheceu a escuta qualificada e a empatia como exemplos de tecnologia leve voltada às relações e ao vínculo.",
+        "tag": "Tecnologias leves",
+        "open": {
+          "p": "O que caracteriza as tecnologias leves do cuidado em saúde e quais exemplos aparecem no caso?",
+          "r": "São tecnologias das relações, comunicação e produção de vínculos, exemplificadas pela escuta qualificada e pela empatia.",
+          "chaves": [
+            "relações",
+            "vínculos",
+            "escuta qualificada"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou tecnologias leves de tecnologias leve-duras (protocolos) e duras (equipamentos e sistemas).",
+        "tag": "Classificação das tecnologias",
+        "open": {
+          "p": "Como o protocolo clínico, a ultrassonografia e o prontuário eletrônico se classificam entre tecnologias leve-duras e duras?",
+          "r": "Protocolos clínicos são tecnologias leve-duras (saberes estruturados), enquanto ultrassom e prontuário eletrônico são tecnologias duras (equipamentos e sistemas).",
+          "chaves": [
+            "leve-duras",
+            "protocolos",
+            "duras"
+          ]
+        }
+      }
+    ],
+    "8f228fbf": [
+      {
+        "t": "Identificou o dilema ético de equilibrar a responsabilidade pelo cuidado com as expectativas do paciente.",
+        "tag": "Dilema ético assistencial",
+        "open": {
+          "p": "Qual é o principal desafio vivido pelo profissional quando o paciente exige exames sem indicação clínica?",
+          "r": "Equilibrar a responsabilidade pelo cuidado ético e adequado com as necessidades e expectativas do paciente.",
+          "chaves": [
+            "equilibrar",
+            "responsabilidade",
+            "expectativas"
+          ]
+        }
+      },
+      {
+        "t": "Descartou ceder a pedidos sem indicação técnica ou reduzir o conflito apenas a cotas e conhecimento técnico.",
+        "tag": "Gestão de expectativas",
+        "open": {
+          "p": "Por que atender a todas as expectativas sem indicação ou reduzir o impasse a cotas de exames não resolve a prática humanizada?",
+          "r": "Porque a prática ética e humanizada exige transparência na comunicação e gestão de expectativas, sem abrir mão do critério clínico.",
+          "chaves": [
+            "transparência",
+            "comunicação",
+            "indicação"
+          ]
+        }
+      }
+    ],
+    "acd1cd3e": [
+      {
+        "t": "Reconheceu a escuta ativa com demonstração de interesse como a atitude que mais favorece a humanização.",
+        "tag": "Escuta ativa",
+        "open": {
+          "p": "Por que a escuta ativa com demonstração de interesse favorece a humanização durante a consulta?",
+          "r": "Demonstra respeito pelas preocupações do paciente, cria vínculo de confiança e proporciona segurança para ele expressar suas necessidades.",
+          "chaves": [
+            "respeito",
+            "vínculo",
+            "confiança"
+          ]
+        }
+      },
+      {
+        "t": "Descartou condutas que interrompem ou desviam a atenção, como preencher prontuário ou entregar folheto padrão.",
+        "tag": "Barreiras à escuta",
+        "open": {
+          "p": "Por que interromper o paciente, preencher o prontuário enquanto ele fala ou entregar um folheto padrão prejudica o atendimento?",
+          "r": "Porque essas atitudes bloqueiam o acolhimento das preocupações singulares do paciente e enfraquecem a atenção e o vínculo.",
+          "chaves": [
+            "atenção",
+            "preocupações",
+            "vínculo"
+          ]
+        }
+      }
+    ],
+    "a922e2cd": [
+      {
+        "t": "Associou o acolhimento à recepção com cordialidade, interesse genuíno e escuta atenta desde o início.",
+        "tag": "Conceito de acolhimento",
+        "open": {
+          "p": "Quais atitudes expressam acolhimento diante de um paciente ansioso na primeira consulta?",
+          "r": "Recebê-lo com cordialidade, interesse genuíno e escuta atenta, criando um ambiente seguro e de confiança.",
+          "chaves": [
+            "cordialidade",
+            "escuta atenta",
+            "confiança"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou o acolhimento de condutas burocráticas ou precipitadas, como impor normas, classificar antes de ouvir ou encaminhar logo.",
+        "tag": "Acolhimento vs triagem",
+        "open": {
+          "p": "Por que explicar normas e tempo limite ou classificar o risco antes de ouvir o paciente não expressa acolhimento?",
+          "r": "Porque o acolhimento prioriza ouvir e respeitar o paciente primeiro para construir uma relação terapêutica, em vez de impor regras ou apressar o fluxo.",
+          "chaves": [
+            "ouvir",
+            "relação terapêutica",
+            "respeito"
+          ]
+        }
+      }
+    ],
+    "c8398cd8": [
+      {
+        "t": "Compreendeu que o vínculo exige empatia para entender a rotina de turnos que dificulta a adesão.",
+        "tag": "Compreensão da perspectiva",
+        "open": {
+          "p": "Como o profissional fortalece o vínculo quando a paciente não segue os horários da medicação devido ao trabalho em turnos?",
+          "r": "Demonstrando empatia e compreendendo a perspectiva e as dificuldades reais da rotina dela, sem apenas impor o tratamento.",
+          "chaves": [
+            "empatia",
+            "perspectiva",
+            "dificuldades"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou a responsabilização à construção conjunta de um plano realista, em vez de repetir a mesma prescrição.",
+        "tag": "Plano terapêutico compartilhado",
+        "open": {
+          "p": "O que significa promover a responsabilização da paciente em relação ao plano terapêutico?",
+          "r": "Construir o plano de cuidado em conjunto com ela, buscando soluções realistas para sua rotina em vez de apenas alertar sobre riscos.",
+          "chaves": [
+            "conjunto",
+            "plano",
+            "realista"
+          ]
+        }
+      }
+    ],
+    "3c64eeab": [
+      {
+        "t": "Identificou a necessidade de compreender as razões da resistência e revisar o plano de forma colaborativa.",
+        "tag": "Manejo da resistência",
+        "open": {
+          "p": "Qual deve ser a conduta da equipe de saúde diante de um usuário com dependência de álcool que recusa repetidamente o tratamento?",
+          "r": "Compreender as razões da resistência e revisar o plano de cuidado em conjunto com o usuário, de modo colaborativo.",
+          "chaves": [
+            "resistência",
+            "revisar",
+            "conjunto"
+          ]
+        }
+      },
+      {
+        "t": "Rejeitou o abandono do seguimento na UBS, a postura passiva de aguardar retorno e a insistência unilateral.",
+        "tag": "Responsabilização compartilhada",
+        "open": {
+          "p": "Por que encerrar o acompanhamento na UBS ou apenas registrar a recusa contraria o cuidado integral?",
+          "r": "Porque a equipe deve manter a responsabilização compartilhada, articulando a rede de apoio para garantir a continuidade do cuidado.",
+          "chaves": [
+            "responsabilização",
+            "continuidade",
+            "rede de apoio"
+          ]
+        }
+      }
+    ],
+    "c8b87094": [
+      {
+        "t": "Reconheceu empatia, escuta ativa e adaptação da linguagem como elementos centrais da comunicação terapêutica.",
+        "tag": "Comunicação terapêutica",
+        "open": {
+          "p": "Quais são os elementos essenciais de uma comunicação terapêutica eficaz ao entregar o resultado de uma biópsia?",
+          "r": "Empatia para validar sentimentos, escuta ativa para dar atenção plena e adaptação da linguagem com termos simples e claros.",
+          "chaves": [
+            "empatia",
+            "escuta ativa",
+            "adaptação"
+          ]
+        }
+      },
+      {
+        "t": "Descartou o uso de jargões técnicos, a objetividade centrada só na doença e a exclusão da paciente em favor da neta.",
+        "tag": "Clareza e autonomia",
+        "open": {
+          "p": "Por que evitar linguagem técnica estrita e não informar apenas a acompanhante favorece a comunicação nesse encontro?",
+          "r": "Porque jargões técnicos geram confusão e ansiedade, e envolver a própria paciente respeita sua compreensão e confiança no atendimento.",
+          "chaves": [
+            "jargões",
+            "ansiedade",
+            "compreensão"
+          ]
+        }
+      }
+    ],
+    "bc93284d": [
+      {
+        "t": "Validou que a escuta ativa ajuda o médico a compreender as preocupações e necessidades do paciente.",
+        "tag": "Função da escuta ativa",
+        "open": {
+          "p": "De que maneira a escuta ativa contribui para a comunicação durante a consulta médica?",
+          "r": "Permite ao médico compreender melhor as preocupações e necessidades do paciente, tornando a comunicação mais eficaz e empática.",
+          "chaves": [
+            "preocupações",
+            "necessidades",
+            "empática"
+          ]
+        }
+      },
+      {
+        "t": "Identificou como falsa a afirmação de que a comunicação não verbal tem pouco impacto na relação médico-paciente.",
+        "tag": "Comunicação não verbal",
+        "open": {
+          "p": "Qual é o impacto da comunicação não verbal (expressões faciais, gestos e postura) na interação médico-paciente?",
+          "r": "Tem impacto significativo, pois complementa a comunicação verbal ao transmitir empatia, atenção e compreensão.",
+          "chaves": [
+            "significativo",
+            "gestos",
+            "empatia"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que incluir o acompanhante nas discussões esclarece dúvidas e favorece a adesão ao tratamento.",
+        "tag": "Participação do acompanhante",
+        "open": {
+          "p": "Por que incluir o acompanhante nas discussões sobre o tratamento costuma ser benéfico?",
+          "r": "Porque ajuda a esclarecer dúvidas sobre as orientações e contribui para aumentar a adesão do paciente ao tratamento.",
+          "chaves": [
+            "dúvidas",
+            "adesão",
+            "tratamento"
+          ]
+        }
+      }
+    ],
+    "b31a04cb": [
+      {
+        "t": "Validou que a comunicação eficaz e a escuta ativa aumentam a compreensão, a satisfação e a adesão terapêutica.",
+        "tag": "Comunicação eficaz e adesão",
+        "open": {
+          "p": "Como a comunicação eficaz e a escuta ativa impactam a experiência e o tratamento do paciente?",
+          "r": "Aumentam a compreensão das instruções e das preocupações do paciente, gerando confiança, maior satisfação e melhor adesão.",
+          "chaves": [
+            "satisfação",
+            "adesão",
+            "confiança"
+          ]
+        }
+      },
+      {
+        "t": "Refutou a afirmativa de que expressões faciais e postura pouco influenciam a percepção do paciente sobre o médico.",
+        "tag": "Sinais não verbais",
+        "open": {
+          "p": "Por que expressões faciais e postura influenciam significativamente a percepção do paciente sobre o médico?",
+          "r": "Porque são formas de comunicação não verbal que afetam diretamente a confiança e a qualidade da relação médico-paciente.",
+          "chaves": [
+            "não verbal",
+            "percepção",
+            "relação"
+          ]
+        }
+      },
+      {
+        "t": "Refutou a afirmativa de que a comunicação interprofissional tem pouca relevância para a segurança do paciente.",
+        "tag": "Comunicação interprofissional",
+        "open": {
+          "p": "Qual é a relevância da comunicação interprofissional para a segurança do paciente?",
+          "r": "É essencial para alinhar informações entre os profissionais da equipe, prevenindo erros e garantindo um cuidado seguro.",
+          "chaves": [
+            "equipe",
+            "segurança",
+            "erros"
+          ]
+        }
+      }
+    ],
+    "688d460e": [
+      {
+        "t": "Classificou o e-mail com orientações como comunicação verbal escrita e a testa franzida como comunicação não verbal.",
+        "tag": "Verbal vs não verbal",
+        "open": {
+          "p": "Em uma teleconsulta, como se classificam um e-mail com orientações e o gesto de franzir a testa?",
+          "r": "O e-mail com orientações é comunicação verbal escrita, enquanto franzir a testa (ou levar a mão à testa) é comunicação não verbal.",
+          "chaves": [
+            "verbal escrita",
+            "não verbal",
+            "e-mail"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou a fala em palavras (verbal oral) de sinais não verbais como o tom de voz suave e o ato de digitar.",
+        "tag": "Oralidade vs não verbal",
+        "open": {
+          "p": "Na frase dita pelo médico com tom de voz suave enquanto digita, o que é verbal oral e o que é não verbal?",
+          "r": "As palavras ditas ('Verifique seu e-mail') são comunicação verbal oral; já o tom de voz suave e o movimento de digitar são comunicação não verbal.",
+          "chaves": [
+            "verbal oral",
+            "tom de voz",
+            "digitar"
+          ]
+        }
+      }
+    ],
+    "be30036f": [
+      {
+        "t": "Identificou o canal de comunicação como o meio utilizado para transmitir a mensagem entre os interlocutores.",
+        "tag": "Canal de comunicação",
+        "open": {
+          "p": "No processo de comunicação, o que define o elemento chamado 'canal'?",
+          "r": "É o meio por onde a mensagem é transmitida durante o processo comunicativo.",
+          "chaves": [
+            "meio",
+            "mensagem",
+            "transmitida"
+          ]
+        }
+      },
+      {
+        "t": "Atentou ao sujeito pedido no enunciado (Elias), selecionando o celular e descartando o computador do médico.",
+        "tag": "Leitura precisa do comando",
+        "open": {
+          "p": "Na teleconsulta em que Elias usa celular e o médico usa computador, qual é o canal utilizado por Elias?",
+          "r": "O celular, pois o comando solicita especificamente o canal utilizado por Elias, e não o equipamento usado pelo médico.",
+          "chaves": [
+            "celular",
+            "Elias",
+            "comando"
+          ]
+        }
+      }
+    ],
+    "5ad80ebe": [
+      {
+        "t": "Diferenciou codificação de decodificação identificando quem emite e quem interpreta cada mensagem",
+        "tag": "Codificação e decodificação",
+        "open": {
+          "p": "No processo de comunicação, qual a diferença entre o papel de quem codifica e o de quem decodifica uma mensagem?",
+          "r": "O emissor codifica a ideia em sinais verbais ou não verbais para transmitir, enquanto o receptor decodifica e interpreta esses sinais para compreender a mensagem.",
+          "chaves": [
+            "emissor",
+            "codifica",
+            "receptor",
+            "decodifica"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu a leitura de sinais não verbais e o ajuste da própria postura comunicativa pelo médico",
+        "tag": "Comunicação não verbal",
+        "open": {
+          "p": "Como a comunicação não verbal do paciente orienta a conduta comunicativa do profissional durante a consulta?",
+          "r": "Ao decodificar expressões faciais ou corporais (como testa franzida indicando dúvida ou desconforto), o profissional pode ajustar seu próprio tom de voz e postura não verbal para melhorar o entendimento.",
+          "chaves": [
+            "não verbal",
+            "decodificar",
+            "ajustar",
+            "tom de voz"
+          ]
+        }
+      }
+    ],
+    "be75ae9f": [
+      {
+        "t": "Identificou a ausência de comunicação e de registro compartilhado como marca de cuidado fragmentado",
+        "tag": "Trabalho multiprofissional fragmentado",
+        "open": {
+          "p": "O que caracteriza o trabalho multiprofissional fragmentado por justaposição de profissões?",
+          "r": "Vários profissionais atuam sobre o mesmo paciente de forma isolada, sem comunicação, troca de decisões ou plano de cuidado compartilhado.",
+          "chaves": [
+            "isolada",
+            "justaposição",
+            "sem comunicação",
+            "fragmentado"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu justaposição de profissões do trabalho interprofissional e transdisciplinar",
+        "tag": "Interprofissionalidade vs justaposição",
+        "open": {
+          "p": "Qual a diferença entre trabalho multiprofissional fragmentado e trabalho interprofissional?",
+          "r": "No trabalho multiprofissional fragmentado as profissões apenas se justapõem sem interação, enquanto no interprofissional há comunicação efetiva e construção de um plano de cuidado compartilhado.",
+          "chaves": [
+            "interação",
+            "compartilhado",
+            "justaposição",
+            "interprofissional"
+          ]
+        }
+      }
+    ],
+    "145b6b92": [
+      {
+        "t": "Associou o fonoaudiólogo ao manejo da deglutição e da fala no paciente pós-AVC",
+        "tag": "Papel do fonoaudiólogo",
+        "open": {
+          "p": "Quais alterações pós-AVC apresentadas pelo paciente são de atuação direta do fonoaudiólogo?",
+          "r": "O fonoaudiólogo atua diretamente na reabilitação da dificuldade de deglutição (disfagia) e das alterações de fala e linguagem.",
+          "chaves": [
+            "deglutição",
+            "fala",
+            "fonoaudiólogo"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou a atuação do fisioterapeuta na reabilitação motora das funções do terapeuta ocupacional e psicólogo",
+        "tag": "Fisioterapia e equipe",
+        "open": {
+          "p": "Como se diferenciam os papéis do fisioterapeuta e do terapeuta ocupacional diante da restrição de movimentos pós-AVC?",
+          "r": "O fisioterapeuta conduz a reabilitação motora da movimentação, enquanto o terapeuta ocupacional foca na retomada de atividades funcionais e habilidades motoras finas após estabilização clínica.",
+          "chaves": [
+            "reabilitação motora",
+            "fisioterapeuta",
+            "atividades funcionais",
+            "terapeuta ocupacional"
+          ]
+        }
+      }
+    ],
+    "c6ee61ad": [
+      {
+        "t": "Classificou a prescrição médica escrita à mão como modalidade de comunicação verbal escrita",
+        "tag": "Comunicação verbal escrita",
+        "open": {
+          "p": "Por que uma prescrição médica manuscrita é classificada como comunicação verbal escrita?",
+          "r": "Porque utiliza palavras e linguagem escrita (em oposição à linguagem corporal ou gestual) para transmitir uma conduta assistencial à equipe.",
+          "chaves": [
+            "verbal",
+            "escrita",
+            "palavras",
+            "prescrição"
+          ]
+        }
+      },
+      {
+        "t": "Restringiu a análise aos fatos explícitos do enunciado para identificar a falha de comunicação",
+        "tag": "Leitura fiel do caso",
+        "open": {
+          "p": "Qual barreira específica na comunicação levou ao erro de medicação no caso de prescrição manuscrita?",
+          "r": "A ilegibilidade da comunicação verbal escrita, que impediu a equipe de enfermagem de decifrar corretamente a prescrição.",
+          "chaves": [
+            "ilegível",
+            "escrita",
+            "enfermagem",
+            "prescrição"
+          ]
+        }
+      }
+    ],
+    "cc0498cd": [
+      {
+        "t": "Identificou a ausência de acolhimento empático imediato às reações emocionais após a má notícia",
+        "tag": "Etapa E do SPIKES",
+        "open": {
+          "p": "O que caracteriza a etapa E (Emotions) do protocolo SPIKES após a transmissão de uma má notícia?",
+          "r": "Consiste em observar, reconhecer e validar empaticamente as reações emocionais do paciente ou familiar antes de prosseguir com condutas técnicas.",
+          "chaves": [
+            "emoções",
+            "empatia",
+            "reconhecer",
+            "validar"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu tranquilização genérica e pedido de consentimento de uma escuta empática das emoções",
+        "tag": "SPIKES e empatia",
+        "open": {
+          "p": "Por que dizer que 'tudo vai dar certo' e pedir logo o consentimento não substituem a etapa E do SPIKES?",
+          "r": "Porque frases tranquilizadoras genéricas ou foco burocrático não reconhecem nem legitimam sentimentos como medo e ansiedade, adiando o acolhimento emocional.",
+          "chaves": [
+            "sentimentos",
+            "acolhimento",
+            "consentimento",
+            "falsas esperanças"
+          ]
+        }
+      }
+    ],
+    "7bace85": [
+      {
+        "t": "Associou a etapa Setting up do protocolo SPIKES aos cuidados prévios de privacidade e conforto",
+        "tag": "Etapa S do SPIKES",
+        "open": {
+          "p": "Quais aspectos do ambiente e do preparo da entrevista compõem a etapa S (Setting up) do protocolo SPIKES?",
+          "r": "Inclui garantir privacidade, conforto físico, tempo adequado, ausência de interrupções e escolha de quem participará da conversa.",
+          "chaves": [
+            "privacidade",
+            "conforto",
+            "ambiente",
+            "Setting up"
+          ]
+        }
+      },
+      {
+        "t": "Descartou inferências não descritas no texto ao verificar o que foi efetivamente informado",
+        "tag": "Análise factual do enunciado",
+        "open": {
+          "p": "Quando um caso clínico omite o local da conversa e a reação do familiar, o que se pode concluir pelo SPIKES?",
+          "r": "Não é possível afirmar se o Setting up foi cumprido nem atribuir reações emocionais específicas, restringindo a conclusão apenas aos fatos relatados.",
+          "chaves": [
+            "omitido",
+            "Setting up",
+            "fatos",
+            "inferir"
+          ]
+        }
+      }
+    ],
+    "59a963f8": [
+      {
+        "t": "Contrastou a antiga prática paternalista de ocultação diagnóstica com a transparência atual",
+        "tag": "Evolução da comunicação",
+        "open": {
+          "p": "Como mudou historicamente a conduta médica em relação à comunicação de diagnósticos difíceis?",
+          "r": "Passou de uma postura paternalista que ocultava o diagnóstico para uma prática baseada na transparência, no diálogo e no vínculo.",
+          "chaves": [
+            "ocultava",
+            "paternalista",
+            "transparência",
+            "diálogo"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a comunicação contemporânea envolve diálogo transparente entre médico, paciente e família",
+        "tag": "Transparência e vínculo",
+        "open": {
+          "p": "Quem deve participar de forma transparente na comunicação de más notícias na prática médica atual?",
+          "r": "A comunicação deve ocorrer com transparência entre médico, paciente e família, fortalecendo a autonomia e o vínculo, sem exclusão arbitrária do paciente.",
+          "chaves": [
+            "médico",
+            "paciente",
+            "família",
+            "transparência"
+          ]
+        }
+      }
+    ],
+    "4cadc516": [
+      {
+        "t": "Classificou o uso da teleconsulta diante de risco assistencial como modo de organizar as práticas",
+        "tag": "Sentidos da integralidade",
+        "open": {
+          "p": "Por que o uso da teleconsulta por uma enfermeira em UBS sem médico ilustra a integralidade como modo de organizar as práticas?",
+          "r": "Porque reorganiza o processo de trabalho e os fluxos assistenciais do serviço para garantir resposta resolutiva e oportuna a uma situação de risco.",
+          "chaves": [
+            "organizar",
+            "práticas",
+            "teleconsulta",
+            "risco"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu os três sentidos da integralidade entre boa medicina, organização de práticas e políticas governamentais",
+        "tag": "Três sentidos da integralidade",
+        "open": {
+          "p": "Quais são os três sentidos clássicos da integralidade na saúde e a que cada um se refere?",
+          "r": "Traço da boa medicina (atitude clínica e resposta ao sofrimento), modo de organizar as práticas (articulação de serviços e fluxos) e respostas governamentais (políticas de saúde específicas).",
+          "chaves": [
+            "boa medicina",
+            "organizar as práticas",
+            "respostas governamentais"
+          ]
+        }
+      }
+    ],
+    "fb39103e": [
+      {
+        "t": "Identificou a teleconsulta adotada pela enfermeira como ação criativa frente à omissão da gestão",
+        "tag": "Ação criativa profissional",
+        "open": {
+          "p": "O que caracteriza a atitude da enfermeira ao recorrer à teleconsulta na ausência de resposta da gestão para a falta de médico?",
+          "r": "Caracteriza uma ação criativa do profissional no cotidiano do serviço para resolver uma situação de risco clínico apesar da lacuna estrutural.",
+          "chaves": [
+            "ação criativa",
+            "teleconsulta",
+            "risco",
+            "gestão"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou iniciativa criativa na ponta do serviço de resposta governamental por política pública",
+        "tag": "Gestão vs prática local",
+        "open": {
+          "p": "Por que a conduta da enfermeira não pode ser classificada como resposta governamental a um problema de saúde?",
+          "r": "Porque partiu de uma iniciativa local e criativa da profissional no modo de organizar as práticas, e não de uma política ou ação institucional formulada pela gestão.",
+          "chaves": [
+            "política",
+            "governamental",
+            "local",
+            "organizar"
+          ]
+        }
+      }
+    ],
+    "fd46c61f": [
+      {
+        "t": "Reconheceu a abordagem desrespeitosa e expositiva na recepção como violação da diretriz do acolhimento",
+        "tag": "Diretriz do acolhimento",
+        "open": {
+          "p": "Qual diretriz da Política Nacional de Humanização (PNH) é violada quando um usuário sofre abordagem constrangedora e expositiva na recepção?",
+          "r": "A diretriz do Acolhimento, que exige escuta qualificada, respeito às singularidades e responsabilização pelo usuário desde sua chegada ao serviço.",
+          "chaves": [
+            "acolhimento",
+            "escuta",
+            "respeito",
+            "diretriz"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu diretrizes de princípios da PNH ao descartar transversalidade como resposta",
+        "tag": "Princípios vs diretrizes PNH",
+        "open": {
+          "p": "Na Política Nacional de Humanização, por que a transversalidade não pode ser marcada quando a questão pede uma diretriz?",
+          "r": "Porque na PNH a transversalidade é um princípio orientador, enquanto o acolhimento, a clínica ampliada e a ambiência são diretrizes operacionais.",
+          "chaves": [
+            "princípio",
+            "diretriz",
+            "transversalidade",
+            "acolhimento"
+          ]
+        }
+      }
+    ],
+    "768da35d": [
+      {
+        "t": "Relacionou a participação ativa do usuário no plano terapêutico ao princípio do protagonismo e autonomia",
+        "tag": "Protagonismo e autonomia",
+        "open": {
+          "p": "Como se manifesta o princípio do protagonismo, corresponsabilidade e autonomia dos sujeitos na consulta em saúde?",
+          "r": "Quando o usuário encontra espaço seguro para expressar suas demandas e participa ativamente das decisões na construção de seu próprio plano de cuidado.",
+          "chaves": [
+            "protagonismo",
+            "autonomia",
+            "plano de cuidado",
+            "corresponsabilidade"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou o protagonismo do usuário dos demais princípios estruturais e organizativos do HumanizaSUS",
+        "tag": "Princípios do HumanizaSUS",
+        "open": {
+          "p": "Quais são os três princípios fundamentais da Política Nacional de Humanização (HumanizaSUS)?",
+          "r": "Transversalidade, indissociabilidade entre atenção e gestão, e protagonismo, corresponsabilidade e autonomia dos sujeitos e coletivos.",
+          "chaves": [
+            "transversalidade",
+            "indissociabilidade",
+            "protagonismo",
+            "autonomia"
+          ]
+        }
+      }
+    ],
+    "9ee75689": [
+      {
+        "t": "Associou o despreparo da recepção no atendimento LGBTQIAPN+ à necessidade de educação e formação em saúde",
+        "tag": "Macro-objetivo da PNH",
+        "open": {
+          "p": "Diante de atendimento inadequado à população LGBTQIAPN+ na recepção, qual macro-objetivo da PNH deve orientar a ação da gestão?",
+          "r": "Melhorar a formação (incluindo educação em serviço) e a produção de conhecimento em saúde para qualificar as práticas da equipe.",
+          "chaves": [
+            "formação",
+            "conhecimento",
+            "educação em serviço",
+            "LGBTQIAPN+"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu macro-objetivos da PNH de propósitos gerais como fortalecer iniciativas já existentes",
+        "tag": "Macro-objetivos vs propósitos",
+        "open": {
+          "p": "Por que 'fortalecer iniciativas de humanização já existentes' não se enquadra como macro-objetivo específico frente à falha na recepção?",
+          "r": "Porque fortalecer iniciativas existentes é um propósito geral da Política Nacional de Humanização, enquanto a lacuna de preparo exige formação e produção de conhecimento.",
+          "chaves": [
+            "propósito",
+            "macro-objetivo",
+            "formação",
+            "iniciativas"
+          ]
+        }
+      }
+    ],
+    "699f0e87": [
+      {
+        "t": "Identificou que rotular o paciente caracteriza avaliação e comunicação alienante.",
+        "tag": "Avaliação na CNV",
+        "open": {
+          "p": "Na Comunicação Não Violenta, como se classifica uma fala médica que rotula o paciente como 'irresponsável e negligente'?",
+          "r": "Classifica-se como avaliação (ou julgamento), um ato de comunicação alienante que expressa valores do médico em vez de descrever um fato.",
+          "chaves": [
+            "avaliação",
+            "julgamento",
+            "comunicação alienante"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou a 1ª fase da CNV (Observação neutra) de julgamentos diagnósticos.",
+        "tag": "Observação sem julgamento",
+        "open": {
+          "p": "Qual é a primeira fase da Comunicação Não Violenta e o que ela busca evitar?",
+          "r": "A primeira fase é a Observação, que relata os fatos concretos e busca evitar julgamentos, rótulos ou avaliações sobre o paciente.",
+          "chaves": [
+            "observação",
+            "fatos",
+            "sem julgamento"
+          ]
+        }
+      }
+    ],
+    "96643df3": [
+      {
+        "t": "Ordenou os quatro componentes da Comunicação Não Violenta descritos por Rosenberg.",
+        "tag": "Quatro componentes CNV",
+        "open": {
+          "p": "Quais são, em sequência, os quatro componentes da Comunicação Não Violenta?",
+          "r": "Observação (sem julgamento), Sentimento, Necessidade e Pedido claro e acionável.",
+          "chaves": [
+            "observação",
+            "sentimento",
+            "necessidade",
+            "pedido"
+          ]
+        }
+      },
+      {
+        "t": "Excluiu enunciados que substituem observação e pedido por críticas ou ordens.",
+        "tag": "Pedido versus ordem",
+        "open": {
+          "p": "Na etapa final da Comunicação Não Violenta, o que diferencia um pedido claro de uma ordem ou cobrança?",
+          "r": "O pedido é específico, acionável e formulado sem imposição, ao contrário de ordens, exigências ou críticas sobre erros.",
+          "chaves": [
+            "pedido claro",
+            "específico",
+            "acionável"
+          ]
+        }
+      }
+    ],
+    "5d0e1813": [
+      {
+        "t": "Distinguiu um sentimento autêntico de um pseudo-sentimento que acusa o outro.",
+        "tag": "Sentimento versus pseudo-sentimento",
+        "open": {
+          "p": "Por que dizer 'sinto-me não respeitado' não expressa um sentimento autêntico na Comunicação Não Violenta?",
+          "r": "Porque é um pseudo-sentimento que avalia e acusa a conduta do outro, em vez de nomear a própria emoção (como ficar apreensivo).",
+          "chaves": [
+            "pseudo-sentimento",
+            "avaliação",
+            "emoção"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu a aplicação conjunta de observação neutra, necessidade e pedido pactuado.",
+        "tag": "Aplicação prática CNV",
+        "open": {
+          "p": "Como abordar atrasos recorrentes usando observação, necessidade e pedido na Comunicação Não Violenta?",
+          "r": "Relatando o fato concreto ('chegar depois da hora marcada'), conectando o sentimento à própria necessidade ('organização') e propondo pactuar uma solução.",
+          "chaves": [
+            "fato concreto",
+            "necessidade",
+            "pactuar"
+          ]
+        }
+      }
+    ],
+    "9f80458c": [
+      {
+        "t": "Identificou que medidas invasivas fúteis em paciente terminal configuram distanásia.",
+        "tag": "Conceito de distanásia",
+        "open": {
+          "p": "O que caracteriza a distanásia diante de um paciente com doença terminal?",
+          "r": "É a insistência em medidas invasivas e fúteis para prolongar a vida biológica a qualquer custo, gerando sofrimento e violando a dignidade.",
+          "chaves": [
+            "distanásia",
+            "fúteis",
+            "sofrimento"
+          ]
+        }
+      },
+      {
+        "t": "Associou o controle de sintomas sem intubação fútil à ortotanásia e não maleficência.",
+        "tag": "Ortotanásia e cuidados paliativos",
+        "open": {
+          "p": "Qual modalidade os cuidados paliativos buscam ao não intubar um paciente terminal e manter o controle de sintomas?",
+          "r": "Buscam a ortotanásia, permitindo a morte natural com dignidade e conforto, em consonância com o princípio 'primeiro, não prejudicar'.",
+          "chaves": [
+            "ortotanásia",
+            "dignidade",
+            "não prejudicar"
+          ]
+        }
+      }
+    ],
+    "9068837a": [
+      {
+        "t": "Corrigiu a visão terminalista reconhecendo o início precoce dos cuidados paliativos.",
+        "tag": "Início dos cuidados paliativos",
+        "open": {
+          "p": "Quando devem começar os cuidados paliativos em doenças ameaçadoras à vida como a ELA?",
+          "r": "Devem iniciar já no diagnóstico, de forma simultânea aos tratamentos modificadores da doença, e não apenas na fase terminal.",
+          "chaves": [
+            "diagnóstico",
+            "simultânea",
+            "modificadores"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os cuidados paliativos ao alívio do sofrimento em oposição à distanásia.",
+        "tag": "Oposição ética na paliação",
+        "open": {
+          "p": "Ao longo da evolução de uma doença grave, a qual prática ética os cuidados paliativos se opõem?",
+          "r": "Opõem-se à distanásia, priorizando o alívio do sofrimento e a dignidade em vez do prolongamento artificial da vida a qualquer custo.",
+          "chaves": [
+            "distanásia",
+            "alívio",
+            "dignidade"
+          ]
+        }
+      }
+    ],
+    "300a7f37": [
+      {
+        "t": "Reconheceu a comunicação efetiva como conceito central comprometido na consulta.",
+        "tag": "Comunicação clínica efetiva",
+        "open": {
+          "p": "Por que encerrar a consulta entregando um folheto após ignorar preocupações do paciente não é comunicação efetiva?",
+          "r": "Porque a comunicação efetiva exige escuta e acolhimento das demandas singulares e emocionais, e não apenas repasse unilateral de informações.",
+          "chaves": [
+            "comunicação efetiva",
+            "acolhimento",
+            "emoções"
+          ]
+        }
+      },
+      {
+        "t": "Identificou a negligência às características individuais e à troca de emoções.",
+        "tag": "Individualidade e emoções",
+        "open": {
+          "p": "Quais dois elementos da comunicação foram violados ao ignorar o medo de perda de autonomia e interromper os 'detalhes emocionais' da filha?",
+          "r": "Foram negligenciadas as características individuais (reduzindo o paciente à doença) e o processo de troca de emoções.",
+          "chaves": [
+            "características individuais",
+            "troca de emoções"
+          ]
+        }
+      }
+    ],
+    "7dec5ce5": [
+      {
+        "t": "Confirmou o papel da escuta ativa na construção de vínculo e adesão terapêutica.",
+        "tag": "Escuta ativa clínica",
+        "open": {
+          "p": "Como a escuta ativa é praticada na consulta e qual seu efeito sobre o plano terapêutico?",
+          "r": "Consiste em acolher o discurso sem interrupções, com atenção plena e devolutiva empática, fortalecendo o vínculo e melhorando a adesão.",
+          "chaves": [
+            "escuta ativa",
+            "vínculo",
+            "adesão"
+          ]
+        }
+      },
+      {
+        "t": "Descartou assertivas que minimizam a comunicação não verbal e afastam acompanhantes.",
+        "tag": "Comunicação não verbal",
+        "open": {
+          "p": "Qual é o papel da comunicação não verbal na interação clínica em relação à mensagem verbal?",
+          "r": "Ela é fundamental na consulta, pois tom de voz, contato visual, postura e expressões influenciam diretamente a mensagem verbal.",
+          "chaves": [
+            "não verbal",
+            "postura",
+            "mensagem verbal"
+          ]
+        }
+      }
+    ],
+    "e4ba9814": [
+      {
+        "t": "Priorizou a investigação das causas da resistência para construir plano compartilhado.",
+        "tag": "Decisão compartilhada APS",
+        "open": {
+          "p": "Diante de um paciente diabético que resiste à insulina e falta às consultas, o que a equipe da ESF deve fazer para fortalecer o vínculo?",
+          "r": "Compreender as razões da resistência e revisar o plano de cuidado em conjunto com o paciente, articulando ações com a rede de apoio.",
+          "chaves": [
+            "resistência",
+            "conjunto",
+            "vínculo"
+          ]
+        }
+      },
+      {
+        "t": "Rejeitou condutas passivas, punitivas ou de encerramento do vínculo na UBS.",
+        "tag": "Responsabilização da equipe",
+        "open": {
+          "p": "Por que apenas registrar a recusa ou encaminhar encerrando o acompanhamento na UBS contraria a responsabilização?",
+          "r": "Porque a responsabilização compartilhada exige cuidado integral e compromisso ativo da equipe com a continuidade do tratamento.",
+          "chaves": [
+            "responsabilização",
+            "continuidade",
+            "cuidado integral"
+          ]
+        }
+      }
+    ],
+    "dab570e": [
+      {
+        "t": "Identificou a fragmentação do cuidado e a redução biológica diante de sofrimento psicossocial.",
+        "tag": "Fragmentação do cuidado",
+        "open": {
+          "p": "O que caracteriza a fragmentação do cuidado em um paciente crônico atendido por vários profissionais sem discussão conjunta?",
+          "r": "É a abordagem isolada e restrita ao aspecto biológico, sem integrar o caso como um todo nem considerar dimensões psicológicas e sociais.",
+          "chaves": [
+            "fragmentação",
+            "biológico",
+            "isolamento"
+          ]
+        }
+      },
+      {
+        "t": "Associou a resposta da PNH à Clínica Ampliada e ao Projeto Terapêutico Singular.",
+        "tag": "Clínica ampliada PTS",
+        "open": {
+          "p": "Segundo a PNH, qual estratégia clínica e qual instrumento superam a fragmentação considerando o sujeito, sua doença e seu contexto?",
+          "r": "A Clínica Ampliada, voltada ao sujeito singular para ampliar sua autonomia, por meio do Projeto Terapêutico Singular (PTS).",
+          "chaves": [
+            "clínica ampliada",
+            "projeto terapêutico singular",
+            "autonomia"
+          ]
+        }
+      }
+    ],
+    "70449505": [
+      {
+        "t": "Distinguiu acolhimento humanizado de triagem técnica ou restrição à recepção.",
+        "tag": "Acolhimento na PNH",
+        "open": {
+          "p": "Por que o acolhimento na PNH não equivale à triagem por classificação de risco nem se restringe à recepção?",
+          "r": "Porque o acolhimento envolve escuta ativa, postura sem julgamento e compromisso com o reconhecimento e resolução da demanda do usuário.",
+          "chaves": [
+            "acolhimento",
+            "escuta ativa",
+            "sem julgamento"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou continuidade do retorno e articulação em rede a vínculo e responsabilização.",
+        "tag": "Vínculo e responsabilização",
+        "open": {
+          "p": "Quais dispositivos da PNH são exemplificados ao combinar retorno e acompanhar o caso articulando outros pontos da rede?",
+          "r": "O vínculo, construído pela continuidade e confiança na relação, e a responsabilização, pelo compromisso com o seguimento integral na rede.",
+          "chaves": [
+            "vínculo",
+            "responsabilização",
+            "rede"
+          ]
+        }
+      }
+    ],
+    "6e68bfd9": [
+      {
+        "t": "Selecionou recursos adaptados à deficiência auditiva para preservar a autonomia da paciente.",
+        "tag": "Comunicação acessível",
+        "open": {
+          "p": "Como a equipe deve adaptar a comunicação com uma idosa internada com perda auditiva, em vez de repassar informações apenas a terceiros?",
+          "r": "Deve oferecer recursos de comunicação adequados à perda auditiva diretamente à paciente, garantindo sua plena compreensão.",
+          "chaves": [
+            "recursos de comunicação",
+            "perda auditiva",
+            "compreensão"
+          ]
+        }
+      },
+      {
+        "t": "Integrou o suporte emocional à adaptação comunicativa diante do isolamento hospitalar.",
+        "tag": "Apoio emocional integral",
+        "open": {
+          "p": "Além da adaptação comunicativa, qual necessidade da paciente internada sem familiares e ansiosa a conduta humanizada atende?",
+          "r": "Atende à necessidade emocional e social por meio de apoio emocional e ambiente acolhedor para reduzir sua ansiedade.",
+          "chaves": [
+            "apoio emocional",
+            "ansiedade",
+            "integral"
+          ]
+        }
+      }
+    ],
+    "ce8d5d70": [
+      {
+        "t": "Associou a inclusão de usuários e equipe no grupo de trabalho à corresponsabilização.",
+        "tag": "Corresponsabilização na PNH",
+        "open": {
+          "p": "Qual conceito da Humanização explica a inclusão de pacientes e conselho local com profissionais e gestores para reduzir o tempo de espera?",
+          "r": "A corresponsabilização, pois compartilha a responsabilidade pelo funcionamento do serviço e pelo cuidado entre todos os envolvidos.",
+          "chaves": [
+            "corresponsabilização",
+            "compartilhada",
+            "usuários"
+          ]
+        }
+      },
+      {
+        "t": "Identificou a gestão participativa (cogestão) como dispositivo da PNH aplicado ao caso.",
+        "tag": "Gestão participativa cogestão",
+        "open": {
+          "p": "Qual dispositivo da PNH é colocado em prática ao criar um Grupo de Trabalho coletivo em vez de manter decisões centralizadas?",
+          "r": "A gestão participativa (cogestão), que inclui trabalhadores, gestores e usuários nos espaços de decisão do serviço.",
+          "chaves": [
+            "gestão participativa",
+            "cogestão",
+            "grupo de trabalho"
+          ]
+        }
+      }
+    ],
+    "2e944206": [
+      {
+        "t": "Identificou que a inclusão de pacientes e conselho nas decisões expressa corresponsabilização.",
+        "tag": "Corresponsabilização na PNH",
+        "open": {
+          "p": "O que significa corresponsabilização ao incluir usuários e conselhos nas decisões da unidade?",
+          "r": "Significa compartilhar a responsabilidade pelo cuidado e pelo funcionamento do serviço entre profissionais, gestão e usuários, unindo saberes.",
+          "chaves": [
+            "compartilhar",
+            "profissionais",
+            "gestão",
+            "usuários"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou gestão participativa de consulta não vinculante ou transferência exclusiva aos usuários.",
+        "tag": "Gestão participativa",
+        "open": {
+          "p": "Na gestão participativa, a unidade apenas ouve os usuários sem vínculo ou transfere a responsabilidade só a eles?",
+          "r": "Nenhum dos dois: ela compartilha o poder decisório e a responsabilidade entre equipe, gestores e usuários, evitando centralização ou repasse exclusivo.",
+          "chaves": [
+            "compartilha",
+            "decisório",
+            "centralização"
+          ]
+        }
+      }
+    ],
+    "9d8740c2": [
+      {
+        "t": "Associou a presença da humanização em todas as reuniões ao princípio da transversalidade.",
+        "tag": "Princípio da transversalidade",
+        "open": {
+          "p": "Como o princípio da transversalidade se manifesta na rotina de uma unidade de saúde?",
+          "r": "A humanização deixa de ser um programa isolado e passa a permear todas as práticas, reuniões e instâncias (clínicas, administrativas e de acolhimento).",
+          "chaves": [
+            "permeia",
+            "práticas",
+            "isolado"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou a participação da enfermagem nas compras e no plano anual à indissociabilidade atenção-gestão.",
+        "tag": "Atenção e gestão",
+        "open": {
+          "p": "Por que chamar trabalhadores da assistência para decidir compras e planos aplica a indissociabilidade entre atenção e gestão?",
+          "r": "Porque integra quem atua no cuidado às decisões gerenciais, reconhecendo que práticas clínicas e gestão dos processos de trabalho são inseparáveis.",
+          "chaves": [
+            "cuidado",
+            "gerenciais",
+            "inseparáveis"
+          ]
+        }
+      }
+    ],
+    "41d13235": [
+      {
+        "t": "Classificou gestos, expressões faciais e posturas como elementos da comunicação não verbal.",
+        "tag": "Comunicação não verbal",
+        "open": {
+          "p": "No atendimento clínico, quais sinais do médico e do paciente exemplificam comunicação não verbal?",
+          "r": "O semblante preocupado do médico, a expressão confusa e o ato de coçar a nuca do paciente, pois transmitem sentido sem uso de palavras.",
+          "chaves": [
+            "semblante",
+            "expressão",
+            "gestos"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu exames impressos e prescrição médica como formas de comunicação verbal escrita.",
+        "tag": "Comunicação verbal escrita",
+        "open": {
+          "p": "Por que resultados de exames e prescrição médica são classificados como comunicação verbal escrita?",
+          "r": "Porque utilizam a linguagem escrita para transmitir informações clínicas, diferenciando-se da fala (verbal oral) e das expressões ou gestos (não verbal).",
+          "chaves": [
+            "escrita",
+            "exames",
+            "prescrição"
+          ]
+        }
+      }
+    ],
+    "f332c30c": [
+      {
+        "t": "Atribuiu corretamente os papéis de codificação ao emissor e de decodificação ao receptor.",
+        "tag": "Emissor e receptor",
+        "open": {
+          "p": "Na consulta, qual a diferença entre os papéis do médico e do paciente ao explicar o diagnóstico?",
+          "r": "O médico atua como emissor que codifica a mensagem clínica, enquanto o paciente é o receptor que a decodifica.",
+          "chaves": [
+            "emissor",
+            "codifica",
+            "receptor",
+            "decodifica"
+          ]
+        }
+      },
+      {
+        "t": "Valorizou o feedback não verbal do paciente como indicador real de compreensão da mensagem.",
+        "tag": "Feedback não verbal",
+        "open": {
+          "p": "Qual é a função do feedback não verbal do paciente durante a explicação do médico?",
+          "r": "Ele sinaliza ao médico como a mensagem foi compreendida e sentida, permitindo ajustar a comunicação imediatamente.",
+          "chaves": [
+            "compreensão",
+            "sinaliza",
+            "ajustar"
+          ]
+        }
+      }
+    ],
+    "548cb35a": [
+      {
+        "t": "Confrontou a fala afirmativa com o olhar perdido para detectar feedback verbal não legítimo.",
+        "tag": "Incongruência do feedback",
+        "open": {
+          "p": "Por que o médico não deve confiar apenas no 'entendi' dito por um paciente com olhar perdido?",
+          "r": "Porque o choque emocional compromete a compreensão, tornando o feedback verbal potencialmente ilegítimo diante da contradição não verbal.",
+          "chaves": [
+            "choque",
+            "não verbal",
+            "ilegítimo"
+          ]
+        }
+      },
+      {
+        "t": "Descartou ruídos ambientais não relatados e manteve a atribuição de emissor e comunicação escrita.",
+        "tag": "Barreiras na comunicação",
+        "open": {
+          "p": "Em uma falha de compreensão após diagnóstico difícil, o que diferencia choque emocional de ruído ambiental?",
+          "r": "O choque emocional é uma barreira psíquica do receptor ao conteúdo da notícia, enquanto o ruído ambiental envolve interferências físicas externas do local.",
+          "chaves": [
+            "emocional",
+            "psíquica",
+            "ruído ambiental"
+          ]
+        }
+      }
+    ],
+    "48415546": [
+      {
+        "t": "Caracterizou a atuação paralela de várias áreas sem troca de informações como trabalho multiprofissional.",
+        "tag": "Trabalho multiprofissional",
+        "open": {
+          "p": "O que define o trabalho multiprofissional com saberes justapostos em uma equipe de saúde?",
+          "r": "Vários profissionais de áreas distintas atendem o mesmo paciente de forma isolada e paralela, sem reuniões nem integração entre os saberes.",
+          "chaves": [
+            "paralela",
+            "isolada",
+            "integração"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu paralelismo de saberes do trabalho interprofissional e da transdisciplinaridade.",
+        "tag": "Multiprofissional versus interprofissional",
+        "open": {
+          "p": "O que falta em uma equipe multiprofissional para que ela se torne interprofissional?",
+          "r": "Falta comunicação articulada, compartilhamento de informações em reuniões e construção conjunta de um plano de cuidado integrado.",
+          "chaves": [
+            "comunicação",
+            "reuniões",
+            "plano integrado"
+          ]
+        }
+      }
+    ],
+    "1df6b892": [
+      {
+        "t": "Identificou as reuniões e o plano integrado como meios para alcançar o trabalho interprofissional.",
+        "tag": "Plano de cuidado integrado",
+        "open": {
+          "p": "Qual prática concreta transforma atendimentos isolados em trabalho interprofissional?",
+          "r": "Realizar reuniões com troca de informações para construir um plano de cuidado integrado que valorize os diferentes saberes.",
+          "chaves": [
+            "reuniões",
+            "plano integrado",
+            "saberes"
+          ]
+        }
+      },
+      {
+        "t": "Rejeitou a centralização médica e a mera ampliação numérica da equipe como critérios de interprofissionalidade.",
+        "tag": "Horizontalidade na equipe",
+        "open": {
+          "p": "Aumentar o número de especialistas ou centralizar tarefas no médico gera trabalho interprofissional? Por quê?",
+          "r": "Não, pois sem horizontalidade, diálogo e valorização mútua dos saberes o cuidado continua fragmentado e hierarquizado.",
+          "chaves": [
+            "diálogo",
+            "saberes",
+            "fragmentado"
+          ]
+        }
+      }
+    ],
+    "44313273": [
+      {
+        "t": "Associou a reabilitação da deglutição e das funções orofaciais à competência do fonoaudiólogo.",
+        "tag": "Papel do fonoaudiólogo",
+        "open": {
+          "p": "Qual profissional da equipe atua diretamente na reabilitação da deglutição e das funções orofaciais?",
+          "r": "O fonoaudiólogo, responsável por avaliar e reabilitar distúrbios de deglutição e funções orofaciais e cervicais.",
+          "chaves": [
+            "fonoaudiólogo",
+            "deglutição",
+            "orofaciais"
+          ]
+        }
+      },
+      {
+        "t": "Delimitou as atribuições da enfermagem, nutrição e serviço social no cuidado pós-operatório.",
+        "tag": "Atribuições da equipe",
+        "open": {
+          "p": "No pós-operatório de cabeça e pescoço, como se distinguem os papéis do enfermeiro e do nutricionista?",
+          "r": "A enfermagem realiza e orienta o curativo, enquanto o nutricionista avalia e ajusta o estado nutricional sem reabilitar diretamente a deglutição.",
+          "chaves": [
+            "enfermagem",
+            "curativo",
+            "nutricionista",
+            "nutricional"
+          ]
+        }
+      }
+    ],
+    "2991346c": [
+      {
+        "t": "Identificou a ausência de atualização no prontuário como falha crítica de comunicação interprofissional.",
+        "tag": "Registro em prontuário",
+        "open": {
+          "p": "Por que deixar de registrar uma mudança de prescrição no prontuário gera erro na assistência da equipe?",
+          "r": "Porque o prontuário é o meio formal de compartilhamento de informações; sem atualização, a equipe mantém a conduta antiga, comprometendo a segurança.",
+          "chaves": [
+            "prontuário",
+            "compartilhamento",
+            "segurança"
+          ]
+        }
+      },
+      {
+        "t": "Ateve-se aos fatos do caso para descartar hipóteses externas como rotatividade ou falta de protocolo.",
+        "tag": "Análise de causa",
+        "open": {
+          "p": "Ao analisar o erro entre prescrição e administração, qual risco o prontuário desatualizado traz ao cuidado?",
+          "r": "Ele rompe a continuidade do cuidado e induz a administração de medicação no horário errado, expondo o paciente a risco evitável.",
+          "chaves": [
+            "continuidade",
+            "horário",
+            "risco"
+          ]
+        }
+      }
+    ],
+    "3fd785bd": [
+      {
+        "t": "Aplicou a sequência do protocolo SPIKES para posicionar a discussão terapêutica após o acolhimento.",
+        "tag": "Etapa Strategy no SPIKES",
+        "open": {
+          "p": "No protocolo SPIKES, qual é o passo seguinte após informar o diagnóstico e acolher as emoções da família?",
+          "r": "É a etapa de estratégia e resumo, na qual se discutem conjuntamente as opções terapêuticas e o plano de cuidado.",
+          "chaves": [
+            "estratégia",
+            "opções terapêuticas",
+            "acolhimento"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que compartilhar o plano terapêutico reforça o vínculo e a adesão sem encerrar nem usar jargões.",
+        "tag": "Decisão compartilhada",
+        "open": {
+          "p": "Por que construir as opções terapêuticas em conjunto com os pais após uma má notícia favorece o tratamento?",
+          "r": "Porque fortalece o vínculo terapêutico, promove compreensão realista do quadro e aumenta a adesão ao tratamento.",
+          "chaves": [
+            "vínculo",
+            "adesão",
+            "compreensão"
+          ]
+        }
+      }
+    ],
+    "fb3d9fc0": [
+      {
+        "t": "Identificou a validação empática com escuta ativa como resposta imediata ao choro na etapa Emotions.",
+        "tag": "Suporte emocional SPIKES",
+        "open": {
+          "p": "Qual deve ser a conduta imediata do médico quando familiares começam a chorar ao receber uma má notícia?",
+          "r": "Validar as emoções expressas com empatia e escuta ativa, oferecendo suporte antes de avançar para explicações técnicas ou encaminhamentos.",
+          "chaves": [
+            "validar",
+            "empatia",
+            "escuta ativa"
+          ]
+        }
+      },
+      {
+        "t": "Descartou encaminhamento precoce, plano imediato e minimização do sofrimento diante da reação aguda.",
+        "tag": "Erros na comunicação",
+        "open": {
+          "p": "Por que minimizar as preocupações dos pais ou passar logo ao plano terapêutico é inadequado diante do choro imediato?",
+          "r": "Minimizar rompe a honestidade e a credibilidade, e apresentar o plano sem acolher o impacto emocional prejudica o vínculo e a compreensão.",
+          "chaves": [
+            "honestidade",
+            "credibilidade",
+            "vínculo"
+          ]
+        }
+      }
+    ],
+    "284f9a33": [
+      {
+        "t": "Associou a ausência de consulta prévia sobre o desejo de ouvir detalhes à falha na etapa Invitation.",
+        "tag": "Etapa Invitation SPIKES",
+        "open": {
+          "p": "O que caracteriza a etapa Invitation do protocolo SPIKES antes de revelar um diagnóstico grave?",
+          "r": "Verificar se o paciente deseja receber todos os detalhes naquele momento e avaliar sua prontidão emocional para ouvi-los.",
+          "chaves": [
+            "deseja",
+            "detalhes",
+            "prontidão"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou Setting up e Knowledge já cumpridos da verificação prévia de prontidão do paciente.",
+        "tag": "Etapas iniciais SPIKES",
+        "open": {
+          "p": "Em uma comunicação em sala reservada e com linguagem clara, qual etapa do SPIKES ainda pode falhar antes da notícia?",
+          "r": "A etapa Invitation (convite), caso o profissional não verifique antes o quanto o paciente quer saber naquele momento.",
+          "chaves": [
+            "Invitation",
+            "convite",
+            "saber"
+          ]
+        }
+      }
+    ],
+    "1cf00655": [
+      {
+        "t": "Definiu acolhimento como o reconhecimento da necessidade singular de saúde, sem reduzi-lo à triagem.",
+        "tag": "Conceito de acolhimento",
+        "open": {
+          "p": "Na PNH, o que define o acolhimento e por que ele não se resume a uma triagem por ordem de chegada?",
+          "r": "Acolhimento é reconhecer a legítima e singular necessidade de saúde do usuário com escuta e cuidado integral, e não apenas triar por ordem de chegada.",
+          "chaves": [
+            "necessidade",
+            "singular",
+            "triagem"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou vínculo, baseado em pactuações com o usuário, de responsabilização contínua da chegada à saída.",
+        "tag": "Vínculo versus responsabilização",
+        "open": {
+          "p": "Qual é a diferença entre vínculo e responsabilização no cuidado em saúde?",
+          "r": "Vínculo é enxergar o outro como alguém com quem se estabelecem pactuações; responsabilização é a equipe responsabilizar-se pelo usuário desde a chegada até a saída.",
+          "chaves": [
+            "pactuações",
+            "chegada",
+            "saída"
+          ]
+        }
+      }
+    ],
+    "bf6f96cd": [
+      {
+        "t": "Reconheceu que a horizontalização do cuidado traduz o sentido da integralidade ligado à organização das práticas.",
+        "tag": "Sentidos da integralidade",
+        "open": {
+          "p": "Nos sentidos da integralidade, o que a horizontalização do cuidado expressa?",
+          "r": "A horizontalização expressa o modo de organizar as práticas e o acompanhamento contínuo em saúde.",
+          "chaves": [
+            "organizar",
+            "práticas",
+            "horizontalização"
+          ]
+        }
+      },
+      {
+        "t": "Classificou o grupo de educação em saúde como ação preventiva e o acompanhamento medicamentoso como assistencial.",
+        "tag": "Prevenção versus assistência",
+        "open": {
+          "p": "No acompanhamento de crônicos do caso, qual ação é preventiva e qual é assistencial?",
+          "r": "A indicação do grupo de educação em saúde é preventiva, enquanto o acompanhamento do uso correto de medicamentos é uma ação assistencial.",
+          "chaves": [
+            "preventiva",
+            "assistencial",
+            "grupo"
+          ]
+        }
+      }
+    ],
+    "aee58c81": [
+      {
+        "t": "Separou princípios da PNH, como transversalidade e autonomia dos sujeitos, das diretrizes propriamente ditas.",
+        "tag": "Princípios versus diretrizes",
+        "open": {
+          "p": "Na Política Nacional de Humanização, transversalidade e autonomia dos sujeitos e coletivos são princípios ou diretrizes?",
+          "r": "Ambas são princípios da PNH, e não diretrizes, o que já permite descartá-las quando a questão pede uma diretriz.",
+          "chaves": [
+            "princípios",
+            "diretrizes",
+            "transversalidade"
+          ]
+        }
+      },
+      {
+        "t": "Identificou a clínica ampliada pela atenção interprofissional à singularidade e à complexidade em ações individuais e coletivas.",
+        "tag": "Clínica ampliada",
+        "open": {
+          "p": "Quais características do atendimento evidenciam a diretriz da clínica ampliada na PNH?",
+          "r": "A abordagem clínica do adoecimento por equipe interprofissional que considera a singularidade do sujeito, a complexidade saúde-doença e ações individuais e coletivas.",
+          "chaves": [
+            "singularidade",
+            "interprofissional",
+            "complexidade"
+          ]
+        }
+      }
+    ],
+    "5b13f7f5": [
+      {
+        "t": "Associou acolhimento, construção de vínculo e ambiente de trocas relacionais ao conceito de tecnologias leves.",
+        "tag": "Tecnologias leves relacionais",
+        "open": {
+          "p": "Por que acolhimento, vínculo e ambiente confortável para trocas são classificados como tecnologias leves?",
+          "r": "Porque correspondem às tecnologias relacionais presentes no encontro entre profissional e paciente, distintas das leve-duras (saberes estruturados) e das duras (equipamentos).",
+          "chaves": [
+            "relacionais",
+            "acolhimento",
+            "vínculo"
+          ]
+        }
+      },
+      {
+        "t": "Descartou o fortalecimento de iniciativas pela gestão ao notar que o caso descreve atuação médica isolada.",
+        "tag": "Aderência ao enunciado",
+        "open": {
+          "p": "Por que não se pode afirmar que o caso expressa fortalecimento de iniciativas de humanização reconhecidas pela gestão?",
+          "r": "Porque o caso relata apenas uma atuação individual e isolada do médico durante a consulta, sem menção a gestores ou outras experiências de sucesso.",
+          "chaves": [
+            "isolada",
+            "gestão",
+            "reconhecimento"
+          ]
+        }
+      }
+    ]
+  }
+}

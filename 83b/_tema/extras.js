@@ -257,13 +257,15 @@
 
   /* ---------- 2. Crédito no canto ---------- */
   // Confere de novo a cada troca de tela: o selo só aparece quando a página não mostra o crédito dela.
-  let selo = null;
-  function credito() {
-    if (html.classList.contains('vidro-aula') || window.top !== window) return;
-    // master de outra autoria (ex.: DIC IV, do Thiaginho) marca o crédito dele com data-credito-proprio: sem selo
-    if (D.querySelector('[data-credito-proprio]')) { if (selo) selo.hidden = true; return; }
-    const visivel = el => el.checkVisibility ? el.checkVisibility({ opacityProperty: true, visibilityProperty: true }) : !!el.offsetParent;
-    let tem = false;
+  // A varredura do texto da página inteira custa caro nos masters grandes (~50 ms na Farmacologia) e rodava a
+  // cada clique. Agora ela guarda onde achou o crédito; a cada clique só confere se um desses lugares está à vista,
+  // e só varre de novo (no tempo ocioso, no máximo a cada 4 s) quando nenhum está.
+  let selo = null, achados = [], ultimaVarredura = -1e9;
+  const visivel = el => el.checkVisibility ? el.checkVisibility({ opacityProperty: true, visibilityProperty: true }) : !!el.offsetParent;
+  const ocioso = fn => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 0));
+  function varrer() {
+    ultimaVarredura = performance.now();
+    const lista = [];
     const w = D.createTreeWalker(D.body, NodeFilter.SHOW_TEXT);
     for (let n; (n = w.nextNode());) {
       if (!/Vin[ií]cius|Matheus/i.test(n.nodeValue)) continue;
@@ -272,14 +274,29 @@
       for (let i = 0; el && i < 3 && !el.closest('.vg-credito'); i++, el = el.parentElement) {
         const tx = el.textContent;
         if (tx.length > 300) break;
-        if (/Vin[ií]cius/i.test(tx) && /Matheus/i.test(tx) && visivel(el)) { tem = true; break; }
+        if (/Vin[ií]cius/i.test(tx) && /Matheus/i.test(tx)) { if (!lista.includes(el)) lista.push(el); break; }
       }
-      if (tem) break;
     }
+    achados = lista;
+  }
+  function pintar(tem) {
     if (!selo) { selo = D.createElement('div'); selo.className = 'vg-credito'; selo.textContent = 'by Vinícius Cabral e Matheus Tavares'; D.body.appendChild(selo); }
-    selo.hidden = tem;
+    if (selo.hidden !== tem) selo.hidden = tem;
+  }
+  const algumVisivel = () => achados.some(el => el.isConnected && visivel(el));
+  function credito(completo) {
+    if (html.classList.contains('vidro-aula') || window.top !== window) return;
+    // master de outra autoria (ex.: DIC IV, do Thiaginho) marca o crédito dele com data-credito-proprio: sem selo
+    if (D.querySelector('[data-credito-proprio]')) { if (selo && !selo.hidden) selo.hidden = true; return; }
+    if (completo === true) varrer();
+    if (algumVisivel()) return pintar(true);
+    if (completo !== true && performance.now() - ultimaVarredura > 4000) {
+      ocioso(() => { varrer(); pintar(algumVisivel()); });
+      return;
+    }
+    pintar(false);
   }
   let t = 0; const depois = () => { clearTimeout(t); t = setTimeout(credito, 600); };
-  if (D.readyState === 'complete') setTimeout(credito, 1500); else addEventListener('load', () => setTimeout(credito, 1500));
+  if (D.readyState === 'complete') setTimeout(() => credito(true), 1500); else addEventListener('load', () => setTimeout(() => credito(true), 1500));
   addEventListener('hashchange', depois); D.addEventListener('click', depois, true);
 })();

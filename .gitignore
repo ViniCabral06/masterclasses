@@ -13,6 +13,8 @@
 !exportar_questoes.py
 !conferir_porques.py
 !importar_porques.py
+!auditar_verificacao.py
+!gerar_lotes_verificacao.py
 !_83b/**
 !LEIAME.md
 !CLAUDE.md

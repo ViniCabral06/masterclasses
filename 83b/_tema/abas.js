@@ -731,6 +731,7 @@ html[data-theme=light] #vg-lista .vga-partes{background-color:#fff;border-color:
       + '<button type="button" class="vga-aj" data-aj="tema" role="switch"><span class="tx">☀️ Tema claro<small>Liga o modo foco claro; desligado fica escuro</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
       + '<button type="button" class="vga-aj" data-aj="pomo" role="switch" hidden><span class="tx">🍅 Pomodoro<small>Foco e pausa com alarme. Chame pelo tomatinho no canto.</small></span><span class="vga-sw" aria-hidden="true"></span></button>'
       + '<button type="button" class="vga-aj" data-aj="reta" hidden><span class="tx">🔥 Modo Reta Final<small>Plano automático até a data da prova, pelo que mais cai</small></span><span aria-hidden="true">›</span></button>'
+      + '<button type="button" class="vga-aj" data-aj="verif" hidden><span class="tx">🎯 Meus pontos frágeis<small>Raio-X de erros, incertezas e micro-questões abertas</small></span><span aria-hidden="true">›</span></button>'
       + '<button type="button" class="vga-aj" data-aj="flash" hidden><span class="tx">🃏 Flashcards<small>Revisão espaçada e lacunas da matéria</small></span><span aria-hidden="true">›</span></button>'
       + '<button type="button" class="vga-aj" data-aj="val" hidden><span class="tx">🧪 Valores de referência<small>Hemograma, eletrólitos, gasometria, fígado e rim (Alt+V)</small></span><span aria-hidden="true">›</span></button>'
       + '<button type="button" class="vga-aj" data-aj="conc" hidden><span class="tx">📊 Meu rendimento<small>Tempo ativo, horários e fatores que ajudam ou atrapalham</small></span><span aria-hidden="true">›</span></button>'
@@ -742,10 +743,11 @@ html[data-theme=light] #vg-lista .vga-partes{background-color:#fff;border-color:
     const pintaExtras = () => {
       const c = aj.querySelector('[data-aj=conc]'); if (c) c.hidden = !window.VGConc;
       const r = aj.querySelector('[data-aj=reta]'); if (r) r.hidden = !window.VGRetaFinal;
+      const vf = aj.querySelector('[data-aj=verif]'); if (vf) vf.hidden = !(window.VGVerif && VGVerif.abrirPainel);
       const v = aj.querySelector('[data-aj=val]'); if (v) v.hidden = !window.VGValores;
       const f = aj.querySelector('[data-aj=flash]'); if (f) f.hidden = !(window.VGFlash && VGFlash.disponivel && VGFlash.disponivel());
     };
-    pintaPomo(); pintaExtras(); addEventListener('load', () => { pintaPomo(); pintaExtras(); }); addEventListener('vgpomo', pintaPomo); D.addEventListener('vg-flash-pronto', pintaExtras);
+    pintaPomo(); pintaExtras(); addEventListener('load', () => { pintaPomo(); pintaExtras(); }); addEventListener('vgpomo', pintaPomo); D.addEventListener('vg-flash-pronto', pintaExtras); D.addEventListener('vg-verif-pronto', pintaExtras);
     aj.addEventListener('click', e => {
       const b = e.target.closest('[data-aj]'); if (!b) return;
       if (b.dataset.aj === 'pomo') {
@@ -754,6 +756,7 @@ html[data-theme=light] #vg-lista .vga-partes{background-color:#fff;border-color:
         setTimeout(pintaPomo, 50); return;
       }
       if (b.dataset.aj === 'reta') { if (window.VGRetaFinal) { ajustes(false); VGRetaFinal.abrir(); } return; }
+      if (b.dataset.aj === 'verif') { if (window.VGVerif && VGVerif.abrirPainel) { ajustes(false); VGVerif.abrirPainel(); } return; }
       if (b.dataset.aj === 'flash') { if (window.VGFlash) { ajustes(false); VGFlash.abrirModal(K); } return; }
       if (b.dataset.aj === 'val') { if (window.VGValores) { ajustes(false); VGValores.abrir(); } return; }
       if (b.dataset.aj === 'conc') {

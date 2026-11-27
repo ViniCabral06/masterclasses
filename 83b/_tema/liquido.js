@@ -84,12 +84,27 @@
     var r = Math.round(parseFloat(cs.borderTopLeftRadius) || 0);
     var grande = w * h > 140000;
     var v = 'url(#' + filtro(w, h, r) + ') blur(' + (grande ? 5 : 3) + 'px) saturate(175%) brightness(1.06)';
+    e._lqW = w; e._lqH = h;
+    if (e._lqV === v) return;
+    e._lqV = v;
     e.dataset.lq = '1';
     e.style.setProperty('-webkit-backdrop-filter', v);
     e.style.setProperty('backdrop-filter', v);
   }
 
-  var ro = new ResizeObserver(function (es) { es.forEach(function (x) { vestir(x.target); }); });
+  /* Peça mudando de tamanho (barra lateral abrindo ou fechando, janela sendo arrastada): o mapa que ela
+     já tem estica junto (o feImage ocupa 100%) e só se faz um mapa novo quando ela para de mexer.
+     Fazer um mapa por quadro (canvas → PNG → filtro novo) travava a animação e enchia a memória. */
+  var ESPERA = 180;
+  var ro = new ResizeObserver(function (es) {
+    es.forEach(function (x) {
+      var e = x.target;
+      if (!e.dataset.lq) { vestir(e); return; }
+      if (Math.round(e.offsetWidth) === e._lqW && Math.round(e.offsetHeight) === e._lqH) return;
+      clearTimeout(e._lqT);
+      e._lqT = setTimeout(function () { vestir(e); }, ESPERA);
+    });
+  });
   API.scan = function (raiz) {
     if (desligado) return;
     (raiz && raiz.querySelectorAll ? raiz : document).querySelectorAll(SEL).forEach(function (e) {
@@ -98,7 +113,7 @@
   };
   API.off = function () {
     desligado = true; API.on = false; ro.disconnect();
-    feitos.forEach(function (e) { e.style.removeProperty('-webkit-backdrop-filter'); e.style.removeProperty('backdrop-filter'); delete e.dataset.lq; });
+    feitos.forEach(function (e) { e.style.removeProperty('-webkit-backdrop-filter'); e.style.removeProperty('backdrop-filter'); delete e.dataset.lq; clearTimeout(e._lqT); e._lqV = ''; });
     html.classList.remove('liquido');
   };
 

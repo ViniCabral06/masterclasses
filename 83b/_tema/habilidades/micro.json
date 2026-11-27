@@ -1,0 +1,214 @@
+{
+  "materia": "micro",
+  "byHash": {
+    "17a67377": [
+      {
+        "t": "Identificou Sporothrix brasiliensis (fungo dimórfico: filamentoso a 25 °C e levedura a 37 °C) a partir da arranhadura de gato doente.",
+        "tag": "Esporotricose zoonótica",
+        "open": {
+          "p": "Qual agente e qual característica térmica (dimorfismo) fecham o diagnóstico de esporotricose zoonótica no Brasil?",
+          "r": "Sporothrix brasiliensis (transmitido por arranhadura/mordida de gato doente); fungo dimórfico: filamentoso a 25 °C e leveduriforme a 37 °C.",
+          "chaves": ["Sporothrix brasiliensis", "dimórfico", "25", "37"]
+        }
+      },
+      {
+        "t": "Reconheceu a apresentação linfocutânea clássica (úlcera no local de inoculação + nódulos ascendentes pelo trajeto linfático).",
+        "tag": "Forma linfocutânea",
+        "open": {
+          "p": "Qual é a apresentação clínica mais comum da esporotricose e como ela evolui no membro acometido?",
+          "r": "Forma linfocutânea: nódulo que ulcera no ponto de inoculação seguido por nódulos/caroços subindo pelo trajeto linfático (ex.: mão → antebraço → axila).",
+          "chaves": ["linfocutânea", "úlcera", "trajeto linfático"]
+        }
+      },
+      {
+        "t": "Associou a forma linfocutânea ao tratamento de 1ª linha com itraconazol e ao mecanismo de inibição da síntese de ergosterol.",
+        "tag": "Tratamento: Itraconazol",
+        "open": {
+          "p": "Qual é o antifúngico de 1ª linha na esporotricose linfocutânea (não gestante) e qual seu mecanismo de ação?",
+          "r": "Itraconazol (azol), que inibe a síntese de ergosterol na membrana fúngica. (Na gestante não se usa itraconazol → termoterapia local ou anfotericina B se grave.)",
+          "chaves": ["itraconazol", "ergosterol"]
+        }
+      }
+    ],
+    "62c2bab5": [
+      {
+        "t": "Distinguiu divisão celular eucariótica (mitose e meiose) da divisão procariótica (fissão binária).",
+        "tag": "Fissão binária × Mitose",
+        "open": {
+          "p": "Por qual mecanismo as bactérias se dividem, em contraste com as células eucarióticas?",
+          "r": "Bactérias dividem-se por fissão binária (sem mitose nem meiose); eucariotos dividem-se por mitose e meiose.",
+          "chaves": ["fissão binária", "mitose"]
+        }
+      },
+      {
+        "t": "Identificou parede de peptideoglicano, cromossomo circular único e ribossomos 70S como marcas procarióticas.",
+        "tag": "Procarioto × Eucarioto",
+        "open": {
+          "p": "Cite três estruturas características da célula bacteriana ausentes ou diferentes no citoplasma humano.",
+          "r": "Parede de peptideoglicano, cromossomo circular único no nucleóide (sem membrana nuclear) e ribossomos 70S.",
+          "chaves": ["peptideoglicano", "circular", "70S"]
+        }
+      }
+    ],
+    "4342226a": [
+      {
+        "t": "Reconheceu o plasmídeo de resistência (plasmídeo R) como molécula de DNA circular extracromossômica.",
+        "tag": "Definição de plasmídeo R",
+        "open": {
+          "p": "O que é um plasmídeo R e onde ele se localiza na bactéria?",
+          "r": "É uma pequena molécula de DNA circular extracromossômica localizada no citoplasma que carrega genes de resistência a antibióticos.",
+          "chaves": ["DNA circular", "extracromossômica", "resistência"]
+        }
+      },
+      {
+        "t": "Diferenciou plasmídeo R de nucleóide (cromossomo principal) e de cápsula polissacarídica.",
+        "tag": "Nucleóide × Plasmídeo",
+        "open": {
+          "p": "Qual a diferença funcional básica entre o nucleóide e o plasmídeo na célula bacteriana?",
+          "r": "O nucleóide abriga o cromossomo único com genes essenciais à vida; o plasmídeo é DNA extra dispensável que confere vantagens como resistência ou toxinas.",
+          "chaves": ["essenciais", "extra", "vantagens"]
+        }
+      }
+    ],
+    "ecc4d66f": [
+      {
+        "t": "Associou a tolerabilidade de inibidores da síntese proteica bacteriana à diferença entre ribossomos 70S (bactéria) e 80S (humano).",
+        "tag": "Seletividade 70S × 80S",
+        "open": {
+          "p": "Por que um antibiótico que bloqueia ribossomos 70S preserva em grande parte a síntese proteica humana?",
+          "r": "Porque os ribossomos citoplasmáticos humanos são 80S (60S + 40S), estruturalmente diferentes dos ribossomos bacterianos 70S (50S + 30S).",
+          "chaves": ["80S", "70S", "diferentes"]
+        }
+      },
+      {
+        "t": "Evitou erros comuns sobre ribossomos eucarióticos (como achar que ficam dentro do núcleo ou são inexistentes).",
+        "tag": "Localização dos ribossomos",
+        "open": {
+          "p": "Onde ficam os ribossomos 80S na célula humana e qual organela humana tem ribossomos 70S?",
+          "r": "Os ribossomos 80S ficam no citoplasma (livres ou no retículo endoplasmático rugoso); as mitocôndrias possuem ribossomos 70S.",
+          "chaves": ["citoplasma", "mitocôndrias"]
+        }
+      }
+    ],
+    "475edc27": [
+      {
+        "t": "Associou genes de virulência/toxinas localizados em plasmídeos à possibilidade de transferência horizontal (conjugação).",
+        "tag": "Transferência de plasmídeos",
+        "open": {
+          "p": "Qual é a principal consequência epidemiológica de um gene de toxina ou resistência estar em um plasmídeo?",
+          "r": "Ele pode ser transferido horizontalmente para outras bactérias (como por conjugação), disseminando rapidamente o traço entre cepas.",
+          "chaves": ["horizontal", "conjugação", "outras bactérias"]
+        }
+      },
+      {
+        "t": "Reconheceu que genes em plasmídeos não são indispensáveis à sobrevivência basal da bactéria.",
+        "tag": "Genes acessórios",
+        "open": {
+          "p": "Uma bactéria morre imediatamente se perder um plasmídeo que codifica uma toxina ou resistência?",
+          "r": "Não. Plasmídeos são elementos acessórios (não essenciais à viabilidade basal), embora dêem vantagem seletiva em certos ambientes.",
+          "chaves": ["não", "acessórios", "vantagem seletiva"]
+        }
+      }
+    ],
+    "af3bff8d": [
+      {
+        "t": "Classificou corretamente como procarioto um microrganismo sem membrana nuclear, com cromossomo circular, 70S e fissão binária.",
+        "tag": "Identificação de procarioto",
+        "open": {
+          "p": "Quais quatro achados fecham a identificação de uma célula procariótica?",
+          "r": "Ausência de membrana nuclear/organelas membranosas, cromossomo circular único, ribossomos 70S e divisão por fissão binária.",
+          "chaves": ["membrana nuclear", "circular", "70S", "fissão binária"]
+        }
+      },
+      {
+        "t": "Ligou a classificação procariótica ao uso do ribossomo 70S como alvo seletivo de antibacterianos (e não antifúngicos).",
+        "tag": "Alvo antibacteriano",
+        "open": {
+          "p": "Fungos são procariotos ou eucariotos, e qual o tamanho de seus ribossomos citoplasmáticos?",
+          "r": "Fungos são eucariotos e possuem ribossomos citoplasmáticos 80S (além de ergosterol na membrana e parede de quitina).",
+          "chaves": ["eucariotos", "80S"]
+        }
+      }
+    ],
+    "184008b1": [
+      {
+        "t": "Recordou que o nucleóide bacteriano é um cromossomo circular único (sem membrana nuclear e sem histonas verdadeiras).",
+        "tag": "Nucleóide bacteriano",
+        "open": {
+          "p": "Como é organizado o cromossomo principal no nucleóide de uma bactéria típica?",
+          "r": "É uma única molécula de DNA circular, sem membrana nuclear e sem histonas verdadeiras, associada à membrana plasmática.",
+          "chaves": ["circular", "sem membrana nuclear", "sem histonas"]
+        }
+      },
+      {
+        "t": "Descartou atributos eucarióticos aplicados erroneamente a bactérias (cromossomo linear, histonas humanas, membrana nuclear).",
+        "tag": "Genética procariótica",
+        "open": {
+          "p": "Cite duas diferenças entre o cromossomo bacteriano e os cromossomos nucleares humanos.",
+          "r": "O bacteriano é único, circular e sem histonas verdadeiras; o humano tem múltiplos cromossomos lineares compactados por histonas dentro de membrana nuclear.",
+          "chaves": ["circular", "lineares", "histonas"]
+        }
+      }
+    ],
+    "6d2dcda6": [
+      {
+        "t": "Interpretou a perda do plasmídeo R na ausência de antibiótico como prova de que ele confere vantagem seletiva sem ser essencial.",
+        "tag": "Pressão seletiva e plasmídeo R",
+        "open": {
+          "p": "Por que uma cepa bacteriana pode perder o plasmídeo R e voltar a ser sensível quando cultivada sem antibiótico?",
+          "r": "Porque o plasmídeo não é essencial à sobrevivência basal; sem a pressão seletiva do antibiótico, a bactéria continua crescendo normalmente sem mantê-lo.",
+          "chaves": ["não é essencial", "pressão seletiva"]
+        }
+      },
+      {
+        "t": "Distinguiu viabilidade celular (genes cromossômicos) de resistência adquirida (genes plasmidiais).",
+        "tag": "Cromossomo × Plasmídeo",
+        "open": {
+          "p": "Qual estrutura genética bacteriana guarda os genes indispensáveis à divisão e metabolismo básico?",
+          "r": "O cromossomo bacteriano único localizado no nucleóide.",
+          "chaves": ["cromossomo", "nucleóide"]
+        }
+      }
+    ],
+    "304caf24": [
+      {
+        "t": "Associou a resistência seletiva a macrolídeo (mutação no rRNA 23S) com sensibilidade preservada a aminoglicosídeo à ação em subunidades distintas (50S vs. 30S).",
+        "tag": "Subunidades 50S × 30S",
+        "open": {
+          "p": "Em qual subunidade ribossômica (30S ou 50S) atuam os macrolídeos e em qual atuam os aminoglicosídeos?",
+          "r": "Macrolídeos atuam na subunidade 50S (rRNA 23S); aminoglicosídeos atuam na subunidade 30S.",
+          "chaves": ["50S", "30S"]
+        }
+      },
+      {
+        "t": "Reconheceu que tanto macrolídeos quanto aminoglicosídeos são inibidores da síntese proteica (e não da parede celular).",
+        "tag": "Mecanismo de ação",
+        "open": {
+          "p": "Qual é o alvo celular compartilhado por macrolídeos e aminoglicosídeos?",
+          "r": "Ambos inibem a síntese proteica bacteriana no ribossomo 70S (porém em subunidades diferentes: 50S e 30S).",
+          "chaves": ["síntese proteica", "ribossomo 70S"]
+        }
+      }
+    ],
+    "c9f75dcb": [
+      {
+        "t": "Diferenciou bactéria típica, eucarioto, Mycoplasma (sem parede, com colesterol) e vírus (acelular, sem ribossomos próprios).",
+        "tag": "Comparação de microrganismos",
+        "open": {
+          "p": "O que distingue rapidamente Mycoplasma de uma bactéria típica e um vírus de ambos?",
+          "r": "Mycoplasma é procarioto sem parede celular e com colesterol na membrana; vírus é acelular e não possui ribossomos próprios.",
+          "chaves": ["sem parede", "colesterol", "sem ribossomos"]
+        }
+      },
+      {
+        "t": "Identificou ausência de ribossomos próprios como critério definidor de vírus frente a procariotos e eucariotos.",
+        "tag": "Vírus acelulares",
+        "open": {
+          "p": "Por que antibióticos inibidores de ribossomo 70S nunca têm efeito direto sobre vírus?",
+          "r": "Porque vírus são acelulares e não possuem ribossomos próprios, usando a maquinaria 80S da célula hospedeira.",
+          "chaves": ["acelulares", "sem ribossomos"]
+        }
+      }
+    ]
+  }
+}
