@@ -57,7 +57,7 @@
         });
       });
     } else if (K === 'pato') {
-      $$('#tabbtns .grp[data-key]').filter(g => /^(aula|tgi|pratica)\d+$/.test(g.dataset.key)).forEach(g => {
+      $$('#tabbtns .grp[data-key]').filter(g => /^(aula|tgi|pratica)\d+$/.test(g.dataset.key) && g.dataset.cap !== 'extra').forEach(g => {
         const h = $('.grp-h', g), ak = g.dataset.key, nomeAula = txt(h), fqA = fqNum(h);
         const its = $$('.it[data-seg]', g).filter(it => $('input', it));
         if (!its.length) return;

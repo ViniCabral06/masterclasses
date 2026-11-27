@@ -289,12 +289,13 @@ iframe.show{display:block}
 
 
 
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="pato";if(/[?&]vgindice=/.test(location.search)){window.__vgIndex=1;try{Storage.prototype.setItem=Storage.prototype.removeItem=Storage.prototype.clear=function(){}}catch(e){}}(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=728144c6">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=80bc7cb6"></script><script defer src="../_tema/notas.js?v=ba3865ff"></script><script defer src="../_tema/editor.js?v=54019c0c"></script><script defer src="../_tema/segmentos.js?v=7b9e3844"></script><script defer src="../_tema/extras.js?v=d3287083"></script><script defer src="../_tema/memes.js?v=cf50e415"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script src="../_tema/correcao.js?v=d81fe2d2"></script><script defer src="../_tema/simulado.js?v=4616e92a"></script><script defer src="../_tema/flashcards.js?v=4c60ee3a"></script><script defer src="../_tema/revisao.js?v=6bd90d6b"></script><script defer src="../_tema/foco.js?v=b5f11a53"></script><script defer src="../_tema/concentracao.js?v=1de3682e"></script><script defer src="../_tema/valores.js?v=212cbf26"></script><script defer src="../_tema/retafinal.js?v=6350a168"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="127870c8"></script><script defer src="../_tema/abas.js?v=39f46dd5"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script><script defer src="../_tema/praticar.js?v=6a32433a"></script><script defer src="../_tema/pomodoro-motor.js?v=1f0d7c13"></script><script defer src="../_tema/pomodoro.js?v=993581e2"></script>
+<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=80bc7cb6"></script><script defer src="../_tema/notas.js?v=ba3865ff"></script><script defer src="../_tema/editor.js?v=54019c0c"></script><script defer src="../_tema/segmentos.js?v=7b9e3844"></script><script defer src="../_tema/extras.js?v=d3287083"></script><script defer src="../_tema/memes.js?v=cf50e415"></script><script defer src="../_tema/liquido.js?v=727b02a3"></script><script src="../_tema/correcao.js?v=d81fe2d2"></script><script defer src="../_tema/simulado.js?v=4616e92a"></script><script defer src="../_tema/flashcards.js?v=4c60ee3a"></script><script defer src="../_tema/revisao.js?v=6bd90d6b"></script><script defer src="../_tema/foco.js?v=b5f11a53"></script><script defer src="../_tema/concentracao.js?v=1de3682e"></script><script defer src="../_tema/valores.js?v=212cbf26"></script><script defer src="../_tema/retafinal.js?v=5fda43af"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="127870c8"></script><script defer src="../_tema/abas.js?v=3dd257f2"></script><script defer src="../_tema/siglas.js?v=bb26111b"></script><script defer src="../_tema/praticar.js?v=6a32433a"></script><script defer src="../_tema/pomodoro-motor.js?v=1f0d7c13"></script><script defer src="../_tema/pomodoro.js?v=993581e2"></script>
 <script defer src="../_tema/propaganda.js?v=2ed31d7c"></script><!--/vidro:cabeca-->
 </head>
 <body>
@@ -331,6 +332,8 @@ iframe.show{display:block}
 <div id="vidro-load" style="--vl:#ff6fb5" role="status" aria-label="Carregando Patologia Médica I"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M6 21h12M9 21v-3h6v3M10 18l-2-6 5-7 3 2-4 7M13 5l1.5-2 2 1.4-1.4 2"/><circle cx="14" cy="14" r="2"/></svg></div><div class="vl-t">Patologia Médica I</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
+
 
 
 
@@ -557,8 +560,62 @@ function updateProgress(){
 }
 
 /* ---------- barra lateral ---------- */
+/* prática aberta sozinha (?parte=): cada capítulo vira uma aula na barra, como na matéria.
+   Os segmentos continuam os da prática (mesmo iframe e mesmo progresso); o resto (revisão, treino, simulados) fica num grupo à parte. */
+const CAPS = {
+  pratica1: [
+    {id:'1', sec:'Cardiovascular', icon:'🫀', short:'Aterosclerose e isquemia', label:'Prática 1 — Aula 1', f:i => /^1\./.test(i.n)},
+    {id:'2', sec:'Cardiovascular', icon:'❤️‍🩹', short:'Hipertrofia, IC e cor pulmonale', label:'Prática 1 — Aula 2', f:i => /^2\./.test(i.n)},
+    {id:'3', sec:'Cardiovascular', icon:'🪲', short:'Valvopatias e Chagas', label:'Prática 1 — Aula 3', f:i => /^3\./.test(i.n)},
+    {id:'4', sec:'Respiratório', icon:'🫁', short:'Edema, DAD e circulação', label:'Prática 1 — Aula 4', f:i => /^4\./.test(i.n)},
+    {id:'5', sec:'Respiratório', icon:'💨', short:'Doenças obstrutivas', label:'Prática 1 — Aula 5', f:i => /^5\./.test(i.n)},
+    {id:'6', sec:'Respiratório', icon:'🦠', short:'Infecções pulmonares', label:'Prática 1 — Aula 6', f:i => /^6\./.test(i.n)},
+    {id:'7', sec:'Respiratório', icon:'🎗️', short:'Neoplasias de pulmão e laringe', label:'Prática 1 — Aula 7/8', f:i => /^7\./.test(i.n)},
+    {id:'R', sec:'Monitores', icon:'🧑‍🏫', short:'Revisão dos monitores 26/2', label:'Prática 1 — Monitores', f:i => /^R\./.test(i.n)}],
+  pratica2: [
+    {id:'1', sec:'Gastrointestinal', icon:'🍽️', short:'Esôfago', label:'Prática 2 — Aula 1', f:i => i.k === 'seg1'},
+    {id:'2', sec:'Gastrointestinal', icon:'🥣', short:'Estômago', label:'Prática 2 — Aula 2', f:i => i.k === 'seg2'},
+    {id:'3', sec:'Gastrointestinal', icon:'🧫', short:'Intestino I', label:'Prática 2 — Aula 3', f:i => i.k === 'seg3'},
+    {id:'4', sec:'Gastrointestinal', icon:'🦠', short:'Intestino II', label:'Prática 2 — Aula 4', f:i => i.k === 'seg4'},
+    {id:'5', sec:'Acessórios do TGI', icon:'🩸', short:'Fígado I', label:'Prática 2 — Aula 5', f:i => i.k === 'seg5'},
+    {id:'6', sec:'Acessórios do TGI', icon:'🧪', short:'Fígado II', label:'Prática 2 — Aula 6', f:i => i.k === 'seg6'},
+    {id:'7', sec:'Respiratório', icon:'🫁', short:'Laringe e pulmão', label:'Prática 2 — Aula 7', f:i => i.k === 'seg7'}]
+};
+const openCap = {};      // capítulo da prática -> aberto?
+function capsDaParte(){
+  const items = NAV[PARTE] || [], cs = (CAPS[PARTE] || []).map(c => Object.assign({}, c, {items: items.filter(c.f)}));
+  const usados = new Set(cs.flatMap(c => c.items));
+  cs.push({id:'extra', sec:'Revisão e treino', icon:'📋', short:'Revisão, treino e simulados', label:'', items: items.filter(i => !usados.has(i))});
+  return cs.filter(c => c.items.length);
+}
+function itemNav(key, i, prog, isOn){
+  const done = !!(prog[key] || {})[i.k];
+  const act = isOn && activeSeg[key] === i.k;
+  const chk = SKIP(i.k) ? '' : '<input type="checkbox" aria-label="Marcar como concluído" data-key="' + key + '" data-seg="' + esc(i.k) + '"' + (done ? ' checked' : '') + '>';
+  return '<div class="it' + (act ? ' active' : '') + (done ? ' isdone' : '') + '" data-key="' + key + '" data-seg="' + esc(i.k) + '">' +
+    '<span class="no">' + esc(i.n || '') + '</span><span class="x">' + esc(i.t) + '</span>' + chk + '</div>';
+}
+function navParte(prog){
+  let h = '', sec = '';
+  const act = activeSeg[PARTE], cs = capsDaParte();
+  // a aula aberta mudou (Próximo segmento, link dentro da prática): abre o capítulo novo e fecha os outros
+  const capOn = (cs.find(c => c.items.some(i => i.k === act)) || {}).id;
+  if (capOn && capOn !== navParte.ult) { if (navParte.ult !== undefined && !SKIP(act)) { Object.keys(openCap).forEach(k => { openCap[k] = false; }); openCap[capOn] = true; } navParte.ult = capOn; }
+  cs.forEach(c => {
+    if (c.sec !== sec) { sec = c.sec; h += '<div class="sb-sec">' + esc(sec) + '</div>'; }
+    const segs = c.items.filter(i => !SKIP(i.k)), done = segs.filter(i => (prog[PARTE] || {})[i.k]).length;
+    const isOn = currentKey === PARTE && c.items.some(i => i.k === act);
+    const isOpen = openCap[c.id] !== undefined ? openCap[c.id] : (isOn && !SKIP(act));   // 1ª visita (capa): tudo fechado
+    h += '<div class="grp' + (isOn ? ' on' : '') + (isOpen ? '' : ' closed') + '" data-key="' + PARTE + '" data-cap="' + c.id + '" data-nome="' + esc(c.short) + '" data-rot="' + esc(c.label) + '">' +
+      '<button class="grp-h" data-key="' + PARTE + '" data-cap="' + c.id + '" aria-expanded="' + isOpen + '"><span class="em">' + esc(c.icon) + '</span><span class="lbl">' + esc(c.short) + '</span>' +
+      (segs.length ? '<span class="cnt' + (done === segs.length ? ' full' : '') + '">' + done + '/' + segs.length + '</span>' : '') +
+      '<span class="chev">▼</span></button><div class="grp-items">' + c.items.map(i => itemNav(PARTE, i, prog, isOn)).join('') + '</div></div>';
+  });
+  return h;
+}
 function renderNav(){
   const prog = lectureProgress();
+  if (PARTE) { navEl.innerHTML = navParte(prog); return; }
   let html = PARTE ? '' : '<div class="grp noitems' + (currentKey === 'home' ? ' on' : '') + ' closed" data-key="home"><button class="grp-h" data-key="home" aria-expanded="false"><span class="em">🏠</span><span class="lbl">Boas-vindas</span><span class="chev">▼</span></button></div>';
   BLOCOS.forEach(b => {
   let bh = '';
@@ -578,13 +635,7 @@ function renderNav(){
         '<span class="chev">▼</span></button>';
       if (hasItems) {
         secHtml += '<div class="grp-items">';
-        items.forEach(i => {
-          const done = !!(prog[key] || {})[i.k];
-          const act = isOn && activeSeg[key] === i.k;
-          const chk = SKIP(i.k) ? '' : '<input type="checkbox" aria-label="Marcar como concluído" data-key="' + key + '" data-seg="' + esc(i.k) + '"' + (done ? ' checked' : '') + '>';
-          secHtml += '<div class="it' + (act ? ' active' : '') + (done ? ' isdone' : '') + '" data-key="' + key + '" data-seg="' + esc(i.k) + '">' +
-            '<span class="no">' + esc(i.n || '') + '</span><span class="x">' + esc(i.t) + '</span>' + chk + '</div>';
-        });
+        items.forEach(i => { secHtml += itemNav(key, i, prog, isOn); });
         secHtml += '</div>';
       }
       secHtml += '</div>';
@@ -632,6 +683,15 @@ navEl.addEventListener('pointerup', ev => {
   toqueGrp = Date.now(); alternaGrp(gh);
 });
 function alternaGrp(gh){
+  if (gh.dataset.cap) {   // capítulo da prática: abre a aula (1º segmento não feito) ou, se já é a aberta, só abre/fecha
+    const c = gh.dataset.cap, g = gh.parentNode, aberto = !g.classList.contains('closed');
+    if (g.classList.contains('on') || c === 'extra') { Object.keys(openCap).forEach(k => { if (k !== c) openCap[k] = false; }); openCap[c] = !aberto; renderNav(); return; }
+    const cap = capsDaParte().find(x => x.id === c); if (!cap) return;
+    const p = lectureProgress()[PARTE] || {}, segs = cap.items.filter(i => !SKIP(i.k)), alvo = segs.find(i => !p[i.k]) || segs[0];
+    Object.keys(openCap).forEach(k => { openCap[k] = false; }); openCap[c] = true;
+    if (alvo) openSegment(PARTE, alvo.k); else renderNav();
+    return;
+  }
   {
     const key = gh.dataset.key;
     const hasItems = (NAV[key] || []).length > 0;
