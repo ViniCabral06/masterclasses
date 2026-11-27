@@ -1,110 +1,112 @@
 @titulo Flashcards · Patologia Médica I
-@sub Tudo da revisão final em cartas: os quatro sistemas e as pegadinhas que mais caem. Toque para virar, marque se sabia; as que você errar voltam em "Só as que errei". Parcial = cardio e pulmão; somativa = tubo digestivo, fígado e pâncreas, mais a revisão de cardio e pulmão.
+@sub 14 aulas separadas (Cardiovascular, Respiratório e TGI/Fígado) + Pegadinhas — adicione aula por aula à sua lista da disciplina ou libere tudo de uma vez.
 
-# cardio | 🫀 Cardiovascular | aula1,aula2,aula3,aula4
-Qual é a sequência da aterosclerose, da lesão à placa? :: Lesão endotelial (HAS, tabaco, LDL, DM) → LDL entra na íntima e **oxida** → monócitos viram **macrófagos espumosos** → **estria lipídica** → músculo liso migra e faz matriz: **placa fibrogordurosa** → complicação.
+# aula1 | 🫀 Cardio 1 · Ateroma e HAS
+Qual é a sequência da **aterosclerose**, da lesão à placa? :: Lesão endotelial (HAS, tabaco, LDL, DM) → LDL entra na íntima e **oxida** → monócitos viram **macrófagos espumosos** → **estria lipídica** → músculo liso migra e faz matriz: **placa fibrogordurosa** → complicação.
 Quais são as complicações da placa aterosclerótica? :: **Ruptura, trombose, hemorragia, calcificação e aneurisma.**
-Placa estável × instável: capa fibrosa, núcleo lipídico e inflamação? :: **Estável:** capa espessa, núcleo pequeno, pouca inflamação → angina estável.\n**Instável:** capa **fina**, núcleo **grande**, muitos macrófagos e linfócitos T → síndrome coronariana aguda.
-Angina estável: mecanismo, dor e troponina? :: Placa fixa **> 75% da luz**, isquemia de demanda. Dor aos esforços, passa com repouso. Troponina **normal**. :: Caiu em 3 somativas
-Angina instável: mecanismo, dor e troponina? :: **Fissura de placa + trombo não oclusivo.** Dor em repouso ou em crescendo. Troponina **normal**.
-Angina de Prinzmetal: mecanismo e dor? :: **Vasoespasmo.** Dor em repouso, cíclica. Troponina normal.
-Infarto: mecanismo, dor e troponina? :: **Trombo oclusivo → necrose.** Dor prolongada. Troponina **sobe**.
-Infarto: o que se vê até 30 min e de 4 a 12 h? :: Até 30 min: **lesão reversível**.\n4 a 12 h: começa a **necrose de coagulação**, fibras onduladas.
-Infarto: o que se vê de 1 a 3 dias e de 3 a 7 dias? :: 1 a 3 dias: **neutrófilos**.\n3 a 7 dias: **macrófagos** → parede mais fraca, **risco de ruptura**.
-Infarto: o que se vê de 7 a 10 dias e de 2 a 8 semanas? :: 7 a 10 dias: **tecido de granulação**.\n2 a 8 semanas: **colágeno**, depois cicatriz.
-Complicações do infarto: o que mata nas primeiras horas e o que aparece em 3 a 7 dias? :: Primeiras horas: **arritmia**.\n3 a 7 dias: **ruptura** de parede livre (tamponamento), de septo ou de músculo papilar.
-Complicações do infarto: pericardite, Dressler, aneurisma e trombo mural, quando? :: Pericardite fibrinosa: **2 a 3 dias**. Dressler: **semanas** depois. Aneurisma ventricular e trombo mural: **tardios**.
-IC esquerda: causas, onde congestiona e achado clássico? :: Causas: HAS, isquemia, valvopatia aórtica e mitral.\nCongestiona o **pulmão**: edema, dispneia, ortopneia, DPN.\nAchado: **macrófagos com hemossiderina** (células do vício cardíaco).
-IC direita: causas, onde congestiona e achado clássico? :: Causas: **IC esquerda** (a principal) e cor pulmonale.\nCongestão **sistêmica**: fígado em noz-moscada, edema de MMII, ascite, turgência jugular.\nAchado: **necrose centrolobular (zona 3)**.
-O que é cor pulmonale? :: Coração **direito** doente **por causa de doença do pulmão** (não o contrário).
-Hipertrofia concêntrica × excêntrica: sobrecarga e exemplo? :: **Concêntrica** (parede grossa, cavidade normal): sobrecarga de **pressão**, como HAS e estenose aórtica.\n**Excêntrica** (dilata): sobrecarga de **volume**, como insuficiência valvar ou fase descompensada.
-Como a HAS crônica muda o coração? :: Primeiro **hipertrofia concêntrica** → aumenta a demanda e predispõe a isquemia e fibrose → ao descompensar, o **VE dilata**.
-Chagas, fase aguda: o que se vê? :: **Chagoma** ou **sinal de Romaña**; miocardite com **ninhos de amastigotas**.
-Chagas crônica cardíaca: achados? :: Miocardite **fibrosante**, cardiomegalia, **aneurisma de ponta** (lesão vorticilar), trombos, **BRD + BDAS**.
-Chagas crônica digestiva: mecanismo e resultado? :: Destruição dos **plexos mioentéricos** → **megaesôfago** e **megacólon**.
-Febre reumática: quando aparece, marca e fase crônica? :: Após **faringite estreptocócica** (mimetismo molecular).\nMarca: **corpos de Aschoff**, pancardite.\nCrônica: **estenose mitral em "boca de peixe"**.
-Endocardite aguda × subaguda: agente, válvula e vegetação? :: **Aguda:** S. aureus, válvula normal, vegetações grandes e destrutivas.\n**Subaguda:** estreptococo viridans, válvula **já lesada**, vegetações friáveis, êmbolos.
-Estenose aórtica calcificada: quem e marca? :: Idoso, **degenerativa**. Calcificação nas cúspides e **hipertrofia concêntrica**.
-Prolapso mitral: mecanismo e marca? :: **Degeneração mixomatosa**; cúspides **em balão**.
+Placa **estável × instável**: capa fibrosa, núcleo lipídico e inflamação? :: **Estável:** capa espessa, núcleo pequeno, pouca inflamação → angina estável.\n**Instável:** capa **fina**, núcleo **grande**, muitos macrófagos e linfócitos T → síndrome coronariana aguda.
+Hipertrofia **concêntrica × excêntrica**: sobrecarga e exemplo? :: **Concêntrica** (parede grossa, cavidade normal): sobrecarga de **pressão**, como HAS e estenose aórtica.\n**Excêntrica** (dilata): sobrecarga de **volume**, como insuficiência valvar ou fase descompensada.
+Como a **HAS crônica** muda o coração? :: Primeiro **hipertrofia concêntrica** → aumenta a demanda e predispõe a isquemia e fibrose → ao descompensar, o **VE dilata**.
 
-# resp | 🫁 Respiratório | aula5,aula6,aula7,aula8
-Qual é a cadeia do TEP ao infarto pulmonar? :: **Tríade de Virchow** (estase, lesão endotelial, hipercoagulabilidade) → trombo em **veia profunda de MMII** → êmbolo na artéria pulmonar. :: Caiu em 3 somativas
-Por que o TEP nem sempre infarta o pulmão? :: Pela **dupla circulação**: só infarta se a **brônquica também falha** (IC, por exemplo).
-Como é o infarto pulmonar? :: **Hemorrágico**, em **cunha**, periférico, com a base na **pleura**.
-Edema pulmonar cardiogênico × não cardiogênico: mecanismo e morfologia? :: **Cardiogênico:** pressão hidrostática alta (IC esquerda); bases, pulmão pesado e úmido.\n**Não cardiogênico:** lesão da membrana alveolocapilar; **dano alveolar difuso** com **membranas hialinas** (SDRA).
-Enfisema: onde, tipos e perfil? :: No **ácino** (espaço distal).\n**Centroacinar:** tabaco, lobos superiores. **Panacinar:** alfa-1-antitripsina, bases.\nPerfil: **"soprador rosado"**.
-Bronquite crônica: onde, marca e perfil? :: Nos **brônquios** (glândulas mucosas).\n**Índice de Reid > 0,4**; tosse produtiva **3 meses por 2 anos**.\nPerfil: **"inchado azul"**.
-O que é bronquiectasia e o que a causa? :: Dilatação **permanente** dos brônquios por **infecção e obstrução** (fibrose cística, Kartagener).
-Os três tipos de atelectasia? :: **Reabsorção** (obstrução), **compressão** (derrame) e **contração** (fibrose).
-Pneumonia lobar: agente, distribuição e fases? :: **Pneumococo**; lobo inteiro.\nFases: **congestão → hepatização vermelha → hepatização cinzenta → resolução**.
-Broncopneumonia × pneumonia intersticial? :: **Broncopneumonia:** vários agentes, focos peribrônquicos, exsudato alveolar focal.\n**Intersticial:** vírus e Mycoplasma, nos **septos alveolares**, pouco exsudato nos alvéolos.
-Tuberculose: lesão básica? :: **Granuloma com necrose caseosa.** :: Caiu em 2 somativas
-TB primária × secundária × miliar? :: **Primária:** complexo de **Ghon** (nódulo + linfonodo hilar).\n**Secundária:** **ápice**, cavitação.\n**Miliar:** disseminação **hematogênica**.
-Carcinoma escamoso de pulmão: onde, marca e extra? :: **Central.** Queratina e **pontes intercelulares**. Tabaco; **hipercalcemia (PTHrP)**. :: Caiu em 3 somativas
-Adenocarcinoma de pulmão: onde, marca e extra? :: **Periférico.** Glândulas, mucina, **TTF-1**. O **mais comum**; mulher e não fumante.
-Carcinoma de pequenas células: onde, marca e extra? :: **Central.** Neuroendócrino: **cromogranina, sinaptofisina**. **SIADH, ACTH**; o mais agressivo.
-Carcinoma de grandes células: marca? :: **Indiferenciado**, diagnóstico de **exclusão**; em qualquer lugar. :: Caiu em 3 somativas
-Lesões precursoras do câncer de pulmão? :: **Escamoso:** metaplasia escamosa → displasia → carcinoma in situ.\n**Adeno:** hiperplasia adenomatosa atípica.
-Tumor de Pancoast: o que é? :: Tumor do **ápice** do pulmão (sulco superior), que invade estruturas vizinhas. :: Caiu em 2 somativas
+# aula2 | 🫀 Cardio 2 · Cardiopatia Isquêmica
+**Angina estável:** mecanismo, dor e troponina? :: Placa fixa **> 75% da luz**, isquemia de demanda. Dor aos esforços, passa com repouso. Troponina **normal**. :: Caiu em 3 somativas
+**Angina instável:** mecanismo, dor e troponina? :: **Fissura de placa + trombo não oclusivo.** Dor em repouso ou em crescendo. Troponina **normal**.
+**Angina de Prinzmetal:** mecanismo e dor? :: **Vasoespasmo.** Dor em repouso, cíclica. Troponina normal.
+**Infarto:** mecanismo, dor e troponina? :: **Trombo oclusivo → necrose.** Dor prolongada. Troponina **sobe**.
+No **infarto do miocárdio**, até 30 min a lesão é {{reversível}}; de 4 a 12 h inicia-se a {{necrose de coagulação}} (fibras onduladas); de 1 a 3 dias predominam {{neutrófilos}}; de 3 a 7 dias os {{macrófagos}} deixam a parede mais fraca (**risco de ruptura**). :: 7–10 dias: tecido de granulação; 2–8 semanas: colágeno/cicatriz.
+Complicações do infarto: o que mata nas **primeiras horas** e o que aparece em **3 a 7 dias**? :: Primeiras horas: **arritmia**.\n3 a 7 dias: **ruptura** de parede livre (tamponamento), de septo ou de músculo papilar.
+Complicações do infarto: pericardite fibrinosa, Dressler, aneurisma e trombo mural, quando? :: Pericardite fibrinosa: **2 a 3 dias**. Síndrome de Dressler: **semanas** depois. Aneurisma ventricular e trombo mural: **tardios**.
 
-# tubo | 🍽️ Tubo digestivo | tgi1,tgi2,tgi3,tgi4
-Mallory-Weiss × Boerhaave? :: **Mallory-Weiss:** laceração **longitudinal da mucosa**; hematêmese após vômitos.\n**Boerhaave:** ruptura **transmural**; mediastinite, grave.
-Qual é a sequência da DRGE ao câncer? :: DRGE → esofagite → **Barrett** → displasia → **adenocarcinoma** (terço distal).
-O que define o esôfago de Barrett? :: **Metaplasia intestinal com células caliciformes.** :: Caiu em 4 somativas
-Carcinoma escamoso × adenocarcinoma de esôfago: onde e risco? :: **Escamoso:** terço **médio**; tabaco, álcool, bebida quente.\n**Adeno:** terço **distal**; Barrett, obesidade, refluxo.
-Varizes esofágicas: por quê e onde? :: A **hipertensão portal** abre a anastomose da **gástrica esquerda**; veias da submucosa do **terço distal**. :: Caiu em 4 somativas
-Megaesôfago chagásico é o quê? :: **Acalasia secundária.**
-Gastrite autoimune: onde, mecanismo e consequência? :: **Corpo e fundo.** Anticorpos contra **célula parietal e fator intrínseco**.\nHipocloridria, falta de **B12** (anemia perniciosa), **gastrina alta**, tumor carcinoide. :: Caiu em 4 somativas
-Gastrite por H. pylori: onde, frequência e consequência? :: **Antro.** É a **mais comum**.\nÚlcera, adenocarcinoma, **linfoma MALT**. :: Caiu em 2 somativas
-Carcinoma gástrico de Lauren: intestinal × difuso? :: **Intestinal:** vem de gastrite crônica e metaplasia; massa, glândulas.\n**Difuso:** mutação de **CDH1 (caderina E)**; **células em anel de sinete**, **linite plástica**.
-Classificação de Borrmann I a IV? :: **I** polipoide · **II** ulcerado de bordas nítidas · **III** ulcerado infiltrativo · **IV** difuso.
-Disseminação do câncer gástrico: os três sinais? :: **Krukenberg** (ovário), **linfonodo de Virchow**, **nódulo da Irmã Maria José**.
-Isquemia intestinal: mucosa, mural e transmural? :: **Mucosa:** só a mucosa, hipoperfusão (choque).\n**Mural:** mucosa e submucosa, hipoperfusão.\n**Transmural:** toda a parede (gangrena), oclusão arterial (êmbolo na **mesentérica superior**) ou venosa. :: Caiu em 3 somativas
-Na hipoperfusão, que parte do intestino sofre primeiro? :: As zonas de **divisor de águas** (flexura **esplênica**).
-O que fecha o diagnóstico de apendicite? :: Obstrução (**fecalito**) e **neutrófilos na muscular própria**.
-Doença diverticular: como se forma e o que é? :: Dieta pobre em fibra → pressão alta no **sigmoide** → herniação onde os **vasa recta** furam a parede → **pseudodivertículo (sem muscular)**. :: Caiu em 6 somativas
-Complicações da doença diverticular? :: **Diverticulite, sangramento, perfuração e fístula.**
-Crohn × retocolite: onde e parede? :: **Crohn:** boca ao ânus, **íleo terminal**, lesões **salteadas**; **transmural**.\n**RCU:** começa no **reto** e sobe **contínua**; mucosa e submucosa. :: Caiu em 3 somativas
-Crohn × retocolite: marca e risco de câncer? :: **Crohn:** granuloma, fissuras, fístulas, **"pedra de calçamento"**; risco menor.\n**RCU:** **abscesso de cripta**, pseudopólipos; risco **maior**.
-Pólipo hiperplásico × adenoma: risco? :: **Hiperplásico** (serrilhado): sem risco relevante.\n**Adenoma** (tubular, tubuloviloso, viloso): risco sobe com tamanho **> 2 cm**, componente **viloso** e **displasia de alto grau**. :: Caiu em 5 somativas
-Polipose adenomatosa familiar: gene e marca? :: Gene **APC**; **centenas de pólipos**; câncer quase certo. :: Caiu em 3 somativas
-Adenocarcinoma de cólon direito × esquerdo? :: **Direito:** exofítico; **anemia**, massa.\n**Esquerdo:** **anular**; **obstrução**, mudança do hábito. :: Caiu em 4 somativas
-As duas vias do câncer colorretal? :: **APC e beta-catenina** (sequência adenoma-carcinoma) e **instabilidade de microssatélites** (Lynch).
+# aula3 | 🫀 Cardio 3 · IC e Chagas
+**IC esquerda:** causas, onde congestiona e achado clássico? :: Causas: HAS, isquemia, valvopatia aórtica e mitral.\nCongestiona o **pulmão**: edema, dispneia, ortopneia, DPN.\nAchado: **macrófagos com hemossiderina** (células do vício cardíaco).
+**IC direita:** causas, onde congestiona e achado clássico? :: Causas: **IC esquerda** (a principal) e *cor pulmonale*.\nCongestão **sistêmica**: fígado em noz-moscada, edema de MMII, ascite, turgência jugular.\nAchado: **necrose centrolobular (zona 3)**.
+O que é ***cor pulmonale***? :: Coração **direito** doente **por causa de doença do pulmão** (não o contrário).
+**Chagas, fase aguda:** o que se vê? :: **Chagoma** ou **sinal de Romaña**; miocardite com **ninhos de amastigotas**.
+**Chagas crônica cardíaca:** achados? :: Miocardite **fibrosante**, cardiomegalia, **aneurisma de ponta** (lesão vorticilar), trombos, **BRD + BDAS**.
+**Chagas crônica digestiva:** mecanismo e resultado? :: Destruição dos **plexos mioentéricos** → **megaesôfago** e **megacólon**.
 
-# figado | 🩸 Fígado, vias biliares e pâncreas | tgi5,tgi6,pratica2
-Congestão passiva crônica: causa e marca? :: **IC direita.** Fígado em **noz-moscada**, **necrose centrolobular**. :: Caiu em 2 somativas
-Budd-Chiari: causa e marca? :: **Trombose das veias hepáticas** (policitemia, gravidez, anticoncepcional). **Hepatomegalia dolorosa e ascite.** :: Caiu em 5 somativas
-Como se forma a cirrose? :: Agressão crônica (álcool, vírus) → **fibrose em septos** → **nódulos de regeneração**. Resultado: hipertensão portal + insuficiência hepática.
-Cirrose: por que há icterícia e por que há edema e ascite? :: **Icterícia:** o fígado não conjuga nem excreta bilirrubina.\n**Edema e ascite:** pouca **albumina** + hipertensão portal.
-Cirrose: por que sangra e por que há encefalopatia? :: **Sangra:** faltam fatores de coagulação.\n**Encefalopatia, flapping:** **amônia não vira ureia**. :: Caiu em 2 somativas
-Aranhas vasculares, eritema palmar e ginecomastia na cirrose: por quê? :: **Hiperestrogenismo.**
-Síndrome hepatorrenal: mecanismo? :: Vasodilatação sistêmica → **RAA e simpático** → **vasoconstrição renal**; o **rim não tem lesão**. :: Caiu em 3 somativas
-Esquistossomose hepatoesplênica: marca? :: Fibrose periportal de **Symmers** ("haste de cachimbo"), hipertensão **pré-sinusoidal**, **função hepática preservada**. :: Caiu em 3 somativas
-Hepatite A: transmissão, cronifica? :: **Fecal-oral.** **Nunca** cronifica; aguda e autolimitada.
-Hepatite B: transmissão, cronifica? marca? :: **Sangue, sexo, vertical.** Cronifica pouco no adulto, **muito no recém-nascido**. Marca: hepatócitos em **vidro fosco**.
-Hepatite C: transmissão, cronifica? marca? :: **Sangue.** Cronifica **na maioria**. Marca: **esteatose, folículos linfoides**.
-HBsAg e anti-HBc IgM significam? :: **HBsAg:** infecção presente.\n**Anti-HBc IgM:** infecção **aguda**. :: Caiu em 2 somativas
-HBeAg, anti-HBs isolado e anti-HBs + anti-HBc IgG significam? :: **HBeAg:** replicação alta.\n**Anti-HBs isolado:** **vacina**.\n**Anti-HBs + anti-HBc IgG:** cura de infecção antiga.
-Hepatite aguda × fulminante: morfologia? :: **Aguda:** balonização, **corpúsculos de Councilman**, necrose em ponte.\n**Fulminante:** **necrose maciça**.
-Doença hepática alcoólica: a sequência? :: **Esteatose** → **hepatite alcoólica** (corpúsculos de **Mallory**, neutrófilos, fibrose perivenular) → **cirrose**. :: Caiu em 2 somativas
-Pancreatite aguda: a sequência? :: **Cálculo ou álcool** → obstrução e pressão alta no ducto → edema e isquemia acinar → **enzimas ativadas dentro do pâncreas** → **necrose gordurosa e hemorragia** (necro-hemorrágica).
-Colecistite aguda calculosa: mecanismo? :: **Cálculo no cístico**; inflamação **química primeiro**, infecção depois.
-Cálculo biliar mais comum? :: **Colesterol.**
-Tumor benigno mais comum do fígado? :: **Hemangioma cavernoso**: imagem típica; **não se biopsia**.
+# aula4 | 🫀 Cardio 4 · Valvopatias
+**Febre reumática:** quando aparece, marca aguda e fase crônica? :: Após **faringite estreptocócica** (mimetismo molecular).\nMarca aguda: **corpos de Aschoff**, pancardite.\nCrônica: **estenose mitral em "boca de peixe"**.
+**Endocardite aguda × subaguda:** agente, válvula e vegetação? :: **Aguda:** *S. aureus*, válvula normal, vegetações grandes e destrutivas.\n**Subaguda:** estreptococo viridans, válvula **já lesada**, vegetações friáveis, êmbolos.
+**Estenose aórtica calcificada:** quem e marca? :: Idoso, **degenerativa**. Calcificação nas cúspides e **hipertrofia concêntrica**.
+**Prolapso mitral:** mecanismo e marca? :: **Degeneração mixomatosa**; cúspides **em balão**.
 
-# pega | ⚠️ Pegadinhas e o que mais cai
-Quais temas caíram em 5 ou 6 somativas? :: **Doença diverticular** (6), **adenomas colônicos** (5) e **Budd-Chiari** (5).
-Quais temas caíram em 4 somativas? :: **Adenocarcinoma colorretal, esôfago de Barrett, gastrite autoimune e varizes esofágicas.**
-Na somativa, que eixos pesam mais? :: **Intestino (~7,5 questões) e fígado e vias biliares (~8)** somam mais da metade da prova; a revisão de cardio e pulmão volta todo semestre (~6).
-Na parcial, que aulas mais caíram? :: **Cardiopatia isquêmica (30), IC e Chagas (21), valvopatias (19)** e ateroma e HAS (16).
-O infarto pulmonar acontece em todo TEP? :: **Não.** Só se a circulação **brônquica** também falha (pela dupla circulação).
-Cor pulmonale é o coração direito que lesa o pulmão? :: **Não.** É o contrário: o **pulmão** doente adoece o coração **direito**.
-Angina instável já tem troponina elevada? :: **Não.** Troponina normal; se sobe, é **infarto**.
-Quando a parede do infarto rompe mais? :: De **3 a 7 dias**, na fase dos **macrófagos**, quando a parede está mais fraca.
-Divertículo do cólon é verdadeiro? :: **Não.** É **pseudodivertículo**: não tem a camada muscular.
-Retocolite pula segmentos e é transmural? :: **Não.** Isso é **Crohn**. A RCU é **contínua** a partir do reto e fica na **mucosa e submucosa**.
-Na esquistossomose a função hepática cai cedo? :: **Não.** Hipertensão portal **pré-sinusoidal** com função hepática **preservada**.
-Na síndrome hepatorrenal o rim está lesado? :: **Não.** O rim é estruturalmente normal; a falha é a **vasoconstrição renal**.
-Anti-HBs isolado indica infecção passada? :: **Não.** Anti-HBs **isolado** = **vacina**. Infecção passada curada = anti-HBs **+ anti-HBc IgG**.
-Hemangioma hepático se biopsia? :: **Não.** Diagnóstico pela imagem típica; biópsia arrisca sangramento.
-Pólipo hiperplásico tem alto risco de câncer? :: **Não.** Risco relevante é do **adenoma** (grande, viloso, displasia de alto grau).
+# aula5 | 🫁 Resp 1 · Distúrbios Circulatórios Pulmonares
+Qual é a cadeia do **TEP ao infarto pulmonar**? :: **Tríade de Virchow** (estase, lesão endotelial, hipercoagulabilidade) → trombo em **veia profunda de MMII** → êmbolo na artéria pulmonar. :: Caiu em 3 somativas
+Por que o **TEP nem sempre infarta o pulmão**? :: Pela **dupla circulação**: só infarta se a **circulação brônquica também falha** (IC, por exemplo).
+Como é o **infarto pulmonar**? :: **Hemorrágico**, em **cunha**, periférico, com a base na **pleura**.
+**Edema pulmonar cardiogênico × não cardiogênico:** mecanismo e morfologia? :: **Cardiogênico:** pressão hidrostática alta (IC esquerda); bases, pulmão pesado e úmido.\n**Não cardiogênico:** lesão da membrana alveolocapilar; **dano alveolar difuso** com **membranas hialinas** (SDRA).
+
+# aula6 | 🫁 Resp 2 · Doenças Pulmonares Obstrutivas
+**Enfisema:** onde, tipos e perfil? :: No **ácino** (espaço distal).\n**Centroacinar:** tabaco, lobos superiores. **Panacinar:** alfa-1-antitripsina, bases.\nPerfil: **"soprador rosado"**.
+**Bronquite crônica:** onde, marca e perfil? :: Nos **brônquios** (glândulas mucosas).\n**Índice de Reid > 0,4**; tosse produtiva **3 meses por 2 anos**.\nPerfil: **"inchado azul"**.
+O que é **bronquiectasia** e o que a causa? :: Dilatação **permanente** dos brônquios por **infecção e obstrução** (fibrose cística, Kartagener).
+Os três tipos de **atelectasia** são: por {{reabsorção}} (obstrução), por {{compressão}} (derrame/pneumotórax) e por {{contração}} (fibrose).
+
+# aula7 | 🫁 Resp 3 · Doenças Infecciosas do Pulmão
+**Pneumonia lobar:** agente, distribuição e fases? :: **Pneumococo**; lobo inteiro.\nFases: **congestão → hepatização vermelha → hepatização cinzenta → resolução**.
+**Broncopneumonia × pneumonia intersticial?** :: **Broncopneumonia:** vários agentes, focos peribrônquicos, exsudato alveolar focal.\n**Intersticial:** vírus e *Mycoplasma*, nos **septos alveolares**, pouco exsudato nos alvéolos.
+**Tuberculose:** qual a lesão básica? :: **Granuloma com necrose caseosa.** :: Caiu em 2 somativas
+**TB primária × secundária × miliar?** :: **Primária:** complexo de **Ghon** (nódulo + linfonodo hilar).\n**Secundária:** **ápice**, cavitação.\n**Miliar:** disseminação **hematogênica**.
+
+# aula8 | 🫁 Resp 4 · Neoplasias de Pulmão e Laringe
+**Carcinoma escamoso de pulmão:** onde, marca e paraneoplásica? :: **Central.** Queratina e **pontes intercelulares**. Tabaco; **hipercalcemia (PTHrP)**. :: Caiu em 3 somativas
+**Adenocarcinoma de pulmão:** onde, marca e perfil? :: **Periférico.** Glândulas, mucina, **TTF-1**. O **mais comum**; mulher e não fumante.
+**Carcinoma de pequenas células:** onde, marca e paraneoplásica? :: **Central.** Neuroendócrino: **cromogranina, sinaptofisina**. **SIADH, ACTH**; o mais agressivo.
+**Carcinoma de grandes células:** marca? :: **Indiferenciado**, diagnóstico de **exclusão**; em qualquer lugar. :: Caiu em 3 somativas
+**Lesões precursoras** do câncer de pulmão? :: **Escamoso:** metaplasia escamosa → displasia → carcinoma *in situ*.\n**Adeno:** hiperplasia adenomatosa atípica.
+**Tumor de Pancoast:** o que é? :: Tumor do **ápice** do pulmão (sulco superior), que invade estruturas vizinhas (plexo braquial e cadeia simpática — Horner). :: Caiu em 2 somativas
+
+# tgi1 | 🍽️ TGI 1 · Patologia Esofágica
+**Mallory-Weiss × Boerhaave?** :: **Mallory-Weiss:** laceração **longitudinal da mucosa**; hematêmese após vômitos.\n**Boerhaave:** ruptura **transmural**; mediastinite, grave.
+Qual é a sequência da **DRGE ao câncer**? :: DRGE → esofagite → **Barrett** → displasia → **adenocarcinoma** (terço distal).
+O **esôfago de Barrett** é definido histologicamente por {{metaplasia intestinal com células caliciformes}}. :: Principal precursor do adenocarcinoma do terço distal do esôfago. :: Caiu em 4 somativas
+**Carcinoma escamoso × adenocarcinoma de esôfago:** onde e risco? :: **Escamoso:** terço **médio**; tabaco, álcool, bebida quente.\n**Adeno:** terço **distal**; Barrett, obesidade, refluxo.
+**Varizes esofágicas:** por quê e onde? :: A **hipertensão portal** abre a anastomose da **gástrica esquerda**; veias da submucosa do **terço distal**. :: Caiu em 4 somativas
+**Megaesôfago chagásico** é o quê? :: **Acalasia secundária** (destruição do plexo mioentérico).
+
+# tgi2 | 🥣 TGI 2 · Patologia Gástrica
+**Gastrite autoimune:** onde, mecanismo e consequência? :: **Corpo e fundo.** Anticorpos contra **célula parietal e fator intrínseco**.\nHipocloridria, falta de **B12** (anemia perniciosa), **gastrina alta**, tumor carcinoide. :: Caiu em 4 somativas
+**Gastrite por *H. pylori*:** onde, frequência e consequência? :: **Antro.** É a **mais comum**.\nÚlcera, adenocarcinoma, **linfoma MALT**. :: Caiu em 2 somativas
+**Carcinoma gástrico de Lauren:** intestinal × difuso? :: **Intestinal:** vem de gastrite crônica e metaplasia; massa, glândulas.\n**Difuso:** mutação de **CDH1 (caderina E)**; **células em anel de sinete**, **linite plástica**.
+Classificação de **Borrmann I a IV**? :: **I** polipoide · **II** ulcerado de bordas nítidas · **III** ulcerado infiltrativo · **IV** difuso.
+**Disseminação do câncer gástrico:** os três sinais? :: **Krukenberg** (ovário), **linfonodo de Virchow** (supraclavicular E), **nódulo da Irmã Maria José** (umbigo).
+
+# tgi3 | 🧫 TGI 3 · Patologia Intestinal I
+**Isquemia intestinal:** mucosa, mural e transmural? :: **Mucosa:** só a mucosa, hipoperfusão (choque).\n**Mural:** mucosa e submucosa, hipoperfusão.\n**Transmural:** toda a parede (gangrena), oclusão arterial (êmbolo na **mesentérica superior**) ou venosa. :: Caiu em 3 somativas
+Na hipoperfusão intestinal, que parte sofre primeiro? :: As zonas de **divisor de águas** (flexura **esplênica**).
+O que fecha o diagnóstico histológico de **apendicite aguda**? :: Obstrução (**fecalito**) e **neutrófilos na muscular própria**.
+Na **doença diverticular**, dieta pobre em fibras eleva a pressão no {{sigmoide}} e causa herniação onde os {{vasa recta}} furam a parede, formando um {{pseudodivertículo (sem muscular)}}. :: Complicações: diverticulite, sangramento, perfuração e fístula. :: Caiu em 6 somativas
+**Crohn × Retocolite (RCU):** distribuição e profundidade? :: **Crohn:** boca ao ânus, **íleo terminal**, lesões **salteadas**; **transmural**.\n**RCU:** começa no **reto** e sobe **contínua**; **mucosa e submucosa**. :: Caiu em 3 somativas
+**Crohn × Retocolite (RCU):** marca histológica e risco de câncer? :: **Crohn:** granuloma não caseoso, fissuras, fístulas, **"pedra de calçamento"**; risco menor.\n**RCU:** **abscesso de cripta**, pseudopólipos; risco **maior**.
+
+# tgi4 | 🦠 TGI 4 · Patologia Intestinal II
+**Pólipo hiperplásico × adenoma:** risco de malignização? :: **Hiperplásico:** sem risco relevante.\n**Adenoma** (tubular, tubuloviloso, viloso): risco sobe com tamanho **> 2 cm**, componente **viloso** e **displasia de alto grau**. :: Caiu em 5 somativas
+**Polipose adenomatosa familiar (PAF):** gene e marca? :: Gene **APC**; **centenas de pólipos**; câncer quase certo (100%). :: Caiu em 3 somativas
+**Adenocarcinoma de cólon direito × esquerdo?** :: **Direito:** exofítico; **anemia**, massa.\n**Esquerdo:** **anular** ("maçã mordida"); **obstrução**, mudança do hábito. :: Caiu em 4 somativas
+Quais são as **duas vias moleculares** do câncer colorretal? :: **APC / beta-catenina** (sequência adenoma-carcinoma) e **instabilidade de microssatélites** (síndrome de Lynch).
+
+# tgi5 | 🩸 TGI 5 · Patologia Hepática I
+**Congestão passiva crônica do fígado:** causa e marca? :: **IC direita.** Fígado em **noz-moscada**, **necrose centrolobular** (zona 3). :: Caiu em 2 somativas
+**Síndrome de Budd-Chiari:** causa e marca? :: **Trombose das veias hepáticas** (policitemia, gravidez, anticoncepcional). **Hepatomegalia dolorosa e ascite.** :: Caiu em 5 somativas
+Como se forma a **cirrose** e quais suas 2 consequências maiores? :: Agressão crônica (álcool, vírus) → **fibrose em septos** → **nódulos de regeneração** → **hipertensão portal** + **insuficiência hepática**.
+**Cirrose:** por que há icterícia, edema/ascite, sangramento, encefalopatia e ginecomastia? :: **Icterícia:** não conjuga/excreta bilirrubina.\n**Edema/ascite:** ↓ **albumina** + hipertensão portal.\n**Sangra:** ↓ fatores de coagulação.\n**Encefalopatia/flapping:** **amônia não vira ureia**.\n**Aranhas/eritema palmar/ginecomastia:** **hiperestrogenismo**. :: Caiu em 2 somativas
+**Síndrome hepatorrenal:** mecanismo? :: Vasodilatação sistêmica → **SRAA e simpático** → **vasoconstrição renal**; o **rim não tem lesão estrutural**. :: Caiu em 3 somativas
+**Esquistossomose hepatoesplênica:** marca e padrão? :: Fibrose periportal de **Symmers** ("haste de cachimbo"), hipertensão **pré-sinusoidal**, **função hepática preservada**. :: Caiu em 3 somativas
+
+# tgi6 | 🧪 TGI 6 · Patologia Hepática II e Pâncreas
+**Hepatite A × B × C:** transmissão, cronificação e marcas? :: **A:** fecal-oral, **nunca** cronifica.\n**B:** sangue/sexo/vertical; cronifica pouco no adulto, **muito no RN**; hepatócitos em **vidro fosco**.\n**C:** sangue; cronifica **na maioria**; **esteatose e folículos linfoides**.
+Interprete os marcadores de **Hepatite B**: HBsAg, anti-HBc IgM, HBeAg, anti-HBs isolado e anti-HBs + anti-HBc IgG. :: **HBsAg:** infecção presente · **Anti-HBc IgM:** infecção **aguda** · **HBeAg:** replicação alta.\n**Anti-HBs isolado:** **vacina**.\n**Anti-HBs + anti-HBc IgG:** cura de infecção antiga. :: Caiu em 2 somativas
+**Hepatite aguda × fulminante:** morfologia? :: **Aguda:** balonização, **corpúsculos de Councilman**, necrose em ponte.\n**Fulminante:** **necrose maciça**.
+**Doença hepática alcoólica:** a sequência? :: **Esteatose** → **hepatite alcoólica** (corpúsculos de **Mallory**, neutrófilos, fibrose perivenular) → **cirrose**. :: Caiu em 2 somativas
+**Pancreatite aguda:** a sequência fisiopatológica? :: **Cálculo ou álcool** → obstrução e pressão alta no ducto → edema e isquemia acinar → **enzimas ativadas dentro do pâncreas** → **necrose gordurosa e hemorragia** (necro-hemorrágica).
+**Colecistite aguda calculosa** e **cálculo mais comum**? :: **Cálculo no cístico**; inflamação **química primeiro**, infecção depois. Cálculo mais comum: **colesterol**.
+**Tumor benigno mais comum do fígado?** :: **Hemangioma cavernoso**: imagem típica; **não se biopsia** (risco de sangramento).
+
+# pega | ⚠️ Pegadinhas que mais caem
+Quais temas caíram em **5 ou 6 somativas** de Patologia? :: **Doença diverticular** (6), **adenomas colônicos** (5) e **Budd-Chiari** (5). :: Caiu em 6 somativas
+Quais temas caíram em **4 somativas** de Patologia? :: **Adenocarcinoma colorretal, esôfago de Barrett, gastrite autoimune e varizes esofágicas.** :: Caiu em 4 somativas
+Na somativa, que eixos pesam mais? E na parcial? :: **Somativa:** intestino (~7,5 q) + fígado/vias biliares (~8 q) somam mais da metade; cardio/pulmão voltam (~6 q).\n**Parcial:** cardiopatia isquêmica (30), IC e Chagas (21), valvopatias (19) e ateroma/HAS (16).
+Pegadinhas de **Cardio/Pulmão:** todo TEP infarta? *Cor pulmonale* lesa o pulmão? Angina instável sobe troponina? :: **TEP:** só infarta se a circulação **brônquica** também falha.\n***Cor pulmonale*:** o **pulmão** doente adoece o coração **direito**.\n**Angina instável:** troponina **normal** (se sobe, é infarto).
+Pegadinhas de **TGI/Fígado:** divertículo tem muscular? Esquistossomose derruba função hepática? SHR lesa o rim? :: **Divertículo:** é **pseudodivertículo** (sem muscular).\n**Esquistossomose:** hipertensão pré-sinusoidal com função hepática **preservada**.\n**SHR:** rim estruturalmente normal (vasoconstrição funcional).
+Pegadinha de **Sorologia/Fígado:** anti-HBs isolado é cura? Hemangioma se biopsia? Pólipo hiperplásico vira câncer? :: **Anti-HBs isolado:** **vacina** (cura = + anti-HBc IgG).\n**Hemangioma:** **não** se biopsia.\n**Pólipo hiperplásico:** sem risco relevante (risco é do **adenoma**).

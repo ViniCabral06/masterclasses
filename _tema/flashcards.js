@@ -775,9 +775,11 @@
       if (sm && sm.textContent !== lbl) sm.textContent = lbl;
       return;
     }
-    /* se a matéria já tem item nativo "Flashcards" na sidebar (Patologia, Humanização, Português), não duplica */
+    /* se a matéria já tem item nativo "Flashcards" na sidebar (Patologia, Humanização, Português), não duplica
+       (ignora botões dentro do próprio .vgf-panel, senão o botão do Foco bloquearia a criação do item na Revisão final!) */
     var itens = side.querySelectorAll('.it, .sb, button, a');
     for (var i = 0; i < itens.length; i++) {
+      if (itens[i].closest('.vgf-panel')) continue;
       if (/\bflashcards\b/i.test(itens[i].textContent || '')) return;
     }
     /* encontra o grupo "Reta final" ou "Revisão final" */
