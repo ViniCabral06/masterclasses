@@ -200,6 +200,8 @@ def main():
             gravar(dst / "aulas" / "pratica2.html", p2)
             usadas = set(re.findall(r"_img/[\w\-./%]+?\.(?:webp|png|jpe?g|gif|svg)", p2 + m))
             usadas.add("_img/memes.json")
+            # as figuras dos memes não aparecem no HTML (o memes.js lê a lista): sem isto o meme abria quebrado na vitrine
+            usadas.update("_img/" + f for f in json.loads(ler(src / "_img" / "memes.json")))
             copiar_midia(src, dst, so_usadas=usadas)
         else:
             copiar_midia(src, dst)

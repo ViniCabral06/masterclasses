@@ -103,6 +103,7 @@
     const ativa = () => {
       const k = s.dataset.k;
       if (st.got[k] != null) { modal(st.got[k], 0); return; }
+      if (s.dataset.cheio === '1') { st.got[k] = sortear(); salvar(); varrer(false); modal(st.got[k], 0); return; }
       tl = pick(TAUNT, tl); tip(TAUNT[tl], 1800);
       if (RM) { s.animate([{ opacity: .5 }, { opacity: 1 }], 300); return; }
       s.__a = pick(ANIM, s.__a); s.animate(ANIM[s.__a], { duration: 400 + Math.random() * 250, easing: 'cubic-bezier(.23,1,.32,1)' });
@@ -124,13 +125,17 @@
       if (st.got[k] == null && !errou && certas.length === n && final) {
         st.got[k] = sortear(); salvar(); const i = st.got[k]; setTimeout(() => modal(i, n), 750);
       }
-      const ok = st.got[k] != null;
+      const ok = st.got[k] != null, cheio = !ok && !errou && certas.length === n;
+      // tudo certo, mas sem clique nesta visita (respostas salvas de antes): o clique no quadro libera
+      if (s.dataset.cheio !== (cheio ? '1' : '')) s.dataset.cheio = cheio ? '1' : '';
       s.classList.toggle('on', ok);
       const alvo = base + memes[ok ? st.got[k] : (st.deck && st.deck.length ? st.deck[0] : 0)];
       if (img.getAttribute('src') !== alvo) img.src = alvo;
-      t.innerHTML = ok ? 'Meme liberado 🏆<span class="vm-s">Clique para ver de novo</span>'
+      const tx = ok ? 'Meme liberado 🏆<span class="vm-s">Clique para ver de novo</span>'
         : errou ? 'Meme secreto · ' + certas.length + ' de ' + n + ' certas<span class="vm-s">Uma errada… zere a questão e tente de novo</span>'
-          : 'Meme secreto · ' + certas.length + ' de ' + n + ' certas<span class="vm-s">Acerte todas para revelar</span>';
+          : cheio ? 'Meme secreto · ' + n + ' de ' + n + ' certas<span class="vm-s">Gabaritou! Clique para revelar</span>'
+            : 'Meme secreto · ' + certas.length + ' de ' + n + ' certas<span class="vm-s">Acerte todas para revelar</span>';
+      if (t.innerHTML !== tx) t.innerHTML = tx;
     });
   }
   // "final" (veio de um clique) não se perde quando a própria correção muda o DOM logo depois (ex.: DIC IV)
