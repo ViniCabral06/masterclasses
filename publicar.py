@@ -355,6 +355,53 @@ def foco_das_aulas(m):
         print(f"  {m['arquivo']}: frequência das provas por segmento atualizada (Foco de estudo)")
 
 
+PRAT_INI, PRAT_FIM = "<!--vidro:praticas-->", "<!--/vidro:praticas-->"
+PRAT_JS = r"""<script>(function(){var G=window.VG_PRATICA||{},P;try{P=new URLSearchParams(location.search).get('parte')}catch(e){}
+var d=G[P],nav=document.getElementById('tabbtns');if(!d||!nav)return;var CL=['vgf-g1','vgf-g2','vgf-g3','vgf-g4','vgf-g5'];
+function pinta(el,n){if(!el)return;var c=n?'vgf-g'+n:'-';if(el.getAttribute('data-vgp')===c)return;CL.forEach(function(x){el.classList.remove(x)});if(n)el.classList.add(c);el.setAttribute('data-vgp',c)}
+function ap(){var gs=[],top=0;nav.querySelectorAll('.grp[data-key="'+P+'"]').forEach(function(g){var sm=0;g.querySelectorAll('.it[data-seg]').forEach(function(it){var n=d[it.getAttribute('data-seg')]||0;sm+=n;pinta(it,n)});gs.push([g,sm]);if(sm>top)top=sm});
+gs.forEach(function(x){var r=top?x[1]/top:0;pinta(x[0].querySelector('.grp-h'),!x[1]?0:r>=.8?5:r>=.6?4:r>=.4?3:r>=.2?2:1)})}
+var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(ap,60)}).observe(nav,{childList:true,subtree:true});ap()})();</script>"""
+
+
+def grifos_das_praticas(m):
+    """Provas práticas (aulas/pratica*.html, Patologia): o Foco de estudo não roda no modo prática, então o grifo de
+    frequência da barra lateral sai daqui. Cada tópico ganha o nível do grifo mais forte do seu texto
+    (<mark class="f1".."f5">, sem contar a legenda); cada aula, a soma dos tópicos comparada à aula mais cobrada."""
+    src = ROOT / m["arquivo"]
+    pasta = src.parent / "aulas"
+    arqs = sorted(pasta.glob("pratica*.html")) if pasta.is_dir() else []
+    if not arqs or not src.exists():
+        return
+    dados = {}
+    for arq in arqs:
+        doc = arq.read_text(encoding="utf-8")
+        partes = {x.group(1): x.group(2) for x in re.finditer(r'<section class="pane" id="([\w-]+)"[^>]*>(.*?)</section>', doc, re.S)}
+        ts = list(re.finditer(r"\{id:'(\d+\.\d+)',t:'", doc))  # Prática 1: tópicos no JS ({id:'1.1', t, fc, ..., html:`...`})
+        for i, x in enumerate(ts):
+            fim = ts[i + 1].start() if i + 1 < len(ts) else doc.find("</script>", x.start())
+            partes["t_" + x.group(1).replace(".", "_")] = doc[x.start():fim]
+        segs = {}
+        for sid, corpo in partes.items():
+            corpo = re.sub(r'<div class="(?:legend|p2-leg)">.*?</div>', "", corpo, flags=re.S)
+            ns = [int(n) for n in re.findall(r'<mark class="f([1-5])"', corpo)]
+            if ns:
+                segs[sid] = max(ns)
+        dados[arq.stem] = segs
+    with open(src, encoding="utf-8", newline="") as f:
+        s = f.read()
+    bloco = f"{PRAT_INI}<script>window.VG_PRATICA={json.dumps(dados, separators=(',', ':'))};</script>{PRAT_JS}{PRAT_FIM}"
+    if PRAT_INI in s:
+        t = re.sub(re.escape(PRAT_INI) + r".*?" + re.escape(PRAT_FIM), lambda _: bloco, s, count=1, flags=re.S)
+    else:
+        i = s.rfind("</body>")
+        t = s[:i] + bloco + "\n" + s[i:] if i >= 0 else s
+    if t != s:
+        with open(src, "w", encoding="utf-8", newline="") as f:
+            f.write(t)
+        print(f"  {m['arquivo']}: grifos de frequência das provas práticas atualizados")
+
+
 def otimizar_fonte(m):
     """Tira as imagens embutidas do master (vão para _img/ ao lado). O original fica em _originais/."""
     src = ROOT / m["arquivo"]
@@ -431,6 +478,7 @@ def main():
     for m in ms:
         otimizar_fonte(m)
         foco_das_aulas(m)
+        grifos_das_praticas(m)
     versionar_hub()
     # índices estáticos de busca (isolados por matéria e por período)
     try:
