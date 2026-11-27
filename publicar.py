@@ -364,6 +364,28 @@ gs.forEach(function(x){var r=top?x[1]/top:0;pinta(x[0].querySelector('.grp-h'),!
 var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(ap,60)}).observe(nav,{childList:true,subtree:true});ap()})();</script>"""
 
 
+def versionar_aulas(m):
+    """Aulas em aulas/ abertas por iframe (DOCS["k"]="@aulas/k.html"): põe ?v=<hash do arquivo> no endereço,
+    para o navegador buscar a aula nova assim que ela muda (sem esperar o cache nem Ctrl+F5)."""
+    src = ROOT / m["arquivo"]
+    pasta = src.parent / "aulas"
+    if not pasta.is_dir() or not src.exists():
+        return
+    with open(src, encoding="utf-8", newline="") as f:
+        s = f.read()
+
+    def troca(mm):
+        arq = pasta / (mm.group(2) + ".html")
+        if not arq.exists():
+            return mm.group(0)
+        v = hashlib.md5(arq.read_bytes()).hexdigest()[:8]
+        return 'DOCS["%s"]="@aulas/%s.html?v=%s"' % (mm.group(1), mm.group(2), v)
+    t = re.sub(r'DOCS\["([\w-]+)"\]="@aulas/([\w-]+)\.html(?:\?v=[0-9a-f]+)?"', troca, s)
+    if t != s:
+        with open(src, "w", encoding="utf-8", newline="") as f:
+            f.write(t)
+
+
 def grifos_das_praticas(m):
     """Provas práticas (aulas/pratica*.html, Patologia): o Foco de estudo não roda no modo prática, então o grifo de
     frequência da barra lateral sai daqui. Cada tópico ganha o nível do grifo mais forte do seu texto
@@ -479,6 +501,7 @@ def main():
         otimizar_fonte(m)
         foco_das_aulas(m)
         grifos_das_praticas(m)
+        versionar_aulas(m)
     versionar_hub()
     # índices estáticos de busca (isolados por matéria e por período)
     try:
