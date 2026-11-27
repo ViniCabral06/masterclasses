@@ -138,7 +138,9 @@
     function medir(manter) {
       if (!W) return;
       const rel = s / fit, pw = PW(), ph = PH();
-      fit = Math.min((pw - 24) / W, (ph - 24) / H);
+      // imagem pequena não abre esticada até a tela (fica borrada): no máximo ~1,25× o tamanho dela,
+      // mas nunca menor que ~520 px no lado maior; o zoom continua livre pelo slider
+      fit = Math.min((pw - 24) / W, (ph - 24) / H, Math.max(1.25, 520 / Math.max(W, H)));
       if (!(fit > 0)) fit = 1;
       const lado = innerWidth < 560 ? 96 : 150, mw = W >= H ? lado : lado * W / H;
       mapa.style.width = mw + 'px'; mapa.style.height = (mw * H / W) + 'px';
