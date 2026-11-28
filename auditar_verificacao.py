@@ -110,7 +110,14 @@ def auditar_questoes_json(path, detalhes=False):
         ab = seg.get("a")
 
         if k in COM_NIVEIS_NATIVOS:
-            if len(m_list) < 2:
+            if k == "farmaco" and re.match(r"^[kmn]\d+$", seg_id):
+                if len(f_list) != 3:
+                    avisos.append(f"{k}/{seg_id}: fáceis={len(f_list)} (aulas iniciais sem F nativo: meta 3)")
+                if len(m_list) < 2:
+                    avisos.append(f"{k}/{seg_id}: tem {len(m_list)} médias complementares (meta: +2 para completar 5)")
+                if len(d_list) != 2:
+                    avisos.append(f"{k}/{seg_id}: difíceis={len(d_list)} (aulas iniciais sem D nativo: meta 2)")
+            elif len(m_list) < 2:
                 avisos.append(f"{k}/{seg_id}: tem {len(m_list)} médias complementares (meta: +2 para completar 5)")
         else:
             if len(f_list) != 3:

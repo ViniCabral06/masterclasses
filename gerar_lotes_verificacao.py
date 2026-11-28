@@ -121,13 +121,20 @@ def extrair_caderno(path):
                 texto += " | Caso: " + str(sg["case"])
             if sg.get("trap"):
                 texto += " | Pegadinha: " + str(sg["trap"])
-            segs.append({
+            item_seg = {
                 "seg_id": sg["id"],
                 "aula": f"Aula {l.get('number')}: {l.get('title')}",
                 "titulo": sg.get("title", ""),
                 "texto": clean(texto, 3200),
                 "provas_n": len(sg.get("refs") or []),
-            })
+            }
+            if sg.get("figures"):
+                item_seg["figs"] = [
+                    {"src": f.get("src", ""), "caption": clean(f.get("caption", ""), 260)}
+                    for f in sg["figures"]
+                    if f.get("src")
+                ]
+            segs.append(item_seg)
     provas, vistos = [], set()
     for ex in data.get("exams", []):
         for it in ex.get("items", []):
@@ -307,14 +314,19 @@ def extrair_farmaco(path):
         pid, corpo = p.group(1), p.group(2)
         if 'class="qsec"' not in corpo or re.search(r"sim|quiz|rev|arena", pid, re.I):
             continue
-        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", corpo, re.S)
-        segs.append({
-            "seg_id": pid,
-            "aula": pid[0].upper(),
-            "titulo": clean(h1.group(1) if h1 else pid, 160),
-            "texto": clean(corpo.split('<div class="qsec">')[0], 3200),
-            "provas_n": len(re.findall(r'data-lvl="pv"', corpo)),
-        })
+        eh_revisao = pid.endswith("-cob") or pid.startswith("r-prov") or pid == "r-treino"
+        if not eh_revisao:
+            h1 = re.search(r"<h1[^>]*>(.*?)</h1>", corpo, re.S)
+            has_f = bool(re.search(r'data-lvl="f"', corpo))
+            has_d = bool(re.search(r'data-lvl="d"', corpo))
+            segs.append({
+                "seg_id": pid,
+                "aula": pid[0].upper(),
+                "titulo": clean(h1.group(1) if h1 else pid, 160),
+                "texto": clean(corpo.split('<div class="qsec">')[0], 3200),
+                "provas_n": len(re.findall(r'data-lvl="pv"', corpo)),
+                "modo": "completo_fpd" if (has_f and has_d) else "so_p",
+            })
         # Extrai todas as questões nativas (.q[data-qid][data-a]) do segmento para habilidades + fase0
         for part in re.split(r'(?=<div class="q" data-qid=)', corpo)[1:]:
             m = re.match(r'<div class="q" data-qid="([^"]+)" data-a="([A-J])"', part)

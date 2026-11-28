@@ -1,0 +1,802 @@
+{
+ "materia": "pato",
+ "byHash": {
+  "8c8a0a49": [
+   {
+    "t": "Reconheceu a angina de Prinzmetal pelo supra transitório.",
+    "tag": "Prinzmetal",
+    "open": {
+     "p": "O que sugere supra de ST transitório em repouso com coronárias normais?",
+     "r": "Angina de Prinzmetal, por vasoespasmo coronariano.",
+     "chaves": [
+      "vasoespasmo"
+     ]
+    }
+   },
+   {
+    "t": "Associou cocaína ao vasoespasmo coronariano.",
+    "tag": "Cocaína",
+    "open": {
+     "p": "Como a cocaína causa isquemia miocárdica?",
+     "r": "Por vasoespasmo coronariano.",
+     "chaves": [
+      "vasoespasmo"
+     ]
+    }
+   }
+  ],
+  "d5ea90a8": [
+   {
+    "t": "Diferenciou angina estável de instável.",
+    "tag": "Estável × instável",
+    "open": {
+     "p": "Qual a diferença entre angina estável e instável?",
+     "r": "Estável: ao esforço, placa fixa. Instável: em repouso ou progressiva, placa rompida com trombo.",
+     "chaves": [
+      "repouso",
+      "trombo"
+     ]
+    }
+   },
+   {
+    "t": "Classificou a angina instável na síndrome coronariana aguda.",
+    "tag": "SCA",
+    "open": {
+     "p": "A angina instável faz parte de quê?",
+     "r": "Da síndrome coronariana aguda.",
+     "chaves": [
+      "síndrome coronariana"
+     ]
+    }
+   }
+  ],
+  "cd0ebb4d": [
+   {
+    "t": "Reconheceu angina estável pelo esforço.",
+    "tag": "Angina estável",
+    "open": {
+     "p": "Qual o quadro da angina estável?",
+     "r": "Dor aos esforços que cessa com repouso.",
+     "chaves": [
+      "esforços",
+      "repouso"
+     ]
+    }
+   },
+   {
+    "t": "Relacionou a angina estável à placa fixa.",
+    "tag": "Placa fixa",
+    "open": {
+     "p": "Qual a lesão da angina estável?",
+     "r": "Placa obstruindo mais de 75% da luz.",
+     "chaves": [
+      "75%"
+     ]
+    }
+   }
+  ],
+  "3d5e6e2f": [
+   {
+    "t": "Reconheceu infradesnivelamento de ST na isquemia.",
+    "tag": "Infra de ST",
+    "open": {
+     "p": "Que alteração de ECG pode surgir na angina estável?",
+     "r": "Infradesnivelamento do segmento ST durante a crise.",
+     "chaves": [
+      "infradesnivelamento"
+     ]
+    }
+   },
+   {
+    "t": "Separou angina de infarto pelo marcador.",
+    "tag": "Marcadores",
+    "open": {
+     "p": "O que diferencia angina de infarto?",
+     "r": "No infarto há necrose com marcadores elevados.",
+     "chaves": [
+      "marcadores"
+     ]
+    }
+   }
+  ],
+  "93bb251b": [
+   {
+    "t": "Descreveu a dor típica da angina.",
+    "tag": "Dor anginosa",
+    "open": {
+     "p": "Como é a dor típica da angina?",
+     "r": "Em aperto, retroesternal, aliviada por repouso ou nitrato.",
+     "chaves": [
+      "aperto"
+     ]
+    }
+   },
+   {
+    "t": "Corrigiu o alívio por analgésico comum.",
+    "tag": "Alívio",
+    "open": {
+     "p": "O que alivia a dor anginosa?",
+     "r": "Repouso e nitrato.",
+     "chaves": [
+      "nitrato"
+     ]
+    }
+   }
+  ],
+  "e103bbba": [
+   {
+    "t": "Associou angina estável a placa íntegra.",
+    "tag": "Placa íntegra",
+    "open": {
+     "p": "Qual a placa da angina estável?",
+     "r": "Placa ateromatosa íntegra com obstrução significativa.",
+     "chaves": [
+      "íntegra"
+     ]
+    }
+   },
+   {
+    "t": "Associou placa rompida à síndrome aguda.",
+    "tag": "Placa rompida",
+    "open": {
+     "p": "Que placa causa angina instável e infarto?",
+     "r": "Placa rompida com trombo.",
+     "chaves": [
+      "rompida"
+     ]
+    }
+   }
+  ],
+  "eed01c58": [
+   {
+    "t": "Definiu o limiar de obstrução da angina estável.",
+    "tag": "75%",
+    "open": {
+     "p": "Que obstrução causa angina ao esforço?",
+     "r": "Obstrução fixa acima de 75% da luz.",
+     "chaves": [
+      "75%"
+     ]
+    }
+   },
+   {
+    "t": "Interpretou troponina normal.",
+    "tag": "Troponina",
+    "open": {
+     "p": "O que troponina normal indica na angina?",
+     "r": "Ausência de necrose.",
+     "chaves": [
+      "necrose"
+     ]
+    }
+   }
+  ],
+  "23411638": [
+   {
+    "t": "Diagnosticou angina estável pela coronariografia.",
+    "tag": "Coronariografia",
+    "open": {
+     "p": "O que indica obstrução fixa de 80% com dor ao esforço?",
+     "r": "Angina estável.",
+     "chaves": [
+      "estável"
+     ]
+    }
+   },
+   {
+    "t": "Explicou isquemia ao esforço.",
+    "tag": "Demanda",
+    "open": {
+     "p": "Por que a dor surge ao esforço?",
+     "r": "A demanda supera a oferta limitada pela placa.",
+     "chaves": [
+      "demanda"
+     ]
+    }
+   }
+  ],
+  "b4585541": [
+   {
+    "t": "Reconheceu angina estável sem necrose.",
+    "tag": "Sem necrose",
+    "open": {
+     "p": "A angina estável causa necrose?",
+     "r": "Não; não há necrose, só isquemia transitória.",
+     "chaves": [
+      "não"
+     ]
+    }
+   },
+   {
+    "t": "Relacionou esforço e alívio ao repouso.",
+    "tag": "Esforço",
+    "open": {
+     "p": "Quando a angina estável aparece?",
+     "r": "Aos esforços, aliviando com repouso.",
+     "chaves": [
+      "repouso"
+     ]
+    }
+   }
+  ],
+  "dbd721d6": [
+   {
+    "t": "Localizou o infarto inferior na coronária direita.",
+    "tag": "Coronária direita",
+    "open": {
+     "p": "Que artéria costuma causar infarto inferior?",
+     "r": "A coronária direita.",
+     "chaves": [
+      "direita"
+     ]
+    }
+   },
+   {
+    "t": "Relacionou derivações à parede.",
+    "tag": "ECG",
+    "open": {
+     "p": "Que derivações mostram infarto inferior?",
+     "r": "DII, DIII e aVF.",
+     "chaves": [
+      "aVF"
+     ]
+    }
+   }
+  ],
+  "8c9f9b6f": [
+   {
+    "t": "Reconheceu apresentação atípica do infarto.",
+    "tag": "Atípico",
+    "open": {
+     "p": "O infarto pode se apresentar com dor abdominal?",
+     "r": "Sim, sobretudo no infarto inferior.",
+     "chaves": [
+      "sim"
+     ]
+    }
+   },
+   {
+    "t": "Ligou morte súbita à arritmia.",
+    "tag": "Morte súbita",
+    "open": {
+     "p": "Qual a causa principal de morte súbita no infarto?",
+     "r": "Arritmia ventricular.",
+     "chaves": [
+      "arritmia"
+     ]
+    }
+   }
+  ],
+  "912616fd": [
+   {
+    "t": "Reconheceu necrose em bandas de contração.",
+    "tag": "Bandas de contração",
+    "open": {
+     "p": "Que lesão surge após reperfusão do infarto?",
+     "r": "Necrose em bandas de contração.",
+     "chaves": [
+      "bandas"
+     ]
+    }
+   },
+   {
+    "t": "Explicou pela reperfusão.",
+    "tag": "Reperfusão",
+    "open": {
+     "p": "Por que surgem bandas de contração?",
+     "r": "Pela entrada súbita de cálcio na reperfusão.",
+     "chaves": [
+      "cálcio"
+     ]
+    }
+   }
+  ],
+  "873840c4": [
+   {
+    "t": "Datou o infarto pelo tecido de granulação.",
+    "tag": "Granulação",
+    "open": {
+     "p": "Quando há colágeno frouxo, neovasos e macrófagos no infarto?",
+     "r": "Por volta de 1 a 2 semanas.",
+     "chaves": [
+      "semanas"
+     ]
+    }
+   },
+   {
+    "t": "Ordenou a evolução do infarto.",
+    "tag": "Evolução",
+    "open": {
+     "p": "Qual a sequência do infarto?",
+     "r": "Necrose, neutrófilos, macrófagos, granulação e cicatriz.",
+     "chaves": [
+      "granulação",
+      "cicatriz"
+     ]
+    }
+   }
+  ],
+  "d9102605": [
+   {
+    "t": "Ordenou as fases morfológicas do infarto.",
+    "tag": "Fases",
+    "open": {
+     "p": "Qual a ordem das alterações do infarto?",
+     "r": "Ondulação de fibras, necrose com neutrófilos, macrófagos e granulação, cicatriz.",
+     "chaves": [
+      "neutrófilos",
+      "cicatriz"
+     ]
+    }
+   },
+   {
+    "t": "Relacionou tempo e achado.",
+    "tag": "Tempo",
+    "open": {
+     "p": "Quando surgem os neutrófilos?",
+     "r": "Entre 12 e 72 horas.",
+     "chaves": [
+      "horas"
+     ]
+    }
+   }
+  ],
+  "92cb9fec": [
+   {
+    "t": "Associou bandas de contração ao infarto reperfundido.",
+    "tag": "Reperfusão",
+    "open": {
+     "p": "Que achado indica infarto reperfundido?",
+     "r": "Necrose em bandas de contração.",
+     "chaves": [
+      "bandas"
+     ]
+    }
+   },
+   {
+    "t": "Explicou o mecanismo.",
+    "tag": "Cálcio",
+    "open": {
+     "p": "O que causa as bandas de contração?",
+     "r": "A hipercontração por influxo de cálcio.",
+     "chaves": [
+      "cálcio"
+     ]
+    }
+   }
+  ],
+  "d8c62d46": [
+   {
+    "t": "Reconheceu a cardiopatia hipertensiva.",
+    "tag": "Hipertensiva",
+    "open": {
+     "p": "Qual a lesão do coração na hipertensão?",
+     "r": "Hipertrofia concêntrica do ventrículo esquerdo.",
+     "chaves": [
+      "concêntrica"
+     ]
+    }
+   },
+   {
+    "t": "Relacionou à insuficiência cardíaca.",
+    "tag": "IC",
+    "open": {
+     "p": "Como a hipertrofia evolui?",
+     "r": "Para dilatação e insuficiência cardíaca.",
+     "chaves": [
+      "dilatação"
+     ]
+    }
+   }
+  ],
+  "436c525b": [
+   {
+    "t": "Integrou angina prévia e infarto.",
+    "tag": "Evolução",
+    "open": {
+     "p": "Como a angina estável evolui para infarto?",
+     "r": "Por ruptura da placa com trombose.",
+     "chaves": [
+      "ruptura"
+     ]
+    }
+   },
+   {
+    "t": "Reconheceu a sobrecarga de VE.",
+    "tag": "Sobrecarga",
+    "open": {
+     "p": "O que a hipertensão faz no VE?",
+     "r": "Hipertrofia e sobrecarga.",
+     "chaves": [
+      "hipertrofia"
+     ]
+    }
+   }
+  ],
+  "27ddfa44": [
+   {
+    "t": "Explicou a insuficiência cardíaca aguda no infarto.",
+    "tag": "IC aguda",
+    "open": {
+     "p": "Como o infarto leva à IC aguda?",
+     "r": "Pela perda de miocárdio e por arritmias.",
+     "chaves": [
+      "arritmias"
+     ]
+    }
+   },
+   {
+    "t": "Valorizou o ECG na localização.",
+    "tag": "ECG",
+    "open": {
+     "p": "Para que serve o ECG no infarto?",
+     "r": "Localizar o infarto e orientar o prognóstico.",
+     "chaves": [
+      "localizar"
+     ]
+    }
+   }
+  ],
+  "f0fbe3dc": [
+   {
+    "t": "Reconheceu a tromboembolia pulmonar na necropsia.",
+    "tag": "TEP",
+    "open": {
+     "p": "Que causa de morte se suspeita em paciente com fibrose pulmonar e trombos?",
+     "r": "Tromboembolia pulmonar.",
+     "chaves": [
+      "tromboembolia"
+     ]
+    }
+   },
+   {
+    "t": "Relacionou à imobilidade e doença crônica.",
+    "tag": "Fatores",
+    "open": {
+     "p": "Que fatores favorecem TEP?",
+     "r": "Imobilidade, doença crônica e estase venosa.",
+     "chaves": [
+      "estase"
+     ]
+    }
+   }
+  ],
+  "3de8641b": [
+   {
+    "t": "Reconheceu a fibrose miocárdica por isquemia crônica.",
+    "tag": "Fibrose",
+    "open": {
+     "p": "Que achado a isquemia crônica deixa no miocárdio?",
+     "r": "Áreas de fibrose miocárdica.",
+     "chaves": [
+      "fibrose"
+     ]
+    }
+   },
+   {
+    "t": "Ligou fibrose à angina antiga.",
+    "tag": "Isquemia crônica",
+    "open": {
+     "p": "Por que há fibrose na angina antiga?",
+     "r": "Por pequenas perdas de miócitos repetidas.",
+     "chaves": [
+      "miócitos"
+     ]
+    }
+   }
+  ],
+  "3ed07e5": [
+   {
+    "t": "Diagnosticou angina de Prinzmetal.",
+    "tag": "Prinzmetal",
+    "open": {
+     "p": "Qual o diagnóstico de dor em repouso com supra transitório e coronárias normais?",
+     "r": "Angina de Prinzmetal.",
+     "chaves": [
+      "Prinzmetal"
+     ]
+    }
+   },
+   {
+    "t": "Explicou a resposta ao nitrato.",
+    "tag": "Nitrato",
+    "open": {
+     "p": "Por que o nitrato alivia?",
+     "r": "Desfaz o vasoespasmo.",
+     "chaves": [
+      "vasoespasmo"
+     ]
+    }
+   }
+  ],
+  "29dedf51": [
+   {
+    "t": "Localizou o infarto pela coronária.",
+    "tag": "Coronária direita",
+    "open": {
+     "p": "Que artéria irriga a parede inferior?",
+     "r": "A coronária direita, na maioria.",
+     "chaves": [
+      "direita"
+     ]
+    }
+   },
+   {
+    "t": "Relacionou a apresentação noturna.",
+    "tag": "Madrugada",
+    "open": {
+     "p": "Por que infartos ocorrem de madrugada?",
+     "r": "Pelo pico simpático matinal.",
+     "chaves": [
+      "simpático"
+     ]
+    }
+   }
+  ],
+  "4b1f1533": [
+   {
+    "t": "Reconheceu a pneumonia lobar pneumocócica.",
+    "tag": "Pneumococo",
+    "open": {
+     "p": "Qual o agente da pneumonia lobar?",
+     "r": "Streptococcus pneumoniae.",
+     "chaves": [
+      "pneumoniae"
+     ]
+    }
+   },
+   {
+    "t": "Explicou a preservação da parede alveolar.",
+    "tag": "Parede",
+    "open": {
+     "p": "A pneumonia lobar destrói a parede alveolar?",
+     "r": "Não; o exsudato enche os alvéolos.",
+     "chaves": [
+      "não"
+     ]
+    }
+   }
+  ],
+  "a1d5250f": [
+   {
+    "t": "Reconheceu a hepatização cinzenta.",
+    "tag": "Hepatização cinzenta",
+    "open": {
+     "p": "Como é a hepatização cinzenta?",
+     "r": "Parênquima pardo e firme, com menos hiperemia e mais fibrina.",
+     "chaves": [
+      "fibrina"
+     ]
+    }
+   },
+   {
+    "t": "Ordenou as fases da pneumonia lobar.",
+    "tag": "Fases",
+    "open": {
+     "p": "Quais as fases da pneumonia lobar?",
+     "r": "Congestão, hepatização vermelha, cinzenta e resolução.",
+     "chaves": [
+      "resolução"
+     ]
+    }
+   }
+  ],
+  "365069f9": [
+   {
+    "t": "Diferenciou pneumonia lobar de broncopneumonia.",
+    "tag": "Lobar × bronco",
+    "open": {
+     "p": "Qual a diferença entre pneumonia lobar e broncopneumonia?",
+     "r": "Lobar: lobo inteiro e homogêneo. Bronco: focos peribrônquicos.",
+     "chaves": [
+      "lobo",
+      "focos"
+     ]
+    }
+   },
+   {
+    "t": "Explicou a destruição na broncopneumonia.",
+    "tag": "Destruição",
+    "open": {
+     "p": "A broncopneumonia destrói o parênquima?",
+     "r": "Pode destruir, com abscessos.",
+     "chaves": [
+      "abscessos"
+     ]
+    }
+   }
+  ],
+  "5b23e2d8": [
+   {
+    "t": "Reconheceu o abscesso pulmonar.",
+    "tag": "Abscesso",
+    "open": {
+     "p": "O que é cavidade com nível hidroaéreo após pneumonia?",
+     "r": "Abscesso pulmonar.",
+     "chaves": [
+      "abscesso"
+     ]
+    }
+   },
+   {
+    "t": "Explicou a formação da cavidade.",
+    "tag": "Neocavidade",
+    "open": {
+     "p": "Como se forma o abscesso?",
+     "r": "Por destruição do parênquima com acúmulo de pus.",
+     "chaves": [
+      "pus"
+     ]
+    }
+   }
+  ],
+  "e5b939bc": [
+   {
+    "t": "Associou padrão lepídico à pneumonia simulada.",
+    "tag": "Lepídico",
+    "open": {
+     "p": "Que adenocarcinoma cresce pelos septos simulando pneumonia?",
+     "r": "O de padrão lepídico.",
+     "chaves": [
+      "lepídico"
+     ]
+    }
+   },
+   {
+    "t": "Associou perfis aos tipos histológicos.",
+    "tag": "Perfis",
+    "open": {
+     "p": "Que tipo histológico predomina em mulheres não fumantes?",
+     "r": "O adenocarcinoma.",
+     "chaves": [
+      "adenocarcinoma"
+     ]
+    }
+   }
+  ],
+  "1f651528": [
+   {
+    "t": "Indicou imuno-histoquímica no carcinoma indiferenciado.",
+    "tag": "IHQ",
+    "open": {
+     "p": "O que fazer com carcinoma pouco diferenciado?",
+     "r": "Imuno-histoquímica.",
+     "chaves": [
+      "imuno"
+     ]
+    }
+   },
+   {
+    "t": "Definiu o perfil do adenocarcinoma.",
+    "tag": "TTF-1",
+    "open": {
+     "p": "Qual o perfil IHQ do adenocarcinoma pulmonar?",
+     "r": "TTF-1 positivo e p40 negativo.",
+     "chaves": [
+      "TTF-1"
+     ]
+    }
+   }
+  ],
+  "faf2ea14": [
+   {
+    "t": "Diagnosticou carcinoma de grandes células por exclusão.",
+    "tag": "Exclusão",
+    "open": {
+     "p": "O que indica p40, p63 e TTF-1 negativos?",
+     "r": "Carcinoma de grandes células, por exclusão.",
+     "chaves": [
+      "exclusão"
+     ]
+    }
+   },
+   {
+    "t": "Associou p40 ao escamoso.",
+    "tag": "p40",
+    "open": {
+     "p": "Que marcador indica carcinoma escamoso?",
+     "r": "O p40 (e o p63).",
+     "chaves": [
+      "p40"
+     ]
+    }
+   }
+  ],
+  "c61d767a": [
+   {
+    "t": "Relacionou localização e prognóstico no câncer de laringe.",
+    "tag": "Localização",
+    "open": {
+     "p": "Do que dependem sintomas e prognóstico do câncer de laringe?",
+     "r": "Da localização.",
+     "chaves": [
+      "localização"
+     ]
+    }
+   },
+   {
+    "t": "Explicou o bom prognóstico glótico.",
+    "tag": "Glótico",
+    "open": {
+     "p": "Por que o glótico pouco metastatiza?",
+     "r": "A glote é pobre em linfáticos.",
+     "chaves": [
+      "linfáticos"
+     ]
+    }
+   }
+  ],
+  "97851d28": [
+   {
+    "t": "Reconheceu o carcinoma glótico.",
+    "tag": "Glótico",
+    "open": {
+     "p": "Qual a localização mais comum do câncer de laringe?",
+     "r": "A glote.",
+     "chaves": [
+      "glote"
+     ]
+    }
+   },
+   {
+    "t": "Explicou o diagnóstico precoce.",
+    "tag": "Rouquidão",
+    "open": {
+     "p": "Por que o glótico é diagnosticado cedo?",
+     "r": "Pela rouquidão precoce.",
+     "chaves": [
+      "rouquidão"
+     ]
+    }
+   }
+  ],
+  "ec8bf49": [
+   {
+    "t": "Explicou o melhor prognóstico glótico.",
+    "tag": "Prognóstico",
+    "open": {
+     "p": "Por que o carcinoma glótico tem melhor prognóstico?",
+     "r": "Pela pobreza de linfáticos e diagnóstico precoce.",
+     "chaves": [
+      "linfáticos"
+     ]
+    }
+   },
+   {
+    "t": "Comparou com supraglote.",
+    "tag": "Supraglote",
+    "open": {
+     "p": "Por que o supraglótico metastatiza mais?",
+     "r": "A supraglote é rica em linfáticos.",
+     "chaves": [
+      "linfáticos"
+     ]
+    }
+   }
+  ],
+  "2335129f": [
+   {
+    "t": "Relacionou a supraglote aos carcinógenos ingeridos.",
+    "tag": "Supraglote",
+    "open": {
+     "p": "A que carcinógenos a supraglote se expõe mais?",
+     "r": "Aos ingeridos, pela proximidade da cavidade oral.",
+     "chaves": [
+      "ingeridos"
+     ]
+    }
+   },
+   {
+    "t": "Relacionou a infraglote aos inalados.",
+    "tag": "Infraglote",
+    "open": {
+     "p": "A que se expõe mais a infraglote?",
+     "r": "Aos carcinógenos inalados.",
+     "chaves": [
+      "inalados"
+     ]
+    }
+   }
+  ]
+ }
+}

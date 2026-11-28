@@ -1,0 +1,3533 @@
+{
+  "materia": "img",
+  "byHash": {
+    "85777059": [
+      {
+        "t": "Reconheceu o significado de massa pancreática na situação clínica.",
+        "tag": "Massa pancreática",
+        "open": {
+          "p": "Como o adenocarcinoma ductal pancreático costuma realçar em comparação com o parênquima adjacente?",
+          "r": "É tipicamente hipovascular e hipoatenuante. Na cabeça, pode obstruir os ductos biliar e pancreático.",
+          "chaves": [
+            "hipovascular",
+            "hipoatenuante",
+            "pancreático"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de obstrução simultânea na situação clínica.",
+        "tag": "Obstrução simultânea",
+        "open": {
+          "p": "Na colangio-RM, colédoco e ducto pancreático estão dilatados. Qual mecanismo sugere uma massa da cabeça pancreática?",
+          "r": "A massa pode obstruir simultaneamente as vias biliar e pancreática, produzindo duplo ducto.",
+          "chaves": [
+            "simultaneamente",
+            "pancreática",
+            "ducto"
+          ]
+        }
+      }
+    ],
+    "3e2e08a1": [
+      {
+        "t": "Reconheceu o significado de hidrotórax hepático na situação clínica.",
+        "tag": "Hidrotórax hepático",
+        "open": {
+          "p": "Por que uma cirrose com ascite pode produzir derrame pleural predominantemente à direita?",
+          "r": "O líquido ascítico pode atravessar pequenos defeitos diafragmáticos e alcançar a pleura, mais frequentemente à direita.",
+          "chaves": [
+            "ascítico",
+            "defeitos",
+            "direita"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de líquido pleural livre na situação clínica.",
+        "tag": "Líquido pleural livre",
+        "open": {
+          "p": "O limite superior da opacidade pleural sobe lateralmente. Que comportamento esperar em decúbito lateral?",
+          "r": "O líquido livre acompanha a gravidade, alterando sua distribuição.",
+          "chaves": [
+            "líquido",
+            "livre",
+            "distribuição"
+          ]
+        }
+      }
+    ],
+    "4ba2ace7": [
+      {
+        "t": "Reconheceu o significado de trajeto da sonda na situação clínica.",
+        "tag": "Trajeto da sonda",
+        "open": {
+          "p": "Que percurso é esperado da sonda enteral na radiografia do caso da prova?",
+          "r": "O trajeto deve acompanhar o esôfago, cruzar o diafragma e terminar no segmento digestivo previsto, com a ponta identificada.",
+          "chaves": [
+            "trajeto",
+            "acompanhar",
+            "esôfago"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o trajeto que acompanha um brônquio ou termina acima do diafragma exige revisão do posicionamento.",
+        "tag": "Posição brônquica",
+        "open": {
+          "p": "Qual desvio de trajeto de uma sonda digestiva exige excluir entrada na via aérea antes do uso?",
+          "r": "O trajeto que acompanha um brônquio ou termina acima do diafragma exige revisão do posicionamento.",
+          "chaves": [
+            "trajeto",
+            "termina",
+            "revisão"
+          ]
+        }
+      }
+    ],
+    "e7802adf": [
+      {
+        "t": "Reconheceu que o tórax pode parecer normal.",
+        "tag": "Radiografia na asma",
+        "open": {
+          "p": "Que resultado radiográfico pode acompanhar crise de broncoespasmo sem sinais de infecção ou complicação?",
+          "r": "O tórax pode parecer normal. A radiografia não mede diretamente a obstrução reversível do fluxo.",
+          "chaves": [
+            "tórax",
+            "parecer",
+            "radiografia"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de tórax sem infiltrado na situação clínica.",
+        "tag": "Tórax sem infiltrado",
+        "open": {
+          "p": "Como interpretar um RX sem infiltrado em paciente com rinorreia, espirros e ausculta normal?",
+          "r": "O achado é compatível com acometimento de vias aéreas superiores, sem evidência radiográfica de pneumonia.",
+          "chaves": [
+            "superiores",
+            "radiográfica",
+            "pneumonia"
+          ]
+        }
+      }
+    ],
+    "9ed719f7": [
+      {
+        "t": "Reconheceu o significado de reverberação horizontal na situação clínica.",
+        "tag": "Reverberação horizontal",
+        "open": {
+          "p": "Observe os ecos paralelos que repetem a linha pleural. Que fenômeno explica a repetição?",
+          "r": "As linhas A resultam de reverberação em pulmão aerado.",
+          "chaves": [
+            "resultam",
+            "reverberação",
+            "aerado"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de artefato vertical na situação clínica.",
+        "tag": "Artefato vertical",
+        "open": {
+          "p": "Um traço brilhante parte da pleura, alcança o fundo da tela e apaga as linhas horizontais. Que tipo de eco é esse?",
+          "r": "A linha B atravessa a imagem em profundidade e acompanha a pleura.",
+          "chaves": [
+            "atravessa",
+            "profundidade",
+            "pleura"
+          ]
+        }
+      }
+    ],
+    "e1ca4b1": [
+      {
+        "t": "Reconheceu o significado de ar extrapulmonar na situação clínica.",
+        "tag": "Ar extrapulmonar",
+        "open": {
+          "p": "Por que desaparece a trama vascular além da linha pleural visível no ápice?",
+          "r": "Fora do pulmão, o ar pleural não contém vasos pulmonares.",
+          "chaves": [
+            "pleural",
+            "contém",
+            "pulmonares"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de pleura visceral na situação clínica.",
+        "tag": "Pleura visceral",
+        "open": {
+          "p": "Qual estrutura forma a linha fina que separa o pulmão do espaço sem vasos na periferia?",
+          "r": "A pleura visceral delimita o pulmão parcialmente colabado.",
+          "chaves": [
+            "pleura",
+            "visceral",
+            "parcialmente"
+          ]
+        }
+      }
+    ],
+    "a72b7ae0": [
+      {
+        "t": "Reconheceu o significado de hiperdensidade hemática na situação clínica.",
+        "tag": "Hiperdensidade hemática",
+        "open": {
+          "p": "No exame craniano sem contraste, que propriedade explica o aspecto claro do foco de hemorragia aguda?",
+          "r": "O sangue agudo tem atenuação maior que o parênquima cerebral adjacente.",
+          "chaves": [
+            "atenuação",
+            "que",
+            "cerebral"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de referência da água na situação clínica.",
+        "tag": "Referência da água",
+        "open": {
+          "p": "Uma região homogênea de conteúdo líquido mede aproximadamente zero na escala descrita. Qual material define esse ponto?",
+          "r": "A água é a referência de zero unidade Hounsfield.",
+          "chaves": [
+            "água",
+            "zero",
+            "unidade"
+          ]
+        }
+      }
+    ],
+    "e1fc1ea5": [
+      {
+        "t": "Reconheceu o significado de ar subdiafragmático na situação clínica.",
+        "tag": "Ar subdiafragmático",
+        "open": {
+          "p": "No exame em pé, um crescente escuro separa o fígado da cúpula direita. Onde se encontra o gás?",
+          "r": "O ar livre sobe e ocupa o espaço intraperitoneal subdiafragmático.",
+          "chaves": [
+            "sobe",
+            "intraperitoneal",
+            "subdiafragmático"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de detecção tomográfica na situação clínica.",
+        "tag": "Detecção tomográfica",
+        "open": {
+          "p": "Apesar do RX inconclusivo, a TC mostra pequenas bolhas anteriores ao fígado. Que vantagem explica essa diferença?",
+          "r": "A avaliação seccional detecta volumes pequenos de ar livre ocultos na radiografia.",
+          "chaves": [
+            "detecta",
+            "volumes",
+            "radiografia"
+          ]
+        }
+      }
+    ],
+    "fcda8393": [
+      {
+        "t": "Reconheceu que a perda de volume por atelectasia traciona a cisura.",
+        "tag": "Retração da cisura",
+        "open": {
+          "p": "No lobo superior opaco, a cisura está deslocada em sua direção. Qual componente explica o desvio?",
+          "r": "A perda de volume por atelectasia traciona a cisura.",
+          "chaves": [
+            "atelectasia",
+            "traciona",
+            "cisura"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o colapso pulmonar atrai as estruturas para o lado com menor volume.",
+        "tag": "Perda de volume",
+        "open": {
+          "p": "Uma opacidade acompanha desvio da traqueia para o mesmo hemitórax. Qual mecanismo deve ser considerado?",
+          "r": "O colapso pulmonar atrai as estruturas para o lado com menor volume.",
+          "chaves": [
+            "colapso",
+            "atrai",
+            "volume"
+          ]
+        }
+      }
+    ],
+    "a7084fd9": [
+      {
+        "t": "Reconheceu o significado de síndrome intersticial na situação clínica.",
+        "tag": "Síndrome intersticial",
+        "open": {
+          "p": "Há várias linhas verticais em múltiplos campos dos dois lados. Que padrão pulmonar a distribuição favorece?",
+          "r": "Linhas B numerosas e bilaterais sustentam síndrome intersticial, cujo mecanismo deve ser correlacionado à clínica.",
+          "chaves": [
+            "numerosas",
+            "síndrome",
+            "intersticial"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de espessamento septal na situação clínica.",
+        "tag": "Espessamento septal",
+        "open": {
+          "p": "Observe os traços basais curtos e horizontais que tocam a pleura. Qual estrutura foi espessada?",
+          "r": "As linhas B de Kerley representam septos interlobulares espessados, frequentemente por edema.",
+          "chaves": [
+            "representam",
+            "interlobulares",
+            "espessados"
+          ]
+        }
+      }
+    ],
+    "fb9cb8b3": [
+      {
+        "t": "Reconheceu que a elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+        "tag": "Redistribuição vascular",
+        "open": {
+          "p": "Em paciente cardiopata, os vasos dos ápices tornam-se tão calibrosos quanto os das bases. Qual alteração hemodinâmica está representada?",
+          "r": "A elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+          "chaves": [
+            "elevação",
+            "pressão",
+            "cefalização"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de índice cardiotorácico na situação clínica.",
+        "tag": "Índice cardiotorácico",
+        "open": {
+          "p": "Em uma PA bem inspirada, coração e tórax medem 16 e 28 cm nos maiores diâmetros transversos. Que medida está aumentada?",
+          "r": "A razão 16/28 é aproximadamente 0,57, acima do limite convencional de 0,50 em PA.",
+          "chaves": [
+            "16/28",
+            "0,57",
+            "PA"
+          ]
+        }
+      }
+    ],
+    "d51a68ec": [
+      {
+        "t": "Reconheceu que o baixo volume inspiratório aproxima os vasos das bases e pode simular alterações pulmonares ou cardíacas.",
+        "tag": "Inspiração insuficiente",
+        "open": {
+          "p": "Na imagem há poucos arcos posteriores acima do diafragma e aparente aumento da silhueta cardíaca. Que limitação técnica interfere na leitura?",
+          "r": "O baixo volume inspiratório aproxima os vasos das bases e pode simular alterações pulmonares ou cardíacas.",
+          "chaves": [
+            "baixo",
+            "simular",
+            "cardíacas"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a rotação projeta as clavículas a distâncias diferentes da linha média.",
+        "tag": "Rotação do paciente",
+        "open": {
+          "p": "Compare as extremidades mediais das clavículas com os processos espinhosos. O que explica a assimetria dessas distâncias?",
+          "r": "A rotação projeta as clavículas a distâncias diferentes da linha média.",
+          "chaves": [
+            "rotação",
+            "clavículas",
+            "distâncias"
+          ]
+        }
+      }
+    ],
+    "7b5a6bf0": [
+      {
+        "t": "Reconheceu que os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+        "tag": "Brônquio aerado",
+        "open": {
+          "p": "Por que há estruturas tubulares escuras ramificadas dentro de uma opacidade alveolar?",
+          "r": "Os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+          "chaves": [
+            "contrastam",
+            "alvéolos",
+            "preenchidos"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de vasos obscurecidos na situação clínica.",
+        "tag": "Vasos obscurecidos",
+        "open": {
+          "p": "Um segmento se torna tão denso que apaga os vasos, restando brônquios escuros. Que mecanismo é compatível?",
+          "r": "O preenchimento alveolar extenso produz consolidação com possível broncograma.",
+          "chaves": [
+            "extenso",
+            "consolidação",
+            "broncograma"
+          ]
+        }
+      }
+    ],
+    "8b030152": [
+      {
+        "t": "Reconheceu que a interface com ar reflete grande parte do feixe e obscurece as estruturas profundas.",
+        "tag": "Barreira acústica",
+        "open": {
+          "p": "Por que as alças com gás dificultam o estudo ultrassonográfico de estruturas retroperitoneais?",
+          "r": "A interface com ar reflete grande parte do feixe e obscurece as estruturas profundas.",
+          "chaves": [
+            "obscurece",
+            "estruturas",
+            "profundas"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de reverberação horizontal na situação clínica.",
+        "tag": "Reverberação horizontal",
+        "open": {
+          "p": "Observe os ecos paralelos que repetem a linha pleural. Que fenômeno explica a repetição?",
+          "r": "As linhas A resultam de reverberação em pulmão aerado.",
+          "chaves": [
+            "resultam",
+            "reverberação",
+            "aerado"
+          ]
+        }
+      }
+    ],
+    "df5c1042": [
+      {
+        "t": "Reconheceu o significado de líquido pleural livre na situação clínica.",
+        "tag": "Líquido pleural livre",
+        "open": {
+          "p": "O limite superior da opacidade pleural sobe lateralmente. Que comportamento esperar em decúbito lateral?",
+          "r": "O líquido livre acompanha a gravidade, alterando sua distribuição.",
+          "chaves": [
+            "líquido",
+            "livre",
+            "distribuição"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a ultrassonografia caracteriza o derrame e permite localizar uma janela de acesso.",
+        "tag": "Janela para punção",
+        "open": {
+          "p": "Qual recurso à beira do leito mostra líquido anecoico, o diafragma e a posição do pulmão antes de uma punção?",
+          "r": "A ultrassonografia caracteriza o derrame e permite localizar uma janela de acesso.",
+          "chaves": [
+            "ultrassonografia",
+            "localizar",
+            "janela"
+          ]
+        }
+      }
+    ],
+    "3130bbe1": [
+      {
+        "t": "Reconheceu que a rotação projeta as clavículas a distâncias diferentes da linha média.",
+        "tag": "Rotação do paciente",
+        "open": {
+          "p": "Compare as extremidades mediais das clavículas com os processos espinhosos. O que explica a assimetria dessas distâncias?",
+          "r": "A rotação projeta as clavículas a distâncias diferentes da linha média.",
+          "chaves": [
+            "rotação",
+            "clavículas",
+            "distâncias"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a visualização discreta das vértebras retrocardíacas auxilia na avaliação da penetração.",
+        "tag": "Penetração do feixe",
+        "open": {
+          "p": "Para julgar a exposição, o examinador avalia a visibilidade da coluna através da silhueta cardíaca. Que parâmetro está sendo examinado?",
+          "r": "A visualização discreta das vértebras retrocardíacas auxilia na avaliação da penetração.",
+          "chaves": [
+            "visualização",
+            "discreta",
+            "penetração"
+          ]
+        }
+      }
+    ],
+    "643f267c": [
+      {
+        "t": "Reconheceu o significado de artefato vertical na situação clínica.",
+        "tag": "Artefato vertical",
+        "open": {
+          "p": "Um traço brilhante parte da pleura, alcança o fundo da tela e apaga as linhas horizontais. Que tipo de eco é esse?",
+          "r": "A linha B atravessa a imagem em profundidade e acompanha a pleura.",
+          "chaves": [
+            "atravessa",
+            "profundidade",
+            "pleura"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de espessamento septal na situação clínica.",
+        "tag": "Espessamento septal",
+        "open": {
+          "p": "Observe os traços basais curtos e horizontais que tocam a pleura. Qual estrutura foi espessada?",
+          "r": "As linhas B de Kerley representam septos interlobulares espessados, frequentemente por edema.",
+          "chaves": [
+            "representam",
+            "interlobulares",
+            "espessados"
+          ]
+        }
+      }
+    ],
+    "6bd1274b": [
+      {
+        "t": "Reconheceu que o perfil separa estruturas sobrepostas e mostra o seio costofrênico posterior.",
+        "tag": "Projeção em perfil",
+        "open": {
+          "p": "Uma pequena opacidade retrocardíaca é pouco visível na incidência frontal. Qual projeção complementa sua localização em profundidade?",
+          "r": "O perfil separa estruturas sobrepostas e mostra o seio costofrênico posterior.",
+          "chaves": [
+            "perfil",
+            "sobrepostas",
+            "costofrênico"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que uma segunda incidência perpendicular demonstra estruturas ocultas na primeira.",
+        "tag": "Incidências ortogonais",
+        "open": {
+          "p": "Uma fratura suspeita não é evidente na primeira projeção. Como reduzir a limitação da sobreposição?",
+          "r": "Uma segunda incidência perpendicular demonstra estruturas ocultas na primeira.",
+          "chaves": [
+            "segunda",
+            "incidência",
+            "primeira"
+          ]
+        }
+      }
+    ],
+    "57aa5ea3": [
+      {
+        "t": "Reconheceu o significado de septo interlobular na situação clínica.",
+        "tag": "Septo interlobular",
+        "open": {
+          "p": "Que estrutura desenha os contornos poligonais e as linhas perpendiculares à pleura em um cardiopata?",
+          "r": "O espessamento dos septos delimita os lóbulos pulmonares secundários.",
+          "chaves": [
+            "delimita",
+            "lóbulos",
+            "secundários"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+        "tag": "Redistribuição vascular",
+        "open": {
+          "p": "Em paciente cardiopata, os vasos dos ápices tornam-se tão calibrosos quanto os das bases. Qual alteração hemodinâmica está representada?",
+          "r": "A elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+          "chaves": [
+            "elevação",
+            "pressão",
+            "cefalização"
+          ]
+        }
+      }
+    ],
+    "568bca0a": [
+      {
+        "t": "Reconheceu o significado de perda de cartilagem na situação clínica.",
+        "tag": "Perda de cartilagem",
+        "open": {
+          "p": "No joelho, o espaço se reduz mais no compartimento medial. O estreitamento reflete perda de qual tecido?",
+          "r": "A cartilagem não é vista diretamente. Sua espessura é inferida pela largura do espaço.",
+          "chaves": [
+            "cartilagem",
+            "espessura",
+            "inferida"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o remodelamento subcondral aumenta a densidade radiográfica local.",
+        "tag": "Esclerose subcondral",
+        "open": {
+          "p": "A região imediatamente sob a superfície articular aparece mais branca no quadril com artrose. O que explica esse sinal?",
+          "r": "O remodelamento subcondral aumenta a densidade radiográfica local.",
+          "chaves": [
+            "remodelamento",
+            "subcondral",
+            "radiográfica"
+          ]
+        }
+      }
+    ],
+    "6bedcf9a": [
+      {
+        "t": "Reconheceu o significado de hiperdensidade hemática na situação clínica.",
+        "tag": "Hiperdensidade hemática",
+        "open": {
+          "p": "No exame craniano sem contraste, que propriedade explica o aspecto claro do foco de hemorragia aguda?",
+          "r": "O sangue agudo tem atenuação maior que o parênquima cerebral adjacente.",
+          "chaves": [
+            "atenuação",
+            "que",
+            "cerebral"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a aquisição tomográfica é rápida e permite avaliação seccional extensa.",
+        "tag": "Tomografia computadorizada",
+        "open": {
+          "p": "No trauma, a equipe precisa examinar rapidamente múltiplas estruturas em cortes e reconstruções. Qual método atende a essa demanda?",
+          "r": "A aquisição tomográfica é rápida e permite avaliação seccional extensa.",
+          "chaves": [
+            "aquisição",
+            "tomográfica",
+            "extensa"
+          ]
+        }
+      }
+    ],
+    "bdccbba0": [
+      {
+        "t": "Reconheceu o significado de vasos obscurecidos na situação clínica.",
+        "tag": "Vasos obscurecidos",
+        "open": {
+          "p": "Um segmento se torna tão denso que apaga os vasos, restando brônquios escuros. Que mecanismo é compatível?",
+          "r": "O preenchimento alveolar extenso produz consolidação com possível broncograma.",
+          "chaves": [
+            "extenso",
+            "consolidação",
+            "broncograma"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+        "tag": "Brônquio aerado",
+        "open": {
+          "p": "Por que há estruturas tubulares escuras ramificadas dentro de uma opacidade alveolar?",
+          "r": "Os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+          "chaves": [
+            "contrastam",
+            "alvéolos",
+            "preenchidos"
+          ]
+        }
+      }
+    ],
+    "71e166d9": [
+      {
+        "t": "Reconheceu o significado de septo interlobular na situação clínica.",
+        "tag": "Septo interlobular",
+        "open": {
+          "p": "Que estrutura desenha os contornos poligonais e as linhas perpendiculares à pleura em um cardiopata?",
+          "r": "O espessamento dos septos delimita os lóbulos pulmonares secundários.",
+          "chaves": [
+            "delimita",
+            "lóbulos",
+            "secundários"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o edema pode predominar centralmente e ao longo dos feixes broncovasculares.",
+        "tag": "Distribuição peribroncovascular",
+        "open": {
+          "p": "Em paciente com congestão, a atenuação se concentra centralmente em torno de feixes vasculares. Que padrão topográfico favorece edema?",
+          "r": "O edema pode predominar centralmente e ao longo dos feixes broncovasculares.",
+          "chaves": [
+            "predominar",
+            "centralmente",
+            "feixes"
+          ]
+        }
+      }
+    ],
+    "275e4292": [
+      {
+        "t": "Reconheceu o significado de justificação do exame na situação clínica.",
+        "tag": "Justificação do exame",
+        "open": {
+          "p": "O paciente já dispõe de exame recente que responde à pergunta clínica. Que princípio deve ser aplicado antes de repetir a exposição?",
+          "r": "É preciso ponderar se a nova imagem tem benefício clínico que justifique irradiar novamente.",
+          "chaves": [
+            "preciso",
+            "ponderar",
+            "benefício"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de aquisição posteroanterior na situação clínica.",
+        "tag": "Aquisição posteroanterior",
+        "open": {
+          "p": "No paciente estável que consegue cooperar, deseja-se avaliar o coração minimizando a ampliação. Qual projeção frontal é preferida?",
+          "r": "Em PA o coração fica mais próximo do detector e sofre menor magnificação.",
+          "chaves": [
+            "PA",
+            "coração",
+            "magnificação"
+          ]
+        }
+      }
+    ],
+    "e717e47b": [
+      {
+        "t": "Reconheceu que a visualização discreta das vértebras retrocardíacas auxilia na avaliação da penetração.",
+        "tag": "Penetração do feixe",
+        "open": {
+          "p": "Para julgar a exposição, o examinador avalia a visibilidade da coluna através da silhueta cardíaca. Que parâmetro está sendo examinado?",
+          "r": "A visualização discreta das vértebras retrocardíacas auxilia na avaliação da penetração.",
+          "chaves": [
+            "visualização",
+            "discreta",
+            "penetração"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a destruição alveolar e vascular reduz a trama periférica.",
+        "tag": "Rarefação vascular",
+        "open": {
+          "p": "A periferia dos pulmões fica mais transparente e tem menos vasos visíveis. Que componente do enfisema explica parte desse aspecto?",
+          "r": "A destruição alveolar e vascular reduz a trama periférica.",
+          "chaves": [
+            "destruição",
+            "vascular",
+            "periférica"
+          ]
+        }
+      }
+    ],
+    "a137e791": [
+      {
+        "t": "Reconheceu o significado de falha de enchimento na situação clínica.",
+        "tag": "Falha de enchimento",
+        "open": {
+          "p": "Observe o material escuro circundado por sangue opacificado em ramo pulmonar. Qual sinal sustenta embolia?",
+          "r": "O trombo impede o enchimento local pelo contraste e cria um defeito intraluminal.",
+          "chaves": [
+            "trombo",
+            "enchimento",
+            "intraluminal"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de opacificação pulmonar na situação clínica.",
+        "tag": "Opacificação pulmonar",
+        "open": {
+          "p": "Para procurar um defeito nas artérias pulmonares, em que momento deve ser adquirida a angiotomografia?",
+          "r": "A aquisição deve coincidir com boa concentração de contraste na circulação arterial pulmonar.",
+          "chaves": [
+            "aquisição",
+            "circulação",
+            "pulmonar"
+          ]
+        }
+      }
+    ],
+    "4cb9722b": [
+      {
+        "t": "Reconheceu que a ultrassonografia caracteriza o derrame e permite localizar uma janela de acesso.",
+        "tag": "Janela para punção",
+        "open": {
+          "p": "Qual recurso à beira do leito mostra líquido anecoico, o diafragma e a posição do pulmão antes de uma punção?",
+          "r": "A ultrassonografia caracteriza o derrame e permite localizar uma janela de acesso.",
+          "chaves": [
+            "ultrassonografia",
+            "localizar",
+            "janela"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de conteúdo anecoico na situação clínica.",
+        "tag": "Conteúdo anecoico",
+        "open": {
+          "p": "No interior da estrutura líquida descrita, qual padrão se espera antes de avaliar sua parede posterior?",
+          "r": "O líquido simples produz poucos ecos internos e aparece preto.",
+          "chaves": [
+            "internos",
+            "aparece",
+            "preto"
+          ]
+        }
+      }
+    ],
+    "56a7c44f": [
+      {
+        "t": "Reconheceu o significado de ar pleural anterior na situação clínica.",
+        "tag": "Ar pleural anterior",
+        "open": {
+          "p": "Na TC em decúbito dorsal, identifica-se gás sem trama junto à face anterior do tórax. Qual localização explica esse padrão?",
+          "r": "O ar pleural tende a ocupar a região não dependente no paciente deitado.",
+          "chaves": [
+            "pleural",
+            "ocupar",
+            "deitado"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de enfisema subcutâneo na situação clínica.",
+        "tag": "Enfisema subcutâneo",
+        "open": {
+          "p": "Na TC, gás delineando planos musculares e subcutâneos da parede torácica ocupa qual compartimento?",
+          "r": "Os tecidos da parede, caracterizando enfisema subcutâneo. O pneumotórax ocupa a pleura.",
+          "chaves": [
+            "enfisema",
+            "subcutâneo",
+            "pneumotórax"
+          ]
+        }
+      }
+    ],
+    "24f71d47": [
+      {
+        "t": "Reconheceu o significado de cistos empilhados na situação clínica.",
+        "tag": "Cistos empilhados",
+        "open": {
+          "p": "Observe as pequenas cavidades subpleurais em camadas nas bases. Que alteração expressa fibrose avançada?",
+          "r": "A reorganização fibrótica produz faveolamento com espaços císticos sobrepostos.",
+          "chaves": [
+            "reorganização",
+            "fibrótica",
+            "faveolamento"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o tecido fibrótico traciona e distorce as vias aéreas.",
+        "tag": "Bronquiectasia de tração",
+        "open": {
+          "p": "Em área pulmonar retraída e fibrótica, os brônquios estão dilatados. Que mecanismo relaciona os dois achados?",
+          "r": "O tecido fibrótico traciona e distorce as vias aéreas.",
+          "chaves": [
+            "fibrótico",
+            "traciona",
+            "distorce"
+          ]
+        }
+      }
+    ],
+    "11ca2e17": [
+      {
+        "t": "Reconheceu o significado de tórax sem infiltrado na situação clínica.",
+        "tag": "Tórax sem infiltrado",
+        "open": {
+          "p": "Como interpretar um RX sem infiltrado em paciente com rinorreia, espirros e ausculta normal?",
+          "r": "O achado é compatível com acometimento de vias aéreas superiores, sem evidência radiográfica de pneumonia.",
+          "chaves": [
+            "superiores",
+            "radiográfica",
+            "pneumonia"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de comparação bilateral na situação clínica.",
+        "tag": "Comparação bilateral",
+        "open": {
+          "p": "Para evitar perder uma pequena opacidade no campo médio, como se deve percorrer os campos pulmonares?",
+          "r": "Comparar zonas simétricas dos dois lados ajuda a perceber diferenças locais de transparência.",
+          "chaves": [
+            "simétricas",
+            "perceber",
+            "transparência"
+          ]
+        }
+      }
+    ],
+    "de7193fd": [
+      {
+        "t": "Reconheceu que o lobo médio direito.",
+        "tag": "Lobo médio",
+        "open": {
+          "p": "Qual lobo costuma apagar a borda cardíaca direita quando há consolidação em contato com o coração?",
+          "r": "O lobo médio direito. O sinal da silhueta exige contato entre estruturas de densidade semelhante.",
+          "chaves": [
+            "lobo",
+            "médio",
+            "contato"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o contorno radiográfico exige contraste de densidade entre estruturas em contato.",
+        "tag": "Perda de interface",
+        "open": {
+          "p": "Duas estruturas adjacentes com a mesma densidade de partes moles deixam de ter limite visível. Que fenômeno explica esse apagamento?",
+          "r": "O contorno radiográfico exige contraste de densidade entre estruturas em contato.",
+          "chaves": [
+            "radiográfico",
+            "densidade",
+            "estruturas"
+          ]
+        }
+      }
+    ],
+    "41d5d9c0": [
+      {
+        "t": "Reconheceu que os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+        "tag": "Brônquio aerado",
+        "open": {
+          "p": "Por que há estruturas tubulares escuras ramificadas dentro de uma opacidade alveolar?",
+          "r": "Os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+          "chaves": [
+            "contrastam",
+            "alvéolos",
+            "preenchidos"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de vasos obscurecidos na situação clínica.",
+        "tag": "Vasos obscurecidos",
+        "open": {
+          "p": "Um segmento se torna tão denso que apaga os vasos, restando brônquios escuros. Que mecanismo é compatível?",
+          "r": "O preenchimento alveolar extenso produz consolidação com possível broncograma.",
+          "chaves": [
+            "extenso",
+            "consolidação",
+            "broncograma"
+          ]
+        }
+      }
+    ],
+    "d8f29301": [
+      {
+        "t": "Reconheceu que o entrelaçamento de linhas caracteriza reticulação.",
+        "tag": "Rede reticular",
+        "open": {
+          "p": "A TC mostra linhas entrelaçadas distribuídas pelo interstício, sem predomínio de cistos empilhados. Qual padrão deve ser descrito?",
+          "r": "O entrelaçamento de linhas caracteriza reticulação.",
+          "chaves": [
+            "entrelaçamento",
+            "linhas",
+            "reticulação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a fibrose pode distorcer o interstício e produzir padrão reticular.",
+        "tag": "Remodelamento fibrótico",
+        "open": {
+          "p": "Uma trama de linhas finas entrelaçadas acompanha doença intersticial crônica. A qual processo a rede pode corresponder?",
+          "r": "A fibrose pode distorcer o interstício e produzir padrão reticular.",
+          "chaves": [
+            "fibrose",
+            "distorcer",
+            "interstício"
+          ]
+        }
+      }
+    ],
+    "64772a6d": [
+      {
+        "t": "Reconheceu o significado de falha de enchimento na situação clínica.",
+        "tag": "Falha de enchimento",
+        "open": {
+          "p": "Observe o material escuro circundado por sangue opacificado em ramo pulmonar. Qual sinal sustenta embolia?",
+          "r": "O trombo impede o enchimento local pelo contraste e cria um defeito intraluminal.",
+          "chaves": [
+            "trombo",
+            "enchimento",
+            "intraluminal"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de opacificação pulmonar na situação clínica.",
+        "tag": "Opacificação pulmonar",
+        "open": {
+          "p": "Para procurar um defeito nas artérias pulmonares, em que momento deve ser adquirida a angiotomografia?",
+          "r": "A aquisição deve coincidir com boa concentração de contraste na circulação arterial pulmonar.",
+          "chaves": [
+            "aquisição",
+            "circulação",
+            "pulmonar"
+          ]
+        }
+      }
+    ],
+    "5538e1f6": [
+      {
+        "t": "Reconheceu o significado de coleção pleural livre na situação clínica.",
+        "tag": "Coleção pleural livre",
+        "open": {
+          "p": "O líquido forma um crescente posterior no paciente deitado. Como sua forma se relaciona à gravidade?",
+          "r": "O derrame livre ocupa a porção dependente e se molda à parede.",
+          "chaves": [
+            "livre",
+            "porção",
+            "molda"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de localização extraparenquimatosa na situação clínica.",
+        "tag": "Localização extraparenquimatosa",
+        "open": {
+          "p": "Qual interpretação distingue o crescente posterior de líquido da opacidade que preenche os alvéolos?",
+          "r": "A coleção se encontra no espaço pleural, fora do parênquima.",
+          "chaves": [
+            "coleção",
+            "encontra",
+            "parênquima"
+          ]
+        }
+      }
+    ],
+    "2f95ab5b": [
+      {
+        "t": "Reconheceu o significado de septo interlobular na situação clínica.",
+        "tag": "Septo interlobular",
+        "open": {
+          "p": "Que estrutura desenha os contornos poligonais e as linhas perpendiculares à pleura em um cardiopata?",
+          "r": "O espessamento dos septos delimita os lóbulos pulmonares secundários.",
+          "chaves": [
+            "delimita",
+            "lóbulos",
+            "secundários"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de espessamento septal na situação clínica.",
+        "tag": "Espessamento septal",
+        "open": {
+          "p": "Observe os traços basais curtos e horizontais que tocam a pleura. Qual estrutura foi espessada?",
+          "r": "As linhas B de Kerley representam septos interlobulares espessados, frequentemente por edema.",
+          "chaves": [
+            "representam",
+            "interlobulares",
+            "espessados"
+          ]
+        }
+      }
+    ],
+    "7587d6e7": [
+      {
+        "t": "Reconheceu o significado de líquido pleural livre na situação clínica.",
+        "tag": "Líquido pleural livre",
+        "open": {
+          "p": "O limite superior da opacidade pleural sobe lateralmente. Que comportamento esperar em decúbito lateral?",
+          "r": "O líquido livre acompanha a gravidade, alterando sua distribuição.",
+          "chaves": [
+            "líquido",
+            "livre",
+            "distribuição"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de decúbito lateral na situação clínica.",
+        "tag": "Decúbito lateral",
+        "open": {
+          "p": "Qual posicionamento com feixe horizontal demonstra se o líquido pleural muda de lugar sob ação da gravidade?",
+          "r": "O líquido livre forma uma lâmina no lado dependente quando o paciente é colocado em decúbito lateral.",
+          "chaves": [
+            "líquido",
+            "decúbito",
+            "lateral"
+          ]
+        }
+      }
+    ],
+    "bcb05997": [
+      {
+        "t": "Reconheceu o significado de obstrução por intubação na situação clínica.",
+        "tag": "Obstrução por intubação",
+        "open": {
+          "p": "Após intubação seletiva direita, por que o hemitórax esquerdo ficou opaco e menor?",
+          "r": "A ventilação do pulmão esquerdo cessou e o ar foi reabsorvido, levando a colapso.",
+          "chaves": [
+            "ventilação",
+            "esquerdo",
+            "reabsorvido"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o colapso pulmonar atrai as estruturas para o lado com menor volume.",
+        "tag": "Perda de volume",
+        "open": {
+          "p": "Uma opacidade acompanha desvio da traqueia para o mesmo hemitórax. Qual mecanismo deve ser considerado?",
+          "r": "O colapso pulmonar atrai as estruturas para o lado com menor volume.",
+          "chaves": [
+            "colapso",
+            "atrai",
+            "volume"
+          ]
+        }
+      }
+    ],
+    "9dd3c748": [
+      {
+        "t": "Reconheceu o significado de reverberação horizontal na situação clínica.",
+        "tag": "Reverberação horizontal",
+        "open": {
+          "p": "Observe os ecos paralelos que repetem a linha pleural. Que fenômeno explica a repetição?",
+          "r": "As linhas A resultam de reverberação em pulmão aerado.",
+          "chaves": [
+            "resultam",
+            "reverberação",
+            "aerado"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de contato pleural local na situação clínica.",
+        "tag": "Contato pleural local",
+        "open": {
+          "p": "Na área examinada há deslizamento entre as pleuras durante a respiração. O que isso demonstra naquele ponto?",
+          "r": "A presença de contato e movimento pleural afasta pneumotórax naquele local.",
+          "chaves": [
+            "contato",
+            "pleural",
+            "local"
+          ]
+        }
+      }
+    ],
+    "62cfb40d": [
+      {
+        "t": "Reconheceu que a rotação projeta as clavículas a distâncias diferentes da linha média.",
+        "tag": "Rotação do paciente",
+        "open": {
+          "p": "Compare as extremidades mediais das clavículas com os processos espinhosos. O que explica a assimetria dessas distâncias?",
+          "r": "A rotação projeta as clavículas a distâncias diferentes da linha média.",
+          "chaves": [
+            "rotação",
+            "clavículas",
+            "distâncias"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a visualização discreta das vértebras retrocardíacas auxilia na avaliação da penetração.",
+        "tag": "Penetração do feixe",
+        "open": {
+          "p": "Para julgar a exposição, o examinador avalia a visibilidade da coluna através da silhueta cardíaca. Que parâmetro está sendo examinado?",
+          "r": "A visualização discreta das vértebras retrocardíacas auxilia na avaliação da penetração.",
+          "chaves": [
+            "visualização",
+            "discreta",
+            "penetração"
+          ]
+        }
+      }
+    ],
+    "582f2750": [
+      {
+        "t": "Reconheceu o significado de hemorragia alveolar na situação clínica.",
+        "tag": "Hemorragia alveolar",
+        "open": {
+          "p": "Hemoptise, coagulopatia e opacidades alveolares em placas sugerem qual material nos alvéolos?",
+          "r": "Sangue. O preenchimento alveolar hemorrágico pode produzir vidro fosco e consolidação.",
+          "chaves": [
+            "alveolar",
+            "hemorrágico",
+            "consolidação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de vasos preservados na situação clínica.",
+        "tag": "Vasos preservados",
+        "open": {
+          "p": "A densidade aumenta, mas ainda se acompanham os vasos dentro da opacidade. Qual detalhe separa esse padrão da consolidação?",
+          "r": "No vidro fosco, os contornos vasculares continuam identificáveis.",
+          "chaves": [
+            "contornos",
+            "vasculares",
+            "continuam"
+          ]
+        }
+      }
+    ],
+    "2ff6afc0": [
+      {
+        "t": "Reconheceu o significado de margem suspeita na situação clínica.",
+        "tag": "Margem suspeita",
+        "open": {
+          "p": "Uma lesão arredondada apresenta prolongamentos radiais na borda. Que aspecto pesa na avaliação do risco?",
+          "r": "A espiculação eleva a suspeita de neoplasia, sobretudo se houver crescimento.",
+          "chaves": [
+            "espiculação",
+            "suspeita",
+            "neoplasia"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de massa pulmonar na situação clínica.",
+        "tag": "Massa pulmonar",
+        "open": {
+          "p": "Uma opacidade focal mede 4,2 cm no maior eixo. Que categoria de tamanho deve constar no laudo?",
+          "r": "Lesões focais pulmonares maiores que 3 cm são chamadas de massas.",
+          "chaves": [
+            "Lesões",
+            "que",
+            "chamadas"
+          ]
+        }
+      }
+    ],
+    "2e6b9737": [
+      {
+        "t": "Reconheceu que os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+        "tag": "Brônquio aerado",
+        "open": {
+          "p": "Por que há estruturas tubulares escuras ramificadas dentro de uma opacidade alveolar?",
+          "r": "Os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+          "chaves": [
+            "contrastam",
+            "alvéolos",
+            "preenchidos"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de vasos obscurecidos na situação clínica.",
+        "tag": "Vasos obscurecidos",
+        "open": {
+          "p": "Um segmento se torna tão denso que apaga os vasos, restando brônquios escuros. Que mecanismo é compatível?",
+          "r": "O preenchimento alveolar extenso produz consolidação com possível broncograma.",
+          "chaves": [
+            "extenso",
+            "consolidação",
+            "broncograma"
+          ]
+        }
+      }
+    ],
+    "5bcac71e": [
+      {
+        "t": "Reconheceu que o edema pode predominar centralmente e ao longo dos feixes broncovasculares.",
+        "tag": "Distribuição peribroncovascular",
+        "open": {
+          "p": "Em paciente com congestão, a atenuação se concentra centralmente em torno de feixes vasculares. Que padrão topográfico favorece edema?",
+          "r": "O edema pode predominar centralmente e ao longo dos feixes broncovasculares.",
+          "chaves": [
+            "predominar",
+            "centralmente",
+            "feixes"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+        "tag": "Redistribuição vascular",
+        "open": {
+          "p": "Em paciente cardiopata, os vasos dos ápices tornam-se tão calibrosos quanto os das bases. Qual alteração hemodinâmica está representada?",
+          "r": "A elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+          "chaves": [
+            "elevação",
+            "pressão",
+            "cefalização"
+          ]
+        }
+      }
+    ],
+    "a078e20b": [
+      {
+        "t": "Reconheceu que a TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+        "tag": "Localização ureteral",
+        "open": {
+          "p": "No corte sem contraste, o foco hiperdenso está no trajeto do ureter. Qual aspecto permite localizar o ponto de obstrução?",
+          "r": "A TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+          "chaves": [
+            "TC",
+            "dilatação",
+            "montante"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de dilatação pielocalicial na situação clínica.",
+        "tag": "Dilatação pielocalicial",
+        "open": {
+          "p": "No ultrassom, cálices e pelve estão distendidos por conteúdo anecoico. Que mecanismo explica o aspecto?",
+          "r": "O represamento de urina a montante da obstrução produz hidronefrose.",
+          "chaves": [
+            "represamento",
+            "urina",
+            "hidronefrose"
+          ]
+        }
+      }
+    ],
+    "5a39e91f": [
+      {
+        "t": "Reconheceu o significado de retificação diafragmática na situação clínica.",
+        "tag": "Retificação diafragmática",
+        "open": {
+          "p": "No filme frontal do tabagista, as cúpulas estão baixas e planas. Que efeito do aprisionamento aéreo se manifesta?",
+          "r": "O aumento do volume pulmonar deprime e retifica o diafragma.",
+          "chaves": [
+            "deprime",
+            "retifica",
+            "diafragma"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de ampliação retroesternal na situação clínica.",
+        "tag": "Ampliação retroesternal",
+        "open": {
+          "p": "No perfil do tórax, qual sinal reforça hiperinsuflação além do aumento do diâmetro anteroposterior?",
+          "r": "A faixa clara retroesternal fica aumentada.",
+          "chaves": [
+            "clara",
+            "retroesternal",
+            "fica"
+          ]
+        }
+      }
+    ],
+    "97eab963": [
+      {
+        "t": "Reconheceu o significado de drenagem pelo brônquio na situação clínica.",
+        "tag": "Drenagem pelo brônquio",
+        "open": {
+          "p": "Por que uma região previamente sólida pode passar a conter gás no centro?",
+          "r": "Após necrose, o material drena por brônquio pérvio e o ar ocupa a cavidade.",
+          "chaves": [
+            "necrose",
+            "brônquio",
+            "cavidade"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de distribuição apical na situação clínica.",
+        "tag": "Distribuição apical",
+        "open": {
+          "p": "Em paciente com sintomas constitucionais, a cavidade alta tem pequenos focos satélites. Que característica da distribuição favorece tuberculose?",
+          "r": "O predomínio nos lobos superiores com focos vizinhos é sugestivo no contexto clínico adequado.",
+          "chaves": [
+            "focos",
+            "vizinhos",
+            "sugestivo"
+          ]
+        }
+      }
+    ],
+    "5324f7af": [
+      {
+        "t": "Reconheceu o significado de inflamação perivesicular na situação clínica.",
+        "tag": "Inflamação perivesicular",
+        "open": {
+          "p": "Com dor e Murphy positivo, há líquido ao redor da vesícula. O que esse achado acrescenta à presença de cálculo?",
+          "r": "O líquido perivesicular apoia inflamação aguda, sobretudo com distensão e espessamento da parede.",
+          "chaves": [
+            "perivesicular",
+            "inflamação",
+            "distensão"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de cálculo móvel na situação clínica.",
+        "tag": "Cálculo móvel",
+        "open": {
+          "p": "Um foco vesicular hiperecoico muda de posição quando o paciente vira. Que achado posterior deve ser pesquisado?",
+          "r": "Atenuação do som pelo cálculo produz sombra acústica posterior.",
+          "chaves": [
+            "cálculo",
+            "acústica",
+            "posterior"
+          ]
+        }
+      }
+    ],
+    "66f0399": [
+      {
+        "t": "Reconheceu o significado de vidro fosco periférico na situação clínica.",
+        "tag": "Vidro fosco periférico",
+        "open": {
+          "p": "Em quadro viral agudo, qual distribuição de vidro fosco é frequentemente descrita na COVID-19?",
+          "r": "Opacidades bilaterais de predomínio periférico, que precisam ser interpretadas junto à clínica.",
+          "chaves": [
+            "Opacidades",
+            "periférico",
+            "precisam"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de vasos preservados na situação clínica.",
+        "tag": "Vasos preservados",
+        "open": {
+          "p": "A densidade aumenta, mas ainda se acompanham os vasos dentro da opacidade. Qual detalhe separa esse padrão da consolidação?",
+          "r": "No vidro fosco, os contornos vasculares continuam identificáveis.",
+          "chaves": [
+            "contornos",
+            "vasculares",
+            "continuam"
+          ]
+        }
+      }
+    ],
+    "9dab2d63": [
+      {
+        "t": "Reconheceu o significado de falha de relaxamento na situação clínica.",
+        "tag": "Falha de relaxamento",
+        "open": {
+          "p": "No esofagograma, o esôfago está dilatado e termina em afilamento distal liso. Qual mecanismo produz o bico de pássaro?",
+          "r": "A falha de relaxamento da junção esofagogástrica na acalasia dificulta o esvaziamento.",
+          "chaves": [
+            "falha",
+            "relaxamento",
+            "esofagogástrica"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de investigação de alarme na situação clínica.",
+        "tag": "Investigação de alarme",
+        "open": {
+          "p": "Um paciente com refluxo passa a apresentar disfagia progressiva e emagrecimento. Que indicação de EDA foi acrescentada?",
+          "r": "Sinais de alarme justificam visualizar a mucosa e investigar uma lesão estenosante.",
+          "chaves": [
+            "alarme",
+            "visualizar",
+            "investigar"
+          ]
+        }
+      }
+    ],
+    "d5adc3c7": [
+      {
+        "t": "Reconheceu o significado de ar subdiafragmático na situação clínica.",
+        "tag": "Ar subdiafragmático",
+        "open": {
+          "p": "No exame em pé, um crescente escuro separa o fígado da cúpula direita. Onde se encontra o gás?",
+          "r": "O ar livre sobe e ocupa o espaço intraperitoneal subdiafragmático.",
+          "chaves": [
+            "sobe",
+            "intraperitoneal",
+            "subdiafragmático"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de detecção tomográfica na situação clínica.",
+        "tag": "Detecção tomográfica",
+        "open": {
+          "p": "Apesar do RX inconclusivo, a TC mostra pequenas bolhas anteriores ao fígado. Que vantagem explica essa diferença?",
+          "r": "A avaliação seccional detecta volumes pequenos de ar livre ocultos na radiografia.",
+          "chaves": [
+            "detecta",
+            "volumes",
+            "radiografia"
+          ]
+        }
+      }
+    ],
+    "ffb5bf9d": [
+      {
+        "t": "Reconheceu que a TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+        "tag": "Localização ureteral",
+        "open": {
+          "p": "No corte sem contraste, o foco hiperdenso está no trajeto do ureter. Qual aspecto permite localizar o ponto de obstrução?",
+          "r": "A TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+          "chaves": [
+            "TC",
+            "dilatação",
+            "montante"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de dilatação pielocalicial na situação clínica.",
+        "tag": "Dilatação pielocalicial",
+        "open": {
+          "p": "No ultrassom, cálices e pelve estão distendidos por conteúdo anecoico. Que mecanismo explica o aspecto?",
+          "r": "O represamento de urina a montante da obstrução produz hidronefrose.",
+          "chaves": [
+            "represamento",
+            "urina",
+            "hidronefrose"
+          ]
+        }
+      }
+    ],
+    "8a80794a": [
+      {
+        "t": "Reconheceu o significado de septo interlobular na situação clínica.",
+        "tag": "Septo interlobular",
+        "open": {
+          "p": "Que estrutura desenha os contornos poligonais e as linhas perpendiculares à pleura em um cardiopata?",
+          "r": "O espessamento dos septos delimita os lóbulos pulmonares secundários.",
+          "chaves": [
+            "delimita",
+            "lóbulos",
+            "secundários"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de espessamento septal na situação clínica.",
+        "tag": "Espessamento septal",
+        "open": {
+          "p": "Observe os traços basais curtos e horizontais que tocam a pleura. Qual estrutura foi espessada?",
+          "r": "As linhas B de Kerley representam septos interlobulares espessados, frequentemente por edema.",
+          "chaves": [
+            "representam",
+            "interlobulares",
+            "espessados"
+          ]
+        }
+      }
+    ],
+    "52e9c2b": [
+      {
+        "t": "Reconheceu o significado de vasos obscurecidos na situação clínica.",
+        "tag": "Vasos obscurecidos",
+        "open": {
+          "p": "Um segmento se torna tão denso que apaga os vasos, restando brônquios escuros. Que mecanismo é compatível?",
+          "r": "O preenchimento alveolar extenso produz consolidação com possível broncograma.",
+          "chaves": [
+            "extenso",
+            "consolidação",
+            "broncograma"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+        "tag": "Brônquio aerado",
+        "open": {
+          "p": "Por que há estruturas tubulares escuras ramificadas dentro de uma opacidade alveolar?",
+          "r": "Os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+          "chaves": [
+            "contrastam",
+            "alvéolos",
+            "preenchidos"
+          ]
+        }
+      }
+    ],
+    "9a253ede": [
+      {
+        "t": "Reconheceu que a preservação da interface sugere que a massa não está no mesmo plano em contato com o coração.",
+        "tag": "Espaço cardíaco",
+        "open": {
+          "p": "O que significa preservar a borda cardíaca apesar de uma massa projetada sobre ela no exame frontal?",
+          "r": "A preservação da interface sugere que a massa não está no mesmo plano em contato com o coração.",
+          "chaves": [
+            "preservação",
+            "massa",
+            "coração"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de relação com vasos na situação clínica.",
+        "tag": "Relação com vasos",
+        "open": {
+          "p": "Antes de nomear uma massa, o examinador localiza a veia braquiocefálica e os grandes vasos. A que etapa isso corresponde?",
+          "r": "As relações anatômicas situam a lesão no compartimento mediastinal correto.",
+          "chaves": [
+            "relações",
+            "anatômicas",
+            "compartimento"
+          ]
+        }
+      }
+    ],
+    "9ddfecc8": [
+      {
+        "t": "Reconheceu o significado de ar subdiafragmático na situação clínica.",
+        "tag": "Ar subdiafragmático",
+        "open": {
+          "p": "No exame em pé, um crescente escuro separa o fígado da cúpula direita. Onde se encontra o gás?",
+          "r": "O ar livre sobe e ocupa o espaço intraperitoneal subdiafragmático.",
+          "chaves": [
+            "sobe",
+            "intraperitoneal",
+            "subdiafragmático"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de detecção tomográfica na situação clínica.",
+        "tag": "Detecção tomográfica",
+        "open": {
+          "p": "Apesar do RX inconclusivo, a TC mostra pequenas bolhas anteriores ao fígado. Que vantagem explica essa diferença?",
+          "r": "A avaliação seccional detecta volumes pequenos de ar livre ocultos na radiografia.",
+          "chaves": [
+            "detecta",
+            "volumes",
+            "radiografia"
+          ]
+        }
+      }
+    ],
+    "de24ffff": [
+      {
+        "t": "Reconheceu o significado de inflamação perivesicular na situação clínica.",
+        "tag": "Inflamação perivesicular",
+        "open": {
+          "p": "Com dor e Murphy positivo, há líquido ao redor da vesícula. O que esse achado acrescenta à presença de cálculo?",
+          "r": "O líquido perivesicular apoia inflamação aguda, sobretudo com distensão e espessamento da parede.",
+          "chaves": [
+            "perivesicular",
+            "inflamação",
+            "distensão"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de perfil colestático na situação clínica.",
+        "tag": "Perfil colestático",
+        "open": {
+          "p": "Que alterações laboratoriais sustentam obstrução biliar com infecção no contexto da tríade de Charcot?",
+          "r": "Predomínio de bilirrubina direta, elevação de fosfatase alcalina e GGT e possível leucocitose.",
+          "chaves": [
+            "bilirrubina",
+            "alcalina",
+            "GGT"
+          ]
+        }
+      }
+    ],
+    "680cb021": [
+      {
+        "t": "Reconheceu que a endoscopia permite tratamento hemostático durante o exame.",
+        "tag": "Hemostasia endoscópica",
+        "open": {
+          "p": "Uma lesão de Dieulafoy sangra no trato digestivo alto. Que vantagem da EDA vai além da localização da lesão?",
+          "r": "A endoscopia permite tratamento hemostático durante o exame.",
+          "chaves": [
+            "endoscopia",
+            "tratamento",
+            "hemostático"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de investigação de alarme na situação clínica.",
+        "tag": "Investigação de alarme",
+        "open": {
+          "p": "Um paciente com refluxo passa a apresentar disfagia progressiva e emagrecimento. Que indicação de EDA foi acrescentada?",
+          "r": "Sinais de alarme justificam visualizar a mucosa e investigar uma lesão estenosante.",
+          "chaves": [
+            "alarme",
+            "visualizar",
+            "investigar"
+          ]
+        }
+      }
+    ],
+    "40c7ce8e": [
+      {
+        "t": "Reconheceu o significado de risco intermediário na situação clínica.",
+        "tag": "Risco intermediário",
+        "open": {
+          "p": "Um adulto tem sintomas compatíveis e escore clínico intermediário. Qual é o papel da imagem nesse ponto?",
+          "r": "A imagem ajuda a confirmar ou afastar apendicite e a identificar outras causas da dor.",
+          "chaves": [
+            "imagem",
+            "afastar",
+            "apendicite"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de apêndice não visto na situação clínica.",
+        "tag": "Apêndice não visto",
+        "open": {
+          "p": "A não visualização do apêndice encerra a investigação quando persistem dor focal e sinais inflamatórios?",
+          "r": "Não. Reavaliação clínica, observação ou avaliação cirúrgica dependem da suspeita residual.",
+          "chaves": [
+            "Não",
+            "Reavaliação",
+            "observação"
+          ]
+        }
+      }
+    ],
+    "f74d1501": [
+      {
+        "t": "Reconheceu o significado de líquido pleural livre na situação clínica.",
+        "tag": "Líquido pleural livre",
+        "open": {
+          "p": "O limite superior da opacidade pleural sobe lateralmente. Que comportamento esperar em decúbito lateral?",
+          "r": "O líquido livre acompanha a gravidade, alterando sua distribuição.",
+          "chaves": [
+            "líquido",
+            "livre",
+            "distribuição"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de derrame na congestão na situação clínica.",
+        "tag": "Derrame na congestão",
+        "open": {
+          "p": "Qual distribuição pode ocorrer no derrame pleural por insuficiência cardíaca?",
+          "r": "Pode ser bilateral ou predominante à direita e costuma distribuir-se livremente na pleura.",
+          "chaves": [
+            "bilateral",
+            "distribuir-se",
+            "livremente"
+          ]
+        }
+      }
+    ],
+    "f15b722": [
+      {
+        "t": "Reconheceu o significado de perda de cartilagem na situação clínica.",
+        "tag": "Perda de cartilagem",
+        "open": {
+          "p": "No joelho, o espaço se reduz mais no compartimento medial. O estreitamento reflete perda de qual tecido?",
+          "r": "A cartilagem não é vista diretamente. Sua espessura é inferida pela largura do espaço.",
+          "chaves": [
+            "cartilagem",
+            "espessura",
+            "inferida"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o remodelamento subcondral aumenta a densidade radiográfica local.",
+        "tag": "Esclerose subcondral",
+        "open": {
+          "p": "A região imediatamente sob a superfície articular aparece mais branca no quadril com artrose. O que explica esse sinal?",
+          "r": "O remodelamento subcondral aumenta a densidade radiográfica local.",
+          "chaves": [
+            "remodelamento",
+            "subcondral",
+            "radiográfica"
+          ]
+        }
+      }
+    ],
+    "af9db032": [
+      {
+        "t": "Reconheceu que a presença de cicatriz central típica favorece HNF.",
+        "tag": "Cicatriz central",
+        "open": {
+          "p": "Em uma lesão hepatocelular bem delimitada, qual achado favorece hiperplasia nodular focal em relação ao adenoma?",
+          "r": "A presença de cicatriz central típica favorece HNF.",
+          "chaves": [
+            "cicatriz",
+            "central",
+            "HNF"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de risco hemorrágico na situação clínica.",
+        "tag": "Risco hemorrágico",
+        "open": {
+          "p": "Uma mulher em uso de anticoncepcional tem lesão compatível com adenoma. Que complicação justifica atenção ao seguimento?",
+          "r": "Adenomas hepáticos podem sangrar, sobretudo quando maiores.",
+          "chaves": [
+            "Adenomas",
+            "hepáticos",
+            "sangrar"
+          ]
+        }
+      }
+    ],
+    "935701a3": [
+      {
+        "t": "Reconheceu o significado de critério bioquímico na situação clínica.",
+        "tag": "Critério bioquímico",
+        "open": {
+          "p": "Dor epigástrica típica acompanha lipase cinco vezes o limite superior. Qual segundo critério já está satisfeito?",
+          "r": "A lipase acima de três vezes o limite, associada à dor típica, permite o diagnóstico sem exigir TC confirmatória.",
+          "chaves": [
+            "limite",
+            "típica",
+            "TC"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de investigação biliar na situação clínica.",
+        "tag": "Investigação biliar",
+        "open": {
+          "p": "A pancreatite foi confirmada. O que a pesquisa ultrassonográfica de cálculos acrescenta ao diagnóstico já feito?",
+          "r": "A USG procura uma causa biliar e sinais de obstrução, enquanto a lipase isolada não define etiologia.",
+          "chaves": [
+            "USG",
+            "procura",
+            "biliar"
+          ]
+        }
+      }
+    ],
+    "39e852a9": [
+      {
+        "t": "Reconheceu o significado de disseminação hematogênica na situação clínica.",
+        "tag": "Disseminação hematogênica",
+        "open": {
+          "p": "Os dois pulmões contêm incontáveis micronódulos de tamanho semelhante. Qual via explica o padrão miliar da tuberculose?",
+          "r": "A disseminação pela corrente sanguínea distribui pequenos focos difusamente.",
+          "chaves": [
+            "disseminação",
+            "corrente",
+            "sanguínea"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de implantes miliares na situação clínica.",
+        "tag": "Implantes miliares",
+        "open": {
+          "p": "Micronódulos de tamanho semelhante aparecem sem respeito aos limites lobulares. Qual via favorece esse aspecto?",
+          "r": "A disseminação hematogênica difusa produz distribuição aleatória.",
+          "chaves": [
+            "disseminação",
+            "hematogênica",
+            "distribuição"
+          ]
+        }
+      }
+    ],
+    "ab8caa11": [
+      {
+        "t": "Reconheceu que o aumento de linfonodos pode modificar o relevo hilar e o mediastino.",
+        "tag": "Aumento linfonodal",
+        "open": {
+          "p": "O alargamento hilar e mediastinal tem contornos lobulados em paciente oncológico. Que estrutura deve ser avaliada na TC?",
+          "r": "O aumento de linfonodos pode modificar o relevo hilar e o mediastino.",
+          "chaves": [
+            "aumento",
+            "linfonodos",
+            "hilar"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que as artérias pulmonares constituem a maior parte da sombra hilar normal.",
+        "tag": "Vasculatura hilar",
+        "open": {
+          "p": "No tórax de referência, qual estrutura contribui predominantemente para a opacidade normal dos hilos?",
+          "r": "As artérias pulmonares constituem a maior parte da sombra hilar normal.",
+          "chaves": [
+            "artérias",
+            "constituem",
+            "hilar"
+          ]
+        }
+      }
+    ],
+    "b066af1f": [
+      {
+        "t": "Reconheceu o significado de necrose pancreática na situação clínica.",
+        "tag": "Necrose pancreática",
+        "open": {
+          "p": "Qual área do pâncreas está comprometida quando um segmento não realça após contraste em exame adequado?",
+          "r": "A ausência de realce indica perda de perfusão, compatível com necrose.",
+          "chaves": [
+            "realce",
+            "perfusão",
+            "necrose"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de parênquima viável na situação clínica.",
+        "tag": "Parênquima viável",
+        "open": {
+          "p": "A glândula está aumentada, mas realça em toda a extensão. Que interpretação do realce favorece a forma edematosa?",
+          "r": "A perfusão preservada afasta necrose macroscópica na área que realça.",
+          "chaves": [
+            "perfusão",
+            "macroscópica",
+            "realça"
+          ]
+        }
+      }
+    ],
+    "7ce3de90": [
+      {
+        "t": "Reconheceu o significado de aquisição sem contraste na situação clínica.",
+        "tag": "Aquisição sem contraste",
+        "open": {
+          "p": "No adulto não gestante com cólica renal, em que aquisição é mais simples distinguir um cálculo hiperatenuante da urina?",
+          "r": "Na TC sem contraste o cálculo se destaca sem opacificação concorrente da via excretora.",
+          "chaves": [
+            "TC",
+            "contraste",
+            "opacificação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+        "tag": "Localização ureteral",
+        "open": {
+          "p": "No corte sem contraste, o foco hiperdenso está no trajeto do ureter. Qual aspecto permite localizar o ponto de obstrução?",
+          "r": "A TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+          "chaves": [
+            "TC",
+            "dilatação",
+            "montante"
+          ]
+        }
+      }
+    ],
+    "c203ec8f": [
+      {
+        "t": "Reconheceu o significado de falha de relaxamento na situação clínica.",
+        "tag": "Falha de relaxamento",
+        "open": {
+          "p": "No esofagograma, o esôfago está dilatado e termina em afilamento distal liso. Qual mecanismo produz o bico de pássaro?",
+          "r": "A falha de relaxamento da junção esofagogástrica na acalasia dificulta o esvaziamento.",
+          "chaves": [
+            "falha",
+            "relaxamento",
+            "esofagogástrica"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de obstrução neoplásica na situação clínica.",
+        "tag": "Obstrução neoplásica",
+        "open": {
+          "p": "Em paciente com disfagia progressiva e emagrecimento, o estreitamento é irregular. Qual hipótese estrutural deve ser investigada?",
+          "r": "Uma neoplasia pode produzir estenose fixa e irregular, exigindo confirmação endoscópica.",
+          "chaves": [
+            "irregular",
+            "confirmação",
+            "endoscópica"
+          ]
+        }
+      }
+    ],
+    "1dad36be": [
+      {
+        "t": "Reconheceu que o líquido atenua pouco o som e aumenta a intensidade dos ecos recebidos de tecidos situados além dele.",
+        "tag": "Reforço acústico posterior",
+        "open": {
+          "p": "Compare a região profunda à cavidade líquida com os tecidos vizinhos. Por que essa região parece mais brilhante?",
+          "r": "O líquido atenua pouco o som e aumenta a intensidade dos ecos recebidos de tecidos situados além dele.",
+          "chaves": [
+            "recebidos",
+            "tecidos",
+            "situados"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de conteúdo anecoico na situação clínica.",
+        "tag": "Conteúdo anecoico",
+        "open": {
+          "p": "No interior da estrutura líquida descrita, qual padrão se espera antes de avaliar sua parede posterior?",
+          "r": "O líquido simples produz poucos ecos internos e aparece preto.",
+          "chaves": [
+            "internos",
+            "aparece",
+            "preto"
+          ]
+        }
+      }
+    ],
+    "9ac44b33": [
+      {
+        "t": "Reconheceu o significado de ar subdiafragmático na situação clínica.",
+        "tag": "Ar subdiafragmático",
+        "open": {
+          "p": "No exame em pé, um crescente escuro separa o fígado da cúpula direita. Onde se encontra o gás?",
+          "r": "O ar livre sobe e ocupa o espaço intraperitoneal subdiafragmático.",
+          "chaves": [
+            "sobe",
+            "intraperitoneal",
+            "subdiafragmático"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de critério bioquímico na situação clínica.",
+        "tag": "Critério bioquímico",
+        "open": {
+          "p": "Dor epigástrica típica acompanha lipase cinco vezes o limite superior. Qual segundo critério já está satisfeito?",
+          "r": "A lipase acima de três vezes o limite, associada à dor típica, permite o diagnóstico sem exigir TC confirmatória.",
+          "chaves": [
+            "limite",
+            "típica",
+            "TC"
+          ]
+        }
+      }
+    ],
+    "d0003a60": [
+      {
+        "t": "Reconheceu o significado de remodelamento cirrótico na situação clínica.",
+        "tag": "Remodelamento cirrótico",
+        "open": {
+          "p": "Observe a margem nodular e irregular do fígado. Que alteração crônica de arquitetura sustenta esse aspecto?",
+          "r": "Fibrose e nódulos de regeneração deformam a superfície do fígado.",
+          "chaves": [
+            "Fibrose",
+            "regeneração",
+            "fígado"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de hipertensão portal na situação clínica.",
+        "tag": "Hipertensão portal",
+        "open": {
+          "p": "Além da alteração hepática, o corte mostra ascite e aumento do baço. Que repercussão hemodinâmica integra esses sinais?",
+          "r": "Hipertensão no sistema porta favorece esplenomegalia, ascite e circulação colateral.",
+          "chaves": [
+            "Hipertensão",
+            "esplenomegalia",
+            "ascite"
+          ]
+        }
+      }
+    ],
+    "2aecc90a": [
+      {
+        "t": "Reconheceu o significado de septações mucinosas na situação clínica.",
+        "tag": "Septações mucinosas",
+        "open": {
+          "p": "Uma lesão pancreática contém grandes lóculos separados por septos. Que arquitetura favorece neoplasia cística mucinosa?",
+          "r": "O arranjo macrocístico multiloculado difere dos pequenos cistos de lesões serosas.",
+          "chaves": [
+            "macrocístico",
+            "multiloculado",
+            "serosas"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a cicatriz central pode calcificar e acompanha o arranjo de múltiplos microcistos.",
+        "tag": "Cicatriz central",
+        "open": {
+          "p": "Uma lesão pancreática microcística contém calcificação central estrelada. Qual característica sustenta natureza serosa?",
+          "r": "A cicatriz central pode calcificar e acompanha o arranjo de múltiplos microcistos.",
+          "chaves": [
+            "cicatriz",
+            "central",
+            "calcificar"
+          ]
+        }
+      }
+    ],
+    "e6a4a74b": [
+      {
+        "t": "Reconheceu o significado de perda de cartilagem na situação clínica.",
+        "tag": "Perda de cartilagem",
+        "open": {
+          "p": "No joelho, o espaço se reduz mais no compartimento medial. O estreitamento reflete perda de qual tecido?",
+          "r": "A cartilagem não é vista diretamente. Sua espessura é inferida pela largura do espaço.",
+          "chaves": [
+            "cartilagem",
+            "espessura",
+            "inferida"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o remodelamento subcondral aumenta a densidade radiográfica local.",
+        "tag": "Esclerose subcondral",
+        "open": {
+          "p": "A região imediatamente sob a superfície articular aparece mais branca no quadril com artrose. O que explica esse sinal?",
+          "r": "O remodelamento subcondral aumenta a densidade radiográfica local.",
+          "chaves": [
+            "remodelamento",
+            "subcondral",
+            "radiográfica"
+          ]
+        }
+      }
+    ],
+    "ab5ff180": [
+      {
+        "t": "Reconheceu que a elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+        "tag": "Redistribuição vascular",
+        "open": {
+          "p": "Em paciente cardiopata, os vasos dos ápices tornam-se tão calibrosos quanto os das bases. Qual alteração hemodinâmica está representada?",
+          "r": "A elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+          "chaves": [
+            "elevação",
+            "pressão",
+            "cefalização"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de espessamento septal na situação clínica.",
+        "tag": "Espessamento septal",
+        "open": {
+          "p": "Observe os traços basais curtos e horizontais que tocam a pleura. Qual estrutura foi espessada?",
+          "r": "As linhas B de Kerley representam septos interlobulares espessados, frequentemente por edema.",
+          "chaves": [
+            "representam",
+            "interlobulares",
+            "espessados"
+          ]
+        }
+      }
+    ],
+    "867445b2": [
+      {
+        "t": "Reconheceu o significado de cistos empilhados na situação clínica.",
+        "tag": "Cistos empilhados",
+        "open": {
+          "p": "Observe as pequenas cavidades subpleurais em camadas nas bases. Que alteração expressa fibrose avançada?",
+          "r": "A reorganização fibrótica produz faveolamento com espaços císticos sobrepostos.",
+          "chaves": [
+            "reorganização",
+            "fibrótica",
+            "faveolamento"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o tecido fibrótico traciona e distorce as vias aéreas.",
+        "tag": "Bronquiectasia de tração",
+        "open": {
+          "p": "Em área pulmonar retraída e fibrótica, os brônquios estão dilatados. Que mecanismo relaciona os dois achados?",
+          "r": "O tecido fibrótico traciona e distorce as vias aéreas.",
+          "chaves": [
+            "fibrótico",
+            "traciona",
+            "distorce"
+          ]
+        }
+      }
+    ],
+    "38329a62": [
+      {
+        "t": "Reconheceu o significado de coleção pleural livre na situação clínica.",
+        "tag": "Coleção pleural livre",
+        "open": {
+          "p": "O líquido forma um crescente posterior no paciente deitado. Como sua forma se relaciona à gravidade?",
+          "r": "O derrame livre ocupa a porção dependente e se molda à parede.",
+          "chaves": [
+            "livre",
+            "porção",
+            "molda"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de colapso por compressão na situação clínica.",
+        "tag": "Colapso por compressão",
+        "open": {
+          "p": "Qual mecanismo explica a faixa de pulmão denso e de volume reduzido junto ao derrame volumoso?",
+          "r": "A coleção comprime o parênquima adjacente e provoca atelectasia passiva.",
+          "chaves": [
+            "coleção",
+            "comprime",
+            "provoca"
+          ]
+        }
+      }
+    ],
+    "db8fae59": [
+      {
+        "t": "Reconheceu o significado de reação pleural na situação clínica.",
+        "tag": "Reação pleural",
+        "open": {
+          "p": "Em paciente com inflamação pancreática, qual achado extrabdominal pode aparecer no RX de tórax?",
+          "r": "Pode ocorrer derrame pleural reativo, com predomínio à esquerda.",
+          "chaves": [
+            "ocorrer",
+            "pleural",
+            "reativo"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de líquido pleural livre na situação clínica.",
+        "tag": "Líquido pleural livre",
+        "open": {
+          "p": "O limite superior da opacidade pleural sobe lateralmente. Que comportamento esperar em decúbito lateral?",
+          "r": "O líquido livre acompanha a gravidade, alterando sua distribuição.",
+          "chaves": [
+            "líquido",
+            "livre",
+            "distribuição"
+          ]
+        }
+      }
+    ],
+    "4e79793a": [
+      {
+        "t": "Reconheceu que o aumento de linfonodos pode modificar o relevo hilar e o mediastino.",
+        "tag": "Aumento linfonodal",
+        "open": {
+          "p": "O alargamento hilar e mediastinal tem contornos lobulados em paciente oncológico. Que estrutura deve ser avaliada na TC?",
+          "r": "O aumento de linfonodos pode modificar o relevo hilar e o mediastino.",
+          "chaves": [
+            "aumento",
+            "linfonodos",
+            "hilar"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que as artérias pulmonares constituem a maior parte da sombra hilar normal.",
+        "tag": "Vasculatura hilar",
+        "open": {
+          "p": "No tórax de referência, qual estrutura contribui predominantemente para a opacidade normal dos hilos?",
+          "r": "As artérias pulmonares constituem a maior parte da sombra hilar normal.",
+          "chaves": [
+            "artérias",
+            "constituem",
+            "hilar"
+          ]
+        }
+      }
+    ],
+    "50f408ed": [
+      {
+        "t": "Reconheceu que o lobo inferior direito toca o diafragma e sua consolidação pode apagar a interface.",
+        "tag": "Contato com diafragma",
+        "open": {
+          "p": "No exame da base direita, o contorno diafragmático fica apagado. Qual localização lobar é favorecida?",
+          "r": "O lobo inferior direito toca o diafragma e sua consolidação pode apagar a interface.",
+          "chaves": [
+            "toca",
+            "diafragma",
+            "consolidação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o contorno radiográfico exige contraste de densidade entre estruturas em contato.",
+        "tag": "Perda de interface",
+        "open": {
+          "p": "Duas estruturas adjacentes com a mesma densidade de partes moles deixam de ter limite visível. Que fenômeno explica esse apagamento?",
+          "r": "O contorno radiográfico exige contraste de densidade entre estruturas em contato.",
+          "chaves": [
+            "radiográfico",
+            "densidade",
+            "estruturas"
+          ]
+        }
+      }
+    ],
+    "aa332a49": [
+      {
+        "t": "Reconheceu o significado de obstrução do delgado na situação clínica.",
+        "tag": "Obstrução do delgado",
+        "open": {
+          "p": "As alças dilatadas são centrais, com pregas que cruzam toda a luz. Em que segmento se localiza a obstrução ilustrada?",
+          "r": "As pregas circulares atravessam toda a luz e ajudam a distinguir delgado de cólon.",
+          "chaves": [
+            "pregas",
+            "luz",
+            "delgado"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de níveis em escada na situação clínica.",
+        "tag": "Níveis em escada",
+        "open": {
+          "p": "Qual distribuição dos níveis hidroaéreos favorece obstrução mecânica do delgado?",
+          "r": "Vários níveis centrais em alturas diferentes associados a alças delgadas dilatadas.",
+          "chaves": [
+            "níveis",
+            "centrais",
+            "alturas"
+          ]
+        }
+      }
+    ],
+    "e63ae79f": [
+      {
+        "t": "Reconheceu o significado de investigação biliar na situação clínica.",
+        "tag": "Investigação biliar",
+        "open": {
+          "p": "A pancreatite foi confirmada. O que a pesquisa ultrassonográfica de cálculos acrescenta ao diagnóstico já feito?",
+          "r": "A USG procura uma causa biliar e sinais de obstrução, enquanto a lipase isolada não define etiologia.",
+          "chaves": [
+            "USG",
+            "procura",
+            "biliar"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de cálculo móvel na situação clínica.",
+        "tag": "Cálculo móvel",
+        "open": {
+          "p": "Um foco vesicular hiperecoico muda de posição quando o paciente vira. Que achado posterior deve ser pesquisado?",
+          "r": "Atenuação do som pelo cálculo produz sombra acústica posterior.",
+          "chaves": [
+            "cálculo",
+            "acústica",
+            "posterior"
+          ]
+        }
+      }
+    ],
+    "b6087998": [
+      {
+        "t": "Reconheceu que a tríade de Charcot sugere colangite em contexto de obstrução das vias biliares.",
+        "tag": "Infecção biliar obstrutiva",
+        "open": {
+          "p": "A paciente apresenta febre, icterícia e dor no hipocôndrio direito com bilirrubina direta elevada. Qual síndrome integra os dados?",
+          "r": "A tríade de Charcot sugere colangite em contexto de obstrução das vias biliares.",
+          "chaves": [
+            "Charcot",
+            "colangite",
+            "obstrução"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de perfil colestático na situação clínica.",
+        "tag": "Perfil colestático",
+        "open": {
+          "p": "Que alterações laboratoriais sustentam obstrução biliar com infecção no contexto da tríade de Charcot?",
+          "r": "Predomínio de bilirrubina direta, elevação de fosfatase alcalina e GGT e possível leucocitose.",
+          "chaves": [
+            "bilirrubina",
+            "alcalina",
+            "GGT"
+          ]
+        }
+      }
+    ],
+    "f04fd0b6": [
+      {
+        "t": "Reconheceu que a TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+        "tag": "Localização ureteral",
+        "open": {
+          "p": "No corte sem contraste, o foco hiperdenso está no trajeto do ureter. Qual aspecto permite localizar o ponto de obstrução?",
+          "r": "A TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+          "chaves": [
+            "TC",
+            "dilatação",
+            "montante"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de dilatação pielocalicial na situação clínica.",
+        "tag": "Dilatação pielocalicial",
+        "open": {
+          "p": "No ultrassom, cálices e pelve estão distendidos por conteúdo anecoico. Que mecanismo explica o aspecto?",
+          "r": "O represamento de urina a montante da obstrução produz hidronefrose.",
+          "chaves": [
+            "represamento",
+            "urina",
+            "hidronefrose"
+          ]
+        }
+      }
+    ],
+    "86ecbea9": [
+      {
+        "t": "Reconheceu o significado de parênquima viável na situação clínica.",
+        "tag": "Parênquima viável",
+        "open": {
+          "p": "A glândula está aumentada, mas realça em toda a extensão. Que interpretação do realce favorece a forma edematosa?",
+          "r": "A perfusão preservada afasta necrose macroscópica na área que realça.",
+          "chaves": [
+            "perfusão",
+            "macroscópica",
+            "realça"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de gordura inflamada na situação clínica.",
+        "tag": "Gordura inflamada",
+        "open": {
+          "p": "O que produz aumento da atenuação da gordura próxima ao pâncreas na pancreatite edematosa?",
+          "r": "Edema e exsudato por aumento da permeabilidade vascular alteram o aspecto da gordura.",
+          "chaves": [
+            "exsudato",
+            "aumento",
+            "gordura"
+          ]
+        }
+      }
+    ],
+    "d0d83dd8": [
+      {
+        "t": "Reconheceu o significado de apêndice não visto na situação clínica.",
+        "tag": "Apêndice não visto",
+        "open": {
+          "p": "A não visualização do apêndice encerra a investigação quando persistem dor focal e sinais inflamatórios?",
+          "r": "Não. Reavaliação clínica, observação ou avaliação cirúrgica dependem da suspeita residual.",
+          "chaves": [
+            "Não",
+            "Reavaliação",
+            "observação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de inflamação periapendicular na situação clínica.",
+        "tag": "Inflamação periapendicular",
+        "open": {
+          "p": "Na TC, o apêndice alargado tem gordura adjacente densificada. O que acrescenta a reação da gordura ao diâmetro isolado?",
+          "r": "Ela demonstra inflamação local e reforça o significado do aumento de calibre.",
+          "chaves": [
+            "inflamação",
+            "significado",
+            "calibre"
+          ]
+        }
+      }
+    ],
+    "f03c75a1": [
+      {
+        "t": "Reconheceu que o entrelaçamento de linhas caracteriza reticulação.",
+        "tag": "Rede reticular",
+        "open": {
+          "p": "A TC mostra linhas entrelaçadas distribuídas pelo interstício, sem predomínio de cistos empilhados. Qual padrão deve ser descrito?",
+          "r": "O entrelaçamento de linhas caracteriza reticulação.",
+          "chaves": [
+            "entrelaçamento",
+            "linhas",
+            "reticulação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a fibrose pode distorcer o interstício e produzir padrão reticular.",
+        "tag": "Remodelamento fibrótico",
+        "open": {
+          "p": "Uma trama de linhas finas entrelaçadas acompanha doença intersticial crônica. A qual processo a rede pode corresponder?",
+          "r": "A fibrose pode distorcer o interstício e produzir padrão reticular.",
+          "chaves": [
+            "fibrose",
+            "distorcer",
+            "interstício"
+          ]
+        }
+      }
+    ],
+    "791ca795": [
+      {
+        "t": "Reconheceu que a presença de cicatriz central típica favorece HNF.",
+        "tag": "Cicatriz central",
+        "open": {
+          "p": "Em uma lesão hepatocelular bem delimitada, qual achado favorece hiperplasia nodular focal em relação ao adenoma?",
+          "r": "A presença de cicatriz central típica favorece HNF.",
+          "chaves": [
+            "cicatriz",
+            "central",
+            "HNF"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de risco hemorrágico na situação clínica.",
+        "tag": "Risco hemorrágico",
+        "open": {
+          "p": "Uma mulher em uso de anticoncepcional tem lesão compatível com adenoma. Que complicação justifica atenção ao seguimento?",
+          "r": "Adenomas hepáticos podem sangrar, sobretudo quando maiores.",
+          "chaves": [
+            "Adenomas",
+            "hepáticos",
+            "sangrar"
+          ]
+        }
+      }
+    ],
+    "5dd8e30f": [
+      {
+        "t": "Reconheceu que o timo situa-se anteriormente e o timoma pode estar associado à miastenia.",
+        "tag": "Origem tímica",
+        "open": {
+          "p": "Uma massa anterior acompanha fraqueza muscular fatigável. Que origem mediastinal merece atenção?",
+          "r": "O timo situa-se anteriormente e o timoma pode estar associado à miastenia.",
+          "chaves": [
+            "timo",
+            "timoma",
+            "miastenia"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de relação com vasos na situação clínica.",
+        "tag": "Relação com vasos",
+        "open": {
+          "p": "Antes de nomear uma massa, o examinador localiza a veia braquiocefálica e os grandes vasos. A que etapa isso corresponde?",
+          "r": "As relações anatômicas situam a lesão no compartimento mediastinal correto.",
+          "chaves": [
+            "relações",
+            "anatômicas",
+            "compartimento"
+          ]
+        }
+      }
+    ],
+    "c026b08d": [
+      {
+        "t": "Reconheceu o significado de vasos preservados na situação clínica.",
+        "tag": "Vasos preservados",
+        "open": {
+          "p": "A densidade aumenta, mas ainda se acompanham os vasos dentro da opacidade. Qual detalhe separa esse padrão da consolidação?",
+          "r": "No vidro fosco, os contornos vasculares continuam identificáveis.",
+          "chaves": [
+            "contornos",
+            "vasculares",
+            "continuam"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de vasos obscurecidos na situação clínica.",
+        "tag": "Vasos obscurecidos",
+        "open": {
+          "p": "Um segmento se torna tão denso que apaga os vasos, restando brônquios escuros. Que mecanismo é compatível?",
+          "r": "O preenchimento alveolar extenso produz consolidação com possível broncograma.",
+          "chaves": [
+            "extenso",
+            "consolidação",
+            "broncograma"
+          ]
+        }
+      }
+    ],
+    "54dbc19": [
+      {
+        "t": "Reconheceu o significado de osteoartrite inicial na situação clínica.",
+        "tag": "Osteoartrite inicial",
+        "open": {
+          "p": "Dor mecânica, crepitação e rigidez breve podem preceder alterações no RX do joelho?",
+          "r": "Sim. A osteoartrite inicial pode ser sintomática antes que surjam sinais radiográficos.",
+          "chaves": [
+            "osteoartrite",
+            "inicial",
+            "sintomática"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de perda de cartilagem na situação clínica.",
+        "tag": "Perda de cartilagem",
+        "open": {
+          "p": "No joelho, o espaço se reduz mais no compartimento medial. O estreitamento reflete perda de qual tecido?",
+          "r": "A cartilagem não é vista diretamente. Sua espessura é inferida pela largura do espaço.",
+          "chaves": [
+            "cartilagem",
+            "espessura",
+            "inferida"
+          ]
+        }
+      }
+    ],
+    "8af5a923": [
+      {
+        "t": "Reconheceu o significado de metástases hematogênicas na situação clínica.",
+        "tag": "Metástases hematogênicas",
+        "open": {
+          "p": "Em paciente oncológico, as lesões arredondadas bilaterais têm diâmetros muito diferentes. Qual explicação integra esse aspecto?",
+          "r": "Implantes metastáticos pulmonares podem alcançar tamanhos variados.",
+          "chaves": [
+            "metastáticos",
+            "alcançar",
+            "tamanhos"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de disseminação metastática na situação clínica.",
+        "tag": "Disseminação metastática",
+        "open": {
+          "p": "Várias lesões redondas bilaterais têm tamanhos diferentes. Qual hipótese uma neoplasia prévia reforça?",
+          "r": "Implantes hematogênicos podem produzir nódulos ou massas de calibres variados.",
+          "chaves": [
+            "hematogênicos",
+            "nódulos",
+            "calibres"
+          ]
+        }
+      }
+    ],
+    "960a38c0": [
+      {
+        "t": "Reconheceu o significado de falha de relaxamento na situação clínica.",
+        "tag": "Falha de relaxamento",
+        "open": {
+          "p": "No esofagograma, o esôfago está dilatado e termina em afilamento distal liso. Qual mecanismo produz o bico de pássaro?",
+          "r": "A falha de relaxamento da junção esofagogástrica na acalasia dificulta o esvaziamento.",
+          "chaves": [
+            "falha",
+            "relaxamento",
+            "esofagogástrica"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de obstrução neoplásica na situação clínica.",
+        "tag": "Obstrução neoplásica",
+        "open": {
+          "p": "Em paciente com disfagia progressiva e emagrecimento, o estreitamento é irregular. Qual hipótese estrutural deve ser investigada?",
+          "r": "Uma neoplasia pode produzir estenose fixa e irregular, exigindo confirmação endoscópica.",
+          "chaves": [
+            "irregular",
+            "confirmação",
+            "endoscópica"
+          ]
+        }
+      }
+    ],
+    "21dbce53": [
+      {
+        "t": "Reconheceu que o acometimento predominante da porção central do lóbulo caracteriza enfisema centrolobular.",
+        "tag": "Destruição centrolobular",
+        "open": {
+          "p": "Em tabagista, áreas escuras predominam nos lobos superiores e não têm parede discernível. Onde se inicia o enfisema desse padrão?",
+          "r": "O acometimento predominante da porção central do lóbulo caracteriza enfisema centrolobular.",
+          "chaves": [
+            "porção",
+            "enfisema",
+            "centrolobular"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a parede definida favorece cisto em vez de área enfisematosa sem parede.",
+        "tag": "Cisto verdadeiro",
+        "open": {
+          "p": "Os espaços aéreos arredondados mostram um contorno fino e individualizável. Qual elemento os diferencia do enfisema?",
+          "r": "A parede definida favorece cisto em vez de área enfisematosa sem parede.",
+          "chaves": [
+            "definida",
+            "cisto",
+            "enfisematosa"
+          ]
+        }
+      }
+    ],
+    "ec8a6160": [
+      {
+        "t": "Reconheceu que os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+        "tag": "Brônquio aerado",
+        "open": {
+          "p": "Por que há estruturas tubulares escuras ramificadas dentro de uma opacidade alveolar?",
+          "r": "Os brônquios ainda contêm ar e contrastam com os alvéolos preenchidos.",
+          "chaves": [
+            "contrastam",
+            "alvéolos",
+            "preenchidos"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de vasos obscurecidos na situação clínica.",
+        "tag": "Vasos obscurecidos",
+        "open": {
+          "p": "Um segmento se torna tão denso que apaga os vasos, restando brônquios escuros. Que mecanismo é compatível?",
+          "r": "O preenchimento alveolar extenso produz consolidação com possível broncograma.",
+          "chaves": [
+            "extenso",
+            "consolidação",
+            "broncograma"
+          ]
+        }
+      }
+    ],
+    "873943e": [
+      {
+        "t": "Reconheceu o significado de reavaliação abdominal na situação clínica.",
+        "tag": "Reavaliação abdominal",
+        "open": {
+          "p": "Que orientação acompanha a alta no caso da prova com exame benigno e sem sinais de obstrução?",
+          "r": "Orientar retorno se houver piora, febre, vômitos persistentes ou outros sinais de alarme.",
+          "chaves": [
+            "Orientar",
+            "vômitos",
+            "persistentes"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a retenção de líquido e gás proximal a um ponto de transição sugere obstrução.",
+        "tag": "Dilatação de alças",
+        "open": {
+          "p": "Na etapa B da leitura, observam-se alças distendidas e níveis hidroaéreos. Qual mecanismo de abdome agudo é favorecido?",
+          "r": "A retenção de líquido e gás proximal a um ponto de transição sugere obstrução.",
+          "chaves": [
+            "retenção",
+            "transição",
+            "obstrução"
+          ]
+        }
+      }
+    ],
+    "e1b3978d": [
+      {
+        "t": "Reconheceu que o ultrassom examina a vesícula e pode demonstrar cálculos com sombra acústica.",
+        "tag": "Ultrassonografia abdominal",
+        "open": {
+          "p": "Em gestante com suspeita de colelitíase, qual método avalia a vesícula sem empregar radiação ionizante?",
+          "r": "O ultrassom examina a vesícula e pode demonstrar cálculos com sombra acústica.",
+          "chaves": [
+            "examina",
+            "vesícula",
+            "acústica"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de cálculo móvel na situação clínica.",
+        "tag": "Cálculo móvel",
+        "open": {
+          "p": "Um foco vesicular hiperecoico muda de posição quando o paciente vira. Que achado posterior deve ser pesquisado?",
+          "r": "Atenuação do som pelo cálculo produz sombra acústica posterior.",
+          "chaves": [
+            "cálculo",
+            "acústica",
+            "posterior"
+          ]
+        }
+      }
+    ],
+    "7ae46db4": [
+      {
+        "t": "Reconheceu o significado de níveis em escada na situação clínica.",
+        "tag": "Níveis em escada",
+        "open": {
+          "p": "Qual distribuição dos níveis hidroaéreos favorece obstrução mecânica do delgado?",
+          "r": "Vários níveis centrais em alturas diferentes associados a alças delgadas dilatadas.",
+          "chaves": [
+            "níveis",
+            "centrais",
+            "alturas"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de obstrução do delgado na situação clínica.",
+        "tag": "Obstrução do delgado",
+        "open": {
+          "p": "As alças dilatadas são centrais, com pregas que cruzam toda a luz. Em que segmento se localiza a obstrução ilustrada?",
+          "r": "As pregas circulares atravessam toda a luz e ajudam a distinguir delgado de cólon.",
+          "chaves": [
+            "pregas",
+            "luz",
+            "delgado"
+          ]
+        }
+      }
+    ],
+    "69d1282c": [
+      {
+        "t": "Reconheceu o significado de falha de relaxamento na situação clínica.",
+        "tag": "Falha de relaxamento",
+        "open": {
+          "p": "No esofagograma, o esôfago está dilatado e termina em afilamento distal liso. Qual mecanismo produz o bico de pássaro?",
+          "r": "A falha de relaxamento da junção esofagogástrica na acalasia dificulta o esvaziamento.",
+          "chaves": [
+            "falha",
+            "relaxamento",
+            "esofagogástrica"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de investigação de alarme na situação clínica.",
+        "tag": "Investigação de alarme",
+        "open": {
+          "p": "Um paciente com refluxo passa a apresentar disfagia progressiva e emagrecimento. Que indicação de EDA foi acrescentada?",
+          "r": "Sinais de alarme justificam visualizar a mucosa e investigar uma lesão estenosante.",
+          "chaves": [
+            "alarme",
+            "visualizar",
+            "investigar"
+          ]
+        }
+      }
+    ],
+    "ac89f36a": [
+      {
+        "t": "Reconheceu que a ultrassonografia caracteriza o derrame e permite localizar uma janela de acesso.",
+        "tag": "Janela para punção",
+        "open": {
+          "p": "Qual recurso à beira do leito mostra líquido anecoico, o diafragma e a posição do pulmão antes de uma punção?",
+          "r": "A ultrassonografia caracteriza o derrame e permite localizar uma janela de acesso.",
+          "chaves": [
+            "ultrassonografia",
+            "localizar",
+            "janela"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de conteúdo anecoico na situação clínica.",
+        "tag": "Conteúdo anecoico",
+        "open": {
+          "p": "No interior da estrutura líquida descrita, qual padrão se espera antes de avaliar sua parede posterior?",
+          "r": "O líquido simples produz poucos ecos internos e aparece preto.",
+          "chaves": [
+            "internos",
+            "aparece",
+            "preto"
+          ]
+        }
+      }
+    ],
+    "67576d74": [
+      {
+        "t": "Reconheceu o significado de desvio contralateral na situação clínica.",
+        "tag": "Desvio contralateral",
+        "open": {
+          "p": "Na imagem do paciente hipotenso, qual consequência da pressão crescente explica a mudança do mediastino?",
+          "r": "O aumento da pressão no hemitórax afetado desloca o mediastino ao lado oposto.",
+          "chaves": [
+            "pressão",
+            "hemitórax",
+            "mediastino"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a pressão intratorácica reduz o retorno venoso e pode causar choque obstrutivo.",
+        "tag": "Comprometimento hemodinâmico",
+        "open": {
+          "p": "Com hipotensão e hipertransparência unilateral, qual repercussão torna perigoso aguardar confirmação por outro exame?",
+          "r": "A pressão intratorácica reduz o retorno venoso e pode causar choque obstrutivo.",
+          "chaves": [
+            "pressão",
+            "intratorácica",
+            "obstrutivo"
+          ]
+        }
+      }
+    ],
+    "e9c5cf13": [
+      {
+        "t": "Reconheceu o significado de massa pancreática na situação clínica.",
+        "tag": "Massa pancreática",
+        "open": {
+          "p": "Como o adenocarcinoma ductal pancreático costuma realçar em comparação com o parênquima adjacente?",
+          "r": "É tipicamente hipovascular e hipoatenuante. Na cabeça, pode obstruir os ductos biliar e pancreático.",
+          "chaves": [
+            "hipovascular",
+            "hipoatenuante",
+            "pancreático"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de obstrução simultânea na situação clínica.",
+        "tag": "Obstrução simultânea",
+        "open": {
+          "p": "Na colangio-RM, colédoco e ducto pancreático estão dilatados. Qual mecanismo sugere uma massa da cabeça pancreática?",
+          "r": "A massa pode obstruir simultaneamente as vias biliar e pancreática, produzindo duplo ducto.",
+          "chaves": [
+            "simultaneamente",
+            "pancreática",
+            "ducto"
+          ]
+        }
+      }
+    ],
+    "337b87be": [
+      {
+        "t": "Reconheceu que o acometimento predominante da porção central do lóbulo caracteriza enfisema centrolobular.",
+        "tag": "Destruição centrolobular",
+        "open": {
+          "p": "Em tabagista, áreas escuras predominam nos lobos superiores e não têm parede discernível. Onde se inicia o enfisema desse padrão?",
+          "r": "O acometimento predominante da porção central do lóbulo caracteriza enfisema centrolobular.",
+          "chaves": [
+            "porção",
+            "enfisema",
+            "centrolobular"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a destruição alveolar e vascular reduz a trama periférica.",
+        "tag": "Rarefação vascular",
+        "open": {
+          "p": "A periferia dos pulmões fica mais transparente e tem menos vasos visíveis. Que componente do enfisema explica parte desse aspecto?",
+          "r": "A destruição alveolar e vascular reduz a trama periférica.",
+          "chaves": [
+            "destruição",
+            "vascular",
+            "periférica"
+          ]
+        }
+      }
+    ],
+    "5b2e14b4": [
+      {
+        "t": "Reconheceu o significado de torção do sigmoide na situação clínica.",
+        "tag": "Torção do sigmoide",
+        "open": {
+          "p": "Por que uma grande alça em U pode assumir configuração de grão de café?",
+          "r": "O volvo distende o segmento fechado, com aposição das paredes mediais da alça.",
+          "chaves": [
+            "distende",
+            "aposição",
+            "alça"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de obstrução do cólon na situação clínica.",
+        "tag": "Obstrução do cólon",
+        "open": {
+          "p": "A dilatação acompanha a moldura periférica, com haustrações incompletas. Que estrutura está predominantemente distendida?",
+          "r": "A topografia e as haustrações apontam para cólon.",
+          "chaves": [
+            "topografia",
+            "haustrações",
+            "cólon"
+          ]
+        }
+      }
+    ],
+    "13084f03": [
+      {
+        "t": "Reconheceu o significado de inflamação perivesicular na situação clínica.",
+        "tag": "Inflamação perivesicular",
+        "open": {
+          "p": "Com dor e Murphy positivo, há líquido ao redor da vesícula. O que esse achado acrescenta à presença de cálculo?",
+          "r": "O líquido perivesicular apoia inflamação aguda, sobretudo com distensão e espessamento da parede.",
+          "chaves": [
+            "perivesicular",
+            "inflamação",
+            "distensão"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de cálculo móvel na situação clínica.",
+        "tag": "Cálculo móvel",
+        "open": {
+          "p": "Um foco vesicular hiperecoico muda de posição quando o paciente vira. Que achado posterior deve ser pesquisado?",
+          "r": "Atenuação do som pelo cálculo produz sombra acústica posterior.",
+          "chaves": [
+            "cálculo",
+            "acústica",
+            "posterior"
+          ]
+        }
+      }
+    ],
+    "627835e1": [
+      {
+        "t": "Reconheceu que a elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+        "tag": "Redistribuição vascular",
+        "open": {
+          "p": "Em paciente cardiopata, os vasos dos ápices tornam-se tão calibrosos quanto os das bases. Qual alteração hemodinâmica está representada?",
+          "r": "A elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+          "chaves": [
+            "elevação",
+            "pressão",
+            "cefalização"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de septo interlobular na situação clínica.",
+        "tag": "Septo interlobular",
+        "open": {
+          "p": "Que estrutura desenha os contornos poligonais e as linhas perpendiculares à pleura em um cardiopata?",
+          "r": "O espessamento dos septos delimita os lóbulos pulmonares secundários.",
+          "chaves": [
+            "delimita",
+            "lóbulos",
+            "secundários"
+          ]
+        }
+      }
+    ],
+    "7d38d421": [
+      {
+        "t": "Reconheceu o significado de tórax sem infiltrado na situação clínica.",
+        "tag": "Tórax sem infiltrado",
+        "open": {
+          "p": "Como interpretar um RX sem infiltrado em paciente com rinorreia, espirros e ausculta normal?",
+          "r": "O achado é compatível com acometimento de vias aéreas superiores, sem evidência radiográfica de pneumonia.",
+          "chaves": [
+            "superiores",
+            "radiográfica",
+            "pneumonia"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de comparação bilateral na situação clínica.",
+        "tag": "Comparação bilateral",
+        "open": {
+          "p": "Para evitar perder uma pequena opacidade no campo médio, como se deve percorrer os campos pulmonares?",
+          "r": "Comparar zonas simétricas dos dois lados ajuda a perceber diferenças locais de transparência.",
+          "chaves": [
+            "simétricas",
+            "perceber",
+            "transparência"
+          ]
+        }
+      }
+    ],
+    "53e29f0f": [
+      {
+        "t": "Reconheceu o significado de aquisição sem contraste na situação clínica.",
+        "tag": "Aquisição sem contraste",
+        "open": {
+          "p": "No adulto não gestante com cólica renal, em que aquisição é mais simples distinguir um cálculo hiperatenuante da urina?",
+          "r": "Na TC sem contraste o cálculo se destaca sem opacificação concorrente da via excretora.",
+          "chaves": [
+            "TC",
+            "contraste",
+            "opacificação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de dilatação pielocalicial na situação clínica.",
+        "tag": "Dilatação pielocalicial",
+        "open": {
+          "p": "No ultrassom, cálices e pelve estão distendidos por conteúdo anecoico. Que mecanismo explica o aspecto?",
+          "r": "O represamento de urina a montante da obstrução produz hidronefrose.",
+          "chaves": [
+            "represamento",
+            "urina",
+            "hidronefrose"
+          ]
+        }
+      }
+    ],
+    "7e514a11": [
+      {
+        "t": "Reconheceu o significado de preenchimento centrípeto na situação clínica.",
+        "tag": "Preenchimento centrípeto",
+        "open": {
+          "p": "Uma lesão hepática realça primeiro em glóbulos periféricos. Como o hemangioma típico se comporta nas fases seguintes?",
+          "r": "O contraste progride da periferia para o centro.",
+          "chaves": [
+            "contraste",
+            "progride",
+            "periferia"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o iodo aumenta a atenuação dos raios X no sangue contrastado.",
+        "tag": "Opacificação vascular",
+        "open": {
+          "p": "Após injeção intravenosa, os vasos ficam mais claros. Qual fenômeno produz o realce?",
+          "r": "O iodo aumenta a atenuação dos raios X no sangue contrastado.",
+          "chaves": [
+            "iodo",
+            "atenuação",
+            "contrastado"
+          ]
+        }
+      }
+    ],
+    "41981dc1": [
+      {
+        "t": "Reconheceu o significado de aorta ascendente na situação clínica.",
+        "tag": "Aorta ascendente",
+        "open": {
+          "p": "No corte axial do tronco pulmonar, onde buscar a aorta ascendente?",
+          "r": "Anteriormente, à direita do tronco pulmonar. Compare sua posição com a aorta descendente mais posterior.",
+          "chaves": [
+            "tronco",
+            "pulmonar",
+            "aorta"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de falha de enchimento na situação clínica.",
+        "tag": "Falha de enchimento",
+        "open": {
+          "p": "Observe o material escuro circundado por sangue opacificado em ramo pulmonar. Qual sinal sustenta embolia?",
+          "r": "O trombo impede o enchimento local pelo contraste e cria um defeito intraluminal.",
+          "chaves": [
+            "trombo",
+            "enchimento",
+            "intraluminal"
+          ]
+        }
+      }
+    ],
+    "f8bc0a2a": [
+      {
+        "t": "Reconheceu o significado de perda de cartilagem na situação clínica.",
+        "tag": "Perda de cartilagem",
+        "open": {
+          "p": "No joelho, o espaço se reduz mais no compartimento medial. O estreitamento reflete perda de qual tecido?",
+          "r": "A cartilagem não é vista diretamente. Sua espessura é inferida pela largura do espaço.",
+          "chaves": [
+            "cartilagem",
+            "espessura",
+            "inferida"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o crescimento de osteófitos marginais altera o perfil do osso.",
+        "tag": "Formação marginal",
+        "open": {
+          "p": "Há projeções ósseas nas margens articulares de uma articulação degenerada. Que mudança produz esse contorno?",
+          "r": "O crescimento de osteófitos marginais altera o perfil do osso.",
+          "chaves": [
+            "osteófitos",
+            "marginais",
+            "osso"
+          ]
+        }
+      }
+    ],
+    "cb4d60a0": [
+      {
+        "t": "Reconheceu o significado de aquisição sem contraste na situação clínica.",
+        "tag": "Aquisição sem contraste",
+        "open": {
+          "p": "No adulto não gestante com cólica renal, em que aquisição é mais simples distinguir um cálculo hiperatenuante da urina?",
+          "r": "Na TC sem contraste o cálculo se destaca sem opacificação concorrente da via excretora.",
+          "chaves": [
+            "TC",
+            "contraste",
+            "opacificação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+        "tag": "Localização ureteral",
+        "open": {
+          "p": "No corte sem contraste, o foco hiperdenso está no trajeto do ureter. Qual aspecto permite localizar o ponto de obstrução?",
+          "r": "A TC mostra diretamente o cálculo e sua relação com a dilatação a montante.",
+          "chaves": [
+            "TC",
+            "dilatação",
+            "montante"
+          ]
+        }
+      }
+    ],
+    "b761da89": [
+      {
+        "t": "Reconheceu o significado de trajeto do contraste na situação clínica.",
+        "tag": "Trajeto do contraste",
+        "open": {
+          "p": "Por qual estrutura o contraste injetado em veia do braço chega ao átrio direito?",
+          "r": "Pela veia cava superior após atravessar o sistema venoso braquiocefálico.",
+          "chaves": [
+            "veia",
+            "superior",
+            "braquiocefálico"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de aorta ascendente na situação clínica.",
+        "tag": "Aorta ascendente",
+        "open": {
+          "p": "No corte axial do tronco pulmonar, onde buscar a aorta ascendente?",
+          "r": "Anteriormente, à direita do tronco pulmonar. Compare sua posição com a aorta descendente mais posterior.",
+          "chaves": [
+            "tronco",
+            "pulmonar",
+            "aorta"
+          ]
+        }
+      }
+    ],
+    "22450cda": [
+      {
+        "t": "Reconheceu o significado de enfisema subcutâneo na situação clínica.",
+        "tag": "Enfisema subcutâneo",
+        "open": {
+          "p": "Na TC, gás delineando planos musculares e subcutâneos da parede torácica ocupa qual compartimento?",
+          "r": "Os tecidos da parede, caracterizando enfisema subcutâneo. O pneumotórax ocupa a pleura.",
+          "chaves": [
+            "enfisema",
+            "subcutâneo",
+            "pneumotórax"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de ar pleural anterior na situação clínica.",
+        "tag": "Ar pleural anterior",
+        "open": {
+          "p": "Na TC em decúbito dorsal, identifica-se gás sem trama junto à face anterior do tórax. Qual localização explica esse padrão?",
+          "r": "O ar pleural tende a ocupar a região não dependente no paciente deitado.",
+          "chaves": [
+            "pleural",
+            "ocupar",
+            "deitado"
+          ]
+        }
+      }
+    ],
+    "e068aed4": [
+      {
+        "t": "Reconheceu o significado de metástases hepáticas na situação clínica.",
+        "tag": "Metástases hepáticas",
+        "open": {
+          "p": "Como interpretar múltiplos nódulos hepáticos com realce periférico em paciente com câncer conhecido?",
+          "r": "O contexto e a multiplicidade favorecem implantes metastáticos, que podem apresentar centro hipodenso.",
+          "chaves": [
+            "multiplicidade",
+            "apresentar",
+            "hipodenso"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de metástases hematogênicas na situação clínica.",
+        "tag": "Metástases hematogênicas",
+        "open": {
+          "p": "Em paciente oncológico, as lesões arredondadas bilaterais têm diâmetros muito diferentes. Qual explicação integra esse aspecto?",
+          "r": "Implantes metastáticos pulmonares podem alcançar tamanhos variados.",
+          "chaves": [
+            "metastáticos",
+            "alcançar",
+            "tamanhos"
+          ]
+        }
+      }
+    ],
+    "3d4559f8": [
+      {
+        "t": "Reconheceu o significado de falha de relaxamento na situação clínica.",
+        "tag": "Falha de relaxamento",
+        "open": {
+          "p": "No esofagograma, o esôfago está dilatado e termina em afilamento distal liso. Qual mecanismo produz o bico de pássaro?",
+          "r": "A falha de relaxamento da junção esofagogástrica na acalasia dificulta o esvaziamento.",
+          "chaves": [
+            "falha",
+            "relaxamento",
+            "esofagogástrica"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de obstrução neoplásica na situação clínica.",
+        "tag": "Obstrução neoplásica",
+        "open": {
+          "p": "Em paciente com disfagia progressiva e emagrecimento, o estreitamento é irregular. Qual hipótese estrutural deve ser investigada?",
+          "r": "Uma neoplasia pode produzir estenose fixa e irregular, exigindo confirmação endoscópica.",
+          "chaves": [
+            "irregular",
+            "confirmação",
+            "endoscópica"
+          ]
+        }
+      }
+    ],
+    "e8cfc98b": [
+      {
+        "t": "Reconheceu o significado de vasos preservados na situação clínica.",
+        "tag": "Vasos preservados",
+        "open": {
+          "p": "A densidade aumenta, mas ainda se acompanham os vasos dentro da opacidade. Qual detalhe separa esse padrão da consolidação?",
+          "r": "No vidro fosco, os contornos vasculares continuam identificáveis.",
+          "chaves": [
+            "contornos",
+            "vasculares",
+            "continuam"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de vasos obscurecidos na situação clínica.",
+        "tag": "Vasos obscurecidos",
+        "open": {
+          "p": "Um segmento se torna tão denso que apaga os vasos, restando brônquios escuros. Que mecanismo é compatível?",
+          "r": "O preenchimento alveolar extenso produz consolidação com possível broncograma.",
+          "chaves": [
+            "extenso",
+            "consolidação",
+            "broncograma"
+          ]
+        }
+      }
+    ],
+    "30ffc839": [
+      {
+        "t": "Reconheceu o significado de infecção da necrose na situação clínica.",
+        "tag": "Infecção da necrose",
+        "open": {
+          "p": "Em uma coleção necrótica sem intervenção prévia, o que a presença de gás faz suspeitar?",
+          "r": "Gás pode sugerir infecção. Sua ausência não exclui necrose infectada.",
+          "chaves": [
+            "Gás",
+            "infecção",
+            "necrose"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de necrose pancreática na situação clínica.",
+        "tag": "Necrose pancreática",
+        "open": {
+          "p": "Qual área do pâncreas está comprometida quando um segmento não realça após contraste em exame adequado?",
+          "r": "A ausência de realce indica perda de perfusão, compatível com necrose.",
+          "chaves": [
+            "realce",
+            "perfusão",
+            "necrose"
+          ]
+        }
+      }
+    ],
+    "e9fc31de": [
+      {
+        "t": "Reconheceu o significado de gordura inflamada na situação clínica.",
+        "tag": "Gordura inflamada",
+        "open": {
+          "p": "O que produz aumento da atenuação da gordura próxima ao pâncreas na pancreatite edematosa?",
+          "r": "Edema e exsudato por aumento da permeabilidade vascular alteram o aspecto da gordura.",
+          "chaves": [
+            "exsudato",
+            "aumento",
+            "gordura"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de parênquima viável na situação clínica.",
+        "tag": "Parênquima viável",
+        "open": {
+          "p": "A glândula está aumentada, mas realça em toda a extensão. Que interpretação do realce favorece a forma edematosa?",
+          "r": "A perfusão preservada afasta necrose macroscópica na área que realça.",
+          "chaves": [
+            "perfusão",
+            "macroscópica",
+            "realça"
+          ]
+        }
+      }
+    ],
+    "f2a11b02": [
+      {
+        "t": "Reconheceu o significado de reverberação horizontal na situação clínica.",
+        "tag": "Reverberação horizontal",
+        "open": {
+          "p": "Observe os ecos paralelos que repetem a linha pleural. Que fenômeno explica a repetição?",
+          "r": "As linhas A resultam de reverberação em pulmão aerado.",
+          "chaves": [
+            "resultam",
+            "reverberação",
+            "aerado"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de retificação diafragmática na situação clínica.",
+        "tag": "Retificação diafragmática",
+        "open": {
+          "p": "No filme frontal do tabagista, as cúpulas estão baixas e planas. Que efeito do aprisionamento aéreo se manifesta?",
+          "r": "O aumento do volume pulmonar deprime e retifica o diafragma.",
+          "chaves": [
+            "deprime",
+            "retifica",
+            "diafragma"
+          ]
+        }
+      }
+    ],
+    "d1bcaefb": [
+      {
+        "t": "Reconheceu o significado de massa pancreática na situação clínica.",
+        "tag": "Massa pancreática",
+        "open": {
+          "p": "Como o adenocarcinoma ductal pancreático costuma realçar em comparação com o parênquima adjacente?",
+          "r": "É tipicamente hipovascular e hipoatenuante. Na cabeça, pode obstruir os ductos biliar e pancreático.",
+          "chaves": [
+            "hipovascular",
+            "hipoatenuante",
+            "pancreático"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de obstrução simultânea na situação clínica.",
+        "tag": "Obstrução simultânea",
+        "open": {
+          "p": "Na colangio-RM, colédoco e ducto pancreático estão dilatados. Qual mecanismo sugere uma massa da cabeça pancreática?",
+          "r": "A massa pode obstruir simultaneamente as vias biliar e pancreática, produzindo duplo ducto.",
+          "chaves": [
+            "simultaneamente",
+            "pancreática",
+            "ducto"
+          ]
+        }
+      }
+    ],
+    "b3225256": [
+      {
+        "t": "Reconheceu o significado de espessamento septal na situação clínica.",
+        "tag": "Espessamento septal",
+        "open": {
+          "p": "Observe os traços basais curtos e horizontais que tocam a pleura. Qual estrutura foi espessada?",
+          "r": "As linhas B de Kerley representam septos interlobulares espessados, frequentemente por edema.",
+          "chaves": [
+            "representam",
+            "interlobulares",
+            "espessados"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+        "tag": "Redistribuição vascular",
+        "open": {
+          "p": "Em paciente cardiopata, os vasos dos ápices tornam-se tão calibrosos quanto os das bases. Qual alteração hemodinâmica está representada?",
+          "r": "A elevação da pressão venosa pulmonar pode produzir cefalização do fluxo.",
+          "chaves": [
+            "elevação",
+            "pressão",
+            "cefalização"
+          ]
+        }
+      }
+    ],
+    "33d6298a": [
+      {
+        "t": "Reconheceu o significado de perda de cartilagem na situação clínica.",
+        "tag": "Perda de cartilagem",
+        "open": {
+          "p": "No joelho, o espaço se reduz mais no compartimento medial. O estreitamento reflete perda de qual tecido?",
+          "r": "A cartilagem não é vista diretamente. Sua espessura é inferida pela largura do espaço.",
+          "chaves": [
+            "cartilagem",
+            "espessura",
+            "inferida"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o crescimento de osteófitos marginais altera o perfil do osso.",
+        "tag": "Formação marginal",
+        "open": {
+          "p": "Há projeções ósseas nas margens articulares de uma articulação degenerada. Que mudança produz esse contorno?",
+          "r": "O crescimento de osteófitos marginais altera o perfil do osso.",
+          "chaves": [
+            "osteófitos",
+            "marginais",
+            "osso"
+          ]
+        }
+      }
+    ],
+    "1728ba50": [
+      {
+        "t": "Reconheceu o significado de perfil colestático na situação clínica.",
+        "tag": "Perfil colestático",
+        "open": {
+          "p": "Que alterações laboratoriais sustentam obstrução biliar com infecção no contexto da tríade de Charcot?",
+          "r": "Predomínio de bilirrubina direta, elevação de fosfatase alcalina e GGT e possível leucocitose.",
+          "chaves": [
+            "bilirrubina",
+            "alcalina",
+            "GGT"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o impedimento ao escoamento da bile causa dilatação proximal e colestase.",
+        "tag": "Obstrução biliar",
+        "open": {
+          "p": "Em paciente ictérico, a USG revela dilatação das vias biliares a montante de uma lesão. Qual mecanismo deve ser investigado?",
+          "r": "O impedimento ao escoamento da bile causa dilatação proximal e colestase.",
+          "chaves": [
+            "impedimento",
+            "escoamento",
+            "dilatação"
+          ]
+        }
+      }
+    ],
+    "1912e7d3": [
+      {
+        "t": "Reconheceu que o colapso pulmonar atrai as estruturas para o lado com menor volume.",
+        "tag": "Perda de volume",
+        "open": {
+          "p": "Uma opacidade acompanha desvio da traqueia para o mesmo hemitórax. Qual mecanismo deve ser considerado?",
+          "r": "O colapso pulmonar atrai as estruturas para o lado com menor volume.",
+          "chaves": [
+            "colapso",
+            "atrai",
+            "volume"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de obstrução por intubação na situação clínica.",
+        "tag": "Obstrução por intubação",
+        "open": {
+          "p": "Após intubação seletiva direita, por que o hemitórax esquerdo ficou opaco e menor?",
+          "r": "A ventilação do pulmão esquerdo cessou e o ar foi reabsorvido, levando a colapso.",
+          "chaves": [
+            "ventilação",
+            "esquerdo",
+            "reabsorvido"
+          ]
+        }
+      }
+    ],
+    "8c067ee7": [
+      {
+        "t": "Reconheceu o significado de comprometimento vascular cognitivo na situação clínica.",
+        "tag": "Comprometimento vascular cognitivo",
+        "open": {
+          "p": "Que conjunto favorece comprometimento cognitivo vascular em uma pessoa com AVC prévio?",
+          "r": "Disfunção executiva, lentificação e lesões isquêmicas compatíveis na neuroimagem.",
+          "chaves": [
+            "Disfunção",
+            "executiva",
+            "lentificação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de sequela isquêmica na situação clínica.",
+        "tag": "Sequela isquêmica",
+        "open": {
+          "p": "O que a encefalomalácia representa em uma região previamente acometida por AVC?",
+          "r": "Perda crônica de tecido após lesão cerebral, compatível com sequela do evento isquêmico.",
+          "chaves": [
+            "crônica",
+            "sequela",
+            "isquêmico"
+          ]
+        }
+      }
+    ],
+    "6a3b7886": [
+      {
+        "t": "Reconheceu o significado de obstrução do delgado na situação clínica.",
+        "tag": "Obstrução do delgado",
+        "open": {
+          "p": "As alças dilatadas são centrais, com pregas que cruzam toda a luz. Em que segmento se localiza a obstrução ilustrada?",
+          "r": "As pregas circulares atravessam toda a luz e ajudam a distinguir delgado de cólon.",
+          "chaves": [
+            "pregas",
+            "luz",
+            "delgado"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o significado de níveis em escada na situação clínica.",
+        "tag": "Níveis em escada",
+        "open": {
+          "p": "Qual distribuição dos níveis hidroaéreos favorece obstrução mecânica do delgado?",
+          "r": "Vários níveis centrais em alturas diferentes associados a alças delgadas dilatadas.",
+          "chaves": [
+            "níveis",
+            "centrais",
+            "alturas"
+          ]
+        }
+      }
+    ]
+  }
+}

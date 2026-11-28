@@ -1,0 +1,3421 @@
+{
+  "materia": "semio",
+  "byHash": {
+    "13199787": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de exame físico geral.",
+        "tag": "Exame físico geral",
+        "open": {
+          "p": "Em que campo se registra que o paciente está em bom estado geral, lúcido e orientado?",
+          "r": "Na ectoscopia, parte do exame físico geral.",
+          "chaves": [
+            "ectoscopia",
+            "físico",
+            "geral"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de extensão sistêmica.",
+        "tag": "Extensão sistêmica",
+        "open": {
+          "p": "Que uso tem a ectoscopia no acompanhamento da evolução de um paciente?",
+          "r": "Permite avaliar repercussões sistêmicas, reconhecer novos achados e comparar o estado geral ao longo do tratamento.",
+          "chaves": [
+            "repercussões",
+            "sistêmicas",
+            "novos"
+          ]
+        }
+      }
+    ],
+    "41191742": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de primazia clínica.",
+        "tag": "Primazia clínica",
+        "open": {
+          "p": "Como se interpreta um exame complementar normal quando a hipótese clínica permanece forte?",
+          "r": "O resultado deve ser ponderado à luz da anamnese e do exame físico. Um dado isolado pode não afastar a hipótese.",
+          "chaves": [
+            "ponderado",
+            "anamnese",
+            "físico"
+          ]
+        }
+      },
+      {
+        "t": "Identificou exame clínico a partir dos dados descritos.",
+        "tag": "Exame clínico",
+        "open": {
+          "p": "O atestado para natação menciona ausência de sinais e sintomas após entrevista e avaliação física. Qual é a interpretação mais específica?",
+          "r": "Exame clínico. A conclusão reúne anamnese e exame físico. A redação do atestado não permite inferir que houve eletrocardiograma.",
+          "chaves": [
+            "conclusão",
+            "redação",
+            "atestado"
+          ]
+        }
+      }
+    ],
+    "43782421": [
+      {
+        "t": "Reconheceu que o ligamento é uma estrutura musculoesquelética profunda.",
+        "tag": "Dor ligamentar",
+        "open": {
+          "p": "Por que a dor recente após uma lesão de ligamento é classificada como somática profunda?",
+          "r": "O ligamento é uma estrutura musculoesquelética profunda. O início após o trauma define o componente temporal agudo.",
+          "chaves": [
+            "ligamento",
+            "musculoesquelética",
+            "profunda"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de duração da dor.",
+        "tag": "Duração da dor",
+        "open": {
+          "p": "Como a disciplina classifica a dor recente com um mês e meio de evolução no caso apresentado?",
+          "r": "Como aguda, pelo tempo de evolução. A classificação temporal é distinta da classificação por mecanismo.",
+          "chaves": [
+            "evolução",
+            "classificação",
+            "distinta"
+          ]
+        }
+      }
+    ],
+    "45381390": [
+      {
+        "t": "Identificou estenose mitral a partir dos dados descritos.",
+        "tag": "Estenose mitral",
+        "open": {
+          "p": "Em decúbito lateral esquerdo, ouve-se ruflar diastólico apical precedido de estalido de abertura. Qual é a interpretação mais específica?",
+          "r": "Estenose mitral. A passagem diastólica de sangue pela mitral estreitada produz ruído grave na ponta.",
+          "chaves": [
+            "Estenose",
+            "mitral",
+            "diastólica"
+          ]
+        }
+      },
+      {
+        "t": "Identificou intervalo diastólico a partir dos dados descritos.",
+        "tag": "Intervalo diastólico",
+        "open": {
+          "p": "A médica ouve um ruído após a segunda bulha e antes da primeira do ciclo seguinte. Qual é a interpretação mais específica?",
+          "r": "Intervalo diastólico. O período entre B2 e a próxima B1 corresponde à diástole ventricular.",
+          "chaves": [
+            "Intervalo",
+            "diastólico",
+            "B2"
+          ]
+        }
+      }
+    ],
+    "50742268": [
+      {
+        "t": "Identificou cianose segmentar a partir dos dados descritos.",
+        "tag": "Cianose segmentar",
+        "open": {
+          "p": "Um único membro com obstrução do retorno venoso torna-se azulado, enquanto língua e outros membros mantêm a cor habitual. Qual é a interpretação mais específica?",
+          "r": "Cianose segmentar. A distribuição restrita orienta para mecanismo circulatório local.",
+          "chaves": [
+            "Cianose",
+            "segmentar",
+            "distribuição"
+          ]
+        }
+      },
+      {
+        "t": "Identificou cianose central a partir dos dados descritos.",
+        "tag": "Cianose central",
+        "open": {
+          "p": "Em paciente hipoxêmico, a tonalidade azulada envolve língua e mucosa oral, além da pele. Qual é a interpretação mais específica?",
+          "r": "Cianose central. O envolvimento de mucosas sugere aumento de desoxi-hemoglobina no sangue arterial.",
+          "chaves": [
+            "Cianose",
+            "central",
+            "desoxi-hemoglobina"
+          ]
+        }
+      }
+    ],
+    "60819835": [
+      {
+        "t": "Identificou platipneia em pé a partir dos dados descritos.",
+        "tag": "Platipneia em pé",
+        "open": {
+          "p": "A dispneia aparece quando a paciente se senta ou fica em pé e diminui quando ela se deita. Qual é a interpretação mais específica?",
+          "r": "Platipneia em pé. A piora em posição ereta define o padrão e inverte a relação postural da ortopneia.",
+          "chaves": [
+            "Platipneia",
+            "posição",
+            "postural"
+          ]
+        }
+      },
+      {
+        "t": "Identificou trepopneia lateral a partir dos dados descritos.",
+        "tag": "Trepopneia lateral",
+        "open": {
+          "p": "A paciente respira confortavelmente em um decúbito lateral, mas sente falta de ar quando vira para o outro lado. Qual é a interpretação mais específica?",
+          "r": "Trepopneia lateral. A dependência de um lado específico distingue trepopneia das alterações provocadas pela posição vertical.",
+          "chaves": [
+            "Trepopneia",
+            "lateral",
+            "dependência"
+          ]
+        }
+      }
+    ],
+    "99585587": [
+      {
+        "t": "Identificou convergência medular a partir dos dados descritos.",
+        "tag": "Convergência medular",
+        "open": {
+          "p": "Uma irritação diafragmática produz dor no ombro, sem doença local ou continuidade anatômica da lesão até ele. Qual é a interpretação mais específica?",
+          "r": "Convergência medular. Aferências somáticas e viscerais convergem em segmentos medulares comuns e geram dor referida.",
+          "chaves": [
+            "Convergência",
+            "medular",
+            "Aferências"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de duração da dor.",
+        "tag": "Duração da dor",
+        "open": {
+          "p": "Como a disciplina classifica a dor recente com um mês e meio de evolução no caso apresentado?",
+          "r": "Como aguda, pelo tempo de evolução. A classificação temporal é distinta da classificação por mecanismo.",
+          "chaves": [
+            "evolução",
+            "classificação",
+            "distinta"
+          ]
+        }
+      }
+    ],
+    "8f3c2bdf": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de retração apical.",
+        "tag": "Retração apical",
+        "open": {
+          "p": "O que pode ocorrer com a região apical na sístole quando o ventrículo direito hipertrofiado domina o precórdio?",
+          "r": "Pode ocorrer retração apical associada a levantamento paraesternal e pulsações epigástricas.",
+          "chaves": [
+            "ocorrer",
+            "retração",
+            "apical"
+          ]
+        }
+      },
+      {
+        "t": "Identificou sobrecarga ventricular direita a partir dos dados descritos.",
+        "tag": "Sobrecarga ventricular direita",
+        "open": {
+          "p": "Um paciente com hipertensão pulmonar apresenta levantamento paraesternal e pulsações epigástricas. Qual é a interpretação mais específica?",
+          "r": "Sobrecarga ventricular direita. O ventrículo direito mais anterior transmite sua impulsão ao precórdio e à região subxifoide.",
+          "chaves": [
+            "Sobrecarga",
+            "ventricular",
+            "direita"
+          ]
+        }
+      }
+    ],
+    "26476c1a": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de componente tricúspide.",
+        "tag": "Componente tricúspide",
+        "open": {
+          "p": "Por que o bloqueio completo do ramo direito pode desdobrar B1?",
+          "r": "A ativação tardia do ventrículo direito atrasa o componente tricúspide de B1.",
+          "chaves": [
+            "direito",
+            "componente",
+            "tricúspide"
+          ]
+        }
+      },
+      {
+        "t": "Identificou desdobramento amplo a partir dos dados descritos.",
+        "tag": "Desdobramento amplo",
+        "open": {
+          "p": "Em paciente com bloqueio de ramo direito, os componentes já se separam na expiração e a distância aumenta ao inspirar. Qual é a interpretação mais específica?",
+          "r": "Desdobramento amplo. O atraso da ativação direita retarda P2, preservando a ampliação inspiratória da separação.",
+          "chaves": [
+            "Desdobramento",
+            "amplo",
+            "ampliação"
+          ]
+        }
+      }
+    ],
+    "1bdd5d37": [
+      {
+        "t": "Identificou alarme arrítmico a partir dos dados descritos.",
+        "tag": "Alarme arrítmico",
+        "open": {
+          "p": "Um jovem tem palpitações imediatamente antes de desmaiar deitado e relata morte súbita em familiar jovem. Qual é a interpretação mais específica?",
+          "r": "Alarme arrítmico. A posição, as palpitações e a história familiar justificam investigação de causa cardíaca.",
+          "chaves": [
+            "Alarme",
+            "arrítmico",
+            "palpitações"
+          ]
+        }
+      },
+      {
+        "t": "Identificou padrão reflexo a partir dos dados descritos.",
+        "tag": "Padrão reflexo",
+        "open": {
+          "p": "Em pé em uma sala quente, o paciente sente náuseas, percebe escurecimento visual e se protege antes da queda. Qual é a interpretação mais específica?",
+          "r": "Padrão reflexo. Gatilho e pródromos favorecem mecanismo vasovagal no diferencial da síncope cardíaca.",
+          "chaves": [
+            "Padrão",
+            "reflexo",
+            "pródromos"
+          ]
+        }
+      }
+    ],
+    "f0ab48c7": [
+      {
+        "t": "Identificou Rivero-Carvallo positivo a partir dos dados descritos.",
+        "tag": "Rivero-Carvallo positivo",
+        "open": {
+          "p": "Um sopro sistólico junto ao apêndice xifoide torna-se mais intenso na inspiração profunda. Qual é a interpretação mais específica?",
+          "r": "Rivero-Carvallo positivo. O aumento do retorno venoso eleva o fluxo regurgitante pela tricúspide.",
+          "chaves": [
+            "Rivero-Carvallo",
+            "positivo",
+            "regurgitante"
+          ]
+        }
+      },
+      {
+        "t": "Identificou insuficiência mitral a partir dos dados descritos.",
+        "tag": "Insuficiência mitral",
+        "open": {
+          "p": "Há sopro holossistólico na ponta com irradiação para a axila esquerda. Qual é a interpretação mais específica?",
+          "r": "Insuficiência mitral. O sangue reflui do ventrículo esquerdo ao átrio esquerdo durante a sístole.",
+          "chaves": [
+            "Insuficiência",
+            "mitral",
+            "reflui"
+          ]
+        }
+      }
+    ],
+    "bb81ff5f": [
+      {
+        "t": "Identificou desdobramento paradoxal a partir dos dados descritos.",
+        "tag": "Desdobramento paradoxal",
+        "open": {
+          "p": "Em paciente com bloqueio de ramo esquerdo, os componentes se separam na expiração e se aproximam na inspiração. Qual é a interpretação mais específica?",
+          "r": "Desdobramento paradoxal. O atraso de A2 inverte a sequência habitual. O atraso inspiratório de P2 aproxima os componentes.",
+          "chaves": [
+            "Desdobramento",
+            "paradoxal",
+            "componentes"
+          ]
+        }
+      },
+      {
+        "t": "Identificou desdobramento fisiológico a partir dos dados descritos.",
+        "tag": "Desdobramento fisiológico",
+        "open": {
+          "p": "Em um jovem assintomático, B2 se desdobra na inspiração e volta a ser única ao expirar. Qual é a interpretação mais específica?",
+          "r": "Desdobramento fisiológico. O aumento inspiratório do retorno direito atrasa P2 em relação a A2.",
+          "chaves": [
+            "Desdobramento",
+            "fisiológico",
+            "inspiratório"
+          ]
+        }
+      }
+    ],
+    "1c11eaa2": [
+      {
+        "t": "Identificou fibrilação atrial a partir dos dados descritos.",
+        "tag": "Fibrilação atrial",
+        "open": {
+          "p": "Os intervalos são irregularmente irregulares. A intensidade de B1 varia e há déficit de pulso. Qual é a interpretação mais específica?",
+          "r": "Fibrilação atrial. A atividade atrial desorganizada e a condução ventricular variável explicam a irregularidade.",
+          "chaves": [
+            "Fibrilação",
+            "atrial",
+            "condução"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de natriurese atrial.",
+        "tag": "Natriurese atrial",
+        "open": {
+          "p": "Por que pode haver aumento da diurese durante fibrilação atrial?",
+          "r": "A distensão atrial favorece liberação de peptídeo natriurético atrial, que aumenta a excreção de sódio e água.",
+          "chaves": [
+            "atrial",
+            "natriurético",
+            "excreção"
+          ]
+        }
+      }
+    ],
+    "133b8e4c": [
+      {
+        "t": "Identificou biotipo longilíneo a partir dos dados descritos.",
+        "tag": "Biotipo longilíneo",
+        "open": {
+          "p": "Um jovem alto de tórax estreito tem ângulo de Charpy agudo e ictus mais baixo e medial. Qual é a interpretação mais específica?",
+          "r": "Biotipo longilíneo. O coração mais verticalizado explica uma posição apical diferente da encontrada no normolíneo.",
+          "chaves": [
+            "Biotipo",
+            "longilíneo",
+            "explica"
+          ]
+        }
+      },
+      {
+        "t": "Identificou biotipo brevilíneo a partir dos dados descritos.",
+        "tag": "Biotipo brevilíneo",
+        "open": {
+          "p": "Em um homem de tórax largo e pescoço curto, a ponta cardíaca é palpada mais alta e lateral. Qual é a interpretação mais específica?",
+          "r": "Biotipo brevilíneo. O ângulo de Charpy obtuso acompanha a posição mais horizontal do coração.",
+          "chaves": [
+            "Biotipo",
+            "brevilíneo",
+            "coração"
+          ]
+        }
+      }
+    ],
+    "4caa59ad": [
+      {
+        "t": "Identificou equivalente anginoso a partir dos dados descritos.",
+        "tag": "Equivalente anginoso",
+        "open": {
+          "p": "Um idoso apresenta falta de ar e sudorese reprodutíveis ao esforço. A investigação documenta isquemia na ausência de dor torácica. Qual é a interpretação mais específica?",
+          "r": "Equivalente anginoso. A isquemia pode se manifestar por dispneia, náusea ou fadiga sem precordialgia típica.",
+          "chaves": [
+            "Equivalente",
+            "anginoso",
+            "isquemia"
+          ]
+        }
+      },
+      {
+        "t": "Identificou neuropatia autonômica a partir dos dados descritos.",
+        "tag": "Neuropatia autonômica",
+        "open": {
+          "p": "Um diabético com isquemia comprovada não percebe a dor visceral habitual. A discussão se concentra no mecanismo dessa apresentação. Qual é a interpretação mais específica?",
+          "r": "Neuropatia autonômica. A disfunção das vias autonômicas pode reduzir a percepção dolorosa.",
+          "chaves": [
+            "Neuropatia",
+            "autonômica",
+            "percepção"
+          ]
+        }
+      }
+    ],
+    "346df7cd": [
+      {
+        "t": "Identificou dor da dissecção a partir dos dados descritos.",
+        "tag": "Dor da dissecção",
+        "open": {
+          "p": "Uma dor torácica rasgante começa já em intensidade máxima e migra para a região interescapular. Qual é a interpretação mais específica?",
+          "r": "Dor da dissecção. A instalação abrupta e a migração acompanham a possibilidade de progressão da dissecção.",
+          "chaves": [
+            "Dor",
+            "dissecção",
+            "instalação"
+          ]
+        }
+      },
+      {
+        "t": "Identificou comprometimento de ramo a partir dos dados descritos.",
+        "tag": "Comprometimento de ramo",
+        "open": {
+          "p": "Na vigência da dor súbita, desaparece o pulso em um braço e surge diferença de pressão entre os membros. Qual é a interpretação mais específica?",
+          "r": "Comprometimento de ramo. A dissecção pode comprometer a perfusão de ramos da aorta e produzir assimetria.",
+          "chaves": [
+            "Comprometimento",
+            "ramo",
+            "dissecção"
+          ]
+        }
+      }
+    ],
+    "94badd5d": [
+      {
+        "t": "Identificou platipneia em pé a partir dos dados descritos.",
+        "tag": "Platipneia em pé",
+        "open": {
+          "p": "A dispneia aparece quando a paciente se senta ou fica em pé e diminui quando ela se deita. Qual é a interpretação mais específica?",
+          "r": "Platipneia em pé. A piora em posição ereta define o padrão e inverte a relação postural da ortopneia.",
+          "chaves": [
+            "Platipneia",
+            "posição",
+            "postural"
+          ]
+        }
+      },
+      {
+        "t": "Identificou ortopneia ao deitar a partir dos dados descritos.",
+        "tag": "Ortopneia ao deitar",
+        "open": {
+          "p": "Um paciente só consegue dormir apoiado em vários travesseiros porque perde o fôlego logo ao se deitar. Qual é a interpretação mais específica?",
+          "r": "Ortopneia ao deitar. A posição horizontal favorece congestão pulmonar na insuficiência cardíaca esquerda.",
+          "chaves": [
+            "Ortopneia",
+            "deitar",
+            "posição"
+          ]
+        }
+      }
+    ],
+    "d8d34b72": [
+      {
+        "t": "Identificou pneumotórax simples a partir dos dados descritos.",
+        "tag": "Pneumotórax simples",
+        "open": {
+          "p": "Após dor súbita, encontram-se timpanismo, frêmito reduzido e murmúrio diminuído de um lado, com estabilidade circulatória. Qual é a interpretação mais específica?",
+          "r": "Pneumotórax simples. O ar pleural reduz a transmissão vocal e respiratória e aumenta o timpanismo.",
+          "chaves": [
+            "Pneumotórax",
+            "simples",
+            "timpanismo"
+          ]
+        }
+      },
+      {
+        "t": "Identificou derrame pleural a partir dos dados descritos.",
+        "tag": "Derrame pleural",
+        "open": {
+          "p": "O hemitórax direito expande pouco. A base apresenta macicez, frêmito reduzido e diminuição do murmúrio vesicular. Qual é a interpretação mais específica?",
+          "r": "Derrame pleural. O líquido pleural isola o pulmão da parede e reduz a ressonância.",
+          "chaves": [
+            "Derrame",
+            "pleural",
+            "isola"
+          ]
+        }
+      }
+    ],
+    "23801fb1": [
+      {
+        "t": "Identificou exame clínico a partir dos dados descritos.",
+        "tag": "Exame clínico",
+        "open": {
+          "p": "O atestado para natação menciona ausência de sinais e sintomas após entrevista e avaliação física. Qual é a interpretação mais específica?",
+          "r": "Exame clínico. A conclusão reúne anamnese e exame físico. A redação do atestado não permite inferir que houve eletrocardiograma.",
+          "chaves": [
+            "conclusão",
+            "redação",
+            "atestado"
+          ]
+        }
+      },
+      {
+        "t": "Identificou exame complementar a partir dos dados descritos.",
+        "tag": "Exame complementar",
+        "open": {
+          "p": "O laudo entregue após a consulta descreve o ritmo em um traçado eletrocardiográfico. Qual é a interpretação mais específica?",
+          "r": "Exame complementar. O registro elétrico complementa a avaliação. Sua interpretação depende da hipótese levantada na consulta.",
+          "chaves": [
+            "complementar",
+            "elétrico",
+            "interpretação"
+          ]
+        }
+      }
+    ],
+    "dcc22b73": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de biotipo e pneumotórax.",
+        "tag": "Biotipo e pneumotórax",
+        "open": {
+          "p": "Que associação clínica torna relevante identificar o biotipo longilíneo no jovem com dor torácica súbita?",
+          "r": "O pneumotórax espontâneo primário é mais frequente em jovens do sexo masculino altos e longilíneos.",
+          "chaves": [
+            "pneumotórax",
+            "espontâneo",
+            "primário"
+          ]
+        }
+      },
+      {
+        "t": "Identificou variação do longilíneo a partir dos dados descritos.",
+        "tag": "Variação do longilíneo",
+        "open": {
+          "p": "Um adulto alto e de tórax estreito tem impulso apical no sexto espaço, medial à linha hemiclavicular e de pequena extensão. Qual é a interpretação mais específica?",
+          "r": "Variação do longilíneo. A posição mais vertical do coração pode explicar o achado sem aumento ventricular.",
+          "chaves": [
+            "Variação",
+            "longilíneo",
+            "coração"
+          ]
+        }
+      }
+    ],
+    "75ab1810": [
+      {
+        "t": "Identificou antecedente cirúrgico a partir dos dados descritos.",
+        "tag": "Antecedente cirúrgico",
+        "open": {
+          "p": "Uma paciente em consulta por tosse informa ter retirado o apêndice na adolescência, sem complicações. Qual é a interpretação mais específica?",
+          "r": "Antecedente cirúrgico. Uma operação anterior integra a história patológica pregressa mesmo após recuperação completa.",
+          "chaves": [
+            "Antecedente",
+            "cirúrgico",
+            "operação"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de antecedente vacinal.",
+        "tag": "Antecedente vacinal",
+        "open": {
+          "p": "Onde se documenta a situação vacinal referida, mesmo sem apresentação do cartão?",
+          "r": "Nos antecedentes pessoais, identificando que a informação foi referida pelo paciente.",
+          "chaves": [
+            "antecedentes",
+            "informação",
+            "referida"
+          ]
+        }
+      }
+    ],
+    "828572fb": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de pico de fluxo.",
+        "tag": "Pico de fluxo",
+        "open": {
+          "p": "O pico expiratório de fluxo subiu de 45% para 85% do previsto após tratamento. O que essa evolução indica?",
+          "r": "O aumento documenta melhora objetiva do fluxo expiratório e redução da obstrução.",
+          "chaves": [
+            "fluxo",
+            "expiratório",
+            "redução"
+          ]
+        }
+      },
+      {
+        "t": "Identificou crise de asma a partir dos dados descritos.",
+        "tag": "Crise de asma",
+        "open": {
+          "p": "Uma paciente com episódios reversíveis de chiado tem dispneia súbita, sibilos difusos e expiração prolongada. Qual é a interpretação mais específica?",
+          "r": "Crise de asma. Broncoespasmo e inflamação causam obstrução expiratória durante a crise.",
+          "chaves": [
+            "Crise",
+            "asma",
+            "inflamação"
+          ]
+        }
+      }
+    ],
+    "e263182c": [
+      {
+        "t": "Identificou derrame pleural a partir dos dados descritos.",
+        "tag": "Derrame pleural",
+        "open": {
+          "p": "O hemitórax direito expande pouco. A base apresenta macicez, frêmito reduzido e diminuição do murmúrio vesicular. Qual é a interpretação mais específica?",
+          "r": "Derrame pleural. O líquido pleural isola o pulmão da parede e reduz a ressonância.",
+          "chaves": [
+            "Derrame",
+            "pleural",
+            "isola"
+          ]
+        }
+      },
+      {
+        "t": "Identificou frêmito reduzido a partir dos dados descritos.",
+        "tag": "Frêmito reduzido",
+        "open": {
+          "p": "Sobre uma coleção pleural, a vibração vocal mal chega à parede apesar de a fala manter a mesma intensidade. Qual é a interpretação mais específica?",
+          "r": "Frêmito reduzido. O material interposto na pleura reduz a transmissão pulmonar até a mão.",
+          "chaves": [
+            "Frêmito",
+            "reduzido",
+            "transmissão"
+          ]
+        }
+      }
+    ],
+    "9a6063c5": [
+      {
+        "t": "Identificou predomínio bronquítico a partir dos dados descritos.",
+        "tag": "Predomínio bronquítico",
+        "open": {
+          "p": "Um paciente com obstrução crônica apresenta tosse produtiva diária volumosa, cianose e edema periférico. Qual é a interpretação mais específica?",
+          "r": "Predomínio bronquítico. A produção persistente de escarro e os sinais congestivos favorecem predomínio de bronquite crônica.",
+          "chaves": [
+            "Predomínio",
+            "bronquítico",
+            "crônica"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de volume e congestão.",
+        "tag": "Volume e congestão",
+        "open": {
+          "p": "Quais achados favorecem o fenótipo bronquítico clássico na DPOC?",
+          "r": "Tosse produtiva volumosa, cianose e, quando há cor pulmonale, edema periférico.",
+          "chaves": [
+            "produtiva",
+            "cianose",
+            "periférico"
+          ]
+        }
+      }
+    ],
+    "8c4c8a7": [
+      {
+        "t": "Identificou crise de asma a partir dos dados descritos.",
+        "tag": "Crise de asma",
+        "open": {
+          "p": "Uma paciente com episódios reversíveis de chiado tem dispneia súbita, sibilos difusos e expiração prolongada. Qual é a interpretação mais específica?",
+          "r": "Crise de asma. Broncoespasmo e inflamação causam obstrução expiratória durante a crise.",
+          "chaves": [
+            "Crise",
+            "asma",
+            "inflamação"
+          ]
+        }
+      },
+      {
+        "t": "Identificou predomínio bronquítico a partir dos dados descritos.",
+        "tag": "Predomínio bronquítico",
+        "open": {
+          "p": "Um paciente com obstrução crônica apresenta tosse produtiva diária volumosa, cianose e edema periférico. Qual é a interpretação mais específica?",
+          "r": "Predomínio bronquítico. A produção persistente de escarro e os sinais congestivos favorecem predomínio de bronquite crônica.",
+          "chaves": [
+            "Predomínio",
+            "bronquítico",
+            "crônica"
+          ]
+        }
+      }
+    ],
+    "f298469b": [
+      {
+        "t": "Identificou terceira bulha fisiológica a partir dos dados descritos.",
+        "tag": "Terceira bulha fisiológica",
+        "open": {
+          "p": "Em gestante sem sinais de congestão ou cardiopatia, ouve-se som grave breve logo após B2. Qual é a interpretação mais específica?",
+          "r": "Terceira bulha fisiológica. O aumento do enchimento rápido pode produzir B3 fisiológica nesse contexto.",
+          "chaves": [
+            "Terceira",
+            "bulha",
+            "fisiológica"
+          ]
+        }
+      },
+      {
+        "t": "Identificou intervalo diastólico a partir dos dados descritos.",
+        "tag": "Intervalo diastólico",
+        "open": {
+          "p": "A médica ouve um ruído após a segunda bulha e antes da primeira do ciclo seguinte. Qual é a interpretação mais específica?",
+          "r": "Intervalo diastólico. O período entre B2 e a próxima B1 corresponde à diástole ventricular.",
+          "chaves": [
+            "Intervalo",
+            "diastólico",
+            "B2"
+          ]
+        }
+      }
+    ],
+    "ee0bcfc9": [
+      {
+        "t": "Identificou quarta bulha audível a partir dos dados descritos.",
+        "tag": "Quarta bulha audível",
+        "open": {
+          "p": "Um hipertenso com hipertrofia ventricular em ritmo sinusal tem um som grave pouco antes de B1. Qual é a interpretação mais específica?",
+          "r": "Quarta bulha audível. A contração atrial impulsiona sangue contra um ventrículo pouco complacente e produz B4.",
+          "chaves": [
+            "Quarta",
+            "bulha",
+            "audível"
+          ]
+        }
+      },
+      {
+        "t": "Identificou quarta bulha ausente a partir dos dados descritos.",
+        "tag": "Quarta bulha ausente",
+        "open": {
+          "p": "Após instalar-se fibrilação atrial, desaparece o som pré-sistólico antes documentado no hipertenso. Qual é a interpretação mais específica?",
+          "r": "Quarta bulha ausente. A perda da contração atrial organizada impede a geração de B4.",
+          "chaves": [
+            "Quarta",
+            "bulha",
+            "ausente"
+          ]
+        }
+      }
+    ],
+    "268c081d": [
+      {
+        "t": "Identificou queixa principal a partir dos dados descritos.",
+        "tag": "Queixa principal",
+        "open": {
+          "p": "A primeira linha do prontuário registra “queimação que sobe para o peito há três dias”, nas palavras da paciente. Qual é a interpretação mais específica?",
+          "r": "Queixa principal. O motivo da consulta deve preservar a expressão da pessoa e pode incluir a duração.",
+          "chaves": [
+            "Queixa",
+            "principal",
+            "expressão"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de registro da queixa.",
+        "tag": "Registro da queixa",
+        "open": {
+          "p": "Como registrar a queixa principal quando o paciente descreve o sintoma em linguagem leiga?",
+          "r": "Usar uma frase breve em suas palavras, preservando o motivo de consulta sem presumir um diagnóstico.",
+          "chaves": [
+            "palavras",
+            "presumir",
+            "diagnóstico"
+          ]
+        }
+      }
+    ],
+    "71b7908f": [
+      {
+        "t": "Identificou exame clínico a partir dos dados descritos.",
+        "tag": "Exame clínico",
+        "open": {
+          "p": "O atestado para natação menciona ausência de sinais e sintomas após entrevista e avaliação física. Qual é a interpretação mais específica?",
+          "r": "Exame clínico. A conclusão reúne anamnese e exame físico. A redação do atestado não permite inferir que houve eletrocardiograma.",
+          "chaves": [
+            "conclusão",
+            "redação",
+            "atestado"
+          ]
+        }
+      },
+      {
+        "t": "Identificou exame complementar a partir dos dados descritos.",
+        "tag": "Exame complementar",
+        "open": {
+          "p": "O laudo entregue após a consulta descreve o ritmo em um traçado eletrocardiográfico. Qual é a interpretação mais específica?",
+          "r": "Exame complementar. O registro elétrico complementa a avaliação. Sua interpretação depende da hipótese levantada na consulta.",
+          "chaves": [
+            "complementar",
+            "elétrico",
+            "interpretação"
+          ]
+        }
+      }
+    ],
+    "33389ecd": [
+      {
+        "t": "Identificou predomínio bronquítico a partir dos dados descritos.",
+        "tag": "Predomínio bronquítico",
+        "open": {
+          "p": "Um paciente com obstrução crônica apresenta tosse produtiva diária volumosa, cianose e edema periférico. Qual é a interpretação mais específica?",
+          "r": "Predomínio bronquítico. A produção persistente de escarro e os sinais congestivos favorecem predomínio de bronquite crônica.",
+          "chaves": [
+            "Predomínio",
+            "bronquítico",
+            "crônica"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de volume e congestão.",
+        "tag": "Volume e congestão",
+        "open": {
+          "p": "Quais achados favorecem o fenótipo bronquítico clássico na DPOC?",
+          "r": "Tosse produtiva volumosa, cianose e, quando há cor pulmonale, edema periférico.",
+          "chaves": [
+            "produtiva",
+            "cianose",
+            "periférico"
+          ]
+        }
+      }
+    ],
+    "5080a845": [
+      {
+        "t": "Identificou estenose aórtica a partir dos dados descritos.",
+        "tag": "Estenose aórtica",
+        "open": {
+          "p": "Um idoso tem sopro sistólico rude em diamante na base, irradiado para as carótidas. Qual é a interpretação mais específica?",
+          "r": "Estenose aórtica. O fluxo ejetivo atravessa uma valva aórtica estreitada e gera o sopro na sístole.",
+          "chaves": [
+            "Estenose",
+            "aórtica",
+            "sopro"
+          ]
+        }
+      },
+      {
+        "t": "Identificou obstrução à ejeção a partir dos dados descritos.",
+        "tag": "Obstrução à ejeção",
+        "open": {
+          "p": "O paciente com sopro aórtico e pulso pequeno e tardio desmaia ao subir uma ladeira. Qual é a interpretação mais específica?",
+          "r": "Obstrução à ejeção. Na estenose aórtica importante o débito não aumenta adequadamente durante o esforço.",
+          "chaves": [
+            "Obstrução",
+            "ejeção",
+            "aórtica"
+          ]
+        }
+      }
+    ],
+    "1fa56fb7": [
+      {
+        "t": "Identificou obstrução à ejeção a partir dos dados descritos.",
+        "tag": "Obstrução à ejeção",
+        "open": {
+          "p": "O paciente com sopro aórtico e pulso pequeno e tardio desmaia ao subir uma ladeira. Qual é a interpretação mais específica?",
+          "r": "Obstrução à ejeção. Na estenose aórtica importante o débito não aumenta adequadamente durante o esforço.",
+          "chaves": [
+            "Obstrução",
+            "ejeção",
+            "aórtica"
+          ]
+        }
+      },
+      {
+        "t": "Identificou pródromo autonômico a partir dos dados descritos.",
+        "tag": "Pródromo autonômico",
+        "open": {
+          "p": "Pouco antes de cair, a paciente fica pálida, sua frio, sente náusea e consegue apoiar-se na parede. Qual é a interpretação mais específica?",
+          "r": "Pródromo autonômico. O aviso prévio permite um esboço de defesa e é comum na síncope vasovagal.",
+          "chaves": [
+            "Pródromo",
+            "autonômico",
+            "aviso"
+          ]
+        }
+      }
+    ],
+    "14b08e3a": [
+      {
+        "t": "Identificou sinal de levine a partir dos dados descritos.",
+        "tag": "Sinal de Levine",
+        "open": {
+          "p": "Para mostrar o desconforto, o paciente fecha o punho e o pressiona sobre o esterno. Qual é a interpretação mais específica?",
+          "r": "Sinal de Levine. O gesto traduz opressão retroesternal difusa e reforça a caracterização de dor isquêmica.",
+          "chaves": [
+            "Sinal",
+            "Levine",
+            "opressão"
+          ]
+        }
+      },
+      {
+        "t": "Identificou angina estável a partir dos dados descritos.",
+        "tag": "Angina estável",
+        "open": {
+          "p": "Há meses, a pressão no peito surge ao subir a mesma ladeira e cede em poucos minutos ao repouso. Qual é a interpretação mais específica?",
+          "r": "Angina estável. O limiar de esforço previsível e o alívio ao cessar a demanda caracterizam estabilidade.",
+          "chaves": [
+            "Angina",
+            "estável",
+            "previsível"
+          ]
+        }
+      }
+    ],
+    "2a0af6d8": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de exame físico geral.",
+        "tag": "Exame físico geral",
+        "open": {
+          "p": "Em que campo se registra que o paciente está em bom estado geral, lúcido e orientado?",
+          "r": "Na ectoscopia, parte do exame físico geral.",
+          "chaves": [
+            "ectoscopia",
+            "físico",
+            "geral"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de extensão sistêmica.",
+        "tag": "Extensão sistêmica",
+        "open": {
+          "p": "Que uso tem a ectoscopia no acompanhamento da evolução de um paciente?",
+          "r": "Permite avaliar repercussões sistêmicas, reconhecer novos achados e comparar o estado geral ao longo do tratamento.",
+          "chaves": [
+            "repercussões",
+            "sistêmicas",
+            "novos"
+          ]
+        }
+      }
+    ],
+    "3fc63030": [
+      {
+        "t": "Identificou derrame pleural a partir dos dados descritos.",
+        "tag": "Derrame pleural",
+        "open": {
+          "p": "O hemitórax direito expande pouco. A base apresenta macicez, frêmito reduzido e diminuição do murmúrio vesicular. Qual é a interpretação mais específica?",
+          "r": "Derrame pleural. O líquido pleural isola o pulmão da parede e reduz a ressonância.",
+          "chaves": [
+            "Derrame",
+            "pleural",
+            "isola"
+          ]
+        }
+      },
+      {
+        "t": "Identificou frêmito reduzido a partir dos dados descritos.",
+        "tag": "Frêmito reduzido",
+        "open": {
+          "p": "Sobre uma coleção pleural, a vibração vocal mal chega à parede apesar de a fala manter a mesma intensidade. Qual é a interpretação mais específica?",
+          "r": "Frêmito reduzido. O material interposto na pleura reduz a transmissão pulmonar até a mão.",
+          "chaves": [
+            "Frêmito",
+            "reduzido",
+            "transmissão"
+          ]
+        }
+      }
+    ],
+    "6e4e1bb5": [
+      {
+        "t": "Identificou posição de cócoras a partir dos dados descritos.",
+        "tag": "Posição de cócoras",
+        "open": {
+          "p": "Uma criança com tetralogia de Fallot interrompe a brincadeira, agacha e melhora da cianose. Qual é a interpretação mais específica?",
+          "r": "Posição de cócoras. O aumento da resistência vascular sistêmica reduz o desvio de sangue da direita para a esquerda.",
+          "chaves": [
+            "Posição",
+            "cócoras",
+            "sistêmica"
+          ]
+        }
+      },
+      {
+        "t": "Identificou cianose central a partir dos dados descritos.",
+        "tag": "Cianose central",
+        "open": {
+          "p": "Em paciente hipoxêmico, a tonalidade azulada envolve língua e mucosa oral, além da pele. Qual é a interpretação mais específica?",
+          "r": "Cianose central. O envolvimento de mucosas sugere aumento de desoxi-hemoglobina no sangue arterial.",
+          "chaves": [
+            "Cianose",
+            "central",
+            "desoxi-hemoglobina"
+          ]
+        }
+      }
+    ],
+    "325f476c": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de temperatura axilar.",
+        "tag": "Temperatura axilar",
+        "open": {
+          "p": "Como a disciplina classifica temperatura axilar de 38,2 °C no adulto?",
+          "r": "Como febre. O valor ultrapassa o limite de 37,8 °C adotado na aula.",
+          "chaves": [
+            "ultrapassa",
+            "37,8",
+            "adotado"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de frequência respiratória.",
+        "tag": "Frequência respiratória",
+        "open": {
+          "p": "Como interpretar 16 incursões respiratórias por minuto em um adulto em repouso?",
+          "r": "A frequência está na faixa de normalidade utilizada na aula.",
+          "chaves": [
+            "frequência",
+            "normalidade",
+            "utilizada"
+          ]
+        }
+      }
+    ],
+    "a35a7b1d": [
+      {
+        "t": "Identificou bradisfigmia radial a partir dos dados descritos.",
+        "tag": "Bradisfigmia radial",
+        "open": {
+          "p": "A palpação radial revela 52 ondas por minuto em um adulto desperto e em repouso. Qual é a interpretação mais específica?",
+          "r": "Bradisfigmia radial. A frequência de pulso inferior a 60 por minuto caracteriza bradisfigmia.",
+          "chaves": [
+            "Bradisfigmia",
+            "radial",
+            "minuto"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de bradicardia auscultada.",
+        "tag": "Bradicardia auscultada",
+        "open": {
+          "p": "Como se denomina frequência abaixo de 60 bpm contada diretamente no coração de um adulto em repouso?",
+          "r": "Bradicardia. O nome descreve a frequência e por si só não determina se a causa é patológica.",
+          "chaves": [
+            "Bradicardia",
+            "determina",
+            "patológica"
+          ]
+        }
+      }
+    ],
+    "84d90311": [
+      {
+        "t": "Identificou quarta bulha ausente a partir dos dados descritos.",
+        "tag": "Quarta bulha ausente",
+        "open": {
+          "p": "Após instalar-se fibrilação atrial, desaparece o som pré-sistólico antes documentado no hipertenso. Qual é a interpretação mais específica?",
+          "r": "Quarta bulha ausente. A perda da contração atrial organizada impede a geração de B4.",
+          "chaves": [
+            "Quarta",
+            "bulha",
+            "ausente"
+          ]
+        }
+      },
+      {
+        "t": "Identificou galope atrial a partir dos dados descritos.",
+        "tag": "Galope atrial",
+        "open": {
+          "p": "Um hipertenso taquicárdico em ritmo sinusal tem som adicional imediatamente antes de B1. Qual é a interpretação mais específica?",
+          "r": "Galope atrial. A B4 depende da contração atrial contra ventrículo rígido e produz galope pré-sistólico.",
+          "chaves": [
+            "Galope",
+            "atrial",
+            "B4"
+          ]
+        }
+      }
+    ],
+    "8938c611": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de som broncovesicular.",
+        "tag": "Som broncovesicular",
+        "open": {
+          "p": "Onde o som broncovesicular pode ser fisiológico no tórax?",
+          "r": "Sobre regiões próximas aos grandes brônquios, como a região interescapular. A interpretação depende do local de ausculta.",
+          "chaves": [
+            "regiões",
+            "próximas",
+            "interpretação"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de murmúrio vesicular.",
+        "tag": "Murmúrio vesicular",
+        "open": {
+          "p": "Qual som respiratório é esperado sobre a maior parte da periferia pulmonar normal?",
+          "r": "O murmúrio vesicular, mais suave e com predomínio inspiratório.",
+          "chaves": [
+            "murmúrio",
+            "vesicular",
+            "suave"
+          ]
+        }
+      }
+    ],
+    "63d2a159": [
+      {
+        "t": "Identificou terceira bulha fisiológica a partir dos dados descritos.",
+        "tag": "Terceira bulha fisiológica",
+        "open": {
+          "p": "Em gestante sem sinais de congestão ou cardiopatia, ouve-se som grave breve logo após B2. Qual é a interpretação mais específica?",
+          "r": "Terceira bulha fisiológica. O aumento do enchimento rápido pode produzir B3 fisiológica nesse contexto.",
+          "chaves": [
+            "Terceira",
+            "bulha",
+            "fisiológica"
+          ]
+        }
+      },
+      {
+        "t": "Identificou galope ventricular a partir dos dados descritos.",
+        "tag": "Galope ventricular",
+        "open": {
+          "p": "Um paciente congesto e taquicárdico tem som adicional imediatamente depois de B2. Qual é a interpretação mais específica?",
+          "r": "Galope ventricular. A B3 no início da diástole compõe o galope protodiastólico nesse contexto de disfunção.",
+          "chaves": [
+            "Galope",
+            "ventricular",
+            "B3"
+          ]
+        }
+      }
+    ],
+    "d79469a": [
+      {
+        "t": "Identificou insuficiência mitral a partir dos dados descritos.",
+        "tag": "Insuficiência mitral",
+        "open": {
+          "p": "Há sopro holossistólico na ponta com irradiação para a axila esquerda. Qual é a interpretação mais específica?",
+          "r": "Insuficiência mitral. O sangue reflui do ventrículo esquerdo ao átrio esquerdo durante a sístole.",
+          "chaves": [
+            "Insuficiência",
+            "mitral",
+            "reflui"
+          ]
+        }
+      },
+      {
+        "t": "Identificou intervalo sistólico a partir dos dados descritos.",
+        "tag": "Intervalo sistólico",
+        "open": {
+          "p": "Durante a palpação simultânea da carótida, o aluno delimita o período entre a primeira e a segunda bulha. Qual é a interpretação mais específica?",
+          "r": "Intervalo sistólico. A sístole ventricular situa-se entre B1 e B2 e abrange a ejeção que gera o pulso.",
+          "chaves": [
+            "Intervalo",
+            "sistólico",
+            "B2"
+          ]
+        }
+      }
+    ],
+    "d86c1280": [
+      {
+        "t": "Identificou taquicardia auscultada a partir dos dados descritos.",
+        "tag": "Taquicardia auscultada",
+        "open": {
+          "p": "O examinador conta 116 ciclos cardíacos por minuto ao auscultar o foco mitral. Qual é a interpretação mais específica?",
+          "r": "Taquicardia auscultada. Ao contar no coração, frequência acima de 100 bpm no adulto em repouso recebe o nome de taquicardia.",
+          "chaves": [
+            "Taquicardia",
+            "auscultada",
+            "coração"
+          ]
+        }
+      },
+      {
+        "t": "Identificou taquisfigmia radial a partir dos dados descritos.",
+        "tag": "Taquisfigmia radial",
+        "open": {
+          "p": "Ao palpar a artéria radial durante um minuto em repouso, o residente encontra 112 pulsações. Qual é a interpretação mais específica?",
+          "r": "Taquisfigmia radial. A contagem periférica acelerada recebe nome próprio e deve ser registrada como frequência de pulso.",
+          "chaves": [
+            "Taquisfigmia",
+            "radial",
+            "periférica"
+          ]
+        }
+      }
+    ],
+    "7c2b9f55": [
+      {
+        "t": "Identificou cianose central a partir dos dados descritos.",
+        "tag": "Cianose central",
+        "open": {
+          "p": "Em paciente hipoxêmico, a tonalidade azulada envolve língua e mucosa oral, além da pele. Qual é a interpretação mais específica?",
+          "r": "Cianose central. O envolvimento de mucosas sugere aumento de desoxi-hemoglobina no sangue arterial.",
+          "chaves": [
+            "Cianose",
+            "central",
+            "desoxi-hemoglobina"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de resposta ao oxigênio.",
+        "tag": "Resposta ao oxigênio",
+        "open": {
+          "p": "Em que tipo de cianose a correção de hipoxemia arterial pode melhorar a coloração das mucosas?",
+          "r": "Na cianose central por hipoxemia responsiva ao oxigênio. A resposta depende da causa.",
+          "chaves": [
+            "cianose",
+            "hipoxemia",
+            "oxigênio"
+          ]
+        }
+      }
+    ],
+    "e5be561": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de retração apical.",
+        "tag": "Retração apical",
+        "open": {
+          "p": "O que pode ocorrer com a região apical na sístole quando o ventrículo direito hipertrofiado domina o precórdio?",
+          "r": "Pode ocorrer retração apical associada a levantamento paraesternal e pulsações epigástricas.",
+          "chaves": [
+            "ocorrer",
+            "retração",
+            "apical"
+          ]
+        }
+      },
+      {
+        "t": "Identificou sobrecarga ventricular direita a partir dos dados descritos.",
+        "tag": "Sobrecarga ventricular direita",
+        "open": {
+          "p": "Um paciente com hipertensão pulmonar apresenta levantamento paraesternal e pulsações epigástricas. Qual é a interpretação mais específica?",
+          "r": "Sobrecarga ventricular direita. O ventrículo direito mais anterior transmite sua impulsão ao precórdio e à região subxifoide.",
+          "chaves": [
+            "Sobrecarga",
+            "ventricular",
+            "direita"
+          ]
+        }
+      }
+    ],
+    "ab094eea": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de fácies incaracterística.",
+        "tag": "Fácies incaracterística",
+        "open": {
+          "p": "Qual termo descreve uma fácies sem traços sindrômicos específicos?",
+          "r": "Fácies atípica ou incaracterística. Nesse contexto, atípica designa a ausência de um padrão patológico reconhecível.",
+          "chaves": [
+            "Fácies",
+            "atípica",
+            "incaracterística"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de expressão facial.",
+        "tag": "Expressão facial",
+        "open": {
+          "p": "A expressão de tristeza ou ansiedade, isoladamente, exige classificar a fácies como patológica?",
+          "r": "Não. A expressão emocional pode variar mesmo quando não há um conjunto de traços sindrômicos.",
+          "chaves": [
+            "expressão",
+            "emocional",
+            "sindrômicos"
+          ]
+        }
+      }
+    ],
+    "fdd1e54f": [
+      {
+        "t": "Identificou quarta bulha audível a partir dos dados descritos.",
+        "tag": "Quarta bulha audível",
+        "open": {
+          "p": "Um hipertenso com hipertrofia ventricular em ritmo sinusal tem um som grave pouco antes de B1. Qual é a interpretação mais específica?",
+          "r": "Quarta bulha audível. A contração atrial impulsiona sangue contra um ventrículo pouco complacente e produz B4.",
+          "chaves": [
+            "Quarta",
+            "bulha",
+            "audível"
+          ]
+        }
+      },
+      {
+        "t": "Identificou intervalo diastólico a partir dos dados descritos.",
+        "tag": "Intervalo diastólico",
+        "open": {
+          "p": "A médica ouve um ruído após a segunda bulha e antes da primeira do ciclo seguinte. Qual é a interpretação mais específica?",
+          "r": "Intervalo diastólico. O período entre B2 e a próxima B1 corresponde à diástole ventricular.",
+          "chaves": [
+            "Intervalo",
+            "diastólico",
+            "B2"
+          ]
+        }
+      }
+    ],
+    "7f905413": [
+      {
+        "t": "Identificou desdobramento paradoxal a partir dos dados descritos.",
+        "tag": "Desdobramento paradoxal",
+        "open": {
+          "p": "Em paciente com bloqueio de ramo esquerdo, os componentes se separam na expiração e se aproximam na inspiração. Qual é a interpretação mais específica?",
+          "r": "Desdobramento paradoxal. O atraso de A2 inverte a sequência habitual. O atraso inspiratório de P2 aproxima os componentes.",
+          "chaves": [
+            "Desdobramento",
+            "paradoxal",
+            "componentes"
+          ]
+        }
+      },
+      {
+        "t": "Identificou desdobramento fixo a partir dos dados descritos.",
+        "tag": "Desdobramento fixo",
+        "open": {
+          "p": "Os dois componentes de B2 permanecem separados de modo semelhante durante inspiração e expiração em paciente com comunicação interatrial. Qual é a interpretação mais específica?",
+          "r": "Desdobramento fixo. A ausência da variação respiratória habitual é a pista para a separação fixa.",
+          "chaves": [
+            "Desdobramento",
+            "fixo",
+            "separação"
+          ]
+        }
+      }
+    ],
+    "63bc3c6b": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de galope patológico.",
+        "tag": "Galope patológico",
+        "open": {
+          "p": "Que contexto distingue ritmo de galope de uma terceira bulha fisiológica isolada?",
+          "r": "Taquicardia associada a bulha adicional e a sinais de disfunção miocárdica favorece galope.",
+          "chaves": [
+            "disfunção",
+            "miocárdica",
+            "galope"
+          ]
+        }
+      },
+      {
+        "t": "Identificou ritmo tríplice fisiológico a partir dos dados descritos.",
+        "tag": "Ritmo tríplice fisiológico",
+        "open": {
+          "p": "Um adolescente assintomático, em frequência normal, apresenta B3 sem sinais de insuficiência cardíaca. Qual é a interpretação mais específica?",
+          "r": "Ritmo tríplice fisiológico. A terceira bulha pode acrescentar um tempo ao ciclo em pessoas jovens sem sofrimento miocárdico.",
+          "chaves": [
+            "Ritmo",
+            "tríplice",
+            "fisiológico"
+          ]
+        }
+      }
+    ],
+    "7d43ffa7": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de reservas musculares.",
+        "tag": "Reservas musculares",
+        "open": {
+          "p": "Que dados da inspeção sugerem perda de reservas corporais?",
+          "r": "Redução da musculatura e do panículo adiposo, com proeminência dos relevos ósseos.",
+          "chaves": [
+            "Redução",
+            "musculatura",
+            "panículo"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de sinais nutricionais.",
+        "tag": "Sinais nutricionais",
+        "open": {
+          "p": "Além do peso, o que se observa na pele e nos fâneros ao avaliar o estado nutricional?",
+          "r": "Alterações de textura, cor ou brilho da pele e dos cabelos podem complementar a avaliação de reservas.",
+          "chaves": [
+            "textura",
+            "pele",
+            "cabelos"
+          ]
+        }
+      }
+    ],
+    "634ab67f": [
+      {
+        "t": "Identificou som claro pulmonar a partir dos dados descritos.",
+        "tag": "Som claro pulmonar",
+        "open": {
+          "p": "A percussão de espaços intercostais simétricos sobre pulmões normalmente aerados produz ressonância habitual. Qual é a interpretação mais específica?",
+          "r": "Som claro pulmonar. Esse é o som esperado sobre parênquima aerado sem alteração importante.",
+          "chaves": [
+            "Som",
+            "claro",
+            "pulmonar"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de percussão e ausculta.",
+        "tag": "Percussão e ausculta",
+        "open": {
+          "p": "Qual a diferença entre obter ressonância pulmonar e ouvir murmúrio vesicular?",
+          "r": "A ressonância é produzida pela percussão. O murmúrio vesicular é ouvido durante a ausculta respiratória.",
+          "chaves": [
+            "ressonância",
+            "percussão",
+            "ausculta"
+          ]
+        }
+      }
+    ],
+    "955544be": [
+      {
+        "t": "Identificou desdobramento paradoxal a partir dos dados descritos.",
+        "tag": "Desdobramento paradoxal",
+        "open": {
+          "p": "Em paciente com bloqueio de ramo esquerdo, os componentes se separam na expiração e se aproximam na inspiração. Qual é a interpretação mais específica?",
+          "r": "Desdobramento paradoxal. O atraso de A2 inverte a sequência habitual. O atraso inspiratório de P2 aproxima os componentes.",
+          "chaves": [
+            "Desdobramento",
+            "paradoxal",
+            "componentes"
+          ]
+        }
+      },
+      {
+        "t": "Identificou desdobramento fisiológico a partir dos dados descritos.",
+        "tag": "Desdobramento fisiológico",
+        "open": {
+          "p": "Em um jovem assintomático, B2 se desdobra na inspiração e volta a ser única ao expirar. Qual é a interpretação mais específica?",
+          "r": "Desdobramento fisiológico. O aumento inspiratório do retorno direito atrasa P2 em relação a A2.",
+          "chaves": [
+            "Desdobramento",
+            "fisiológico",
+            "inspiratório"
+          ]
+        }
+      }
+    ],
+    "dc7914ba": [
+      {
+        "t": "Identificou revisão de sistemas a partir dos dados descritos.",
+        "tag": "Revisão de sistemas",
+        "open": {
+          "p": "Encerrada a história da cefaleia, a interna pergunta sobre sintomas respiratórios, digestivos e urinários. Qual é a interpretação mais específica?",
+          "r": "Revisão de sistemas. A busca por aparelhos amplia o atendimento para além da queixa principal.",
+          "chaves": [
+            "Revisão",
+            "sistemas",
+            "aparelhos"
+          ]
+        }
+      },
+      {
+        "t": "Identificou história familiar a partir dos dados descritos.",
+        "tag": "História familiar",
+        "open": {
+          "p": "Um paciente relata que o pai sofreu infarto aos 45 anos e pergunta se isso interfere no seu risco. Qual é a interpretação mais específica?",
+          "r": "História familiar. Doença cardiovascular precoce em parente de primeiro grau caracteriza antecedente familiar relevante.",
+          "chaves": [
+            "História",
+            "familiar",
+            "cardiovascular"
+          ]
+        }
+      }
+    ],
+    "d23369a3": [
+      {
+        "t": "Identificou desdobramento fixo a partir dos dados descritos.",
+        "tag": "Desdobramento fixo",
+        "open": {
+          "p": "Os dois componentes de B2 permanecem separados de modo semelhante durante inspiração e expiração em paciente com comunicação interatrial. Qual é a interpretação mais específica?",
+          "r": "Desdobramento fixo. A ausência da variação respiratória habitual é a pista para a separação fixa.",
+          "chaves": [
+            "Desdobramento",
+            "fixo",
+            "separação"
+          ]
+        }
+      },
+      {
+        "t": "Identificou desdobramento fisiológico a partir dos dados descritos.",
+        "tag": "Desdobramento fisiológico",
+        "open": {
+          "p": "Em um jovem assintomático, B2 se desdobra na inspiração e volta a ser única ao expirar. Qual é a interpretação mais específica?",
+          "r": "Desdobramento fisiológico. O aumento inspiratório do retorno direito atrasa P2 em relação a A2.",
+          "chaves": [
+            "Desdobramento",
+            "fisiológico",
+            "inspiratório"
+          ]
+        }
+      }
+    ],
+    "498a4654": [
+      {
+        "t": "Identificou fibrilação atrial a partir dos dados descritos.",
+        "tag": "Fibrilação atrial",
+        "open": {
+          "p": "Os intervalos são irregularmente irregulares. A intensidade de B1 varia e há déficit de pulso. Qual é a interpretação mais específica?",
+          "r": "Fibrilação atrial. A atividade atrial desorganizada e a condução ventricular variável explicam a irregularidade.",
+          "chaves": [
+            "Fibrilação",
+            "atrial",
+            "condução"
+          ]
+        }
+      },
+      {
+        "t": "Identificou déficit de pulso a partir dos dados descritos.",
+        "tag": "Déficit de pulso",
+        "open": {
+          "p": "No mesmo minuto, duas pessoas contam 110 batimentos no ápice e 82 ondas na radial. Qual é a interpretação mais específica?",
+          "r": "Déficit de pulso. Algumas contrações não geram onda palpável na periferia. A diferença simultânea é de 28 por minuto.",
+          "chaves": [
+            "Déficit",
+            "pulso",
+            "Algumas"
+          ]
+        }
+      }
+    ],
+    "35a23417": [
+      {
+        "t": "Identificou macicez fisiológica a partir dos dados descritos.",
+        "tag": "Macicez fisiológica",
+        "open": {
+          "p": "Descendo pela linha hemiclavicular direita, o som torna-se pouco ressonante ao alcançar o fígado. Qual é a interpretação mais específica?",
+          "r": "Macicez fisiológica. Uma víscera sólida produz macicez mesmo em indivíduo saudável.",
+          "chaves": [
+            "Macicez",
+            "fisiológica",
+            "víscera"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de percussão e ausculta.",
+        "tag": "Percussão e ausculta",
+        "open": {
+          "p": "Qual a diferença entre obter ressonância pulmonar e ouvir murmúrio vesicular?",
+          "r": "A ressonância é produzida pela percussão. O murmúrio vesicular é ouvido durante a ausculta respiratória.",
+          "chaves": [
+            "ressonância",
+            "percussão",
+            "ausculta"
+          ]
+        }
+      }
+    ],
+    "ff9dfd5d": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de bradicardia auscultada.",
+        "tag": "Bradicardia auscultada",
+        "open": {
+          "p": "Como se denomina frequência abaixo de 60 bpm contada diretamente no coração de um adulto em repouso?",
+          "r": "Bradicardia. O nome descreve a frequência e por si só não determina se a causa é patológica.",
+          "chaves": [
+            "Bradicardia",
+            "determina",
+            "patológica"
+          ]
+        }
+      },
+      {
+        "t": "Identificou bradisfigmia radial a partir dos dados descritos.",
+        "tag": "Bradisfigmia radial",
+        "open": {
+          "p": "A palpação radial revela 52 ondas por minuto em um adulto desperto e em repouso. Qual é a interpretação mais específica?",
+          "r": "Bradisfigmia radial. A frequência de pulso inferior a 60 por minuto caracteriza bradisfigmia.",
+          "chaves": [
+            "Bradisfigmia",
+            "radial",
+            "minuto"
+          ]
+        }
+      }
+    ],
+    "fb77ba3a": [
+      {
+        "t": "Identificou Rivero-Carvallo positivo a partir dos dados descritos.",
+        "tag": "Rivero-Carvallo positivo",
+        "open": {
+          "p": "Um sopro sistólico junto ao apêndice xifoide torna-se mais intenso na inspiração profunda. Qual é a interpretação mais específica?",
+          "r": "Rivero-Carvallo positivo. O aumento do retorno venoso eleva o fluxo regurgitante pela tricúspide.",
+          "chaves": [
+            "Rivero-Carvallo",
+            "positivo",
+            "regurgitante"
+          ]
+        }
+      },
+      {
+        "t": "Identificou insuficiência mitral a partir dos dados descritos.",
+        "tag": "Insuficiência mitral",
+        "open": {
+          "p": "Há sopro holossistólico na ponta com irradiação para a axila esquerda. Qual é a interpretação mais específica?",
+          "r": "Insuficiência mitral. O sangue reflui do ventrículo esquerdo ao átrio esquerdo durante a sístole.",
+          "chaves": [
+            "Insuficiência",
+            "mitral",
+            "reflui"
+          ]
+        }
+      }
+    ],
+    "81fe2f8b": [
+      {
+        "t": "Identificou gatilho vasovagal a partir dos dados descritos.",
+        "tag": "Gatilho vasovagal",
+        "open": {
+          "p": "Um aluno desmaia ao ver sangue em uma sala abafada depois de muito tempo em pé. Qual é a interpretação mais específica?",
+          "r": "Gatilho vasovagal. O contexto favorece resposta reflexa com vasodilatação e possível bradicardia.",
+          "chaves": [
+            "Gatilho",
+            "vasovagal",
+            "vasodilatação"
+          ]
+        }
+      },
+      {
+        "t": "Identificou pródromo autonômico a partir dos dados descritos.",
+        "tag": "Pródromo autonômico",
+        "open": {
+          "p": "Pouco antes de cair, a paciente fica pálida, sua frio, sente náusea e consegue apoiar-se na parede. Qual é a interpretação mais específica?",
+          "r": "Pródromo autonômico. O aviso prévio permite um esboço de defesa e é comum na síncope vasovagal.",
+          "chaves": [
+            "Pródromo",
+            "autonômico",
+            "aviso"
+          ]
+        }
+      }
+    ],
+    "3512c54": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de temperatura axilar.",
+        "tag": "Temperatura axilar",
+        "open": {
+          "p": "Como a disciplina classifica temperatura axilar de 38,2 °C no adulto?",
+          "r": "Como febre. O valor ultrapassa o limite de 37,8 °C adotado na aula.",
+          "chaves": [
+            "ultrapassa",
+            "37,8",
+            "adotado"
+          ]
+        }
+      },
+      {
+        "t": "Identificou taquipneia ao repouso a partir dos dados descritos.",
+        "tag": "Taquipneia ao repouso",
+        "open": {
+          "p": "Sem avisar que conta as incursões, a médica registra 29 ciclos respiratórios em um minuto no adulto sentado. Qual é a interpretação mais específica?",
+          "r": "Taquipneia ao repouso. O dado objetivo é o aumento da frequência respiratória do adulto em repouso.",
+          "chaves": [
+            "Taquipneia",
+            "repouso",
+            "adulto"
+          ]
+        }
+      }
+    ],
+    "d82d502e": [
+      {
+        "t": "Identificou crise de asma a partir dos dados descritos.",
+        "tag": "Crise de asma",
+        "open": {
+          "p": "Uma paciente com episódios reversíveis de chiado tem dispneia súbita, sibilos difusos e expiração prolongada. Qual é a interpretação mais específica?",
+          "r": "Crise de asma. Broncoespasmo e inflamação causam obstrução expiratória durante a crise.",
+          "chaves": [
+            "Crise",
+            "asma",
+            "inflamação"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de pico de fluxo.",
+        "tag": "Pico de fluxo",
+        "open": {
+          "p": "O pico expiratório de fluxo subiu de 45% para 85% do previsto após tratamento. O que essa evolução indica?",
+          "r": "O aumento documenta melhora objetiva do fluxo expiratório e redução da obstrução.",
+          "chaves": [
+            "fluxo",
+            "expiratório",
+            "redução"
+          ]
+        }
+      }
+    ],
+    "824d848e": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de fácies cushingoide.",
+        "tag": "Fácies cushingoide",
+        "open": {
+          "p": "Rosto arredondado com rubor, acne e hirsutismo sugere qual padrão facial?",
+          "r": "Fácies cushingoide, associada a excesso de glicocorticoides.",
+          "chaves": [
+            "Fácies",
+            "cushingoide",
+            "excesso"
+          ]
+        }
+      },
+      {
+        "t": "Identificou fácies mixedematosa a partir dos dados descritos.",
+        "tag": "Fácies mixedematosa",
+        "open": {
+          "p": "Uma mulher tem pele facial espessa e seca, pálpebras infiltradas e rarefação dos supercílios. Qual é a interpretação mais específica?",
+          "r": "Fácies mixedematosa. O conjunto sugere hipotireoidismo. A infiltração acompanha o espessamento dos traços.",
+          "chaves": [
+            "Fácies",
+            "mixedematosa",
+            "infiltração"
+          ]
+        }
+      }
+    ],
+    "1522cf37": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de entrevista sem julgamento.",
+        "tag": "Entrevista sem julgamento",
+        "open": {
+          "p": "Como evitar que o paciente omita uma exposição que teme ser julgada?",
+          "r": "Perguntar com respeito, sem censurar comportamentos, e assegurar espaço para o relato.",
+          "chaves": [
+            "Perguntar",
+            "respeito",
+            "censurar"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de síntese cronológica.",
+        "tag": "Síntese cronológica",
+        "open": {
+          "p": "O que fazer quando a história pessoal é narrada em fragmentos e fora de ordem?",
+          "r": "Escutar o relato e organizá-lo em uma síntese cronológica e inteligível no prontuário.",
+          "chaves": [
+            "Escutar",
+            "síntese",
+            "cronológica"
+          ]
+        }
+      }
+    ],
+    "b8ec4a91": [
+      {
+        "t": "Identificou disseminação fascial a partir dos dados descritos.",
+        "tag": "Disseminação fascial",
+        "open": {
+          "p": "Durante infecção de partes moles, surgem dor e sinais inflamatórios além do foco inicial, ao longo de um plano fascial. Qual é a interpretação mais específica?",
+          "r": "Disseminação fascial. A lesão se estende anatomicamente. A dor distante pode indicar progressão da infecção.",
+          "chaves": [
+            "Disseminação",
+            "fascial",
+            "infecção"
+          ]
+        }
+      },
+      {
+        "t": "Identificou convergência medular a partir dos dados descritos.",
+        "tag": "Convergência medular",
+        "open": {
+          "p": "Uma irritação diafragmática produz dor no ombro, sem doença local ou continuidade anatômica da lesão até ele. Qual é a interpretação mais específica?",
+          "r": "Convergência medular. Aferências somáticas e viscerais convergem em segmentos medulares comuns e geram dor referida.",
+          "chaves": [
+            "Convergência",
+            "medular",
+            "Aferências"
+          ]
+        }
+      }
+    ],
+    "e4cff39e": [
+      {
+        "t": "Identificou sofrimento psicogênico a partir dos dados descritos.",
+        "tag": "Sofrimento psicogênico",
+        "open": {
+          "p": "O quadro doloroso sofre forte modulação emocional. A equipe reconhece o sofrimento e planeja acompanhamento multiprofissional. Qual é a interpretação mais específica?",
+          "r": "Sofrimento psicogênico. A participação de fatores psíquicos não torna a dor simulada nem invalida a experiência da pessoa.",
+          "chaves": [
+            "Sofrimento",
+            "psicogênico",
+            "participação"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de dor e humor.",
+        "tag": "Dor e humor",
+        "open": {
+          "p": "Qual é a relevância de investigar transtornos do humor em pacientes com dor crônica e forte componente psicogênico?",
+          "r": "São comorbidades frequentes e podem agravar sofrimento e incapacidade. A investigação deve acolher a experiência dolorosa.",
+          "chaves": [
+            "comorbidades",
+            "frequentes",
+            "investigação"
+          ]
+        }
+      }
+    ],
+    "6080277e": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de duração da dor.",
+        "tag": "Duração da dor",
+        "open": {
+          "p": "Como a disciplina classifica a dor recente com um mês e meio de evolução no caso apresentado?",
+          "r": "Como aguda, pelo tempo de evolução. A classificação temporal é distinta da classificação por mecanismo.",
+          "chaves": [
+            "evolução",
+            "classificação",
+            "distinta"
+          ]
+        }
+      },
+      {
+        "t": "Identificou evolução temporal a partir dos dados descritos.",
+        "tag": "Evolução temporal",
+        "open": {
+          "p": "Ao reconstruir o primeiro episódio, a médica pergunta se o quadro começou de repente e quanto dura cada crise. Qual é a interpretação mais específica?",
+          "r": "Evolução temporal. Início, duração e curso ajudam a distinguir padrões temporais.",
+          "chaves": [
+            "Evolução",
+            "temporal",
+            "duração"
+          ]
+        }
+      }
+    ],
+    "fc41aed9": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de dor nociceptiva.",
+        "tag": "Dor nociceptiva",
+        "open": {
+          "p": "Que mecanismo explica a dor por inflamação ou distensão visceral na cólica biliar?",
+          "r": "A ativação de nociceptores em tecidos não neurais produz dor nociceptiva visceral.",
+          "chaves": [
+            "dor",
+            "nociceptiva",
+            "visceral"
+          ]
+        }
+      },
+      {
+        "t": "Identificou dor visceral a partir dos dados descritos.",
+        "tag": "Dor visceral",
+        "open": {
+          "p": "Um paciente com distensão de víscera oca sente cólica difusa e aponta uma ampla área do abdome. Qual é a interpretação mais específica?",
+          "r": "Dor visceral. A localização imprecisa é característica da aferência visceral.",
+          "chaves": [
+            "Dor",
+            "visceral",
+            "característica"
+          ]
+        }
+      }
+    ],
+    "61fbdba7": [
+      {
+        "t": "Identificou neuralgia por zóster a partir dos dados descritos.",
+        "tag": "Neuralgia por zóster",
+        "open": {
+          "p": "Um paciente apresenta queimação unilateral em faixa no tórax. Dias depois surgem vesículas no mesmo dermátomo. Qual é a interpretação mais específica?",
+          "r": "Neuralgia por zóster. O acometimento neural pelo zóster pode causar dor antes da erupção cutânea.",
+          "chaves": [
+            "Neuralgia",
+            "por",
+            "zóster"
+          ]
+        }
+      },
+      {
+        "t": "Identificou convergência medular a partir dos dados descritos.",
+        "tag": "Convergência medular",
+        "open": {
+          "p": "Uma irritação diafragmática produz dor no ombro, sem doença local ou continuidade anatômica da lesão até ele. Qual é a interpretação mais específica?",
+          "r": "Convergência medular. Aferências somáticas e viscerais convergem em segmentos medulares comuns e geram dor referida.",
+          "chaves": [
+            "Convergência",
+            "medular",
+            "Aferências"
+          ]
+        }
+      }
+    ],
+    "33dc1298": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de reservas musculares.",
+        "tag": "Reservas musculares",
+        "open": {
+          "p": "Que dados da inspeção sugerem perda de reservas corporais?",
+          "r": "Redução da musculatura e do panículo adiposo, com proeminência dos relevos ósseos.",
+          "chaves": [
+            "Redução",
+            "musculatura",
+            "panículo"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de sinais nutricionais.",
+        "tag": "Sinais nutricionais",
+        "open": {
+          "p": "Além do peso, o que se observa na pele e nos fâneros ao avaliar o estado nutricional?",
+          "r": "Alterações de textura, cor ou brilho da pele e dos cabelos podem complementar a avaliação de reservas.",
+          "chaves": [
+            "textura",
+            "pele",
+            "cabelos"
+          ]
+        }
+      }
+    ],
+    "40f2f2a3": [
+      {
+        "t": "Identificou taquisfigmia radial a partir dos dados descritos.",
+        "tag": "Taquisfigmia radial",
+        "open": {
+          "p": "Ao palpar a artéria radial durante um minuto em repouso, o residente encontra 112 pulsações. Qual é a interpretação mais específica?",
+          "r": "Taquisfigmia radial. A contagem periférica acelerada recebe nome próprio e deve ser registrada como frequência de pulso.",
+          "chaves": [
+            "Taquisfigmia",
+            "radial",
+            "periférica"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de frequência respiratória.",
+        "tag": "Frequência respiratória",
+        "open": {
+          "p": "Como interpretar 16 incursões respiratórias por minuto em um adulto em repouso?",
+          "r": "A frequência está na faixa de normalidade utilizada na aula.",
+          "chaves": [
+            "frequência",
+            "normalidade",
+            "utilizada"
+          ]
+        }
+      }
+    ],
+    "a7a1270f": [
+      {
+        "t": "Identificou revisão de sistemas a partir dos dados descritos.",
+        "tag": "Revisão de sistemas",
+        "open": {
+          "p": "Encerrada a história da cefaleia, a interna pergunta sobre sintomas respiratórios, digestivos e urinários. Qual é a interpretação mais específica?",
+          "r": "Revisão de sistemas. A busca por aparelhos amplia o atendimento para além da queixa principal.",
+          "chaves": [
+            "Revisão",
+            "sistemas",
+            "aparelhos"
+          ]
+        }
+      },
+      {
+        "t": "Identificou caracterização do achado a partir dos dados descritos.",
+        "tag": "Caracterização do achado",
+        "open": {
+          "p": "Durante a revisão urinária, o paciente refere ardor. O aluno pergunta desde quando, com que frequência e se existe urgência. Qual é a interpretação mais específica?",
+          "r": "Caracterização do achado. Uma resposta positiva pede aprofundamento semelhante ao usado para a queixa inicial.",
+          "chaves": [
+            "Caracterização",
+            "positiva",
+            "aprofundamento"
+          ]
+        }
+      }
+    ],
+    "725b242": [
+      {
+        "t": "Identificou história familiar a partir dos dados descritos.",
+        "tag": "História familiar",
+        "open": {
+          "p": "Um paciente relata que o pai sofreu infarto aos 45 anos e pergunta se isso interfere no seu risco. Qual é a interpretação mais específica?",
+          "r": "História familiar. Doença cardiovascular precoce em parente de primeiro grau caracteriza antecedente familiar relevante.",
+          "chaves": [
+            "História",
+            "familiar",
+            "cardiovascular"
+          ]
+        }
+      },
+      {
+        "t": "Identificou negativos pertinentes a partir dos dados descritos.",
+        "tag": "Negativos pertinentes",
+        "open": {
+          "p": "No registro respiratório, a médica escreve que o paciente nega tosse, dispneia e expectoração. Qual é a interpretação mais específica?",
+          "r": "Negativos pertinentes. Nomear os sintomas investigados documenta o alcance da revisão e evita siglas vagas.",
+          "chaves": [
+            "Negativos",
+            "pertinentes",
+            "revisão"
+          ]
+        }
+      }
+    ],
+    "6bbd5e83": [
+      {
+        "t": "Identificou queixa principal a partir dos dados descritos.",
+        "tag": "Queixa principal",
+        "open": {
+          "p": "A primeira linha do prontuário registra “queimação que sobe para o peito há três dias”, nas palavras da paciente. Qual é a interpretação mais específica?",
+          "r": "Queixa principal. O motivo da consulta deve preservar a expressão da pessoa e pode incluir a duração.",
+          "chaves": [
+            "Queixa",
+            "principal",
+            "expressão"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de registro da queixa.",
+        "tag": "Registro da queixa",
+        "open": {
+          "p": "Como registrar a queixa principal quando o paciente descreve o sintoma em linguagem leiga?",
+          "r": "Usar uma frase breve em suas palavras, preservando o motivo de consulta sem presumir um diagnóstico.",
+          "chaves": [
+            "palavras",
+            "presumir",
+            "diagnóstico"
+          ]
+        }
+      }
+    ],
+    "abcca972": [
+      {
+        "t": "Reconheceu que o ligamento é uma estrutura musculoesquelética profunda.",
+        "tag": "Dor ligamentar",
+        "open": {
+          "p": "Por que a dor recente após uma lesão de ligamento é classificada como somática profunda?",
+          "r": "O ligamento é uma estrutura musculoesquelética profunda. O início após o trauma define o componente temporal agudo.",
+          "chaves": [
+            "ligamento",
+            "musculoesquelética",
+            "profunda"
+          ]
+        }
+      },
+      {
+        "t": "Identificou dor somática profunda a partir dos dados descritos.",
+        "tag": "Dor somática profunda",
+        "open": {
+          "p": "Após contusão muscular, a dor piora ao contrair a musculatura lesada e é percebida em profundidade. Qual é a interpretação mais específica?",
+          "r": "Dor somática profunda. A origem está em estrutura somática profunda, como músculo ou articulação.",
+          "chaves": [
+            "Dor",
+            "somática",
+            "profunda"
+          ]
+        }
+      }
+    ],
+    "f2ad30c8": [
+      {
+        "t": "Identificou sofrimento psicogênico a partir dos dados descritos.",
+        "tag": "Sofrimento psicogênico",
+        "open": {
+          "p": "O quadro doloroso sofre forte modulação emocional. A equipe reconhece o sofrimento e planeja acompanhamento multiprofissional. Qual é a interpretação mais específica?",
+          "r": "Sofrimento psicogênico. A participação de fatores psíquicos não torna a dor simulada nem invalida a experiência da pessoa.",
+          "chaves": [
+            "Sofrimento",
+            "psicogênico",
+            "participação"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de dor e humor.",
+        "tag": "Dor e humor",
+        "open": {
+          "p": "Qual é a relevância de investigar transtornos do humor em pacientes com dor crônica e forte componente psicogênico?",
+          "r": "São comorbidades frequentes e podem agravar sofrimento e incapacidade. A investigação deve acolher a experiência dolorosa.",
+          "chaves": [
+            "comorbidades",
+            "frequentes",
+            "investigação"
+          ]
+        }
+      }
+    ],
+    "5ce4e9df": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de bradicardia auscultada.",
+        "tag": "Bradicardia auscultada",
+        "open": {
+          "p": "Como se denomina frequência abaixo de 60 bpm contada diretamente no coração de um adulto em repouso?",
+          "r": "Bradicardia. O nome descreve a frequência e por si só não determina se a causa é patológica.",
+          "chaves": [
+            "Bradicardia",
+            "determina",
+            "patológica"
+          ]
+        }
+      },
+      {
+        "t": "Identificou bradisfigmia radial a partir dos dados descritos.",
+        "tag": "Bradisfigmia radial",
+        "open": {
+          "p": "A palpação radial revela 52 ondas por minuto em um adulto desperto e em repouso. Qual é a interpretação mais específica?",
+          "r": "Bradisfigmia radial. A frequência de pulso inferior a 60 por minuto caracteriza bradisfigmia.",
+          "chaves": [
+            "Bradisfigmia",
+            "radial",
+            "minuto"
+          ]
+        }
+      }
+    ],
+    "e5dbb3a2": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de fácies cushingoide.",
+        "tag": "Fácies cushingoide",
+        "open": {
+          "p": "Rosto arredondado com rubor, acne e hirsutismo sugere qual padrão facial?",
+          "r": "Fácies cushingoide, associada a excesso de glicocorticoides.",
+          "chaves": [
+            "Fácies",
+            "cushingoide",
+            "excesso"
+          ]
+        }
+      },
+      {
+        "t": "Identificou fácies mixedematosa a partir dos dados descritos.",
+        "tag": "Fácies mixedematosa",
+        "open": {
+          "p": "Uma mulher tem pele facial espessa e seca, pálpebras infiltradas e rarefação dos supercílios. Qual é a interpretação mais específica?",
+          "r": "Fácies mixedematosa. O conjunto sugere hipotireoidismo. A infiltração acompanha o espessamento dos traços.",
+          "chaves": [
+            "Fácies",
+            "mixedematosa",
+            "infiltração"
+          ]
+        }
+      }
+    ],
+    "f4108206": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de cigarro de palha.",
+        "tag": "Cigarro de palha",
+        "open": {
+          "p": "Qual equivalência foi usada no exercício da prova para oito cigarros de palha por dia?",
+          "r": "Na convenção específica desse exercício, oito cigarros de palha equivalem a quarenta industrializados, ou dois maços por dia.",
+          "chaves": [
+            "exercício",
+            "cigarros",
+            "palha"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de exposição acumulada.",
+        "tag": "Exposição acumulada",
+        "open": {
+          "p": "Como calcular a carga tabágica de quem fumou dois maços ao dia durante 25 anos?",
+          "r": "Multiplicam-se dois maços por 25 anos, obtendo-se 50 anos-maço.",
+          "chaves": [
+            "Multiplicam-se",
+            "maços",
+            "obtendo-se"
+          ]
+        }
+      }
+    ],
+    "57c3818": [
+      {
+        "t": "Identificou exame clínico a partir dos dados descritos.",
+        "tag": "Exame clínico",
+        "open": {
+          "p": "O atestado para natação menciona ausência de sinais e sintomas após entrevista e avaliação física. Qual é a interpretação mais específica?",
+          "r": "Exame clínico. A conclusão reúne anamnese e exame físico. A redação do atestado não permite inferir que houve eletrocardiograma.",
+          "chaves": [
+            "conclusão",
+            "redação",
+            "atestado"
+          ]
+        }
+      },
+      {
+        "t": "Identificou exame complementar a partir dos dados descritos.",
+        "tag": "Exame complementar",
+        "open": {
+          "p": "O laudo entregue após a consulta descreve o ritmo em um traçado eletrocardiográfico. Qual é a interpretação mais específica?",
+          "r": "Exame complementar. O registro elétrico complementa a avaliação. Sua interpretação depende da hipótese levantada na consulta.",
+          "chaves": [
+            "complementar",
+            "elétrico",
+            "interpretação"
+          ]
+        }
+      }
+    ],
+    "f64ec11a": [
+      {
+        "t": "Identificou revisão de sistemas a partir dos dados descritos.",
+        "tag": "Revisão de sistemas",
+        "open": {
+          "p": "Encerrada a história da cefaleia, a interna pergunta sobre sintomas respiratórios, digestivos e urinários. Qual é a interpretação mais específica?",
+          "r": "Revisão de sistemas. A busca por aparelhos amplia o atendimento para além da queixa principal.",
+          "chaves": [
+            "Revisão",
+            "sistemas",
+            "aparelhos"
+          ]
+        }
+      },
+      {
+        "t": "Identificou hipótese adicional a partir dos dados descritos.",
+        "tag": "Hipótese adicional",
+        "open": {
+          "p": "Um paciente procura atendimento por dor no joelho. Ao ser interrogado, relata sede intensa e aumento recente do volume urinário. Qual é a interpretação mais específica?",
+          "r": "Hipótese adicional. Achados de outro sistema podem levantar uma hipótese clínica independente da queixa inicial.",
+          "chaves": [
+            "adicional",
+            "levantar",
+            "independente"
+          ]
+        }
+      }
+    ],
+    "7dec5ce5": [
+      {
+        "t": "Identificou sinal observado a partir dos dados descritos.",
+        "tag": "Sinal observado",
+        "open": {
+          "p": "Ao inspecionar as escleras à luz natural, o interno observa coloração amarelada. Qual é a interpretação mais específica?",
+          "r": "Sinal observado. A icterícia constatada pelo examinador constitui um dado objetivo da inspeção.",
+          "chaves": [
+            "Sinal",
+            "observado",
+            "inspeção"
+          ]
+        }
+      },
+      {
+        "t": "Identificou revisão de sistemas a partir dos dados descritos.",
+        "tag": "Revisão de sistemas",
+        "open": {
+          "p": "Encerrada a história da cefaleia, a interna pergunta sobre sintomas respiratórios, digestivos e urinários. Qual é a interpretação mais específica?",
+          "r": "Revisão de sistemas. A busca por aparelhos amplia o atendimento para além da queixa principal.",
+          "chaves": [
+            "Revisão",
+            "sistemas",
+            "aparelhos"
+          ]
+        }
+      }
+    ],
+    "22c7a1d": [
+      {
+        "t": "Identificou doença crônica prévia a partir dos dados descritos.",
+        "tag": "Doença crônica prévia",
+        "open": {
+          "p": "Um homem mantém pressão normal com losartana e afirma que por isso deixou de ter hipertensão. Qual é a interpretação mais específica?",
+          "r": "Doença crônica prévia. O controle terapêutico não apaga o diagnóstico prévio. Doença e tratamento merecem registro.",
+          "chaves": [
+            "Doença",
+            "crônica",
+            "prévia"
+          ]
+        }
+      },
+      {
+        "t": "Identificou antecedente cirúrgico a partir dos dados descritos.",
+        "tag": "Antecedente cirúrgico",
+        "open": {
+          "p": "Uma paciente em consulta por tosse informa ter retirado o apêndice na adolescência, sem complicações. Qual é a interpretação mais específica?",
+          "r": "Antecedente cirúrgico. Uma operação anterior integra a história patológica pregressa mesmo após recuperação completa.",
+          "chaves": [
+            "Antecedente",
+            "cirúrgico",
+            "operação"
+          ]
+        }
+      }
+    ],
+    "82f7969d": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de fácies incaracterística.",
+        "tag": "Fácies incaracterística",
+        "open": {
+          "p": "Qual termo descreve uma fácies sem traços sindrômicos específicos?",
+          "r": "Fácies atípica ou incaracterística. Nesse contexto, atípica designa a ausência de um padrão patológico reconhecível.",
+          "chaves": [
+            "Fácies",
+            "atípica",
+            "incaracterística"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de expressão facial.",
+        "tag": "Expressão facial",
+        "open": {
+          "p": "A expressão de tristeza ou ansiedade, isoladamente, exige classificar a fácies como patológica?",
+          "r": "Não. A expressão emocional pode variar mesmo quando não há um conjunto de traços sindrômicos.",
+          "chaves": [
+            "expressão",
+            "emocional",
+            "sindrômicos"
+          ]
+        }
+      }
+    ],
+    "a7593564": [
+      {
+        "t": "Identificou fácies hipertireoidea a partir dos dados descritos.",
+        "tag": "Fácies hipertireoidea",
+        "open": {
+          "p": "Uma paciente emagrecida apresenta olhos brilhantes e proeminentes, com expressão persistente de espanto. Qual é a interpretação mais específica?",
+          "r": "Fácies hipertireoidea. A proptose e a expressão ocular orientam para a fácies associada à doença de Graves.",
+          "chaves": [
+            "Fácies",
+            "hipertireoidea",
+            "expressão"
+          ]
+        }
+      },
+      {
+        "t": "Identificou fácies mixedematosa a partir dos dados descritos.",
+        "tag": "Fácies mixedematosa",
+        "open": {
+          "p": "Uma mulher tem pele facial espessa e seca, pálpebras infiltradas e rarefação dos supercílios. Qual é a interpretação mais específica?",
+          "r": "Fácies mixedematosa. O conjunto sugere hipotireoidismo. A infiltração acompanha o espessamento dos traços.",
+          "chaves": [
+            "Fácies",
+            "mixedematosa",
+            "infiltração"
+          ]
+        }
+      }
+    ],
+    "216a3742": [
+      {
+        "t": "Identificou convergência medular a partir dos dados descritos.",
+        "tag": "Convergência medular",
+        "open": {
+          "p": "Uma irritação diafragmática produz dor no ombro, sem doença local ou continuidade anatômica da lesão até ele. Qual é a interpretação mais específica?",
+          "r": "Convergência medular. Aferências somáticas e viscerais convergem em segmentos medulares comuns e geram dor referida.",
+          "chaves": [
+            "Convergência",
+            "medular",
+            "Aferências"
+          ]
+        }
+      },
+      {
+        "t": "Identificou trajeto radicular a partir dos dados descritos.",
+        "tag": "Trajeto radicular",
+        "open": {
+          "p": "A dor começa na região lombar e desce pela perna segundo o território de uma raiz comprimida. Qual é a interpretação mais específica?",
+          "r": "Trajeto radicular. A propagação acompanha a distribuição neural e caracteriza dor irradiada.",
+          "chaves": [
+            "Trajeto",
+            "radicular",
+            "propagação"
+          ]
+        }
+      }
+    ],
+    "d962698f": [
+      {
+        "t": "Identificou decisão compartilhada a partir dos dados descritos.",
+        "tag": "Decisão compartilhada",
+        "open": {
+          "p": "Um homem pede rastreamento após ver um anúncio. A médica discute benefícios e danos e ouve suas preferências antes de decidir. Qual é a interpretação mais específica?",
+          "r": "Decisão compartilhada. A informação clínica e os valores do paciente participam da escolha sobre o exame.",
+          "chaves": [
+            "Decisão",
+            "compartilhada",
+            "informação"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de primazia clínica.",
+        "tag": "Primazia clínica",
+        "open": {
+          "p": "Como se interpreta um exame complementar normal quando a hipótese clínica permanece forte?",
+          "r": "O resultado deve ser ponderado à luz da anamnese e do exame físico. Um dado isolado pode não afastar a hipótese.",
+          "chaves": [
+            "ponderado",
+            "anamnese",
+            "físico"
+          ]
+        }
+      }
+    ],
+    "f183ffa9": [
+      {
+        "t": "Reconheceu que o ligamento é uma estrutura musculoesquelética profunda.",
+        "tag": "Dor ligamentar",
+        "open": {
+          "p": "Por que a dor recente após uma lesão de ligamento é classificada como somática profunda?",
+          "r": "O ligamento é uma estrutura musculoesquelética profunda. O início após o trauma define o componente temporal agudo.",
+          "chaves": [
+            "ligamento",
+            "musculoesquelética",
+            "profunda"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de duração da dor.",
+        "tag": "Duração da dor",
+        "open": {
+          "p": "Como a disciplina classifica a dor recente com um mês e meio de evolução no caso apresentado?",
+          "r": "Como aguda, pelo tempo de evolução. A classificação temporal é distinta da classificação por mecanismo.",
+          "chaves": [
+            "evolução",
+            "classificação",
+            "distinta"
+          ]
+        }
+      }
+    ],
+    "28febc5b": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de fácies luética.",
+        "tag": "Fácies luética",
+        "open": {
+          "p": "Qual condição reúne fronte olímpica, nariz em sela e dentes de Hutchinson?",
+          "r": "Sífilis congênita tardia. Os achados craniofaciais e dentários devem ser interpretados em conjunto.",
+          "chaves": [
+            "Sífilis",
+            "congênita",
+            "craniofaciais"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de alterações dentárias.",
+        "tag": "Alterações dentárias",
+        "open": {
+          "p": "Quais alterações dentárias reforçam a hipótese de sífilis congênita tardia?",
+          "r": "Incisivos de Hutchinson e molares em amora.",
+          "chaves": [
+            "Incisivos",
+            "Hutchinson",
+            "molares"
+          ]
+        }
+      }
+    ],
+    "9294c3e7": [
+      {
+        "t": "Identificou taquisfigmia radial a partir dos dados descritos.",
+        "tag": "Taquisfigmia radial",
+        "open": {
+          "p": "Ao palpar a artéria radial durante um minuto em repouso, o residente encontra 112 pulsações. Qual é a interpretação mais específica?",
+          "r": "Taquisfigmia radial. A contagem periférica acelerada recebe nome próprio e deve ser registrada como frequência de pulso.",
+          "chaves": [
+            "Taquisfigmia",
+            "radial",
+            "periférica"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de frequência respiratória.",
+        "tag": "Frequência respiratória",
+        "open": {
+          "p": "Como interpretar 16 incursões respiratórias por minuto em um adulto em repouso?",
+          "r": "A frequência está na faixa de normalidade utilizada na aula.",
+          "chaves": [
+            "frequência",
+            "normalidade",
+            "utilizada"
+          ]
+        }
+      }
+    ],
+    "d6cdc28a": [
+      {
+        "t": "Identificou fácies hipertireoidea a partir dos dados descritos.",
+        "tag": "Fácies hipertireoidea",
+        "open": {
+          "p": "Uma paciente emagrecida apresenta olhos brilhantes e proeminentes, com expressão persistente de espanto. Qual é a interpretação mais específica?",
+          "r": "Fácies hipertireoidea. A proptose e a expressão ocular orientam para a fácies associada à doença de Graves.",
+          "chaves": [
+            "Fácies",
+            "hipertireoidea",
+            "expressão"
+          ]
+        }
+      },
+      {
+        "t": "Identificou fácies mixedematosa a partir dos dados descritos.",
+        "tag": "Fácies mixedematosa",
+        "open": {
+          "p": "Uma mulher tem pele facial espessa e seca, pálpebras infiltradas e rarefação dos supercílios. Qual é a interpretação mais específica?",
+          "r": "Fácies mixedematosa. O conjunto sugere hipotireoidismo. A infiltração acompanha o espessamento dos traços.",
+          "chaves": [
+            "Fácies",
+            "mixedematosa",
+            "infiltração"
+          ]
+        }
+      }
+    ],
+    "c911be5a": [
+      {
+        "t": "Identificou carga tabágica a partir dos dados descritos.",
+        "tag": "Carga tabágica",
+        "open": {
+          "p": "Uma mulher fumou dez cigarros industrializados por dia durante trinta anos. O aluno calcula quinze anos-maço. Qual é a interpretação mais específica?",
+          "r": "Carga tabágica. Divide-se o número diário por vinte e multiplica-se o resultado pelos anos de exposição.",
+          "chaves": [
+            "Carga",
+            "tabágica",
+            "Divide-se"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de exposição acumulada.",
+        "tag": "Exposição acumulada",
+        "open": {
+          "p": "Como calcular a carga tabágica de quem fumou dois maços ao dia durante 25 anos?",
+          "r": "Multiplicam-se dois maços por 25 anos, obtendo-se 50 anos-maço.",
+          "chaves": [
+            "Multiplicam-se",
+            "maços",
+            "obtendo-se"
+          ]
+        }
+      }
+    ],
+    "7b87d552": [
+      {
+        "t": "Identificou sofrimento psicogênico a partir dos dados descritos.",
+        "tag": "Sofrimento psicogênico",
+        "open": {
+          "p": "O quadro doloroso sofre forte modulação emocional. A equipe reconhece o sofrimento e planeja acompanhamento multiprofissional. Qual é a interpretação mais específica?",
+          "r": "Sofrimento psicogênico. A participação de fatores psíquicos não torna a dor simulada nem invalida a experiência da pessoa.",
+          "chaves": [
+            "Sofrimento",
+            "psicogênico",
+            "participação"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de dor e humor.",
+        "tag": "Dor e humor",
+        "open": {
+          "p": "Qual é a relevância de investigar transtornos do humor em pacientes com dor crônica e forte componente psicogênico?",
+          "r": "São comorbidades frequentes e podem agravar sofrimento e incapacidade. A investigação deve acolher a experiência dolorosa.",
+          "chaves": [
+            "comorbidades",
+            "frequentes",
+            "investigação"
+          ]
+        }
+      }
+    ],
+    "ed272586": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de exame físico geral.",
+        "tag": "Exame físico geral",
+        "open": {
+          "p": "Em que campo se registra que o paciente está em bom estado geral, lúcido e orientado?",
+          "r": "Na ectoscopia, parte do exame físico geral.",
+          "chaves": [
+            "ectoscopia",
+            "físico",
+            "geral"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de extensão sistêmica.",
+        "tag": "Extensão sistêmica",
+        "open": {
+          "p": "Que uso tem a ectoscopia no acompanhamento da evolução de um paciente?",
+          "r": "Permite avaliar repercussões sistêmicas, reconhecer novos achados e comparar o estado geral ao longo do tratamento.",
+          "chaves": [
+            "repercussões",
+            "sistêmicas",
+            "novos"
+          ]
+        }
+      }
+    ],
+    "3b12d4fc": [
+      {
+        "t": "Identificou sinal de levine a partir dos dados descritos.",
+        "tag": "Sinal de Levine",
+        "open": {
+          "p": "Para mostrar o desconforto, o paciente fecha o punho e o pressiona sobre o esterno. Qual é a interpretação mais específica?",
+          "r": "Sinal de Levine. O gesto traduz opressão retroesternal difusa e reforça a caracterização de dor isquêmica.",
+          "chaves": [
+            "Sinal",
+            "Levine",
+            "opressão"
+          ]
+        }
+      },
+      {
+        "t": "Identificou angina estável a partir dos dados descritos.",
+        "tag": "Angina estável",
+        "open": {
+          "p": "Há meses, a pressão no peito surge ao subir a mesma ladeira e cede em poucos minutos ao repouso. Qual é a interpretação mais específica?",
+          "r": "Angina estável. O limiar de esforço previsível e o alívio ao cessar a demanda caracterizam estabilidade.",
+          "chaves": [
+            "Angina",
+            "estável",
+            "previsível"
+          ]
+        }
+      }
+    ],
+    "8d18f75b": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de relato espontâneo.",
+        "tag": "Relato espontâneo",
+        "open": {
+          "p": "Qual é a sequência recomendada para investigar uma nova queixa na anamnese?",
+          "r": "Ouvir inicialmente o relato livre e em seguida esclarecer localização, qualidade, intensidade e os demais atributos.",
+          "chaves": [
+            "relato",
+            "seguida",
+            "localização"
+          ]
+        }
+      },
+      {
+        "t": "Identificou cronologia do sintoma a partir dos dados descritos.",
+        "tag": "Cronologia do sintoma",
+        "open": {
+          "p": "O paciente lembra que o desconforto começou anteontem, dura dez minutos e retorna várias vezes ao dia. Qual é a interpretação mais específica?",
+          "r": "Cronologia do sintoma. Início, duração e recorrência situam o sintoma no tempo.",
+          "chaves": [
+            "Cronologia",
+            "sintoma",
+            "duração"
+          ]
+        }
+      }
+    ],
+    "e1e1a690": [
+      {
+        "t": "Identificou exame clínico a partir dos dados descritos.",
+        "tag": "Exame clínico",
+        "open": {
+          "p": "O atestado para natação menciona ausência de sinais e sintomas após entrevista e avaliação física. Qual é a interpretação mais específica?",
+          "r": "Exame clínico. A conclusão reúne anamnese e exame físico. A redação do atestado não permite inferir que houve eletrocardiograma.",
+          "chaves": [
+            "conclusão",
+            "redação",
+            "atestado"
+          ]
+        }
+      },
+      {
+        "t": "Identificou exame complementar a partir dos dados descritos.",
+        "tag": "Exame complementar",
+        "open": {
+          "p": "O laudo entregue após a consulta descreve o ritmo em um traçado eletrocardiográfico. Qual é a interpretação mais específica?",
+          "r": "Exame complementar. O registro elétrico complementa a avaliação. Sua interpretação depende da hipótese levantada na consulta.",
+          "chaves": [
+            "complementar",
+            "elétrico",
+            "interpretação"
+          ]
+        }
+      }
+    ],
+    "ffc8d315": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de dor pélvica inflamatória.",
+        "tag": "Dor pélvica inflamatória",
+        "open": {
+          "p": "Que achados do exame apoiam a hipótese de doença inflamatória pélvica na paciente com dor e exposição sexual?",
+          "r": "Secreção mucopurulenta, dor à mobilização do colo e sensibilidade anexial sustentam a hipótese clínica.",
+          "chaves": [
+            "Secreção",
+            "dor",
+            "mobilização"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de ultrassom pélvico.",
+        "tag": "Ultrassom pélvico",
+        "open": {
+          "p": "Um ultrassom normal exclui infecção genital ascendente diante de dor à mobilização do colo?",
+          "r": "Não. A avaliação integra história de exposição, secreção e sensibilidade ao exame pélvico.",
+          "chaves": [
+            "exposição",
+            "secreção",
+            "pélvico"
+          ]
+        }
+      }
+    ],
+    "d7f23c44": [
+      {
+        "t": "Identificou doença crônica prévia a partir dos dados descritos.",
+        "tag": "Doença crônica prévia",
+        "open": {
+          "p": "Um homem mantém pressão normal com losartana e afirma que por isso deixou de ter hipertensão. Qual é a interpretação mais específica?",
+          "r": "Doença crônica prévia. O controle terapêutico não apaga o diagnóstico prévio. Doença e tratamento merecem registro.",
+          "chaves": [
+            "Doença",
+            "crônica",
+            "prévia"
+          ]
+        }
+      },
+      {
+        "t": "Identificou antecedente cirúrgico a partir dos dados descritos.",
+        "tag": "Antecedente cirúrgico",
+        "open": {
+          "p": "Uma paciente em consulta por tosse informa ter retirado o apêndice na adolescência, sem complicações. Qual é a interpretação mais específica?",
+          "r": "Antecedente cirúrgico. Uma operação anterior integra a história patológica pregressa mesmo após recuperação completa.",
+          "chaves": [
+            "Antecedente",
+            "cirúrgico",
+            "operação"
+          ]
+        }
+      }
+    ],
+    "327a0fc9": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de fácies adenoidiana.",
+        "tag": "Fácies adenoidiana",
+        "open": {
+          "p": "Respiração oral crônica, boca entreaberta e desalinhamento dentário sugerem qual padrão facial?",
+          "r": "Fácies adenoidiana. A obstrução nasal crônica ajuda a explicar a postura habitual da boca.",
+          "chaves": [
+            "Fácies",
+            "adenoidiana",
+            "crônica"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de fácies incaracterística.",
+        "tag": "Fácies incaracterística",
+        "open": {
+          "p": "Qual termo descreve uma fácies sem traços sindrômicos específicos?",
+          "r": "Fácies atípica ou incaracterística. Nesse contexto, atípica designa a ausência de um padrão patológico reconhecível.",
+          "chaves": [
+            "Fácies",
+            "atípica",
+            "incaracterística"
+          ]
+        }
+      }
+    ],
+    "837d4778": [
+      {
+        "t": "Identificou sofrimento psicogênico a partir dos dados descritos.",
+        "tag": "Sofrimento psicogênico",
+        "open": {
+          "p": "O quadro doloroso sofre forte modulação emocional. A equipe reconhece o sofrimento e planeja acompanhamento multiprofissional. Qual é a interpretação mais específica?",
+          "r": "Sofrimento psicogênico. A participação de fatores psíquicos não torna a dor simulada nem invalida a experiência da pessoa.",
+          "chaves": [
+            "Sofrimento",
+            "psicogênico",
+            "participação"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de dor e humor.",
+        "tag": "Dor e humor",
+        "open": {
+          "p": "Qual é a relevância de investigar transtornos do humor em pacientes com dor crônica e forte componente psicogênico?",
+          "r": "São comorbidades frequentes e podem agravar sofrimento e incapacidade. A investigação deve acolher a experiência dolorosa.",
+          "chaves": [
+            "comorbidades",
+            "frequentes",
+            "investigação"
+          ]
+        }
+      }
+    ],
+    "e54028a2": [
+      {
+        "t": "Identificou cianose segmentar a partir dos dados descritos.",
+        "tag": "Cianose segmentar",
+        "open": {
+          "p": "Um único membro com obstrução do retorno venoso torna-se azulado, enquanto língua e outros membros mantêm a cor habitual. Qual é a interpretação mais específica?",
+          "r": "Cianose segmentar. A distribuição restrita orienta para mecanismo circulatório local.",
+          "chaves": [
+            "Cianose",
+            "segmentar",
+            "distribuição"
+          ]
+        }
+      },
+      {
+        "t": "Identificou cianose periférica a partir dos dados descritos.",
+        "tag": "Cianose periférica",
+        "open": {
+          "p": "Após exposição ao frio, as mãos estão azuladas e frias. A língua permanece rosada. Qual é a interpretação mais específica?",
+          "r": "Cianose periférica. O fluxo periférico reduzido aumenta a extração local de oxigênio e poupa a mucosa oral.",
+          "chaves": [
+            "Cianose",
+            "periférica",
+            "extração"
+          ]
+        }
+      }
+    ],
+    "8038fa5a": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de duração da dor.",
+        "tag": "Duração da dor",
+        "open": {
+          "p": "Como a disciplina classifica a dor recente com um mês e meio de evolução no caso apresentado?",
+          "r": "Como aguda, pelo tempo de evolução. A classificação temporal é distinta da classificação por mecanismo.",
+          "chaves": [
+            "evolução",
+            "classificação",
+            "distinta"
+          ]
+        }
+      },
+      {
+        "t": "Identificou evolução temporal a partir dos dados descritos.",
+        "tag": "Evolução temporal",
+        "open": {
+          "p": "Ao reconstruir o primeiro episódio, a médica pergunta se o quadro começou de repente e quanto dura cada crise. Qual é a interpretação mais específica?",
+          "r": "Evolução temporal. Início, duração e curso ajudam a distinguir padrões temporais.",
+          "chaves": [
+            "Evolução",
+            "temporal",
+            "duração"
+          ]
+        }
+      }
+    ],
+    "c5cb242d": [
+      {
+        "t": "Identificou exame clínico a partir dos dados descritos.",
+        "tag": "Exame clínico",
+        "open": {
+          "p": "O atestado para natação menciona ausência de sinais e sintomas após entrevista e avaliação física. Qual é a interpretação mais específica?",
+          "r": "Exame clínico. A conclusão reúne anamnese e exame físico. A redação do atestado não permite inferir que houve eletrocardiograma.",
+          "chaves": [
+            "conclusão",
+            "redação",
+            "atestado"
+          ]
+        }
+      },
+      {
+        "t": "Identificou exame complementar a partir dos dados descritos.",
+        "tag": "Exame complementar",
+        "open": {
+          "p": "O laudo entregue após a consulta descreve o ritmo em um traçado eletrocardiográfico. Qual é a interpretação mais específica?",
+          "r": "Exame complementar. O registro elétrico complementa a avaliação. Sua interpretação depende da hipótese levantada na consulta.",
+          "chaves": [
+            "complementar",
+            "elétrico",
+            "interpretação"
+          ]
+        }
+      }
+    ],
+    "7469e9c6": [
+      {
+        "t": "Identificou queixa principal a partir dos dados descritos.",
+        "tag": "Queixa principal",
+        "open": {
+          "p": "A primeira linha do prontuário registra “queimação que sobe para o peito há três dias”, nas palavras da paciente. Qual é a interpretação mais específica?",
+          "r": "Queixa principal. O motivo da consulta deve preservar a expressão da pessoa e pode incluir a duração.",
+          "chaves": [
+            "Queixa",
+            "principal",
+            "expressão"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de registro da queixa.",
+        "tag": "Registro da queixa",
+        "open": {
+          "p": "Como registrar a queixa principal quando o paciente descreve o sintoma em linguagem leiga?",
+          "r": "Usar uma frase breve em suas palavras, preservando o motivo de consulta sem presumir um diagnóstico.",
+          "chaves": [
+            "palavras",
+            "presumir",
+            "diagnóstico"
+          ]
+        }
+      }
+    ],
+    "7968fa1f": [
+      {
+        "t": "Identificou bradisfigmia radial a partir dos dados descritos.",
+        "tag": "Bradisfigmia radial",
+        "open": {
+          "p": "A palpação radial revela 52 ondas por minuto em um adulto desperto e em repouso. Qual é a interpretação mais específica?",
+          "r": "Bradisfigmia radial. A frequência de pulso inferior a 60 por minuto caracteriza bradisfigmia.",
+          "chaves": [
+            "Bradisfigmia",
+            "radial",
+            "minuto"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de bradicardia auscultada.",
+        "tag": "Bradicardia auscultada",
+        "open": {
+          "p": "Como se denomina frequência abaixo de 60 bpm contada diretamente no coração de um adulto em repouso?",
+          "r": "Bradicardia. O nome descreve a frequência e por si só não determina se a causa é patológica.",
+          "chaves": [
+            "Bradicardia",
+            "determina",
+            "patológica"
+          ]
+        }
+      }
+    ],
+    "3486656e": [
+      {
+        "t": "Identificou história familiar a partir dos dados descritos.",
+        "tag": "História familiar",
+        "open": {
+          "p": "Um paciente relata que o pai sofreu infarto aos 45 anos e pergunta se isso interfere no seu risco. Qual é a interpretação mais específica?",
+          "r": "História familiar. Doença cardiovascular precoce em parente de primeiro grau caracteriza antecedente familiar relevante.",
+          "chaves": [
+            "História",
+            "familiar",
+            "cardiovascular"
+          ]
+        }
+      },
+      {
+        "t": "Identificou negativos pertinentes a partir dos dados descritos.",
+        "tag": "Negativos pertinentes",
+        "open": {
+          "p": "No registro respiratório, a médica escreve que o paciente nega tosse, dispneia e expectoração. Qual é a interpretação mais específica?",
+          "r": "Negativos pertinentes. Nomear os sintomas investigados documenta o alcance da revisão e evita siglas vagas.",
+          "chaves": [
+            "Negativos",
+            "pertinentes",
+            "revisão"
+          ]
+        }
+      }
+    ],
+    "c4844994": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de dor nociceptiva.",
+        "tag": "Dor nociceptiva",
+        "open": {
+          "p": "Que mecanismo explica a dor por inflamação ou distensão visceral na cólica biliar?",
+          "r": "A ativação de nociceptores em tecidos não neurais produz dor nociceptiva visceral.",
+          "chaves": [
+            "dor",
+            "nociceptiva",
+            "visceral"
+          ]
+        }
+      },
+      {
+        "t": "Identificou dor visceral a partir dos dados descritos.",
+        "tag": "Dor visceral",
+        "open": {
+          "p": "Um paciente com distensão de víscera oca sente cólica difusa e aponta uma ampla área do abdome. Qual é a interpretação mais específica?",
+          "r": "Dor visceral. A localização imprecisa é característica da aferência visceral.",
+          "chaves": [
+            "Dor",
+            "visceral",
+            "característica"
+          ]
+        }
+      }
+    ],
+    "8af5fbe3": [
+      {
+        "t": "Identificou revisão de sistemas a partir dos dados descritos.",
+        "tag": "Revisão de sistemas",
+        "open": {
+          "p": "Encerrada a história da cefaleia, a interna pergunta sobre sintomas respiratórios, digestivos e urinários. Qual é a interpretação mais específica?",
+          "r": "Revisão de sistemas. A busca por aparelhos amplia o atendimento para além da queixa principal.",
+          "chaves": [
+            "Revisão",
+            "sistemas",
+            "aparelhos"
+          ]
+        }
+      },
+      {
+        "t": "Identificou caracterização do achado a partir dos dados descritos.",
+        "tag": "Caracterização do achado",
+        "open": {
+          "p": "Durante a revisão urinária, o paciente refere ardor. O aluno pergunta desde quando, com que frequência e se existe urgência. Qual é a interpretação mais específica?",
+          "r": "Caracterização do achado. Uma resposta positiva pede aprofundamento semelhante ao usado para a queixa inicial.",
+          "chaves": [
+            "Caracterização",
+            "positiva",
+            "aprofundamento"
+          ]
+        }
+      }
+    ],
+    "ba170b7d": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de fácies luética.",
+        "tag": "Fácies luética",
+        "open": {
+          "p": "Qual condição reúne fronte olímpica, nariz em sela e dentes de Hutchinson?",
+          "r": "Sífilis congênita tardia. Os achados craniofaciais e dentários devem ser interpretados em conjunto.",
+          "chaves": [
+            "Sífilis",
+            "congênita",
+            "craniofaciais"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de alterações dentárias.",
+        "tag": "Alterações dentárias",
+        "open": {
+          "p": "Quais alterações dentárias reforçam a hipótese de sífilis congênita tardia?",
+          "r": "Incisivos de Hutchinson e molares em amora.",
+          "chaves": [
+            "Incisivos",
+            "Hutchinson",
+            "molares"
+          ]
+        }
+      }
+    ],
+    "6381d04f": [
+      {
+        "t": "Identificou caracterização do achado a partir dos dados descritos.",
+        "tag": "Caracterização do achado",
+        "open": {
+          "p": "Durante a revisão urinária, o paciente refere ardor. O aluno pergunta desde quando, com que frequência e se existe urgência. Qual é a interpretação mais específica?",
+          "r": "Caracterização do achado. Uma resposta positiva pede aprofundamento semelhante ao usado para a queixa inicial.",
+          "chaves": [
+            "Caracterização",
+            "positiva",
+            "aprofundamento"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de exame físico geral.",
+        "tag": "Exame físico geral",
+        "open": {
+          "p": "Em que campo se registra que o paciente está em bom estado geral, lúcido e orientado?",
+          "r": "Na ectoscopia, parte do exame físico geral.",
+          "chaves": [
+            "ectoscopia",
+            "físico",
+            "geral"
+          ]
+        }
+      }
+    ],
+    "1985bf87": [
+      {
+        "t": "Identificou negativos pertinentes a partir dos dados descritos.",
+        "tag": "Negativos pertinentes",
+        "open": {
+          "p": "No registro respiratório, a médica escreve que o paciente nega tosse, dispneia e expectoração. Qual é a interpretação mais específica?",
+          "r": "Negativos pertinentes. Nomear os sintomas investigados documenta o alcance da revisão e evita siglas vagas.",
+          "chaves": [
+            "Negativos",
+            "pertinentes",
+            "revisão"
+          ]
+        }
+      },
+      {
+        "t": "Identificou caracterização do achado a partir dos dados descritos.",
+        "tag": "Caracterização do achado",
+        "open": {
+          "p": "Durante a revisão urinária, o paciente refere ardor. O aluno pergunta desde quando, com que frequência e se existe urgência. Qual é a interpretação mais específica?",
+          "r": "Caracterização do achado. Uma resposta positiva pede aprofundamento semelhante ao usado para a queixa inicial.",
+          "chaves": [
+            "Caracterização",
+            "positiva",
+            "aprofundamento"
+          ]
+        }
+      }
+    ],
+    "ca41600e": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de antecedente vacinal.",
+        "tag": "Antecedente vacinal",
+        "open": {
+          "p": "Onde se documenta a situação vacinal referida, mesmo sem apresentação do cartão?",
+          "r": "Nos antecedentes pessoais, identificando que a informação foi referida pelo paciente.",
+          "chaves": [
+            "antecedentes",
+            "informação",
+            "referida"
+          ]
+        }
+      },
+      {
+        "t": "Identificou história da moléstia atual a partir dos dados descritos.",
+        "tag": "História da moléstia atual",
+        "open": {
+          "p": "O estudante descreve quando começou a queimação, como evoluiu e o que a agrava desde o primeiro episódio. Qual é a interpretação mais específica?",
+          "r": "História da moléstia atual. A sequência temporal caracteriza a queixa trazida à consulta.",
+          "chaves": [
+            "História",
+            "moléstia",
+            "atual"
+          ]
+        }
+      }
+    ],
+    "d8f8010d": [
+      {
+        "t": "Identificou desdobramento paradoxal a partir dos dados descritos.",
+        "tag": "Desdobramento paradoxal",
+        "open": {
+          "p": "Em paciente com bloqueio de ramo esquerdo, os componentes se separam na expiração e se aproximam na inspiração. Qual é a interpretação mais específica?",
+          "r": "Desdobramento paradoxal. O atraso de A2 inverte a sequência habitual. O atraso inspiratório de P2 aproxima os componentes.",
+          "chaves": [
+            "Desdobramento",
+            "paradoxal",
+            "componentes"
+          ]
+        }
+      },
+      {
+        "t": "Identificou desdobramento fisiológico a partir dos dados descritos.",
+        "tag": "Desdobramento fisiológico",
+        "open": {
+          "p": "Em um jovem assintomático, B2 se desdobra na inspiração e volta a ser única ao expirar. Qual é a interpretação mais específica?",
+          "r": "Desdobramento fisiológico. O aumento inspiratório do retorno direito atrasa P2 em relação a A2.",
+          "chaves": [
+            "Desdobramento",
+            "fisiológico",
+            "inspiratório"
+          ]
+        }
+      }
+    ],
+    "c257d3f5": [
+      {
+        "t": "Identificou bradisfigmia radial a partir dos dados descritos.",
+        "tag": "Bradisfigmia radial",
+        "open": {
+          "p": "A palpação radial revela 52 ondas por minuto em um adulto desperto e em repouso. Qual é a interpretação mais específica?",
+          "r": "Bradisfigmia radial. A frequência de pulso inferior a 60 por minuto caracteriza bradisfigmia.",
+          "chaves": [
+            "Bradisfigmia",
+            "radial",
+            "minuto"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de bradicardia auscultada.",
+        "tag": "Bradicardia auscultada",
+        "open": {
+          "p": "Como se denomina frequência abaixo de 60 bpm contada diretamente no coração de um adulto em repouso?",
+          "r": "Bradicardia. O nome descreve a frequência e por si só não determina se a causa é patológica.",
+          "chaves": [
+            "Bradicardia",
+            "determina",
+            "patológica"
+          ]
+        }
+      }
+    ],
+    "f930f870": [
+      {
+        "t": "Identificou gatilho vasovagal a partir dos dados descritos.",
+        "tag": "Gatilho vasovagal",
+        "open": {
+          "p": "Um aluno desmaia ao ver sangue em uma sala abafada depois de muito tempo em pé. Qual é a interpretação mais específica?",
+          "r": "Gatilho vasovagal. O contexto favorece resposta reflexa com vasodilatação e possível bradicardia.",
+          "chaves": [
+            "Gatilho",
+            "vasovagal",
+            "vasodilatação"
+          ]
+        }
+      },
+      {
+        "t": "Identificou pródromo autonômico a partir dos dados descritos.",
+        "tag": "Pródromo autonômico",
+        "open": {
+          "p": "Pouco antes de cair, a paciente fica pálida, sua frio, sente náusea e consegue apoiar-se na parede. Qual é a interpretação mais específica?",
+          "r": "Pródromo autonômico. O aviso prévio permite um esboço de defesa e é comum na síncope vasovagal.",
+          "chaves": [
+            "Pródromo",
+            "autonômico",
+            "aviso"
+          ]
+        }
+      }
+    ],
+    "cb075c10": [
+      {
+        "t": "Identificou estenose aórtica a partir dos dados descritos.",
+        "tag": "Estenose aórtica",
+        "open": {
+          "p": "Um idoso tem sopro sistólico rude em diamante na base, irradiado para as carótidas. Qual é a interpretação mais específica?",
+          "r": "Estenose aórtica. O fluxo ejetivo atravessa uma valva aórtica estreitada e gera o sopro na sístole.",
+          "chaves": [
+            "Estenose",
+            "aórtica",
+            "sopro"
+          ]
+        }
+      },
+      {
+        "t": "Identificou obstrução à ejeção a partir dos dados descritos.",
+        "tag": "Obstrução à ejeção",
+        "open": {
+          "p": "O paciente com sopro aórtico e pulso pequeno e tardio desmaia ao subir uma ladeira. Qual é a interpretação mais específica?",
+          "r": "Obstrução à ejeção. Na estenose aórtica importante o débito não aumenta adequadamente durante o esforço.",
+          "chaves": [
+            "Obstrução",
+            "ejeção",
+            "aórtica"
+          ]
+        }
+      }
+    ],
+    "e38bac5f": [
+      {
+        "t": "Identificou equivalente anginoso a partir dos dados descritos.",
+        "tag": "Equivalente anginoso",
+        "open": {
+          "p": "Um idoso apresenta falta de ar e sudorese reprodutíveis ao esforço. A investigação documenta isquemia na ausência de dor torácica. Qual é a interpretação mais específica?",
+          "r": "Equivalente anginoso. A isquemia pode se manifestar por dispneia, náusea ou fadiga sem precordialgia típica.",
+          "chaves": [
+            "Equivalente",
+            "anginoso",
+            "isquemia"
+          ]
+        }
+      },
+      {
+        "t": "Identificou neuropatia autonômica a partir dos dados descritos.",
+        "tag": "Neuropatia autonômica",
+        "open": {
+          "p": "Um diabético com isquemia comprovada não percebe a dor visceral habitual. A discussão se concentra no mecanismo dessa apresentação. Qual é a interpretação mais específica?",
+          "r": "Neuropatia autonômica. A disfunção das vias autonômicas pode reduzir a percepção dolorosa.",
+          "chaves": [
+            "Neuropatia",
+            "autonômica",
+            "percepção"
+          ]
+        }
+      }
+    ],
+    "1f9433a1": [
+      {
+        "t": "Relacionou os achados de prova ao conceito de retração apical.",
+        "tag": "Retração apical",
+        "open": {
+          "p": "O que pode ocorrer com a região apical na sístole quando o ventrículo direito hipertrofiado domina o precórdio?",
+          "r": "Pode ocorrer retração apical associada a levantamento paraesternal e pulsações epigástricas.",
+          "chaves": [
+            "ocorrer",
+            "retração",
+            "apical"
+          ]
+        }
+      },
+      {
+        "t": "Identificou sobrecarga ventricular direita a partir dos dados descritos.",
+        "tag": "Sobrecarga ventricular direita",
+        "open": {
+          "p": "Um paciente com hipertensão pulmonar apresenta levantamento paraesternal e pulsações epigástricas. Qual é a interpretação mais específica?",
+          "r": "Sobrecarga ventricular direita. O ventrículo direito mais anterior transmite sua impulsão ao precórdio e à região subxifoide.",
+          "chaves": [
+            "Sobrecarga",
+            "ventricular",
+            "direita"
+          ]
+        }
+      }
+    ],
+    "147f4149": [
+      {
+        "t": "Identificou desdobramento fixo a partir dos dados descritos.",
+        "tag": "Desdobramento fixo",
+        "open": {
+          "p": "Os dois componentes de B2 permanecem separados de modo semelhante durante inspiração e expiração em paciente com comunicação interatrial. Qual é a interpretação mais específica?",
+          "r": "Desdobramento fixo. A ausência da variação respiratória habitual é a pista para a separação fixa.",
+          "chaves": [
+            "Desdobramento",
+            "fixo",
+            "separação"
+          ]
+        }
+      },
+      {
+        "t": "Identificou desdobramento fisiológico a partir dos dados descritos.",
+        "tag": "Desdobramento fisiológico",
+        "open": {
+          "p": "Em um jovem assintomático, B2 se desdobra na inspiração e volta a ser única ao expirar. Qual é a interpretação mais específica?",
+          "r": "Desdobramento fisiológico. O aumento inspiratório do retorno direito atrasa P2 em relação a A2.",
+          "chaves": [
+            "Desdobramento",
+            "fisiológico",
+            "inspiratório"
+          ]
+        }
+      }
+    ],
+    "9bd9c262": [
+      {
+        "t": "Identificou terceira bulha fisiológica a partir dos dados descritos.",
+        "tag": "Terceira bulha fisiológica",
+        "open": {
+          "p": "Em gestante sem sinais de congestão ou cardiopatia, ouve-se som grave breve logo após B2. Qual é a interpretação mais específica?",
+          "r": "Terceira bulha fisiológica. O aumento do enchimento rápido pode produzir B3 fisiológica nesse contexto.",
+          "chaves": [
+            "Terceira",
+            "bulha",
+            "fisiológica"
+          ]
+        }
+      },
+      {
+        "t": "Identificou intervalo diastólico a partir dos dados descritos.",
+        "tag": "Intervalo diastólico",
+        "open": {
+          "p": "A médica ouve um ruído após a segunda bulha e antes da primeira do ciclo seguinte. Qual é a interpretação mais específica?",
+          "r": "Intervalo diastólico. O período entre B2 e a próxima B1 corresponde à diástole ventricular.",
+          "chaves": [
+            "Intervalo",
+            "diastólico",
+            "B2"
+          ]
+        }
+      }
+    ],
+    "ca3dd571": [
+      {
+        "t": "Identificou gatilho vasovagal a partir dos dados descritos.",
+        "tag": "Gatilho vasovagal",
+        "open": {
+          "p": "Um aluno desmaia ao ver sangue em uma sala abafada depois de muito tempo em pé. Qual é a interpretação mais específica?",
+          "r": "Gatilho vasovagal. O contexto favorece resposta reflexa com vasodilatação e possível bradicardia.",
+          "chaves": [
+            "Gatilho",
+            "vasovagal",
+            "vasodilatação"
+          ]
+        }
+      },
+      {
+        "t": "Identificou pródromo autonômico a partir dos dados descritos.",
+        "tag": "Pródromo autonômico",
+        "open": {
+          "p": "Pouco antes de cair, a paciente fica pálida, sua frio, sente náusea e consegue apoiar-se na parede. Qual é a interpretação mais específica?",
+          "r": "Pródromo autonômico. O aviso prévio permite um esboço de defesa e é comum na síncope vasovagal.",
+          "chaves": [
+            "Pródromo",
+            "autonômico",
+            "aviso"
+          ]
+        }
+      }
+    ],
+    "76691e88": [
+      {
+        "t": "Identificou predomínio bronquítico a partir dos dados descritos.",
+        "tag": "Predomínio bronquítico",
+        "open": {
+          "p": "Um paciente com obstrução crônica apresenta tosse produtiva diária volumosa, cianose e edema periférico. Qual é a interpretação mais específica?",
+          "r": "Predomínio bronquítico. A produção persistente de escarro e os sinais congestivos favorecem predomínio de bronquite crônica.",
+          "chaves": [
+            "Predomínio",
+            "bronquítico",
+            "crônica"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou os achados de prova ao conceito de volume e congestão.",
+        "tag": "Volume e congestão",
+        "open": {
+          "p": "Quais achados favorecem o fenótipo bronquítico clássico na DPOC?",
+          "r": "Tosse produtiva volumosa, cianose e, quando há cor pulmonale, edema periférico.",
+          "chaves": [
+            "produtiva",
+            "cianose",
+            "periférico"
+          ]
+        }
+      }
+    ]
+  }
+}

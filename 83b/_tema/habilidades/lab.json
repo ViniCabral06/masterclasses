@@ -1,0 +1,2637 @@
+{
+  "materia": "lab",
+  "byHash": {
+    "6c661f9e": [
+      {
+        "t": "Reconheceu que o risco basal maior exige maior redução das partículas aterogênicas.",
+        "tag": "Meta individualizada",
+        "open": {
+          "p": "Dois pacientes têm LDL de 110 mg/dL, mas somente um já teve AVC aterosclerótico. Por que os objetivos diferem?",
+          "r": "O risco basal maior exige maior redução das partículas aterogênicas.",
+          "chaves": [
+            "redução",
+            "partículas",
+            "aterogênicas"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou contagem por ApoB a partir dos dados da questão.",
+        "tag": "Contagem por ApoB",
+        "open": {
+          "p": "Um paciente com triglicerídeos altos apresenta LDL-C aparentemente aceitável. Qual medida investiga discordância no número de partículas?",
+          "r": "A ApoB estima o número de partículas aterogênicas, enquanto LDL-C mede o colesterol transportado.",
+          "chaves": [
+            "ApoB",
+            "partículas",
+            "LDL-C"
+          ]
+        }
+      }
+    ],
+    "a276a592": [
+      {
+        "t": "Interpretou intervalo individual a partir dos dados da questão.",
+        "tag": "Intervalo individual",
+        "open": {
+          "p": "O que uma série de resultados basais do mesmo paciente acrescenta à referência populacional?",
+          "r": "Ajuda a identificar mudanças relevantes para aquela pessoa, mesmo que ambos os valores estejam dentro do intervalo populacional.",
+          "chaves": [
+            "relevantes",
+            "intervalo",
+            "populacional"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou calibração do método a partir dos dados da questão.",
+        "tag": "Calibração do método",
+        "open": {
+          "p": "Qual é a finalidade de comparar o sinal da amostra com um calibrador de valor conhecido?",
+          "r": "Estabelecer a relação entre a resposta instrumental e a concentração do analito.",
+          "chaves": [
+            "instrumental",
+            "concentração",
+            "analito"
+          ]
+        }
+      }
+    ],
+    "ae3e1bb4": [
+      {
+        "t": "Reconheceu que a elevação conjunta de ácido metilmalônico e homocisteína favorece deficiência de cobalamina.",
+        "tag": "Metilmalonato e B12",
+        "open": {
+          "p": "Qual combinação favorece carência de B12 em relação à de folato?",
+          "r": "A elevação conjunta de ácido metilmalônico e homocisteína favorece deficiência de cobalamina.",
+          "chaves": [
+            "elevação",
+            "metilmalônico",
+            "cobalamina"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a deficiência de folato altera a síntese de DNA sem elevar tipicamente o metilmalonato.",
+        "tag": "Deficiência de folato",
+        "open": {
+          "p": "O quadro megaloblástico associa-se a homocisteína alta com metilmalonato normal. Qual carência é favorecida?",
+          "r": "A deficiência de folato altera a síntese de DNA sem elevar tipicamente o metilmalonato.",
+          "chaves": [
+            "deficiência",
+            "folato",
+            "DNA"
+          ]
+        }
+      }
+    ],
+    "18d543b7": [
+      {
+        "t": "Reconheceu que o risco basal maior exige maior redução das partículas aterogênicas.",
+        "tag": "Meta individualizada",
+        "open": {
+          "p": "Dois pacientes têm LDL de 110 mg/dL, mas somente um já teve AVC aterosclerótico. Por que os objetivos diferem?",
+          "r": "O risco basal maior exige maior redução das partículas aterogênicas.",
+          "chaves": [
+            "redução",
+            "partículas",
+            "aterogênicas"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou risco já estabelecido a partir dos dados da questão.",
+        "tag": "Risco já estabelecido",
+        "open": {
+          "p": "Um adulto com infarto documentado solicita cálculo para saber se está em prevenção primária. Como interpretar o achado?",
+          "r": "A doença aterosclerótica clínica já o coloca em prevenção secundária.",
+          "chaves": [
+            "aterosclerótica",
+            "prevenção",
+            "secundária"
+          ]
+        }
+      }
+    ],
+    "7a3eb4cb": [
+      {
+        "t": "Interpretou persistência da lesão a partir dos dados da questão.",
+        "tag": "Persistência da lesão",
+        "open": {
+          "p": "Um primeiro exame mostra albuminúria durante doença aguda. O que é necessário para caracterizar cronicidade?",
+          "r": "Confirmar persistência por ao menos três meses e considerar causas transitórias.",
+          "chaves": [
+            "persistência",
+            "considerar",
+            "transitórias"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou cilindro hemático a partir dos dados da questão.",
+        "tag": "Cilindro hemático",
+        "open": {
+          "p": "Hemácias dismórficas acompanham moldes tubulares com hemácias em paciente com edema e proteinúria. Como interpretar o achado?",
+          "r": "Cilindros hemáticos sustentam origem renal, particularmente glomerular.",
+          "chaves": [
+            "Cilindros",
+            "hemáticos",
+            "particularmente"
+          ]
+        }
+      }
+    ],
+    "874c68d2": [
+      {
+        "t": "Interpretou confirmação em assintomático a partir dos dados da questão.",
+        "tag": "Confirmação em assintomático",
+        "open": {
+          "p": "Em exame de rotina, a glicemia de jejum é 132 mg/dL e não há sintomas. Que etapa precede firmar o diagnóstico?",
+          "r": "Na ausência de hiperglicemia inequívoca, é necessário confirmar por novo resultado diagnóstico.",
+          "chaves": [
+            "hiperglicemia",
+            "inequívoca",
+            "diagnóstico"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou dois resultados concordantes a partir dos dados da questão.",
+        "tag": "Dois resultados concordantes",
+        "open": {
+          "p": "Glicemia de jejum e HbA1c estão ambas acima dos pontos de corte na mesma coleta, sem interferentes. Como interpretar o achado?",
+          "r": "Dois testes diagnósticos diferentes alterados podem fornecer confirmação.",
+          "chaves": [
+            "Dois",
+            "alterados",
+            "confirmação"
+          ]
+        }
+      }
+    ],
+    "e1bf7338": [
+      {
+        "t": "Reconheceu que a faixa preenche o critério de diabetes gestacional empregado nesse contexto.",
+        "tag": "Hiperglicemia na gestação",
+        "open": {
+          "p": "No critério obstétrico adotado na prova, como se interpreta glicemia de jejum entre 92 e 125 mg/dL na gestante sem diabetes conhecido?",
+          "r": "A faixa preenche o critério de diabetes gestacional empregado nesse contexto.",
+          "chaves": [
+            "preenche",
+            "critério",
+            "diabetes"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou referência obstétrica a partir dos dados da questão.",
+        "tag": "Referência obstétrica",
+        "open": {
+          "p": "Por que a referência geral de jejum para adultos é insuficiente para interpretar glicemia de 98 mg/dL na gestante do caso?",
+          "r": "Os limites diagnósticos da gestação diferem dos usados em adultos não gestantes.",
+          "chaves": [
+            "limites",
+            "gestação",
+            "adultos"
+          ]
+        }
+      }
+    ],
+    "9665f50b": [
+      {
+        "t": "Interpretou estabilidade da urina a partir dos dados da questão.",
+        "tag": "Estabilidade da urina",
+        "open": {
+          "p": "O que pode ocorrer com células e cilindros após demora prolongada para analisar a amostra à temperatura ambiente?",
+          "r": "Os elementos do sedimento podem se degradar, prejudicando sua identificação e quantificação.",
+          "chaves": [
+            "elementos",
+            "identificação",
+            "quantificação"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou urina armazenada a partir dos dados da questão.",
+        "tag": "Urina armazenada",
+        "open": {
+          "p": "Qual a direção esperada da alteração de pH e glicose no exemplo de urina mantida por horas à temperatura ambiente?",
+          "r": "O pH tende a aumentar e a glicose a diminuir, comprometendo a interpretação da amostra.",
+          "chaves": [
+            "pH",
+            "glicose",
+            "interpretação"
+          ]
+        }
+      }
+    ],
+    "40e78342": [
+      {
+        "t": "Reconheceu que o monócito pode se diferenciar em macrófago e exercer funções de fagocitose e apresentação de antígenos.",
+        "tag": "Monócitos teciduais",
+        "open": {
+          "p": "O que pode ocorrer após a passagem de um monócito do sangue para os tecidos?",
+          "r": "O monócito pode se diferenciar em macrófago e exercer funções de fagocitose e apresentação de antígenos.",
+          "chaves": [
+            "monócito",
+            "fagocitose",
+            "apresentação"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou diapedese leucocitária a partir dos dados da questão.",
+        "tag": "Diapedese leucocitária",
+        "open": {
+          "p": "Como se chama a passagem de leucócitos através da parede vascular em direção aos tecidos?",
+          "r": "Diapedese. Ela permite o recrutamento de células circulantes ao local da resposta.",
+          "chaves": [
+            "Diapedese",
+            "recrutamento",
+            "circulantes"
+          ]
+        }
+      }
+    ],
+    "4bd8e06a": [
+      {
+        "t": "Interpretou volume corpuscular médio a partir dos dados da questão.",
+        "tag": "Volume corpuscular médio",
+        "open": {
+          "p": "O hematócrito é 28% e há quatro milhões de hemácias por microlitro. Qual índice resulta em 70 fL?",
+          "r": "O VCM é calculado dividindo o hematócrito pela contagem em milhões e multiplicando por dez.",
+          "chaves": [
+            "VCM",
+            "hematócrito",
+            "milhões"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o RDW elevado e o esfregaço dimórfico revelam a heterogeneidade escondida pela média.",
+        "tag": "Amplitude de distribuição",
+        "open": {
+          "p": "Uma deficiência combinada de ferro e B12 deixa o VCM médio normal, embora coexistam células pequenas e grandes. Como interpretar o achado?",
+          "r": "O RDW elevado e o esfregaço dimórfico revelam a heterogeneidade escondida pela média.",
+          "chaves": [
+            "RDW",
+            "elevado",
+            "dimórfico"
+          ]
+        }
+      }
+    ],
+    "995b816e": [
+      {
+        "t": "Interpretou elevação sobre basal a partir dos dados da questão.",
+        "tag": "Elevação sobre basal",
+        "open": {
+          "p": "A creatinina sobe de 0,5 para 1,0 mg/dL em três dias. Por que a faixa de referência pode enganar?",
+          "r": "O valor dobrou em relação ao basal, preenchendo critério de lesão renal aguda apesar do número absoluto.",
+          "chaves": [
+            "basal",
+            "preenchendo",
+            "absoluto"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a baixa produção muscular reduz a concentração sérica para uma mesma filtração.",
+        "tag": "Sarcopenia associada",
+        "open": {
+          "p": "Um paciente idoso perdeu massa muscular e a creatinina parece tranquilizadora apesar de doença renal. Como interpretar o achado?",
+          "r": "A baixa produção muscular reduz a concentração sérica para uma mesma filtração.",
+          "chaves": [
+            "muscular",
+            "sérica",
+            "filtração"
+          ]
+        }
+      }
+    ],
+    "463f4a0b": [
+      {
+        "t": "Interpretou analisador hematológico a partir dos dados da questão.",
+        "tag": "Analisador hematológico",
+        "open": {
+          "p": "Por que medidas de volume e características celulares ajudam a separar populações no hemograma automatizado?",
+          "r": "Essas propriedades permitem classificar inicialmente as células e sinalizar populações que exigem revisão.",
+          "chaves": [
+            "propriedades",
+            "classificar",
+            "populações"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a revisão microscópica verifica a natureza das células sinalizadas.",
+        "tag": "Revisão do esfregaço",
+        "open": {
+          "p": "O aparelho emite um alerta de possíveis eritroblastos. Qual passo precede atribuir diagnóstico ao alerta?",
+          "r": "A revisão microscópica verifica a natureza das células sinalizadas.",
+          "chaves": [
+            "revisão",
+            "microscópica",
+            "verifica"
+          ]
+        }
+      }
+    ],
+    "f847c5fa": [
+      {
+        "t": "Reconheceu que a hepcidina reduz a saída de ferro dos macrófagos e sua disponibilidade para a medula.",
+        "tag": "Sequestro pela hepcidina",
+        "open": {
+          "p": "Na inflamação crônica, a IL-6 sobe, o ferro sérico cai e a ferritina se mantém elevada. Como interpretar o achado?",
+          "r": "A hepcidina reduz a saída de ferro dos macrófagos e sua disponibilidade para a medula.",
+          "chaves": [
+            "hepcidina",
+            "ferro",
+            "macrófagos"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a resposta inadequada favorece redução de produção.",
+        "tag": "Resposta medular baixa",
+        "open": {
+          "p": "O paciente está anêmico e a medula libera poucos reticulócitos para o grau de anemia. Como interpretar o achado?",
+          "r": "A resposta inadequada favorece redução de produção.",
+          "chaves": [
+            "inadequada",
+            "redução",
+            "produção"
+          ]
+        }
+      }
+    ],
+    "60e51ccf": [
+      {
+        "t": "Interpretou geração de creatinina a partir dos dados da questão.",
+        "tag": "Geração de creatinina",
+        "open": {
+          "p": "De que depende a produção basal de creatinina no organismo?",
+          "r": "Ela deriva do metabolismo de creatina e fosfocreatina e varia com a massa muscular.",
+          "chaves": [
+            "metabolismo",
+            "creatina",
+            "fosfocreatina"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou filtração de creatinina a partir dos dados da questão.",
+        "tag": "Filtração de creatinina",
+        "open": {
+          "p": "Quais processos renais participam da eliminação de creatinina?",
+          "r": "Predomina a filtração glomerular, com contribuição de secreção tubular.",
+          "chaves": [
+            "Predomina",
+            "filtração",
+            "contribuição"
+          ]
+        }
+      }
+    ],
+    "c9d87460": [
+      {
+        "t": "Interpretou elevação sobre basal a partir dos dados da questão.",
+        "tag": "Elevação sobre basal",
+        "open": {
+          "p": "A creatinina sobe de 0,5 para 1,0 mg/dL em três dias. Por que a faixa de referência pode enganar?",
+          "r": "O valor dobrou em relação ao basal, preenchendo critério de lesão renal aguda apesar do número absoluto.",
+          "chaves": [
+            "basal",
+            "preenchendo",
+            "absoluto"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou filtração de creatinina a partir dos dados da questão.",
+        "tag": "Filtração de creatinina",
+        "open": {
+          "p": "Quais processos renais participam da eliminação de creatinina?",
+          "r": "Predomina a filtração glomerular, com contribuição de secreção tubular.",
+          "chaves": [
+            "Predomina",
+            "filtração",
+            "contribuição"
+          ]
+        }
+      }
+    ],
+    "c4ce781b": [
+      {
+        "t": "Interpretou mudança de referência a partir dos dados da questão.",
+        "tag": "Mudança de referência",
+        "open": {
+          "p": "Que componentes entram na avaliação da diferença esperada entre duas medidas de uma pessoa estável?",
+          "r": "A variação biológica intraindividual e a imprecisão analítica contribuem para o valor de mudança de referência.",
+          "chaves": [
+            "biológica",
+            "imprecisão",
+            "mudança"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou intervalo individual a partir dos dados da questão.",
+        "tag": "Intervalo individual",
+        "open": {
+          "p": "O que uma série de resultados basais do mesmo paciente acrescenta à referência populacional?",
+          "r": "Ajuda a identificar mudanças relevantes para aquela pessoa, mesmo que ambos os valores estejam dentro do intervalo populacional.",
+          "chaves": [
+            "relevantes",
+            "intervalo",
+            "populacional"
+          ]
+        }
+      }
+    ],
+    "f97f9a39": [
+      {
+        "t": "Reconheceu que o risco basal maior exige maior redução das partículas aterogênicas.",
+        "tag": "Meta individualizada",
+        "open": {
+          "p": "Dois pacientes têm LDL de 110 mg/dL, mas somente um já teve AVC aterosclerótico. Por que os objetivos diferem?",
+          "r": "O risco basal maior exige maior redução das partículas aterogênicas.",
+          "chaves": [
+            "redução",
+            "partículas",
+            "aterogênicas"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou colesterol não HDL a partir dos dados da questão.",
+        "tag": "Colesterol não HDL",
+        "open": {
+          "p": "No mesmo perfil, que medida corresponde ao colesterol total menos o HDL?",
+          "r": "O não HDL agrega o colesterol presente nas lipoproteínas aterogênicas.",
+          "chaves": [
+            "não",
+            "HDL",
+            "colesterol"
+          ]
+        }
+      }
+    ],
+    "b4bb3d81": [
+      {
+        "t": "Reconheceu que a faixa de 30 a 300 mg/g corresponde à categoria A2.",
+        "tag": "Albuminúria moderada",
+        "open": {
+          "p": "A relação albumina/creatinina é de 110 mg/g e se confirma em nova amostra. Qual categoria descreve a excreção?",
+          "r": "A faixa de 30 a 300 mg/g corresponde à categoria A2.",
+          "chaves": [
+            "faixa",
+            "corresponde",
+            "categoria"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou persistência da lesão a partir dos dados da questão.",
+        "tag": "Persistência da lesão",
+        "open": {
+          "p": "Um primeiro exame mostra albuminúria durante doença aguda. O que é necessário para caracterizar cronicidade?",
+          "r": "Confirmar persistência por ao menos três meses e considerar causas transitórias.",
+          "chaves": [
+            "persistência",
+            "considerar",
+            "transitórias"
+          ]
+        }
+      }
+    ],
+    "dd61c7f5": [
+      {
+        "t": "Interpretou linfócitos reativos a partir dos dados da questão.",
+        "tag": "Linfócitos reativos",
+        "open": {
+          "p": "Como interpretar linfócitos atípicos em um hemograma com linfocitose e síndrome viral aguda?",
+          "r": "Podem representar resposta linfocitária reativa. A morfologia deve ser lida com a apresentação clínica.",
+          "chaves": [
+            "representar",
+            "linfocitária",
+            "apresentação"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou interpretação absoluta a partir dos dados da questão.",
+        "tag": "Interpretação absoluta",
+        "open": {
+          "p": "A porcentagem de neutrófilos parece alta, mas o total de leucócitos está muito reduzido. Que cálculo é necessário?",
+          "r": "Multiplicar a fração pelo total permite conhecer a contagem absoluta da série.",
+          "chaves": [
+            "Multiplicar",
+            "total",
+            "absoluta"
+          ]
+        }
+      }
+    ],
+    "fb35e298": [
+      {
+        "t": "Reconheceu que a deficiência de B12 prejudica síntese de DNA e pode causar comprometimento neurológico.",
+        "tag": "Deficiência de cobalamina",
+        "open": {
+          "p": "Macrocitose acompanha parestesias e elevação de metilmalonato. Qual carência integra as alterações?",
+          "r": "A deficiência de B12 prejudica síntese de DNA e pode causar comprometimento neurológico.",
+          "chaves": [
+            "deficiência",
+            "B12",
+            "DNA"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou neutropenia grave a partir dos dados da questão.",
+        "tag": "Neutropenia grave",
+        "open": {
+          "p": "Há 1.200 leucócitos por microlitro e 30% são neutrófilos totais. Qual interpretação importa em paciente febril?",
+          "r": "A contagem absoluta é 360 por microlitro, abaixo de 500, com alto risco infeccioso.",
+          "chaves": [
+            "por",
+            "microlitro",
+            "infeccioso"
+          ]
+        }
+      }
+    ],
+    "e6a814b1": [
+      {
+        "t": "Interpretou calibração do método a partir dos dados da questão.",
+        "tag": "Calibração do método",
+        "open": {
+          "p": "Qual é a finalidade de comparar o sinal da amostra com um calibrador de valor conhecido?",
+          "r": "Estabelecer a relação entre a resposta instrumental e a concentração do analito.",
+          "chaves": [
+            "instrumental",
+            "concentração",
+            "analito"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou mudança de referência a partir dos dados da questão.",
+        "tag": "Mudança de referência",
+        "open": {
+          "p": "Que componentes entram na avaliação da diferença esperada entre duas medidas de uma pessoa estável?",
+          "r": "A variação biológica intraindividual e a imprecisão analítica contribuem para o valor de mudança de referência.",
+          "chaves": [
+            "biológica",
+            "imprecisão",
+            "mudança"
+          ]
+        }
+      }
+    ],
+    "3b17523": [
+      {
+        "t": "Reconheceu que a hepcidina reduz a saída de ferro dos macrófagos e sua disponibilidade para a medula.",
+        "tag": "Sequestro pela hepcidina",
+        "open": {
+          "p": "Na inflamação crônica, a IL-6 sobe, o ferro sérico cai e a ferritina se mantém elevada. Como interpretar o achado?",
+          "r": "A hepcidina reduz a saída de ferro dos macrófagos e sua disponibilidade para a medula.",
+          "chaves": [
+            "hepcidina",
+            "ferro",
+            "macrófagos"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a resposta inflamatória pode elevar ferritina independentemente do estoque.",
+        "tag": "Ferritina de fase aguda",
+        "open": {
+          "p": "Uma ferritina alta aparece junto de inflamação ativa. Por que esse valor isolado não prova sobrecarga de ferro?",
+          "r": "A resposta inflamatória pode elevar ferritina independentemente do estoque.",
+          "chaves": [
+            "inflamatória",
+            "ferritina",
+            "independentemente"
+          ]
+        }
+      }
+    ],
+    "6b8603e5": [
+      {
+        "t": "Reconheceu que a deficiência de folato altera a síntese de DNA sem elevar tipicamente o metilmalonato.",
+        "tag": "Deficiência de folato",
+        "open": {
+          "p": "O quadro megaloblástico associa-se a homocisteína alta com metilmalonato normal. Qual carência é favorecida?",
+          "r": "A deficiência de folato altera a síntese de DNA sem elevar tipicamente o metilmalonato.",
+          "chaves": [
+            "deficiência",
+            "folato",
+            "DNA"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a elevação conjunta de ácido metilmalônico e homocisteína favorece deficiência de cobalamina.",
+        "tag": "Metilmalonato e B12",
+        "open": {
+          "p": "Qual combinação favorece carência de B12 em relação à de folato?",
+          "r": "A elevação conjunta de ácido metilmalônico e homocisteína favorece deficiência de cobalamina.",
+          "chaves": [
+            "elevação",
+            "metilmalônico",
+            "cobalamina"
+          ]
+        }
+      }
+    ],
+    "2ed50f43": [
+      {
+        "t": "Interpretou desvio à esquerda a partir dos dados da questão.",
+        "tag": "Desvio à esquerda",
+        "open": {
+          "p": "Febre acompanha neutrofilia com aumento de bastonetes e metamielócitos. Como interpretar o achado?",
+          "r": "A liberação de formas jovens revela resposta granulocítica.",
+          "chaves": [
+            "liberação",
+            "revela",
+            "granulocítica"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou reserva granulocítica a partir dos dados da questão.",
+        "tag": "Reserva granulocítica",
+        "open": {
+          "p": "Por que aparecem bastonetes e ocasionalmente metamielócitos na resposta a uma infecção aguda?",
+          "r": "A demanda mobiliza a reserva medular e libera formas jovens na circulação.",
+          "chaves": [
+            "mobiliza",
+            "reserva",
+            "circulação"
+          ]
+        }
+      }
+    ],
+    "fc11fcc6": [
+      {
+        "t": "Interpretou linfócitos reativos a partir dos dados da questão.",
+        "tag": "Linfócitos reativos",
+        "open": {
+          "p": "Como interpretar linfócitos atípicos em um hemograma com linfocitose e síndrome viral aguda?",
+          "r": "Podem representar resposta linfocitária reativa. A morfologia deve ser lida com a apresentação clínica.",
+          "chaves": [
+            "representar",
+            "linfocitária",
+            "apresentação"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou interpretação absoluta a partir dos dados da questão.",
+        "tag": "Interpretação absoluta",
+        "open": {
+          "p": "A porcentagem de neutrófilos parece alta, mas o total de leucócitos está muito reduzido. Que cálculo é necessário?",
+          "r": "Multiplicar a fração pelo total permite conhecer a contagem absoluta da série.",
+          "chaves": [
+            "Multiplicar",
+            "total",
+            "absoluta"
+          ]
+        }
+      }
+    ],
+    "389b0038": [
+      {
+        "t": "Interpretou intervalo de referência a partir dos dados da questão.",
+        "tag": "Intervalo de referência",
+        "open": {
+          "p": "O laudo usa os 95% centrais dos resultados de uma população saudável. Como interpretar um valor discretamente fora?",
+          "r": "Uma parcela dos saudáveis fica fora por construção, logo o limite isolado não define doença.",
+          "chaves": [
+            "parcela",
+            "fora",
+            "construção"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou solicitação orientada a partir dos dados da questão.",
+        "tag": "Solicitação orientada",
+        "open": {
+          "p": "Antes de selecionar exames, a médica formula uma hipótese a partir da anamnese e do exame físico. Como interpretar o achado?",
+          "r": "O teste responde a uma pergunta clínica e deve contribuir para uma decisão.",
+          "chaves": [
+            "responde",
+            "pergunta",
+            "decisão"
+          ]
+        }
+      }
+    ],
+    "8e2bf9f2": [
+      {
+        "t": "Interpretou variação da CK a partir dos dados da questão.",
+        "tag": "Variação da CK",
+        "open": {
+          "p": "Na questão, a CK tem valor de mudança de referência de 53,9%. Uma variação de 40% supera esse limite?",
+          "r": "Não supera o limite especificado. A diferença pode decorrer da variabilidade esperada e deve ser integrada ao contexto.",
+          "chaves": [
+            "supera",
+            "limite",
+            "especificado"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou mudança de referência a partir dos dados da questão.",
+        "tag": "Mudança de referência",
+        "open": {
+          "p": "Que componentes entram na avaliação da diferença esperada entre duas medidas de uma pessoa estável?",
+          "r": "A variação biológica intraindividual e a imprecisão analítica contribuem para o valor de mudança de referência.",
+          "chaves": [
+            "biológica",
+            "imprecisão",
+            "mudança"
+          ]
+        }
+      }
+    ],
+    "9d4f1dd7": [
+      {
+        "t": "Interpretou volume corpuscular médio a partir dos dados da questão.",
+        "tag": "Volume corpuscular médio",
+        "open": {
+          "p": "O hematócrito é 28% e há quatro milhões de hemácias por microlitro. Qual índice resulta em 70 fL?",
+          "r": "O VCM é calculado dividindo o hematócrito pela contagem em milhões e multiplicando por dez.",
+          "chaves": [
+            "VCM",
+            "hematócrito",
+            "milhões"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o RDW elevado e o esfregaço dimórfico revelam a heterogeneidade escondida pela média.",
+        "tag": "Amplitude de distribuição",
+        "open": {
+          "p": "Uma deficiência combinada de ferro e B12 deixa o VCM médio normal, embora coexistam células pequenas e grandes. Como interpretar o achado?",
+          "r": "O RDW elevado e o esfregaço dimórfico revelam a heterogeneidade escondida pela média.",
+          "chaves": [
+            "RDW",
+            "elevado",
+            "dimórfico"
+          ]
+        }
+      }
+    ],
+    "f2a8bdfc": [
+      {
+        "t": "Interpretou neutropenia leve a partir dos dados da questão.",
+        "tag": "Neutropenia leve",
+        "open": {
+          "p": "Um adulto estável apresenta 1.300 neutrófilos por microlitro, sem febre. Como classificar e acompanhar o achado no caso?",
+          "r": "A contagem é compatível com neutropenia leve. Sintomas, fármacos, contagens prévias e controle do hemograma orientam a avaliação.",
+          "chaves": [
+            "neutropenia",
+            "leve",
+            "fármacos"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou interpretação absoluta a partir dos dados da questão.",
+        "tag": "Interpretação absoluta",
+        "open": {
+          "p": "A porcentagem de neutrófilos parece alta, mas o total de leucócitos está muito reduzido. Que cálculo é necessário?",
+          "r": "Multiplicar a fração pelo total permite conhecer a contagem absoluta da série.",
+          "chaves": [
+            "Multiplicar",
+            "total",
+            "absoluta"
+          ]
+        }
+      }
+    ],
+    "d5af9449": [
+      {
+        "t": "Interpretou predição após positivo a partir dos dados da questão.",
+        "tag": "Predição após positivo",
+        "open": {
+          "p": "Uma região endêmica e outra de baixa prevalência aplicam o mesmo teste. Onde um positivo tende a ser mais confiável?",
+          "r": "Na população com maior prevalência, aumenta a proporção de verdadeiros positivos entre os reagentes.",
+          "chaves": [
+            "população",
+            "prevalência",
+            "proporção"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o valor preditivo negativo corresponde à fração de verdadeiros negativos entre os negativos.",
+        "tag": "Predição após negativo",
+        "open": {
+          "p": "Num serviço com baixa prevalência, a grande maioria dos laudos negativos pertence a pessoas sem doença. Como interpretar o achado?",
+          "r": "O valor preditivo negativo corresponde à fração de verdadeiros negativos entre os negativos.",
+          "chaves": [
+            "negativo",
+            "fração",
+            "negativos"
+          ]
+        }
+      }
+    ],
+    "13c51c29": [
+      {
+        "t": "Reconheceu que a baixa produção muscular reduz a concentração sérica para uma mesma filtração.",
+        "tag": "Sarcopenia associada",
+        "open": {
+          "p": "Um paciente idoso perdeu massa muscular e a creatinina parece tranquilizadora apesar de doença renal. Como interpretar o achado?",
+          "r": "A baixa produção muscular reduz a concentração sérica para uma mesma filtração.",
+          "chaves": [
+            "muscular",
+            "sérica",
+            "filtração"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou estimativa por cistatina a partir dos dados da questão.",
+        "tag": "Estimativa por cistatina",
+        "open": {
+          "p": "Em paciente com pouca massa muscular, deseja-se complementar a estimativa baseada em creatinina. Como interpretar o achado?",
+          "r": "A cistatina C sofre menor influência direta da massa muscular.",
+          "chaves": [
+            "cistatina",
+            "influência",
+            "muscular"
+          ]
+        }
+      }
+    ],
+    "e0af31a6": [
+      {
+        "t": "Interpretou painel de rastreio a partir dos dados da questão.",
+        "tag": "Painel de rastreio",
+        "open": {
+          "p": "Com vinte exames independentes cujos intervalos abrangem 95% dos saudáveis, qual a chance de ao menos um ficar fora?",
+          "r": "Aproximadamente 64%, pois 1 − 0,95²⁰ ≈ 0,64. Esse cálculo depende da independência assumida.",
+          "chaves": [
+            "0,95",
+            "0,64",
+            "independência"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou intervalo de referência a partir dos dados da questão.",
+        "tag": "Intervalo de referência",
+        "open": {
+          "p": "O laudo usa os 95% centrais dos resultados de uma população saudável. Como interpretar um valor discretamente fora?",
+          "r": "Uma parcela dos saudáveis fica fora por construção, logo o limite isolado não define doença.",
+          "chaves": [
+            "parcela",
+            "fora",
+            "construção"
+          ]
+        }
+      }
+    ],
+    "94f6c007": [
+      {
+        "t": "Reconheceu que a faixa de 30 a 300 mg/g corresponde à categoria A2.",
+        "tag": "Albuminúria moderada",
+        "open": {
+          "p": "A relação albumina/creatinina é de 110 mg/g e se confirma em nova amostra. Qual categoria descreve a excreção?",
+          "r": "A faixa de 30 a 300 mg/g corresponde à categoria A2.",
+          "chaves": [
+            "faixa",
+            "corresponde",
+            "categoria"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou persistência da lesão a partir dos dados da questão.",
+        "tag": "Persistência da lesão",
+        "open": {
+          "p": "Um primeiro exame mostra albuminúria durante doença aguda. O que é necessário para caracterizar cronicidade?",
+          "r": "Confirmar persistência por ao menos três meses e considerar causas transitórias.",
+          "chaves": [
+            "persistência",
+            "considerar",
+            "transitórias"
+          ]
+        }
+      }
+    ],
+    "b4ab7e25": [
+      {
+        "t": "Interpretou colesterol não HDL a partir dos dados da questão.",
+        "tag": "Colesterol não HDL",
+        "open": {
+          "p": "No mesmo perfil, que medida corresponde ao colesterol total menos o HDL?",
+          "r": "O não HDL agrega o colesterol presente nas lipoproteínas aterogênicas.",
+          "chaves": [
+            "não",
+            "HDL",
+            "colesterol"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou contagem por ApoB a partir dos dados da questão.",
+        "tag": "Contagem por ApoB",
+        "open": {
+          "p": "Um paciente com triglicerídeos altos apresenta LDL-C aparentemente aceitável. Qual medida investiga discordância no número de partículas?",
+          "r": "A ApoB estima o número de partículas aterogênicas, enquanto LDL-C mede o colesterol transportado.",
+          "chaves": [
+            "ApoB",
+            "partículas",
+            "LDL-C"
+          ]
+        }
+      }
+    ],
+    "9cde3a53": [
+      {
+        "t": "Reconheceu que a baixa produção muscular reduz a concentração sérica para uma mesma filtração.",
+        "tag": "Sarcopenia associada",
+        "open": {
+          "p": "Um paciente idoso perdeu massa muscular e a creatinina parece tranquilizadora apesar de doença renal. Como interpretar o achado?",
+          "r": "A baixa produção muscular reduz a concentração sérica para uma mesma filtração.",
+          "chaves": [
+            "muscular",
+            "sérica",
+            "filtração"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou estimativa por cistatina a partir dos dados da questão.",
+        "tag": "Estimativa por cistatina",
+        "open": {
+          "p": "Em paciente com pouca massa muscular, deseja-se complementar a estimativa baseada em creatinina. Como interpretar o achado?",
+          "r": "A cistatina C sofre menor influência direta da massa muscular.",
+          "chaves": [
+            "cistatina",
+            "influência",
+            "muscular"
+          ]
+        }
+      }
+    ],
+    "fb1a8fe1": [
+      {
+        "t": "Interpretou assincronia maturativa a partir dos dados da questão.",
+        "tag": "Assincronia maturativa",
+        "open": {
+          "p": "A falta de B12 ou folato compromete a maturação nuclear mais que a citoplasmática. O que explica a megaloblastose?",
+          "r": "O defeito de síntese de DNA atrasa divisão e maturação do núcleo.",
+          "chaves": [
+            "DNA",
+            "divisão",
+            "maturação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o conjunto favorece megaloblastose por defeito na síntese de DNA.",
+        "tag": "Neutrófilos hipersegmentados",
+        "open": {
+          "p": "Macro-ovalócitos coexistem com neutrófilos de numerosos lobos nucleares. Como interpretar o achado?",
+          "r": "O conjunto favorece megaloblastose por defeito na síntese de DNA.",
+          "chaves": [
+            "megaloblastose",
+            "defeito",
+            "DNA"
+          ]
+        }
+      }
+    ],
+    "b629eb52": [
+      {
+        "t": "Reconheceu que o estoque reduzido e a transferrina aumentada sustentam ferropenia.",
+        "tag": "Deficiência de ferro",
+        "open": {
+          "p": "Microcitose com RDW alto acompanha ferritina muito baixa e capacidade de ligação aumentada. Como interpretar o achado?",
+          "r": "O estoque reduzido e a transferrina aumentada sustentam ferropenia.",
+          "chaves": [
+            "transferrina",
+            "aumentada",
+            "ferropenia"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou saturação da transferrina a partir dos dados da questão.",
+        "tag": "Saturação da transferrina",
+        "open": {
+          "p": "Deseja-se estimar que fração dos sítios disponíveis na transferrina transporta ferro. Que índice consultar?",
+          "r": "A saturação relaciona o ferro circulante à capacidade total de ligação.",
+          "chaves": [
+            "saturação",
+            "ferro",
+            "ligação"
+          ]
+        }
+      }
+    ],
+    "cdc7b192": [
+      {
+        "t": "Reconheceu que a pseudotrombocitopenia pode ser investigada com nova coleta em citrato e revisão da lâmina.",
+        "tag": "Agregação por EDTA",
+        "open": {
+          "p": "Um assintomático tem plaquetas de 32 mil no aparelho e numerosos agregados no esfregaço. Como interpretar o achado?",
+          "r": "A pseudotrombocitopenia pode ser investigada com nova coleta em citrato e revisão da lâmina.",
+          "chaves": [
+            "pseudotrombocitopenia",
+            "investigada",
+            "revisão"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a revisão microscópica verifica a natureza das células sinalizadas.",
+        "tag": "Revisão do esfregaço",
+        "open": {
+          "p": "O aparelho emite um alerta de possíveis eritroblastos. Qual passo precede atribuir diagnóstico ao alerta?",
+          "r": "A revisão microscópica verifica a natureza das células sinalizadas.",
+          "chaves": [
+            "revisão",
+            "microscópica",
+            "verifica"
+          ]
+        }
+      }
+    ],
+    "f11b6f28": [
+      {
+        "t": "Reconheceu que a informação do teste atualiza a probabilidade prévia e pode levar a conclusões diferentes.",
+        "tag": "Probabilidade pós-teste",
+        "open": {
+          "p": "Dois pacientes têm o mesmo resultado, mas tinham riscos clínicos muito diferentes antes da dosagem. Como interpretar o achado?",
+          "r": "A informação do teste atualiza a probabilidade prévia e pode levar a conclusões diferentes.",
+          "chaves": [
+            "informação",
+            "probabilidade",
+            "conclusões"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou predição após positivo a partir dos dados da questão.",
+        "tag": "Predição após positivo",
+        "open": {
+          "p": "Uma região endêmica e outra de baixa prevalência aplicam o mesmo teste. Onde um positivo tende a ser mais confiável?",
+          "r": "Na população com maior prevalência, aumenta a proporção de verdadeiros positivos entre os reagentes.",
+          "chaves": [
+            "população",
+            "prevalência",
+            "proporção"
+          ]
+        }
+      }
+    ],
+    "8183dc80": [
+      {
+        "t": "Reconheceu que a baixa produção muscular reduz a concentração sérica para uma mesma filtração.",
+        "tag": "Sarcopenia associada",
+        "open": {
+          "p": "Um paciente idoso perdeu massa muscular e a creatinina parece tranquilizadora apesar de doença renal. Como interpretar o achado?",
+          "r": "A baixa produção muscular reduz a concentração sérica para uma mesma filtração.",
+          "chaves": [
+            "muscular",
+            "sérica",
+            "filtração"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou estimativa por cistatina a partir dos dados da questão.",
+        "tag": "Estimativa por cistatina",
+        "open": {
+          "p": "Em paciente com pouca massa muscular, deseja-se complementar a estimativa baseada em creatinina. Como interpretar o achado?",
+          "r": "A cistatina C sofre menor influência direta da massa muscular.",
+          "chaves": [
+            "cistatina",
+            "influência",
+            "muscular"
+          ]
+        }
+      }
+    ],
+    "ced48025": [
+      {
+        "t": "Reconheceu que o RDW elevado e o esfregaço dimórfico revelam a heterogeneidade escondida pela média.",
+        "tag": "Amplitude de distribuição",
+        "open": {
+          "p": "Uma deficiência combinada de ferro e B12 deixa o VCM médio normal, embora coexistam células pequenas e grandes. Como interpretar o achado?",
+          "r": "O RDW elevado e o esfregaço dimórfico revelam a heterogeneidade escondida pela média.",
+          "chaves": [
+            "RDW",
+            "elevado",
+            "dimórfico"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o estoque reduzido e a transferrina aumentada sustentam ferropenia.",
+        "tag": "Deficiência de ferro",
+        "open": {
+          "p": "Microcitose com RDW alto acompanha ferritina muito baixa e capacidade de ligação aumentada. Como interpretar o achado?",
+          "r": "O estoque reduzido e a transferrina aumentada sustentam ferropenia.",
+          "chaves": [
+            "transferrina",
+            "aumentada",
+            "ferropenia"
+          ]
+        }
+      }
+    ],
+    "ef9834b5": [
+      {
+        "t": "Reconheceu que o transporte pode alterar a representatividade e comprometer o rendimento do exame.",
+        "tag": "Transporte inadequado",
+        "open": {
+          "p": "O laboratório recebe uma amostra em condições diferentes das previstas para aquele material. Por que a interpretação exige cautela?",
+          "r": "O transporte pode alterar a representatividade e comprometer o rendimento do exame.",
+          "chaves": [
+            "transporte",
+            "representatividade",
+            "rendimento"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a exposição prévia pode reduzir a recuperação do agente e deve ser comunicada ao laboratório.",
+        "tag": "Exposição a antimicrobiano",
+        "open": {
+          "p": "A cultura é negativa após o início do antibiótico. Qual dado pré-analítico modifica a leitura?",
+          "r": "A exposição prévia pode reduzir a recuperação do agente e deve ser comunicada ao laboratório.",
+          "chaves": [
+            "exposição",
+            "recuperação",
+            "comunicada"
+          ]
+        }
+      }
+    ],
+    "ebb6f86c": [
+      {
+        "t": "Reconheceu que a resposta humoral pode ainda estar abaixo do limite de detecção.",
+        "tag": "Sorologia precoce negativa",
+        "open": {
+          "p": "Uma IgM negativa foi colhida logo no começo da febre. Por que reavaliar a janela?",
+          "r": "A resposta humoral pode ainda estar abaixo do limite de detecção.",
+          "chaves": [
+            "humoral",
+            "limite",
+            "detecção"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou janela sorológica a partir dos dados da questão.",
+        "tag": "Janela sorológica",
+        "open": {
+          "p": "Uma IgM é negativa no segundo dia de febre. Por que isso não exclui a hipótese?",
+          "r": "Pode ainda não ter ocorrido produção detectável de anticorpos.",
+          "chaves": [
+            "ocorrido",
+            "produção",
+            "detectável"
+          ]
+        }
+      }
+    ],
+    "38effc5f": [
+      {
+        "t": "Interpretou persistência do HBsAg a partir dos dados da questão.",
+        "tag": "Persistência do HBsAg",
+        "open": {
+          "p": "O antígeno de superfície continua detectável por mais de seis meses. Que classificação temporal é sustentada?",
+          "r": "A persistência estabelece infecção crônica por HBV; atividade depende de outros marcadores.",
+          "chaves": [
+            "persistência",
+            "crônica",
+            "HBV"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou replicação do HBV a partir dos dados da questão.",
+        "tag": "Replicação do HBV",
+        "open": {
+          "p": "No HBsAg persistente com ALT aumentada, que exame quantifica replicação viral?",
+          "r": "O HBV-DNA auxilia a avaliar replicação e atividade, junto à ALT e aos demais dados clínicos.",
+          "chaves": [
+            "HBV-DNA",
+            "replicação",
+            "ALT"
+          ]
+        }
+      }
+    ],
+    "b8fab15e": [
+      {
+        "t": "Reconheceu que o padrão orienta para comprometimento canalicular ou biliar.",
+        "tag": "Colestase bioquímica",
+        "open": {
+          "p": "FA e GGT aumentam em predomínio sobre as aminotransferases. Que componente do hepatograma se destaca?",
+          "r": "O padrão orienta para comprometimento canalicular ou biliar.",
+          "chaves": [
+            "orienta",
+            "comprometimento",
+            "canalicular"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o conjunto favorece destruição eritrocitária em vez de sangramento isolado.",
+        "tag": "Hemólise bioquímica",
+        "open": {
+          "p": "Uma anemia regenerativa acompanha LDH e bilirrubina indireta elevadas, com haptoglobina reduzida. Como interpretar o achado?",
+          "r": "O conjunto favorece destruição eritrocitária em vez de sangramento isolado.",
+          "chaves": [
+            "destruição",
+            "eritrocitária",
+            "sangramento"
+          ]
+        }
+      }
+    ],
+    "b3286d41": [
+      {
+        "t": "Interpretou confirmação laboratorial a partir dos dados da questão.",
+        "tag": "Confirmação laboratorial",
+        "open": {
+          "p": "Um único imunoensaio reagente chega ao consultório sem resultado complementar. Qual é o limite dessa informação?",
+          "r": "É necessária a sequência de confirmação prevista para o método utilizado antes de emitir conclusão definitiva.",
+          "chaves": [
+            "necessária",
+            "confirmação",
+            "conclusão"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que um teste molecular para RNA pode apoiar a investigação nessa fase.",
+        "tag": "Pesquisa de RNA",
+        "open": {
+          "p": "Há suspeita de infecção aguda e anticorpos ainda não foram demonstrados. Qual exame pesquisa diretamente o genoma viral?",
+          "r": "Um teste molecular para RNA pode apoiar a investigação nessa fase.",
+          "chaves": [
+            "molecular",
+            "RNA",
+            "investigação"
+          ]
+        }
+      }
+    ],
+    "af982637": [
+      {
+        "t": "Reconheceu que uma subida ou queda apoia lesão aguda.",
+        "tag": "Cinética da troponina",
+        "open": {
+          "p": "Por que colher troponina em série diante de dor isquêmica de início recente?",
+          "r": "Uma subida ou queda apoia lesão aguda. A classificação como infarto exige evidência de isquemia no contexto clínico.",
+          "chaves": [
+            "subida",
+            "classificação",
+            "isquemia"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou lesão miocárdica crônica a partir dos dados da questão.",
+        "tag": "Lesão miocárdica crônica",
+        "open": {
+          "p": "Em pessoa com DRC estável, a troponina permanece elevada sem variação significativa ou sinais de isquemia. Como interpretar o achado?",
+          "r": "Elevação persistente indica lesão miocárdica. Infarto agudo requer evidência de isquemia associada a lesão aguda.",
+          "chaves": [
+            "lesão",
+            "miocárdica",
+            "isquemia"
+          ]
+        }
+      }
+    ],
+    "1d2e8185": [
+      {
+        "t": "Interpretou entrada EULAR/ACR a partir dos dados da questão.",
+        "tag": "Entrada EULAR/ACR",
+        "open": {
+          "p": "Qual título do FAN por imunofluorescência em HEp-2 atende ao critério de entrada EULAR/ACR 2019 para classificação de lúpus?",
+          "r": "Pelo menos 1:80, documentado ao menos uma vez, ou teste equivalente positivo. Isso permite aplicar os critérios ponderados.",
+          "chaves": [
+            "1:80",
+            "critérios",
+            "ponderados"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou triagem pelo FAN a partir dos dados da questão.",
+        "tag": "Triagem pelo FAN",
+        "open": {
+          "p": "Na suspeita de lúpus, por que o FAN tem valor como teste sensível, mas exige correlação clínica?",
+          "r": "Ele é frequente no lúpus e também ocorre em outras condições e em pessoas saudáveis.",
+          "chaves": [
+            "Ele",
+            "lúpus",
+            "condições"
+          ]
+        }
+      }
+    ],
+    "924767d5": [
+      {
+        "t": "Reconheceu que a seleção negativa central reduz a saída de linfócitos capazes de reagir contra o próprio organismo.",
+        "tag": "Tolerância central",
+        "open": {
+          "p": "No timo, clones T altamente autorreativos são eliminados durante a maturação. Como interpretar o achado?",
+          "r": "A seleção negativa central reduz a saída de linfócitos capazes de reagir contra o próprio organismo.",
+          "chaves": [
+            "seleção",
+            "negativa",
+            "central"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou tolerância periférica a partir dos dados da questão.",
+        "tag": "Tolerância periférica",
+        "open": {
+          "p": "Um clone autorreativo maduro é contido por anergia e por células T reguladoras fora dos órgãos primários. Como interpretar o achado?",
+          "r": "Esses mecanismos controlam a autorreatividade que escapou da seleção central.",
+          "chaves": [
+            "mecanismos",
+            "controlam",
+            "seleção"
+          ]
+        }
+      }
+    ],
+    "d4927afc": [
+      {
+        "t": "Reconheceu que a direta corresponde a 40% e a indireta a 60%.",
+        "tag": "Bilirrubina mista",
+        "open": {
+          "p": "Com bilirrubina total de 5 mg/dL e direta de 2 mg/dL, como se distribuem as frações?",
+          "r": "A direta corresponde a 40% e a indireta a 60%. Pelo esquema da aula, ambas estão elevadas sem predomínio suficiente para um padrão puro.",
+          "chaves": [
+            "direta",
+            "indireta",
+            "esquema"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a fração direta é hidrossolúvel e pode ser excretada pelo rim.",
+        "tag": "Bilirrubina conjugada",
+        "open": {
+          "p": "Na icterícia obstrutiva surge colúria. Qual característica permite a presença de pigmento biliar na urina?",
+          "r": "A fração direta é hidrossolúvel e pode ser excretada pelo rim.",
+          "chaves": [
+            "fração",
+            "hidrossolúvel",
+            "excretada"
+          ]
+        }
+      }
+    ],
+    "fef7107f": [
+      {
+        "t": "Interpretou datação da hepatite a partir dos dados da questão.",
+        "tag": "Datação da hepatite",
+        "open": {
+          "p": "O anti-HCV reagente permite datar a aquisição da infecção em quem nunca foi testado?",
+          "r": "Não. A sorologia indica exposição e deve ser integrada à história, a resultados prévios e à pesquisa de RNA.",
+          "chaves": [
+            "sorologia",
+            "exposição",
+            "RNA"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a detecção de HCV-RNA identifica viremia atual.",
+        "tag": "Viremia por HCV",
+        "open": {
+          "p": "Um anti-HCV positivo isolado não diferencia infecção passada de ativa. Qual informação é necessária?",
+          "r": "A detecção de HCV-RNA identifica viremia atual.",
+          "chaves": [
+            "HCV-RNA",
+            "identifica",
+            "viremia"
+          ]
+        }
+      }
+    ],
+    "2ca67b50": [
+      {
+        "t": "Interpretou teste treponêmico a partir dos dados da questão.",
+        "tag": "Teste treponêmico",
+        "open": {
+          "p": "Uma pessoa tratada adequadamente mantém teste treponêmico reagente. O que esse resultado documenta?",
+          "r": "Anticorpos treponêmicos podem persistir após tratamento e não servem isoladamente para monitorar resposta.",
+          "chaves": [
+            "persistir",
+            "servem",
+            "monitorar"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou queda de títulos a partir dos dados da questão.",
+        "tag": "Queda de títulos",
+        "open": {
+          "p": "O VDRL passa de 1:32 para 1:8. Qual a magnitude da variação?",
+          "r": "A queda é de duas diluições, equivalente a redução de quatro vezes.",
+          "chaves": [
+            "queda",
+            "diluições",
+            "redução"
+          ]
+        }
+      }
+    ],
+    "bcbb5b3c": [
+      {
+        "t": "Interpretou anticorpo anti-CCP a partir dos dados da questão.",
+        "tag": "Anticorpo anti-CCP",
+        "open": {
+          "p": "Há sinovite persistente de pequenas articulações e FR negativo. Que marcador mais específico pode apoiar a hipótese?",
+          "r": "Anti-CCP positivo aumenta a probabilidade de artrite reumatoide no contexto compatível.",
+          "chaves": [
+            "Anti-CCP",
+            "artrite",
+            "reumatoide"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou fator reumatoide a partir dos dados da questão.",
+        "tag": "Fator reumatoide",
+        "open": {
+          "p": "O fator reumatoide está positivo em pessoa sem sinovite. Por que esse achado isolado não confirma artrite reumatoide?",
+          "r": "O anticorpo também ocorre em infecções, outras doenças e indivíduos saudáveis.",
+          "chaves": [
+            "infecções",
+            "doenças",
+            "indivíduos"
+          ]
+        }
+      }
+    ],
+    "420d7905": [
+      {
+        "t": "Interpretou lesão hepatocelular a partir dos dados da questão.",
+        "tag": "Lesão hepatocelular",
+        "open": {
+          "p": "AST e ALT estão muito elevadas. Qual aspecto do hepatócito esses marcadores informam diretamente?",
+          "r": "As aminotransferases indicam lesão celular e não medem diretamente capacidade de síntese.",
+          "chaves": [
+            "aminotransferases",
+            "lesão",
+            "diretamente"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou reserva de síntese a partir dos dados da questão.",
+        "tag": "Reserva de síntese",
+        "open": {
+          "p": "O médico solicita albumina e TP/INR para complementar o perfil enzimático. Que função está sendo examinada?",
+          "r": "Albumina e fatores de coagulação são produzidos no fígado, com diferenças de meia-vida.",
+          "chaves": [
+            "Albumina",
+            "coagulação",
+            "produzidos"
+          ]
+        }
+      }
+    ],
+    "58ba7dd": [
+      {
+        "t": "Reconheceu que a perda inicial de plasma e hemácias em proporções semelhantes pode preservar transitoriamente a concentração.",
+        "tag": "Hemorragia recente",
+        "open": {
+          "p": "Pouco depois de perder grande volume de sangue, o paciente está hipotenso com hemoglobina ainda habitual. Como interpretar o achado?",
+          "r": "A perda inicial de plasma e hemácias em proporções semelhantes pode preservar transitoriamente a concentração.",
+          "chaves": [
+            "proporções",
+            "semelhantes",
+            "concentração"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou compensação clínica a partir dos dados da questão.",
+        "tag": "Compensação clínica",
+        "open": {
+          "p": "Dois pacientes têm a mesma hemoglobina, mas um sangra rapidamente e o outro tem anemia estável há meses. Como interpretar o achado?",
+          "r": "A velocidade da perda e a repercussão clínica pesam na decisão de transfundir.",
+          "chaves": [
+            "repercussão",
+            "decisão",
+            "transfundir"
+          ]
+        }
+      }
+    ],
+    "cc3530bb": [
+      {
+        "t": "Interpretou quarta geração a partir dos dados da questão.",
+        "tag": "Quarta geração",
+        "open": {
+          "p": "Um ensaio inclui p24 e anticorpos anti-HIV-1/2. Qual benefício resulta dessa combinação?",
+          "r": "A detecção de antígeno encurta a janela em relação a testes que pesquisam apenas anticorpos.",
+          "chaves": [
+            "detecção",
+            "encurta",
+            "anticorpos"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que o intervalo pode ser menor que a janela diagnóstica do ensaio.",
+        "tag": "Tempo desde exposição",
+        "open": {
+          "p": "Um teste rápido não reagente foi realizado poucos dias depois de uma relação de risco. Qual informação limita a interpretação?",
+          "r": "O intervalo pode ser menor que a janela diagnóstica do ensaio.",
+          "chaves": [
+            "intervalo",
+            "diagnóstica",
+            "ensaio"
+          ]
+        }
+      }
+    ],
+    "265f0e5b": [
+      {
+        "t": "Interpretou antígeno NS1 a partir dos dados da questão.",
+        "tag": "Antígeno NS1",
+        "open": {
+          "p": "No terceiro dia de síndrome compatível com dengue, qual proteína detectável pode apoiar confirmação precoce?",
+          "r": "O antígeno NS1 é alvo de teste direto nos primeiros dias.",
+          "chaves": [
+            "antígeno",
+            "NS1",
+            "alvo"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou sorologia mais tardia a partir dos dados da questão.",
+        "tag": "Sorologia mais tardia",
+        "open": {
+          "p": "No sétimo dia de sintomas, qual classe de anticorpo pode apoiar o diagnóstico recente conforme o protocolo da aula?",
+          "r": "A IgM costuma ganhar utilidade após os primeiros dias, devendo ser interpretada no contexto.",
+          "chaves": [
+            "utilidade",
+            "devendo",
+            "interpretada"
+          ]
+        }
+      }
+    ],
+    "ad5d09b3": [
+      {
+        "t": "Interpretou PCR e complemento a partir dos dados da questão.",
+        "tag": "PCR e complemento",
+        "open": {
+          "p": "Além de marcar inflamação, que função imune a proteína C reativa pode exercer?",
+          "r": "Ao reconhecer determinados ligantes, a PCR pode participar da ativação do complemento.",
+          "chaves": [
+            "PCR",
+            "ativação",
+            "complemento"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou sinalização por IL-6 a partir dos dados da questão.",
+        "tag": "Sinalização por IL-6",
+        "open": {
+          "p": "Que citocina participa da comunicação entre o foco de inflamação e a síntese hepática de proteínas de fase aguda?",
+          "r": "A IL-6 estimula a produção de PCR e de outras proteínas positivas de fase aguda.",
+          "chaves": [
+            "IL-6",
+            "PCR",
+            "proteínas"
+          ]
+        }
+      }
+    ],
+    "3bca5f4a": [
+      {
+        "t": "Reconheceu que o risco basal maior exige maior redução das partículas aterogênicas.",
+        "tag": "Meta individualizada",
+        "open": {
+          "p": "Dois pacientes têm LDL de 110 mg/dL, mas somente um já teve AVC aterosclerótico. Por que os objetivos diferem?",
+          "r": "O risco basal maior exige maior redução das partículas aterogênicas.",
+          "chaves": [
+            "redução",
+            "partículas",
+            "aterogênicas"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou colesterol não HDL a partir dos dados da questão.",
+        "tag": "Colesterol não HDL",
+        "open": {
+          "p": "No mesmo perfil, que medida corresponde ao colesterol total menos o HDL?",
+          "r": "O não HDL agrega o colesterol presente nas lipoproteínas aterogênicas.",
+          "chaves": [
+            "não",
+            "HDL",
+            "colesterol"
+          ]
+        }
+      }
+    ],
+    "e989a72e": [
+      {
+        "t": "Reconheceu que a detecção de HCV-RNA identifica viremia atual.",
+        "tag": "Viremia por HCV",
+        "open": {
+          "p": "Um anti-HCV positivo isolado não diferencia infecção passada de ativa. Qual informação é necessária?",
+          "r": "A detecção de HCV-RNA identifica viremia atual.",
+          "chaves": [
+            "HCV-RNA",
+            "identifica",
+            "viremia"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou monitoramento virológico a partir dos dados da questão.",
+        "tag": "Monitoramento virológico",
+        "open": {
+          "p": "Após iniciar terapia antirretroviral, qual medida acompanha a queda da replicação viral?",
+          "r": "A carga viral quantifica RNA circulante e monitora resposta ao tratamento.",
+          "chaves": [
+            "viral",
+            "quantifica",
+            "RNA"
+          ]
+        }
+      }
+    ],
+    "d45d2fb": [
+      {
+        "t": "Interpretou esterase leucocitária a partir dos dados da questão.",
+        "tag": "Esterase leucocitária",
+        "open": {
+          "p": "A fita aponta atividade enzimática compatível com leucócitos no trato urinário. Como interpretar o achado?",
+          "r": "A esterase indica piúria, mas não confirma infecção isoladamente.",
+          "chaves": [
+            "esterase",
+            "piúria",
+            "infecção"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou nitrito urinário a partir dos dados da questão.",
+        "tag": "Nitrito urinário",
+        "open": {
+          "p": "Uma paciente com disúria tem teste de nitrito negativo. Por que isso não basta para afastar infecção?",
+          "r": "Alguns agentes não convertem nitrato em nitrito e o resultado também depende do tempo na bexiga.",
+          "chaves": [
+            "agentes",
+            "convertem",
+            "nitrito"
+          ]
+        }
+      }
+    ],
+    "98651ec5": [
+      {
+        "t": "Reconheceu que uma subida ou queda apoia lesão aguda.",
+        "tag": "Cinética da troponina",
+        "open": {
+          "p": "Por que colher troponina em série diante de dor isquêmica de início recente?",
+          "r": "Uma subida ou queda apoia lesão aguda. A classificação como infarto exige evidência de isquemia no contexto clínico.",
+          "chaves": [
+            "subida",
+            "classificação",
+            "isquemia"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou protocolo de troponina a partir dos dados da questão.",
+        "tag": "Protocolo de troponina",
+        "open": {
+          "p": "Por que o intervalo das coletas de troponina deve considerar o ensaio utilizado?",
+          "r": "Ensaios de alta sensibilidade detectam mudanças mais precoces. O protocolo interpreta os intervalos, a variação e o percentil 99 próprios do ensaio.",
+          "chaves": [
+            "Ensaios",
+            "detectam",
+            "protocolo"
+          ]
+        }
+      }
+    ],
+    "e888a98d": [
+      {
+        "t": "Interpretou padronização da leitura a partir dos dados da questão.",
+        "tag": "Padronização da leitura",
+        "open": {
+          "p": "Por que a microscopia diagnóstica precisa de critérios documentados de leitura e liberação?",
+          "r": "Critérios uniformes reduzem variação entre observadores e permitem comparar resultados de diferentes serviços.",
+          "chaves": [
+            "Critérios",
+            "uniformes",
+            "variação"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que uma leitura pouco representativa reduz a confiança no laudo e pode perder achados distribuídos de maneira desigual.",
+        "tag": "Representatividade microscópica",
+        "open": {
+          "p": "Qual o problema de liberar uma conclusão microscópica após avaliar material insuficiente?",
+          "r": "Uma leitura pouco representativa reduz a confiança no laudo e pode perder achados distribuídos de maneira desigual.",
+          "chaves": [
+            "leitura",
+            "representativa",
+            "confiança"
+          ]
+        }
+      }
+    ],
+    "c29d9d23": [
+      {
+        "t": "Interpretou diplococos intracelulares a partir dos dados da questão.",
+        "tag": "Diplococos intracelulares",
+        "open": {
+          "p": "Em corrimento uretral típico, observam-se diplococos Gram-negativos em neutrófilos. Qual hipótese deve ser investigada?",
+          "r": "A morfologia e o sítio favorecem infecção gonocócica.",
+          "chaves": [
+            "morfologia",
+            "infecção",
+            "gonocócica"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a morfologia sugere estafilococos sem determinar espécie ou sensibilidade.",
+        "tag": "Orientação pelo Gram",
+        "open": {
+          "p": "A microscopia mostra cocos Gram-positivos em cachos. Até onde essa informação permite concluir?",
+          "r": "A morfologia sugere estafilococos sem determinar espécie ou sensibilidade.",
+          "chaves": [
+            "estafilococos",
+            "determinar",
+            "espécie"
+          ]
+        }
+      }
+    ],
+    "567a84c7": [
+      {
+        "t": "Reconheceu que a alteração sensitiva em lesão compatível é um achado importante na investigação de hanseníase.",
+        "tag": "Hanseníase clínica",
+        "open": {
+          "p": "Uma lesão cutânea persistente com perda de sensibilidade orienta a avaliação para qual doença?",
+          "r": "A alteração sensitiva em lesão compatível é um achado importante na investigação de hanseníase.",
+          "chaves": [
+            "lesão",
+            "investigação",
+            "hanseníase"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou limitação da cultura a partir dos dados da questão.",
+        "tag": "Limitação da cultura",
+        "open": {
+          "p": "Por que a cultura bacteriana convencional não é o exame usado para confirmar hanseníase?",
+          "r": "Mycobacterium leprae não é recuperado em meios de cultura convencionais. A avaliação é clínico-neurológica, com exames complementares conforme a indicação.",
+          "chaves": [
+            "cultura",
+            "clínico-neurológica",
+            "indicação"
+          ]
+        }
+      }
+    ],
+    "b4fb37d5": [
+      {
+        "t": "Interpretou positivo incidental a partir dos dados da questão.",
+        "tag": "Positivo incidental",
+        "open": {
+          "p": "Uma pessoa assintomática pede painel extenso e recebe FAN positivo em baixo título. Como interpretar o achado?",
+          "r": "A baixa probabilidade pré-teste diminui o valor preditivo positivo do achado.",
+          "chaves": [
+            "pré-teste",
+            "diminui",
+            "positivo"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou fator reumatoide a partir dos dados da questão.",
+        "tag": "Fator reumatoide",
+        "open": {
+          "p": "O fator reumatoide está positivo em pessoa sem sinovite. Por que esse achado isolado não confirma artrite reumatoide?",
+          "r": "O anticorpo também ocorre em infecções, outras doenças e indivíduos saudáveis.",
+          "chaves": [
+            "infecções",
+            "doenças",
+            "indivíduos"
+          ]
+        }
+      }
+    ],
+    "f9b1d666": [
+      {
+        "t": "Interpretou monitoramento pelo VDRL a partir dos dados da questão.",
+        "tag": "Monitoramento pelo VDRL",
+        "open": {
+          "p": "Qual exame permite seguir quantitativamente a resposta ao tratamento da sífilis ao longo do tempo?",
+          "r": "Títulos de testes não treponêmicos, como VDRL, são comparados com valores anteriores.",
+          "chaves": [
+            "Títulos",
+            "VDRL",
+            "comparados"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou queda de títulos a partir dos dados da questão.",
+        "tag": "Queda de títulos",
+        "open": {
+          "p": "O VDRL passa de 1:32 para 1:8. Qual a magnitude da variação?",
+          "r": "A queda é de duas diluições, equivalente a redução de quatro vezes.",
+          "chaves": [
+            "queda",
+            "diluições",
+            "redução"
+          ]
+        }
+      }
+    ],
+    "32f5990f": [
+      {
+        "t": "Reconheceu que a contagem absoluta comparada à referência da faixa etária distingue alteração percentual de linfocitose absoluta.",
+        "tag": "Linfocitose relativa",
+        "open": {
+          "p": "Com leucócitos totais normais e porcentagem alta de linfócitos, que dado permite reconhecer aumento apenas relativo?",
+          "r": "A contagem absoluta comparada à referência da faixa etária distingue alteração percentual de linfocitose absoluta.",
+          "chaves": [
+            "comparada",
+            "percentual",
+            "linfocitose"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou interpretação absoluta a partir dos dados da questão.",
+        "tag": "Interpretação absoluta",
+        "open": {
+          "p": "A porcentagem de neutrófilos parece alta, mas o total de leucócitos está muito reduzido. Que cálculo é necessário?",
+          "r": "Multiplicar a fração pelo total permite conhecer a contagem absoluta da série.",
+          "chaves": [
+            "Multiplicar",
+            "total",
+            "absoluta"
+          ]
+        }
+      }
+    ],
+    "1fec8e4": [
+      {
+        "t": "Reconheceu que a detecção de HCV-RNA identifica viremia atual.",
+        "tag": "Viremia por HCV",
+        "open": {
+          "p": "Um anti-HCV positivo isolado não diferencia infecção passada de ativa. Qual informação é necessária?",
+          "r": "A detecção de HCV-RNA identifica viremia atual.",
+          "chaves": [
+            "HCV-RNA",
+            "identifica",
+            "viremia"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou datação da hepatite a partir dos dados da questão.",
+        "tag": "Datação da hepatite",
+        "open": {
+          "p": "O anti-HCV reagente permite datar a aquisição da infecção em quem nunca foi testado?",
+          "r": "Não. A sorologia indica exposição e deve ser integrada à história, a resultados prévios e à pesquisa de RNA.",
+          "chaves": [
+            "sorologia",
+            "exposição",
+            "RNA"
+          ]
+        }
+      }
+    ],
+    "aaa48ccf": [
+      {
+        "t": "Interpretou sífilis oral a partir dos dados da questão.",
+        "tag": "Sífilis oral",
+        "open": {
+          "p": "Por que a microscopia de campo escuro de uma lesão oral pode ter baixa especificidade para sífilis?",
+          "r": "Treponemas comensais orais podem ser confundidos com o agente. A escolha do teste deve considerar o sítio e o método.",
+          "chaves": [
+            "Treponemas",
+            "comensais",
+            "confundidos"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou teste treponêmico a partir dos dados da questão.",
+        "tag": "Teste treponêmico",
+        "open": {
+          "p": "Uma pessoa tratada adequadamente mantém teste treponêmico reagente. O que esse resultado documenta?",
+          "r": "Anticorpos treponêmicos podem persistir após tratamento e não servem isoladamente para monitorar resposta.",
+          "chaves": [
+            "persistir",
+            "servem",
+            "monitorar"
+          ]
+        }
+      }
+    ],
+    "70ef0a4c": [
+      {
+        "t": "Interpretou persistência da lesão a partir dos dados da questão.",
+        "tag": "Persistência da lesão",
+        "open": {
+          "p": "Um primeiro exame mostra albuminúria durante doença aguda. O que é necessário para caracterizar cronicidade?",
+          "r": "Confirmar persistência por ao menos três meses e considerar causas transitórias.",
+          "chaves": [
+            "persistência",
+            "considerar",
+            "transitórias"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou cilindro hialino a partir dos dados da questão.",
+        "tag": "Cilindro hialino",
+        "open": {
+          "p": "Em indivíduo hígido desidratado, aparecem raros cilindros transparentes sem células. Como interpretar o achado?",
+          "r": "Pequena quantidade de cilindros hialinos pode ocorrer sem doença estrutural renal.",
+          "chaves": [
+            "Pequena",
+            "quantidade",
+            "cilindros"
+          ]
+        }
+      }
+    ],
+    "2118ce59": [
+      {
+        "t": "Interpretou razão de ritis a partir dos dados da questão.",
+        "tag": "Razão de Ritis",
+        "open": {
+          "p": "Se AST é 520 e ALT é 680 U/L, qual enzima predomina e qual é a razão aproximada?",
+          "r": "A ALT predomina e a razão AST/ALT é aproximadamente 0,76. A causa não se estabelece pela razão isolada.",
+          "chaves": [
+            "ALT",
+            "razão",
+            "AST"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou lesão hepatocelular a partir dos dados da questão.",
+        "tag": "Lesão hepatocelular",
+        "open": {
+          "p": "AST e ALT estão muito elevadas. Qual aspecto do hepatócito esses marcadores informam diretamente?",
+          "r": "As aminotransferases indicam lesão celular e não medem diretamente capacidade de síntese.",
+          "chaves": [
+            "aminotransferases",
+            "lesão",
+            "diretamente"
+          ]
+        }
+      }
+    ],
+    "c686d1b0": [
+      {
+        "t": "Identificou o título mínimo do FAN para aplicar os critérios de classificação do lúpus.",
+        "tag": "Entrada EULAR/ACR",
+        "open": {
+          "p": "Qual título do FAN por imunofluorescência em HEp-2 atende ao critério de entrada EULAR/ACR 2019 para classificação de lúpus?",
+          "r": "Pelo menos 1:80, documentado ao menos uma vez, ou teste equivalente positivo. Isso permite aplicar os critérios ponderados.",
+          "chaves": [
+            "1:80",
+            "ao menos uma vez",
+            "teste equivalente"
+          ]
+        }
+      },
+      {
+        "t": "Distinguiu sensibilidade do FAN de especificidade para lúpus.",
+        "tag": "Triagem pelo FAN",
+        "open": {
+          "p": "Na suspeita de lúpus, por que o FAN tem valor como teste sensível, mas exige correlação clínica?",
+          "r": "Ele é frequente no lúpus e também ocorre em outras condições e em pessoas saudáveis.",
+          "chaves": [
+            "lúpus",
+            "outras condições",
+            "pessoas saudáveis"
+          ]
+        }
+      }
+    ],
+    "3a5be348": [
+      {
+        "t": "Interpretou anticorpo anti-CCP a partir dos dados da questão.",
+        "tag": "Anticorpo anti-CCP",
+        "open": {
+          "p": "Há sinovite persistente de pequenas articulações e FR negativo. Que marcador mais específico pode apoiar a hipótese?",
+          "r": "Anti-CCP positivo aumenta a probabilidade de artrite reumatoide no contexto compatível.",
+          "chaves": [
+            "Anti-CCP",
+            "artrite",
+            "reumatoide"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou fator reumatoide a partir dos dados da questão.",
+        "tag": "Fator reumatoide",
+        "open": {
+          "p": "O fator reumatoide está positivo em pessoa sem sinovite. Por que esse achado isolado não confirma artrite reumatoide?",
+          "r": "O anticorpo também ocorre em infecções, outras doenças e indivíduos saudáveis.",
+          "chaves": [
+            "infecções",
+            "doenças",
+            "indivíduos"
+          ]
+        }
+      }
+    ],
+    "f9b34ea6": [
+      {
+        "t": "Interpretou datação da hepatite a partir dos dados da questão.",
+        "tag": "Datação da hepatite",
+        "open": {
+          "p": "O anti-HCV reagente permite datar a aquisição da infecção em quem nunca foi testado?",
+          "r": "Não. A sorologia indica exposição e deve ser integrada à história, a resultados prévios e à pesquisa de RNA.",
+          "chaves": [
+            "sorologia",
+            "exposição",
+            "RNA"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a detecção de HCV-RNA identifica viremia atual.",
+        "tag": "Viremia por HCV",
+        "open": {
+          "p": "Um anti-HCV positivo isolado não diferencia infecção passada de ativa. Qual informação é necessária?",
+          "r": "A detecção de HCV-RNA identifica viremia atual.",
+          "chaves": [
+            "HCV-RNA",
+            "identifica",
+            "viremia"
+          ]
+        }
+      }
+    ],
+    "4dcc5067": [
+      {
+        "t": "Reconheceu que a HbA1c reflete glicação acumulada durante a vida das hemácias.",
+        "tag": "Hemoglobina glicada",
+        "open": {
+          "p": "Para estimar a exposição glicêmica dos últimos dois a três meses, qual exame integra a glicemia no tempo?",
+          "r": "A HbA1c reflete glicação acumulada durante a vida das hemácias.",
+          "chaves": [
+            "HbA1c",
+            "glicação",
+            "acumulada"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou tempo da HbA1c a partir dos dados da questão.",
+        "tag": "Tempo da HbA1c",
+        "open": {
+          "p": "Por que a HbA1c obtida uma semana após mudar o tratamento ainda reflete em grande parte o período anterior?",
+          "r": "A glicação integra a exposição das últimas semanas a meses. Uma mudança recente leva tempo para alterar substancialmente o resultado.",
+          "chaves": [
+            "glicação",
+            "exposição",
+            "tempo"
+          ]
+        }
+      }
+    ],
+    "ee42aeb2": [
+      {
+        "t": "Interpretou cilindro hialino a partir dos dados da questão.",
+        "tag": "Cilindro hialino",
+        "open": {
+          "p": "Em indivíduo hígido desidratado, aparecem raros cilindros transparentes sem células. Como interpretar o achado?",
+          "r": "Pequena quantidade de cilindros hialinos pode ocorrer sem doença estrutural renal.",
+          "chaves": [
+            "Pequena",
+            "quantidade",
+            "cilindros"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou cilindro hemático a partir dos dados da questão.",
+        "tag": "Cilindro hemático",
+        "open": {
+          "p": "Hemácias dismórficas acompanham moldes tubulares com hemácias em paciente com edema e proteinúria. Como interpretar o achado?",
+          "r": "Cilindros hemáticos sustentam origem renal, particularmente glomerular.",
+          "chaves": [
+            "Cilindros",
+            "hemáticos",
+            "particularmente"
+          ]
+        }
+      }
+    ],
+    "3ee66c95": [
+      {
+        "t": "Interpretou persistência do HBsAg a partir dos dados da questão.",
+        "tag": "Persistência do HBsAg",
+        "open": {
+          "p": "O antígeno de superfície continua detectável por mais de seis meses. Que classificação temporal é sustentada?",
+          "r": "A persistência estabelece infecção crônica por HBV; atividade depende de outros marcadores.",
+          "chaves": [
+            "persistência",
+            "crônica",
+            "HBV"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou replicação do HBV a partir dos dados da questão.",
+        "tag": "Replicação do HBV",
+        "open": {
+          "p": "No HBsAg persistente com ALT aumentada, que exame quantifica replicação viral?",
+          "r": "O HBV-DNA auxilia a avaliar replicação e atividade, junto à ALT e aos demais dados clínicos.",
+          "chaves": [
+            "HBV-DNA",
+            "replicação",
+            "ALT"
+          ]
+        }
+      }
+    ],
+    "3c611853": [
+      {
+        "t": "Interpretou imunidade após infecção a partir dos dados da questão.",
+        "tag": "Imunidade após infecção",
+        "open": {
+          "p": "HBsAg é negativo, mas anti-HBc total e anti-HBs são positivos. Qual é o significado da presença de anti-HBc?",
+          "r": "Indica contato natural prévio com HBV, com perfil de infecção resolvida.",
+          "chaves": [
+            "natural",
+            "HBV",
+            "infecção"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou imunidade vacinal a partir dos dados da questão.",
+        "tag": "Imunidade vacinal",
+        "open": {
+          "p": "HBsAg e anti-HBc total estão negativos com anti-HBs positivo. Qual origem da imunidade é mais compatível?",
+          "r": "A vacinação induz anti-HBs sem anticorpo contra o antígeno do core.",
+          "chaves": [
+            "vacinação",
+            "induz",
+            "anti-HBs"
+          ]
+        }
+      }
+    ],
+    "bf260109": [
+      {
+        "t": "Interpretou dois resultados concordantes a partir dos dados da questão.",
+        "tag": "Dois resultados concordantes",
+        "open": {
+          "p": "Glicemia de jejum e HbA1c estão ambas acima dos pontos de corte na mesma coleta, sem interferentes. Como interpretar o achado?",
+          "r": "Dois testes diagnósticos diferentes alterados podem fornecer confirmação.",
+          "chaves": [
+            "Dois",
+            "alterados",
+            "confirmação"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou sobrecarga oral a partir dos dados da questão.",
+        "tag": "Sobrecarga oral",
+        "open": {
+          "p": "O jejum é pouco alterado, mas há suspeita de intolerância após ingestão de carboidrato. Qual exame testa essa resposta?",
+          "r": "O TTGO avalia a glicemia após carga padronizada de glicose.",
+          "chaves": [
+            "TTGO",
+            "glicemia",
+            "glicose"
+          ]
+        }
+      }
+    ],
+    "7b67550b": [
+      {
+        "t": "Reconheceu que o risco basal maior exige maior redução das partículas aterogênicas.",
+        "tag": "Meta individualizada",
+        "open": {
+          "p": "Dois pacientes têm LDL de 110 mg/dL, mas somente um já teve AVC aterosclerótico. Por que os objetivos diferem?",
+          "r": "O risco basal maior exige maior redução das partículas aterogênicas.",
+          "chaves": [
+            "redução",
+            "partículas",
+            "aterogênicas"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou colesterol não HDL a partir dos dados da questão.",
+        "tag": "Colesterol não HDL",
+        "open": {
+          "p": "No mesmo perfil, que medida corresponde ao colesterol total menos o HDL?",
+          "r": "O não HDL agrega o colesterol presente nas lipoproteínas aterogênicas.",
+          "chaves": [
+            "não",
+            "HDL",
+            "colesterol"
+          ]
+        }
+      }
+    ],
+    "b13e598c": [
+      {
+        "t": "Interpretou persistência da lesão a partir dos dados da questão.",
+        "tag": "Persistência da lesão",
+        "open": {
+          "p": "Um primeiro exame mostra albuminúria durante doença aguda. O que é necessário para caracterizar cronicidade?",
+          "r": "Confirmar persistência por ao menos três meses e considerar causas transitórias.",
+          "chaves": [
+            "persistência",
+            "considerar",
+            "transitórias"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou cilindro hialino a partir dos dados da questão.",
+        "tag": "Cilindro hialino",
+        "open": {
+          "p": "Em indivíduo hígido desidratado, aparecem raros cilindros transparentes sem células. Como interpretar o achado?",
+          "r": "Pequena quantidade de cilindros hialinos pode ocorrer sem doença estrutural renal.",
+          "chaves": [
+            "Pequena",
+            "quantidade",
+            "cilindros"
+          ]
+        }
+      }
+    ],
+    "d77c307b": [
+      {
+        "t": "Reconheceu que a perda inicial de plasma e hemácias em proporções semelhantes pode preservar transitoriamente a concentração.",
+        "tag": "Hemorragia recente",
+        "open": {
+          "p": "Pouco depois de perder grande volume de sangue, o paciente está hipotenso com hemoglobina ainda habitual. Como interpretar o achado?",
+          "r": "A perda inicial de plasma e hemácias em proporções semelhantes pode preservar transitoriamente a concentração.",
+          "chaves": [
+            "proporções",
+            "semelhantes",
+            "concentração"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou compensação clínica a partir dos dados da questão.",
+        "tag": "Compensação clínica",
+        "open": {
+          "p": "Dois pacientes têm a mesma hemoglobina, mas um sangra rapidamente e o outro tem anemia estável há meses. Como interpretar o achado?",
+          "r": "A velocidade da perda e a repercussão clínica pesam na decisão de transfundir.",
+          "chaves": [
+            "repercussão",
+            "decisão",
+            "transfundir"
+          ]
+        }
+      }
+    ],
+    "ff1c8c22": [
+      {
+        "t": "Reconheceu que uma subida ou queda apoia lesão aguda.",
+        "tag": "Cinética da troponina",
+        "open": {
+          "p": "Por que colher troponina em série diante de dor isquêmica de início recente?",
+          "r": "Uma subida ou queda apoia lesão aguda. A classificação como infarto exige evidência de isquemia no contexto clínico.",
+          "chaves": [
+            "subida",
+            "classificação",
+            "isquemia"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou protocolo de troponina a partir dos dados da questão.",
+        "tag": "Protocolo de troponina",
+        "open": {
+          "p": "Por que o intervalo das coletas de troponina deve considerar o ensaio utilizado?",
+          "r": "Ensaios de alta sensibilidade detectam mudanças mais precoces. O protocolo interpreta os intervalos, a variação e o percentil 99 próprios do ensaio.",
+          "chaves": [
+            "Ensaios",
+            "detectam",
+            "protocolo"
+          ]
+        }
+      }
+    ],
+    "96f3698e": [
+      {
+        "t": "Interpretou doença renal aguda a partir dos dados da questão.",
+        "tag": "Doença renal aguda",
+        "open": {
+          "p": "A creatinina passou de 1,0 para 1,6 mg/dL em um intervalo documentado de dois meses. Esse dado estabelece a janela de sete dias de LRA?",
+          "r": "Não. Há aumento de 60% em menos de três meses, compatível com doença renal aguda. Faltam medidas intermediárias para precisar a velocidade da alteração.",
+          "chaves": [
+            "doença",
+            "renal",
+            "aguda"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou elevação sobre basal a partir dos dados da questão.",
+        "tag": "Elevação sobre basal",
+        "open": {
+          "p": "A creatinina sobe de 0,5 para 1,0 mg/dL em três dias. Por que a faixa de referência pode enganar?",
+          "r": "O valor dobrou em relação ao basal, preenchendo critério de lesão renal aguda apesar do número absoluto.",
+          "chaves": [
+            "basal",
+            "preenchendo",
+            "absoluto"
+          ]
+        }
+      }
+    ],
+    "62f4d329": [
+      {
+        "t": "Interpretou razão de ritis a partir dos dados da questão.",
+        "tag": "Razão de Ritis",
+        "open": {
+          "p": "Se AST é 520 e ALT é 680 U/L, qual enzima predomina e qual é a razão aproximada?",
+          "r": "A ALT predomina e a razão AST/ALT é aproximadamente 0,76. A causa não se estabelece pela razão isolada.",
+          "chaves": [
+            "ALT",
+            "razão",
+            "AST"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou lesão hepatocelular a partir dos dados da questão.",
+        "tag": "Lesão hepatocelular",
+        "open": {
+          "p": "AST e ALT estão muito elevadas. Qual aspecto do hepatócito esses marcadores informam diretamente?",
+          "r": "As aminotransferases indicam lesão celular e não medem diretamente capacidade de síntese.",
+          "chaves": [
+            "aminotransferases",
+            "lesão",
+            "diretamente"
+          ]
+        }
+      }
+    ],
+    "e6df6f93": [
+      {
+        "t": "Reconheceu que a seleção negativa central reduz a saída de linfócitos capazes de reagir contra o próprio organismo.",
+        "tag": "Tolerância central",
+        "open": {
+          "p": "No timo, clones T altamente autorreativos são eliminados durante a maturação. Como interpretar o achado?",
+          "r": "A seleção negativa central reduz a saída de linfócitos capazes de reagir contra o próprio organismo.",
+          "chaves": [
+            "seleção",
+            "negativa",
+            "central"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou tolerância periférica a partir dos dados da questão.",
+        "tag": "Tolerância periférica",
+        "open": {
+          "p": "Um clone autorreativo maduro é contido por anergia e por células T reguladoras fora dos órgãos primários. Como interpretar o achado?",
+          "r": "Esses mecanismos controlam a autorreatividade que escapou da seleção central.",
+          "chaves": [
+            "mecanismos",
+            "controlam",
+            "seleção"
+          ]
+        }
+      }
+    ],
+    "282ab6e7": [
+      {
+        "t": "Interpretou cilindro hialino a partir dos dados da questão.",
+        "tag": "Cilindro hialino",
+        "open": {
+          "p": "Em indivíduo hígido desidratado, aparecem raros cilindros transparentes sem células. Como interpretar o achado?",
+          "r": "Pequena quantidade de cilindros hialinos pode ocorrer sem doença estrutural renal.",
+          "chaves": [
+            "Pequena",
+            "quantidade",
+            "cilindros"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou cilindro hemático a partir dos dados da questão.",
+        "tag": "Cilindro hemático",
+        "open": {
+          "p": "Hemácias dismórficas acompanham moldes tubulares com hemácias em paciente com edema e proteinúria. Como interpretar o achado?",
+          "r": "Cilindros hemáticos sustentam origem renal, particularmente glomerular.",
+          "chaves": [
+            "Cilindros",
+            "hemáticos",
+            "particularmente"
+          ]
+        }
+      }
+    ],
+    "16c47df7": [
+      {
+        "t": "Reconheceu que o risco basal maior exige maior redução das partículas aterogênicas.",
+        "tag": "Meta individualizada",
+        "open": {
+          "p": "Dois pacientes têm LDL de 110 mg/dL, mas somente um já teve AVC aterosclerótico. Por que os objetivos diferem?",
+          "r": "O risco basal maior exige maior redução das partículas aterogênicas.",
+          "chaves": [
+            "redução",
+            "partículas",
+            "aterogênicas"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou colesterol não HDL a partir dos dados da questão.",
+        "tag": "Colesterol não HDL",
+        "open": {
+          "p": "No mesmo perfil, que medida corresponde ao colesterol total menos o HDL?",
+          "r": "O não HDL agrega o colesterol presente nas lipoproteínas aterogênicas.",
+          "chaves": [
+            "não",
+            "HDL",
+            "colesterol"
+          ]
+        }
+      }
+    ],
+    "953cf0c4": [
+      {
+        "t": "Reconheceu que a resposta inflamatória pode elevar ferritina independentemente do estoque.",
+        "tag": "Ferritina de fase aguda",
+        "open": {
+          "p": "Uma ferritina alta aparece junto de inflamação ativa. Por que esse valor isolado não prova sobrecarga de ferro?",
+          "r": "A resposta inflamatória pode elevar ferritina independentemente do estoque.",
+          "chaves": [
+            "inflamatória",
+            "ferritina",
+            "independentemente"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu que a resposta de fase aguda modifica a albumina e o valor exige interpretação contextual.",
+        "tag": "Queda da albumina",
+        "open": {
+          "p": "A albumina diminui durante grave inflamação aguda. Por que não atribuir o achado apenas a desnutrição?",
+          "r": "A resposta de fase aguda modifica a albumina e o valor exige interpretação contextual.",
+          "chaves": [
+            "modifica",
+            "albumina",
+            "interpretação"
+          ]
+        }
+      }
+    ],
+    "f3b9c444": [
+      {
+        "t": "Reconheceu que a faixa preenche o critério de diabetes gestacional empregado nesse contexto.",
+        "tag": "Hiperglicemia na gestação",
+        "open": {
+          "p": "No critério obstétrico adotado na prova, como se interpreta glicemia de jejum entre 92 e 125 mg/dL na gestante sem diabetes conhecido?",
+          "r": "A faixa preenche o critério de diabetes gestacional empregado nesse contexto.",
+          "chaves": [
+            "preenche",
+            "critério",
+            "diabetes"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou referência obstétrica a partir dos dados da questão.",
+        "tag": "Referência obstétrica",
+        "open": {
+          "p": "Por que a referência geral de jejum para adultos é insuficiente para interpretar glicemia de 98 mg/dL na gestante do caso?",
+          "r": "Os limites diagnósticos da gestação diferem dos usados em adultos não gestantes.",
+          "chaves": [
+            "limites",
+            "gestação",
+            "adultos"
+          ]
+        }
+      }
+    ],
+    "c55c1692": [
+      {
+        "t": "Reconheceu que a HbA1c reflete glicação acumulada durante a vida das hemácias.",
+        "tag": "Hemoglobina glicada",
+        "open": {
+          "p": "Para estimar a exposição glicêmica dos últimos dois a três meses, qual exame integra a glicemia no tempo?",
+          "r": "A HbA1c reflete glicação acumulada durante a vida das hemácias.",
+          "chaves": [
+            "HbA1c",
+            "glicação",
+            "acumulada"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou tempo da HbA1c a partir dos dados da questão.",
+        "tag": "Tempo da HbA1c",
+        "open": {
+          "p": "Por que a HbA1c obtida uma semana após mudar o tratamento ainda reflete em grande parte o período anterior?",
+          "r": "A glicação integra a exposição das últimas semanas a meses. Uma mudança recente leva tempo para alterar substancialmente o resultado.",
+          "chaves": [
+            "glicação",
+            "exposição",
+            "tempo"
+          ]
+        }
+      }
+    ],
+    "cb05d0b7": [
+      {
+        "t": "Interpretou sífilis oral a partir dos dados da questão.",
+        "tag": "Sífilis oral",
+        "open": {
+          "p": "Por que a microscopia de campo escuro de uma lesão oral pode ter baixa especificidade para sífilis?",
+          "r": "Treponemas comensais orais podem ser confundidos com o agente. A escolha do teste deve considerar o sítio e o método.",
+          "chaves": [
+            "Treponemas",
+            "comensais",
+            "confundidos"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou teste treponêmico a partir dos dados da questão.",
+        "tag": "Teste treponêmico",
+        "open": {
+          "p": "Uma pessoa tratada adequadamente mantém teste treponêmico reagente. O que esse resultado documenta?",
+          "r": "Anticorpos treponêmicos podem persistir após tratamento e não servem isoladamente para monitorar resposta.",
+          "chaves": [
+            "persistir",
+            "servem",
+            "monitorar"
+          ]
+        }
+      }
+    ],
+    "60796f77": [
+      {
+        "t": "Interpretou integração do escore a partir dos dados da questão.",
+        "tag": "Integração do escore",
+        "open": {
+          "p": "Além da sorologia, que dimensões entram na classificação clínica da artrite reumatoide?",
+          "r": "Número e tipo de articulações, duração dos sintomas e reagentes de fase aguda integram a avaliação.",
+          "chaves": [
+            "articulações",
+            "duração",
+            "integram"
+          ]
+        }
+      },
+      {
+        "t": "Interpretou anticorpo anti-CCP a partir dos dados da questão.",
+        "tag": "Anticorpo anti-CCP",
+        "open": {
+          "p": "Há sinovite persistente de pequenas articulações e FR negativo. Que marcador mais específico pode apoiar a hipótese?",
+          "r": "Anti-CCP positivo aumenta a probabilidade de artrite reumatoide no contexto compatível.",
+          "chaves": [
+            "Anti-CCP",
+            "artrite",
+            "reumatoide"
+          ]
+        }
+      }
+    ]
+  }
+}
