@@ -63,7 +63,8 @@
       dados: () => AD.farmaco.aulas().map(a => {
         const segs = {}, its = AD.farmaco.segs(a);
         its.forEach(s => { const d = D.querySelector('.done-t[data-id="' + s.key + '"]'), p = d && d.closest('section.pane');
-          segs[s.key] = { p: 0, s: p ? uniq([...p.querySelectorAll('mark[data-refs]')].flatMap(m => refsDe('data-refs="' + m.dataset.refs + '"'))).length : 0 }; });
+          const rs = p ? uniq([...p.querySelectorAll('mark[data-refs]')].flatMap(m => refsDe('data-refs="' + m.dataset.refs + '"'))) : [];
+          segs[s.key] = { p: rs.filter(r => /^P/i.test(r)).length, s: rs.filter(r => !/^P/i.test(r)).length }; });
         const ins = [...a.el.querySelectorAll('.it input')];
         return { key: a.key, nome: ((a.head.title || '').match(/^Aula[^:]*/) || [''])[0], done: ins.length > 0 && ins.every(i => i.checked), segs };
       }),
@@ -257,7 +258,7 @@ html[data-theme="dark"] .vgf-leg i.g5{background:#000;box-shadow:0 0 0 1.5px #ff
      Cada master pinta os grifos do texto com o nível pela quantidade de provas (exam1–5, f1–5, fq1–5).
      Aqui o grifo segue o filtro: só as refs das parciais, só as das somativas, todas, ou nenhum. */
   const cad = r => { const x = typeof examById !== 'undefined' && examById[r]; return x ? (x.group === 'parciais' ? 'p' : 's') : (/^p/i.test(r) ? 'p' : 's'); };
-  const TIPO = { huma: cad, prev: cad, img: cad, lab: cad, micro: r => /^P/i.test(r) ? 'p' : 's', semio: r => /^(P|ED)/i.test(r) ? 'p' : 's', farmaco: () => 's', pato: () => 'p' }; // Patologia: os grifos das aulas são das parciais (rótulo "Parcial N — Questão X")
+  const TIPO = { huma: cad, prev: cad, img: cad, lab: cad, micro: r => /^P/i.test(r) ? 'p' : 's', semio: r => /^(P|ED)/i.test(r) ? 'p' : 's', farmaco: r => /^P/i.test(r) ? 'p' : 's', pato: () => 'p' }; // Patologia: os grifos das aulas são das parciais (rótulo "Parcial N — Questão X")
   const PROVA = r => { const x = typeof examById !== 'undefined' && examById[r]; return x && x.exam ? x.exam : String(r).split(/[-.:]/)[0]; };
   const NIV = /^(exam|fq|f)([1-5])$/;
   const CSS_SM = 'mark.vgf-sm{background:none!important;color:inherit!important;box-shadow:none!important;border:0!important;padding:0!important;text-decoration:none!important}mark.vgf-sm::before,mark.vgf-sm::after{display:none!important}';

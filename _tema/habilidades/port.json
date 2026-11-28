@@ -1,0 +1,779 @@
+{
+  "materia": "port",
+  "byHash": {
+    "469dfde5": [
+      {
+        "t": "Priorizou o acolhimento e a empatia nos minutos iniciais da anamnese",
+        "tag": "Início da anamnese",
+        "open": {
+          "p": "Qual deve ser o principal objetivo do médico nos primeiros minutos da anamnese de um paciente novo?",
+          "r": "Criar um ambiente de acolhimento com empatia e estabelecer vínculo, deixando o paciente seguro e à vontade para compartilhar informações.",
+          "chaves": [
+            "acolhimento",
+            "vínculo",
+            "empatia"
+          ]
+        }
+      },
+      {
+        "t": "Adiou ações burocráticas ou técnicas antes de escutar a queixa",
+        "tag": "Escuta antes da conduta",
+        "open": {
+          "p": "Por que o médico não deve iniciar a consulta pedindo exames ou fazendo o exame físico antes de acolher e ouvir o paciente?",
+          "r": "Porque sem o acolhimento inicial e um ambiente seguro, o paciente não se sente à vontade para relatar a queixa principal e fornecer informações essenciais.",
+          "chaves": [
+            "queixa principal",
+            "ambiente seguro",
+            "informações"
+          ]
+        }
+      }
+    ],
+    "98e261e": [
+      {
+        "t": "Identificou os elementos obrigatórios básicos de um atestado médico",
+        "tag": "Itens do atestado",
+        "open": {
+          "p": "Quais informações referentes ao paciente e à emissão devem constar obrigatoriamente em um atestado de afastamento?",
+          "r": "O nome completo e o documento de identificação do paciente, além da data de emissão do atestado.",
+          "chaves": [
+            "nome completo",
+            "documento",
+            "data de emissão"
+          ]
+        }
+      },
+      {
+        "t": "Condicionou a inclusão da CID à autorização expressa do paciente",
+        "tag": "Sigilo e CID",
+        "open": {
+          "p": "Em que situação o diagnóstico codificado pela CID pode ser incluído em um atestado médico?",
+          "r": "Somente quando houver autorização expressa do paciente; sem ela, o diagnóstico não deve constar no documento.",
+          "chaves": [
+            "CID",
+            "autorização expressa",
+            "paciente"
+          ]
+        }
+      }
+    ],
+    "d14e434c": [
+      {
+        "t": "Reconheceu a função do prontuário na organização do histórico clínico",
+        "tag": "Função do prontuário",
+        "open": {
+          "p": "Qual é a função central do prontuário médico em relação aos dados de saúde do paciente?",
+          "r": "Organizar o histórico de saúde do paciente, reunindo informações clínicas que garantem a continuidade da assistência e decisões corretas.",
+          "chaves": [
+            "histórico de saúde",
+            "continuidade",
+            "assistência"
+          ]
+        }
+      },
+      {
+        "t": "Constatou a obrigatoriedade do registro dos achados de exames",
+        "tag": "Registro de exames",
+        "open": {
+          "p": "O registro dos achados de exames no prontuário é facultativo ou obrigatório, e por quê?",
+          "r": "É obrigatório, pois assegura a continuidade da assistência ao paciente e fundamenta a tomada de decisões clínicas corretas.",
+          "chaves": [
+            "obrigatório",
+            "achados",
+            "decisões clínicas"
+          ]
+        }
+      }
+    ],
+    "4a9b1f5e": [
+      {
+        "t": "Classificou a emissão de atestado falso como infração ética grave",
+        "tag": "Infração ética grave",
+        "open": {
+          "p": "Como a emissão de atestado médico falso é classificada do ponto de vista ético?",
+          "r": "É classificada como infração ética grave, sujeitando o médico a responsabilização ética e legal.",
+          "chaves": [
+            "atestado falso",
+            "infração ética",
+            "grave"
+          ]
+        }
+      },
+      {
+        "t": "Associou o atestado falso às penalidades da Lei n. 3.268/1957",
+        "tag": "Penalidades da lei",
+        "open": {
+          "p": "Quais penalidades previstas na Lei n. 3.268/1957 podem ser aplicadas ao médico que emite atestado falso?",
+          "r": "O médico fica sujeito a advertência, censura, suspensão e até cassação do exercício profissional.",
+          "chaves": [
+            "advertência",
+            "censura",
+            "suspensão",
+            "cassação"
+          ]
+        }
+      },
+      {
+        "t": "Identificou a exigência de denúncia oficial ao CRM para responsabilização",
+        "tag": "Denúncia ao CRM",
+        "open": {
+          "p": "A responsabilização ética ou legal formal do médico por atestado falso ocorre automaticamente ou exige denúncia oficial?",
+          "r": "Exige denúncia oficial junto aos órgãos competentes, como o CRM; por isso, o perito que detecta indício de falsidade deve representar ao CRM.",
+          "chaves": [
+            "denúncia oficial",
+            "CRM",
+            "órgãos competentes"
+          ]
+        }
+      }
+    ],
+    "c04a914b": [
+      {
+        "t": "Relacionou o sumário de alta à transição segura após a internação",
+        "tag": "Sumário de alta",
+        "open": {
+          "p": "Qual é a principal finalidade do sumário de alta e a quem ele se destina?",
+          "r": "Promover a transição segura do cuidado após a internação, garantindo continuidade da assistência e segurança do paciente ao orientar o profissional ou serviço que seguirá o tratamento.",
+          "chaves": [
+            "transição segura",
+            "continuidade",
+            "seguimento"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciou o sumário de alta de atestado, anamnese e declaração de óbito",
+        "tag": "Finalidade dos documentos",
+        "open": {
+          "p": "Como a finalidade do sumário de alta difere da de um atestado médico ou de um relatório de anamnese?",
+          "r": "O sumário de alta orienta a continuidade do cuidado pós-internação, enquanto o atestado comprova estado de saúde e a anamnese registra o início do atendimento.",
+          "chaves": [
+            "pós-internação",
+            "estado de saúde",
+            "início do atendimento"
+          ]
+        }
+      }
+    ],
+    "e2ae075b": [
+      {
+        "t": "Selecionou a declaração de comparecimento para comprovar apenas presença",
+        "tag": "Declaração de comparecimento",
+        "open": {
+          "p": "Qual documento médico deve ser emitido quando o paciente precisa apenas comprovar ao empregador que esteve na consulta?",
+          "r": "A declaração de comparecimento, pois ela comprova exclusivamente a presença no local no período informado.",
+          "chaves": [
+            "declaração de comparecimento",
+            "presença"
+          ]
+        }
+      },
+      {
+        "t": "Preservou o sigilo clínico ao evitar documentos com diagnóstico ou laudo",
+        "tag": "Sigilo de dados",
+        "open": {
+          "p": "Por que a declaração de comparecimento é preferível ao atestado com CID ou ao laudo descritivo quando o objetivo é só comprovar presença?",
+          "r": "Porque a declaração de comparecimento protege a privacidade do paciente ao não expor sua condição de saúde nem dados clínicos.",
+          "chaves": [
+            "dados clínicos",
+            "condição de saúde",
+            "sem expor"
+          ]
+        }
+      }
+    ],
+    "ad3d6dad": [
+      {
+        "t": "Validou a inclusão da CID mediante assinatura de concordância e CRM",
+        "tag": "Validade com CID",
+        "open": {
+          "p": "Em um atestado de afastamento que traz a CID, quais dois requisitos essenciais validam o documento quanto ao diagnóstico e à autoria médica?",
+          "r": "A autorização expressa assinada pelo paciente concordando com a inclusão da CID e o registro obrigatório do CRM do médico.",
+          "chaves": [
+            "autorização expressa",
+            "CID",
+            "CRM"
+          ]
+        }
+      },
+      {
+        "t": "Descartou a exigência legal de endereço residencial do paciente no atestado",
+        "tag": "Itens não obrigatórios",
+        "open": {
+          "p": "A ausência do endereço residencial do paciente torna um atestado médico inválido?",
+          "r": "Não, pois não existe obrigatoriedade legal de constar o endereço residencial do paciente no atestado.",
+          "chaves": [
+            "endereço residencial",
+            "não invalida",
+            "obrigatoriedade legal"
+          ]
+        }
+      }
+    ],
+    "cefecc60": [
+      {
+        "t": "Exigiu análise prévia por comissão permanente antes do descarte do papel",
+        "tag": "Comissão de revisão",
+        "open": {
+          "p": "Segundo a Lei n. 13.787/2018, qual etapa obrigatória deve ocorrer após a digitalização antes de descartar o prontuário em papel?",
+          "r": "A análise obrigatória por comissão permanente de revisão de prontuários, verificando integridade, autenticidade e confidencialidade.",
+          "chaves": [
+            "comissão permanente",
+            "integridade",
+            "autenticidade",
+            "confidencialidade"
+          ]
+        }
+      },
+      {
+        "t": "Reconheceu o prazo mínimo legal de vinte anos e a insuficiência da digitalização isolada",
+        "tag": "Prazo de guarda",
+        "open": {
+          "p": "Qual é o prazo mínimo legal para eliminação do prontuário a partir do último registro, e por que a autorização do paciente não basta para o descarte?",
+          "r": "O prazo mínimo é de 20 anos a partir do último registro, e o descarte exige avaliação formal da comissão permanente de revisão, não bastando digitalizar ou obter autorização do paciente.",
+          "chaves": [
+            "20 anos",
+            "último registro",
+            "comissão"
+          ]
+        }
+      }
+    ],
+    "ded5d289": [
+      {
+        "t": "Identificou o impacto do baixo letramento na compreensão e nos custos de saúde",
+        "tag": "Baixo letramento em saúde",
+        "open": {
+          "p": "De que maneira o baixo letramento em saúde afeta o paciente e o sistema de saúde?",
+          "r": "Dificulta a compreensão de informações para comportamentos saudáveis, gerando sofrimento, mortalidade e aumento de custos no sistema de saúde.",
+          "chaves": [
+            "compreensão",
+            "sofrimento",
+            "mortalidade",
+            "custos"
+          ]
+        }
+      },
+      {
+        "t": "Estabeleceu a relação causal entre os danos coletivos e a saúde pública",
+        "tag": "Relação asserção-razão",
+        "open": {
+          "p": "Por que o baixo letramento em saúde é caracterizado como um problema de saúde pública?",
+          "r": "Porque os prejuízos na compreensão de informações ultrapassam o indivíduo e produzem impacto coletivo, com maior mortalidade e custos ao sistema.",
+          "chaves": [
+            "saúde pública",
+            "impacto",
+            "coletiva"
+          ]
+        }
+      }
+    ],
+    "93d9ff1b": [
+      {
+        "t": "Reconheceu os prejuízos da falta de comunicação atenciosa no cuidado clínico",
+        "tag": "Comunicação atenciosa",
+        "open": {
+          "p": "Quais aspectos do atendimento clínico são prejudicados pela falta de comunicação atenciosa?",
+          "r": "A falta de comunicação atenciosa prejudica o vínculo médico-paciente, o diagnóstico e o tratamento.",
+          "chaves": [
+            "vínculo",
+            "diagnóstico",
+            "tratamento"
+          ]
+        }
+      },
+      {
+        "t": "Identificou jargão técnico excessivo e postura distante como barreiras comunicativas",
+        "tag": "Barreiras de comunicação",
+        "open": {
+          "p": "Qual é o efeito do uso de linguagem técnica excessiva e de uma postura distante na relação médico-paciente?",
+          "r": "Em vez de aproximar, esses fatores criam barreiras de comunicação entre o médico e o paciente.",
+          "chaves": [
+            "linguagem técnica",
+            "postura distante",
+            "barreiras"
+          ]
+        }
+      }
+    ],
+    "1522cf37": [
+      {
+        "t": "Reafirmou a indispensabilidade da anamnese e das habilidades de comunicação",
+        "tag": "Importância da anamnese",
+        "open": {
+          "p": "Exames de imagem podem tornar a anamnese dispensável? Do que depende o sucesso da anamnese?",
+          "r": "Não, a anamnese continua fundamental para o diagnóstico e o tratamento, e seu sucesso depende de boas habilidades de comunicação.",
+          "chaves": [
+            "fundamental",
+            "diagnóstico",
+            "habilidades de comunicação"
+          ]
+        }
+      },
+      {
+        "t": "Associou as três fases da anamnese aos seus objetivos clínicos",
+        "tag": "Fases da anamnese",
+        "open": {
+          "p": "Quais são as três fases da anamnese e a que objetivo corresponde cada uma delas?",
+          "r": "Início (construção do vínculo), meio (compreensão do problema) e fim (manejo da situação).",
+          "chaves": [
+            "vínculo",
+            "compreensão do problema",
+            "manejo"
+          ]
+        }
+      }
+    ],
+    "7c3a50bd": [
+      {
+        "t": "Identificou a omissão da etapa de informação ao paciente sobre a terapêutica",
+        "tag": "Terapêutica efetiva OMS",
+        "open": {
+          "p": "Quando o médico define o problema e escolhe o tratamento, mas entrega a receita sem explicar o uso, qual etapa da terapêutica efetiva (OMS) faltou?",
+          "r": "Faltou a etapa de informação ao paciente sobre a terapêutica, ou seja, orientá-lo sobre o uso correto do medicamento.",
+          "chaves": [
+            "informação ao paciente",
+            "uso correto",
+            "terapêutica"
+          ]
+        }
+      },
+      {
+        "t": "Relacionou a orientação sobre o uso do medicamento à adesão terapêutica",
+        "tag": "Adesão ao tratamento",
+        "open": {
+          "p": "Por que orientar o paciente sobre como usar o medicamento é essencial segundo a OMS?",
+          "r": "Porque essa informação garante a adesão do paciente ao tratamento e o sucesso terapêutico.",
+          "chaves": [
+            "adesão",
+            "sucesso terapêutico"
+          ]
+        }
+      }
+    ],
+    "11f2b07": [
+      {
+        "t": "Substituiu termos técnicos por linguagem simples e cotidiana em materiais",
+        "tag": "Linguagem simples",
+        "open": {
+          "p": "Como devem ser adaptados materiais educativos que utilizam termos técnicos e não são compreendidos pelos pacientes?",
+          "r": "Devem ser substituídos por materiais com linguagem simples e exemplos cotidianos, como cartazes e vídeos acessíveis.",
+          "chaves": [
+            "linguagem simples",
+            "cotidiana",
+            "compreensão"
+          ]
+        }
+      },
+      {
+        "t": "Escolheu formatos acessíveis para ampliar a compreensão sem excluir pacientes",
+        "tag": "Materiais educativos acessíveis",
+        "open": {
+          "p": "Por que trocar folhetos técnicos por cartazes e vídeos acessíveis promove o letramento em saúde melhor do que restringi-los a pacientes alfabetizados?",
+          "r": "Porque recursos visuais com linguagem cotidiana facilitam a compreensão da mensagem por todos os pacientes, em vez de excluí-los.",
+          "chaves": [
+            "cartazes",
+            "vídeos",
+            "letramento em saúde"
+          ]
+        }
+      }
+    ],
+    "bf9b00bb": [
+      {
+        "t": "Verificou a obrigatoriedade nacional da DO e corrigiu o número de vias",
+        "tag": "Vias da DO",
+        "open": {
+          "p": "A Declaração de Óbito tem uso obrigatório em todo o território nacional? Quantas são suas vias e quais as cores?",
+          "r": "Sim, seu uso é obrigatório em todo o território nacional, sendo impressa em três vias autocopiativas nas cores branca, amarela e rosa (não há via azul).",
+          "chaves": [
+            "obrigatório",
+            "três vias",
+            "branca",
+            "amarela",
+            "rosa"
+          ]
+        }
+      },
+      {
+        "t": "Conferiu as regras de preenchimento com letra de forma e ausência de espaços vazios",
+        "tag": "Preenchimento da DO",
+        "open": {
+          "p": "Quais cuidados devem ser observados quanto à escrita, à caneta e aos campos sem informação no preenchimento da DO?",
+          "r": "Deve-se preencher com letra de forma e caneta esferográfica azul ou preta (preferencialmente azul), evitando campos em branco com \"Ignorado\" ou traço (–).",
+          "chaves": [
+            "letra de forma",
+            "caneta",
+            "Ignorado",
+            "traço"
+          ]
+        }
+      }
+    ],
+    "b0b90597": [
+      {
+        "t": "Articulou linguagem simples, recursos visuais e estímulo ao autocuidado",
+        "tag": "Letramento funcional",
+        "open": {
+          "p": "Quais estratégias comunicativas integradas promovem o letramento funcional e a autonomia do paciente durante a consulta?",
+          "r": "O uso de linguagem simples, incentivo ao autocuidado, recursos visuais e checagem da compreensão do paciente.",
+          "chaves": [
+            "linguagem simples",
+            "autocuidado",
+            "recursos visuais",
+            "checagem da compreensão"
+          ]
+        }
+      },
+      {
+        "t": "Incluiu a checagem da compreensão para assegurar autonomia no cuidado",
+        "tag": "Checagem da compreensão",
+        "open": {
+          "p": "Por que não basta apenas entregar uma receita digitada ou orientar o acompanhante para garantir o letramento funcional?",
+          "r": "Porque o letramento funcional exige envolver o próprio paciente com linguagem acessível e checar se ele realmente compreendeu as orientações para o autocuidado.",
+          "chaves": [
+            "autonomia",
+            "próprio paciente",
+            "compreensão"
+          ]
+        }
+      }
+    ],
+    "bb7c2740": [
+      {
+        "t": "Identifiquei a lacuna na investigação clínica e priorizei retomar a anamnese detalhada.",
+        "tag": "Anamnese ocupacional detalhada",
+        "open": {
+          "p": "Em um quadro prolongado sem diagnóstico após vários exames, o que deve ser aprofundado antes de ampliar exames ou encaminhar?",
+          "r": "Deve-se retomar a anamnese de forma completa e detalhada, investigando em particular a história ocupacional e registrando-a no prontuário.",
+          "chaves": [
+            "anamnese",
+            "história ocupacional",
+            "prontuário"
+          ]
+        }
+      },
+      {
+        "t": "Apliquei a Res. CFM 2.056/2013 ao exigir o detalhamento das atividades laborais, não só o nome da profissão.",
+        "tag": "Resolução CFM 2.056/2013",
+        "open": {
+          "p": "Segundo a Res. CFM 2.056/2013, basta anotar apenas o nome da profissão na anamnese? Por quê?",
+          "r": "Não; a resolução exige detalhar as atividades profissionais efetivamente desempenhadas, pois exposições do trabalho podem ser decisivas para o diagnóstico e a responsabilidade ética.",
+          "chaves": [
+            "atividades",
+            "diagnóstico",
+            "ética"
+          ]
+        }
+      }
+    ],
+    "4ae80fec": [
+      {
+        "t": "Distingui o caráter médico do atestado de óbito quanto à emissão e ao registro das causas.",
+        "tag": "Atestado de óbito",
+        "open": {
+          "p": "Quem emite o atestado de óbito e o que esse documento declara?",
+          "r": "É um documento médico, emitido pelo médico, que declara a morte e suas causas.",
+          "chaves": [
+            "médico",
+            "morte",
+            "causas"
+          ]
+        }
+      },
+      {
+        "t": "Associei a certidão de óbito ao registro civil emitido pelo cartório para efeitos legais.",
+        "tag": "Certidão de óbito",
+        "open": {
+          "p": "Quem emite a certidão de óbito, com base em que documento e para que ela serve?",
+          "r": "É um documento civil emitido pelo cartório com base no atestado médico, usado para efeitos legais e administrativos, como inventário, contas bancárias e benefícios previdenciários.",
+          "chaves": [
+            "cartório",
+            "civil",
+            "efeitos legais"
+          ]
+        }
+      }
+    ],
+    "7a565aad": [
+      {
+        "t": "Relacionei a qualidade do registro em prontuário à continuidade assistencial e à segurança do paciente.",
+        "tag": "Segurança assistencial",
+        "open": {
+          "p": "De que maneira o registro adequado no prontuário impacta diretamente o cuidado clínico do paciente?",
+          "r": "Ele orienta as condutas clínicas, evita erros, documenta a assistência prestada e protege a segurança do paciente.",
+          "chaves": [
+            "condutas",
+            "erros",
+            "segurança"
+          ]
+        }
+      },
+      {
+        "t": "Reconheci a função ético-legal do prontuário e descartei alternativas restritivas com \"apenas\" ou \"somente\".",
+        "tag": "Função ético-legal",
+        "open": {
+          "p": "Além da assistência clínica, a quem e para que o registro adequado em prontuário oferece respaldo?",
+          "r": "Resguarda o paciente, o profissional e a instituição em responsabilidades ético-legais, além de poder colaborar com pesquisas quando autorizadas.",
+          "chaves": [
+            "profissional",
+            "instituição",
+            "ético-legal"
+          ]
+        }
+      }
+    ],
+    "42b79ba1": [
+      {
+        "t": "Defini o laudo médico pelo seu conteúdo essencial de achados de exames e conclusões.",
+        "tag": "Conceito de laudo",
+        "open": {
+          "p": "O que caracteriza um laudo médico quanto à autoria e ao conteúdo?",
+          "r": "É um documento assinado por médico que descreve os resultados e achados de exames acompanhados de suas conclusões.",
+          "chaves": [
+            "médico",
+            "achados",
+            "conclusões"
+          ]
+        }
+      },
+      {
+        "t": "Diferenciei o laudo de outros registros assistenciais, como receitas, descrições cirúrgicas ou listas.",
+        "tag": "Diferenciação documental",
+        "open": {
+          "p": "Por que uma lista de pacientes atendidos ou um registro de receitas não pode ser chamado de laudo médico?",
+          "r": "Porque o laudo trata especificamente da descrição e conclusão de exames, e não de controle administrativo, prescrições ou descrições de cirurgias.",
+          "chaves": [
+            "exames",
+            "controle",
+            "prescrições"
+          ]
+        }
+      }
+    ],
+    "f3f76027": [
+      {
+        "t": "Identifiquei regionalismos e abreviações não padronizadas como a falha linguística do registro.",
+        "tag": "Padronização da linguagem",
+        "open": {
+          "p": "Quais tipos de termos tornam inadequado um registro como \"muxoxo no lombo, med IM, sob obs.\"?",
+          "r": "O uso de termos regionais (\"muxoxo\", \"lombo\") e de abreviações imprecisas e não padronizadas (\"med IM\", \"sob obs.\").",
+          "chaves": [
+            "regionais",
+            "abreviações",
+            "imprecisas"
+          ]
+        }
+      },
+      {
+        "t": "Avaliei o impacto da falta de clareza na comunicação da equipe e na segurança jurídica.",
+        "tag": "Risco comunicacional",
+        "open": {
+          "p": "Quais consequências práticas e legais decorrem do uso de termos regionais e abreviações imprecisas no prontuário?",
+          "r": "Comprometem a compreensão por outros profissionais da equipe, prejudicam a continuidade do cuidado e geram riscos legais.",
+          "chaves": [
+            "equipe",
+            "cuidado",
+            "riscos legais"
+          ]
+        }
+      }
+    ],
+    "af8e4fa5": [
+      {
+        "t": "Confrontei cada item da prescrição descrita para separar elementos adequados das falhas reais.",
+        "tag": "Análise de prescrição",
+        "open": {
+          "p": "Em uma prescrição com nome e documento do paciente e medicamentos por extenso, quais falhas restam se as orientações estão incompletas e falta o total?",
+          "r": "Os dados do paciente e os nomes sem abreviações estão corretos; as inadequações são apenas as orientações incompletas e a ausência da quantidade total a ser dispensada.",
+          "chaves": [
+            "orientações",
+            "quantidade",
+            "dispensada"
+          ]
+        }
+      },
+      {
+        "t": "Relacionei as orientações de uso à adscrição e a quantidade a dispensar à subscrição da receita.",
+        "tag": "Adscrição e subscrição",
+        "open": {
+          "p": "Qual é a diferença prática entre a falha na adscrição e a falha na subscrição de uma prescrição médica?",
+          "r": "A adscrição incompleta (orientações de uso) compromete a compreensão do paciente, enquanto a ausência de subscrição (quantidade total) dificulta o controle e a entrega pela farmácia.",
+          "chaves": [
+            "adscrição",
+            "subscrição",
+            "farmácia"
+          ]
+        }
+      }
+    ],
+    "f2f7e500": [
+      {
+        "t": "Vinculei a explicação dos achados do laudo à autonomia e ao direito à informação do paciente.",
+        "tag": "Autonomia do paciente",
+        "open": {
+          "p": "Qual princípio ético e direito do paciente fundamenta o dever médico de explicar os achados do laudo?",
+          "r": "O respeito à autonomia do paciente e ao seu direito à informação, permitindo que ele compreenda sua real situação clínica.",
+          "chaves": [
+            "autonomia",
+            "informação",
+            "compreensão"
+          ]
+        }
+      },
+      {
+        "t": "Reconheci que a compreensão do laudo sustenta a decisão compartilhada e o vínculo médico-paciente.",
+        "tag": "Decisão compartilhada",
+        "open": {
+          "p": "De que forma esclarecer os achados de um exame influencia a relação médico-paciente e o tratamento?",
+          "r": "Fortalece o vínculo de confiança e possibilita a participação informada do paciente nas decisões terapêuticas.",
+          "chaves": [
+            "decisões",
+            "confiança",
+            "participação"
+          ]
+        }
+      }
+    ],
+    "cc89c6ec": [
+      {
+        "t": "Listei os cinco núcleos obrigatórios do sumário de alta segundo a ABNT (2014) e normativas.",
+        "tag": "Conteúdo do sumário",
+        "open": {
+          "p": "Quais são os elementos obrigatórios que devem constar em um sumário de alta hospitalar?",
+          "r": "Identificação do paciente, resumo da internação (procedimentos e evolução), diagnósticos estabelecidos, plano terapêutico e orientações para o cuidado pós-alta.",
+          "chaves": [
+            "identificação",
+            "diagnósticos",
+            "pós-alta"
+          ]
+        }
+      },
+      {
+        "t": "Distingui o sumário de alta como síntese estruturada, evitando reduzi-lo a item único ou cópia integral do prontuário.",
+        "tag": "Síntese de alta",
+        "open": {
+          "p": "Por que o sumário de alta não equivale nem a apenas diagnóstico com data, nem à cópia integral do prontuário?",
+          "r": "Porque deve ser um resumo clínico estruturado que garante a continuidade do cuidado pós-alta, reunindo evolução, diagnósticos, plano terapêutico e orientações sem excesso nem omissão.",
+          "chaves": [
+            "resumo",
+            "plano terapêutico",
+            "orientações"
+          ]
+        }
+      }
+    ],
+    "e2b71c9e": [
+      {
+        "t": "Reconstruí a cadeia causal do óbito da causa básica até o evento terminal registrado na linha a.",
+        "tag": "Cadeia causal do óbito",
+        "open": {
+          "p": "Na sequência gravidez ectópica rota, hemorragia interna e choque hipovolêmico, o que vai na linha (a) do Bloco V da declaração de óbito e como ficam as linhas seguintes?",
+          "r": "Na linha (a) registra-se a causa direta (choque hipovolêmico), precedida na cadeia por (b) hemorragia interna e (c) gravidez ectópica rota.",
+          "chaves": [
+            "choque hipovolêmico",
+            "causa direta",
+            "hemorragia"
+          ]
+        }
+      },
+      {
+        "t": "Excluí parada cardiorrespiratória por representar modo de morrer, e não causa básica ou imediata.",
+        "tag": "Modo de morrer",
+        "open": {
+          "p": "Por que \"parada cardiorrespiratória\" não deve ser preenchida na linha (a) da declaração de óbito?",
+          "r": "Porque parada cardiorrespiratória é um modo de morrer, e não uma causa específica na cadeia causal do óbito.",
+          "chaves": [
+            "modo de morrer",
+            "causa",
+            "declaração"
+          ]
+        }
+      }
+    ],
+    "7f260ceb": [
+      {
+        "t": "Agrupei sono, alimentação e atividade física como indicadores da rotina cotidiana do paciente.",
+        "tag": "Dados do cotidiano",
+        "open": {
+          "p": "Que tipo de informação clínica representam relatos sobre horas de sono, padrão alimentar e prática de exercícios?",
+          "r": "Representam elementos do cotidiano e do estilo de vida do paciente.",
+          "chaves": [
+            "sono",
+            "alimentação",
+            "atividade física"
+          ]
+        }
+      },
+      {
+        "t": "Aloquei o relato na seção de hábitos e costumes da anamnese, separando-o de queixa principal e antecedentes.",
+        "tag": "Hábitos e costumes",
+        "open": {
+          "p": "Em qual seção da anamnese se registra o relato de sono, alimentação e sedentarismo, e por que não na queixa principal?",
+          "r": "Registra-se em hábitos e costumes, pois descreve o cotidiano, e não o motivo principal da consulta nem antecedentes familiares ou uso de medicamentos.",
+          "chaves": [
+            "hábitos e costumes",
+            "anamnese",
+            "cotidiano"
+          ]
+        }
+      }
+    ],
+    "796ab5fb": [
+      {
+        "t": "Adaptei a orientação terapêutica ao perfil de letramento em saúde do paciente idoso com baixa escolaridade.",
+        "tag": "Letramento em saúde",
+        "open": {
+          "p": "Ao prescrever múltiplos medicamentos para um paciente idoso com pouca escolaridade, qual estratégia favorece a compreensão?",
+          "r": "Reforçar as instruções oralmente usando linguagem simples e recursos visuais de apoio, promovendo o letramento em saúde.",
+          "chaves": [
+            "oralmente",
+            "linguagem simples",
+            "recursos visuais"
+          ]
+        }
+      },
+      {
+        "t": "Descartei terceirizar a explicação ou limitar-se à receita digitada por não garantirem entendimento.",
+        "tag": "Comunicação acessível",
+        "open": {
+          "p": "Por que apenas digitar a receita ou delegar a explicação ao acompanhante ou à farmácia é insuficiente nesse cenário?",
+          "r": "Porque legibilidade gráfica não basta diante de vários medicamentos e o próprio paciente necessita de comunicação clara e acessível conduzida pelo médico.",
+          "chaves": [
+            "compreensão",
+            "paciente",
+            "comunicação"
+          ]
+        }
+      }
+    ],
+    "9297f6d4": [
+      {
+        "t": "Atribuí a responsabilidade ética pela elaboração e entrega do sumário ao médico assistente ou substituto.",
+        "tag": "CEM art. 87",
+        "open": {
+          "p": "Segundo o art. 87 do Código de Ética Médica, quem deve elaborar e entregar o sumário de alta e a quem?",
+          "r": "O médico assistente (ou seu substituto) deve elaborar e entregar o sumário ao paciente ou a seu representante no momento da alta.",
+          "chaves": [
+            "médico assistente",
+            "substituto",
+            "paciente"
+          ]
+        }
+      },
+      {
+        "t": "Reconheci o caráter obrigatório da entrega na alta, afastando barreiras administrativas ou pedido prévio.",
+        "tag": "Obrigatoriedade ética",
+        "open": {
+          "p": "A entrega do sumário de alta depende de solicitação formal do paciente ou de critério da direção administrativa do hospital?",
+          "r": "Não; é obrigatória no momento da alta, não é opcional nem depende de autorização administrativa, podendo a recusa configurar infração ética grave.",
+          "chaves": [
+            "obrigatória",
+            "alta",
+            "infração ética"
+          ]
+        }
+      }
+    ]
+  }
+}

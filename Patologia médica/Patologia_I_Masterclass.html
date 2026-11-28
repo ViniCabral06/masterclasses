@@ -295,12 +295,13 @@ iframe.show{display:block}
 
 
 
+
 <!--vidro:cabeca-->
 <script>document.documentElement.dataset.vidro="pato";if(/[?&]vgindice=/.test(location.search)){window.__vgIndex=1;try{Storage.prototype.setItem=Storage.prototype.removeItem=Storage.prototype.clear=function(){}}catch(e){}}(function(){var h='';try{h=localStorage.getItem('vidro-pos:'+location.pathname)||''}catch(e){}window.VIDRO_NOVO=!location.hash&&!h;if(!location.hash&&h)history.replaceState(null,'',h)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_tema/vidro.css?v=728144c6">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=80bc7cb6"></script><script defer src="../_tema/notas.js?v=ba3865ff"></script><script defer src="../_tema/editor.js?v=54019c0c"></script><script defer src="../_tema/segmentos.js?v=7b9e3844"></script><script defer src="../_tema/extras.js?v=50f85739"></script><script defer src="../_tema/memes.js?v=8fc52213"></script><script defer src="../_tema/liquido.js?v=9082e28b"></script><script src="../_tema/correcao.js?v=d81fe2d2"></script><script defer src="../_tema/simulado.js?v=4616e92a"></script><script defer src="../_tema/flashcards.js?v=4c60ee3a"></script><script defer src="../_tema/verificar.js?v=35b64360"></script><script defer src="../_tema/revisao.js?v=6bd90d6b"></script><script defer src="../_tema/foco.js?v=b5f11a53"></script><script defer src="../_tema/concentracao.js?v=1de3682e"></script><script defer src="../_tema/valores.js?v=212cbf26"></script><script defer src="../_tema/retafinal.js?v=5fda43af"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="127870c8"></script><script defer src="../_tema/abas.js?v=8e65fa4e"></script><script defer src="../_tema/siglas.js?v=18fccf8c"></script><script defer src="../_tema/praticar.js?v=6a32433a"></script><script defer src="../_tema/pomodoro-motor.js?v=1f0d7c13"></script><script defer src="../_tema/pomodoro.js?v=993581e2"></script>
+<script defer src="../_tema/modelos.js?v=a24da698"></script><script defer src="../_tema/palco.js?v=713ea5fe"></script><script defer src="../_tema/vidro.js?v=80bc7cb6"></script><script defer src="../_tema/notas.js?v=ba3865ff"></script><script defer src="../_tema/editor.js?v=54019c0c"></script><script defer src="../_tema/segmentos.js?v=7b9e3844"></script><script defer src="../_tema/extras.js?v=50f85739"></script><script defer src="../_tema/memes.js?v=8fc52213"></script><script defer src="../_tema/liquido.js?v=9082e28b"></script><script src="../_tema/correcao.js?v=d81fe2d2"></script><script defer src="../_tema/simulado.js?v=4616e92a"></script><script defer src="../_tema/flashcards.js?v=4c60ee3a"></script><script defer src="../_tema/verificar.js?v=35b64360"></script><script defer src="../_tema/revisao.js?v=6bd90d6b"></script><script defer src="../_tema/foco.js?v=7bf79615"></script><script defer src="../_tema/concentracao.js?v=1de3682e"></script><script defer src="../_tema/valores.js?v=212cbf26"></script><script defer src="../_tema/retafinal.js?v=5fda43af"></script><script defer src="../_tema/elos.js?v=f8dc811a" data-v="127870c8"></script><script defer src="../_tema/abas.js?v=8e65fa4e"></script><script defer src="../_tema/siglas.js?v=18fccf8c"></script><script defer src="../_tema/praticar.js?v=6a32433a"></script><script defer src="../_tema/pomodoro-motor.js?v=1f0d7c13"></script><script defer src="../_tema/pomodoro.js?v=993581e2"></script>
 <!--/vidro:cabeca-->
 </head>
 <body>
@@ -337,6 +338,7 @@ iframe.show{display:block}
 <div id="vidro-load" style="--vl:#ff6fb5" role="status" aria-label="Carregando Patologia Médica I"><div class="vl-in"><div class="vl-orb"><i></i><svg viewBox="0 0 24 24"><path d="M6 21h12M9 21v-3h6v3M10 18l-2-6 5-7 3 2-4 7M13 5l1.5-2 2 1.4-1.4 2"/><circle cx="14" cy="14" r="2"/></svg></div><div class="vl-t">Patologia Médica I</div><svg class="vl-ecg" viewBox="0 0 320 40" preserveAspectRatio="none"><path d="M0 22 H80 l8 -5 l7 5 H130 l6 10 l9 -30 l9 34 l6 -10 H210 l11 -7 l11 7 H320"/></svg><div class="vl-s"><b>Separando os segmentos</b></div></div><div class="vl-c">Design by <b>Vinícius Cabral</b> · Masterclass by <b>Matheus Tavares e Vinícius Cabral</b></div></div>
 <script>(function(){var L=document.getElementById('vidro-load'),s=L.querySelector('.vl-s b'),d=["Separando os segmentos", "Embaralhando as questões", "Revelando as imagens", "Afinando o quiz final"],i=0,t0=Date.now(),ok=0;var iv=setInterval(function(){i=(i+1)%d.length;s.textContent=d[i]},1300);function abre(){clearInterval(iv);setTimeout(function(){document.documentElement.classList.add('vidro-ready');L.classList.add('out');setTimeout(function(){L.remove()},950)},Math.max(0,1500-(Date.now()-t0)))}function done(){if(ok)return;ok=1;var p=window.VIDRO_3D,f=0,g=function(){if(!f){f=1;abre()}};if(p&&p.then){p.then(g,g);setTimeout(g,4500)}else g()}if(document.readyState==='complete')done();else addEventListener('load',done);setTimeout(done,10000);addEventListener('pageshow',function(e){if(e.persisted)done()})})();</script>
 <!--/vidro:corpo-->
+
 
 
 
@@ -470,32 +472,32 @@ const SECTIONS = [
   {t:'Provas práticas', keys:['pratica1','pratica2']}
 ];
 const DOCS = {};
-DOCS["aula1"]="@aulas/aula1.html?v=d396d1b2";
-DOCS["aula2"]="@aulas/aula2.html?v=b7aeb97d";
-DOCS["aula3"]="@aulas/aula3.html?v=ea23899c";
-DOCS["aula4"]="@aulas/aula4.html?v=2c8c2d30";
-DOCS["aula5"]="@aulas/aula5.html?v=7d03a7d0";
-DOCS["aula6"]="@aulas/aula6.html?v=b43e2db3";
-DOCS["aula7"]="@aulas/aula7.html?v=501c93f1";
-DOCS["aula8"]="@aulas/aula8.html?v=595a20c6";
-DOCS["simgrade"]="@aulas/simgrade.html?v=34e9bdd2";
-DOCS["simulados"]="@aulas/simulados.html?v=122d0177";
-DOCS["simulado1"]="@aulas/simulado1.html?v=fc6e43af";
-DOCS["simulado2"]="@aulas/simulado2.html?v=489938eb";
-DOCS["simulado3"]="@aulas/simulado3.html?v=2761bead";
-DOCS["simulado4"]="@aulas/simulado4.html?v=53d79cad";
-DOCS["simulado5"]="@aulas/simulado5.html?v=71681280";
-DOCS["simulado6"]="@aulas/simulado6.html?v=5b712bd0";
-DOCS["tgi1"]="@aulas/tgi1.html?v=6fbc048d";
-DOCS["tgi2"]="@aulas/tgi2.html?v=6958275a";
-DOCS["tgi3"]="@aulas/tgi3.html?v=171c064c";
-DOCS["tgi4"]="@aulas/tgi4.html?v=e9392744";
-DOCS["banco"]="@aulas/banco.html?v=144f19dc";
-DOCS["tgi5"]="@aulas/tgi5.html?v=a1d00e95";
-DOCS["tgi6"]="@aulas/tgi6.html?v=e4fbedaf";
-DOCS["revisao"]="@aulas/revisao.html?v=d970b61d";
-DOCS["flash"]="@aulas/flashcards.html?v=27d00e56";
-DOCS["pratica1"]="@aulas/pratica1.html?v=d3bef400";
+DOCS["aula1"]="@aulas/aula1.html?v=32fbedac";
+DOCS["aula2"]="@aulas/aula2.html?v=cecd595d";
+DOCS["aula3"]="@aulas/aula3.html?v=9ff3fff0";
+DOCS["aula4"]="@aulas/aula4.html?v=0e8a18d6";
+DOCS["aula5"]="@aulas/aula5.html?v=7408640e";
+DOCS["aula6"]="@aulas/aula6.html?v=405097aa";
+DOCS["aula7"]="@aulas/aula7.html?v=791f4a12";
+DOCS["aula8"]="@aulas/aula8.html?v=a378166a";
+DOCS["simgrade"]="@aulas/simgrade.html?v=e4f60351";
+DOCS["simulados"]="@aulas/simulados.html?v=468d8b35";
+DOCS["simulado1"]="@aulas/simulado1.html?v=9f55584a";
+DOCS["simulado2"]="@aulas/simulado2.html?v=784f24a5";
+DOCS["simulado3"]="@aulas/simulado3.html?v=a4bb6ea9";
+DOCS["simulado4"]="@aulas/simulado4.html?v=2963ec98";
+DOCS["simulado5"]="@aulas/simulado5.html?v=d7fa1848";
+DOCS["simulado6"]="@aulas/simulado6.html?v=83a4f50b";
+DOCS["tgi1"]="@aulas/tgi1.html?v=6477d4e8";
+DOCS["tgi2"]="@aulas/tgi2.html?v=5e9ef9e3";
+DOCS["tgi3"]="@aulas/tgi3.html?v=679fcec3";
+DOCS["tgi4"]="@aulas/tgi4.html?v=e62f4c7e";
+DOCS["banco"]="@aulas/banco.html?v=29b39b47";
+DOCS["tgi5"]="@aulas/tgi5.html?v=755859b6";
+DOCS["tgi6"]="@aulas/tgi6.html?v=1d6f942f";
+DOCS["revisao"]="@aulas/revisao.html?v=b0a9de61";
+DOCS["flash"]="@aulas/flashcards.html?v=9fa3a463";
+DOCS["pratica1"]="@aulas/pratica1.html?v=2e2557f3";
 DOCS["pratica2"]="@aulas/pratica2.html?v=7affbde6";
 
 const contentEl = document.getElementById('content');

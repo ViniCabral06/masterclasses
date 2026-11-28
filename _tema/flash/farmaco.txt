@@ -1,26 +1,78 @@
 @titulo Farmacologia — 4º Período
-@sub 11 blocos aula por aula · Cadeias de mecanismo, comparações X × Y, gráficos do Rang & Dale, pegadinhas e frequência real das Somativas 77–82
+@sub 11 blocos aula por aula · Aulas 1 a 5 refeitas em cima do que caiu nas parciais 80 a 83; as outras, nas somativas 77 a 82
 
 # k | 🧪 Aulas 1–2 · Farmacocinética
-Qual o perfil farmacocinético clássico da **varfarina** (ligação proteica e Vd) e o que ocorre na **hipoalbuminemia** ou associação com **AINE**? :: **~99% ligada à albumina** + **Vd baixo (0,1–0,2 L/kg)** (fica no plasma).\nApenas a **fração livre** age, é metabolizada e excretada. Hipoalbuminemia ou deslocamento por AINE ↑ fração livre → **toxicidade/sangramento** mesmo na dose habitual. :: Caiu em 4 somativas
-Compare **indução** × **inibição do CYP** na paciente usando **varfarina** (ex.: rifampicina × azólicos). :: **Indução (rifampicina, fenitoína, tabaco):** leva **dias** (síntese de CYP2C9/3A4) → ↓ varfarina → **INR cai (2,5 → 1,2)** → risco de **trombose**.\n**Inibição (azólicos, ciprofloxacino, eritromicina, cimetidina):** leva **horas** → ↑ varfarina → **INR sobe (2,5 → 6,0)** → **sangramento**. :: Caiu em 2 somativas
-O que a **doença de Crohn** (ou ressecção ileal / uso de antibióticos) faz com fármacos que sofrem **recirculação êntero-hepática**? :: **Encurta a duração do efeito** (inclusive de anticoncepcionais), pois interrompe a desconjugação pela microbiota e a reabsorção no íleo. :: Caiu em 2 somativas
-Na **cinética de saturação (ordem zero)** — cujo exemplo clássico é a {{fenitoína}} — a enzima satura e um pequeno aumento de dose gera {{salto desproporcional no nível sérico}}, causando **ataxia e nistagmo**. :: Na cinética de 1ª ordem (linear), a meia-vida é constante e o steady-state ocorre em **4–5 meias-vidas**. Outros de ordem zero: etanol e AAS em dose alta. :: Caiu em 1 somativa
-Na intoxicação por **AAS ou fenobarbital** (ácidos fracos), por que se usa **bicarbonato de sódio IV**? E para **anfetamina** (base fraca)? :: Só a forma **não ionizada** cruza membranas.\n**Urina alcalina** ioniza **ácidos fracos** → ficam "presos" no túbulo (**retenção iônica**) e são excretados.\n**Bases fracas** (anfetamina) são mais excretadas em **urina ácida**. :: Caiu em 2 provas (1 parcial + 1 somativa)
-Diferencie os transportadores **OCT** e **OAT** e dê o exemplo clássico cobrado pelo professor para cada um. :: **OCT (cátions/bases):** **metformina** (mutação de perda de função no **OCT1** hepático ↓ resposta glicêmica; cimetidina compete no OCT).\n**OAT (ânions/ácidos):** **furosemida, tiazídicos, penicilina, metotrexato, AINEs** (probenecida bloqueia OAT; na DRC, ácidos orgânicos competem → resistência a diuréticos). :: Caiu em 2 somativas
-Como calcular a **biodisponibilidade (F)** e qual a pegadinha da **via retal** vs **sublingual**? :: `F = ASC_oral / ASC_IV` (IV = 100%).\n**Pegadinha:** via **retal** evita apenas **parcialmente** o metabolismo de 1ª passagem; **sublingual** (nitroglicerina) e transdérmica escapam! :: Caiu em 2 somativas
+Só atravessa membrana a forma {{não ionizada}} do eletrólito fraco. :: A ionizada é polar e fica presa no compartimento. :: Caiu em 6 parciais
+Ácido fraco se acumula no lado mais **alcalino**; base fraca, no lado mais ____. :: Ácido. AAS (pKa 3,5) se concentra no plasma; petidina (pKa 8,6), no suco gástrico. :: Caiu em 4 parciais
+pKa é o pH em que {{metade}} do fármaco está ionizado. :: Henderson-Hasselbalch compara pH do meio com o pKa. :: Caiu em 2 parciais
+Por que o curare não intoxica por via oral? :: Amônio **quaternário** = carga fixa, ionizado em qualquer pH → não é absorvido no TGI. Pela ferida, cai direto na circulação. :: Caiu em 2 parciais
+Base fraca (anfetamina) é mais absorvida no estômago ou no intestino? :: **Intestino** — pH alcalino deixa mais fração não ionizada. :: Caiu em 2 parciais
+No gráfico do fenobarbital: inalar CO₂ (acidose) faz o nível plasmático ____. :: **Cair** — menos ionizado, sai do plasma para os tecidos. Bicarbonato faz o inverso. Comportamento de **ácido fraco**. :: Caiu em 2 parciais
+Principal local de absorção dos fármacos orais. :: **Intestino delgado** (área e fluxo). Por isso acloridria e gastrectomia parcial quase não mudam a absorção global. :: Caiu em 1 parcial
+O que mais atrasa a absorção oral? :: O **esvaziamento gástrico**. Enxaqueca, opioide e alimento atrasam; metoclopramida acelera. :: Caiu em 1 parcial
+AUC mede a {{extensão}} da absorção; Cmax e Tmax medem a {{velocidade}}. :: Mesma AUC com Cmax maior e Tmax menor = mesma dose absorvida, só que mais rápido. :: Caiu em 1 parcial
+Fármaco com alta primeira passagem hepática: biodisponibilidade oral ____ que a IV. :: **Muito menor** (propranolol). Sublingual e transdérmica escapam do fígado; retal escapa só em parte. :: Caiu em 3 parciais
+Por que a nitroglicerina é sublingual? :: Fugir do metabolismo de **primeira passagem** — efeito em 1 a 3 minutos. :: Caiu em 2 parciais
+Insulina não pode ser oral porque é {{degradada pelas proteases}} do estômago. :: Nem chega ao fígado: o problema é anterior à primeira passagem. :: Caiu em 1 parcial
+Eliminação renal inalterada + pouca ligação proteica + meia-vida curta = fármaco ____. :: **Polar** (penicilina G). Pouco entra nos tecidos, não é metabolizado. :: Caiu em 1 parcial
+Hipoalbuminemia na cirrose: a varfarina fica mais ou menos perigosa? :: **Mais** — sobe a fração livre (ativa), com a mesma dose. 99% ligada, Vd baixo. :: Caiu em 2 parciais
+Diclofenaco + varfarina: o que acontece? :: O AINE **desloca a varfarina da albumina** → mais fração livre → sangramento. :: Caiu em 1 parcial
+Só a fração {{livre}} é filtrada no glomérulo. :: A filtração depende da TFG e da ligação proteica. :: Caiu em 3 parciais
+Urina alcalina faz o AAS ser mais ou menos excretado? :: **Mais** — ácido fraco ionizado no túbulo não é reabsorvido (retenção iônica). :: Caiu em 3 parciais
+Tiopental acorda rápido por {{redistribuição}}; com doses repetidas, acumula na {{gordura}}. :: Coeficiente de partição óleo:água alto. :: Caiu em 1 parcial
+Por que o diazepam derruba mais o idoso? :: Lipossolúvel + mais gordura e menos massa magra → Vd maior e meia-vida arrastada. :: Caiu em 1 parcial
+Vd baixo (~5 L) é de qual fármaco clássico? :: **Heparina** — preso no plasma. Vd alto: digoxina (~500 L), que por isso não sai na diálise. :: Caiu em 2 parciais
+Na lesão renal aguda, o que muda na digoxina: Vd ou depuração? :: A **depuração** cai → meia-vida sobe → acúmulo acima da janela. :: Caiu em 1 parcial
+Índice terapêutico = DL₅₀/DE₅₀; índice de segurança = {{DL₁/DE₉₉}}. :: O IS é o exigente: dose que já mata 1% contra a que trata 99%. :: Caiu em 1 parcial
+Concentração cai de 0,5 para 0,25 mg/L entre 1 h e 6 h: qual a meia-vida? :: **5 horas** (confirma em 11 h, com 0,125 mg/L). :: Caiu em 2 parciais
+Inibição enzimática age em {{horas}}; indução, em {{dias a semanas}}. :: Inibir bloqueia a enzima que existe; induzir precisa sintetizar enzima nova. :: Caiu em 4 parciais
+Cetoconazol + sinvastatina: o que acontece? :: Inibe a **CYP3A4** → sinvastatina acumula → mialgia e rabdomiólise. :: Caiu em 1 parcial
+Carbamazepina + anticoncepcional: por que falha? :: Indução da **CYP3A4** acelera o metabolismo dos hormônios → nível abaixo do contraceptivo. :: Caiu em 1 parcial
+Rifampicina + varfarina: o INR sobe ou cai? :: **Cai** (indução) → risco de trombose. Já o inibidor faz o INR disparar. :: Caiu em 2 parciais
+O indutor também acelera o próprio metabolismo: isso se chama {{autoindução}}. :: Dá tolerância farmacocinética (carbamazepina, fenobarbital, rifampicina). :: Caiu em 1 parcial
+Tolbutamida + AINE: hipoglicemia por quais dois mecanismos? :: Deslocamento da **albumina** + competição pelas **enzimas hepáticas**. :: Caiu em 1 parcial
 
 # m | 🔬 Aulas 3–4 · Farmacodinâmica
-Compare **Potência (CE₅₀)** × **Eficácia (Emáx)** na curva concentração-efeito. :: "10 mg de A = 100 mg de B" → **A é 10× mais potente** (CE₅₀ menor, curva à esquerda), mas **NÃO diz nada sobre eficácia (Emáx)** (altura do platô).\nAntagonista tem afinidade e **eficácia = 0**. :: Caiu em 4 provas (1 parcial + 3 somativas)
-Compare **antagonismo competitivo reversível** × **não competitivo / irreversível** × **agonista parcial**. :: **Competitivo reversível:** desloca curva p/ **direita**, **Emáx mantido** (superável; ex.: atropina × ACh).\n**Não competitivo/irreversível:** achata a curva (**Emáx cai**, não superável).\n**Agonista parcial (buprenorfina):** Emáx submáximo mesmo com 100% de ocupação; na presença de agonista pleno (heroína), **age como antagonista**! :: Caiu em 4 provas (1 parcial + 3 somativas)
-Associe as **3 principais proteínas G** dos GPCRs aos seus 2ºs mensageiros e receptores-chave. :: **Gs (↑AMPc):** β₁, β₂, H₂.\n**Gi (↓AMPc, ↑efluxo K⁺):** α₂, M₂, opioide μ, D₂.\n**Gq (PLC → IP₃/Ca²⁺ + DAG/PKC):** α₁, M₁, M₃, H₁, AT₁, ET_A, V₁. :: Caiu em 3 provas
-O uso prolongado de um agonista causa internalização de receptores (β-arrestina), gerando {{tolerância / down-regulation}} (exige doses maiores). Quando a perda de resposta ocorre em minutos/horas (ex.: nitratos, efedrina), chama-se {{taquifilaxia}}. :: Conceito clássico repetido em provas idênticas. :: Caiu em 2 somativas
+Curva mais à esquerda = mais {{potência}} (CE₅₀ menor); platô mais alto = mais {{eficácia}} (Emáx). :: Uma coisa não diz nada sobre a outra. :: Caiu em 3 parciais
+A é 100× mais potente que C quando a CE₅₀ de A é ____ que a de C. :: **100 vezes menor** (duas casas de log à esquerda). :: Caiu em 1 parcial
+Afinidade regula a {{ocupação}} do receptor; eficácia regula a {{ativação}}. :: Antagonista tem afinidade e eficácia zero. :: Caiu em 1 parcial
+Antagonista competitivo: o que ele faz com a curva? :: Desloca para a **direita**, Emáx mantido — é superável com mais agonista. :: Caiu em 4 parciais
+Curva que **não sobe mais** mesmo com mais agonista = antagonista ____. :: **Irreversível ou não competitivo** (insuperável). :: Caiu em 2 parciais
+Agonista parcial ocupa 100% dos receptores e ainda assim dá resposta ____. :: **Submáxima** — eficácia intrínseca menor. Diante do agonista pleno, age como antagonista. :: Caiu em 3 parciais
+Por que o agonista parcial β₂ dá menos tremor e taquicardia? :: Mesma afinidade, **menor eficácia**: ativa menos β₂ do músculo e β₁ do coração. :: Caiu em 1 parcial
+Pindolol é agonista pleno, parcial ou antagonista puro? :: **Agonista parcial** β (atividade simpatomimética intrínseca) — derruba menos a pressão. :: Caiu em 1 parcial
+Fármaco que não se liga ao sítio ortostérico e desloca a curva para a **esquerda** é um {{modulador alostérico positivo}}. :: Se deslocasse para a direita ou achatasse, seria negativo. :: Caiu em 2 parciais
+As 4 superfamílias, da mais rápida para a mais lenta. :: Canal iônico (ms) → GPCR (s) → quinase (min) → receptor nuclear (h a dias). :: Caiu em 2 parciais
+Resposta em milissegundos com mudança do potencial de membrana = receptor ____. :: **Ionotrópico** (canal iônico controlado por ligante). :: Caiu em 2 parciais
+O nicotínico da placa motora é {{pentamérico}}, precisa de {{2 moléculas de ACh}} e conduz sobretudo {{Na⁺}}. :: O patch-clamp mede a corrente de um canal único. :: Caiu em 1 parcial
+Gs faz o AMPc ____; Gi faz o AMPc ____. :: **Subir** / **descer**. Gq: fosfolipase C → IP₃ + DAG → cálcio. :: Caiu em 5 parciais
+Na proteína G, o agonista troca {{GDP por GTP}} na subunidade α, que se solta do βγ. :: A α ativa ou inibe o efetor; o ciclo acaba quando ela hidrolisa o GTP. :: Caiu em 1 parcial
+Gi pré-sináptico: além de baixar o AMPc, o complexo βγ faz o quê? :: Fecha canais de **Ca²⁺** e abre os de **K⁺** → menos liberação de neurotransmissor. :: Caiu em 2 parciais
+Na via Gq, o IP₃ vai para o {{retículo}} liberar cálcio e o DAG fica na {{membrana}} ativando a PKC. :: Trocar os dois é a pegadinha clássica. :: Caiu em 2 parciais
+Cascata da insulina, em ordem. :: Autofosforilação → **IRS** → **PI3K** → Akt → **GLUT4** na membrana. :: Caiu em 2 parciais
+Efeito que demora horas e dura depois que o fármaco sai do plasma = receptor ____. :: **Nuclear** (transcrição gênica) — corticoide. :: Caiu em 3 parciais
+Prednisona e ibuprofeno agem em receptor de membrana? :: **Nenhum dos dois**: a prednisona é receptor nuclear; o ibuprofeno inibe a enzima COX. :: Caiu em 1 parcial
+Tamoxifeno é classificado como {{SERM}} (modulador seletivo do receptor de estrogênio). :: Antagonista na mama, agonista parcial no endométrio. :: Caiu em 1 parcial (anulada)
 
 # n | ⚡ Aula 5 · Sistema Nervoso Simpático
-Compare **metoprolol**, **propranolol** e **carvedilol** quanto aos receptores bloqueados e usos/riscos. :: **Metoprolol (β₁-seletivo):** ↓FC, ↓contratilidade (↓DC) e ↓renina (JG) → HAS/angina.\n**Propranolol (β₁+β₂):** **contraindicado na asma** (broncoespasmo β₂) e mascara sintomas adrenérgicos da hipoglicemia (mantém sudorese).\n**Carvedilol (β₁+β₂+α₁):** soma **vasodilatação (↓RVP)** → benéfico na IC. :: Caiu em 5 somativas
-Qual o mecanismo, usos e efeito adverso clássico da **prazosina** e **doxazosina**? :: **Antagonistas α₁** → vasodilatação (HAS) + relaxamento do colo vesical/próstata (**HPB**).\nEfeito adverso clássico: **hipotensão postural da 1ª dose**. :: Caiu em 3 somativas
-Compare **clonidina** × **metildopa** (agonistas α₂ centrais) quanto à pegadinha clínica de cada uma. :: Ambas estimulam **α₂ no SNC** → ↓ tônus simpático → ↓ RVP e PA.\n**Clonidina:** suspensão abrupta gera **hipertensão de rebote** (PA 220×130, taquicardia, sudorese).\n**Metildopa:** fármaco de escolha na **hipertensão da gestação**. :: Caiu em 6 somativas
-Qual o mecanismo da **reserpina** e da **adrenalina na anafilaxia**? :: **Reserpina:** inibe **VMAT** (transporte vesicular) → depleta NA/DA/5-HT → depressão e congestão nasal.\n**Adrenalina IM na anafilaxia:** α₁ (vasoconstrição → ↑PA, ↓edema) + β₁ (↑DC) + β₂ (broncodilatação). :: Caiu em 3 somativas
+Etapa limitante da síntese de catecolaminas. :: **Tirosina hidroxilase** (tirosina → DOPA), regulada por feedback negativo. :: Caiu em 1 parcial
+α₁ é acoplado à proteína {{Gq}} e causa {{vasoconstrição}}. :: Fosfolipase C → IP₃ e DAG → cálcio no músculo liso vascular. :: Caiu em 3 parciais
+β₁ (coração) usa Gs: ↑AMPc → PKA → ____ e ____. :: ↑ contratilidade (inotrópico) e ↑ frequência (cronotrópico). :: Caiu em 2 parciais
+α₂ pré-sináptico faz o quê com a noradrenalina? :: **Freia** a liberação (Gi) — é o autorreceptor. :: Caiu em 3 parciais
+No gráfico clássico: quem sobe a resistência periférica e dá bradicardia reflexa? :: **Noradrenalina** (α₁ predominante). A bradicardia é do barorreflexo, não do fármaco. :: Caiu em 3 parciais
+No mesmo gráfico: quem derruba a resistência e a diastólica? :: **Isoprenalina** (β puro, β₂ vasodilatador). :: Caiu em 2 parciais
+Adrenalina muda de efeito com a dose: dose baixa predomina {{β₂}} (vasodilata) e dose alta, {{α₁}} (vasoconstringe). :: Na parada, o que importa é o α₁: pressão diastólica e perfusão coronariana. :: Caiu em 2 parciais
+A reserpina bloqueia o {{VMAT}} e esvazia as vesículas. :: A noradrenalina sobra no citoplasma e a MAO destrói. :: Caiu em 2 parciais
+Agonista β₁ de meia-vida de 2 minutos para choque cardiogênico. :: **Dobutamina** — aumenta contratilidade; pode dar extrassístoles. :: Caiu em 2 parciais
+Clonidina: qual receptor, onde e para quê? :: Agonista **α₂ central** (Gi) → menos descarga simpática → baixa a pressão, com sedação e boca seca. :: Caiu em 2 parciais
+Descongestionante nasal tópico é agonista ____. :: **α₁** (fenilefrina, oximetazolina) — vasoconstrição da mucosa. :: Caiu em 1 parcial
+Betabloqueador no diabético em uso de insulina: qual o risco? :: Mascara a taquicardia e o tremor da hipoglicemia (β₁) e atrasa a recuperação pela glicogenólise (β₂). :: Caiu em 1 parcial
+Carvedilol bloqueia {{β₁, β₂ e α₁}}. :: O α₁ dá vasodilatação e queda da pós-carga — por isso serve na insuficiência cardíaca. :: Caiu em 3 parciais
+Propranolol em coronariopata: por que pode precipitar vasoespasmo? :: Bloqueia o **β₂ coronariano** (vasodilatador) e deixa o α₁ sem oposição. :: Caiu em 1 parcial
+Adrenalina em quem usa propranolol: a pressão sobe ou cai? :: **Sobe** (paradoxalmente) — com β bloqueado, sobra o α₁ puro. :: Caiu em 1 parcial
+Na crise do feocromocitoma, bloqueia-se primeiro α ou β? :: **α** (fentolamina, prazosina). Bloquear β antes deixa o α₁ livre e piora a crise. :: Caiu em 2 parciais
+Prazosina: efeito adverso clássico da primeira dose. :: **Hipotensão postural**. :: Caiu em 2 parciais
+Tiramina com IMAO dá crise hipertensiva porque ela {{desloca a noradrenalina}} das vesículas. :: Sem a MAO, a tiramina chega inteira e as reservas estão cheias — é o "efeito queijo". :: Caiu em 1 parcial
 
 # p | 🧠 Aula 6 · Sistema Nervoso Parassimpático
 No **experimento de Dale**, por que uma **dose baixa de ACh** derruba a PA, enquanto uma **dose alta de ACh após atropina** ELEVA a PA? :: **Dose baixa:** ativa **M₃ endotelial (NO)** e **M₂ cardíaco** → ↓PA e bradicardia (atropina bloqueia).\n**Dose alta + atropina:** os muscarínicos estão bloqueados → ACh estimula **nicotínicos ganglionares e medula adrenal** → libera adrenalina → **↑PA**! :: Caiu em 1 somativa
